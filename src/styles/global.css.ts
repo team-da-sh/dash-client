@@ -15,7 +15,7 @@ globalStyle("html, body", {
   justifyContent: "center",
   alignItems: "center",
   scrollBehavior: "smooth",
-  background: "#7700FF",
+  background: "#dcdcdc",
 });
 
 /* Scrollbar Hide */

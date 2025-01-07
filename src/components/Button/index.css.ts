@@ -6,6 +6,7 @@ export const button = recipe({
     backgroundColor: "black",
     color: "white",
     fontWeight: "bold",
+    borderRadius: "10px",
   },
   variants: {
     size: {
