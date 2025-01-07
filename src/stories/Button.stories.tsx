@@ -31,6 +31,11 @@ const meta = {
     isDisabled: {
       control: { type: 'boolean' },
     },
+    color: {
+      control: {
+        type: 'color',
+      },
+    },
   },
   args: {
     variant: 'primary',
