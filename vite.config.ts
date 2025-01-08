@@ -1,14 +1,19 @@
 import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
+import react from "@vitejs/plugin-react-swc"; // or "@vitejs/plugin-react" based on your preference
+import svgr from "vite-plugin-svgr";
 import { vanillaExtractPlugin } from "@vanilla-extract/vite-plugin";
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
-    react(),
+    react(), // React 플러그인
+    svgr({
+      svgrOptions: {
+        icon: true, // SVG 관련 설정
+      },
+    }),
     vanillaExtractPlugin({
-      // vanilla-extract plugin 추가
-      identifiers: "debug",
+      identifiers: "debug", // vanilla-extract 플러그인 설정
     }),
   ],
 });

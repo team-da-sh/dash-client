@@ -1,3 +1,6 @@
+import { QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import queryClient from './queryClient';
 import { useEffect } from "react";
 import { rootStyle } from "./styles/global.css";
 import "./styles/index.css";
@@ -28,7 +31,14 @@ const App = () => {
       window.removeEventListener("resize", setScreenSize);
     };
   }, []);
-  return <div className={rootStyle}></div>;
+  return (
+    <div className={rootStyle}>
+      <QueryClientProvider client={queryClient}>
+        <ReactQueryDevtools initialIsOpen={false} />
+        <div>DASH</div>
+      </QueryClientProvider>
+    </div>
+  )
 };
 
 export default App;
