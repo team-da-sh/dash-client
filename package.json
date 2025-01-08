@@ -9,7 +9,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
     "svgr": "npx @svgr/cli -d src/assets/svg --no-prettier --ignore-existing --typescript --no-dimensions public/svg"
   },
   "dependencies": {
@@ -50,19 +50,11 @@
     "install": "^0.13.0",
     "storybook": "^8.4.7",
     "typescript": "~5.6.2",
-    "typescript-eslint": "^8.18.2",
-    "vite": "^6.0.5"
-  },
-  "eslintConfig": {
-    "extends": [
-      "plugin:storybook/recommended"
-    ]
-  }
-    "prettier": "^3.4.2",
-    "typescript": "~5.6.2",
-    "typescript-eslint": "^8.18.2",
     "vite": "^6.0.5",
     "vite-plugin-svgr": "^4.3.0"
+  },
+  "eslintConfig": {
+    "extends": ["plugin:storybook/recommended"]
   },
   "packageManager": "pnpm@9.15.3"
 }
