@@ -2,7 +2,6 @@ import { QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { useEffect } from 'react';
 import queryClient from './queryClient';
-import { rootStyle } from './styles/global.css';
 import './styles/index.css';
 
 const App = () => {
@@ -25,13 +24,12 @@ const App = () => {
       window.removeEventListener('resize', setScreenSize);
     };
   }, []);
+
   return (
-    <div className={rootStyle}>
-      <QueryClientProvider client={queryClient}>
-        <ReactQueryDevtools initialIsOpen={false} />
-        <div>DASH</div>
-      </QueryClientProvider>
-    </div>
+    <QueryClientProvider client={queryClient}>
+      <ReactQueryDevtools initialIsOpen={false} />
+      <div>DASH</div>
+    </QueryClientProvider>
   );
 };
 

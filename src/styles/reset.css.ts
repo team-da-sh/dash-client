@@ -16,11 +16,6 @@ globalStyle(
   }
 );
 
-/* Set default font size */
-globalStyle('html', {
-  fontSize: '62.5%', // 1rem = 10px
-});
-
 /* Set default body styles */
 globalStyle('body', {
   lineHeight: '1.5',
@@ -71,4 +66,5 @@ globalStyle('input, button, textarea, select', {
   padding: 0,
   border: 'none',
   background: 'none',
+  outline: 'none',
 });
