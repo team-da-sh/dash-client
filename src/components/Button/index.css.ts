@@ -1,23 +1,23 @@
-import { recipe } from "@vanilla-extract/recipes";
+import { recipe } from '@vanilla-extract/recipes';
 
 export const button = recipe({
   base: {
-    border: "none",
-    backgroundColor: "black",
-    color: "white",
-    fontWeight: "bold",
-    borderRadius: "10px",
+    border: 'none',
+    backgroundColor: 'black',
+    color: 'white',
+    fontWeight: 'bold',
+    borderRadius: '10px',
   },
   variants: {
     size: {
       sm: {
-        padding: "0.5rem",
+        padding: '0.5rem',
       },
       md: {
-        padding: "1rem",
+        padding: '1rem',
       },
       lg: {
-        padding: "1.5rem",
+        padding: '1.5rem',
       },
     },
   },

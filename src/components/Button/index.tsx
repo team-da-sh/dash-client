@@ -1,8 +1,7 @@
-import { button } from "./index.css";
+import { button } from './index.css';
 
-export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  size?: "sm" | "md" | "lg";
+export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  size?: 'sm' | 'md' | 'lg';
 }
 
 const Button = ({ size, ...props }: ButtonProps) => {
@@ -11,8 +10,7 @@ const Button = ({ size, ...props }: ButtonProps) => {
       {...props}
       className={button({
         size,
-      })}
-    >
+      })}>
       {props.children}
     </button>
   );

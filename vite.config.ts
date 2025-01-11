@@ -1,7 +1,8 @@
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react-swc"; // or "@vitejs/plugin-react" based on your preference
-import svgr from "vite-plugin-svgr";
-import { vanillaExtractPlugin } from "@vanilla-extract/vite-plugin";
+import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin';
+import react from '@vitejs/plugin-react-swc';
+import { defineConfig } from 'vite';
+// or "@vitejs/plugin-react" based on your preference
+import svgr from 'vite-plugin-svgr';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -13,7 +14,7 @@ export default defineConfig({
       },
     }),
     vanillaExtractPlugin({
-      identifiers: "debug", // vanilla-extract 플러그인 설정
+      identifiers: 'debug', // vanilla-extract 플러그인 설정
     }),
   ],
 });

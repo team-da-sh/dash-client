@@ -1,7 +1,7 @@
-import type { ComponentProps } from "react";
-import { cardStyle } from "./index.css";
+import type { ComponentProps } from 'react';
+import { cardStyle } from './index.css';
 
-type CardProps = ComponentProps<"div">;
+type CardProps = ComponentProps<'div'>;
 
 const Card = ({ children, ...props }: CardProps) => {
   return (
