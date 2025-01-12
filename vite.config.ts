@@ -8,11 +8,7 @@ import svgr from 'vite-plugin-svgr';
 export default defineConfig({
   plugins: [
     react(), // React 플러그인
-    svgr({
-      svgrOptions: {
-        icon: true, // SVG 관련 설정
-      },
-    }),
+    svgr(),
     vanillaExtractPlugin({
       identifiers: 'debug', // vanilla-extract 플러그인 설정
     }),
