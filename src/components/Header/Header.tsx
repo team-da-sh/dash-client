@@ -15,6 +15,10 @@ interface TitleProps {
   text: string;
 }
 
+interface CloseIconProps {
+  onClick?: () => void;
+}
+
 const HeaderRoot = ({ children }: HeaderRootProps): JSX.Element => {
   return <header className={styles.headerRoot}>{children}</header>;
 };
@@ -23,17 +27,9 @@ const BackIcon = ({ onClick }: BackIconProps): JSX.Element => {
   return <IconBack />;
 };
 
-interface TitleProps {
-  text: string;
-}
-
 const Title = ({ text }: TitleProps): JSX.Element => {
   return <h1 className={styles.titleStyle}>{text}</h1>;
 };
-
-interface CloseIconProps {
-  onClick?: () => void;
-}
 
 const CloseIcon = ({ onClick }: CloseIconProps): JSX.Element => {
   return <IconClose />;
