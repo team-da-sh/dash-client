@@ -25,7 +25,7 @@ const HeaderRoot = ({ children }: HeaderRootProps): JSX.Element => {
 
 const BackIcon = ({ onClick }: BackIconProps): JSX.Element => {
   return (
-    <button onClick={onClick} aria-label="뒤로가기">
+    <button className={styles.backIconStyle} onClick={onClick} aria-label="뒤로가기">
       <IconBack />
     </button>
   );
@@ -37,7 +37,7 @@ const Title = ({ title }: TitleProps): JSX.Element => {
 
 const CloseIcon = ({ onClick }: CloseIconProps): JSX.Element => {
   return (
-    <button onClick={onClick} aria-label="닫기">
+    <button className={styles.closeIconStyle} onClick={onClick} aria-label="닫기">
       <IconClose />
     </button>
   );
