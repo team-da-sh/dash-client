@@ -7,20 +7,9 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   isDisabled?: boolean;
 }
 
-const Button = ({
-  variant = 'primary',
-  children,
-  size = 'medium',
-  isDisabled = false,
-  ...props
-}: ButtonProps) => {
+const Button = ({ variant = 'primary', children, size = 'medium', isDisabled = false, ...props }: ButtonProps) => {
   return (
-    <button
-      type="button"
-      className={buttonStyle({ color: variant, size: size })}
-      disabled={isDisabled}
-      {...props}
-    >
+    <button type="button" className={buttonStyle({ color: variant, size: size })} disabled={isDisabled} {...props}>
       {children}
     </button>
   );
