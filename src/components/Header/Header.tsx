@@ -12,7 +12,7 @@ interface BackIconProps {
 }
 
 interface TitleProps {
-  text: string;
+  title: string;
 }
 
 interface CloseIconProps {
@@ -24,15 +24,23 @@ const HeaderRoot = ({ children }: HeaderRootProps): JSX.Element => {
 };
 
 const BackIcon = ({ onClick }: BackIconProps): JSX.Element => {
-  return <IconBack />;
+  return (
+    <button onClick={onClick} aria-label="뒤로가기">
+      <IconBack />
+    </button>
+  );
 };
 
-const Title = ({ text }: TitleProps): JSX.Element => {
-  return <h1 className={styles.titleStyle}>{text}</h1>;
+const Title = ({ title }: TitleProps): JSX.Element => {
+  return <h1 className={styles.titleStyle}>{title}</h1>;
 };
 
 const CloseIcon = ({ onClick }: CloseIconProps): JSX.Element => {
-  return <IconClose />;
+  return (
+    <button onClick={onClick} aria-label="닫기">
+      <IconClose />
+    </button>
+  );
 };
 
 const Header = {
