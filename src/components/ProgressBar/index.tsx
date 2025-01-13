@@ -1,23 +1,17 @@
 import * as styles from './index.css';
 
-type ProgressBarProps = {
-  totalSteps: number;
+interface ProgressBarProps {
+  totalStep: number;
   currentStep: number;
-};
+}
 
-const ProgressBar = ({ totalSteps, currentStep }: ProgressBarProps) => {
-  const displayedStep = Math.min(currentStep, totalSteps);
-
+const ProgressBar = ({ totalStep, currentStep }: ProgressBarProps) => {
   return (
     <div className={styles.progressBarWrapper}>
-      {Array.from({ length: totalSteps }, (_, index) => (
-        <div
-          key={index}
-          className={styles.progressBarSegment({
-            isActive: index + 1 === displayedStep,
-          })}
-        />
-      ))}
+      {[...Array(totalStep)].map((_, index) => {
+        const isActive = index + 1 === Math.min(currentStep, totalStep);
+        return <div key={index} className={styles.progressBarSegment({ isActive })} />;
+      })}
     </div>
   );
 };
