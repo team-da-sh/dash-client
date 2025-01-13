@@ -2,11 +2,11 @@ import { ComponentPropsWithoutRef } from 'react';
 import { headStyle } from './index.css';
 
 type HeadLevel = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
-type HeadType = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'h7';
+type HeadTag = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'h7';
 
-interface HeadProps extends ComponentPropsWithoutRef<'h1'> {
+export interface HeadProps extends ComponentPropsWithoutRef<'h1'> {
   level?: HeadLevel;
-  tag?: HeadType;
+  tag?: HeadTag;
 }
 
 const HeadTag = {
