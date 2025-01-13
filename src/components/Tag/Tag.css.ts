@@ -24,7 +24,6 @@ export const tagSizeStyles = styleVariants({
   small: {
     borderRadius: '2px',
     padding: '0.4rem 0.6rem',
-    height: '1.8rem',
     gap: '1rem',
     ...vars.fonts.caption01_med,
   },

@@ -1,5 +1,5 @@
 import { ComponentPropsWithRef } from 'react';
-import * as styles from './Tag.css';
+import * as styles from '@/components/Tag/Tag.css';
 
 interface TagProps extends ComponentPropsWithRef<'div'> {
   size: 'small' | 'medium' | 'thumbnail';
