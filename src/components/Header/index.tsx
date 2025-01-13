@@ -1,7 +1,7 @@
 import React from 'react';
 import IconBack from '../../../src/assets/svg/ic_back.svg?react';
 import IconClose from '../../../src/assets/svg/ic_close.svg?react';
-import * as styles from './Header.css';
+import * as styles from './index.css';
 
 interface HeaderRootProps {
   children: React.ReactNode;
