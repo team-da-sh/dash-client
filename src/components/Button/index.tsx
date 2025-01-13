@@ -2,7 +2,7 @@ import { HTMLAttributes } from 'react';
 import { buttonStyle } from './index.css';
 
 export interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'secondary' | 'outlined';
+  variant?: 'primary' | 'secondary' | 'outline';
   isDisabled?: boolean;
 }
 

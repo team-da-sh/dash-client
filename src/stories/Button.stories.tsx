@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import Button, { ButtonProps } from '../components/Button';
+import Button, { ButtonProps } from '@/components/Button';
 
 const meta = {
   title: 'Common/Button',
@@ -11,7 +11,7 @@ const meta = {
   argTypes: {
     variant: {
       control: { type: 'radio' },
-      options: ['primary', 'secondary', 'tertiary', 'outline'],
+      options: ['primary', 'secondary', 'outline'],
     },
     children: {
       control: { type: 'text' },
@@ -46,8 +46,6 @@ const createButtonStory = (variant: ButtonProps['variant']) => ({
 
 export const Primary: Story = createButtonStory('primary');
 
-// export const Secondary: Story = createButtonStory('secondary');
+export const Secondary: Story = createButtonStory('secondary');
 
-// export const Tertiary: Story = createButtonStory('tertiary');
-
-// export const Outline: Story = createButtonStory('outline');
+export const Outline: Story = createButtonStory('outline');

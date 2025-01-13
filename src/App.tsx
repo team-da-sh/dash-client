@@ -34,10 +34,10 @@ const App = () => {
         {/* <Button variant="primary" isDisabled={false}>
           button
         </Button> */}
-        <Button variant="outlined" isDisabled={true}>
+        <Button variant="outline" isDisabled={true}>
           outlined Button
         </Button>
-        <Button variant="outlined" isDisabled={false}>
+        <Button variant="outline" isDisabled={false}>
           outlined Button
         </Button>
       </div>

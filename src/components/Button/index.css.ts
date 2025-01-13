@@ -38,7 +38,7 @@ export const buttonStyle = recipe({
         ...vars.fonts.h6,
       },
 
-      outlined: {
+      outline: {
         padding: '0.8rem 0',
 
         border: `0.5px solid ${vars.colors.gray09}`,
