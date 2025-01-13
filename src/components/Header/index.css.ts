@@ -8,6 +8,7 @@ export const headerRoot = style({
   height: '6rem',
   alignItems: 'center',
   padding: '1.8rem 2rem',
+  position: 'fixed',
 });
 
 export const backIconStyle = style({
