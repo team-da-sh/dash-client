@@ -1,4 +1,4 @@
-import { divider } from '@/components/Divider/index.css';
+import { dividerStyle } from '@/components/Divider/index.css';
 
 interface DividerProps {
   direction?: 'horizontal' | 'vertical';
@@ -7,7 +7,7 @@ interface DividerProps {
 }
 const Divider = ({ direction = 'horizontal', color = 'primary', length = '100%' }: DividerProps) => {
   const sizeStyle = direction === 'horizontal' ? { width: length || '100%' } : { height: length || '100%' };
-  return <div className={divider({ direction, color })} style={sizeStyle} />;
+  return <div className={dividerStyle({ direction, color })} style={sizeStyle} />;
 };
 
 export default Divider;
