@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import Tag from '../components/Tag/Tag';
+import Tag from '../components/Tag/index';
 
 const meta = {
   title: 'Common/Tag',
