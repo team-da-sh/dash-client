@@ -1,6 +1,7 @@
+import { ComponentPropsWithRef } from 'react';
 import * as styles from './Tag.css';
 
-interface TagProps extends React.ComponentPropsWithoutRef<'div'> {
+interface TagProps extends ComponentPropsWithRef<'div'> {
   size: 'small' | 'medium' | 'thumbnail';
   type: 'genre' | 'level' | 'deadline';
 }

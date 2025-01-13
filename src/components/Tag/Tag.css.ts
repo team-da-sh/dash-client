@@ -1,7 +1,6 @@
 import { style, styleVariants } from '@vanilla-extract/css';
 import { vars } from '../../styles/theme.css';
 
-// 공통 스타일 정의
 export const tagBase = style({
   display: 'inline-flex',
   justifyContent: 'center',
@@ -9,7 +8,6 @@ export const tagBase = style({
   color: vars.colors.white,
 });
 
-// 유형별 스타일 (색상)
 export const tagTypeStyles = styleVariants({
   genre: {
     backgroundColor: vars.colors.main03,
@@ -22,7 +20,6 @@ export const tagTypeStyles = styleVariants({
   },
 });
 
-// 크기별 스타일 (padding, border-radius, 글자)
 export const tagSizeStyles = styleVariants({
   small: {
     borderRadius: '2px',
