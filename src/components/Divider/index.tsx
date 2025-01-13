@@ -1,4 +1,4 @@
-import { divider } from './index.css';
+import { divider } from '@/components/Divider/index.css';
 
 interface DividerProps {
   direction?: 'horizontal' | 'vertical';
