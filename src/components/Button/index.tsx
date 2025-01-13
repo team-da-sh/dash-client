@@ -1,17 +1,31 @@
-import { button } from './index.css';
+import { HTMLAttributes, ReactNode } from 'react';
+import { buttonStyle } from './index.css';
 
-export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  size?: 'sm' | 'md' | 'lg';
+export interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
+  variant?: 'primary';
+  isDisabled?: boolean;
+  prefixIcon?: ReactNode;
+  suffixIcon?: ReactNode;
 }
 
-const Button = ({ size, ...props }: ButtonProps) => {
+const Button = ({
+  variant = 'primary',
+  isDisabled = false,
+  prefixIcon,
+  suffixIcon,
+  children,
+  ...props
+}: ButtonProps) => {
   return (
     <button
-      {...props}
-      className={button({
-        size,
-      })}>
-      {props.children}
+      className={buttonStyle({
+        variant,
+      })}
+      disabled={isDisabled}
+      {...props}>
+      {prefixIcon && prefixIcon}
+      {children}
+      {suffixIcon && suffixIcon}
     </button>
   );
 };

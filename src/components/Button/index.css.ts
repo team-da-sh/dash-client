@@ -1,23 +1,27 @@
 import { recipe } from '@vanilla-extract/recipes';
+import { vars } from '../../styles/theme.css';
 
-export const button = recipe({
+export const buttonStyle = recipe({
   base: {
     border: 'none',
-    backgroundColor: 'black',
+    borderRadius: '4px',
+
     color: 'white',
-    fontWeight: 'bold',
-    borderRadius: '10px',
+
+    cursor: 'pointer',
   },
   variants: {
-    size: {
-      sm: {
-        padding: '0.5rem',
-      },
-      md: {
-        padding: '1rem',
-      },
-      lg: {
-        padding: '1.5rem',
+    variant: {
+      primary: {
+        padding: ''
+        backgroundColor: vars.colors.main04,
+
+        color: vars.colors.white,
+        ...vars.fonts.head05,
+
+        '&:disabled': {
+          backgroundColor: vars.colors.gray05,
+        },
       },
     },
   },

@@ -1,6 +1,7 @@
 import { QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { useEffect } from 'react';
+import Button from './components/Button';
 import queryClient from './queryClient';
 import './styles/index.css';
 
@@ -29,6 +30,9 @@ const App = () => {
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={false} />
       <div>DASH</div>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <Button variant="primary">button</Button>
+      </div>
     </QueryClientProvider>
   );
 };

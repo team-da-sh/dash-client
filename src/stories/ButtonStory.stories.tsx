@@ -1,8 +1,15 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import Button, { ButtonProps } from '../components/Button';
+import { ButtonHTMLAttributes } from 'react';
+import Button from '../components/ButtonStory/Button';
+
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  variant?: 'primary' | 'secondary' | 'tertiary' | 'outline';
+  size?: 'xLarge' | 'large' | 'medium';
+  isDisabled?: boolean;
+}
 
 const meta = {
-  title: 'Common/Button',
+  title: 'Common/ButtonExample',
   component: Button,
   parameters: {
     layout: 'centered',
@@ -13,15 +20,25 @@ const meta = {
       control: { type: 'radio' },
       options: ['primary', 'secondary', 'tertiary', 'outline'],
     },
+    size: {
+      control: { type: 'radio' },
+      options: ['xLarge', 'large', 'medium'],
+    },
     children: {
       control: { type: 'text' },
     },
     isDisabled: {
       control: { type: 'boolean' },
     },
+    color: {
+      control: {
+        type: 'color',
+      },
+    },
   },
   args: {
     variant: 'primary',
+    size: 'medium',
     children: 'Button',
     isDisabled: false,
   },
@@ -46,8 +63,8 @@ const createButtonStory = (variant: ButtonProps['variant']) => ({
 
 export const Primary: Story = createButtonStory('primary');
 
-// export const Secondary: Story = createButtonStory('secondary');
+export const Secondary: Story = createButtonStory('secondary');
 
-// export const Tertiary: Story = createButtonStory('tertiary');
+export const Tertiary: Story = createButtonStory('tertiary');
 
-// export const Outline: Story = createButtonStory('outline');
+export const Outline: Story = createButtonStory('outline');
