@@ -1,4 +1,4 @@
-import * as styles from './index.css';
+import * as styles from '@/components/ProgressBar/index.css';
 
 interface ProgressBarProps {
   totalStep: number;
