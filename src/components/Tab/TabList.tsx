@@ -1,13 +1,13 @@
-import { ReactNode } from "react";
-import * as styles from '@/components/Tab/index.css';
+import { ReactNode } from 'react';
+import { tabListStyle } from '@/components/Tab/index.css';
 
 interface TabListProps {
   children: ReactNode;
   className?: string;
 }
 
-export const TabList = ({ children, className }: TabListProps) => {
-  return <div className={`${styles.tabList} ${className}`}>{children}</div>;
+export const TabList = ({ children }: TabListProps) => {
+  return <div className={tabListStyle}>{children}</div>;
 };
 
 export default TabList;

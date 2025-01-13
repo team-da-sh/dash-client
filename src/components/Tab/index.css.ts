@@ -2,7 +2,7 @@ import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 import { vars } from '@/styles/theme.css';
 
-export const tabButton = recipe({
+export const tabButtonStyle = recipe({
   base: {
     padding: '0 0 1rem',
     backgroundColor: 'transparent',
@@ -20,8 +20,8 @@ export const tabButton = recipe({
         ':after': {
           content: '""',
           position: 'absolute',
-          bottom: 0,
           left: 0,
+          bottom: 0,
           width: '100%',
           height: '0.2rem',
         },
@@ -83,7 +83,7 @@ export const tabButton = recipe({
   },
 });
 
-export const tabList = style({
+export const tabListStyle = style({
   display: 'flex',
   gap: '2.4rem',
   borderBottom: 'none',

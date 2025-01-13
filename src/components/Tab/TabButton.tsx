@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { tabButton } from '@/components/Tab/index.css';
+import { tabButtonStyle } from '@/components/Tab/index.css';
 
 interface TabButtonProps {
   children: ReactNode;
@@ -11,7 +11,7 @@ interface TabButtonProps {
 const TabButton = ({ children, isSelected, onClick, colorScheme = 'main' }: TabButtonProps) => {
   return (
     <button
-      className={tabButton({
+      className={tabButtonStyle({
         colorScheme,
         state: isSelected ? 'active' : 'inactive',
       })}
