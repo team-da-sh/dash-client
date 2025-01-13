@@ -54,49 +54,49 @@ export const vars = createGlobalTheme(':root', {
 
   fonts: {
     // head
-    head01: {
+    h1: {
       fontFamily: pretendard,
       fontWeight: '600',
       fontSize: '2.8rem',
       lineHeight: '4rem',
       letterSpacing: '-0.5%',
     },
-    head02: {
+    h2: {
       fontFamily: pretendard,
       fontWeight: '600',
       fontSize: '2.4rem',
       lineHeight: '3.6rem',
       letterSpacing: '-0.5%',
     },
-    head03_med: {
+    h3: {
       fontFamily: pretendard,
       fontWeight: '500',
       fontSize: '2rem',
       lineHeight: '2.8rem',
       letterSpacing: '-0.5%',
     },
-    head03_semibold: {
+    h4: {
       fontFamily: pretendard,
       fontWeight: '600',
       fontSize: '2rem',
       lineHeight: '2.4rem',
       letterSpacing: '-0.5%',
     },
-    head04: {
+    h5: {
       fontFamily: pretendard,
       fontWeight: '600',
       fontSize: '1.8rem',
       lineHeight: '2.6rem',
       letterSpacing: '-0.5%',
     },
-    head05: {
+    h6: {
       fontFamily: pretendard,
       fontWeight: '600',
       fontSize: '1.6rem',
       lineHeight: '1.8rem',
       letterSpacing: '-0.5%',
     },
-    head05_long: {
+    h7: {
       fontFamily: pretendard,
       fontWeight: '600',
       fontSize: '1.6rem',
@@ -105,70 +105,70 @@ export const vars = createGlobalTheme(':root', {
     },
 
     // body
-    body01_reg: {
+    b1: {
       fontFamily: pretendard,
       fontWeight: '400',
       fontSize: '1.4rem',
       lineHeight: '1.8rem',
       letterSpacing: '-0.5%',
     },
-    body01_med: {
+    b2: {
       fontFamily: pretendard,
       fontWeight: '500',
       fontSize: '1.4rem',
       lineHeight: '1.8rem',
       letterSpacing: '-0.5%',
     },
-    body01_med_long: {
+    b3: {
       fontFamily: pretendard,
       fontWeight: '500',
       fontSize: '1.4rem',
       lineHeight: '2rem',
       letterSpacing: '-0.5%',
     },
-    body01_smbold: {
+    b4: {
       fontFamily: pretendard,
       fontWeight: '600',
       fontSize: '1.4rem',
       lineHeight: '1.8rem',
       letterSpacing: '-0.5%',
     },
-    body01_smbold_long: {
+    b5: {
       fontFamily: pretendard,
       fontWeight: '600',
       fontSize: '1.4rem',
       lineHeight: '2.2rem',
       letterSpacing: '-0.5%',
     },
-    body02_reg: {
+    b6: {
       fontFamily: pretendard,
       fontWeight: '400',
       fontSize: '1.2rem',
       lineHeight: '1.6rem',
       letterSpacing: '-0.5%',
     },
-    body02_med: {
+    b7: {
       fontFamily: pretendard,
       fontWeight: '500',
       fontSize: '1.2rem',
       lineHeight: '1.6rem',
       letterSpacing: '-0.5%',
     },
-    body02_med_narrow: {
+    b8: {
       fontFamily: pretendard,
       fontWeight: '500',
       fontSize: '1.2rem',
       lineHeight: '1.6rem',
       letterSpacing: '-0.8%',
     },
-    body02_smbold: {
+    b9: {
       fontFamily: pretendard,
       fontWeight: '600',
       fontSize: '1.2rem',
       lineHeight: '1.6rem',
       letterSpacing: '-0.5%',
     },
-    body02_smbold_narrow: {
+    b10: {
       fontFamily: pretendard,
       fontWeight: '600',
       fontSize: '1.2rem',
@@ -177,28 +177,28 @@ export const vars = createGlobalTheme(':root', {
     },
 
     // caption
-    caption01_reg: {
+    c1: {
       fontFamily: pretendard,
       fontWeight: '400',
       fontSize: '1rem',
       lineHeight: '1.4rem',
       letterSpacing: '-0.5%',
     },
-    caption01_reg_narr: {
+    c2: {
       fontFamily: pretendard,
       fontWeight: '400',
       fontSize: '1rem',
       lineHeight: '1.4rem',
       letterSpacing: '-0.8%',
     },
-    caption01_med: {
+    c3: {
       fontFamily: pretendard,
       fontWeight: '500',
       fontSize: '1rem',
       lineHeight: '1.8rem',
       letterSpacing: '-0.5%',
     },
-    caption01_smbold: {
+    c4: {
       fontFamily: pretendard,
       fontWeight: '600',
       fontSize: '1rem',

@@ -1,8 +1,10 @@
 import { recipe } from '@vanilla-extract/recipes';
-import { vars } from '../../styles/theme.css';
+import { vars } from '@/styles/theme.css';
 
 export const buttonStyle = recipe({
   base: {
+    width: '100%',
+
     border: 'none',
     borderRadius: '4px',
 
@@ -13,14 +15,42 @@ export const buttonStyle = recipe({
   variants: {
     variant: {
       primary: {
-        padding: ''
+        padding: '1.8rem 0',
         backgroundColor: vars.colors.main04,
 
         color: vars.colors.white,
-        ...vars.fonts.head05,
+        ...vars.fonts.h6,
 
         '&:disabled': {
           backgroundColor: vars.colors.gray05,
+        },
+      },
+      secondary: {
+        display: 'flex',
+        justifyContent: 'center',
+
+        width: '7.8rem',
+        padding: '1.8rem 0',
+
+        backgroundColor: vars.colors.gray03,
+
+        color: vars.colors.gray07,
+        ...vars.fonts.h6,
+      },
+
+      outlined: {
+        padding: '0.8rem 0',
+
+        border: `0.5px solid ${vars.colors.gray09}`,
+        backgroundColor: vars.colors.main03,
+
+        ...vars.fonts.b8,
+
+        '&:disabled': {
+          border: `0.5px solid ${vars.colors.gray04}`,
+          backgroundColor: vars.colors.gray01,
+
+          color: vars.colors.gray05,
         },
       },
     },

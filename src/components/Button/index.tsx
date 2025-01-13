@@ -1,18 +1,15 @@
-import { HTMLAttributes, ReactNode } from 'react';
+import { HTMLAttributes } from 'react';
 import { buttonStyle } from './index.css';
 
 export interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary';
+  variant?: 'primary' | 'secondary' | 'outlined';
   isDisabled?: boolean;
-  prefixIcon?: ReactNode;
-  suffixIcon?: ReactNode;
 }
 
 const Button = ({
   variant = 'primary',
   isDisabled = false,
-  prefixIcon,
-  suffixIcon,
+
   children,
   ...props
 }: ButtonProps) => {
@@ -23,9 +20,7 @@ const Button = ({
       })}
       disabled={isDisabled}
       {...props}>
-      {prefixIcon && prefixIcon}
       {children}
-      {suffixIcon && suffixIcon}
     </button>
   );
 };

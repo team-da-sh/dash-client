@@ -31,7 +31,20 @@ const App = () => {
       <ReactQueryDevtools initialIsOpen={false} />
       <div>DASH</div>
       <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <Button variant="primary">button</Button>
+        {/* <Button variant="primary" isDisabled={false}>
+          button
+        </Button> */}
+        <Button variant="outlined" isDisabled={true}>
+          outlined Button
+        </Button>
+        <Button variant="outlined" isDisabled={false}>
+          outlined Button
+        </Button>
+      </div>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <Button variant="secondary" isDisabled={true}>
+          초기화
+        </Button>
       </div>
     </QueryClientProvider>
   );
