@@ -37,14 +37,14 @@ export const Default: Story = {
 export const SmallTag: Story = {
   args: {
     size: 'small',
-    children: 'Small Tag',
+    children: '힙합',
   },
 };
 
 export const MediumTag: Story = {
   args: {
     size: 'medium',
-    children: 'Medium Tag',
+    children: '힙합',
   },
 };
 
@@ -52,27 +52,27 @@ export const ThumbnailTag: Story = {
   args: {
     type: 'deadline',
     size: 'thumbnail',
-    children: 'Thumbnail Tag',
+    children: '마감 D-4',
   },
 };
 
 export const GenreTag: Story = {
   args: {
     type: 'genre',
-    children: 'Genre Tag',
+    children: '힙합',
   },
 };
 
 export const LevelTag: Story = {
   args: {
     type: 'level',
-    children: 'Level Tag',
+    children: '입문자',
   },
 };
 
 export const DeadlineTag: Story = {
   args: {
     type: 'deadline',
-    children: 'Deadline Tag',
+    children: '힙합',
   },
 };
