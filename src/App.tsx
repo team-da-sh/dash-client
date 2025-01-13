@@ -1,7 +1,7 @@
 import { QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { useEffect } from 'react';
-import Button from './components/Button';
+import Button from './components/BoxButton';
 import queryClient from './queryClient';
 import './styles/index.css';
 

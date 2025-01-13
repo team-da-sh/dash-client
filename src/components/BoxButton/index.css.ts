@@ -23,6 +23,7 @@ export const buttonStyle = recipe({
 
         '&:disabled': {
           backgroundColor: vars.colors.gray05,
+          cursor: 'default',
         },
       },
       secondary: {
@@ -36,6 +37,10 @@ export const buttonStyle = recipe({
 
         color: vars.colors.gray07,
         ...vars.fonts.h6,
+
+        '&:disabled': {
+          cursor: 'default',
+        },
       },
 
       outline: {
@@ -51,6 +56,8 @@ export const buttonStyle = recipe({
           backgroundColor: vars.colors.gray01,
 
           color: vars.colors.gray05,
+
+          cursor: 'default',
         },
       },
     },

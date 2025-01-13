@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import Button, { ButtonProps } from '@/components/Button';
+import BoxButton, { BoxButtonProps } from '@/components/BoxButton';
 
 const meta = {
-  title: 'Common/Button',
-  component: Button,
+  title: 'Common/BoxButton',
+  component: BoxButton,
   parameters: {
     layout: 'centered',
   },
@@ -25,7 +25,7 @@ const meta = {
     children: 'Button',
     isDisabled: false,
   },
-} satisfies Meta<typeof Button>;
+} satisfies Meta<typeof BoxButton>;
 
 export default meta;
 
@@ -33,7 +33,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
 
-const createButtonStory = (variant: ButtonProps['variant']) => ({
+const createButtonStory = (variant: BoxButtonProps['variant']) => ({
   args: {
     variant,
   },

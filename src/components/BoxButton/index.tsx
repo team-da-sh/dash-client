@@ -1,12 +1,12 @@
 import { HTMLAttributes } from 'react';
 import { buttonStyle } from './index.css';
 
-export interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
+export interface BoxButtonProps extends HTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary' | 'outline';
   isDisabled?: boolean;
 }
 
-const Button = ({ variant = 'primary', isDisabled = false, children, ...props }: ButtonProps) => {
+const BoxButton = ({ variant = 'primary', isDisabled = false, children, ...props }: BoxButtonProps) => {
   return (
     <button
       className={buttonStyle({
@@ -19,4 +19,4 @@ const Button = ({ variant = 'primary', isDisabled = false, children, ...props }:
   );
 };
 
-export default Button;
+export default BoxButton;
