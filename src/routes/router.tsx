@@ -1,10 +1,10 @@
 import { createBrowserRouter } from 'react-router-dom';
 import Class from '@/pages/class';
-import ClassDetail from '@/pages/classDetail';
-import ClassList from '@/pages/classList';
-import ClassRegister from '@/pages/classRegister';
 import Dancer from '@/pages/dancer';
 import Home from '@/pages/home';
+import ClassDetail from '@/pages/instructor/classDetail';
+import ClassList from '@/pages/instructor/classList';
+import ClassRegister from '@/pages/instructor/classRegister';
 import InstructorRegister from '@/pages/instructorRegister';
 import Login from '@/pages/login';
 import MyPage from '@/pages/mypage';
