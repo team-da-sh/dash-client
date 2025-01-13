@@ -1,7 +1,7 @@
 import { style } from '@vanilla-extract/css';
 import { vars } from '../../styles/theme.css';
 
-export const headerRoot = style({
+export const headerRootStyle = style({
   display: 'grid',
   gridTemplateColumns: '1fr auto 1fr',
   width: '100%',

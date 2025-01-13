@@ -20,7 +20,7 @@ interface CloseIconProps {
 }
 
 const HeaderRoot = ({ children }: HeaderRootProps): JSX.Element => {
-  return <header className={styles.headerRoot}>{children}</header>;
+  return <header className={styles.headerRootStyle}>{children}</header>;
 };
 
 const BackIcon = ({ onClick }: BackIconProps): JSX.Element => {
