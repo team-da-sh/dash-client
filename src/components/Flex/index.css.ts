@@ -1,6 +1,6 @@
 import { recipe } from '@vanilla-extract/recipes';
 
-export const flex = recipe({
+export const flexStyle = recipe({
   base: {
     display: 'flex',
   },

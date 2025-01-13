@@ -1,5 +1,5 @@
 import { ElementType, HTMLAttributes } from 'react';
-import { flex } from './index.css';
+import { flexStyle } from './index.css';
 
 interface FlexProps extends HTMLAttributes<HTMLDivElement> {
   tag?: ElementType;
@@ -24,7 +24,7 @@ const Flex = ({
 }: FlexProps) => {
   return (
     <Component
-      className={flex({ direction, align, justify, wrap, grow })}
+      className={flexStyle({ direction, align, justify, wrap, grow })}
       style={{ gap, ...props.style }}
       {...props}
     >
