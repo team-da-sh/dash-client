@@ -7,10 +7,10 @@ interface ProgressBarProps {
 
 const ProgressBar = ({ totalStep, currentStep }: ProgressBarProps) => {
   return (
-    <div className={styles.progressBarWrapper}>
+    <div className={styles.progressBarWrapperStyle}>
       {[...Array(totalStep)].map((_, index) => {
         const isActive = index + 1 === Math.min(currentStep, totalStep);
-        return <div key={index} className={styles.progressBarSegment({ isActive })} />;
+        return <div key={index} className={styles.progressBarSegmentStyle({ isActive })} />;
       })}
     </div>
   );

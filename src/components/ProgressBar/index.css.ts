@@ -2,7 +2,7 @@ import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 import { vars } from '@/styles/theme.css';
 
-export const progressBarWrapper = style({
+export const progressBarWrapperStyle = style({
   display: 'flex',
   width: '100%',
   height: '0.4rem',
@@ -10,7 +10,7 @@ export const progressBarWrapper = style({
   padding: '0 2rem',
 });
 
-export const progressBarSegment = recipe({
+export const progressBarSegmentStyle = recipe({
   base: {
     flex: 1,
     height: '0.4rem',
