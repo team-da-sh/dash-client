@@ -29,13 +29,20 @@ const meta = {
       control: {
         type: 'text',
       },
-      description: 'px, %등으로 입력하세요',
+      description: 'rem, %등으로 입력하세요',
+    },
+    thickness: {
+      control: {
+        type: 'text',
+      },
+      description: 'rem등으로 입력하세요',
     },
   },
   args: {
     direction: 'horizontal',
     color: 'primary',
     length: '800px',
+    thickness: '0.1rem',
   },
 } satisfies Meta<typeof Divider>;
 
@@ -50,6 +57,7 @@ export const Horizontal: Story = {
     direction: 'horizontal',
     color: 'primary',
     length: '500px',
+    thickness: '0.4rem',
   },
 };
 
