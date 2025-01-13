@@ -1,11 +1,10 @@
+import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 import { vars } from '@/styles/theme.css';
-import { style } from '@vanilla-extract/css';
 
 export const tabButton = recipe({
-  ...vars.fonts.h6,
   base: {
-    padding: '0 0 0.8rem',
+    padding: '0 0 1rem',
     backgroundColor: 'transparent',
     border: 'none',
     position: 'relative',
@@ -24,7 +23,7 @@ export const tabButton = recipe({
           bottom: 0,
           left: 0,
           width: '100%',
-          height: '2px',
+          height: '0.2rem',
         },
       },
       inactive: {},
@@ -38,6 +37,7 @@ export const tabButton = recipe({
       },
       style: {
         color: vars.colors.main04,
+        ...vars.fonts.h5,
         ':after': {
           backgroundColor: vars.colors.main04,
         },
@@ -49,6 +49,7 @@ export const tabButton = recipe({
         state: 'inactive',
       },
       style: {
+        ...vars.fonts.h5,
         color: vars.colors.gray04,
       },
     },
@@ -59,6 +60,7 @@ export const tabButton = recipe({
       },
       style: {
         color: vars.colors.black,
+        ...vars.fonts.h6,
         ':after': {
           backgroundColor: vars.colors.black,
         },
@@ -70,6 +72,7 @@ export const tabButton = recipe({
         state: 'inactive',
       },
       style: {
+        ...vars.fonts.h6,
         color: vars.colors.gray05,
       },
     },
@@ -85,4 +88,3 @@ export const tabList = style({
   gap: '2.4rem',
   borderBottom: 'none',
 });
-
