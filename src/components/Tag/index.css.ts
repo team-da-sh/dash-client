@@ -1,7 +1,7 @@
 import { recipe } from '@vanilla-extract/recipes';
 import { vars } from '../../styles/theme.css';
 
-export const tag = recipe({
+export const tagStyle = recipe({
   base: {
     display: 'inline-flex',
     justifyContent: 'center',
