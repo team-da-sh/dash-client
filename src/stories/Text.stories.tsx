@@ -11,22 +11,7 @@ const meta = {
   argTypes: {
     tag: {
       control: { type: 'radio' },
-      options: [
-        'body01_reg',
-        'body01_med',
-        'body01_med_long',
-        'body01_smbold',
-        'body01_smbold_long',
-        'body02_reg',
-        'body02_med',
-        'body02_med_narrow',
-        'body02_smbold',
-        'body02_smbold_narrow',
-        'caption01_reg',
-        'caption01_reg_narr',
-        'caption01_med',
-        'caption01_smbold',
-      ],
+      options: ['b1', 'b2', 'b3', 'b4', 'b5', 'b6', 'b7', 'b8', 'b9', 'b10', 'c1', 'c2', 'c3', 'c4'],
     },
     children: {
       control: { type: 'text' },
@@ -47,46 +32,46 @@ export const Sizes: Story = {
   render: () => (
     <ul style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
       <li>
-        <Text tag="body01_reg">DASH 웨비들 행복 앱잼해~</Text>
+        <Text tag="b1">DASH 웨비들 행복 앱잼해~</Text>
       </li>
       <li>
-        <Text tag="body01_med"> DASH 웨비들 행복 앱잼해~</Text>
+        <Text tag="b2"> DASH 웨비들 행복 앱잼해~</Text>
       </li>
       <li>
-        <Text tag="body01_med_long"> DASH 웨비들 행복 앱잼해~</Text>
+        <Text tag="b3"> DASH 웨비들 행복 앱잼해~</Text>
       </li>
       <li>
-        <Text tag="body01_smbold"> DASH 웨비들 행복 앱잼해~</Text>
+        <Text tag="b4"> DASH 웨비들 행복 앱잼해~</Text>
       </li>
       <li>
-        <Text tag="body01_smbold_long"> DASH 웨비들 행복 앱잼해~</Text>
+        <Text tag="b5"> DASH 웨비들 행복 앱잼해~</Text>
       </li>
       <li>
-        <Text tag="body02_reg"> DASH 웨비들 행복 앱잼해~</Text>
+        <Text tag="b6"> DASH 웨비들 행복 앱잼해~</Text>
       </li>
       <li>
-        <Text tag="body02_med"> DASH 웨비들 행복 앱잼해~</Text>
+        <Text tag="b7"> DASH 웨비들 행복 앱잼해~</Text>
       </li>
       <li>
-        <Text tag="body02_med_narrow"> DASH 웨비들 행복 앱잼해~</Text>
+        <Text tag="b8"> DASH 웨비들 행복 앱잼해~</Text>
       </li>
       <li>
-        <Text tag="body02_smbold"> DASH 웨비들 행복 앱잼해~</Text>
+        <Text tag="b9"> DASH 웨비들 행복 앱잼해~</Text>
       </li>
       <li>
-        <Text tag="body02_smbold_narrow"> DASH 웨비들 행복 앱잼해~</Text>
+        <Text tag="b10"> DASH 웨비들 행복 앱잼해~</Text>
       </li>
       <li>
-        <Text tag="caption01_reg"> DASH 웨비들 행복 앱잼해~</Text>
+        <Text tag="c1"> DASH 웨비들 행복 앱잼해~</Text>
       </li>
       <li>
-        <Text tag="caption01_reg_narr"> DASH 웨비들 행복 앱잼해~</Text>
+        <Text tag="c2"> DASH 웨비들 행복 앱잼해~</Text>
       </li>
       <li>
-        <Text tag="caption01_med"> DASH 웨비들 행복 앱잼해~</Text>
+        <Text tag="c3"> DASH 웨비들 행복 앱잼해~</Text>
       </li>
       <li>
-        <Text tag="caption01_smbold"> DASH 웨비들 행복 앱잼해~</Text>
+        <Text tag="c4"> DASH 웨비들 행복 앱잼해~</Text>
       </li>
     </ul>
   ),
