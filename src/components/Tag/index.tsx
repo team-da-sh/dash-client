@@ -1,5 +1,5 @@
 import { ComponentPropsWithRef } from 'react';
-import * as styles from '@/components/Tag/index.css';
+import { tag } from '@/components/Tag/index.css';
 
 interface TagProps extends ComponentPropsWithRef<'div'> {
   size: 'small' | 'medium' | 'thumbnail';
@@ -8,7 +8,7 @@ interface TagProps extends ComponentPropsWithRef<'div'> {
 
 const Tag = ({ size, type, children, ...props }: TagProps) => {
   return (
-    <div className={`${styles.tagBase} ${styles.tagTypeStyles[type]} ${styles.tagSizeStyles[size]}`} {...props}>
+    <div className={tag({ size, type })} {...props}>
       {children}
     </div>
   );
