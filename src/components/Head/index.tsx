@@ -1,9 +1,11 @@
 import { ComponentPropsWithoutRef } from 'react';
 import { headStyle } from './index.css';
 
-type HeadType = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+type HeadLevel = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+type HeadType = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'h7';
 
-interface HeadProps extends ComponentPropsWithoutRef<'h3'> {
+interface HeadProps extends ComponentPropsWithoutRef<'h1'> {
+  level?: HeadLevel;
   tag?: HeadType;
 }
 
@@ -16,8 +18,8 @@ const HeadTag = {
   h6: 'h6',
 } as const;
 
-const Head = ({ tag = 'h3', ...props }: HeadProps) => {
-  const Tag = HeadTag[tag];
+const Head = ({ level = 'h3', tag = 'h3', ...props }: HeadProps) => {
+  const Tag = HeadTag[level];
 
   return (
     <Tag className={headStyle({ tag: tag })} {...props}>
