@@ -1,19 +1,14 @@
-import { useRef, useState } from 'react';
 import HomeHeader from '@/pages/home/components/HomeHeader';
-import { imageStyle } from '@/pages/home/index.css';
+import { useIntersect } from '@/utils/useIntersect';
+import { vars } from '@/styles/theme.css';
 
 const Home = () => {
-  const headerRef = useRef<HTMLDivElement | null>(null);
-
-  window.addEventListener('scroll', (e) => {
-    console.log(headerRef.current?.getBoundingClientRect().y);
-  });
+  const [targetRef, isVisible] = useIntersect(false);
 
   return (
-    <div style={{ height: '100rem' }}>
-      <HomeHeader />
-      <div className={imageStyle}>여백</div>
-      <div>보여야함</div>
+    <div style={{ height: '300rem' }}>
+      <div ref={targetRef} style={{ height: '37.5rem', backgroundColor: vars.colors.gray02 }}></div>
+      <HomeHeader isVisible={isVisible}></HomeHeader>
     </div>
   );
 };

@@ -1,12 +1,14 @@
-import { ForwardedRef, forwardRef } from 'react';
 import { containerStyle, iconsStyle } from '@/pages/home/components/HomeHeader/index.css';
 import { IcLogoSmallWhite, IcSearchWhite24 } from '@/assets/svg';
 
-interface HomeHeaderProps {}
+interface HomeHeaderProps {
+  isVisible: boolean;
+}
 
-const HomeHeader = forwardRef(({}: HomeHeaderProps, ref: ForwardedRef<HTMLHeadElement>) => {
+const HomeHeader = ({ isVisible }: HomeHeaderProps) => {
+  console.log('header에서', isVisible);
   return (
-    <header ref={ref} className={containerStyle}>
+    <header className={containerStyle({ isVisible })}>
       <IcLogoSmallWhite width={54} height={18} />
       <div className={iconsStyle}>
         <IcSearchWhite24 width={24} height={24} />
@@ -14,6 +16,6 @@ const HomeHeader = forwardRef(({}: HomeHeaderProps, ref: ForwardedRef<HTMLHeadEl
       </div>
     </header>
   );
-});
+};
 
 export default HomeHeader;
