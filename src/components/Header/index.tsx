@@ -8,7 +8,7 @@ interface HeaderRootProps {
 }
 
 interface BackIconProps {
-  onClick?: () => void;
+  onClick: () => void;
 }
 
 interface TitleProps {
@@ -16,7 +16,7 @@ interface TitleProps {
 }
 
 interface CloseIconProps {
-  onClick?: () => void;
+  onClick: () => void;
 }
 
 const HeaderRoot = ({ children }: HeaderRootProps): JSX.Element => {
