@@ -1,5 +1,5 @@
 import { recipe } from '@vanilla-extract/recipes';
-import { vars } from '../../styles/theme.css';
+import { vars } from '@/styles/theme.css';
 
 export const tagStyle = recipe({
   base: {
@@ -26,19 +26,19 @@ export const tagStyle = recipe({
         borderRadius: '2px',
         padding: '0.4rem 0.6rem',
         gap: '1rem',
-        ...vars.fonts.caption01_med,
+        ...vars.fonts.c1,
       },
       medium: {
         borderRadius: '2.4px',
         padding: '0.3rem 0.8rem',
         gap: '1.2rem',
-        ...vars.fonts.body02_med,
+        ...vars.fonts.b2,
       },
       thumbnail: {
         borderRadius: '0px 4px 4px 0px',
         padding: '0.2rem 0.8rem',
         gap: '1rem',
-        ...vars.fonts.caption01_med,
+        ...vars.fonts.c1,
       },
     },
   },
