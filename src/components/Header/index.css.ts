@@ -1,5 +1,4 @@
 import { style } from '@vanilla-extract/css';
-import { vars } from '../../styles/theme.css';
 
 export const headerRootStyle = style({
   position: 'fixed',
@@ -20,7 +19,6 @@ export const titleStyle = style({
   gridColumn: '2',
   justifySelf: 'center',
   textAlign: 'center',
-  ...vars.fonts.head04,
 });
 
 export const closeIconStyle = style({
