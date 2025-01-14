@@ -1,5 +1,6 @@
+import { headStyle } from '@/components/Head/index.css';
 import { ComponentPropsWithoutRef } from 'react';
-import { headStyle } from './index.css';
+
 
 type HeadLevel = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 type HeadTag = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'h7';
