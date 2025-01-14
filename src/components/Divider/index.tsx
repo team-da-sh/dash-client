@@ -13,9 +13,7 @@ const Divider = ({
   thickness = '0.1rem',
 }: DividerProps) => {
   const sizeStyle =
-    direction === 'horizontal'
-      ? { width: length || '100%', height: thickness }
-      : { height: length || '100%', width: thickness };
+    direction === 'horizontal' ? { width: length, height: thickness } : { height: length, width: thickness };
   return <div className={dividerStyle({ direction, color })} style={sizeStyle} />;
 };
 
