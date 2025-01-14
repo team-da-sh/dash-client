@@ -1,8 +1,8 @@
 import React from 'react';
 import Head from '@/components/Head';
-import { IcClose } from '../../assets/svg';
-import { IcBack } from '../../assets/svg';
-import * as styles from './index.css';
+import * as styles from '@/components/Header/index.css';
+import { IcClose } from '@/assets/svg';
+import { IcBack } from '@/assets/svg';
 
 interface HeaderRootProps {
   children: React.ReactNode;
