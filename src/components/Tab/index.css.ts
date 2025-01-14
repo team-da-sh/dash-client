@@ -12,27 +12,22 @@ export const tabButtonStyle = recipe({
   },
   variants: {
     colorScheme: {
-      main: {},
-      dark: {},
+      primary: {},
+      secondary: {},
     },
     state: {
       active: {
-        ':after': {
-          content: '""',
-          position: 'absolute',
-          left: 0,
-          bottom: 0,
-          width: '100%',
-          height: '0.2rem',
-        },
+        borderBottom: '0.2rem solid',
       },
-      inactive: {},
+      inactive: {
+        borderBottom: '0.2rem solid transparent',
+      },
     },
   },
   compoundVariants: [
     {
       variants: {
-        colorScheme: 'main',
+        colorScheme: 'primary',
         state: 'active',
       },
       style: {
@@ -45,7 +40,7 @@ export const tabButtonStyle = recipe({
     },
     {
       variants: {
-        colorScheme: 'main',
+        colorScheme: 'primary',
         state: 'inactive',
       },
       style: {
@@ -55,7 +50,7 @@ export const tabButtonStyle = recipe({
     },
     {
       variants: {
-        colorScheme: 'dark',
+        colorScheme: 'secondary',
         state: 'active',
       },
       style: {
@@ -68,7 +63,7 @@ export const tabButtonStyle = recipe({
     },
     {
       variants: {
-        colorScheme: 'dark',
+        colorScheme: 'secondary',
         state: 'inactive',
       },
       style: {
@@ -78,7 +73,7 @@ export const tabButtonStyle = recipe({
     },
   ],
   defaultVariants: {
-    colorScheme: 'main',
+    colorScheme: 'primary',
     state: 'inactive',
   },
 });

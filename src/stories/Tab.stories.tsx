@@ -9,7 +9,7 @@ export default {
   },
 };
 
-const createTabStory = (colorScheme: 'main' | 'dark') => () => {
+const createTabStory = (colorScheme: 'primary' | 'secondary') => () => {
   const [selectedTab, setSelectedTab] = useState(0);
 
   const tabs = [
@@ -41,5 +41,6 @@ const createTabStory = (colorScheme: 'main' | 'dark') => () => {
   );
 };
 
-export const MainTabs = createTabStory('main');
-export const DarkTabs = createTabStory('dark');
+export const Primary = createTabStory('primary');
+export const Secondary = createTabStory('secondary');
+

@@ -5,10 +5,10 @@ interface TabButtonProps {
   children: ReactNode;
   isSelected: boolean;
   onClick: () => void;
-  colorScheme?: 'main' | 'dark';
+  colorScheme?: 'primary' | 'secondary';
 }
 
-const TabButton = ({ children, isSelected, onClick, colorScheme = 'main' }: TabButtonProps) => {
+const TabButton = ({ children, isSelected, onClick, colorScheme = 'primary' }: TabButtonProps) => {
   return (
     <button
       className={tabButtonStyle({
