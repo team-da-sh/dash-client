@@ -6,7 +6,7 @@ interface TabListProps {
   className?: string;
 }
 
-export const TabList = ({ children }: TabListProps) => {
+const TabList = ({ children }: TabListProps) => {
   return <div className={tabListStyle}>{children}</div>;
 };
 
