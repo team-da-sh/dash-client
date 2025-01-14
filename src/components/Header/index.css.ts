@@ -2,13 +2,13 @@ import { style } from '@vanilla-extract/css';
 import { vars } from '../../styles/theme.css';
 
 export const headerRootStyle = style({
+  position: 'fixed',
   display: 'grid',
   gridTemplateColumns: '1fr auto 1fr',
+  alignItems: 'center',
   width: '100%',
   height: '6rem',
-  alignItems: 'center',
   padding: '1.8rem 2rem',
-  position: 'fixed',
 });
 
 export const backIconStyle = style({
@@ -18,10 +18,9 @@ export const backIconStyle = style({
 
 export const titleStyle = style({
   gridColumn: '2',
+  justifySelf: 'center',
   textAlign: 'center',
   ...vars.fonts.head04,
-
-  justifySelf: 'center',
 });
 
 export const closeIconStyle = style({
