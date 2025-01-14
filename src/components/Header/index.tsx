@@ -1,10 +1,11 @@
 import React from 'react';
 import Head from '@/components/Head';
-import * as styles from '@/components/Header/index.css';
+import { headerRootStyle, backIconStyle, titleStyle, closeIconStyle } from '@/components/Header/index.css';
 import { IcBack, IcClose } from '@/assets/svg';
 
 interface HeaderRootProps {
   children: React.ReactNode;
+  isColor?: boolean;
 }
 
 interface BackIconProps {
@@ -19,13 +20,13 @@ interface CloseIconProps {
   onClick: () => void;
 }
 
-const HeaderRoot = ({ children }: HeaderRootProps): JSX.Element => {
-  return <div className={styles.headerRootStyle}>{children}</div>;
+const HeaderRoot = ({ children, isColor = false }: HeaderRootProps): JSX.Element => {
+  return <div className={headerRootStyle({ isColor })}>{children}</div>;
 };
 
 const BackIcon = ({ onClick }: BackIconProps): JSX.Element => {
   return (
-    <button className={styles.backIconStyle} onClick={onClick} aria-label="뒤로가기">
+    <button className={backIconStyle} onClick={onClick} aria-label="뒤로가기">
       <IcBack width={24} height={24} />
     </button>
   );
@@ -33,7 +34,7 @@ const BackIcon = ({ onClick }: BackIconProps): JSX.Element => {
 
 const Title = ({ title }: TitleProps): JSX.Element => {
   return (
-    <Head level="h1" tag="h6" className={styles.titleStyle}>
+    <Head level="h1" tag="h6" className={titleStyle}>
       {title}
     </Head>
   );
@@ -41,7 +42,7 @@ const Title = ({ title }: TitleProps): JSX.Element => {
 
 const CloseIcon = ({ onClick }: CloseIconProps): JSX.Element => {
   return (
-    <button className={styles.closeIconStyle} onClick={onClick} aria-label="닫기">
+    <button className={closeIconStyle} onClick={onClick} aria-label="닫기">
       <IcClose width={24} height={24} />
     </button>
   );
