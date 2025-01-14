@@ -1,6 +1,6 @@
 import React from 'react';
-import IconBack from '../../../src/assets/svg/ic_back.svg?react';
-import IconClose from '../../../src/assets/svg/ic_close.svg?react';
+import { IcClose } from '../../assets/svg';
+import { IcBack } from '../../assets/svg';
 import * as styles from './index.css';
 
 interface HeaderRootProps {
@@ -26,7 +26,7 @@ const HeaderRoot = ({ children }: HeaderRootProps): JSX.Element => {
 const BackIcon = ({ onClick }: BackIconProps): JSX.Element => {
   return (
     <button className={styles.backIconStyle} onClick={onClick} aria-label="뒤로가기">
-      <IconBack />
+      <IcBack />
     </button>
   );
 };
@@ -38,7 +38,7 @@ const Title = ({ title }: TitleProps): JSX.Element => {
 const CloseIcon = ({ onClick }: CloseIconProps): JSX.Element => {
   return (
     <button className={styles.closeIconStyle} onClick={onClick} aria-label="닫기">
-      <IconClose />
+      <IcClose />
     </button>
   );
 };
