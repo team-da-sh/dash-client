@@ -11,3 +11,8 @@ export const containerStyle = style({
 
   backgroundColor: 'black',
 });
+
+export const iconsStyle = style({
+  display: 'flex',
+  gap: '2rem',
+});

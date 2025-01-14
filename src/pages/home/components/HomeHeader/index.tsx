@@ -1,14 +1,16 @@
-import { containerStyle } from '@/pages/home/components/HomeHeader/index.css';
-import IcLogoSmallWhite from '@/assets/svg/ic_logo_small_white.svg?react';
-import IcSearchWhite from '@/assets/svg/ic_search_white_24.svg?react';
+import { containerStyle, iconsStyle } from '@/pages/home/components/HomeHeader/index.css';
+import { IcLogoSmallWhite, IcSearchWhite24 } from '@/assets/svg';
 
 interface HomeHeaderProps {}
 
 const HomeHeader = ({}: HomeHeaderProps) => {
   return (
     <header className={containerStyle}>
-      <IcLogoSmallWhite />
-      <IcSearchWhite />
+      <IcLogoSmallWhite width={54} height={18} />
+      <div className={iconsStyle}>
+        <IcSearchWhite24 width={24} height={24} />
+        <IcSearchWhite24 width={24} height={24} />
+      </div>
     </header>
   );
 };
