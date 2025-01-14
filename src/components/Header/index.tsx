@@ -1,7 +1,8 @@
 import React from 'react';
-import { IcClose } from '../../assets/svg';
-import { IcBack } from '../../assets/svg';
-import * as styles from './index.css';
+import Head from '@/components/Head';
+import * as styles from '@/components/Header/index.css';
+import { IcClose } from '@/assets/svg';
+import { IcBack } from '@/assets/svg';
 
 interface HeaderRootProps {
   children: React.ReactNode;
@@ -20,7 +21,11 @@ interface CloseIconProps {
 }
 
 const HeaderRoot = ({ children }: HeaderRootProps): JSX.Element => {
-  return <header className={styles.headerRootStyle}>{children}</header>;
+  return (
+    <Head level="h1" tag="h2" className={styles.headerRootStyle}>
+      {children}
+    </Head>
+  );
 };
 
 const BackIcon = ({ onClick }: BackIconProps): JSX.Element => {
