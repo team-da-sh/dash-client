@@ -1,7 +1,6 @@
 import { QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { useEffect } from 'react';
-import Button from './components/BoxButton';
 import queryClient from './queryClient';
 import './styles/index.css';
 
@@ -30,22 +29,6 @@ const App = () => {
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={false} />
       <div>DASH</div>
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
-        {/* <Button variant="primary" isDisabled={false}>
-          button
-        </Button> */}
-        <Button variant="outline" isDisabled={true}>
-          outlined Button
-        </Button>
-        <Button variant="outline" isDisabled={false}>
-          outlined Button
-        </Button>
-      </div>
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <Button variant="secondary" isDisabled={true}>
-          초기화
-        </Button>
-      </div>
     </QueryClientProvider>
   );
 };

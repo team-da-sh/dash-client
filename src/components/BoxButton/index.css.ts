@@ -8,7 +8,7 @@ export const buttonStyle = recipe({
     border: 'none',
     borderRadius: '4px',
 
-    color: 'white',
+    color: vars.colors.white,
 
     cursor: 'pointer',
   },
