@@ -24,7 +24,6 @@ const LocationInfo = () => {
           <div className={cardContent}>
             {/* 왼쪽 */}
             <div className={locationBox}>
-              {/* 장소 이름 */}
               <p className={locationTitle}>{item.location}</p>
               <div className={addressDetail}>
                 {/* 주소 */}
