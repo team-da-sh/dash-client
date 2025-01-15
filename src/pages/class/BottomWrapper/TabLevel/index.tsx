@@ -12,12 +12,12 @@ interface LessonData {
   lessonRecommendation: string;
 }
 
-const Level = (): JSX.Element => {
+const Level = () => {
   const { lessonLevel, lessonLevelDetail, lessonRecommendation }: LessonData = lessonData;
 
   return (
     <Flex direction="column" gap="3.6rem">
-      <div>
+      <Flex width="100%" align="flexEnd" direction="column" gap="0.6rem">
         <Card>
           <Flex gap="0.8rem" align="center">
             <IcClose width={36} />
@@ -37,7 +37,7 @@ const Level = (): JSX.Element => {
             <IcQuesitonmark width={14} />
           </button>
         </Flex>
-      </div>
+      </Flex>
       <Flex direction="column" gap="1.2rem">
         <Flex justify="flexStart" align="center" gap="0.8rem">
           <IcClose width={24} />
