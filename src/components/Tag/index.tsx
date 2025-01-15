@@ -3,8 +3,8 @@ import { ComponentPropsWithoutRef } from 'react';
 import { tagStyle } from '@/components/Tag/index.css';
 
 interface TagProps extends ComponentPropsWithoutRef<'div'> {
-  size: 'small' | 'medium' | 'thumbnail';
-  type: 'genre' | 'level' | 'deadline';
+  size: 'small' | 'medium' | 'large' | 'thumbnail';
+  type: 'genre' | 'level' | 'search' | 'deadline';
 }
 
 const Tag = ({ size, type, children, className, ...props }: TagProps) => {
