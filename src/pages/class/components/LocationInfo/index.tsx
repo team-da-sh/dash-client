@@ -3,17 +3,18 @@ import Card from '@/pages/class/components/Card';
 import Flex from '@/components/Flex';
 import Text from '@/components/Text';
 import { IcClose } from '@/assets/svg';
-import { addressRight } from './index.css';
+
+type LocationData = {
+  location: string;
+  address: string;
+  jibun: string;
+};
 
 const LocationInfo = () => {
-  const data = [
+  const data: LocationData[] = [
     {
-      round: '1회차',
-      date: '2025년 1월 8일 수요일',
-      time: '18:00 - 20:00',
-      duration: '총 2시간',
       location: '로제이 댄스홀 합정점',
-      address: '서울특별시 마포구 잔다리로 3길 31\n 2층 (우) 04043',
+      address: '서울특별시 마포구 잔다리로 3길 31\n2층 (우) 04043',
       jibun: '서교동 395-135',
     },
   ];

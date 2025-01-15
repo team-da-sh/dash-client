@@ -1,7 +1,7 @@
 import { style } from '@vanilla-extract/css';
 import { vars } from '@/styles/theme.css';
 
-export const card = style({
+export const cardStyle = style({
   display: 'inline-flex',
   padding: '1.6rem 2rem',
   alignItems: 'center',

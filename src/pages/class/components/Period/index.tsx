@@ -1,10 +1,18 @@
 import Card from '@/pages/class/components/Card';
 import Flex from '@/components/Flex';
 import Text from '@/components/Text';
-import { roundBox } from './index.css';
+import { roundBox } from '@/pages/class/components/Period/index.css';
+
+interface PeriodData {
+  round: string;
+  date: string;
+  startTime: string;
+  endTime: string;
+  duration: string;
+}
 
 const Period = () => {
-  const data = [
+  const data: PeriodData[] = [
     {
       round: '1',
       date: '2025년 1월 8일 수요일',

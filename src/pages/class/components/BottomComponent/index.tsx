@@ -1,11 +1,12 @@
 import { useState } from 'react';
+import { TabPanelStyle } from '@/pages/class/components/BottomComponent/index.css';
+import Intro from '@/pages/class/components/Intro';
+import Level from '@/pages/class/components/Level';
 import LocationInfo from '@/pages/class/components/LocationInfo';
+import Period from '@/pages/class/components/Period';
+import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import { TabRoot, TabList, TabButton, TabPanel } from '@/components/Tab';
-import Intro from '../Intro';
-import Level from '../Level';
-import Period from '../Period';
-import { TabListStyle, TabPanelStyle } from './index.css';
 
 interface BottomComponentProps {
   colorScheme: 'primary' | 'secondary';
@@ -17,7 +18,7 @@ const BottomComponent = ({ colorScheme }: BottomComponentProps) => {
   return (
     <>
       <TabRoot>
-        <div className={TabListStyle}>
+        <Flex paddingTop="1.6rem" paddingLeft="2rem">
           <TabList>
             <TabButton isSelected={selectedTab === 0} onClick={() => setSelectedTab(0)} colorScheme={colorScheme}>
               <Head level="h5" tag="h5">
@@ -40,7 +41,8 @@ const BottomComponent = ({ colorScheme }: BottomComponentProps) => {
               </Head>
             </TabButton>
           </TabList>
-        </div>
+        </Flex>
+
         <div className={TabPanelStyle}>
           <TabPanel isSelected={selectedTab === 0}>
             <Intro />

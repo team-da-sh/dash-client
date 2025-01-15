@@ -1,10 +1,10 @@
 import { PropsWithChildren } from 'react';
-import * as styles from './index.css';
+import { cardStyle } from '@/pages/class/components/Card/index.css';
 
 type CardProps = PropsWithChildren<{}>;
 
 const Card = ({ children }: CardProps) => {
-  return <div className={styles.card}>{children}</div>;
+  return <div className={cardStyle}>{children}</div>;
 };
 
 export default Card;
