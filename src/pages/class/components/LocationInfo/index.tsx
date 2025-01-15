@@ -1,8 +1,9 @@
 import React from 'react';
 import Card from '@/pages/class/components/Card';
 import Flex from '@/components/Flex';
+import Text from '@/components/Text';
 import { IcClose } from '@/assets/svg';
-import { cardContent, locationBox, locationTitle, addressDetail, addressRow, addressLeft, addressRight } from './index.css';
+import { cardContent, locationBox, addressDetail, addressRow, addressLeft, addressRight } from './index.css';
 
 const LocationInfo = () => {
   const data = [
@@ -24,25 +25,41 @@ const LocationInfo = () => {
           <div className={cardContent}>
             {/* 왼쪽 */}
             <div className={locationBox}>
-              <p className={locationTitle}>{item.location}</p>
+              <Text tag="b4" color="black">
+                {item.location}
+              </Text>
               <div className={addressDetail}>
                 {/* 주소 */}
                 <div className={addressRow}>
-                  <span className={addressLeft}>주소</span>
+                  <span className={addressLeft}>
+                    <Text tag="b7" color="gray6">
+                      주소
+                    </Text>
+                  </span>
                   <span className={addressRight}>
-                    {item.address.split('\n').map((line, idx) => (
-                      <React.Fragment key={idx}>
-                        {line}
-                        <br />
-                      </React.Fragment>
-                    ))}
+                    <Text tag="b7" color="gray7">
+                      {item.address.split('\n').map((line, idx) => (
+                        <React.Fragment key={idx}>
+                          {line}
+                          <br />
+                        </React.Fragment>
+                      ))}
+                    </Text>
                   </span>
                 </div>
 
                 {/* 지번 */}
                 <div className={addressRow}>
-                  <span className={addressLeft}>지번</span>
-                  <span className={addressRight}>{item.jibun}</span>
+                  <span className={addressLeft}>
+                    <Text tag="b7" color="gray6">
+                      지번
+                    </Text>
+                  </span>
+                  <span className={addressRight}>
+                    <Text tag="b7" color="gray7">
+                      {item.jibun}
+                    </Text>
+                  </span>
                 </div>
               </div>
             </div>

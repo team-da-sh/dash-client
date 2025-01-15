@@ -1,7 +1,7 @@
 import Flex from "@/components/Flex";
 import Card from "@/pages/class/components/Card";
-
-import { cardContent, roundBox, details } from "./index.css";
+import Text from "@/components/Text"
+import { cardContent, roundBox } from "./index.css";
 
 const Period = () => {
   const data = [
@@ -37,12 +37,13 @@ const Period = () => {
       {data.map((item, index) => (
         <Card key={index}>
           <div className={cardContent}>
-            <div className={roundBox}>{item.round}</div>
-            <div className={details}>
-              <p>{item.date}</p>
-              <p>
+            <div className={roundBox}>
+              <Text tag='b10' color='white'>{item.round}</Text></div>
+            <div>
+              <Text tag="b4" color="black">{item.date}</Text>
+              <Text tag="b7" color="gray7">
                 {item.time} ({item.duration})
-              </p>
+              </Text>
             </div>
           </div>
         </Card>

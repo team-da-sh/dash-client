@@ -4,7 +4,7 @@ import { TabRoot, TabList, TabButton, TabPanel } from '@/components/Tab';
 import Intro from '../Intro';
 import Level from '../Level';
 import Period from '../Period';
-import Text from '@/components/Text'
+import Head from '@/components/Head'
 import { TabListStyle, TabPanelStyle } from './index.css';
 
 interface BottomComponentProps {
@@ -20,16 +20,16 @@ const BottomComponent = ({ colorScheme }: BottomComponentProps) => {
         <div className={TabListStyle}>
           <TabList>
             <TabButton isSelected={selectedTab === 0} onClick={() => setSelectedTab(0)} colorScheme={colorScheme}>
-              <Text tag="b4">소개</Text>
+              <Head level='h5' tag='h5'>소개</Head>
             </TabButton>
             <TabButton isSelected={selectedTab === 1} onClick={() => setSelectedTab(1)} colorScheme={colorScheme}>
-              <Text tag="b4">난이도</Text>
+              <Head level='h5' tag='h5'>난이도</Head>
             </TabButton>
             <TabButton isSelected={selectedTab === 2} onClick={() => setSelectedTab(2)} colorScheme={colorScheme}>
-              <Text tag="b4">기간</Text>
+            <Head level='h5' tag='h5'>기간</Head>
             </TabButton>
             <TabButton isSelected={selectedTab === 3} onClick={() => setSelectedTab(3)} colorScheme={colorScheme}>
-              <Text tag="b4">위치</Text>
+            <Head level='h5' tag='h5'>위치</Head>
             </TabButton>
           </TabList>
         </div>

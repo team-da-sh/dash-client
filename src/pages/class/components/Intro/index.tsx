@@ -1,4 +1,5 @@
 import React from "react";
+import Text from '@/components/Text'
 
 const Intro = () => {
   const data = [
@@ -12,14 +13,14 @@ const Intro = () => {
     <>
       <div>
         {data.map((item, index) => (
-          <p key={index}>
+          <Text tag='b3' color='gray8' key={index}>
             {item.content.split('\n').map((line, idx) => (
               <React.Fragment key={idx}>
                 {line}
                 <br />
               </React.Fragment>
             ))}
-          </p>
+          </Text>
         ))}
       </div>
     </>
