@@ -1,5 +1,11 @@
+import SearchBar from './SearchBar';
+
 const Search = () => {
-  return <div>search</div>;
+  return (
+    <>
+      <SearchBar />
+    </>
+  );
 };
 
 export default Search;
