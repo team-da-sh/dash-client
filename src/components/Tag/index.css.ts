@@ -19,6 +19,12 @@ export const tagStyle = recipe({
       deadline: {
         backgroundColor: vars.colors.gray10,
       },
+      search: {
+        borderRadius: 2,
+        border: `1px solid ${vars.colors.main03}`,
+
+        backgroundColor: vars.colors.white,
+      },
     },
     size: {
       small: {
@@ -33,6 +39,10 @@ export const tagStyle = recipe({
         padding: '0.3rem 0.8rem',
         gap: '1.2rem',
         ...vars.fonts.b2,
+      },
+      large: {
+        padding: '0.2rem 0.6rem',
+        gap: '1rem',
       },
       thumbnail: {
         borderRadius: '0px 4px 4px 0px',
