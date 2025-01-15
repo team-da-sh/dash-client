@@ -1,7 +1,5 @@
-import DancerList from '../search/components/DancerList';
-
 const Home = () => {
-  return <DancerList />;
+  return <div>홈</div>;
 };
 
 export default Home;
