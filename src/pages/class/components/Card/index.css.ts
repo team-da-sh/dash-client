@@ -7,7 +7,7 @@ export const card = style({
   alignItems: 'center',
   borderRadius: '4px',
   border: '0.5px solid',
-  borderColor: vars.colors.gray03,
+  borderColor: vars.colors.gray02,
   backgroundColor: vars.colors.white,
   gap: '0.8rem',
   width: '100%',

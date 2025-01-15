@@ -1,11 +1,6 @@
 import { style } from '@vanilla-extract/css';
 import { vars } from "@/styles/theme.css";
 
-export const cardContent = style({
-  display: 'flex',
-  alignItems: 'center',
-});
-
 export const roundBox = style({
   display: 'flex',
   justifyContent: 'center',
