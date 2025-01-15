@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import { ForwardedRef, forwardRef, InputHTMLAttributes } from 'react';
 import * as style from './index.css';
 
@@ -6,12 +7,12 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   isSearch?: boolean;
 }
 
-const Input = ({ isError, isSearch = false, ...props }: InputProps, ref: ForwardedRef<HTMLInputElement>) => {
+const Input = ({ isError, isSearch = false, className, ...props }: InputProps, ref: ForwardedRef<HTMLInputElement>) => {
   return (
     <input
       ref={ref}
       type="text"
-      className={style.inputStyle({ isError, isSearch })}
+      className={clsx(className, style.inputStyle({ isError, isSearch }))}
       placeholder="예시를 써주세요"
       {...props}
     />
