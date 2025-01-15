@@ -2,7 +2,7 @@ import { dividerStyle } from '@/components/Divider/index.css';
 
 interface DividerProps {
   direction?: 'horizontal' | 'vertical';
-  color?: 'primary' | 'secondary';
+  color?: 'primary' | 'secondary' | 'teritory';
   length?: string | number;
   thickness?: string | number;
 }
