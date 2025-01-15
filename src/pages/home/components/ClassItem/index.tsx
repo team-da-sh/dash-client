@@ -9,29 +9,9 @@ import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Tag from '@/components/Tag';
 import Text from '@/components/Text';
+import { getDateDiff } from '@/utils/getDateDiff';
+import { transformDateToDotFormat } from '@/utils/transformDateToDotFormat';
 import { ClassTypes } from '@/types/classTypes';
-
-const transformDateToDotFormat = (dateString: string) => {
-  const date = new Date(dateString);
-
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, '0');
-  const day = String(date.getDate()).padStart(2, '0');
-
-  return `${year}.${month}.${day}`;
-};
-
-const getDateDiff = (date: string) => {
-  const date1 = new Date();
-  const date2 = new Date(date);
-
-  date1.setHours(0, 0, 0, 0);
-  date2.setHours(0, 0, 0, 0);
-
-  const diffDate = date1.getTime() - date2.getTime();
-
-  return Math.abs(diffDate / (1000 * 60 * 60 * 24));
-};
 
 const ClassItem = ({
   lessonId,
@@ -50,10 +30,10 @@ const ClassItem = ({
   const remainingDate = getDateDiff(lessonStartDateTime);
 
   return (
-    <Flex tag="li" direction="column" gap="0.8rem" key={lessonId}>
+    <Flex tag="li" direction="column" gap="0.8rem" key={lessonId} className={wrapperStyle}>
       <img src={lessonImageUrl} alt="클래스 섬네일" className={classImageStyle} />
       {remainingDate < 4 && (
-        <Tag type="thumb" size="small" className={deadlineTagStyle}>{`마감 D-${remainingDate}`}</Tag>
+        <Tag type="deadline" size="thumbnail" className={deadlineTagStyle}>{`마감 D-${remainingDate || 'Day'}`}</Tag>
       )}
 
       <Flex gap="0.4rem">
@@ -74,7 +54,6 @@ const ClassItem = ({
           <img src={teacherImageUrl} alt="강사" className={teacherImageStyle} />
           <Text tag="b7">{teacherNickname}</Text>
         </Flex>
-
         <Flex gap="0.4rem" align="center">
           <Text tag="c2" color="gray5">
             {transformDateToDotFormat(lessonStartDateTime)} - {transformDateToDotFormat(lessonEndDateTime)}
