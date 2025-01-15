@@ -1,64 +1,117 @@
-import { cardStyle } from '@/pages/class/ClassInfoWrapper/index.css';
+import { headerStyle, lessonCount, cardStyle } from '@/pages/class/ClassInfoWrapper/index.css';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Tag from '@/components/Tag';
 import Text from '@/components/Text';
+import { lessonData } from '@/constants/LessonData';
 import { IcClose } from '@/assets/svg';
 import { vars } from '@/styles/theme.css';
 
+// 날짜 계산 함수
+const calculateDday = (startDateTime: string): string => {
+  const today = new Date();
+  const startDate = new Date(startDateTime);
+  const difference = Math.ceil((startDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
+  return difference > 0 ? `D-${difference}` : difference === 0 ? 'D-Day' : '마감';
+};
+
+interface LessonData {
+  lessonImageUrl: string;
+  lessonGenre: string;
+  lessonName: string;
+  teacherNickname: string;
+  lessonRound: Array<{ lessonStartDateTime: string; lessonEndDateTime: string }>;
+  individualPrice: number;
+  maxReservationCount: number;
+  reservationCount: number;
+}
+
 const ClassInfoWrapper = () => {
+  const {
+    lessonImageUrl,
+    lessonGenre,
+    lessonName,
+    teacherNickname,
+    lessonRound,
+    individualPrice,
+    maxReservationCount,
+    reservationCount,
+  }: LessonData = lessonData;
+
+  // D-Day 계산
+  const dDay = calculateDday(lessonRound[0].lessonStartDateTime);
+
+  // 총 가격 계산
+  const totalPrice = lessonRound.length * individualPrice;
+
+  // 남은 예약 가능 인원 계산
+  const remainingSeats = maxReservationCount - reservationCount;
+
   return (
     <>
-      <div style={{ height: '37.5rem', backgroundColor: vars.colors.gray02 }}></div>
+      <div
+        className={headerStyle}
+        style={{
+          backgroundImage: `url(${lessonImageUrl})`,
+        }}
+      ></div>
 
-      <Flex direction="column" padding="2rem 2rem 2.4rem 2rem">
+      <Flex
+        direction="column"
+        style={{
+          padding: '2rem 2rem 2.4rem 2rem',
+        }}>
         <Flex gap="0.4rem" marginBottom="1.2rem">
           <Tag type="genre" size="medium">
             <Text tag="b7" color="white">
-              힙합
+              {lessonGenre}
             </Text>
           </Tag>
           <Tag type="deadline" size="medium">
             <Text tag="b7" color="white">
-              D-3
+              {dDay}
             </Text>
           </Tag>
         </Flex>
 
         <Head level="h2" tag="h4" style={{ marginBottom: '1.6rem' }}>
-          힙합의 멋, 올드스쿨 힙합 기본기 정복하기
+          {lessonName}
         </Head>
 
         <Flex align="center" gap="0.8rem">
-          <div
+          <img
+            src={lessonData.teacherImageUrl}
+            // alt={`${teacherNickname} 프로필`}
             style={{
               width: '32px',
               height: '32px',
               borderRadius: '50%',
-              backgroundColor: vars.colors.gray01,
+              objectFit: 'cover', // 이미지 비율 유지
+              backgroundColor: vars.colors.gray01, // 비어있는 경우 배경색
             }}
-          ></div>
+          />
           <Text tag="b2" color="gray9">
-            김태훈
+            {teacherNickname}
           </Text>
         </Flex>
 
         <Flex justify="flexEnd" width="100%" align="center" gap="0.8rem" marginBottom="1.5rem">
-          <span style={{ color: vars.colors.gray06 }}>
-            <Head tag="h5">6회</Head>
+          <span className={lessonCount}>
+            <Head tag="h5">{lessonRound.length}회</Head>
           </span>
           <Head level="h5" tag="h2">
-            350,000 원
+            {totalPrice.toLocaleString()}원
           </Head>
         </Flex>
 
+        {/* 마감 정보 */}
         <div className={cardStyle}>
-          <IcClose width={24} />
+          <IcClose width={24} style={{marginRight:'0.7rem'}}/>
           <Text tag="b2" color="black">
             마감까지
           </Text>
           <Text tag="b2" color="main4">
-            13
+            {remainingSeats}
           </Text>
           <Text tag="b2" color="black">
             명 남았어요!
