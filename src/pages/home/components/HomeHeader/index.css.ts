@@ -7,8 +7,6 @@ export const containerStyle = recipe({
     position: 'fixed',
     top: 0,
     zIndex: '2',
-    display: 'flex',
-    justifyContent: 'space-between',
 
     width: '100%',
     height: '6rem',

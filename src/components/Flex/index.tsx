@@ -59,8 +59,7 @@ const Flex = ({
         grow,
       })}
       style={inlineStyles}
-      {...props}
-    >
+      {...props}>
       {children}
     </Element>
   );
