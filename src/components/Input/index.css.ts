@@ -14,7 +14,7 @@ export const inputStyle = recipe({
     width: '100%',
     height: '5.2rem',
     border: 'none',
-    borderRadius: '0.4rem',
+    borderRadius: '4px',
     padding: '1.4rem 1.8rem',
     ...vars.fonts.b5,
     backgroundColor: vars.colors.gray01,
@@ -30,6 +30,11 @@ export const inputStyle = recipe({
       },
       false: {
         border: `1px solid ${vars.colors.main04}`,
+      },
+    },
+    isSearch: {
+      true: {
+        borderRadius: '90px',
       },
     },
   },
