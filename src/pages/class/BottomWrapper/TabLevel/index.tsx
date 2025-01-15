@@ -1,23 +1,19 @@
 import React from 'react';
-import Card from '@/pages/class/components/Card';
+import Card from '@/pages/class/Card';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Text from '@/components/Text';
+import { lessonData } from '@/constants/LessonData';
 import { IcClose, IcQuesitonmark } from '@/assets/svg';
 
-interface LevelData {
-  level: string;
-  content: string;
+interface LessonData {
+  lessonLevel: string;
+  lessonLevelDetail: string;
+  lessonRecommendation: string;
 }
 
-const Level = () => {
-  const data: LevelData[] = [
-    {
-      level: '입문자',
-      content:
-        '바다리만의 트렌디한 힙합 베이스를\n바다리만의 트렌디한 힙합 베이스를 배우고\n바다리만의 트렌디한 힙합 베이스를 배우고 싶은 분\n',
-    },
-  ];
+const Level = (): JSX.Element => {
+  const { lessonLevel, lessonLevelDetail, lessonRecommendation }: LessonData = lessonData;
 
   return (
     <Flex direction="column" gap="3.6rem">
@@ -26,10 +22,10 @@ const Level = () => {
           <Flex gap="0.8rem" align="center">
             <IcClose width={36} />
             <Head level="h6" tag="h6">
-              {data[0].level}
+              {lessonLevel}
             </Head>
             <Text tag="b8" color="gray8">
-              기본 동작과 리듬 익히기 중심의 단계를 말해요!
+              {lessonLevelDetail}
             </Text>
           </Flex>
         </Card>
@@ -48,16 +44,15 @@ const Level = () => {
           </Head>
         </Flex>
 
-        {data.map((item, index) => (
-          <Text tag="b3" color="gray8" key={index}>
-            {item.content.split('\n').map((line, idx) => (
-              <React.Fragment key={idx}>
-                {line}
-                <br />
-              </React.Fragment>
-            ))}
-          </Text>
-        ))}
+        {/* 줄바꿈 처리된 텍스트 */}
+        <Text tag="b3" color="gray8">
+          {lessonRecommendation.split('\n').map((line, idx) => (
+            <React.Fragment key={idx}>
+              {line}
+              <br />
+            </React.Fragment>
+          ))}
+        </Text>
       </Flex>
     </Flex>
   );

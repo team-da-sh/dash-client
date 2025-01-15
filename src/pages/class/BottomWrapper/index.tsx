@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { TabPanelStyle } from '@/pages/class/components/BottomComponent/index.css';
-import Intro from '@/pages/class/components/Intro';
-import Level from '@/pages/class/components/Level';
-import LocationInfo from '@/pages/class/components/LocationInfo';
-import Period from '@/pages/class/components/Period';
+import { TabPanelStyle } from '@/pages/class/BottomWrapper/index.css';
+import Intro from '@/pages/class/BottomWrapper/TabIntro';
+import Level from '@/pages/class/BottomWrapper/TabLevel';
+import LocationInfo from '@/pages/class/BottomWrapper/TabLocation';
+import Period from '@/pages/class/BottomWrapper/TabPeriod';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import { TabRoot, TabList, TabButton, TabPanel } from '@/components/Tab';
@@ -12,7 +12,7 @@ interface BottomComponentProps {
   colorScheme: 'primary' | 'secondary';
 }
 
-const BottomComponent = ({ colorScheme }: BottomComponentProps) => {
+const BottomWrapper = ({ colorScheme }: BottomComponentProps) => {
   const [selectedTab, setSelectedTab] = useState(0);
 
   return (
@@ -62,4 +62,4 @@ const BottomComponent = ({ colorScheme }: BottomComponentProps) => {
   );
 };
 
-export default BottomComponent;
+export default BottomWrapper;

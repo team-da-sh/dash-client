@@ -1,9 +1,9 @@
-import BottomComponent from "@/pages/class/components/BottomComponent";
+import BottomWrapper from "@/pages/class/BottomWrapper";
 
 const Class = () => {
   return(
   <>
-    <BottomComponent colorScheme="primary" />
+    <BottomWrapper colorScheme="primary" />
   </>
   );
 };

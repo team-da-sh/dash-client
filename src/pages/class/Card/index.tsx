@@ -1,5 +1,5 @@
 import { PropsWithChildren } from 'react';
-import { cardStyle } from '@/pages/class/components/Card/index.css';
+import { cardStyle } from '@/pages/class/Card/index.css';
 
 type CardProps = PropsWithChildren<{}>;
 
