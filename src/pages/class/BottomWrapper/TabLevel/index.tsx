@@ -33,7 +33,9 @@ const Level = (): JSX.Element => {
           <Text tag="c3" color="gray7">
             클래스 난이도는 이렇게 설정되어있어요!
           </Text>
-          <IcQuesitonmark width={14} />
+          <button>
+            <IcQuesitonmark width={14} />
+          </button>
         </Flex>
       </div>
       <Flex direction="column" gap="1.2rem">
