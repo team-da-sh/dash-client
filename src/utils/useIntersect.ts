@@ -16,6 +16,7 @@ export const useIntersect = (initialVisible: boolean, options?: IntersectionObse
 
     // 이미지 영역에서 헤더 높이를 제외한 비율값
     const threshold = 1 - (ref.current?.offsetHeight - 60) / ref.current?.offsetHeight;
+
     const observer = new IntersectionObserver(callback, { ...options, threshold: threshold });
     observer.observe(ref.current);
     return () => observer.disconnect();

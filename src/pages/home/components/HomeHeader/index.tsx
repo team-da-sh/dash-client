@@ -14,7 +14,6 @@ interface HomeHeaderProps {
 }
 
 const HomeHeader = ({ isVisible }: HomeHeaderProps) => {
-  console.log('header에서', isVisible);
   return (
     <Flex tag="header" className={containerStyle({ isVisible })}>
       {isVisible ? (
