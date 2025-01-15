@@ -1,5 +1,6 @@
 import React from "react";
 import Text from '@/components/Text'
+import Flex from "@/components/Flex";
 
 const Intro = () => {
   const data = [
@@ -11,7 +12,7 @@ const Intro = () => {
 
   return (
     <>
-      <div>
+      <Flex padding="0.8rem 0 0">
         {data.map((item, index) => (
           <Text tag='b3' color='gray8' key={index}>
             {item.content.split('\n').map((line, idx) => (
@@ -22,7 +23,7 @@ const Intro = () => {
             ))}
           </Text>
         ))}
-      </div>
+      </Flex>
     </>
   );
 };

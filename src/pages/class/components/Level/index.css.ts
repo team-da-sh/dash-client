@@ -4,10 +4,16 @@ export const levelContent = style({
   alignItems: 'center',
   gap: '0.8rem',
 });
+export const levelInfo = style({
+  display: 'flex',
+  justifyContent: 'flex-end',
+  alignItems: 'center',
+  gap: '0.6rem',
+});
 
 export const headerRow = style({
   display: 'flex',
-  justifyContent: 'space-between', // 좌우로 요소 배치
-  alignItems: 'center', // 세로 정렬
-  marginBottom: '1rem', // 간격 추가
+  justifyContent: 'flex-start',
+  alignItems: 'center',
+  gap: '0.8rem',
 });

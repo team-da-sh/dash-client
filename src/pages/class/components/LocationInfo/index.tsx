@@ -65,7 +65,7 @@ const LocationInfo = () => {
             </div>
 
             {/* 오른쪽 */}
-            <IcClose width={'4.1rem'} />
+            <IcClose width={41} />
           </div>
         </Card>
       ))}
