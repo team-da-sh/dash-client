@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import LocationInfo from '@/pages/class/components/LocationInfo';
-import Flex from '@/components/Flex';
 import { TabRoot, TabList, TabButton, TabPanel } from '@/components/Tab';
 import Level from '../Level';
 import Period from '../Period';
+import { TabListStyle, TabPanelStyle } from './index.css';
 
 interface BottomComponentProps {
   colorScheme: 'primary' | 'secondary';
@@ -14,23 +14,24 @@ const BottomComponent = ({ colorScheme }: BottomComponentProps) => {
 
   return (
     <>
-      <Flex width="100%">
         <TabRoot>
-          <TabList>
-            <TabButton isSelected={selectedTab === 0} onClick={() => setSelectedTab(0)} colorScheme={colorScheme}>
-              소개
-            </TabButton>
-            <TabButton isSelected={selectedTab === 1} onClick={() => setSelectedTab(1)} colorScheme={colorScheme}>
-              난이도
-            </TabButton>
-            <TabButton isSelected={selectedTab === 2} onClick={() => setSelectedTab(2)} colorScheme={colorScheme}>
-              기간
-            </TabButton>
-            <TabButton isSelected={selectedTab === 3} onClick={() => setSelectedTab(3)} colorScheme={colorScheme}>
-              위치
-            </TabButton>
-          </TabList>
-
+          <div className={TabListStyle}>
+            <TabList>
+              <TabButton isSelected={selectedTab === 0} onClick={() => setSelectedTab(0)} colorScheme={colorScheme}>
+                소개
+              </TabButton>
+              <TabButton isSelected={selectedTab === 1} onClick={() => setSelectedTab(1)} colorScheme={colorScheme}>
+                난이도
+              </TabButton>
+              <TabButton isSelected={selectedTab === 2} onClick={() => setSelectedTab(2)} colorScheme={colorScheme}>
+                기간
+              </TabButton>
+              <TabButton isSelected={selectedTab === 3} onClick={() => setSelectedTab(3)} colorScheme={colorScheme}>
+                위치
+              </TabButton>
+            </TabList>
+          </div>
+          <div className={TabPanelStyle}>
           <TabPanel isSelected={selectedTab === 0}>소개부분</TabPanel>
           <TabPanel isSelected={selectedTab === 1}>
             <Level />
@@ -41,8 +42,8 @@ const BottomComponent = ({ colorScheme }: BottomComponentProps) => {
           <TabPanel isSelected={selectedTab === 3}>
             <LocationInfo />
           </TabPanel>
+          </div>
         </TabRoot>
-      </Flex>
     </>
   );
 };

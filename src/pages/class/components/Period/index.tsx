@@ -33,7 +33,7 @@ const Period = () => {
 
   return (
     <>
-    <Flex direction="column" justify="center" gap="1.2rem" padding="2.4rem 0">
+    <Flex direction="column" justify="center" gap="1.2rem">
       {data.map((item, index) => (
         <Card key={index}>
           <div className={cardContent}>
