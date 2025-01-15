@@ -1,21 +1,4 @@
 import { style } from '@vanilla-extract/css';
-import { vars } from '@/styles/theme.css';
-
-export const searchBarContainerStyle = style({
-  position: 'relative',
-
-  display: 'flex',
-  alignItems: 'center',
-  gap: '1.6rem',
-
-  width: '29.9rem',
-
-  padding: '0.8rem 0',
-
-  backgroundColor: vars.colors.gray01,
-
-  borderRadius: '90px',
-});
 
 export const searchGrayStyle = style({
   position: 'absolute',

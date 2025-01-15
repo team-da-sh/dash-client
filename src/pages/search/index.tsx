@@ -1,10 +1,27 @@
-import SearchBar from './SearchBar';
+import { useState } from 'react';
+import SearchBar from '@/pages/search/SearchBar';
+import Header from '@/components/Header';
 
 const Search = () => {
+  const [searchValue, setSearchValue] = useState('');
+
+  const handleSearchChange = (value: string) => {
+    setSearchValue(value);
+  };
+
+  const handleSearchIconClick = () => {
+    console.log(searchValue);
+  };
+
   return (
-    <>
-      <SearchBar />
-    </>
+    <Header.Root>
+      <Header.BackIcon />
+      <SearchBar
+        searchValue={searchValue}
+        handleSearchChange={handleSearchChange}
+        handleSearchIconClick={handleSearchIconClick}
+      />
+    </Header.Root>
   );
 };
 
