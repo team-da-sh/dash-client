@@ -4,9 +4,12 @@ import { vars } from '@/styles/theme.css';
 
 export const containerStyle = recipe({
   base: {
+    display: 'flex',
     position: 'fixed',
     top: 0,
     zIndex: '2',
+    justifyContent: 'space-between',
+    alignItems: 'center',
 
     width: '100%',
     height: '6rem',
@@ -17,7 +20,7 @@ export const containerStyle = recipe({
   variants: {
     isVisible: {
       true: {
-        backgroundColor: vars.colors.black,
+        backgroundColor: vars.colors.white,
       },
       false: {
         backgroundColor: 'none',
