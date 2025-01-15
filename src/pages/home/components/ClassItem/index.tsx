@@ -53,7 +53,7 @@ const ClassItem = ({
     <Flex tag="li" direction="column" gap="0.8rem" key={lessonId}>
       <img src={lessonImageUrl} alt="클래스 섬네일" className={classImageStyle} />
       {remainingDate < 4 && (
-        <Tag type="deadline" size="small" className={deadlineTagStyle}>{`마감 D-${remainingDate}`}</Tag>
+        <Tag type="thumb" size="small" className={deadlineTagStyle}>{`마감 D-${remainingDate}`}</Tag>
       )}
 
       <Flex gap="0.4rem">
