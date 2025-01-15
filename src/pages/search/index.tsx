@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import SearchBar from '@/pages/search/SearchBar';
+import SearchBar from '@/pages/search/components/SearchBar';
 import Header from '@/components/Header';
 
 const Search = () => {
