@@ -1,16 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { ButtonHTMLAttributes } from 'react';
-import Button from '../components/ButtonStory/Button';
-
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'secondary' | 'tertiary' | 'outline';
-  size?: 'xLarge' | 'large' | 'medium';
-  isDisabled?: boolean;
-}
+import BoxButton, { BoxButtonProps } from '@/components/BoxButton';
 
 const meta = {
-  title: 'Common/Button',
-  component: Button,
+  title: 'Common/BoxButton',
+  component: BoxButton,
   parameters: {
     layout: 'centered',
   },
@@ -18,11 +11,7 @@ const meta = {
   argTypes: {
     variant: {
       control: { type: 'radio' },
-      options: ['primary', 'secondary', 'tertiary', 'outline'],
-    },
-    size: {
-      control: { type: 'radio' },
-      options: ['xLarge', 'large', 'medium'],
+      options: ['primary', 'secondary', 'outline'],
     },
     children: {
       control: { type: 'text' },
@@ -30,19 +19,13 @@ const meta = {
     isDisabled: {
       control: { type: 'boolean' },
     },
-    color: {
-      control: {
-        type: 'color',
-      },
-    },
   },
   args: {
     variant: 'primary',
-    size: 'medium',
     children: 'Button',
     isDisabled: false,
   },
-} satisfies Meta<typeof Button>;
+} satisfies Meta<typeof BoxButton>;
 
 export default meta;
 
@@ -50,7 +33,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
 
-const createButtonStory = (variant: ButtonProps['variant']) => ({
+const createButtonStory = (variant: BoxButtonProps['variant']) => ({
   args: {
     variant,
   },
@@ -64,7 +47,5 @@ const createButtonStory = (variant: ButtonProps['variant']) => ({
 export const Primary: Story = createButtonStory('primary');
 
 export const Secondary: Story = createButtonStory('secondary');
-
-export const Tertiary: Story = createButtonStory('tertiary');
 
 export const Outline: Story = createButtonStory('outline');
