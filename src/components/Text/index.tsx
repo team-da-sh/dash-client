@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import { HTMLAttributes } from 'react';
 import { textStyle } from '@/components/Text/index.css';
 
@@ -39,9 +40,9 @@ interface TextProps extends HTMLAttributes<HTMLParagraphElement> {
     | 'black';
 }
 
-const Text = ({ tag = 'b1', color = 'black', children, ...props }: TextProps) => {
+const Text = ({ tag = 'b1', color = 'black', children, className, ...props }: TextProps) => {
   return (
-    <p className={textStyle({ tag, color })} {...props}>
+    <p className={clsx(className, textStyle({ tag, color }))} {...props}>
       {children}
     </p>
   );
