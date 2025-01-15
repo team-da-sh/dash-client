@@ -13,6 +13,10 @@ interface TitleProps {
   title: string;
 }
 
+interface CloseIconProps {
+  onClick: () => void;
+}
+
 const HeaderRoot = ({ children, isColor = false }: HeaderRootProps): JSX.Element => {
   return <div className={headerRootStyle({ isColor })}>{children}</div>;
 };
@@ -37,13 +41,9 @@ const Title = ({ title }: TitleProps): JSX.Element => {
   );
 };
 
-const CloseIcon = (): JSX.Element => {
-  const handleCloseClick = () => {
-    window.history.back();
-  };
-
+const CloseIcon = ({ onClick }: CloseIconProps): JSX.Element => {
   return (
-    <button className={closeIconStyle} onClick={handleCloseClick} aria-label="닫기">
+    <button className={closeIconStyle} onClick={onClick} aria-label="닫기">
       <IcClose width={24} height={24} />
     </button>
   );
