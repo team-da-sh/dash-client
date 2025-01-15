@@ -7,8 +7,8 @@ export const mockReservationData = {
       lessonGenre: '힙합',
       lessonLevel: '입문자',
       lessonLocation: '서울특별시 강남구',
-      lessonStartDateTime: '2023-12-15T10:00:00',
-      lessonEndDateTime: '2023-12-15T12:00:00',
+      lessonStartDateTime: '2025-01-18T10:00:00',
+      lessonEndDateTime: '2025-01-18T12:00:00',
     },
     {
       reservationId: 2,
