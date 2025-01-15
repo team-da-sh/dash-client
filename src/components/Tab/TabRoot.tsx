@@ -1,5 +1,5 @@
-import { ReactNode } from "react";
-import { tabRootStyle } from "@/components/Tab/index.css";
+import { ReactNode } from 'react';
+import { tabRootStyle } from '@/components/Tab/index.css';
 
 interface TabRootProps {
   children: ReactNode;
@@ -7,11 +7,7 @@ interface TabRootProps {
 }
 
 const TabRoot = ({ children, className }: TabRootProps) => {
-  return (
-    <div className={`${tabRootStyle} ${className}`}>
-      {children}
-    </div>
-  );
+  return <div className={`${tabRootStyle} ${className}`}>{children}</div>;
 };
 
 export default TabRoot;

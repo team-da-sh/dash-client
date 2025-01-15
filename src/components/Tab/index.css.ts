@@ -83,6 +83,7 @@ export const tabListStyle = style({
   gap: '2.4rem',
   borderBottom: 'none',
 });
+
 export const tabRootStyle = style({
-  width: '100%'
+  width: '100%',
 });
