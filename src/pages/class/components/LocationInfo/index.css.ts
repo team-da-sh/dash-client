@@ -12,23 +12,28 @@ export const cardContent = style({
 export const locationBox = style({
   display: 'flex',
   flexDirection: 'column',
-  gap: '0.8rem',
+  gap: '0.6rem',
 });
 
 export const locationTitle = style({
   ...vars.fonts.b4,
 });
-
+export const addressDetail = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '0.4rem',
+});
 export const addressRow = style({
   ...vars.fonts.b7,
   display: 'flex',
   justifyContent: 'space-between',
+  marginBottom: '0.4rem',
 });
 
 export const addressLeft = style({
   fontWeight: 'bold',
-  width: '4rem',
   color: vars.colors.gray06,
+  marginRight: '0.4rem',
 });
 
 export const addressRight = style({

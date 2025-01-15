@@ -2,7 +2,7 @@ import React from 'react';
 import Card from '@/pages/class/components/Card';
 import Flex from '@/components/Flex';
 import { IcClose } from '@/assets/svg';
-import { cardContent, locationBox, locationTitle, addressRow, addressLeft, addressRight } from './index.css';
+import { cardContent, locationBox, locationTitle, addressDetail, addressRow, addressLeft, addressRight } from './index.css';
 
 const LocationInfo = () => {
   const data = [
@@ -24,23 +24,30 @@ const LocationInfo = () => {
           <div className={cardContent}>
             {/* 왼쪽 */}
             <div className={locationBox}>
+              {/* 장소 이름 */}
               <p className={locationTitle}>{item.location}</p>
-              <div className={addressRow}>
-                <span className={addressLeft}>주소</span>
-                <span className={addressRight}>
-                  {item.address.split('\n').map((line, idx) => (
-                    <React.Fragment key={idx}>
-                      {line}
-                      <br />
-                    </React.Fragment>
-                  ))}
-                </span>
-              </div>
-              <div className={addressRow}>
-                <span className={addressLeft}>지번</span>
-                <span className={addressRight}>{item.jibun}</span>
+              <div className={addressDetail}>
+                {/* 주소 */}
+                <div className={addressRow}>
+                  <span className={addressLeft}>주소</span>
+                  <span className={addressRight}>
+                    {item.address.split('\n').map((line, idx) => (
+                      <React.Fragment key={idx}>
+                        {line}
+                        <br />
+                      </React.Fragment>
+                    ))}
+                  </span>
+                </div>
+
+                {/* 지번 */}
+                <div className={addressRow}>
+                  <span className={addressLeft}>지번</span>
+                  <span className={addressRight}>{item.jibun}</span>
+                </div>
               </div>
             </div>
+
             {/* 오른쪽 */}
             <IcClose width={'4.1rem'} />
           </div>
