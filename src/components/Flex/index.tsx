@@ -16,6 +16,12 @@ interface FlexProps extends HTMLAttributes<HTMLDivElement> {
   padding?: string;
   marginTop?: string;
   marginBottom?: string;
+  marginRight?: string;
+  marginLeft?: string;
+  paddingTop?: string;
+  paddingBottom?: string;
+  paddingRight?: string;
+  paddingLeft?: string;
 }
 
 const Flex = ({
@@ -33,6 +39,12 @@ const Flex = ({
   padding,
   marginTop,
   marginBottom,
+  marginRight,
+  marginLeft,
+  paddingTop,
+  paddingBottom,
+  paddingRight,
+  paddingLeft,
   children,
   ...props
 }: FlexProps) => {
@@ -47,6 +59,12 @@ const Flex = ({
     padding,
     marginTop,
     marginBottom,
+    marginRight,
+    marginLeft,
+    paddingTop,
+    paddingBottom,
+    paddingRight,
+    paddingLeft,
   };
 
   return (
