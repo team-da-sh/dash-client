@@ -21,8 +21,6 @@ interface classCardProps {
   children?: React.ReactNode;
 }
 const ClassCard = ({
-  lessonId,
-  reservationId,
   lessonName,
   lessonImageUrl,
   lessonGenre,
@@ -40,32 +38,32 @@ const ClassCard = ({
     <div className={styles.cardContainerStyle}>
       <Flex justify="spaceBetween" align="center">
         <Flex align="center" gap="0.2rem" marginBottom="1.2rem">
-          {isReservation ? (
-            <>
-              <Text tag="b4" color={status === 'completed' ? 'gray8' : 'black'}>
-                {status === 'upcoming' && '수강예정'}
-                {status === 'ongoing' && '수강중'}
-                {status === 'completed' && '수강완료'}
-              </Text>
-              {status === 'upcoming' && remainingDays !== undefined && (
-                <Text tag="b7" color="main4">
-                  D-{remainingDays}
-                </Text>
-              )}
-            </>
-          ) : (
-            <Text tag="b4" color={status === 'completed' ? 'gray8' : 'black'}>
-              {status === 'upcoming' ? '모집중' : '모집완료'}
+          <Text tag="b4" color={status === 'completed' ? 'gray8' : 'black'}>
+            {isReservation
+              ? status === 'upcoming'
+                ? '수강예정'
+                : status === 'ongoing'
+                  ? '수강중'
+                  : '수강완료'
+              : status === 'upcoming'
+                ? '모집중'
+                : '모집완료'}
+          </Text>
+          {isReservation && status === 'upcoming' && remainingDays !== undefined && (
+            <Text tag="b7" color="main4">
+              D-{remainingDays}
             </Text>
           )}
         </Flex>
 
-        <Flex align="center" gap="0.2rem">
-          <Text tag="b7" color="gray7">
-            문의하기
-          </Text>
-          <IcArrowRightGray0614 width="1.4rem" height="1.4rem" />
-        </Flex>
+        {isReservation && (
+          <Flex align="center" gap="0.2rem">
+            <Text tag="b7" color="gray7">
+              문의하기
+            </Text>
+            <IcArrowRightGray0614 width="1.4rem" height="1.4rem" />
+          </Flex>
+        )}
       </Flex>
 
       <Flex gap="1.2rem" marginBottom="1.6rem">
