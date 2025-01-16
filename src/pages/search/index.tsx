@@ -21,6 +21,11 @@ const Search = () => {
     console.log(searchValue);
   };
 
+  console.log(setGenre);
+  console.log(setLevel);
+  console.log(setStartDate);
+  console.log(setEndDate);
+
   return (
     <Flex>
       <Header.Root className={headerRootCutomStyle}>

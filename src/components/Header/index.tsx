@@ -16,7 +16,7 @@ interface TitleProps {
 }
 
 interface CloseIconProps {
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 const HeaderRoot = ({ children, isColor = false, className }: HeaderRootProps): JSX.Element => {
