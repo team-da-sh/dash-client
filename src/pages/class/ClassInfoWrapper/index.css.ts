@@ -8,11 +8,6 @@ export const headerStyle = style({
   backgroundPosition: 'center',
 });
 
-export const lessonCount = style({
-  ...vars.fonts.h5,
-  color: vars.colors.gray06,
-});
-
 export const profileStyle = style({
   width: '3.2rem',
   height: '3.2rem',
@@ -22,8 +17,6 @@ export const profileStyle = style({
 });
 
 export const lessonNameStyle = style({
-  ...vars.fonts.h4,
-
   marginBottom: '1.6rem',
 });
 

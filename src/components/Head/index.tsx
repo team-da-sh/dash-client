@@ -54,11 +54,12 @@ const HeadTag = {
   h6: 'h6',
 } as const;
 
-const Head = ({ level = 'h3', tag = 'h3', color = 'black', ...props }: HeadProps) => {
+const Head = ({ level = 'h3', tag = 'h3', color = 'black', className, ...props }: HeadProps) => {
   const Tag = HeadTag[level];
 
   return (
-    <Tag className={headStyle({ tag: tag, color: color })} {...props}>
+    <Tag 
+        className={clsx(className, headStyle({ tag: tag, color: color }))} {...props}>
       {props.children}
     </Tag>
   );
