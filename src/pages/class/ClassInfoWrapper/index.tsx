@@ -4,7 +4,8 @@ import Head from '@/components/Head';
 import Tag from '@/components/Tag';
 import Text from '@/components/Text';
 import { lessonData } from '@/constants/LessonData';
-import { IcClose, IcThunderMain0424 } from '@/assets/svg';
+import { IcThunderMain0424 } from '@/assets/svg';
+import { vars } from '@/styles/theme.css'; // 테마 변수 가져오기
 
 // 날짜 계산 함수
 const calculateDday = (startDateTime: string): string => {
@@ -45,6 +46,11 @@ const ClassInfoWrapper = () => {
 
   // 남은 예약 가능 인원 계산
   const remainingSeats = maxReservationCount - reservationCount;
+
+  const isSoldOut = remainingSeats <= 0;
+  const remainingText = isSoldOut ? '마감되었어요' : `${remainingSeats}`;
+  const iconColor = isSoldOut ?  vars.colors.alert03 : vars.colors.main04;
+  const textColor = isSoldOut ? 'alert3' : 'main4';
 
   return (
     <>
@@ -98,15 +104,19 @@ const ClassInfoWrapper = () => {
         </Flex>
 
         <div className={cardStyle}>
-          <IcThunderMain0424 width={24} style={{ marginRight: '0.7rem' }} />
+          <IcThunderMain0424
+            width={24}
+            color={iconColor}
+            style={{ marginRight: '0.4rem' }}
+          />
           <Text tag="b2" color="black">
-            마감까지
+            {isSoldOut ? '' : '마감까지'}
           </Text>
-          <Text tag="b2" color="main4">
-            {remainingSeats}
+          <Text tag="b2" color={textColor}>
+            {remainingText}
           </Text>
           <Text tag="b2" color="black">
-            명 남았어요!
+            {isSoldOut ? '' : '명 남았어요!'}
           </Text>
         </div>
       </Flex>
