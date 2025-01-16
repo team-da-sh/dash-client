@@ -2,10 +2,10 @@ import { useState } from 'react';
 import Flex from '@/components/Flex';
 import Input from '@/components/Input';
 import Text from '@/components/Text';
-import { BtnCheck, IcDocumentBlack20, IcGraduationBlack20 } from '@/assets/svg';
+import { BtnCheck, IcDocumentBlack20, IcGraduationBlack20, IcPlusGray0524 } from '@/assets/svg';
 import Description from '../Description';
 import { careerFlexStyle, checkboxStyle } from '../PersonalSNSStep/index.css';
-import { flexCustomStyle } from './index.css';
+import { addInputBoxStyle, flexCustomStyle } from './index.css';
 
 const CareerStep = () => {
   const [isEducationActive, setIsEducationActive] = useState(false);
@@ -46,6 +46,9 @@ const CareerStep = () => {
         {!isEducationActive && (
           <Flex direction="column" gap="0.8rem" className={flexCustomStyle}>
             <Input />
+            <Flex justify="center" align="center" className={addInputBoxStyle}>
+              <IcPlusGray0524 width={'2.4rem'} />
+            </Flex>
           </Flex>
         )}
       </Flex>
@@ -74,6 +77,9 @@ const CareerStep = () => {
         {!isCareerActive && (
           <Flex direction="column" gap="0.8rem" className={flexCustomStyle}>
             <Input />
+            <Flex justify="center" align="center" className={addInputBoxStyle}>
+              <IcPlusGray0524 width={'2.4rem'} />
+            </Flex>
           </Flex>
         )}
       </Flex>
