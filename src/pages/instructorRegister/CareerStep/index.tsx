@@ -43,9 +43,11 @@ const CareerStep = () => {
           </Flex>
         </Flex>
 
-        <Flex direction="column" gap="0.8rem" className={flexCustomStyle}>
-          <Input />
-        </Flex>
+        {!isEducationActive && (
+          <Flex direction="column" gap="0.8rem" className={flexCustomStyle}>
+            <Input />
+          </Flex>
+        )}
       </Flex>
 
       {/* 경력 */}
@@ -69,9 +71,11 @@ const CareerStep = () => {
           </Flex>
         </Flex>
 
-        <Flex direction="column" gap="0.8rem" className={flexCustomStyle}>
-          <Input />
-        </Flex>
+        {!isCareerActive && (
+          <Flex direction="column" gap="0.8rem" className={flexCustomStyle}>
+            <Input />
+          </Flex>
+        )}
       </Flex>
     </>
   );
