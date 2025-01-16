@@ -4,8 +4,12 @@ import Head from '@/components/Head';
 import Tag from '@/components/Tag';
 import Text from '@/components/Text';
 import { formatLessonDateRange } from '@/utils/timeCalculate';
+import { getClassStatus } from '@/utils/timeCalculate';
+import { IcArrowRightGray0614 } from '@/assets/svg';
 
 interface classCardProps {
+  lessonId?: string;
+  reservationId?: string;
   lessonName: string;
   lessonImageUrl: string;
   lessonGenre: string;
@@ -13,9 +17,12 @@ interface classCardProps {
   lessonLocation: string;
   lessonStartDateTime: string;
   lessonEndDateTime: string;
+  isReservation?: boolean;
   children?: React.ReactNode;
 }
 const ClassCard = ({
+  lessonId,
+  reservationId,
   lessonName,
   lessonImageUrl,
   lessonGenre,
@@ -23,10 +30,44 @@ const ClassCard = ({
   lessonLocation,
   lessonStartDateTime,
   lessonEndDateTime,
+  isReservation = true,
   children,
 }: classCardProps) => {
+  // 클래스 상태 계산
+  const { status, remainingDays } = getClassStatus(lessonStartDateTime, lessonEndDateTime);
+
   return (
     <div className={styles.cardContainerStyle}>
+      <Flex justify="spaceBetween" align="center">
+        <Flex align="center" gap="0.2rem" marginBottom="1.2rem">
+          {isReservation ? (
+            <>
+              <Text tag="b4" color={status === 'completed' ? 'gray8' : 'black'}>
+                {status === 'upcoming' && '수강예정'}
+                {status === 'ongoing' && '수강중'}
+                {status === 'completed' && '수강완료'}
+              </Text>
+              {status === 'upcoming' && remainingDays !== undefined && (
+                <Text tag="b7" color="main4">
+                  D-{remainingDays}
+                </Text>
+              )}
+            </>
+          ) : (
+            <Text tag="b4" color={status === 'completed' ? 'gray8' : 'black'}>
+              {status === 'upcoming' ? '모집중' : '모집완료'}
+            </Text>
+          )}
+        </Flex>
+
+        <Flex align="center" gap="0.2rem">
+          <Text tag="b7" color="gray7">
+            문의하기
+          </Text>
+          <IcArrowRightGray0614 width="1.4rem" height="1.4rem" />
+        </Flex>
+      </Flex>
+
       <Flex gap="1.2rem" marginBottom="1.6rem">
         <img src={lessonImageUrl} className={styles.cardImageStyle} alt={`${lessonName} 이미지`} />
         <Flex direction="column" gap="0.8rem">
