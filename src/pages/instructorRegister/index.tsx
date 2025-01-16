@@ -3,7 +3,7 @@ import Header from '@/components/Header';
 import ProgressBar from '@/components/ProgressBar';
 import { useFunnel } from '@/hooks/useFunnel';
 import ImageUploadStep from './ImageUploadStep';
-import { funnelContainerStyle, progressBarCustomStyle } from './index.css';
+import { buttonContainerStyle, funnelContainerStyle, progressBarCustomStyle } from './index.css';
 
 const InstructorRegister = () => {
   const { Funnel, Step, currentStep, setStep } = useFunnel(6, '/mypage');
@@ -27,7 +27,7 @@ const InstructorRegister = () => {
         </Funnel>
       </div>
 
-      <div>
+      <div className={buttonContainerStyle}>
         <BoxButton onClick={() => setStep(1)}>다음으로</BoxButton>
       </div>
     </>
