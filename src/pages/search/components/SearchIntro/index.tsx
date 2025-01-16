@@ -13,7 +13,7 @@ const SearchIntro = () => {
         </Text>
         <Flex>
           <Head tag="h6" color="main4">
-            ‘장르’나 ‘댄서 네임’
+            장르 or 댄서네임
           </Head>
           <Head tag="h6" color="black">
             을 검색해 보세요!
