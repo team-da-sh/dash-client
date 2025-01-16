@@ -1,5 +1,11 @@
+import TabWrapper from "@/pages/class/TabWrapper";
+
 const Class = () => {
-  return <div>수업 정보 상세</div>;
+  return(
+  <>
+    <TabWrapper colorScheme="primary" />
+  </>
+  );
 };
 
 export default Class;

@@ -12,3 +12,7 @@ export { default as IcSearchGray } from './IcSearchGray'
 export { default as IcSearchWhite24 } from './IcSearchWhite24'
 export { default as IcSpeaker3D } from './IcSpeaker3D'
 export { default as IcXCircleGray } from './IcXCircleGray'
+
+
+
+export { default as IcQuesitonmark } from './IcQuesitonmark'
