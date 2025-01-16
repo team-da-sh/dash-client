@@ -3,6 +3,7 @@ import Divider from '@/components/Divider';
 import Flex from '@/components/Flex';
 import Text from '@/components/Text';
 import { IcArrowRightSmallGray0432, IcArrowRightSmallGray0732 } from '@/assets/svg';
+import { MyPageProps } from '@/types/myPageTypes';
 
 // 클래스 등록 및 관리만 권한 필요
 const listData = [
@@ -15,7 +16,10 @@ const listData = [
   { label: '로그아웃', id: 7 },
 ];
 
-const BottomSection = ({ isInstructor }: { isInstructor: boolean }) => {
+const BottomSection = ({ userData }: { userData: MyPageProps }) => {
+  // 강사 권한을 가질 때는 null 이 아닌 number가 옴
+  const isInstructor = userData.lessonCount !== null;
+
   return (
     <Flex>
       <ul className={styles.ulStyle}>
