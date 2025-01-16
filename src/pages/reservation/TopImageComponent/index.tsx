@@ -1,17 +1,21 @@
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
+import Header from '@/components/Header';
 import { vars } from '@/styles/theme.css';
 import { RESERVATION_DATA } from '@/mocks/mockReservationData';
 
 const TopImageComponent = () => {
-  const { lessonName, bookerName } = RESERVATION_DATA;
+  const { lessonName, teacherName } = RESERVATION_DATA;
 
   return (
     <>
-      <Flex width="100%">
+        <Header.Root isColor={true}>
+          <Header.BackIcon />
+          <Header.Title title="클래스 신청" />
+        </Header.Root>
         <div
           style={{
-            width:"100%",
+            width: '100%',
             height: '26.4rem',
             background: vars.colors.gray10,
           }}>
@@ -20,11 +24,10 @@ const TopImageComponent = () => {
               {lessonName}
             </Head>
             <Head level="h5" tag="h6" color="gray4">
-              {bookerName}
+              {teacherName}
             </Head>
           </Flex>
         </div>
-      </Flex>
     </>
   );
 };

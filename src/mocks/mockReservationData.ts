@@ -1,5 +1,6 @@
 export const RESERVATION_DATA = {
   lessonName: '힙합 댄스 기초',
+  teacherName: '박재연',
   lessonRound: [
     {
       lessonStartDateTime: '2023-12-10T10:00:00',
