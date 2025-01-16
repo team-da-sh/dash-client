@@ -1,6 +1,9 @@
+import FinishStep from '@/pages/login/components/FinishStep';
 import GenreStep from '@/pages/login/components/GenreStep';
 import InfoStep from '@/pages/login/components/InfoStep';
+import LevelStep from '@/pages/login/components/LevelStep';
 import LoginHeader from '@/pages/login/components/LoginHeader';
+import ProfileStep from '@/pages/login/components/ProfileStep';
 import { footerWrapperStyle, containerStyle, bodyWrapperStyle, progressBarStyle } from '@/pages/login/index.css';
 import BoxButton from '@/components/BoxButton';
 import ProgressBar from '@/components/ProgressBar';
@@ -16,7 +19,7 @@ const Login = () => {
 
   return (
     <div className={containerStyle}>
-      <LoginHeader />
+      <LoginHeader currentStep={currentStep} />
       {currentStep < 5 && <ProgressBar totalStep={4} currentStep={currentStep} className={progressBarStyle} />}
 
       <div className={bodyWrapperStyle}>
@@ -28,20 +31,20 @@ const Login = () => {
             <GenreStep></GenreStep>
           </Step>
           <Step name="3">
-            <></>
+            <LevelStep></LevelStep>
           </Step>
           <Step name="4">
-            <></>
+            <ProfileStep></ProfileStep>
           </Step>
           <Step name="5">
-            <></>
+            <FinishStep></FinishStep>
           </Step>
         </Funnel>
       </div>
 
       <div className={footerWrapperStyle}>
         <BoxButton variant="primary" onClick={handleNextButtonClick}>
-          다음
+          {currentStep === 5 ? '홈으로 이동' : '다음'}
         </BoxButton>
       </div>
     </div>

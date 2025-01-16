@@ -2,12 +2,14 @@ import { progressBarStyle } from '@/pages/login/index.css';
 import Header from '@/components/Header';
 import ProgressBar from '@/components/ProgressBar';
 
-interface LoginHeaderProps {}
+interface LoginHeaderProps {
+  currentStep: number;
+}
 
-const LoginHeader = ({}: LoginHeaderProps) => {
+const LoginHeader = ({ currentStep }: LoginHeaderProps) => {
   return (
     <Header.Root>
-      <Header.BackIcon />
+      {currentStep < 5 && <Header.BackIcon />}
       <Header.CloseIcon onClick={() => {}} />
     </Header.Root>
   );
