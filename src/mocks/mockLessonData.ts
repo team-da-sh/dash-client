@@ -15,7 +15,7 @@ export const LESSON_DATA = {
   lessonRound: [
     {
       lessonStartDateTime: "2025-01-17T00:00:00",
-      lessonEndDateTime: "2025-01-17T12:30:00",
+      lessonEndDateTime: "2025-01-17T01:30:00",
     },
     {
       lessonStartDateTime: "2025-02-10T10:00:00",

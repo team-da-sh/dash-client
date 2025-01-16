@@ -1,8 +1,9 @@
 import { containerStyle } from '@/pages/home/components/HomeHeader/index.css';
 import Flex from '@/components/Flex';
-import { IcBack, IcBackWhite24 } from '@/assets/svg';
 import Head from '@/components/Head';
+import { IcBack, IcBackWhite24 } from '@/assets/svg';
 import { LESSON_DATA } from '@/mocks/mockLessonData';
+import { backIconStyle, classNameHeaderStyle } from "./index.css";
 
 interface ClassHeaderProps {
   isVisible: boolean;
@@ -13,27 +14,15 @@ const ClassHeader = ({ isVisible }: ClassHeaderProps) => {
 
   return (
     <div className={containerStyle({ isVisible })}>
-      <Flex
-        style={{
-          position: 'absolute',
-          left: '2rem',
-          top: '50%',
-          transform: 'translateY(-50%)',
-        }}
-        align="center"
-      >
+      <Flex align="center" className={backIconStyle}>
         {isVisible ? <IcBack width={24} /> : <IcBackWhite24 width={24} />}
       </Flex>
 
       <Flex
-        style={{
-          position: 'absolute',
-          left: '50%',
-          transform: 'translateX(-50%)',
-        }}
         align="center"
         justify="center"
-      >
+        className={classNameHeaderStyle}
+        >
         {isVisible && (
           <Head level="h5" tag="h6">
             {lessonName}

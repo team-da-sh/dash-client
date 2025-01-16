@@ -1,3 +1,4 @@
+import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 import { vars } from '@/styles/theme.css';
 
@@ -25,4 +26,17 @@ export const containerStyle = recipe({
       },
     },
   },
+});
+
+export const backIconStyle = style({
+  position: 'absolute',
+  left: '2rem',
+  top: '50%',
+  transform: 'translateY(-50%)',
+});
+
+export const classNameHeaderStyle = style({
+  position: 'absolute',
+  left: '50%',
+  transform: 'translateX(-50%)',
 });
