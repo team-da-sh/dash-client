@@ -3,12 +3,12 @@ import Text from '@/components/Text'
 import Flex from "@/components/Flex";
 import { lessonData } from "@/constants/LessonData";
 
-interface LessonData {
+interface LessonDataProps {
   lessonDetail: string;
 }
 
 const Intro = () => {
-  const { lessonDetail }:LessonData = lessonData;
+  const { lessonDetail }:LessonDataProps = lessonData;
 
   return (
     <>

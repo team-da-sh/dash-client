@@ -5,14 +5,14 @@ import Text from '@/components/Text';
 import { lessonData } from '@/constants/LessonData';
 import { IcClose } from '@/assets/svg';
 
-interface LessonData {
+interface LessonDataProps {
   lessonLocation: string;
   lessonStreetAddress: string;
   lessonOldStreetAddress: string;
 }
 
 const LocationInfo = () => {
-  const { lessonLocation, lessonStreetAddress, lessonOldStreetAddress }: LessonData = lessonData;
+  const { lessonLocation, lessonStreetAddress, lessonOldStreetAddress }: LessonDataProps = lessonData;
 
   return (
     <Flex direction="column" justify="center" gap="1.2rem">

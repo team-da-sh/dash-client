@@ -6,14 +6,14 @@ import Text from '@/components/Text';
 import { lessonData } from '@/constants/LessonData';
 import { IcClose, IcQuesitonmark } from '@/assets/svg';
 
-interface LessonData {
+interface LessonDataProps {
   lessonLevel: string;
   lessonLevelDetail: string;
   lessonRecommendation: string;
 }
 
 const Level = () => {
-  const { lessonLevel, lessonLevelDetail, lessonRecommendation }: LessonData = lessonData;
+  const { lessonLevel, lessonLevelDetail, lessonRecommendation }: LessonDataProps = lessonData;
 
   return (
     <Flex direction="column" gap="3.6rem">
