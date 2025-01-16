@@ -87,3 +87,6 @@ export const tabListStyle = style({
 export const tabRootStyle = style({
   width: '100%',
 });
+export const tabPanelStyle = style({
+  width: '100%',
+});

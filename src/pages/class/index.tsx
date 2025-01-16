@@ -1,5 +1,15 @@
+import Divider from "@/components/Divider";
+import ClassInfoWrapper from '@/pages/class/ClassInfoWrapper';
+import TabWrapper from '@/pages/class/TabWrapper';
+
 const Class = () => {
-  return <div>수업 정보 상세</div>;
+  return (
+    <>
+      <ClassInfoWrapper />
+      <Divider direction='horizontal' color='tertiary' length='100%' thickness='1.2rem'/>
+      <TabWrapper colorScheme="primary" />
+    </>
+  );
 };
 
 export default Class;

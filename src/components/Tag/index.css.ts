@@ -29,6 +29,19 @@ export const tagStyle = recipe({
         backgroundColor: vars.colors.white,
       },
     },
+    hasAuth: {
+      true: {
+        color: vars.colors.main04,
+        backgroundColor: vars.colors.white,
+        boxShadow: '0px 0px 4px 0px rgba(119,0,255,0.25)',
+      },
+      false: {
+        color: vars.colors.gray04,
+        backgroundColor: vars.colors.white,
+        boxShadow: '0px 0px 4px 0px rgba(0, 0, 0, 0.25)',
+      },
+    },
+
     size: {
       small: {
         height: '1.8rem',
@@ -67,6 +80,13 @@ export const tagStyle = recipe({
         border: `1px solid ${vars.colors.gray07}`,
         padding: '0.5rem 0.8rem 0.5rem 1.2rem',
         ...vars.fonts.b9,
+      },    
+      mypage: {
+        borderRadius: '0.4rem',
+        heigh: '4rem',
+        gap: '0.4rem',
+        padding: '0.8rem 1.5rem',
+        ...vars.fonts.b9,  
       },
     },
   },
