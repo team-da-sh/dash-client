@@ -3,6 +3,7 @@ import Header from '@/components/Header';
 import ProgressBar from '@/components/ProgressBar';
 import { useFunnel } from '@/hooks/useFunnel';
 import ImageUploadStep from './ImageUploadStep';
+import PersonalSNSStep from './PersonalSNSStep';
 import { buttonContainerStyle, funnelContainerStyle, progressBarCustomStyle } from './index.css';
 
 const InstructorRegister = () => {
@@ -22,7 +23,7 @@ const InstructorRegister = () => {
             <ImageUploadStep />
           </Step>
           <Step name="2">
-            <ImageUploadStep />
+            <PersonalSNSStep />
           </Step>
         </Funnel>
       </div>
