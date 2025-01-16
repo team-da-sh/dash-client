@@ -1,3 +1,4 @@
+import GenreStep from '@/pages/login/components/GenreStep';
 import InfoStep from '@/pages/login/components/InfoStep';
 import LoginHeader from '@/pages/login/components/LoginHeader';
 import { footerWrapperStyle, containerStyle, bodyWrapperStyle, progressBarStyle } from '@/pages/login/index.css';
@@ -16,7 +17,7 @@ const Login = () => {
   return (
     <div className={containerStyle}>
       <LoginHeader />
-      {currentStep < 5 && <ProgressBar totalStep={4} currentStep={1} className={progressBarStyle} />}
+      {currentStep < 5 && <ProgressBar totalStep={4} currentStep={currentStep} className={progressBarStyle} />}
 
       <div className={bodyWrapperStyle}>
         <Funnel>
@@ -24,7 +25,7 @@ const Login = () => {
             <InfoStep></InfoStep>
           </Step>
           <Step name="2">
-            <></>
+            <GenreStep></GenreStep>
           </Step>
           <Step name="3">
             <></>
