@@ -1,17 +1,17 @@
 import { useState } from 'react';
-import Intro from '@/pages/class/BottomWrapper/TabIntro';
-import Level from '@/pages/class/BottomWrapper/TabLevel';
-import LocationInfo from '@/pages/class/BottomWrapper/TabLocation';
-import Period from '@/pages/class/BottomWrapper/TabPeriod';
+import Intro from '@/pages/class/TabWrapper/TabIntro';
+import Level from '@/pages/class/TabWrapper/TabLevel';
+import LocationInfo from '@/pages/class/TabWrapper/TabLocation';
+import Period from '@/pages/class/TabWrapper/TabPeriod';
 import Flex from '@/components/Flex';
 import { TabRoot, TabList, TabButton, TabPanel } from '@/components/Tab';
 import { vars } from '@/styles/theme.css';
 
-interface BottomComponentProps {
+interface TabWrapperProps {
   colorScheme: 'primary' | 'secondary';
 }
 
-const BottomWrapper = ({ colorScheme }: BottomComponentProps) => {
+const TabWrapper = ({ colorScheme }: TabWrapperProps) => {
   const [selectedTab, setSelectedTab] = useState(0);
 
   const tabs = [
@@ -54,4 +54,4 @@ const BottomWrapper = ({ colorScheme }: BottomComponentProps) => {
   );
 };
 
-export default BottomWrapper;
+export default TabWrapper;

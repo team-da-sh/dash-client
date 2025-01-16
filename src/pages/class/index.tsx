@@ -1,9 +1,9 @@
-import BottomWrapper from "@/pages/class/BottomWrapper";
+import TabWrapper from "@/pages/class/TabWrapper";
 
 const Class = () => {
   return(
   <>
-    <BottomWrapper colorScheme="primary" />
+    <TabWrapper colorScheme="primary" />
   </>
   );
 };
