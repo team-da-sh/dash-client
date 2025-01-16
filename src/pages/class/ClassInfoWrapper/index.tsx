@@ -10,7 +10,7 @@ import Head from '@/components/Head';
 import Tag from '@/components/Tag';
 import Text from '@/components/Text';
 import { calculateDday } from '@/utils/dataCalculate';
-import { LESSON_DATA } from '@/constants/mocks/mockLessonData';
+import { LESSON_DATA } from '@/mocks/mockLessonData';
 import { IcThunderMain0424 } from '@/assets/svg';
 import { vars } from '@/styles/theme.css';
 

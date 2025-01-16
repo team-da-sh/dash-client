@@ -2,7 +2,7 @@ import Card from '@/pages/class/Card';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Text from '@/components/Text';
-import { LESSON_DATA } from '@/constants/mocks/mockLessonData';
+import { LESSON_DATA } from '@/mocks/mockLessonData';
 import { IcClose, IcQuesitonmark } from '@/assets/svg';
 
 const Level = () => {

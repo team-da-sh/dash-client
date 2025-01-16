@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import { ComponentPropsWithoutRef } from 'react';
 import { headStyle } from '@/components/Head/index.css';
 
@@ -57,8 +58,7 @@ const Head = ({ level = 'h3', tag = 'h3', color = 'black', className, ...props }
   const Tag = HeadTag[level];
 
   return (
-    <Tag 
-        className={clsx(className, headStyle({ tag: tag, color: color }))} {...props}>
+    <Tag className={clsx(className, headStyle({ tag: tag, color: color }))} {...props}>
       {props.children}
     </Tag>
   );
