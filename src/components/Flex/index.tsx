@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import { ElementType, HTMLAttributes } from 'react';
 import { flexStyle } from './index.css';
 
@@ -16,6 +17,12 @@ interface FlexProps extends HTMLAttributes<HTMLDivElement> {
   padding?: string;
   marginTop?: string;
   marginBottom?: string;
+  marginRight?: string;
+  marginLeft?: string;
+  paddingTop?: string;
+  paddingBottom?: string;
+  paddingRight?: string;
+  paddingLeft?: string;
 }
 
 const Flex = ({
@@ -33,7 +40,14 @@ const Flex = ({
   padding,
   marginTop,
   marginBottom,
+  marginRight,
+  marginLeft,
+  paddingTop,
+  paddingBottom,
+  paddingRight,
+  paddingLeft,
   children,
+  className,
   ...props
 }: FlexProps) => {
   const Element = tag;
@@ -47,20 +61,28 @@ const Flex = ({
     padding,
     marginTop,
     marginBottom,
+    marginRight,
+    marginLeft,
+    paddingTop,
+    paddingBottom,
+    paddingRight,
+    paddingLeft,
   };
 
   return (
     <Element
-      className={flexStyle({
-        direction,
-        align,
-        justify,
-        wrap,
-        grow,
-      })}
+      className={clsx(
+        className,
+        flexStyle({
+          direction,
+          align,
+          justify,
+          wrap,
+          grow,
+        })
+      )}
       style={inlineStyles}
-      {...props}
-    >
+      {...props}>
       {children}
     </Element>
   );
