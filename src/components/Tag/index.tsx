@@ -8,7 +8,7 @@ interface TagProps extends ComponentPropsWithoutRef<'div'> {
   hasAuth?: boolean;
 }
 
-const Tag = ({ size, type, children, hasAuth = true, className, ...props }: TagProps) => {
+const Tag = ({ size, type, children, hasAuth, className, ...props }: TagProps) => {
   return (
     <div className={clsx(className, tagStyle({ size, type, hasAuth }))} {...props}>
       {children}
