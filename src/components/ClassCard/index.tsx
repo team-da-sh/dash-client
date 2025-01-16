@@ -3,6 +3,7 @@ import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Tag from '@/components/Tag';
 import Text from '@/components/Text';
+import { formatLessonDateRange } from '@/utils/timeCalculate';
 
 interface classCardProps {
   lessonName: string;
@@ -45,7 +46,11 @@ const ClassCard = ({
               <Text tag="c4" color="gray7">
                 일정
               </Text>
-              <Text tag="c1" color="gray9"></Text>
+              <Text tag="c1" color="gray9">
+                <Text tag="c1" color="gray9">
+                  {formatLessonDateRange(lessonStartDateTime, lessonEndDateTime)}
+                </Text>
+              </Text>
             </Flex>
             <Flex gap="0.8rem" align="center">
               <Text tag="c4" color="gray7">

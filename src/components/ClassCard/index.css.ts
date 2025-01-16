@@ -3,7 +3,6 @@ import { vars } from '@/styles/theme.css';
 
 export const cardContainerStyle = style({
   width: '33.5rem',
-  height: '19.4rem',
 
   padding: '1.6rem 2rem',
   borderRadius: 4,
