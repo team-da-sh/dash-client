@@ -38,11 +38,11 @@ export const Default: Story = {
   args: {
     title: 'HEADER TITLE',
   },
-  render: ({ title, onClickBack, onClickClose }) => (
+  render: ({ title }) => (
     <Header.Root>
-      <Header.BackIcon onClick={onClickBack} />
+      <Header.BackIcon />
       <Header.Title title={title} />
-      <Header.CloseIcon onClick={onClickClose} />
+      <Header.CloseIcon />
     </Header.Root>
   ),
 };
@@ -51,18 +51,18 @@ export const BackOnly: Story = {
   args: {
     title: 'Go Back',
   },
-  render: ({ title, onClickBack }) => (
+  render: ({ title }) => (
     <Header.Root>
-      <Header.BackIcon onClick={onClickBack} />
+      <Header.BackIcon />
       <Header.Title title={title} />
     </Header.Root>
   ),
 };
 
 export const CloseOnly: Story = {
-  render: ({ onClickClose }) => (
+  render: () => (
     <Header.Root>
-      <Header.CloseIcon onClick={onClickClose} />
+      <Header.CloseIcon />
     </Header.Root>
   ),
 };
