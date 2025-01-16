@@ -1,4 +1,4 @@
-import { DANCER_LIST } from '@/constants/mock/DancerList';
+import { DANCER_LIST } from '@/mocks/DancerList';
 import DancerList from './DancerList';
 
 const Search = () => {
