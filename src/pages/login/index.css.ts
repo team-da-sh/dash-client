@@ -13,9 +13,10 @@ export const headerWrapperStyle = style({
 });
 
 export const progressBarStyle = style({
-  position: 'absolute',
+  position: 'fixed',
   top: '6rem',
 });
+
 export const bodyWrapperStyle = style({
   padding: '6rem 2rem 0 2rem',
 });
