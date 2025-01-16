@@ -3,6 +3,7 @@ import Header from '@/components/Header';
 import ProgressBar from '@/components/ProgressBar';
 import { useFunnel } from '@/hooks/useFunnel';
 import ImageUploadStep from './ImageUploadStep';
+import { funnelContainerStyle, progressBarCustomStyle } from './index.css';
 
 const InstructorRegister = () => {
   const { Funnel, Step, currentStep, setStep } = useFunnel(6, '/mypage');
@@ -13,9 +14,9 @@ const InstructorRegister = () => {
         <Header.BackIcon />
         <Header.CloseIcon onClick={() => console.log('hi')} />
       </Header.Root>
-      <ProgressBar totalStep={5} currentStep={currentStep} />
+      <ProgressBar totalStep={5} currentStep={currentStep} className={progressBarCustomStyle} />
 
-      <div>
+      <div className={funnelContainerStyle}>
         <Funnel>
           <Step name="1">
             <ImageUploadStep />
