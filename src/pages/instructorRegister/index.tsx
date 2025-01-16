@@ -1,5 +1,7 @@
+import ImageUploader from './ImageUploader';
+
 const InstructorRegister = () => {
-  return <div>강사 등록</div>;
+  return <ImageUploader></ImageUploader>;
 };
 
 export default InstructorRegister;

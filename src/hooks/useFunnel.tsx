@@ -14,9 +14,9 @@ interface FunnelProps {
 // completePath는 완료 페이지 이후 리다이렉션하는 페이지 path이다. ex) '/dancer'
 export const useFunnel = (totalSteps: number, completePath: string) => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const navigate = useNavigate();
-
   const [currentStep, setCurrentStep] = useState(Number(searchParams.get('step') || 1));
+
+  const navigate = useNavigate();
   const step = searchParams.get('step') || '1';
 
   const setStep = (stepChange: number) => {
@@ -45,5 +45,5 @@ export const useFunnel = (totalSteps: number, completePath: string) => {
     return <>{targetStep}</>;
   };
 
-  return { Funnel, Step, setStep };
+  return { Funnel, Step, setStep, currentStep };
 };

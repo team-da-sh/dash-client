@@ -9,8 +9,15 @@ export { default as IcLogoSmallBlack } from './IcLogoSmallBlack'
 export { default as IcLogoSmallWhite } from './IcLogoSmallWhite'
 export { default as IcMypageBlack24 } from './IcMypageBlack24'
 export { default as IcMypageWhite24 } from './IcMypageWhite24'
+export { default as IcPlusGray0524 } from './IcPlusGray0524'
 export { default as IcSearchBlack24 } from './IcSearchBlack24'
 export { default as IcSearchGray } from './IcSearchGray'
 export { default as IcSearchWhite24 } from './IcSearchWhite24'
 export { default as IcSpeaker3D } from './IcSpeaker3D'
 export { default as IcXCircleGray } from './IcXCircleGray'
+
+
+
+export { default as IcThunderMain0424 } from './IcThunderMain0424'
+export { default as IcQuesitonmark } from './IcQuesitonmark'
+export { default as IcXCircleGray0424 } from './IcXCircleGray0424'
