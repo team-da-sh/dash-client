@@ -10,9 +10,10 @@ import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Tag from '@/components/Tag';
 import Text from '@/components/Text';
-import { lessonData } from '@/constants/LessonData';
+import { LESSON_DATA } from '@/constants/mocks/mockLessonData';
 import { IcThunderMain0424 } from '@/assets/svg';
 import { vars } from '@/styles/theme.css';
+import clsx from "clsx";
 
 // 날짜 계산 함수
 const calculateDday = (startDateTime: string): string => {
@@ -22,28 +23,18 @@ const calculateDday = (startDateTime: string): string => {
   return difference > 0 ? `D-${difference}` : difference === 0 ? 'D-Day' : '마감';
 };
 
-interface LessonDataProps {
-  lessonImageUrl: string;
-  lessonGenre: string;
-  lessonName: string;
-  teacherNickname: string;
-  lessonRound: Array<{ lessonStartDateTime: string; lessonEndDateTime: string }>;
-  individualPrice: number;
-  maxReservationCount: number;
-  reservationCount: number;
-}
-
 const ClassInfoWrapper = () => {
   const {
     lessonImageUrl,
     lessonGenre,
     lessonName,
+    teacherImageUrl,
     teacherNickname,
     lessonRound,
     individualPrice,
     maxReservationCount,
     reservationCount,
-  }: LessonDataProps = lessonData;
+  } = LESSON_DATA;
 
   // D-Day 계산
   const dDay = calculateDday(lessonRound[0].lessonStartDateTime);
@@ -85,21 +76,19 @@ const ClassInfoWrapper = () => {
           </Tag>
         </Flex>
 
-        <Head level="h2" tag="h4" className={lessonNameStyle}>
+        <Head level="h2" tag="h4" className={clsx(lessonNameStyle)}>
           {lessonName}
         </Head>
 
         <Flex align="center" gap="0.8rem">
-          <img src={lessonData.teacherImageUrl} alt={`${teacherNickname} 프로필`} className={profileStyle} />
+          <img src={teacherImageUrl} alt={`${teacherNickname} 프로필`} className={profileStyle} />
           <Text tag="b2" color="gray9">
             {teacherNickname}
           </Text>
         </Flex>
 
         <Flex justify="flexEnd" width="100%" align="center" gap="0.8rem" marginBottom="1.5rem">
-          <span className={lessonCount}>
-            <Head tag="h5">{lessonRound.length}회</Head>
-          </span>
+            <Head level="h4" tag="h5" className={clsx(lessonCount)}>{lessonRound.length}회</Head>
           <Flex align="center" gap="0.2rem">
             <Head level="h5" tag="h2">
               {totalPrice.toLocaleString()}

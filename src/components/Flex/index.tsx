@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import { ElementType, HTMLAttributes } from 'react';
-import { flexStyle } from './index.css';
+import { flexStyle } from '@/components/Flex/index.css';
 
 interface FlexProps extends HTMLAttributes<HTMLDivElement> {
   tag?: ElementType;
@@ -23,6 +23,10 @@ interface FlexProps extends HTMLAttributes<HTMLDivElement> {
   paddingBottom?: string;
   paddingRight?: string;
   paddingLeft?: string;
+  border?: string;
+  borderRadius?: string;
+  borderTop?: string;
+  borderBottom?: string;
 }
 
 const Flex = ({
@@ -46,6 +50,10 @@ const Flex = ({
   paddingBottom,
   paddingRight,
   paddingLeft,
+  border,
+  borderRadius,
+  borderTop,
+  borderBottom,
   children,
   className,
   ...props
@@ -67,6 +75,10 @@ const Flex = ({
     paddingBottom,
     paddingRight,
     paddingLeft,
+    border,
+    borderRadius,
+    borderTop,
+    borderBottom,
   };
 
   return (

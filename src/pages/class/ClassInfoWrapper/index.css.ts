@@ -9,6 +9,7 @@ export const headerStyle = style({
 });
 
 export const lessonCount = style({
+  ...vars.fonts.h5,
   color: vars.colors.gray06,
 });
 
@@ -19,7 +20,10 @@ export const profileStyle = style({
   objectFit: 'cover',
   backgroundColor: vars.colors.gray01,
 });
+
 export const lessonNameStyle = style({
+  ...vars.fonts.h4,
+
   marginBottom: '1.6rem',
 });
 
