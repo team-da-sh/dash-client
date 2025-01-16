@@ -35,6 +35,8 @@ export const inputStyle = recipe({
     isSearch: {
       true: {
         borderRadius: '90px',
+        padding: '1rem 4rem 1rem 4.6rem',
+        ...vars.fonts.b2,
       },
     },
   },

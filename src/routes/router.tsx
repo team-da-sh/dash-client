@@ -8,8 +8,6 @@ import ClassRegister from '@/pages/instructor/classRegister';
 import InstructorRegister from '@/pages/instructorRegister';
 import Login from '@/pages/login';
 import MyPage from '@/pages/mypage';
-import MyPageReservation from '@/pages/mypage/MyPageReservation';
-import MyPageReservationDetail from '@/pages/mypage/myPageReservationDetail';
 import Reservation from '@/pages/reservation';
 import Search from '@/pages/search';
 import { ROUTES_CONFIG } from './routesConfig';
@@ -42,14 +40,6 @@ export const router = createBrowserRouter([
   {
     path: ROUTES_CONFIG.mypage.path,
     element: <MyPage />,
-  },
-  {
-    path: ROUTES_CONFIG.mypageReservationDetail.path,
-    element: <MyPageReservationDetail />,
-  },
-  {
-    path: ROUTES_CONFIG.mypageReservation.path,
-    element: <MyPageReservation />,
   },
   {
     path: ROUTES_CONFIG.classRegister.path,
