@@ -1,11 +1,47 @@
 import { useState } from 'react';
 import Flex from '@/components/Flex';
 import { TabList, TabRoot, TabButton, TabPanel } from '@/components/Tab';
-import { IcBtnEtc } from '@/assets/svg';
+import { IcBtnEtc, IcXMain04 } from '@/assets/svg';
+import { defaultSortTagProps } from '@/types/defaultSortTag';
+import TagSection from './TagSection';
 import { sortIconStyle } from './index.css';
 
-const TabContainer = () => {
+interface TagItem {
+  label: string;
+  icon?: JSX.Element;
+}
+
+interface TabContainerProps {
+  defaultSortTags: defaultSortTagProps[];
+  genre: string;
+  level: string;
+  startDate: string;
+  endDate: string;
+}
+
+const TabContainer = ({ defaultSortTags, genre, level, startDate, endDate }: TabContainerProps) => {
   const [selectedTab, setSelectedTab] = useState(0);
+
+  const activeTags: TagItem[] = [
+    { condition: genre, label: genre },
+    { condition: level, label: level },
+    {
+      condition: startDate && endDate,
+      label: `${startDate} ~ ${endDate}`,
+    },
+  ]
+    .filter((tag) => tag.condition)
+    .map((tag) => ({
+      label: tag.label as string,
+      icon: <IcXMain04 width={18} height={18} />,
+    }));
+
+  const displayTags: TagItem[] =
+    activeTags.length > 0 ? activeTags : defaultSortTags.map((tag) => ({ label: tag.label, icon: tag.icon }));
+
+  const tagSize: 'search' | 'sort' = activeTags.length > 0 ? 'search' : 'sort';
+  const tagType: 'search' | 'sort' = activeTags.length > 0 ? 'search' : 'sort';
+
   return (
     <Flex direction="column" paddingTop="8.4rem" width="100%" paddingLeft="2rem" paddingRight="2rem">
       <Flex align="center" width="100%" justify="spaceBetween" position="relative">
@@ -19,7 +55,7 @@ const TabContainer = () => {
             </TabButton>
           </TabList>
           <TabPanel isSelected={selectedTab === 0}>
-            <p>dd</p>
+            <TagSection displayTags={displayTags} activeTags={activeTags} tagSize={tagSize} tagType={tagType} />
           </TabPanel>
           <TabPanel isSelected={selectedTab === 1}>
             <p>d</p>
