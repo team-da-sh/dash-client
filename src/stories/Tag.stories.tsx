@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { IcCalendarcheckColor3D24, IcCalendarcheckMono3D24 } from '@/assets/svg';
 import Tag from '../components/Tag/index';
 
 const meta = {
@@ -11,15 +12,18 @@ const meta = {
   argTypes: {
     size: {
       control: { type: 'radio' },
-      options: ['small', 'medium', 'large', 'thumbnail'],
+      options: ['small', 'medium', 'large', 'thumbnail', 'mypage'],
     },
     type: {
       control: { type: 'radio' },
       options: ['genre', 'level', 'search', 'deadline'],
     },
+    hasAuth: {
+      control: { type: 'radio' },
+      options: [true, false],
+    },
   },
   args: {
-    type: 'genre',
     size: 'medium',
   },
 } satisfies Meta<typeof Tag>;
@@ -81,5 +85,31 @@ export const DeadlineTag: Story = {
   args: {
     type: 'deadline',
     children: '힙합',
+  },
+};
+
+export const AuthorityTag: Story = {
+  args: {
+    size: 'mypage',
+    hasAuth: true,
+    children: (
+      <>
+        <IcCalendarcheckColor3D24 width={24} />
+        클래스 신청 가능
+      </>
+    ),
+  },
+};
+
+export const AuthDisabledTag: Story = {
+  args: {
+    size: 'mypage',
+    hasAuth: false,
+    children: (
+      <>
+        <IcCalendarcheckMono3D24 width={24} />
+        클래스 개설 불가
+      </>
+    ),
   },
 };
