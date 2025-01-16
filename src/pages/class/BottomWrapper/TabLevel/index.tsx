@@ -3,7 +3,7 @@ import Card from '@/pages/class/Card';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Text from '@/components/Text';
-import { lessonData } from '@/constants/LessonData';
+import { LESSON_DATA } from '@/constants/mockLessonData';
 import { IcClose, IcQuesitonmark } from '@/assets/svg';
 
 interface LessonDataProps {
@@ -13,7 +13,7 @@ interface LessonDataProps {
 }
 
 const Level = () => {
-  const { lessonLevel, lessonLevelDetail, lessonRecommendation }: LessonDataProps = lessonData;
+  const { lessonLevel, lessonLevelDetail, lessonRecommendation }: LessonDataProps = LESSON_DATA;
 
   return (
     <Flex direction="column" gap="3.6rem">

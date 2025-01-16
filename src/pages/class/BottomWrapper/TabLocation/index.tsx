@@ -2,7 +2,7 @@ import React from 'react';
 import Card from '@/pages/class/Card';
 import Flex from '@/components/Flex';
 import Text from '@/components/Text';
-import { lessonData } from '@/constants/LessonData';
+import { LESSON_DATA } from '@/constants/mockLessonData';
 import { IcClose } from '@/assets/svg';
 
 interface LessonDataProps {
@@ -12,7 +12,7 @@ interface LessonDataProps {
 }
 
 const LocationInfo = () => {
-  const { lessonLocation, lessonStreetAddress, lessonOldStreetAddress }: LessonDataProps = lessonData;
+  const { lessonLocation, lessonStreetAddress, lessonOldStreetAddress }: LessonDataProps = LESSON_DATA;
 
   return (
     <Flex direction="column" justify="center" gap="1.2rem">

@@ -22,6 +22,12 @@ interface FlexProps extends HTMLAttributes<HTMLDivElement> {
   paddingBottom?: string;
   paddingRight?: string;
   paddingLeft?: string;
+  border?: string;
+  borderRadius?: string;
+  borderColor?: string;
+  borderWidth?: string;
+  borderBottom?: string;
+  borderTop?: string;
 }
 
 const Flex = ({
@@ -45,6 +51,12 @@ const Flex = ({
   paddingBottom,
   paddingRight,
   paddingLeft,
+  border,
+  borderRadius,
+  borderColor,
+  borderWidth,
+  borderBottom,
+  borderTop,
   children,
   ...props
 }: FlexProps) => {
@@ -65,6 +77,12 @@ const Flex = ({
     paddingBottom,
     paddingRight,
     paddingLeft,
+    border,
+    borderRadius,
+    borderColor,
+    borderWidth,
+    borderBottom,
+    borderTop,
   };
 
   return (
@@ -77,8 +95,7 @@ const Flex = ({
         grow,
       })}
       style={inlineStyles}
-      {...props}
-    >
+      {...props}>
       {children}
     </Element>
   );

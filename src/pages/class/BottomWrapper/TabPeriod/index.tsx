@@ -1,11 +1,15 @@
 import Card from '@/pages/class/Card';
-import { roundBox } from '@/pages/class/BottomWrapper/TabPeriod/index.css';
+import { roundBoxStyle } from '@/pages/class/BottomWrapper/TabPeriod/index.css';
 import Flex from '@/components/Flex';
 import Text from '@/components/Text';
-import { lessonData } from '@/constants/LessonData';
+import { LESSON_DATA } from '@/constants/mockLessonData';
+
+interface LessonDataProps {
+  lessonRound: Array<{ lessonStartDateTime: string; lessonEndDateTime: string }>;
+}
 
 const Period = () => {
-  const { lessonRound } = lessonData;
+  const { lessonRound }:LessonDataProps = LESSON_DATA;
 
   // 시간을 계산, "익일" 여부를 판단
   const calculatePeriod = (start: string, end: string) => {
@@ -49,7 +53,7 @@ const Period = () => {
         return (
           <Card key={index}>
             <Flex align="center">
-              <div className={roundBox}>
+              <div className={roundBoxStyle}>
                 <Text tag="b10" color="white">
                   {index + 1}회차
                 </Text>

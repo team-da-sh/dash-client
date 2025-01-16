@@ -1,18 +1,18 @@
-import React from "react";
-import Text from '@/components/Text'
-import Flex from "@/components/Flex";
-import { lessonData } from "@/constants/LessonData";
+import React from 'react';
+import Flex from '@/components/Flex';
+import Text from '@/components/Text';
+import { LESSON_DATA } from '@/constants/mockLessonData';
 
 interface LessonDataProps {
   lessonDetail: string;
 }
 
 const Intro = () => {
-  const { lessonDetail }:LessonDataProps = lessonData;
+  const { lessonDetail }: LessonDataProps = LESSON_DATA;
 
   return (
     <>
-      <Flex padding="0.8rem 0 0">
+      <Flex paddingTop="0.8rem">
         <Text tag="b3" color="gray8">
           {lessonDetail.split('\n').map((line, idx) => (
             <React.Fragment key={idx}>

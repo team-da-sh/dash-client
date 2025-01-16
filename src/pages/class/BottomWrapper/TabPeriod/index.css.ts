@@ -1,7 +1,7 @@
 import { style } from '@vanilla-extract/css';
 import { vars } from "@/styles/theme.css";
 
-export const roundBox = style({
+export const roundBoxStyle = style({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
@@ -10,4 +10,3 @@ export const roundBox = style({
   marginRight: '1rem',
   padding: '0.6rem 1.2rem',
 });
-
