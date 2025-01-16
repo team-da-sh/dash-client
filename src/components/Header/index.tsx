@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import Head from '@/components/Head';
 import { headerRootStyle, backIconStyle, titleStyle, closeIconStyle } from '@/components/Header/index.css';
 import { IcBack, IcClose } from '@/assets/svg';
@@ -6,10 +7,6 @@ import { IcBack, IcClose } from '@/assets/svg';
 interface HeaderRootProps {
   children: React.ReactNode;
   isColor?: boolean;
-}
-
-interface BackIconProps {
-  onClick: () => void;
 }
 
 interface TitleProps {
@@ -24,9 +21,13 @@ const HeaderRoot = ({ children, isColor = false }: HeaderRootProps): JSX.Element
   return <div className={headerRootStyle({ isColor })}>{children}</div>;
 };
 
-const BackIcon = ({ onClick }: BackIconProps): JSX.Element => {
+const BackIcon = (): JSX.Element => {
+  const navigate = useNavigate();
+  const handleBackClick = () => {
+    navigate(-1);
+  };
   return (
-    <button className={backIconStyle} onClick={onClick} aria-label="뒤로가기">
+    <button className={backIconStyle} onClick={handleBackClick} aria-label="뒤로가기">
       <IcBack width={24} height={24} />
     </button>
   );
