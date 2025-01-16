@@ -23,12 +23,14 @@ export const tagStyle = recipe({
         color: vars.colors.main03,
         backgroundColor: vars.colors.white,
       },
-      authority: {
+    },
+    hasAuth: {
+      true: {
         color: vars.colors.main04,
         backgroundColor: vars.colors.white,
         boxShadow: '0px 0px 4px 0px rgba(119,0,255,0.25)',
       },
-      authDisabled: {
+      false: {
         color: vars.colors.gray04,
         backgroundColor: vars.colors.white,
         boxShadow: '0px 0px 4px 0px rgba(0, 0, 0, 0.25)',

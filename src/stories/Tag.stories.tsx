@@ -16,11 +16,14 @@ const meta = {
     },
     type: {
       control: { type: 'radio' },
-      options: ['genre', 'level', 'search', 'deadline', 'authority', 'authDisabled'],
+      options: ['genre', 'level', 'search', 'deadline'],
+    },
+    hasAuth: {
+      control: { type: 'radio' },
+      options: [true, false],
     },
   },
   args: {
-    type: 'genre',
     size: 'medium',
   },
 } satisfies Meta<typeof Tag>;
@@ -88,7 +91,7 @@ export const DeadlineTag: Story = {
 export const AuthorityTag: Story = {
   args: {
     size: 'mypage',
-    type: 'authority',
+    hasAuth: true,
     children: (
       <>
         <IcCalendarcheckColor3D24 width={24} />
@@ -101,7 +104,7 @@ export const AuthorityTag: Story = {
 export const AuthDisabledTag: Story = {
   args: {
     size: 'mypage',
-    type: 'authDisabled',
+    hasAuth: false,
     children: (
       <>
         <IcCalendarcheckMono3D24 width={24} />
