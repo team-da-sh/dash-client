@@ -63,7 +63,7 @@ const TopSection = ({ userData }: { userData: MyPageProps }) => {
         <Flex marginTop="1.2rem" gap="0.8rem">
           <Tag hasAuth={true} size="mypage">
             <IcCalendarcheckColor3D24 width={24} height={24} />
-            클래스 개설 가능
+            클래스 신청 가능
           </Tag>
           <Tag hasAuth={isInstructor} size="mypage">
             {renderTagContent(isInstructor)}
