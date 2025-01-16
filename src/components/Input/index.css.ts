@@ -22,6 +22,10 @@ export const inputStyle = recipe({
     '::placeholder': {
       color: vars.colors.gray05,
     },
+
+    ':focus': {
+      border: `1px solid ${vars.colors.main04}`,
+    },
   },
   variants: {
     isError: {
