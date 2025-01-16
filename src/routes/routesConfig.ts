@@ -49,6 +49,6 @@ export const ROUTES_CONFIG = {
   },
   instructorClassDetail: {
     title: 'instructorClassDetail',
-    path: '/instructor/class-detail',
+    path: '/instructor/class-list/:id',
   },
 };
