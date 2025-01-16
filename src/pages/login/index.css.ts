@@ -3,8 +3,6 @@ import { style } from '@vanilla-extract/css';
 export const containerStyle = style({
   position: 'relative',
   height: '100vh',
-
-  border: '4px solid black',
 });
 
 export const headerWrapperStyle = style({
@@ -18,7 +16,7 @@ export const progressBarStyle = style({
 });
 
 export const bodyWrapperStyle = style({
-  padding: '6rem 2rem 0 2rem',
+  padding: '11.2rem 2rem 0 2rem',
 });
 
 export const footerWrapperStyle = style({
