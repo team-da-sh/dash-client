@@ -2,7 +2,9 @@ import { useState } from 'react';
 import Flex from '@/components/Flex';
 import { TabList, TabRoot, TabButton, TabPanel } from '@/components/Tab';
 import { IcBtnEtc, IcXMain04 } from '@/assets/svg';
+import { DANCER_LIST } from '@/mocks/DancerList';
 import { defaultSortTagProps } from '@/types/defaultSortTag';
+import DancerList from '../DancerList';
 import TagSection from './TagSection';
 import { sortIconStyle } from './index.css';
 
@@ -58,7 +60,7 @@ const TabContainer = ({ defaultSortTags, genre, level, startDate, endDate }: Tab
             <TagSection displayTags={displayTags} activeTags={activeTags} tagSize={tagSize} tagType={tagType} />
           </TabPanel>
           <TabPanel isSelected={selectedTab === 1}>
-            <p>d</p>
+            <DancerList dancers={DANCER_LIST} />
           </TabPanel>
         </TabRoot>
         <IcBtnEtc width={68} height={16} className={sortIconStyle} />
