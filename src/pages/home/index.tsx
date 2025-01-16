@@ -1,71 +1,91 @@
 import ClassItem from '@/pages/home/components/ClassItem';
-import { containerStyle } from '@/pages/home/index.css';
+import { genreWrapperStyle } from '@/pages/home/components/ClassItem/index.css';
+import DancerItem from '@/pages/home/components/DancerItem';
+import GenreItem from '@/pages/home/components/GenreItem';
+import {
+  containerStyle,
+  dancerListWrapperstyle,
+  deadlineClassWrapperStyle,
+  recommandClassWrapperStyle,
+} from '@/pages/home/index.css';
 import Flex from '@/components/Flex';
+import Head from '@/components/Head';
+import { DANCERLIST, GENRELIST, RECOMMAND_CLASSLIST } from '@/constants/home';
 
 const Home = () => {
   return (
-    <Flex tag="ul" className={containerStyle}>
-      <ClassItem
-        lessonId={67890}
-        lessonImageUrl="https://i.namu.wiki/i/B8j2IU2giY7fFeK_M9_QHGinGLoXp---93tHjwIac--A3yKtejXsamDw8sTv-xpjxRQSCfP1fuxRmSW2xFr5NV4_b0-OpTK9_7biMhp4tuuHKExvXq9W-vJHWkSd8SI8hthHj7ctXncHef30HHzC4A.webp"
-        lessonLevel="초급"
-        lessonGenre="힙합"
-        lessonName="기초 힙합 댄스"
-        teacherNickname="김민수"
-        teacherImageUrl="https://i.namu.wiki/i/B8j2IU2giY7fFeK_M9_QHGinGLoXp---93tHjwIac--A3yKtejXsamDw8sTv-xpjxRQSCfP1fuxRmSW2xFr5NV4_b0-OpTK9_7biMhp4tuuHKExvXq9W-vJHWkSd8SI8hthHj7ctXncHef30HHzC4A.webp"
-        lessonStartDateTime="2025-01-16T10:00:00"
-        lessonEndDateTime="2025-01-01T12:00:00"
-        lessonStreetAddress="서울특별시 강남구 테헤란로 123"
-      />
-      <ClassItem
-        lessonId={67890}
-        lessonImageUrl="https://i.namu.wiki/i/B8j2IU2giY7fFeK_M9_QHGinGLoXp---93tHjwIac--A3yKtejXsamDw8sTv-xpjxRQSCfP1fuxRmSW2xFr5NV4_b0-OpTK9_7biMhp4tuuHKExvXq9W-vJHWkSd8SI8hthHj7ctXncHef30HHzC4A.webp"
-        lessonLevel="초급"
-        lessonGenre="힙합"
-        lessonName="기초 힙합 댄스"
-        teacherNickname="김민수"
-        teacherImageUrl="https://i.namu.wiki/i/B8j2IU2giY7fFeK_M9_QHGinGLoXp---93tHjwIac--A3yKtejXsamDw8sTv-xpjxRQSCfP1fuxRmSW2xFr5NV4_b0-OpTK9_7biMhp4tuuHKExvXq9W-vJHWkSd8SI8hthHj7ctXncHef30HHzC4A.webp"
-        lessonStartDateTime="2025-01-16T10:00:00"
-        lessonEndDateTime="2025-01-01T12:00:00"
-        lessonStreetAddress="서울특별시 강남구 테헤란로 123"
-      />
-      <ClassItem
-        lessonId={67890}
-        lessonImageUrl="https://i.namu.wiki/i/B8j2IU2giY7fFeK_M9_QHGinGLoXp---93tHjwIac--A3yKtejXsamDw8sTv-xpjxRQSCfP1fuxRmSW2xFr5NV4_b0-OpTK9_7biMhp4tuuHKExvXq9W-vJHWkSd8SI8hthHj7ctXncHef30HHzC4A.webp"
-        lessonLevel="초급"
-        lessonGenre="힙합"
-        lessonName="기초 힙합 댄스"
-        teacherNickname="김민수"
-        teacherImageUrl="https://i.namu.wiki/i/B8j2IU2giY7fFeK_M9_QHGinGLoXp---93tHjwIac--A3yKtejXsamDw8sTv-xpjxRQSCfP1fuxRmSW2xFr5NV4_b0-OpTK9_7biMhp4tuuHKExvXq9W-vJHWkSd8SI8hthHj7ctXncHef30HHzC4A.webp"
-        lessonStartDateTime="2025-01-16T10:00:00"
-        lessonEndDateTime="2025-01-01T12:00:00"
-        lessonStreetAddress="서울특별시 강남구 테헤란로 123"
-      />
-      <ClassItem
-        lessonId={67890}
-        lessonImageUrl="https://i.namu.wiki/i/B8j2IU2giY7fFeK_M9_QHGinGLoXp---93tHjwIac--A3yKtejXsamDw8sTv-xpjxRQSCfP1fuxRmSW2xFr5NV4_b0-OpTK9_7biMhp4tuuHKExvXq9W-vJHWkSd8SI8hthHj7ctXncHef30HHzC4A.webp"
-        lessonLevel="초급"
-        lessonGenre="힙합"
-        lessonName="기초 힙합 댄스"
-        teacherNickname="김민수"
-        teacherImageUrl="https://i.namu.wiki/i/B8j2IU2giY7fFeK_M9_QHGinGLoXp---93tHjwIac--A3yKtejXsamDw8sTv-xpjxRQSCfP1fuxRmSW2xFr5NV4_b0-OpTK9_7biMhp4tuuHKExvXq9W-vJHWkSd8SI8hthHj7ctXncHef30HHzC4A.webp"
-        lessonStartDateTime="2025-01-16T10:00:00"
-        lessonEndDateTime="2025-01-01T12:00:00"
-        lessonStreetAddress="서울특별시 강남구 테헤란로 123"
-      />
-      <ClassItem
-        lessonId={67890}
-        lessonImageUrl="https://i.namu.wiki/i/B8j2IU2giY7fFeK_M9_QHGinGLoXp---93tHjwIac--A3yKtejXsamDw8sTv-xpjxRQSCfP1fuxRmSW2xFr5NV4_b0-OpTK9_7biMhp4tuuHKExvXq9W-vJHWkSd8SI8hthHj7ctXncHef30HHzC4A.webp"
-        lessonLevel="초급"
-        lessonGenre="힙합"
-        lessonName="기초 힙합 댄스"
-        teacherNickname="김민수"
-        teacherImageUrl="https://i.namu.wiki/i/B8j2IU2giY7fFeK_M9_QHGinGLoXp---93tHjwIac--A3yKtejXsamDw8sTv-xpjxRQSCfP1fuxRmSW2xFr5NV4_b0-OpTK9_7biMhp4tuuHKExvXq9W-vJHWkSd8SI8hthHj7ctXncHef30HHzC4A.webp"
-        lessonStartDateTime="2025-01-16T10:00:00"
-        lessonEndDateTime="2025-01-01T12:00:00"
-        lessonStreetAddress="서울특별시 강남구 테헤란로 123"
-      />
-    </Flex>
+    <>
+      <div className={recommandClassWrapperStyle}>
+        <Head level="h2" tag="h4">
+          이 클래스는 꼭 들어야 해요!
+        </Head>
+        <Flex tag="ul" gap="0.8rem" marginTop="2rem" className={containerStyle}>
+          {RECOMMAND_CLASSLIST.map((data) => (
+            <ClassItem
+              lessonId={data.lessonId}
+              lessonImageUrl={data.teacherImageUrl}
+              lessonLevel={data.lessonLevel}
+              lessonGenre={data.lessonGenre}
+              lessonName={data.lessonName}
+              teacherNickname={data.teacherNickname}
+              teacherImageUrl={data.teacherImageUrl}
+              lessonStartDateTime={data.lessonStartDateTime}
+              lessonEndDateTime={data.lessonEndDateTime}
+              lessonStreetAddress={data.lessonStreetAddress}
+            />
+          ))}
+        </Flex>
+      </div>
+
+      <div className={genreWrapperStyle}>
+        <Head level="h2" tag="h4">
+          지금 가장 인기있는 댄스 장르
+        </Head>
+        <Flex tag="ul" gap="0.7rem" marginTop="2rem">
+          {GENRELIST.map((data) => (
+            <GenreItem medalIcon={data.medal} genre={data.genre} />
+          ))}
+        </Flex>
+      </div>
+
+      <div className={dancerListWrapperstyle}>
+        <Head level="h2" tag="h4">
+          가장 핫한 댄서들만 모아봤어요
+        </Head>
+        <Flex tag="ul" gap="0.8rem" marginTop="2rem" className={containerStyle}>
+          {DANCERLIST.map((data) => (
+            <DancerItem
+              key={data.teacherId}
+              teacherImageUrl={data.teacherImageUrl}
+              teacherGenre={data.teacherGenre}
+              teacherNickName={data.teacherNickName}
+            />
+          ))}
+        </Flex>
+      </div>
+
+      <div className={deadlineClassWrapperStyle}>
+        <Head level="h2" tag="h4">
+          놓치면 아쉬울 마지막 기회
+        </Head>
+        <Flex tag="ul" marginTop="2rem" gap="0.8rem" className={containerStyle}>
+          {RECOMMAND_CLASSLIST.map((data) => (
+            <ClassItem
+              lessonId={data.lessonId}
+              lessonImageUrl={data.teacherImageUrl}
+              lessonLevel={data.lessonLevel}
+              lessonGenre={data.lessonGenre}
+              lessonName={data.lessonName}
+              teacherNickname={data.teacherNickname}
+              teacherImageUrl={data.teacherImageUrl}
+              lessonStartDateTime={data.lessonStartDateTime}
+              lessonEndDateTime={data.lessonEndDateTime}
+              lessonStreetAddress={data.lessonStreetAddress}
+            />
+          ))}
+        </Flex>
+      </div>
+    </>
   );
 };
 

@@ -1,2 +1,5 @@
+export { default as IcAssetTop1 } from './IcAssetTop1'
+export { default as IcAssetTop2 } from './IcAssetTop2'
+export { default as IcAssetTop3 } from './IcAssetTop3'
 export { default as IcBack } from './IcBack'
 export { default as IcClose } from './IcClose'
