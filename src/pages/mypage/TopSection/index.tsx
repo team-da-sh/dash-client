@@ -6,7 +6,26 @@ import Tag from '@/components/Tag';
 import Text from '@/components/Text';
 import { IcClose, IcArrowRightGray0614, IcCalendarcheckColor3D24, IcCalendarcheckMono3D24 } from '@/assets/svg';
 
-const TopSection = () => {
+const TopSection = ({ isInstructor }: { isInstructor: boolean }) => {
+  // 강사 권한에 따른 접근 처리
+  const renderTagContent = (isInstructor: boolean) => {
+    if (isInstructor) {
+      return (
+        <>
+          <IcCalendarcheckColor3D24 width={24} height={24} />
+          클래스 개설 가능
+        </>
+      );
+    } else {
+      return (
+        <>
+          <IcCalendarcheckMono3D24 width={24} height={24} />
+          클래스 개설 불가
+        </>
+      );
+    }
+  };
+
   return (
     <section className={styles.sectionStyle}>
       <Flex direction="column" align="center">
@@ -26,11 +45,10 @@ const TopSection = () => {
         <Flex marginTop="1.2rem" gap="0.8rem">
           <Tag hasAuth={true} size="mypage">
             <IcCalendarcheckColor3D24 width={24} height={24} />
-            클래스 신청 가능
+            클래스 개설 가능
           </Tag>
-          <Tag hasAuth={false} size="mypage">
-            <IcCalendarcheckMono3D24 width={24} height={24} />
-            클래스 개설 불가
+          <Tag hasAuth={isInstructor} size="mypage">
+            {renderTagContent(isInstructor)}
           </Tag>
         </Flex>
       </Flex>
