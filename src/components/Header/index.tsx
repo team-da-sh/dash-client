@@ -1,10 +1,12 @@
+import clsx from 'clsx';
 import React from 'react';
+import { ComponentPropsWithoutRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Head from '@/components/Head';
 import { headerRootStyle, backIconStyle, titleStyle, closeIconStyle } from '@/components/Header/index.css';
 import { IcBack, IcClose } from '@/assets/svg';
 
-interface HeaderRootProps {
+interface HeaderRootProps extends ComponentPropsWithoutRef<'div'> {
   children: React.ReactNode;
   isColor?: boolean;
 }
@@ -17,8 +19,8 @@ interface CloseIconProps {
   onClick: () => void;
 }
 
-const HeaderRoot = ({ children, isColor = false }: HeaderRootProps): JSX.Element => {
-  return <div className={headerRootStyle({ isColor })}>{children}</div>;
+const HeaderRoot = ({ children, isColor = false, className }: HeaderRootProps): JSX.Element => {
+  return <div className={clsx(className, headerRootStyle({ isColor }))}>{children}</div>;
 };
 
 const BackIcon = (): JSX.Element => {
