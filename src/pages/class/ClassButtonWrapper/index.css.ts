@@ -4,7 +4,6 @@ import { vars } from '@/styles/theme.css';
 export const buttonWrapperStyle = style({
   position: 'fixed',
   bottom: 0,
-  left: 0,
   backgroundColor: vars.colors.white,
   boxShadow: '0 -2px 8px rgba(0, 0, 0, 0.1)',
   zIndex: 1000,
