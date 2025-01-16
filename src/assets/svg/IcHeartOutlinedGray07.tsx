@@ -1,0 +1,4 @@
+import * as React from "react";
+import type { SVGProps } from "react";
+const SvgIcHeartOutlinedGray07 = (props: SVGProps<SVGSVGElement>) => <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 29 28" {...props}><path stroke="#788397" strokeWidth={1.5} d="M5.317 6.5c-1.008 1.108-1.543 2.66-1.543 4.444 0 3.076 1.556 5.566 3.634 7.563zm0 0c1.01-1.115 2.467-1.748 4.239-1.748 1.442 0 2.601.525 3.493 1.518.315.357.589.749.814 1.17l.66 1.23.662-1.23c.225-.421.499-.813.814-1.17M5.317 6.5l10.682-.23m0 0c.892-.993 2.051-1.52 3.493-1.52 1.765 0 3.223.632 4.235 1.744zm-1.66 16.934a.4.4 0 0 0 .368.001c2.225-1.154 4.854-2.7 6.929-4.704 2.08-2.005 3.638-4.505 3.638-7.557 0-1.79-.537-3.34-1.546-4.45zm0 0c-2.228-1.17-4.858-2.704-6.931-4.696z" /></svg>;
+export default SvgIcHeartOutlinedGray07;

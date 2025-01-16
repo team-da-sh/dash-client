@@ -1,5 +1,4 @@
 import {
-  headerStyle,
   profileStyle,
   lessonNameStyle,
   cardStyle,
@@ -16,7 +15,6 @@ import { LESSON_DATA } from '@/mocks/mockLessonData';
 
 const ClassInfoWrapper = () => {
   const {
-    lessonImageUrl,
     lessonGenre,
     lessonName,
     teacherImageUrl,
@@ -43,12 +41,6 @@ const ClassInfoWrapper = () => {
 
   return (
     <>
-      <div
-        className={headerStyle}
-        style={{
-          backgroundImage: `url(${lessonImageUrl})`,
-        }}></div>
-
       <Flex direction="column" paddingTop="2rem" paddingRight="2.4rem" paddingBottom="2.4rem" paddingLeft="2rem">
         <Flex gap="0.4rem" marginBottom="1.2rem">
           <Tag type="genre" size="medium">
