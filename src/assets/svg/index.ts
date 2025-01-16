@@ -1,4 +1,6 @@
 export { default as IcArrowRightGray0614 } from './IcArrowRightGray0614'
+export { default as IcArrowRightSmallGray0432 } from './IcArrowRightSmallGray0432'
+export { default as IcArrowRightSmallGray0732 } from './IcArrowRightSmallGray0732'
 export { default as IcBack } from './IcBack'
 export { default as IcCalendarcheckColor3D24 } from './IcCalendarcheckColor3D24'
 export { default as IcCalendarcheckMono3D24 } from './IcCalendarcheckMono3D24'
