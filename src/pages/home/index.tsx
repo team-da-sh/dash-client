@@ -2,6 +2,7 @@ import ClassItem from '@/pages/home/components/ClassItem';
 import { genreWrapperStyle } from '@/pages/home/components/ClassItem/index.css';
 import DancerItem from '@/pages/home/components/DancerItem';
 import GenreItem from '@/pages/home/components/GenreItem';
+import HomeHeader from '@/pages/home/components/HomeHeader';
 import {
   containerStyle,
   dancerListWrapperstyle,
@@ -10,11 +11,17 @@ import {
 } from '@/pages/home/index.css';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
+import { useIntersect } from '@/utils/useIntersect';
 import { DANCERLIST, GENRELIST, RECOMMAND_CLASSLIST } from '@/constants/home';
+import { vars } from '@/styles/theme.css';
 
 const Home = () => {
+  const [targetRef, isVisible] = useIntersect(false);
   return (
     <>
+      <div ref={targetRef} style={{ height: '37.5rem', backgroundColor: vars.colors.gray02 }}></div>
+      <HomeHeader isVisible={isVisible}></HomeHeader>
+
       <div className={recommandClassWrapperStyle}>
         <Head level="h2" tag="h4">
           이 클래스는 꼭 들어야 해요!
