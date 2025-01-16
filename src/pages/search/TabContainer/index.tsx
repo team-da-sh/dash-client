@@ -1,12 +1,12 @@
 import { useState } from 'react';
+import DancerList from '@/pages/search/DancerList';
+import TagSection from '@/pages/search/TabContainer/TagSection';
+import { sortIconStyle } from '@/pages/search/TabContainer/index.css';
 import Flex from '@/components/Flex';
 import { TabList, TabRoot, TabButton, TabPanel } from '@/components/Tab';
 import { IcBtnEtc, IcXMain04 } from '@/assets/svg';
 import { DANCER_LIST } from '@/mocks/DancerList';
 import { defaultSortTagProps } from '@/types/defaultSortTag';
-import DancerList from '../DancerList';
-import TagSection from './TagSection';
-import { sortIconStyle } from './index.css';
 
 interface TagItem {
   label: string;
