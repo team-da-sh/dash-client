@@ -24,7 +24,7 @@ export const inputStyle = recipe({
     },
 
     ':focus': {
-      border: `1px solid ${vars.colors.main04}`,
+      outline: `1px solid ${vars.colors.main04}`,
     },
   },
   variants: {
