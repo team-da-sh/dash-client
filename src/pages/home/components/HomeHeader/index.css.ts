@@ -1,4 +1,3 @@
-import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 import { vars } from '@/styles/theme.css';
 
@@ -27,9 +26,4 @@ export const containerStyle = recipe({
       },
     },
   },
-});
-
-export const iconsStyle = style({
-  display: 'flex',
-  gap: '2rem',
 });
