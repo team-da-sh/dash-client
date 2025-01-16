@@ -5,14 +5,8 @@ import Text from '@/components/Text';
 import { LESSON_DATA } from '@/constants/mockLessonData';
 import { IcClose } from '@/assets/svg';
 
-interface LessonDataProps {
-  lessonLocation: string;
-  lessonStreetAddress: string;
-  lessonOldStreetAddress: string;
-}
-
 const LocationInfo = () => {
-  const { lessonLocation, lessonStreetAddress, lessonOldStreetAddress }: LessonDataProps = LESSON_DATA;
+  const { lessonLocation, lessonStreetAddress, lessonOldStreetAddress } = LESSON_DATA;
 
   return (
     <Flex direction="column" justify="center" gap="1.2rem">
@@ -30,13 +24,8 @@ const LocationInfo = () => {
                     주소
                   </Text>
                 </Flex>
-                <Text tag="b7" color="gray7">
-                  {lessonStreetAddress.split('\n').map((line, idx) => (
-                    <React.Fragment key={idx}>
-                      {line}
-                      <br />
-                    </React.Fragment>
-                  ))}
+                <Text tag="b7" color="gray7" style={{ whiteSpace: 'pre-line' }}>
+                  {lessonStreetAddress}
                 </Text>
               </Flex>
 

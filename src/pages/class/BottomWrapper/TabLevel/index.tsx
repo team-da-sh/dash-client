@@ -6,14 +6,8 @@ import Text from '@/components/Text';
 import { LESSON_DATA } from '@/constants/mockLessonData';
 import { IcClose, IcQuesitonmark } from '@/assets/svg';
 
-interface LessonDataProps {
-  lessonLevel: string;
-  lessonLevelDetail: string;
-  lessonRecommendation: string;
-}
-
 const Level = () => {
-  const { lessonLevel, lessonLevelDetail, lessonRecommendation }: LessonDataProps = LESSON_DATA;
+  const { lessonLevel, lessonLevelDetail, lessonRecommendation } = LESSON_DATA;
 
   return (
     <Flex direction="column" gap="3.6rem">
@@ -46,14 +40,8 @@ const Level = () => {
           </Head>
         </Flex>
 
-        {/* 줄바꿈 처리된 텍스트 */}
-        <Text tag="b3" color="gray8">
-          {lessonRecommendation.split('\n').map((line, idx) => (
-            <React.Fragment key={idx}>
-              {line}
-              <br />
-            </React.Fragment>
-          ))}
+        <Text tag="b3" color="gray8" style={{ whiteSpace: 'pre-line' }}>
+          {lessonRecommendation}
         </Text>
       </Flex>
     </Flex>
