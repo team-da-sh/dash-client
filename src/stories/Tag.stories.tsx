@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { IcPlus1, IcPlusGray } from '@/assets/svg';
+import { IcCalendarcheckColor3D24, IcCalendarcheckMono3D24 } from '@/assets/svg';
 import Tag from '../components/Tag/index';
 
 const meta = {
@@ -91,7 +91,7 @@ export const AuthorityTag: Story = {
     type: 'authority',
     children: (
       <>
-        <IcPlus1 width={24} name="check-circle" />
+        <IcCalendarcheckColor3D24 width={24} />
         클래스 신청 가능
       </>
     ),
@@ -104,7 +104,7 @@ export const AuthDisabledTag: Story = {
     type: 'authDisabled',
     children: (
       <>
-        <IcPlusGray width={24} name="check-circle" />
+        <IcCalendarcheckMono3D24 width={24} />
         클래스 개설 불가
       </>
     ),
