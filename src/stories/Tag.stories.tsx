@@ -11,11 +11,11 @@ const meta = {
   argTypes: {
     size: {
       control: { type: 'radio' },
-      options: ['small', 'medium', 'thumbnail'],
+      options: ['small', 'medium', 'large', 'thumbnail'],
     },
     type: {
       control: { type: 'radio' },
-      options: ['genre', 'level', 'deadline'],
+      options: ['genre', 'level', 'search', 'deadline'],
     },
   },
   args: {
@@ -67,6 +67,13 @@ export const LevelTag: Story = {
   args: {
     type: 'level',
     children: '입문자',
+  },
+};
+export const SearchTag: Story = {
+  args: {
+    type: 'search',
+    size: 'large',
+    children: 'K-POP',
   },
 };
 

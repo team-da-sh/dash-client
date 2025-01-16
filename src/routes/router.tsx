@@ -8,7 +8,7 @@ import ClassRegister from '@/pages/instructor/classRegister';
 import InstructorRegister from '@/pages/instructorRegister';
 import Login from '@/pages/login';
 import MyPage from '@/pages/mypage';
-import MyPageReservation from '@/pages/mypage/MyPageReservation';
+import MyPageReservation from '@/pages/mypage/myPageReservation';
 import MyPageReservationDetail from '@/pages/mypage/myPageReservationDetail';
 import Reservation from '@/pages/reservation';
 import Search from '@/pages/search';
