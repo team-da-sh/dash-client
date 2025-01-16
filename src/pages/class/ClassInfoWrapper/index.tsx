@@ -1,11 +1,18 @@
-import { headerStyle, lessonCount, profileStyle, cardStyle } from '@/pages/class/ClassInfoWrapper/index.css';
+import {
+  headerStyle,
+  lessonCount,
+  profileStyle,
+  lessonNameStyle,
+  cardStyle,
+  thunderIconStyle,
+} from '@/pages/class/ClassInfoWrapper/index.css';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Tag from '@/components/Tag';
 import Text from '@/components/Text';
 import { lessonData } from '@/constants/LessonData';
 import { IcThunderMain0424 } from '@/assets/svg';
-import { vars } from '@/styles/theme.css'; // 테마 변수 가져오기
+import { vars } from '@/styles/theme.css';
 
 // 날짜 계산 함수
 const calculateDday = (startDateTime: string): string => {
@@ -15,7 +22,7 @@ const calculateDday = (startDateTime: string): string => {
   return difference > 0 ? `D-${difference}` : difference === 0 ? 'D-Day' : '마감';
 };
 
-interface LessonData {
+interface LessonDataProps {
   lessonImageUrl: string;
   lessonGenre: string;
   lessonName: string;
@@ -36,7 +43,7 @@ const ClassInfoWrapper = () => {
     individualPrice,
     maxReservationCount,
     reservationCount,
-  }: LessonData = lessonData;
+  }: LessonDataProps = lessonData;
 
   // D-Day 계산
   const dDay = calculateDday(lessonRound[0].lessonStartDateTime);
@@ -49,7 +56,7 @@ const ClassInfoWrapper = () => {
 
   const isSoldOut = remainingSeats <= 0;
   const remainingText = isSoldOut ? '마감되었어요' : `${remainingSeats}`;
-  const iconColor = isSoldOut ?  vars.colors.alert03 : vars.colors.main04;
+  const iconColor = isSoldOut ? vars.colors.alert03 : vars.colors.main04;
   const textColor = isSoldOut ? 'alert3' : 'main4';
 
   return (
@@ -78,7 +85,7 @@ const ClassInfoWrapper = () => {
           </Tag>
         </Flex>
 
-        <Head level="h2" tag="h4" style={{ marginBottom: '1.6rem' }}>
+        <Head level="h2" tag="h4" className={lessonNameStyle}>
           {lessonName}
         </Head>
 
@@ -104,11 +111,7 @@ const ClassInfoWrapper = () => {
         </Flex>
 
         <div className={cardStyle}>
-          <IcThunderMain0424
-            width={24}
-            color={iconColor}
-            style={{ marginRight: '0.4rem' }}
-          />
+          <IcThunderMain0424 width={24} color={iconColor} className={thunderIconStyle} />
           <Text tag="b2" color="black">
             {isSoldOut ? '' : '마감까지'}
           </Text>

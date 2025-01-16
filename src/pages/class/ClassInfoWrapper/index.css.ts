@@ -9,15 +9,18 @@ export const headerStyle = style({
 });
 
 export const lessonCount = style({
-  color: vars.colors.gray06 
+  color: vars.colors.gray06,
 });
 
-export const profileStyle= style({
+export const profileStyle = style({
   width: '3.2rem',
   height: '3.2rem',
   borderRadius: '50%',
   objectFit: 'cover',
-  backgroundColor: vars.colors.gray01, // 비어있는 경우 배경색
+  backgroundColor: vars.colors.gray01,
+});
+export const lessonNameStyle = style({
+  marginBottom: '1.6rem',
 });
 
 export const cardStyle = style({
@@ -29,4 +32,7 @@ export const cardStyle = style({
   gap: '0.2rem',
   width: '100%',
   boxShadow: '0px 0px 0.4rem 0px rgba(0, 0, 0, 0.10)',
+});
+export const thunderIconStyle = style({
+  marginRight: '0.4rem',
 });

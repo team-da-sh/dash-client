@@ -1,4 +1,4 @@
-import ClassInfoWrapper from './ClassInfoWrapper/index';
+import ClassInfoWrapper from '@/pages/class/ClassInfoWrapper';
 
 const Class = () => {
   return (
