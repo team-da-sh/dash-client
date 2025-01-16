@@ -3,42 +3,10 @@ import { roundBoxStyle } from '@/pages/class/BottomWrapper/TabPeriod/index.css';
 import Flex from '@/components/Flex';
 import Text from '@/components/Text';
 import { LESSON_DATA } from '@/constants/mocks/mockLessonData';
+import { calculatePeriod, formatDate } from '@/utils/dataCalculate';
 
 const Period = () => {
   const { lessonRound } = LESSON_DATA;
-
-  // 시간을 계산, "익일" 여부를 판단
-  const calculatePeriod = (start: string, end: string) => {
-    const startDate = new Date(start);
-    const endDate = new Date(end);
-
-    const startTime = `${startDate.getHours().toString().padStart(2, '0')}:${startDate
-      .getMinutes()
-      .toString()
-      .padStart(2, '0')}`;
-    const endTime = `${endDate.getHours().toString().padStart(2, '0')}:${endDate
-      .getMinutes()
-      .toString()
-      .padStart(2, '0')}`;
-
-    const isNextDay = endDate.getDate() !== startDate.getDate();
-    const formattedEndTime = isNextDay ? `익일 ${endTime}` : endTime;
-
-    const totalMinutes = Math.abs(endDate.getTime() - startDate.getTime()) / 1000 / 60;
-    const hours = Math.floor(totalMinutes / 60);
-    const minutes = totalMinutes % 60;
-
-    const durationString = minutes > 0 ? `총 ${hours}시간 ${minutes}분` : `총 ${hours}시간`;
-
-    return { startTime, formattedEndTime, durationString };
-  };
-
-  // 날짜를 포맷팅 (ex. "2025년 1월 8일 수요일")
-  const formatDate = (dateString: string) => {
-    const date = new Date(dateString);
-    const days = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'];
-    return `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일 ${days[date.getDay()]}`;
-  };
 
   return (
     <Flex direction="column" justify="center" gap="1.2rem">
@@ -49,21 +17,21 @@ const Period = () => {
         return (
           <Card key={index}>
             <div>
-            <Flex align="center" width="100%">
-              <div className={roundBoxStyle}>
-                <Text tag="b10" color="white">
-                  {index + 1}회차
-                </Text>
-              </div>
-              <div>
-                <Text tag="b4" color="black">
-                  {formatDate(lessonStartDateTime)}
-                </Text>
-                <Text tag="b7" color="gray7">
-                  {startTime} - {formattedEndTime} ({durationString})
-                </Text>
-              </div>
-            </Flex>
+              <Flex align="center" width="100%">
+                <div className={roundBoxStyle}>
+                  <Text tag="b10" color="white">
+                    {index + 1}회차
+                  </Text>
+                </div>
+                <div>
+                  <Text tag="b4" color="black">
+                    {formatDate(lessonStartDateTime)}
+                  </Text>
+                  <Text tag="b7" color="gray7">
+                    {startTime} - {formattedEndTime} ({durationString})
+                  </Text>
+                </div>
+              </Flex>
             </div>
           </Card>
         );
