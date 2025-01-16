@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { IcPlus1, IcPlusGray } from '@/assets/svg';
 import Tag from '../components/Tag/index';
 
 const meta = {
@@ -11,11 +12,11 @@ const meta = {
   argTypes: {
     size: {
       control: { type: 'radio' },
-      options: ['small', 'medium', 'large', 'thumbnail'],
+      options: ['small', 'medium', 'large', 'thumbnail', 'mypage'],
     },
     type: {
       control: { type: 'radio' },
-      options: ['genre', 'level', 'search', 'deadline'],
+      options: ['genre', 'level', 'search', 'deadline', 'authority', 'authDisabled'],
     },
   },
   args: {
@@ -81,5 +82,31 @@ export const DeadlineTag: Story = {
   args: {
     type: 'deadline',
     children: '힙합',
+  },
+};
+
+export const AuthorityTag: Story = {
+  args: {
+    size: 'mypage',
+    type: 'authority',
+    children: (
+      <>
+        <IcPlus1 width={24} name="check-circle" />
+        클래스 신청 가능
+      </>
+    ),
+  },
+};
+
+export const AuthDisabledTag: Story = {
+  args: {
+    size: 'mypage',
+    type: 'authDisabled',
+    children: (
+      <>
+        <IcPlusGray width={24} name="check-circle" />
+        클래스 개설 불가
+      </>
+    ),
   },
 };
