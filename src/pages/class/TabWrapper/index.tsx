@@ -37,7 +37,12 @@ const TabWrapper = ({ colorScheme }: TabWrapperProps) => {
         </TabList>
       </Flex>
 
-      <Flex paddingTop="2.4rem" paddingRight="2rem" paddingLeft="2rem" borderTop={`1px solid ${vars.colors.gray01}`}>
+      <Flex
+        paddingTop="2.4rem"
+        paddingRight="2rem"
+        paddingLeft="2rem"
+        paddingBottom="4.8rem"
+        borderTop={`1px solid ${vars.colors.gray01}`}>
         {tabs.map((tab) => (
           <TabPanel key={tab.id} isSelected={selectedTab === tab.id - 1}>
             {tab.component}

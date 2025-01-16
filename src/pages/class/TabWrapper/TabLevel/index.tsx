@@ -1,9 +1,10 @@
 import Card from '@/pages/class/Card';
+import { questionStyle } from '@/pages/class/TabWrapper/TabLevel/index.css';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Text from '@/components/Text';
-import { LESSON_DATA } from '@/mocks/mockLessonData';
 import { IcClose, IcQuesitonmark } from '@/assets/svg';
+import { LESSON_DATA } from '@/mocks/mockLessonData';
 
 const Level = () => {
   const { lessonLevel, lessonLevelDetail, lessonRecommendation } = LESSON_DATA;
@@ -26,7 +27,7 @@ const Level = () => {
           <Text tag="c3" color="gray7">
             클래스 난이도는 이렇게 설정되어있어요!
           </Text>
-          <button>
+          <button className={questionStyle}>
             <IcQuesitonmark width={14} />
           </button>
         </Flex>

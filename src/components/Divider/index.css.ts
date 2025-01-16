@@ -23,6 +23,9 @@ export const dividerStyle = recipe({
       secondary: {
         backgroundColor: vars.colors.white,
       },
+      tertiary: {
+        backgroundColor: vars.colors.gray01,
+      },
     },
   },
   defaultVariants: {

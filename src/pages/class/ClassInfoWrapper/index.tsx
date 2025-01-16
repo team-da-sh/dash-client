@@ -10,9 +10,9 @@ import Head from '@/components/Head';
 import Tag from '@/components/Tag';
 import Text from '@/components/Text';
 import { calculateDday } from '@/utils/dataCalculate';
-import { LESSON_DATA } from '@/mocks/mockLessonData';
 import { IcThunderMain0424 } from '@/assets/svg';
 import { vars } from '@/styles/theme.css';
+import { LESSON_DATA } from '@/mocks/mockLessonData';
 
 const ClassInfoWrapper = () => {
   const {
@@ -49,11 +49,7 @@ const ClassInfoWrapper = () => {
           backgroundImage: `url(${lessonImageUrl})`,
         }}></div>
 
-      <Flex
-        direction="column"
-        style={{
-          padding: '2rem 2rem 2.4rem 2rem',
-        }}>
+      <Flex direction="column" paddingTop="2rem" paddingRight="2.4rem" paddingBottom="2.4rem" paddingLeft="2rem">
         <Flex gap="0.4rem" marginBottom="1.2rem">
           <Tag type="genre" size="medium">
             <Text tag="b7" color="white">
