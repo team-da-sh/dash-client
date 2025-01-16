@@ -3,7 +3,7 @@ import { roundBoxStyle } from '@/pages/class/BottomWrapper/TabPeriod/index.css';
 import Flex from '@/components/Flex';
 import Text from '@/components/Text';
 import { LESSON_DATA } from '@/constants/mocks/mockLessonData';
-import { calculatePeriod, formatDate } from '@/utils/dataCalculate';
+import { calculatePeriod, formatDate } from '@/utils/dateCalculate';
 
 const Period = () => {
   const { lessonRound } = LESSON_DATA;
