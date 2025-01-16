@@ -6,20 +6,8 @@ import Text from '@/components/Text';
 import { formatLessonDateRange } from '@/utils/timeCalculate';
 import { getClassStatus } from '@/utils/timeCalculate';
 import { IcArrowRightGray0614 } from '@/assets/svg';
+import { ClassCardProps } from '@/types/classCardTypes';
 
-interface classCardProps {
-  lessonId?: string;
-  reservationId?: string;
-  lessonName: string;
-  lessonImageUrl: string;
-  lessonGenre: string;
-  lessonLevel: string;
-  lessonLocation: string;
-  lessonStartDateTime: string;
-  lessonEndDateTime: string;
-  isReservation?: boolean;
-  children?: React.ReactNode;
-}
 const ClassCard = ({
   lessonName,
   lessonImageUrl,
@@ -30,7 +18,7 @@ const ClassCard = ({
   lessonEndDateTime,
   isReservation = true,
   children,
-}: classCardProps) => {
+}: ClassCardProps) => {
   // 클래스 상태 계산
   const { status, remainingDays } = getClassStatus(lessonStartDateTime, lessonEndDateTime);
 
@@ -39,15 +27,29 @@ const ClassCard = ({
       <Flex justify="spaceBetween" align="center">
         <Flex align="center" gap="0.2rem" marginBottom="1.2rem">
           <Text tag="b4" color={status === 'completed' ? 'gray8' : 'black'}>
-            {isReservation
-              ? status === 'upcoming'
-                ? '수강예정'
-                : status === 'ongoing'
-                  ? '수강중'
-                  : '수강완료'
-              : status === 'upcoming'
-                ? '모집중'
-                : '모집완료'}
+            {(() => {
+              if (isReservation) {
+                switch (status) {
+                  case 'upcoming':
+                    return '수강예정';
+                  case 'ongoing':
+                    return '수강중';
+                  case 'completed':
+                    return '수강완료';
+                  default:
+                    return '';
+                }
+              } else {
+                switch (status) {
+                  case 'upcoming':
+                    return '모집중';
+                  case 'completed':
+                    return '모집완료';
+                  default:
+                    return '';
+                }
+              }
+            })()}
           </Text>
           {isReservation && status === 'upcoming' && remainingDays !== undefined && (
             <Text tag="b7" color="main4">

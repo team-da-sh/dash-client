@@ -9,6 +9,11 @@ export const getClassStatus = (
   const startTime = new Date(lessonStartDateTime);
   const endTime = new Date(lessonEndDateTime);
 
+  // 날짜만 비교하기 위해 시간, 분, 초, 밀리초를 0으로 초기화
+  currentTime.setHours(0, 0, 0, 0);
+  startTime.setHours(0, 0, 0, 0);
+  endTime.setHours(0, 0, 0, 0);
+
   if (currentTime < startTime) {
     // 수강 예정 상태
     const remainingDays = Math.ceil((startTime.getTime() - currentTime.getTime()) / (1000 * 60 * 60 * 24));
@@ -26,10 +31,10 @@ export const getClassStatus = (
 
 // 날짜를 YYYY년 MM월 DD일 형식으로 변환하는 함수
 export const formatDate = (dateString: string): string => {
-  const datd = new Date(dateString);
-  const year = datd.getFullYear();
-  const month = datd.getMonth() + 1;
-  const day = datd.getDate();
+  const date = new Date(dateString);
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
 
   return `${year}년 ${month}월 ${day}일`;
 };
