@@ -25,9 +25,8 @@ export const cardStyle = style({
   padding: '1.6rem 2rem',
   alignItems: 'center',
   borderRadius: '4px',
-  border: '0.5px solid',
-  borderColor: vars.colors.gray04,
   backgroundColor: vars.colors.white,
   gap: '0.2rem',
   width: '100%',
+  boxShadow: '0px 0px 0.4rem 0px rgba(0, 0, 0, 0.10)',
 });

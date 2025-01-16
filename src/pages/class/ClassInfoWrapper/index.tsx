@@ -4,7 +4,7 @@ import Head from '@/components/Head';
 import Tag from '@/components/Tag';
 import Text from '@/components/Text';
 import { lessonData } from '@/constants/LessonData';
-import { IcClose } from '@/assets/svg';
+import { IcClose, IcThunderMain0424 } from '@/assets/svg';
 
 // 날짜 계산 함수
 const calculateDday = (startDateTime: string): string => {
@@ -52,8 +52,7 @@ const ClassInfoWrapper = () => {
         className={headerStyle}
         style={{
           backgroundImage: `url(${lessonImageUrl})`,
-        }}
-      ></div>
+        }}></div>
 
       <Flex
         direction="column"
@@ -78,11 +77,7 @@ const ClassInfoWrapper = () => {
         </Head>
 
         <Flex align="center" gap="0.8rem">
-          <img
-            src={lessonData.teacherImageUrl}
-            alt={`${teacherNickname} 프로필`}
-            className={profileStyle}
-          />
+          <img src={lessonData.teacherImageUrl} alt={`${teacherNickname} 프로필`} className={profileStyle} />
           <Text tag="b2" color="gray9">
             {teacherNickname}
           </Text>
@@ -92,13 +87,18 @@ const ClassInfoWrapper = () => {
           <span className={lessonCount}>
             <Head tag="h5">{lessonRound.length}회</Head>
           </span>
-          <Head level="h5" tag="h2">
-            {totalPrice.toLocaleString()}원
-          </Head>
+          <Flex align="center" gap="0.2rem">
+            <Head level="h5" tag="h2">
+              {totalPrice.toLocaleString()}
+            </Head>
+            <Head level="h5" tag="h2">
+              원
+            </Head>
+          </Flex>
         </Flex>
 
         <div className={cardStyle}>
-          <IcClose width={24} style={{marginRight:'0.7rem'}}/>
+          <IcThunderMain0424 width={24} style={{ marginRight: '0.7rem' }} />
           <Text tag="b2" color="black">
             마감까지
           </Text>
