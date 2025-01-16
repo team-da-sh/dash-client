@@ -9,13 +9,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 
 const Input = ({ isError, isSearch = false, className, ...props }: InputProps, ref: ForwardedRef<HTMLInputElement>) => {
   return (
-    <input
-      ref={ref}
-      type="text"
-      className={clsx(className, style.inputStyle({ isError, isSearch }))}
-      placeholder="예시를 써주세요"
-      {...props}
-    />
+    <input ref={ref} type="text" className={clsx(className, style.inputStyle({ isError, isSearch }))} {...props} />
   );
 };
 

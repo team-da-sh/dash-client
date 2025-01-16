@@ -22,9 +22,7 @@ const DancerList = ({ dancers }: DancerListProps) => {
         <Flex
           align="center"
           paddingTop="1.6rem"
-          paddingRight="2rem"
           paddingBottom="1.6rem"
-          paddingLeft="2rem"
           gap="2rem"
           tag="li"
           borderBottom={`1px solid ${vars.colors.gray01}`}
