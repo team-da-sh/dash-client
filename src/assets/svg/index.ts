@@ -1,3 +1,4 @@
+export { default as BtnCheck } from './BtnCheck'
 export { default as IcArrowRightGray0614 } from './IcArrowRightGray0614'
 export { default as IcArrowUnderGray } from './IcArrowUnderGray'
 export { default as IcBack } from './IcBack'
