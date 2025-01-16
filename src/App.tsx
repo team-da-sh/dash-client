@@ -28,6 +28,7 @@ const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={false} />
+      <div>DASH</div>
     </QueryClientProvider>
   );
 };
