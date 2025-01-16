@@ -1,6 +1,6 @@
 import Flex from '@/components/Flex';
 import Text from '@/components/Text';
-import { LESSON_DATA } from '@/constants/mocks/mockLessonData';
+import { LESSON_DATA } from '@/mocks/mockLessonData';
 
 const Intro = () => {
   const { lessonDetail } = LESSON_DATA;

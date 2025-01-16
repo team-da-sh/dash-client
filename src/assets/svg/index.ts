@@ -15,4 +15,5 @@ export { default as IcXCircleGray } from './IcXCircleGray'
 
 
 
+export { default as IcThunderMain0424 } from './IcThunderMain0424'
 export { default as IcQuesitonmark } from './IcQuesitonmark'

@@ -30,8 +30,7 @@ const TabWrapper = ({ colorScheme }: TabWrapperProps) => {
               key={tab.id}
               isSelected={selectedTab === tab.id - 1}
               onClick={() => setSelectedTab(tab.id - 1)}
-              colorScheme={colorScheme}
-            >
+              colorScheme={colorScheme}>
               {tab.label}
             </TabButton>
           ))}
@@ -42,8 +41,8 @@ const TabWrapper = ({ colorScheme }: TabWrapperProps) => {
         paddingTop="2.4rem"
         paddingRight="2rem"
         paddingLeft="2rem"
-        borderTop={`1px solid ${vars.colors.gray01}`}
-      >
+        paddingBottom="4.8rem"
+        borderTop={`1px solid ${vars.colors.gray01}`}>
         {tabs.map((tab) => (
           <TabPanel key={tab.id} isSelected={selectedTab === tab.id - 1}>
             {tab.component}
