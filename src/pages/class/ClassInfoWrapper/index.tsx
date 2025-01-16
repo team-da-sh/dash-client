@@ -1,11 +1,10 @@
-import { headerStyle, lessonCount, cardStyle } from '@/pages/class/ClassInfoWrapper/index.css';
+import { headerStyle, lessonCount, profileStyle, cardStyle } from '@/pages/class/ClassInfoWrapper/index.css';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Tag from '@/components/Tag';
 import Text from '@/components/Text';
 import { lessonData } from '@/constants/LessonData';
 import { IcClose } from '@/assets/svg';
-import { vars } from '@/styles/theme.css';
 
 // 날짜 계산 함수
 const calculateDday = (startDateTime: string): string => {
@@ -81,14 +80,8 @@ const ClassInfoWrapper = () => {
         <Flex align="center" gap="0.8rem">
           <img
             src={lessonData.teacherImageUrl}
-            // alt={`${teacherNickname} 프로필`}
-            style={{
-              width: '32px',
-              height: '32px',
-              borderRadius: '50%',
-              objectFit: 'cover', // 이미지 비율 유지
-              backgroundColor: vars.colors.gray01, // 비어있는 경우 배경색
-            }}
+            alt={`${teacherNickname} 프로필`}
+            className={profileStyle}
           />
           <Text tag="b2" color="gray9">
             {teacherNickname}
@@ -104,7 +97,6 @@ const ClassInfoWrapper = () => {
           </Head>
         </Flex>
 
-        {/* 마감 정보 */}
         <div className={cardStyle}>
           <IcClose width={24} style={{marginRight:'0.7rem'}}/>
           <Text tag="b2" color="black">

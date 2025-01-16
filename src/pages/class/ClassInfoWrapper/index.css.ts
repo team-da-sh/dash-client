@@ -7,8 +7,17 @@ export const headerStyle = style({
   backgroundSize: 'cover',
   backgroundPosition: 'center',
 });
+
 export const lessonCount = style({
   color: vars.colors.gray06 
+});
+
+export const profileStyle= style({
+  width: '3.2rem',
+  height: '3.2rem',
+  borderRadius: '50%',
+  objectFit: 'cover',
+  backgroundColor: vars.colors.gray01, // 비어있는 경우 배경색
 });
 
 export const cardStyle = style({
