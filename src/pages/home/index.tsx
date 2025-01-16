@@ -1,6 +1,7 @@
 import ClassItem from '@/pages/home/components/ClassItem';
 import { genreWrapperStyle } from '@/pages/home/components/ClassItem/index.css';
 import DancerItem from '@/pages/home/components/DancerItem';
+import Footer from '@/pages/home/components/Footer';
 import GenreItem from '@/pages/home/components/GenreItem';
 import HomeHeader from '@/pages/home/components/HomeHeader';
 import {
@@ -20,7 +21,7 @@ const Home = () => {
   return (
     <>
       <div ref={targetRef} style={{ height: '37.5rem', backgroundColor: vars.colors.gray02 }}></div>
-      <HomeHeader isVisible={isVisible}></HomeHeader>
+      <HomeHeader isVisible={isVisible} />
 
       <div className={recommandClassWrapperStyle}>
         <Head level="h2" tag="h4">
@@ -29,6 +30,7 @@ const Home = () => {
         <Flex tag="ul" gap="0.8rem" marginTop="2rem" className={containerStyle}>
           {RECOMMAND_CLASSLIST.map((data) => (
             <ClassItem
+              key={data.lessonId}
               lessonId={data.lessonId}
               lessonImageUrl={data.teacherImageUrl}
               lessonLevel={data.lessonLevel}
@@ -49,8 +51,8 @@ const Home = () => {
           지금 가장 인기있는 댄스 장르
         </Head>
         <Flex tag="ul" gap="0.7rem" marginTop="2rem">
-          {GENRELIST.map((data) => (
-            <GenreItem medalIcon={data.medal} genre={data.genre} />
+          {GENRELIST.map((data, index) => (
+            <GenreItem key={`${index}-${data.genre}`} medalIcon={data.medal} genre={data.genre} />
           ))}
         </Flex>
       </div>
@@ -78,6 +80,7 @@ const Home = () => {
         <Flex tag="ul" marginTop="2rem" gap="0.8rem" className={containerStyle}>
           {RECOMMAND_CLASSLIST.map((data) => (
             <ClassItem
+              key={data.lessonId}
               lessonId={data.lessonId}
               lessonImageUrl={data.teacherImageUrl}
               lessonLevel={data.lessonLevel}
@@ -92,6 +95,8 @@ const Home = () => {
           ))}
         </Flex>
       </div>
+
+      <Footer />
     </>
   );
 };

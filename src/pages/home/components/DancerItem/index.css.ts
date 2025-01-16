@@ -1,7 +1,10 @@
 import { style } from '@vanilla-extract/css';
 
 export const dancerImageStyle = style({
-  borderRadius: '50%',
+  width: '78px',
+  height: '78px',
+  maxWidth: 'none',
+  maxHeight: 'none',
 
-  backgroundSize: 'cover',
+  borderRadius: '50%',
 });

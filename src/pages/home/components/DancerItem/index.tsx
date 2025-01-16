@@ -12,7 +12,7 @@ interface DanceItemProps {
 const DancerItem = ({ teacherImageUrl, teacherGenre, teacherNickName }: DanceItemProps) => {
   return (
     <Flex tag="li" direction="column" gap="1.2rem" align="center">
-      <img src={teacherImageUrl} alt="댄서 프로필" width={78} height={78} className={dancerImageStyle} />
+      <img src={teacherImageUrl} alt="댄서 프로필" className={dancerImageStyle} />
       <Flex direction="column" gap="0.4rem" align="center">
         <Head tag="h6">{teacherNickName}</Head>
         <Text tag="b6">{teacherGenre}</Text>
