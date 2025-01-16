@@ -42,7 +42,7 @@ const ImageUploader = () => {
         style={previewImg ? { backgroundImage: `url(${previewImg})` } : {}}
         onClick={handleUploaderClick}>
         {!previewImg && (
-          <Flex direction="column" align="center" style={{ border: '1px solid blue' }}>
+          <Flex direction="column" align="center">
             <IcPlusGray0524 width={'2.4rem'} />
             <p>1/1</p>
           </Flex>

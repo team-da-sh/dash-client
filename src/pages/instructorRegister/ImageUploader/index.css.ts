@@ -4,7 +4,6 @@ import { vars } from '@/styles/theme.css';
 
 export const previewImgStyle = recipe({
   base: {
-    border: '1px solid blue',
     width: '8.4rem',
     height: '8.4rem',
     backgroundColor: vars.colors.gray01,
