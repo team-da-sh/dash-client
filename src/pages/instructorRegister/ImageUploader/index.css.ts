@@ -9,6 +9,7 @@ export const previewImgStyle = recipe({
     backgroundColor: vars.colors.gray01,
     cursor: 'pointer',
     borderRadius: '4px',
+    position: 'relative',
   },
   variants: {
     hasImage: {
@@ -22,4 +23,10 @@ export const previewImgStyle = recipe({
 
 export const inputStyle = style({
   display: 'none',
+});
+
+export const closeIconStyle = style({
+  position: 'absolute',
+  left: '6.8rem',
+  top: '-0.8rem',
 });

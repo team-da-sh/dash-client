@@ -1,12 +1,11 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Flex from '@/components/Flex';
-import { IcPlusGray0524 } from '@/assets/svg';
-import { inputStyle, previewImgStyle } from './index.css';
+import { IcPlusGray0524, IcXCircleGray0424 } from '@/assets/svg';
+import { closeIconStyle, inputStyle, previewImgStyle } from './index.css';
 
 const ImageUploader = () => {
   const [previewImg, setPreviewImg] = useState('');
   const [imgFile, setImgFile] = useState<File>();
-
   const imgRef = useRef<HTMLInputElement | null>(null);
 
   const handleUploaderClick = () => {
@@ -32,6 +31,20 @@ const ImageUploader = () => {
     };
   };
 
+  const deleteImgFile = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setImgFile(undefined);
+    setPreviewImg('');
+
+    if (imgRef.current) {
+      imgRef.current.value = '';
+    }
+  };
+
+  useEffect(() => {
+    console.log(imgFile);
+  }, [imgFile]);
+
   return (
     <>
       <Flex
@@ -46,6 +59,12 @@ const ImageUploader = () => {
             <IcPlusGray0524 width={'2.4rem'} />
             <p>1/1</p>
           </Flex>
+        )}
+
+        {imgFile && (
+          <div className={closeIconStyle} onClick={deleteImgFile}>
+            <IcXCircleGray0424 width={'2.4rem'} />
+          </div>
         )}
       </Flex>
 
