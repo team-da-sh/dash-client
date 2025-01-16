@@ -1,4 +1,4 @@
-export const mockReservationData = {
+export const MOCK_RESERVATION_DATA = {
   reservations: [
     {
       reservationId: 1,
