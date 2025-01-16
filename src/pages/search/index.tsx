@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import SearchBar from '@/pages/search/components/SearchBar';
+import SearchBar from '@/pages/search/SearchBar';
 import Header from '@/components/Header';
 
 const Search = () => {
@@ -14,14 +14,17 @@ const Search = () => {
   };
 
   return (
-    <Header.Root>
-      <Header.BackIcon />
-      <SearchBar
-        searchValue={searchValue}
-        handleSearchChange={handleSearchChange}
-        handleSearchIconClick={handleSearchIconClick}
-      />
-    </Header.Root>
+    <>
+      <Header.Root>
+        <Header.BackIcon />
+        <SearchBar
+          searchValue={searchValue}
+          handleSearchChange={handleSearchChange}
+          handleSearchIconClick={handleSearchIconClick}
+        />
+      </Header.Root>
+      
+    </>
   );
 };
 
