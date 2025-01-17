@@ -7,7 +7,6 @@ export const tagStyle = recipe({
     justifyContent: 'center',
     alignItems: 'center',
     color: vars.colors.white,
-    height: '100%',
   },
   variants: {
     type: {
@@ -80,13 +79,13 @@ export const tagStyle = recipe({
         border: `1px solid ${vars.colors.gray07}`,
         padding: '0.5rem 0.8rem 0.5rem 1.2rem',
         ...vars.fonts.b9,
-      },    
+      },
       mypage: {
         borderRadius: '0.4rem',
         height: '4rem',
         gap: '0.4rem',
         padding: '0.8rem 1.5rem',
-        ...vars.fonts.b9,  
+        ...vars.fonts.b9,
       },
     },
   },
