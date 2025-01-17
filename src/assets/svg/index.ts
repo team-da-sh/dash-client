@@ -1,12 +1,14 @@
-export { default as BtnCheck } from './BtnCheck'
+export { default as IcClassEndMain0324 } from './IcClassEndMain0324';
+export { default as IcClassIngMain0324 } from './IcClassIngMain0324';
+export { default as IcClassSoonMain0324 } from './IcClassSoonMain0324';
+export { default as IcArrowRightSmallGray0432 } from './IcArrowRightSmallGray0432';
+export { default as IcArrowRightSmallGray0732 } from './IcArrowRightSmallGray0732';
+export { default as BtnCheck } from './BtnCheck';
 export { default as IcAssetTop1 } from './IcAssetTop1';
 export { default as IcAssetTop2 } from './IcAssetTop2';
 export { default as IcAssetTop3 } from './IcAssetTop3';
 
 export { default as IcArrowRightGray0614 } from './IcArrowRightGray0614';
-
-export { default as IcArrowRightSmallGray0432 } from './IcArrowRightSmallGray0432';
-export { default as IcArrowRightSmallGray0732 } from './IcArrowRightSmallGray0732';
 
 export { default as IcArrowUnderGray } from './IcArrowUnderGray';
 export { default as IcBack } from './IcBack';
@@ -14,9 +16,9 @@ export { default as IcBtnEtc } from './IcBtnEtc';
 export { default as IcCalendarcheckColor3D24 } from './IcCalendarcheckColor3D24';
 export { default as IcCalendarcheckMono3D24 } from './IcCalendarcheckMono3D24';
 export { default as IcClose } from './IcClose';
-export { default as IcDocumentBlack20 } from './IcDocumentBlack20'
+export { default as IcDocumentBlack20 } from './IcDocumentBlack20';
 export { default as IcFilterGray } from './IcFilterGray';
-export { default as IcGraduationBlack20 } from './IcGraduationBlack20'
+export { default as IcGraduationBlack20 } from './IcGraduationBlack20';
 export { default as IcInstagram20 } from './IcInstagram20';
 export { default as IcLogoSmallBlack } from './IcLogoSmallBlack';
 export { default as IcLogoSmallWhite } from './IcLogoSmallWhite';
