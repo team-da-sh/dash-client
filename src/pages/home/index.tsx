@@ -3,6 +3,7 @@ import { genreWrapperStyle } from '@/pages/home/components/ClassItem/index.css';
 import DancerItem from '@/pages/home/components/DancerItem';
 import Footer from '@/pages/home/components/Footer';
 import GenreItem from '@/pages/home/components/GenreItem';
+import HomeCarousel from '@/pages/home/components/HomeCarousel';
 import HomeHeader from '@/pages/home/components/HomeHeader';
 import {
   containerStyle,
@@ -14,15 +15,17 @@ import { DANCERLIST, GENRELIST, RECOMMAND_CLASSLIST } from '@/pages/home/mocks';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import { useIntersect } from '@/utils/useIntersect';
-import { vars } from '@/styles/theme.css';
 
 const Home = () => {
   const [targetRef, isVisible] = useIntersect(false);
 
   return (
     <>
-      <div ref={targetRef} style={{ height: '37.5rem', backgroundColor: vars.colors.gray02 }}></div>
       <HomeHeader isVisible={isVisible} />
+
+      <div ref={targetRef}>
+        <HomeCarousel />
+      </div>
 
       <div className={recommandClassWrapperStyle}>
         <Head level="h2" tag="h4">
