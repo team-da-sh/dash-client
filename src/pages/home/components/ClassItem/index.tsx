@@ -58,7 +58,7 @@ const ClassItem = ({
           <Text tag="c2" color="gray5">
             {transformDateToDotFormat(lessonStartDateTime)} - {transformDateToDotFormat(lessonEndDateTime)}
           </Text>
-          <Divider direction="vertical" length={'0.7rem'} color="teritory" />
+          <Divider direction="vertical" length={'0.7rem'} color="tertiary" />
           <Text tag="c2" color="gray5">
             {lessonAddress}
           </Text>

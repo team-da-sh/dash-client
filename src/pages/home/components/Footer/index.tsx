@@ -24,7 +24,7 @@ const Footer = () => {
           <Text tag="c1" color="gray5">
             대표
           </Text>
-          <Divider direction="vertical" length={'0.6rem'} color="teritory" />
+          <Divider direction="vertical" length={'0.6rem'} color="tertiary" />
           <Text tag="c1" color="gray5">
             주은혜
           </Text>
@@ -33,7 +33,7 @@ const Footer = () => {
           <Text tag="c1" color="gray5">
             이메일
           </Text>
-          <Divider direction="vertical" length={'0.6rem'} color="teritory" />
+          <Divider direction="vertical" length={'0.6rem'} color="tertiary" />
           <Text tag="c1" color="gray5">
             doomchit1221@gmail.com
           </Text>
@@ -42,7 +42,7 @@ const Footer = () => {
           <Text tag="c1" color="gray5">
             전화번호
           </Text>
-          <Divider direction="vertical" length={'0.6rem'} color="teritory" />
+          <Divider direction="vertical" length={'0.6rem'} color="tertiary" />
           <Text tag="c1" color="gray5">
             010-4080-8364
           </Text>
