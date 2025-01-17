@@ -21,7 +21,7 @@ const ClassList = () => {
     <div className={styles.layoutStyle}>
       <Header.Root isColor={true}>
         <Header.BackIcon />
-        <Header.Title title="클래스 예약 내역" />
+        <Header.Title title="내 클래스 목록" />
       </Header.Root>
       <div className={styles.containerStyle}>
         <Text tag="b2" color="gray9">
