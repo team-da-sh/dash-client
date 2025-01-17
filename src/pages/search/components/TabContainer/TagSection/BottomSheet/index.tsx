@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import CalendarCustom from '@/pages/search/components/Calendar';
 import {
   bottomSheetStyle,
   overlayStyle,
@@ -39,7 +40,9 @@ const BottomSheet = ({ onClose, initialTabIndex }: BottomSheetProps) => {
           </TabList>
           <TabPanel isSelected={selectedTab === 0}>장르</TabPanel>
           <TabPanel isSelected={selectedTab === 1}>난이도</TabPanel>
-          <TabPanel isSelected={selectedTab === 2}>기간</TabPanel>
+          <TabPanel isSelected={selectedTab === 2}>
+            <CalendarCustom />
+          </TabPanel>
         </TabRoot>
         <Flex width="100%" gap="0.8rem">
           <BoxButton variant="secondary">초기화</BoxButton>

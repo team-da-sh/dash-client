@@ -2,12 +2,12 @@ import { globalStyle } from '@vanilla-extract/css';
 import { vars } from '@/styles/theme.css';
 
 globalStyle('.react-calendar', {
-  width: '37.5rem',
+  width: '100%',
   height: '33.7rem',
-  padding: '0.5rem 2rem 1.8rem',
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
+  marginBottom: '1rem',
 });
 
 globalStyle('.react-calendar__navigation', {
@@ -33,9 +33,6 @@ globalStyle('.react-calendar__navigation__label', {
   pointerEvents: 'none',
 });
 
-// .react-calendar__navigation button 스타일 정의
-globalStyle('.react-calendar__navigation button', {});
-
 // prev2 버튼 숨기기
 globalStyle('.react-calendar__navigation__prev2-button', {
   display: 'none',
@@ -52,6 +49,7 @@ globalStyle('.react-calendar__month-view__weekdays__weekday', {
   marginBottom: '1.2rem',
   color: vars.colors.gray07,
   ...vars.fonts.b7,
+  width: '100%',
 });
 
 // 요일 밑줄 제거
