@@ -5,17 +5,32 @@ import Flex from '@/components/Flex';
 import { buttonWrapperStyle } from './index.css';
 import { IcHeartOutlinedGray07, IcHeartFilledGray07 } from '@/assets/svg';
 import { ROUTES_CONFIG } from "@/routes/routesConfig";
+import { LESSON_DATA } from '@/mocks/mockLessonData';
+
+type StatusType = 'APPLY' | 'COMPLETE' | 'CLOSED';
 
 const FixedFooter = () => {
   const [isHeartFilled, setIsHeartFilled] = useState(false);
   const navigate = useNavigate();
+
+  const { status } = LESSON_DATA as { status: StatusType };
+
+  const buttonConfig: Record<StatusType, { text: string; isDisabled: boolean }> = {
+    APPLY: { text: '신청하기', isDisabled: false },
+    COMPLETE: { text: '신청 완료', isDisabled: true },
+    CLOSED: { text: '신청 마감', isDisabled: true },
+  };
+
+  const { text, isDisabled } = buttonConfig[status];
 
   const toggleHeart = () => {
     setIsHeartFilled((prev) => !prev);
   };
 
   const handleApplyClick = () => {
-    navigate(ROUTES_CONFIG.reservation.path);
+    if (!isDisabled) {
+      navigate(ROUTES_CONFIG.reservation.path);
+    }
   };
 
   return (
@@ -28,8 +43,8 @@ const FixedFooter = () => {
         )}
       </BoxButton>
 
-      <BoxButton variant="primary" isDisabled={false} onClick={handleApplyClick}>
-        신청하기
+      <BoxButton variant="primary" isDisabled={isDisabled} onClick={handleApplyClick}>
+        {text}
       </BoxButton>
     </Flex>
   );

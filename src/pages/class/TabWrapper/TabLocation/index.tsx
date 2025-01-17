@@ -3,6 +3,7 @@ import Flex from '@/components/Flex';
 import Text from '@/components/Text';
 import { LESSON_DATA } from '@/mocks/mockLessonData';
 import { IcLocation60 } from '@/assets/svg';
+import { streetAddressStyle, addressTitleStyle } from "@/pages/class/TabWrapper/TabLocation/index.css";
 
 const LocationInfo = () => {
   const { lessonLocation, lessonStreetAddress, lessonOldStreetAddress } = LESSON_DATA;
@@ -19,11 +20,11 @@ const LocationInfo = () => {
             <Flex direction="column" gap="0.4rem">
               <Flex justify="spaceBetween">
                 <Flex marginRight="0.4rem">
-                  <Text tag="b7" color="gray6">
+                  <Text tag="b7" color="gray6" className={addressTitleStyle}>
                     주소
                   </Text>
                 </Flex>
-                <Text tag="b7" color="gray7" style={{ whiteSpace: 'pre-line' }}>
+                <Text tag="b7" color="gray7" className={streetAddressStyle}>
                   {lessonStreetAddress}
                 </Text>
               </Flex>
