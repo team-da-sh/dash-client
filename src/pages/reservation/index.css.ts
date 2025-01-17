@@ -13,7 +13,7 @@ export const agreementContainerStyle = style({
   width: '100%',
 });
 
-export const agreementBox = style({
+export const agreementBoxStyle = style({
   display: 'flex',
   alignItems: 'center',
   padding: '2rem',
@@ -27,15 +27,15 @@ export const agreementBox = style({
   backgroundColor: vars.colors.white,
 });
 
-export const agreementChecked = style({
+export const agreementCheckedStyle = style({
   borderColor: vars.colors.main04,
 });
 
-export const agreementUnchecked = style({
+export const agreementUncheckedStyle = style({
   borderColor: vars.colors.gray04,
 });
 
-export const totalPriceContainer = style({
+export const totalPriceContainerStyle = style({
   display: 'flex',
   flexDirection: 'row',
   justifyContent: 'space-between',
@@ -54,4 +54,8 @@ export const bottomButtonStyle = style({
   width: '100%',
 
   zIndex: 1000,
+});
+
+export const agreementTextStyle = style({
+  paddingBottom: '4.2rem',
 });

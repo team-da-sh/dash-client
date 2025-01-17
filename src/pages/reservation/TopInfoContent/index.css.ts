@@ -10,7 +10,7 @@ export const topImgStyle = style({
   zIndex: 0,
 });
 
-export const gradientOverlay = style({
+export const gradientOverlayStyle = style({
   position: 'absolute',
   bottom: 0,
   left: 0,
@@ -23,7 +23,7 @@ export const gradientOverlay = style({
   pointerEvents: 'none',
 });
 
-export const textWrapper = style({
+export const textWrapperStyle = style({
   position: 'relative',
   zIndex: 2,
 });

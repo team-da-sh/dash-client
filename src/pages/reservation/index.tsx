@@ -14,14 +14,15 @@ import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { IcCheckcircleGray0524, IcCheckcircleMain0324 } from '@/assets/svg';
 import { MY_RESERVATION_DATA } from '@/mocks/mockMyReservationData';
 import {
-  agreementBox,
-  agreementChecked,
+  agreementBoxStyle,
+  agreementCheckedStyle,
   agreementContainerStyle,
-  agreementUnchecked,
+  agreementUncheckedStyle,
   headerStyle,
   reservationStyle,
-  totalPriceContainer,
+  totalPriceContainerStyle,
   bottomButtonStyle,
+  agreementTextStyle,
 } from './index.css';
 
 const Reservation = () => {
@@ -91,7 +92,7 @@ const Reservation = () => {
           <div className={agreementContainerStyle}>
             <div
               onClick={handleToggleAll}
-              className={`${agreementBox} ${isAllChecked ? agreementChecked : agreementUnchecked}`}>
+              className={`${agreementBoxStyle} ${isAllChecked ? agreementCheckedStyle : agreementUncheckedStyle}`}>
               {isAllChecked ? <IcCheckcircleMain0324 height={24} /> : <IcCheckcircleGray0524 height={24} />}
               <Head level="h5" tag="h6">
                 전체동의
@@ -113,7 +114,7 @@ const Reservation = () => {
               />
             </Flex>
           </div>
-          <Text tag="b3" color="gray6" style={{ paddingBottom: '4.2rem' }}>
+          <Text tag="b3" color="gray6" className={agreementTextStyle}>
             * 예약 서비스 이용을 위한 개인정보 수집 및 제 3자 제공,
             <br />
             취소/환불 규정을 확인하였으며 이에 동의합니다.
@@ -122,7 +123,7 @@ const Reservation = () => {
         <Divider direction="horizontal" length="100%" thickness="0.1rem" color="gray3" />
       </Flex>
 
-      <div className={totalPriceContainer}>
+      <div className={totalPriceContainerStyle}>
         <Head level="h3" tag="h4" color="gray9">
           총 결제 금액
         </Head>
