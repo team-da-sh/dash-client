@@ -50,10 +50,7 @@ export const bottomButtonStyle = style({
   position: 'fixed',
   bottom: '0',
   padding: '2.4rem 2rem',
-
   width: '100%',
-
-  zIndex: 1000,
 });
 
 export const agreementTextStyle = style({

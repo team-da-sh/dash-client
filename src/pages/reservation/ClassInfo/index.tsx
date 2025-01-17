@@ -1,5 +1,5 @@
 import ScheduleItem from '@/pages/reservation/ClassInfo/ScheduleItem';
-import { infoComponentStyle, textLabelStyle } from '@/pages/reservation/ClassInfo/index.css';
+import { infoContainerStyle, textLabelStyle } from '@/pages/reservation/ClassInfo/index.css';
 import InfoRow from '@/pages/reservation/InfoRow';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
@@ -11,7 +11,7 @@ const ClassInfo = () => {
   const { lessonName, lessonLocation, teacherName, lessonLevel, lessonRound } = MY_RESERVATION_DATA;
 
   return (
-    <div className={infoComponentStyle}>
+    <div className={infoContainerStyle}>
       <Flex direction="column" gap="2rem">
         <Head level="h5" tag="h6">
           {lessonName}
@@ -25,12 +25,12 @@ const ClassInfo = () => {
               일정
             </Text>
             <Flex direction="column" gap="1.2rem">
-              {lessonRound.map((item, index) => (
+              {lessonRound.map(({ lessonStartDateTime, lessonEndDateTime }, index) => (
                 <ScheduleItem
                   key={index}
                   index={index}
-                  startDateTime={item.lessonStartDateTime}
-                  endDateTime={item.lessonEndDateTime}
+                  startDateTime={lessonStartDateTime}
+                  endDateTime={lessonEndDateTime}
                 />
               ))}
             </Flex>

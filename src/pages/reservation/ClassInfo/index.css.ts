@@ -1,7 +1,7 @@
 import { style } from '@vanilla-extract/css';
 import { vars } from '@/styles/theme.css';
 
-export const infoComponentStyle = style({
+export const infoContainerStyle = style({
   margin: '0 auto',
   padding: '2rem',
 
