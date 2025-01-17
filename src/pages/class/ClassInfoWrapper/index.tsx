@@ -81,7 +81,7 @@ const ClassInfoWrapper = () => {
         </Flex>
 
         <div className={cardStyle}>
-          <IcThunderMain0424 width={24} color={iconColor} className={thunderIconStyle} />
+          <IcThunderMain0424 width={'2.4rem'} color={iconColor} className={thunderIconStyle} />
           <Text tag="b2" color="black">
             {isSoldOut ? '' : '마감까지'}
           </Text>

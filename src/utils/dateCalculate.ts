@@ -17,7 +17,7 @@ export const calculatePeriod = (start: string, end: string) => {
 
   const totalMinutes = Math.abs(endDate.getTime() - startDate.getTime()) / 1000 / 60;
   const hours = Math.floor(totalMinutes / 60);
-  const minutes = totalMinutes % 60;
+  const minutes = Math.ceil(totalMinutes % 60);
 
   const durationString = minutes > 0 ? `총 ${hours}시간 ${minutes}분` : `총 ${hours}시간`;
 

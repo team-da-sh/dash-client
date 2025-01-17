@@ -17,7 +17,7 @@ export const LESSON_DATA = {
   lessonLevelDetail: '기초적인 동작과 리듬을 익힐 냥냥 ',
   lessonRound: [
     {
-      lessonStartDateTime: '2025-01-18T03:40:00',
+      lessonStartDateTime: '2025-01-18T03:57:40',
       lessonEndDateTime: '2025-01-18T04:30:00',
     },
     {
