@@ -25,19 +25,22 @@ const ClassCard = ({
   return (
     <div className={styles.cardContainerStyle}>
       <Flex justify="spaceBetween" align="center">
-        <Flex align="center" marginBottom="1.2rem">
-          {(() => {
-            switch (status) {
-              case 'upcoming':
-                return <IcClassSoonMain0324 width="1.8rem" />;
-              case 'ongoing':
-                return <IcClassIngMain0324 width="1.8rem" />;
-              case 'completed':
-                return <IcClassEndMain0324 width="1.8rem" />;
-              default:
-                return null;
-            }
-          })()}
+        <Flex align="center" gap="0.3rem" marginBottom="1.2rem">
+          <Flex marginRight="0.5rem">
+            {(() => {
+              switch (status) {
+                case 'upcoming':
+                  return <IcClassSoonMain0324 width="1.8rem" />;
+                case 'ongoing':
+                  return <IcClassIngMain0324 width="1.8rem" />;
+                case 'completed':
+                  return <IcClassEndMain0324 width="1.8rem" />;
+                default:
+                  return null;
+              }
+            })()}
+          </Flex>
+
           <Text tag="b4" color={status === 'completed' ? 'gray8' : 'black'}>
             {(() => {
               if (isReservation) {
