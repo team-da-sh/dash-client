@@ -73,7 +73,7 @@ const TopSection = ({ userData }: { userData: MyPageProps }) => {
             <Head tag="h4" color={getTextColor(userData.reservationCount)}>
               {userData.reservationCount}
             </Head>
-            <Text tag="b6" color={getTextColor(userData.reservationCount)}>
+            <Text tag="b6" color={getTextColor(userData.reservationCount)} style={{ whiteSpace: 'nowrap' }}>
               신청내역
             </Text>
           </Flex>
