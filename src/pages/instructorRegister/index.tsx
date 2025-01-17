@@ -2,10 +2,11 @@ import BoxButton from '@/components/BoxButton';
 import Header from '@/components/Header';
 import ProgressBar from '@/components/ProgressBar';
 import { useFunnel } from '@/hooks/useFunnel';
+import CareerStep from './CareerStep';
 import ImageUploadStep from './ImageUploadStep';
 import PersonalSNSStep from './PersonalSNSStep';
+import VideoLinkStep from './VideoLinkStep';
 import { buttonContainerStyle, funnelContainerStyle, progressBarCustomStyle } from './index.css';
-import CareerStep from './CareerStep';
 
 const InstructorRegister = () => {
   const { Funnel, Step, currentStep, setStep } = useFunnel(6, '/mypage');
@@ -28,6 +29,9 @@ const InstructorRegister = () => {
           </Step>
           <Step name="3">
             <CareerStep />
+          </Step>
+          <Step name="4">
+            <VideoLinkStep />
           </Step>
         </Funnel>
       </div>
