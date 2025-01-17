@@ -12,14 +12,21 @@ import { ROUTES_CONFIG } from '@/routes/routesConfig';
 
 const Login = () => {
   const { Funnel, Step, setStep, currentStep } = useFunnel(5, ROUTES_CONFIG.home.path);
-
+  
   const handleNextButtonClick = () => {
     setStep(1);
   };
 
+  const handlePrevButtonClick = () => {
+    if (currentStep === 1){
+
+    }
+    setStep(-1);
+  };
+
   return (
     <div className={containerStyle}>
-      <LoginHeader currentStep={currentStep} />
+      <LoginHeader currentStep={currentStep} onPrevButtonClick={handlePrevButtonClick} />
       {currentStep < 5 && <ProgressBar totalStep={4} currentStep={currentStep} className={progressBarStyle} />}
 
       <div className={bodyWrapperStyle}>

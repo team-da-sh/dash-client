@@ -19,13 +19,18 @@ interface CloseIconProps {
   onClick?: () => void;
 }
 
+interface BackIconProps {
+  onClick?: () => void;
+}
+
 const HeaderRoot = ({ children, isColor = false, className }: HeaderRootProps): JSX.Element => {
   return <div className={clsx(className, headerRootStyle({ isColor }))}>{children}</div>;
 };
 
-const BackIcon = (): JSX.Element => {
+const BackIcon = ({ onClick = () => {} }: BackIconProps): JSX.Element => {
   const navigate = useNavigate();
   const handleBackClick = () => {
+    onClick();
     navigate(-1);
   };
   return (
