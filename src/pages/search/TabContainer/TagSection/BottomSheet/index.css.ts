@@ -7,7 +7,8 @@ export const bottomSheet = style({
 
 export const overlayStyle = style({
   position: 'fixed',
-  left: 'calc(50vw - 21.5rem)',
+  left: '50%',
+  transform: 'translateX(-50%)',
   bottom: 0,
   height: '100vh',
   width: '100%',
@@ -21,8 +22,8 @@ export const bottomSheetStyle = style({
   height: '50rem',
   width: '100%',
   bottom: 0,
-  left: 'calc(50vw - 21.5rem)',
-
+  left: '50%',
+  transform: 'translateX(-50%)',
   background: vars.colors.white,
   padding: '3.6rem 2rem 2.4rem 2rem',
   zIndex: 3,
