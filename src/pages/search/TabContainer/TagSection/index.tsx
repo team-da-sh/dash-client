@@ -8,6 +8,7 @@ import { IcFilterGray } from '@/assets/svg';
 interface TagItem {
   label: string;
   icon?: JSX.Element;
+  type?: string;
 }
 
 interface TagSectionProps {
@@ -19,8 +20,22 @@ interface TagSectionProps {
 
 const TagSection = ({ displayTags, activeTags, tagSize, tagType }: TagSectionProps) => {
   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
+  const [selectedTagIndex, setSelectedTagIndex] = useState(0);
 
-  const handleTagClick = () => {
+  const handleTagClick = (index: number) => {
+    if (activeTags.length > 0) {
+      const clickedTag = activeTags[index];
+      const tabMapping: Record<string, number> = {
+        genre: 0,
+        level: 1,
+        dateRange: 2,
+      };
+      if (clickedTag.type) {
+        setSelectedTagIndex(tabMapping[clickedTag.type]);
+      }
+    } else {
+      setSelectedTagIndex(index);
+    }
     setIsBottomSheetOpen(true);
   };
 
@@ -33,15 +48,21 @@ const TagSection = ({ displayTags, activeTags, tagSize, tagType }: TagSectionPro
       <Flex justify="spaceBetween" paddingTop="1.2rem" paddingBottom="1.6rem">
         <Flex gap="0.6rem">
           {displayTags.map((tag, index) => (
-            <Tag className={tagCustomStyle} key={index} size={tagSize} type={tagType} onClick={handleTagClick}>
+            <Tag
+              className={tagCustomStyle}
+              key={index}
+              size={tagSize}
+              type={tagType}
+              onClick={() => handleTagClick(index)} // 태그 클릭 핸들러에 인덱스 전달
+            >
               {tag.label}
               {tag.icon && tag.icon}
             </Tag>
           ))}
         </Flex>
-        {!activeTags.length && <IcFilterGray width={28} onClick={handleTagClick} />}
+        {!activeTags.length && <IcFilterGray width={28} onClick={() => handleTagClick(0)} />}
       </Flex>
-      {isBottomSheetOpen && <BottomSheet onClose={handleBottomSheetClose} />}
+      {isBottomSheetOpen && <BottomSheet onClose={handleBottomSheetClose} initialTabIndex={selectedTagIndex} />}
     </>
   );
 };

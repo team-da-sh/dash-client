@@ -6,11 +6,18 @@ import { TabButton, TabList, TabPanel, TabRoot } from '@/components/Tab';
 
 interface BottomSheetProps {
   onClose: () => void;
+  initialTabIndex: number;
 }
 
-const BottomSheet = ({ onClose }: BottomSheetProps) => {
-  const [selectedTab, setSelectedTab] = useState(0);
+interface BottomSheetProps {
+  onClose: () => void;
+  initialTabIndex: number; // 초기 탭 인덱스
+}
+
+const BottomSheet = ({ onClose, initialTabIndex }: BottomSheetProps) => {
+  const [selectedTab, setSelectedTab] = useState(initialTabIndex); // 초기값 설정
   document.body.style.overflow = 'hidden';
+
   return (
     <div className={bottomSheetStyle}>
       <div className={overlayStyle} onClick={onClose} />
