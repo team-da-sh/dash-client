@@ -1,6 +1,5 @@
-export interface ClassCardProps {
-  lessonId?: number;
-  reservationId?: number;
+export interface ReservationCardProps {
+  reservationId: number;
   lessonName: string;
   lessonImageUrl: string;
   lessonGenre: string;
@@ -8,6 +7,4 @@ export interface ClassCardProps {
   lessonLocation: string;
   lessonStartDateTime: string;
   lessonEndDateTime: string;
-  isReservation?: boolean;
-  children?: React.ReactNode;
 }

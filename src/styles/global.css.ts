@@ -11,14 +11,13 @@ globalStyle(':root', {
 
 // HTML, Body 스타일
 globalStyle('html, body', {
-  fontSize: '62.5%',
-  scrollbarWidth: 'none',
-  margin: 0,
-  padding: 0,
-  width: '100%',
+  minWidth: 'var(--min-width)',
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
+  fontSize: '62.5%',
+  scrollbarWidth: 'none',
+  margin: '0 auto',
   scrollBehavior: 'smooth',
   backgroundColor: vars.colors.gray01,
 });
@@ -37,11 +36,8 @@ globalStyle('select', {
 // #root 스타일
 globalStyle('#root', {
   width: '100%',
-  minWidth: 'var(--min-width)',
-  maxWidth: 'var(--max-width)',
   minHeight: '100dvh',
   backgroundColor: '#fff',
-  margin: '0 auto',
 });
 
 // Webkit 스크롤바 숨기기
