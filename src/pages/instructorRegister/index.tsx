@@ -19,7 +19,7 @@ const InstructorRegister = () => {
         {currentStep < 6 && <Header.BackIcon />}
         <Header.CloseIcon onClick={() => console.log('hi')} />
       </Header.Root>
-      <ProgressBar totalStep={5} currentStep={currentStep} className={progressBarCustomStyle} />
+      {currentStep < 6 && <ProgressBar totalStep={5} currentStep={currentStep} className={progressBarCustomStyle} />}
 
       <div className={funnelContainerStyle}>
         <Funnel>
@@ -49,7 +49,11 @@ const InstructorRegister = () => {
       </div>
 
       <div className={buttonContainerStyle}>
-        <BoxButton onClick={() => setStep(1)}>다음으로</BoxButton>
+        {currentStep < 6 ? (
+          <BoxButton onClick={() => setStep(1)}>다음</BoxButton>
+        ) : (
+          <BoxButton onClick={() => setStep(1)}>완료</BoxButton>
+        )}
       </div>
     </>
   );
