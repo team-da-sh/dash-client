@@ -7,7 +7,6 @@ export const tagStyle = recipe({
     justifyContent: 'center',
     alignItems: 'center',
     color: vars.colors.white,
-    height: '100%',
   },
   variants: {
     type: {
