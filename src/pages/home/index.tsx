@@ -11,11 +11,11 @@ import {
   recommandClassWrapperStyle,
 } from '@/pages/home/index.css';
 import { DANCERLIST, GENRELIST } from '@/pages/home/mocks';
+import { CLASS_LIST } from '@/pages/search/mocks';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import { useIntersect } from '@/utils/useIntersect';
 import { vars } from '@/styles/theme.css';
-import { CLASS_LIST } from '../search/mocks';
 
 const Home = () => {
   const [targetRef, isVisible] = useIntersect(false);
