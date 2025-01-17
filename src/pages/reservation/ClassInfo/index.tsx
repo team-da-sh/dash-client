@@ -7,7 +7,7 @@ import Text from '@/components/Text';
 import { vars } from '@/styles/theme.css';
 import { MY_RESERVATION_DATA } from '@/mocks/mockMyReservationData';
 
-const InfoComponent = () => {
+const ClassInfo = () => {
   const { lessonName, lessonLocation, teacherName, lessonLevel, lessonRound } = MY_RESERVATION_DATA;
 
   return (
@@ -45,4 +45,4 @@ const InfoComponent = () => {
   );
 };
 
-export default InfoComponent;
+export default ClassInfo;

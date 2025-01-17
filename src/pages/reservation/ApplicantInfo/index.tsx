@@ -2,7 +2,7 @@ import { bookerComponentStyle } from '@/pages/reservation/ApplicantInfo/index.cs
 import InfoRow from '@/pages/reservation/InfoRow';
 import { MY_RESERVATION_DATA } from '@/mocks/mockMyReservationData';
 
-const BookerComponent = () => {
+const ApplicantInfo = () => {
   const { bookerName, bookerPhoneNumber } = MY_RESERVATION_DATA;
 
   return (
@@ -14,4 +14,4 @@ const BookerComponent = () => {
   );
 };
 
-export default BookerComponent;
+export default ApplicantInfo;

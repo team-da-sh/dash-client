@@ -14,7 +14,7 @@ type AgreeComponentProps = {
   link?: string;
 };
 
-const AgreeComponent = ({ text, isChecked, onToggle, link }: AgreeComponentProps) => {
+const AgreeCheckBox = ({ text, isChecked, onToggle, link }: AgreeComponentProps) => {
   const handleArrowClick = (e: React.MouseEvent) => {
     e.stopPropagation();
     if (link) {
@@ -52,4 +52,4 @@ const AgreeComponent = ({ text, isChecked, onToggle, link }: AgreeComponentProps
   );
 };
 
-export default AgreeComponent;
+export default AgreeCheckBox;

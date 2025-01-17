@@ -3,7 +3,7 @@ import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import { MY_RESERVATION_DATA } from '@/mocks/mockMyReservationData';
 
-const TopImageComponent = () => {
+const TopInfoContent = () => {
   const { lessonName, teacherName } = MY_RESERVATION_DATA;
 
   return (
@@ -22,4 +22,4 @@ const TopImageComponent = () => {
   );
 };
 
-export default TopImageComponent;
+export default TopInfoContent;
