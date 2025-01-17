@@ -11,15 +11,18 @@ import VideoLinkStep from './VideoLinkStep';
 import { buttonContainerStyle, funnelContainerStyle, progressBarCustomStyle } from './index.css';
 
 const InstructorRegister = () => {
-  const { Funnel, Step, currentStep, setStep } = useFunnel(6, '/mypage');
+  const TOTAL_STEP = 6;
+  const { Funnel, Step, currentStep, setStep } = useFunnel(TOTAL_STEP, '/mypage');
 
   return (
     <>
       <Header.Root isColor={true}>
-        {currentStep < 6 && <Header.BackIcon />}
+        {currentStep < TOTAL_STEP && <Header.BackIcon />}
         <Header.CloseIcon onClick={() => console.log('hi')} />
       </Header.Root>
-      {currentStep < 6 && <ProgressBar totalStep={5} currentStep={currentStep} className={progressBarCustomStyle} />}
+      {currentStep < TOTAL_STEP && (
+        <ProgressBar totalStep={5} currentStep={currentStep} className={progressBarCustomStyle} />
+      )}
 
       <div className={funnelContainerStyle}>
         <Funnel>
@@ -49,7 +52,7 @@ const InstructorRegister = () => {
       </div>
 
       <div className={buttonContainerStyle}>
-        {currentStep < 6 ? (
+        {currentStep < TOTAL_STEP ? (
           <BoxButton onClick={() => setStep(1)}>다음</BoxButton>
         ) : (
           <BoxButton onClick={() => setStep(1)}>완료</BoxButton>
