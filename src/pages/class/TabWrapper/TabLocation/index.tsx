@@ -1,9 +1,9 @@
 import Card from '@/pages/class/Card';
+import { streetAddressStyle, addressTitleStyle } from '@/pages/class/TabWrapper/TabLocation/index.css';
 import Flex from '@/components/Flex';
 import Text from '@/components/Text';
-import { LESSON_DATA } from '@/mocks/mockLessonData';
 import { IcLocation60 } from '@/assets/svg';
-import { streetAddressStyle, addressTitleStyle } from "@/pages/class/TabWrapper/TabLocation/index.css";
+import { LESSON_DATA } from '@/mocks/mockLessonData';
 
 const LocationInfo = () => {
   const { lessonLocation, lessonStreetAddress, lessonOldStreetAddress } = LESSON_DATA;

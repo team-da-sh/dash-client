@@ -2,10 +2,10 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import BoxButton from '@/components/BoxButton';
 import Flex from '@/components/Flex';
-import { buttonWrapperStyle } from './index.css';
+import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { IcHeartOutlinedGray07, IcHeartFilledGray07 } from '@/assets/svg';
-import { ROUTES_CONFIG } from "@/routes/routesConfig";
 import { LESSON_DATA } from '@/mocks/mockLessonData';
+import { buttonWrapperStyle } from './index.css';
 
 type StatusType = 'APPLY' | 'COMPLETE' | 'CLOSED';
 
@@ -36,11 +36,7 @@ const FixedFooter = () => {
   return (
     <Flex height="10.2rem" width="100%" className={buttonWrapperStyle}>
       <BoxButton variant="heart" isDisabled={false} onClick={toggleHeart}>
-        {isHeartFilled ? (
-          <IcHeartFilledGray07 width={28} />
-        ) : (
-          <IcHeartOutlinedGray07 width={28} />
-        )}
+        {isHeartFilled ? <IcHeartFilledGray07 width={28} /> : <IcHeartOutlinedGray07 width={28} />}
       </BoxButton>
 
       <BoxButton variant="primary" isDisabled={isDisabled} onClick={handleApplyClick}>

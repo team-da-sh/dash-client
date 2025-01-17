@@ -1,9 +1,4 @@
-import {
-  profileStyle,
-  lessonNameStyle,
-  cardStyle,
-  thunderIconStyle,
-} from '@/pages/class/ClassInfoWrapper/index.css';
+import { profileStyle, lessonNameStyle, cardStyle, thunderIconStyle } from '@/pages/class/ClassInfoWrapper/index.css';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Tag from '@/components/Tag';

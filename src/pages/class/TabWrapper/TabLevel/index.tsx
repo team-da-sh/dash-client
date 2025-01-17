@@ -34,7 +34,6 @@ const Level = () => {
       <Flex width="100%" align="flexEnd" direction="column" gap="0.6rem">
         <Card>
           <Flex gap="0.8rem" align="center">
-
             {levelIconMap[lessonLevel] || <IcAssetLevelStarter width={'3.6rem'} />}
             <Head level="h6" tag="h6">
               {lessonLevel}

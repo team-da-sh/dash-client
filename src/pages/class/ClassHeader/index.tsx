@@ -1,10 +1,10 @@
 import { useNavigate } from 'react-router-dom';
+import { backIconStyle, classNameHeaderStyle } from '@/pages/class/ClassHeader/index.css';
 import { containerStyle } from '@/pages/home/components/HomeHeader/index.css';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import { IcBack, IcBackWhite24 } from '@/assets/svg';
 import { LESSON_DATA } from '@/mocks/mockLessonData';
-import { backIconStyle, classNameHeaderStyle } from './index.css';
 
 interface ClassHeaderProps {
   isVisible: boolean;

@@ -1,11 +1,11 @@
+import ClassButtonWrapper from '@/pages/class/ClassButtonWrapper';
 import ClassHeader from '@/pages/class/ClassHeader';
 import ClassInfoWrapper from '@/pages/class/ClassInfoWrapper';
 import TabWrapper from '@/pages/class/TabWrapper';
+import { headerStyle } from '@/pages/class/index.css';
 import Divider from '@/components/Divider';
 import { useIntersect } from '@/utils/useIntersect';
 import { LESSON_DATA } from '@/mocks/mockLessonData';
-import ClassButtonWrapper from './ClassButtonWrapper';
-import { headerStyle } from './index.css';
 
 const Class = () => {
   const [targetRef, isVisible] = useIntersect(false);
