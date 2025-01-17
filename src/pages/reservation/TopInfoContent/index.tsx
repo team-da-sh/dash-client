@@ -1,7 +1,7 @@
+import { topImgStyle, gradientOverlay, textWrapper } from '@/pages/reservation/TopInfoContent/index.css';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import { MY_RESERVATION_DATA } from '@/mocks/mockMyReservationData';
-import { topImgStyle, gradientOverlay, textWrapper } from './index.css';
 
 const TopImageComponent = () => {
   const { lessonName, teacherName } = MY_RESERVATION_DATA;

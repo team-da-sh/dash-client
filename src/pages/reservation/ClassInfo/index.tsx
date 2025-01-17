@@ -1,11 +1,11 @@
+import ScheduleItem from '@/pages/reservation/ClassInfo/ScheduleItem';
+import { infoComponentStyle, textLabelStyle } from '@/pages/reservation/ClassInfo/index.css';
 import InfoRow from '@/pages/reservation/InfoRow';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Text from '@/components/Text';
 import { vars } from '@/styles/theme.css';
 import { MY_RESERVATION_DATA } from '@/mocks/mockMyReservationData';
-import ScheduleItem from './ScheduleItem';
-import { infoComponentStyle, textLabelStyle } from './index.css';
 
 const InfoComponent = () => {
   const { lessonName, lessonLocation, teacherName, lessonLevel, lessonRound } = MY_RESERVATION_DATA;

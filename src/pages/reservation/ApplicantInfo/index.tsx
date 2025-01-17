@@ -1,6 +1,6 @@
+import { bookerComponentStyle } from '@/pages/reservation/ApplicantInfo/index.css';
 import InfoRow from '@/pages/reservation/InfoRow';
 import { MY_RESERVATION_DATA } from '@/mocks/mockMyReservationData';
-import { bookerComponentStyle } from './index.css';
 
 const BookerComponent = () => {
   const { bookerName, bookerPhoneNumber } = MY_RESERVATION_DATA;

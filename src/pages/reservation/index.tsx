@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import AgreeCheckBox from '@/pages/reservation/AgreeCheckBox';
+import ApplicantInfo from '@/pages/reservation/ApplicantInfo';
 import ClassInfo from '@/pages/reservation/ClassInfo';
+import TopInfoContent from '@/pages/reservation/TopInfoContent';
 import BoxButton from '@/components/BoxButton';
 import Divider from '@/components/Divider';
 import Flex from '@/components/Flex';
@@ -10,9 +13,6 @@ import Text from '@/components/Text';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { IcCheckcircleGray0524, IcCheckcircleMain0324 } from '@/assets/svg';
 import { MY_RESERVATION_DATA } from '@/mocks/mockMyReservationData';
-import AgreeCheckBox from './AgreeCheckBox';
-import ApplicantInfo from './ApplicantInfo';
-import TopImageComponent from './TopImageComponent';
 import {
   agreementBox,
   agreementChecked,
@@ -58,7 +58,7 @@ const Reservation = () => {
           <Header.Title title="클래스 신청" />
         </Header.Root>
       </div>
-      <TopImageComponent />
+      <TopInfoContent />
       <Flex
         width="100%"
         direction="column"
