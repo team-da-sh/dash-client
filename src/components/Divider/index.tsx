@@ -4,6 +4,7 @@ import { dividerStyle } from '@/components/Divider/index.css';
 
 interface DividerProps extends HTMLAttributes<HTMLDivElement> {
   direction?: 'horizontal' | 'vertical';
+
   color?:
     | 'main1'
     | 'main2'
