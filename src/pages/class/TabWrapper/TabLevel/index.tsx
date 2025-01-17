@@ -13,11 +13,11 @@ import {
 } from '@/assets/svg';
 import { LESSON_DATA } from '@/mocks/mockLessonData';
 
-type LessonLevelType = '초급' | '입문' | '중급' | '고급';
+type LessonLevelType = '입문' | '초급' | '중급' | '고급';
 
 const levelIconMap = {
-  초급: <IcAssetLevelStarter width={'3.6rem'} />,
-  입문: <IcAssetLevelBasic width={'3.6rem'} />,
+  입문: <IcAssetLevelStarter width={'3.6rem'} />,
+  초급: <IcAssetLevelBasic width={'3.6rem'} />,
   중급: <IcAssetLevelIntermediate width={'3.6rem'} />,
   고급: <IcAssetLevelAdvanced width={'3.6rem'} />,
 };
