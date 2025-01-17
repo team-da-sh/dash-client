@@ -1,4 +1,5 @@
 import BoxButton from '@/components/BoxButton';
+import Completion from '@/components/Completion';
 import Header from '@/components/Header';
 import ProgressBar from '@/components/ProgressBar';
 import { useFunnel } from '@/hooks/useFunnel';
@@ -38,7 +39,11 @@ const InstructorRegister = () => {
             <IntroductionStep />
           </Step>
           <Step name="6">
-            <IntroductionStep />
+            <Completion
+              title="강사 등록 완료!"
+              subTitle="멋진 클래스 기대할게요"
+              description="이제 마이페이지에서 내 클래스를 개설할 수 있어요"
+            />
           </Step>
         </Funnel>
       </div>
