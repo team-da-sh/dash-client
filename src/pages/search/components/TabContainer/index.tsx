@@ -1,8 +1,9 @@
 import { useState } from 'react';
+import ClassItem from '@/pages/home/components/ClassItem';
 import DancerList from '@/pages/search/components/DancerList';
 import TagSection from '@/pages/search/components/TabContainer/TagSection';
-import { sortIconStyle } from '@/pages/search/components/TabContainer/index.css';
-import { DANCER_LIST } from '@/pages/search/mocks/index';
+import { sortIconStyle, divCustomStyle } from '@/pages/search/components/TabContainer/index.css';
+import { CLASS_LIST, DANCER_LIST } from '@/pages/search/mocks/index';
 import { defaultSortTagProps } from '@/pages/search/types/defaultSortTag';
 import Flex from '@/components/Flex';
 import { TabList, TabRoot, TabButton, TabPanel } from '@/components/Tab';
@@ -61,6 +62,25 @@ const TabContainer = ({ defaultSortTags, genre, level, startDate, endDate }: Tab
           </TabList>
           <TabPanel isSelected={selectedTab === 0}>
             <TagSection displayTags={displayTags} activeTags={activeTags} tagSize={tagSize} tagType={tagType} />
+            <div className={divCustomStyle}>
+              {CLASS_LIST.map((data) => (
+                <ClassItem
+                  key={data.id}
+                  lessonId={data.id}
+                  lessonImageUrl={data.teacherProfileImage}
+                  lessonLevel={data.level}
+                  lessonGenre={data.genre}
+                  lessonName={data.name}
+                  teacherNickname={data.teacherName}
+                  teacherImageUrl={data.teacherProfileImage}
+                  lessonStartDateTime={data.startDate}
+                  lessonEndDateTime={data.endDate}
+                  lessonStreetAddress={data.location}
+                  lessonRemainingDays={data.remainingDays}
+                  useNewStyles={true}
+                />
+              ))}
+            </div>
           </TabPanel>
           <TabPanel isSelected={selectedTab === 1}>
             <DancerList dancers={DANCER_LIST} />
