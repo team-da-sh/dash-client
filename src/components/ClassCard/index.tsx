@@ -1,3 +1,4 @@
+import { ClassCardProps } from '@/pages/home/types/classCardTypes';
 import * as styles from '@/components/ClassCard/index.css';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
@@ -6,7 +7,6 @@ import Text from '@/components/Text';
 import { formatLessonDateRange } from '@/utils/timeCalculate';
 import { getClassStatus } from '@/utils/timeCalculate';
 import { IcArrowRightGray0614 } from '@/assets/svg';
-import { ClassCardProps } from '@/types/classCardTypes';
 
 const ClassCard = ({
   lessonName,

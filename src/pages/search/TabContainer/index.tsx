@@ -11,6 +11,7 @@ import { defaultSortTagProps } from '@/types/defaultSortTag';
 interface TagItem {
   label: string;
   icon?: JSX.Element;
+  type?: string;
 }
 
 interface TabContainerProps {
@@ -25,16 +26,18 @@ const TabContainer = ({ defaultSortTags, genre, level, startDate, endDate }: Tab
   const [selectedTab, setSelectedTab] = useState(0);
 
   const activeTags: TagItem[] = [
-    { condition: genre, label: genre },
-    { condition: level, label: level },
+    { condition: genre, label: genre, type: 'genre' },
+    { condition: level, label: level, type: 'level' },
     {
       condition: startDate && endDate,
       label: `${startDate} ~ ${endDate}`,
+      type: 'dateRange',
     },
   ]
     .filter((tag) => tag.condition)
     .map((tag) => ({
       label: tag.label as string,
+      type: tag.type,
       icon: <IcXMain04 width={18} height={18} />,
     }));
 
