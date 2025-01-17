@@ -40,7 +40,7 @@ const meta = {
   },
   args: {
     direction: 'horizontal',
-    color: 'primary',
+    color: 'gray4',
     length: '800px',
     thickness: '0.1rem',
   },
@@ -55,7 +55,7 @@ export const Default: Story = {};
 export const Horizontal: Story = {
   args: {
     direction: 'horizontal',
-    color: 'primary',
+    color: 'gray7',
     length: '500px',
     thickness: '0.4rem',
   },
@@ -64,7 +64,7 @@ export const Horizontal: Story = {
 export const Vertical: Story = {
   args: {
     direction: 'vertical',
-    color: 'secondary',
+    color: 'gray3',
     length: '100px',
   },
 };
