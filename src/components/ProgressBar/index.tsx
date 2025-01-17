@@ -1,8 +1,8 @@
 import clsx from 'clsx';
-import { HTMLAttributes } from 'react';
+import { ComponentPropsWithoutRef } from 'react';
 import * as styles from '@/components/ProgressBar/index.css';
 
-interface ProgressBarProps extends HTMLAttributes<HTMLDivElement> {
+interface ProgressBarProps extends ComponentPropsWithoutRef<'div'> {
   totalStep: number;
   currentStep: number;
 }

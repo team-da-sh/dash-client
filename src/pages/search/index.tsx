@@ -1,9 +1,17 @@
 import { useState } from 'react';
-import SearchBar from '@/pages/search/components/SearchBar';
+import SearchBar from '@/pages/search/SearchBar';
+import TabContainer from '@/pages/search/TabContainer';
+import Flex from '@/components/Flex';
 import Header from '@/components/Header';
+import { DEFAULT_SORT_TAGS } from '@/constants/defaultSortTags';
+import { headerRootCutomStyle } from './index.css';
 
 const Search = () => {
   const [searchValue, setSearchValue] = useState('');
+  const [genre, setGenre] = useState('');
+  const [level, setLevel] = useState('');
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
 
   const handleSearchChange = (value: string) => {
     setSearchValue(value);
@@ -13,15 +21,29 @@ const Search = () => {
     console.log(searchValue);
   };
 
+  console.log(setGenre);
+  console.log(setLevel);
+  console.log(setStartDate);
+  console.log(setEndDate);
+
   return (
-    <Header.Root>
-      <Header.BackIcon />
-      <SearchBar
-        searchValue={searchValue}
-        handleSearchChange={handleSearchChange}
-        handleSearchIconClick={handleSearchIconClick}
+    <Flex>
+      <Header.Root className={headerRootCutomStyle}>
+        <Header.BackIcon />
+        <SearchBar
+          searchValue={searchValue}
+          handleSearchChange={handleSearchChange}
+          handleSearchIconClick={handleSearchIconClick}
+        />
+      </Header.Root>
+      <TabContainer
+        defaultSortTags={DEFAULT_SORT_TAGS}
+        genre={genre}
+        level={level}
+        startDate={startDate}
+        endDate={endDate}
       />
-    </Header.Root>
+    </Flex>
   );
 };
 

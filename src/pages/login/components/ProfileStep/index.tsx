@@ -2,7 +2,6 @@ import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Input from '@/components/Input';
 import Text from '@/components/Text';
-import { useUploadImg } from '@/hooks/useUploadImg';
 
 interface ProfileStepProps {}
 
@@ -19,7 +18,7 @@ const ProfileStep = ({}: ProfileStepProps) => {
       </Flex>
 
       <Flex direction="column" gap="1.6rem" marginTop="2.8rem" width="100%">
-        <Input placeholder='댄서네임을 입력하세요'/>
+        <Input placeholder="댄서네임을 입력하세요" />
       </Flex>
     </Flex>
   );

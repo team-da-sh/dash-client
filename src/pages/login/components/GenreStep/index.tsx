@@ -3,7 +3,7 @@ import { genreListStyle } from '@/pages/login/components/GenreStep/index.css';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Text from '@/components/Text';
-import { IcImageTemp } from '@/assets/svg';
+import IcImageTemp from '@/assets/svg/IcImageTemp';
 
 interface GenreStepProps {}
 

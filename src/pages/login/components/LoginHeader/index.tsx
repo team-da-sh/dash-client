@@ -1,6 +1,4 @@
-import { progressBarStyle } from '@/pages/login/index.css';
 import Header from '@/components/Header';
-import ProgressBar from '@/components/ProgressBar';
 
 interface LoginHeaderProps {
   currentStep: number;
