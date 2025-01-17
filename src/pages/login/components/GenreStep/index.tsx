@@ -3,23 +3,22 @@ import { genreListStyle } from '@/pages/login/components/GenreStep/index.css';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Text from '@/components/Text';
-import IcImageTemp from '@/assets/svg/IcImageTemp';
 
 interface GenreStepProps {}
 
 const GENRE_INFO = [
-  { genre: '힙합', svg: <IcImageTemp width={84} height={84} /> },
-  { genre: '피메일힙합', svg: <IcImageTemp width={84} height={84} /> },
-  { genre: '팝핑', svg: <IcImageTemp width={84} height={84} /> },
-  { genre: '브레이킹', svg: <IcImageTemp width={84} height={84} /> },
-  { genre: '왁킹', svg: <IcImageTemp width={84} height={84} /> },
-  { genre: '락킹', svg: <IcImageTemp width={84} height={84} /> },
-  { genre: '하우스', svg: <IcImageTemp width={84} height={84} /> },
-  { genre: '보깅', svg: <IcImageTemp width={84} height={84} /> },
-  { genre: '크럼프', svg: <IcImageTemp width={84} height={84} /> },
-  { genre: '소울', svg: <IcImageTemp width={84} height={84} /> },
-  { genre: '코레오그래피', svg: <IcImageTemp width={84} height={84} /> },
-  { genre: '케이팝', svg: <IcImageTemp width={84} height={84} /> },
+  { genre: '힙합', url: '../../../../../public/svg/ic_image_temp.svg' },
+  { genre: '피메일힙합', url: '../../../../../public/svg/ic_image_temp.svg' },
+  { genre: '팝핑', url: '../../../../../public/svg/ic_image_temp.svg' },
+  { genre: '브레이킹', url: '../../../../../public/svg/ic_image_temp.svg' },
+  { genre: '왁킹', url: '../../../../../public/svg/ic_image_temp.svg' },
+  { genre: '락킹', url: '../../../../../public/svg/ic_image_temp.svg' },
+  { genre: '하우스', url: '../../../../../public/svg/ic_image_temp.svg' },
+  { genre: '보깅', url: '../../../../../public/svg/ic_image_temp.svg' },
+  { genre: '크럼프', url: '../../../../../public/svg/ic_image_temp.svg' },
+  { genre: '소울', url: '../../../../../public/svg/ic_image_temp.svg' },
+  { genre: '코레오그래피', url: '../../../../../public/svg/ic_image_temp.svg' },
+  { genre: '케이팝', url: '../../../../../public/svg/ic_image_temp.svg' },
 ];
 
 const GenreStep = ({}: GenreStepProps) => {
@@ -36,7 +35,7 @@ const GenreStep = ({}: GenreStepProps) => {
 
       <Flex tag="ul" marginTop="2.8rem" justify="spaceBetween" className={genreListStyle}>
         {GENRE_INFO.map((data, index) => (
-          <GenreChip key={`${index}-${data.genre}`} genre={data.genre} genreSvg={data.svg} />
+          <GenreChip key={`${index}-${data.genre}`} genre={data.genre} imageUrl={data.url} />
         ))}
       </Flex>
     </Flex>
