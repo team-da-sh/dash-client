@@ -4,10 +4,11 @@ import { vars } from '@/styles/theme.css';
 export const topImgStyle = style({
   position: 'relative',
   width: '100%',
-  height: '26.4rem',
+  height: '20.4rem',
   background: vars.colors.gray10,
   overflow: 'hidden',
-  zIndex: 0,
+  backgroundSize: 'cover',
+  backgroundPosition: 'center',
 });
 
 export const gradientOverlayStyle = style({
