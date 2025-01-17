@@ -31,16 +31,20 @@ export const formatDate = (dateString: string) => {
   return `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일 ${days[date.getDay()]}`;
 };
 
+export const formatSimpleDate = (dateString: string) => {
+  const date = new Date(dateString);
+  const days = ['일', '월', '화', '수', '목', '금', '토'];
+  return `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일 (${days[date.getDay()]})`;
+};
+
 // D-day 계산
 export const calculateDday = (startDateTime: string): string => {
-  const now = new Date();
+  const today = new Date();
   const startDate = new Date(startDateTime);
 
-  if (startDate.toDateString() === now.toDateString()) {
-    // If the lesson is today
-    return startDate.getTime() > now.getTime() ? 'D-Day' : '마감';
-  }
+  today.setHours(0, 0, 0, 0);
+  startDate.setHours(0, 0, 0, 0);
 
-  const difference = Math.ceil((startDate.getTime() - now.getTime()) / (1000 * 60 * 60 * 24));
-  return difference > 0 ? `D-${difference}` : '마감';
+  const difference = Math.ceil((startDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
+  return difference > 0 ? `D-${difference}` : difference === 0 ? 'D-Day' : '마감';
 };

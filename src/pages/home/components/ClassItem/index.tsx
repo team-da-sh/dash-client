@@ -4,14 +4,19 @@ import {
   teacherImageStyle,
   wrapperStyle,
 } from '@/pages/home/components/ClassItem/index.css';
-import { ClassTypes } from '@/pages/home/types/classTypes';
+import {
+  newClassImageStyle,
+  newDeadlineTagStyle,
+  newTeacherImageStyle,
+  newWrapperStyle,
+} from '@/pages/home/components/ClassItem/newIndex.css';
 import Divider from '@/components/Divider';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Tag from '@/components/Tag';
 import Text from '@/components/Text';
-import { getDateDiff } from '@/utils/getDateDiff';
 import { transformDateToDotFormat } from '@/utils/transformDateToDotFormat';
+import { ClassTypes } from '@/pages/home/types/classTypes';
 
 const ClassItem = ({
   lessonId,
@@ -24,16 +29,33 @@ const ClassItem = ({
   lessonStartDateTime,
   lessonEndDateTime,
   lessonStreetAddress,
-}: ClassTypes) => {
+  lessonRemainingDays,
+  useNewStyles = false,
+}: ClassTypes & { useNewStyles?: boolean }) => {
   const lessonAddress = lessonStreetAddress.split(' ').slice(0, 2).join(' ');
 
-  const remainingDate = getDateDiff(lessonStartDateTime);
+  const styles = useNewStyles
+    ? {
+        classImage: newClassImageStyle,
+        teacherImage: newTeacherImageStyle,
+        wrapper: newWrapperStyle,
+        deadlineTag: newDeadlineTagStyle,
+      }
+    : {
+        classImage: classImageStyle,
+        teacherImage: teacherImageStyle,
+        wrapper: wrapperStyle,
+        deadlineTag: deadlineTagStyle,
+      };
 
   return (
-    <Flex tag="li" direction="column" gap="0.8rem" key={lessonId} className={wrapperStyle}>
-      <img src={lessonImageUrl} alt="클래스 섬네일" className={classImageStyle} />
-      {remainingDate < 4 && (
-        <Tag type="deadline" size="thumbnail" className={deadlineTagStyle}>{`마감 D-${remainingDate || 'Day'}`}</Tag>
+    <Flex tag="li" direction="column" gap="0.8rem" key={lessonId} className={styles.wrapper}>
+      <img src={lessonImageUrl} alt="클래스 섬네일" className={styles.classImage} />
+      {lessonRemainingDays < 4 && (
+        <Tag
+          type="deadline"
+          size="thumbnail"
+          className={styles.deadlineTag}>{`마감 D-${lessonRemainingDays || 'Day'}`}</Tag>
       )}
 
       <Flex gap="0.4rem">
@@ -51,7 +73,7 @@ const ClassItem = ({
 
       <Flex direction="column" gap="0.4rem">
         <Flex gap="0.6rem" align="center">
-          <img src={teacherImageUrl} alt="강사" className={teacherImageStyle} />
+          <img src={teacherImageUrl} alt="강사" className={styles.teacherImage} />
           <Text tag="b7">{teacherNickname}</Text>
         </Flex>
         <Flex gap="0.4rem" align="center">

@@ -7,4 +7,9 @@ export const sortIconStyle = style({
   top: 9.2,
 });
 
-
+export const divCustomStyle = style({
+  display: 'flex',
+  width: '100%',
+  flexWrap: 'wrap',
+  justifyContent: 'space-between',
+});
