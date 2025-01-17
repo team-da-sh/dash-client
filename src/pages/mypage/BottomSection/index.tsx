@@ -1,20 +1,10 @@
 import * as styles from '@/pages/mypage/BottomSection/index.css';
+import { LIST_DATA } from '@/pages/mypage/constants/myPageList';
 import Divider from '@/components/Divider';
 import Flex from '@/components/Flex';
 import Text from '@/components/Text';
 import { IcArrowRightSmallGray0432, IcArrowRightSmallGray0732 } from '@/assets/svg';
 import { MyPageProps } from '@/types/myPageTypes';
-
-// 클래스 등록 및 관리만 권한 필요
-const listData = [
-  { label: '내 정보 수정', id: 1 },
-  { label: '강사 등록', id: 2 },
-  { label: '클래스 등록', id: 3, isInstructorRequired: true },
-  { label: '클래스 관리', id: 4, isInstructorRequired: true, hasDivider: true },
-  { label: '자주 묻는 질문', id: 5 },
-  { label: '고객 센터', id: 6, hasDivider: true },
-  { label: '로그아웃', id: 7 },
-];
 
 const BottomSection = ({ userData }: { userData: MyPageProps }) => {
   // 강사 권한을 가질 때는 null 이 아닌 number가 옴
@@ -23,30 +13,25 @@ const BottomSection = ({ userData }: { userData: MyPageProps }) => {
   return (
     <Flex>
       <ul className={styles.ulStyle}>
-        {listData.map((item) => {
+        {LIST_DATA.map((item) => {
           const isDisabled = item.isInstructorRequired && !isInstructor;
 
+          // disabled 시 아이콘 조건 설정
+          const ArrowIcon = isDisabled ? IcArrowRightSmallGray0432 : IcArrowRightSmallGray0732;
+
           return (
-            <ul key={item.id}>
-              <>
-                <li className={styles.listStyle}>
-                  <Text tag="b2" color={isDisabled ? 'gray4' : 'gray9'}>
-                    {item.label}
-                  </Text>
-                  {isDisabled ? (
-                    <IcArrowRightSmallGray0432 width={32} height={32} />
-                  ) : (
-                    <IcArrowRightSmallGray0732 width={32} height={32} />
-                  )}
-                </li>
-                {/* Divider가 필요한 항목에 추가 */}
-                {item.hasDivider && (
-                  <li className={styles.dividerStyle}>
-                    <Divider color="gray1" thickness={1} />
-                  </li>
-                )}
-              </>
-            </ul>
+            <li key={item.id} className={styles.listStyle}>
+              <Text tag="b2" color={isDisabled ? 'gray4' : 'gray9'}>
+                {item.label}
+              </Text>
+              <ArrowIcon width={32} height={32} />
+              {/* Divider가 필요한 항목에 추가 */}
+              {item.hasDivider && (
+                <div className={styles.dividerStyle}>
+                  <Divider color="gray1" thickness={1} />
+                </div>
+              )}
+            </li>
           );
         })}
       </ul>

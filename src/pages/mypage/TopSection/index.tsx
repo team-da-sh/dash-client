@@ -25,23 +25,15 @@ const TopSection = ({ userData }: { userData: MyPageProps }) => {
     return value > 0 ? 'gray8' : 'gray4';
   };
 
-  // 강사 권한에 따른 접근 처리
   const renderTagContent = (isInstructor: boolean) => {
-    if (isInstructor) {
-      return (
-        <>
-          <IcCalendarcheckColor3D24 width={24} height={24} />
-          클래스 개설 가능
-        </>
-      );
-    } else {
-      return (
-        <>
-          <IcCalendarcheckMono3D24 width={24} height={24} />
-          클래스 개설 불가
-        </>
-      );
-    }
+    const CalendarIcon = isInstructor ? IcCalendarcheckColor3D24 : IcCalendarcheckMono3D24;
+
+    return (
+      <>
+        <CalendarIcon width={24} height={24} />
+        {isInstructor ? '클래스 개설 가능' : '클래스 개설 불가'}
+      </>
+    );
   };
 
   return (
@@ -56,10 +48,14 @@ const TopSection = ({ userData }: { userData: MyPageProps }) => {
             <IcArrowRightGray0614 width={14} height={14} />
           </Flex>
         </Flex>
-        <img src={userData.profileImageUrl} alt="프로필 이미지" className={styles.imageStyle} />
+
+        {/* 프로필 이미지, 닉네임 */}
+        <img src={userData.profileImageUrl} alt="프로필 이미지" className={styles.profileImageStyle} />
         <Head level="h1" tag="h2">
           BADALEE
         </Head>
+
+        {/* 권한 확인할 수 있는 태그 */}
         <Flex marginTop="1.2rem" gap="0.8rem">
           <Tag hasAuth={true} size="mypage">
             <IcCalendarcheckColor3D24 width={24} height={24} />
@@ -70,6 +66,7 @@ const TopSection = ({ userData }: { userData: MyPageProps }) => {
           </Tag>
         </Flex>
       </Flex>
+
       <Flex paddingTop="2.4rem" paddingLeft="3.2rem" paddingRight="3.2rem" gap="2.1rem">
         <Flex align="center" onClick={() => handleNavigate(ROUTES_CONFIG.mypageReservation.path)}>
           <Flex direction="column" align="center" gap="0.5rem">
@@ -81,7 +78,9 @@ const TopSection = ({ userData }: { userData: MyPageProps }) => {
             </Text>
           </Flex>
         </Flex>
+
         <Divider direction="vertical" color="gray2" length={32} thickness={1} />
+
         <Flex direction="column" align="center">
           <Head tag="h4" color={getTextColor(userData.reservationCount)}>
             {userData.reservationCount}
@@ -90,7 +89,9 @@ const TopSection = ({ userData }: { userData: MyPageProps }) => {
             관심목록
           </Text>
         </Flex>
+
         <Divider direction="vertical" color="gray2" length={32} thickness={1} />
+
         <Flex direction="column" align="center" onClick={() => handleNavigate(ROUTES_CONFIG.instructorClassList.path)}>
           <Head tag="h4" color={getTextColor(userData.reservationCount)}>
             {userData.lessonCount ?? 0}

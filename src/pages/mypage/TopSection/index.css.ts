@@ -7,7 +7,7 @@ export const sectionStyle = style({
   backgroundColor: vars.colors.white,
 });
 
-export const imageStyle = style({
+export const profileImageStyle = style({
   width: '7.2rem',
   height: '7.2rem',
 

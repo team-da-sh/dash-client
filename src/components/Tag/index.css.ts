@@ -66,8 +66,8 @@ export const tagStyle = recipe({
       },
       mypage: {
         width: '13.2rem',
-        borderRadius: '0.4rem',
-        heigh: '4rem',
+        borderRadius: '4px',
+        height: '4rem',
         gap: '0.4rem',
         padding: '0.8rem 1.5rem',
         ...vars.fonts.b9,
