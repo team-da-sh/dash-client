@@ -13,7 +13,7 @@ const Footer = () => {
         <Text tag="b9" color="gray8">
           개인정보처리방침
         </Text>
-        <Divider direction="vertical" length={'0.6rem'} color="primary" />
+        <Divider direction="vertical" length={'0.6rem'} color="gray5" />
         <Text tag="b9" color="gray8">
           이용약관
         </Text>
@@ -24,7 +24,7 @@ const Footer = () => {
           <Text tag="c1" color="gray5">
             대표
           </Text>
-          <Divider direction="vertical" length={'0.6rem'} color="tertiary" />
+          <Divider direction="vertical" length={'0.6rem'} color="gray3" />
           <Text tag="c1" color="gray5">
             주은혜
           </Text>
@@ -33,7 +33,7 @@ const Footer = () => {
           <Text tag="c1" color="gray5">
             이메일
           </Text>
-          <Divider direction="vertical" length={'0.6rem'} color="tertiary" />
+          <Divider direction="vertical" length={'0.6rem'} color="gray3" />
           <Text tag="c1" color="gray5">
             doomchit1221@gmail.com
           </Text>
@@ -42,7 +42,7 @@ const Footer = () => {
           <Text tag="c1" color="gray5">
             전화번호
           </Text>
-          <Divider direction="vertical" length={'0.6rem'} color="tertiary" />
+          <Divider direction="vertical" length={'0.6rem'} color="gray3" />
           <Text tag="c1" color="gray5">
             010-4080-8364
           </Text>

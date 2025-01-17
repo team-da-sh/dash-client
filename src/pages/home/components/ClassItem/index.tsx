@@ -4,6 +4,7 @@ import {
   teacherImageStyle,
   wrapperStyle,
 } from '@/pages/home/components/ClassItem/index.css';
+import { ClassTypes } from '@/pages/home/types/classTypes';
 import Divider from '@/components/Divider';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
@@ -11,7 +12,6 @@ import Tag from '@/components/Tag';
 import Text from '@/components/Text';
 import { getDateDiff } from '@/utils/getDateDiff';
 import { transformDateToDotFormat } from '@/utils/transformDateToDotFormat';
-import { ClassTypes } from '@/pages/home/types/classTypes';
 
 const ClassItem = ({
   lessonId,
@@ -58,7 +58,7 @@ const ClassItem = ({
           <Text tag="c2" color="gray5">
             {transformDateToDotFormat(lessonStartDateTime)} - {transformDateToDotFormat(lessonEndDateTime)}
           </Text>
-          <Divider direction="vertical" length={'0.7rem'} color="tertiary" />
+          <Divider direction="vertical" length={'0.7rem'} color="gray5" />
           <Text tag="c2" color="gray5">
             {lessonAddress}
           </Text>

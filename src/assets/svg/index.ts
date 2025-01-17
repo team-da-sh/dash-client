@@ -3,6 +3,10 @@ export { default as IcAssetTop2 } from './IcAssetTop2';
 export { default as IcAssetTop3 } from './IcAssetTop3';
 
 export { default as IcArrowRightGray0614 } from './IcArrowRightGray0614';
+
+export { default as IcArrowRightSmallGray0432 } from './IcArrowRightSmallGray0432';
+export { default as IcArrowRightSmallGray0732 } from './IcArrowRightSmallGray0732';
+
 export { default as IcArrowUnderGray } from './IcArrowUnderGray';
 export { default as IcBack } from './IcBack';
 export { default as IcBtnEtc } from './IcBtnEtc';
