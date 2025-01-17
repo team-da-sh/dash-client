@@ -2,7 +2,7 @@ import Card from '@/pages/class/Card';
 import Flex from '@/components/Flex';
 import Text from '@/components/Text';
 import { LESSON_DATA } from '@/mocks/mockLessonData';
-import { IcClose } from '@/assets/svg';
+import { IcLocation60 } from '@/assets/svg';
 
 const LocationInfo = () => {
   const { lessonLocation, lessonStreetAddress, lessonOldStreetAddress } = LESSON_DATA;
@@ -42,7 +42,7 @@ const LocationInfo = () => {
           </Flex>
 
           {/* 오른쪽 */}
-          <IcClose width={41} />
+          <IcLocation60 width={'6rem'} />
         </Flex>
       </Card>
     </Flex>

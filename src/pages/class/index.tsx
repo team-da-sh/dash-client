@@ -21,7 +21,7 @@ const Class = () => {
       <ClassHeader isVisible={isVisible} />
 
       <ClassInfoWrapper />
-      <Divider direction="horizontal" color="tertiary" length="100%" thickness="1.2rem" />
+      <Divider direction="horizontal" color="gray1" length="100%" thickness="1.2rem" />
       <TabWrapper colorScheme="primary" />
       <ClassButtonWrapper />
     </>

@@ -5,6 +5,7 @@ import { useFunnel } from '@/hooks/useFunnel';
 import ImageUploadStep from './ImageUploadStep';
 import PersonalSNSStep from './PersonalSNSStep';
 import { buttonContainerStyle, funnelContainerStyle, progressBarCustomStyle } from './index.css';
+import CareerStep from './CareerStep';
 
 const InstructorRegister = () => {
   const { Funnel, Step, currentStep, setStep } = useFunnel(6, '/mypage');
@@ -24,6 +25,9 @@ const InstructorRegister = () => {
           </Step>
           <Step name="2">
             <PersonalSNSStep />
+          </Step>
+          <Step name="3">
+            <CareerStep />
           </Step>
         </Funnel>
       </div>
