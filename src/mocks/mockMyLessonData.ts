@@ -1,4 +1,4 @@
-export const MOCK_RESERVATION_DATA = {
+export const MOCK_MYLESSON_DATA = {
   lessons: [
     {
       lessonId: 1,
@@ -19,16 +19,6 @@ export const MOCK_RESERVATION_DATA = {
       lessonLocation: '서울특별시 서초구',
       lessonStartDateTime: '2025-01-20T14:00:00',
       lessonEndDateTime: '2025-01-20T16:00:00',
-    },
-    {
-      lessonId: 3,
-      lessonName: '뚝딱아 선생님이 고쳐줄게',
-      lessonImageUrl: 'https://example.com/contemporary.jpg',
-      lessonGenre: '컨템포러리',
-      lessonLevel: '고급',
-      lessonLocation: '서울특별시 서초구',
-      lessonStartDateTime: '2025-01-17T10:00:00',
-      lessonEndDateTime: '2025-01-17T12:00:00',
     },
   ],
 };
