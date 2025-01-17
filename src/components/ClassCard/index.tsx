@@ -6,7 +6,7 @@ import Tag from '@/components/Tag';
 import Text from '@/components/Text';
 import { formatLessonDateRange } from '@/utils/timeCalculate';
 import { getClassStatus } from '@/utils/timeCalculate';
-import { IcArrowRightGray0614 } from '@/assets/svg';
+import { IcArrowRightGray0614, IcClassEndMain0324, IcClassIngMain0324, IcClassSoonMain0324 } from '@/assets/svg';
 
 const ClassCard = ({
   lessonName,
@@ -25,7 +25,19 @@ const ClassCard = ({
   return (
     <div className={styles.cardContainerStyle}>
       <Flex justify="spaceBetween" align="center">
-        <Flex align="center" gap="0.2rem" marginBottom="1.2rem">
+        <Flex align="center" marginBottom="1.2rem">
+          {(() => {
+            switch (status) {
+              case 'upcoming':
+                return <IcClassSoonMain0324 width="1.8rem" />;
+              case 'ongoing':
+                return <IcClassIngMain0324 width="1.8rem" />;
+              case 'completed':
+                return <IcClassEndMain0324 width="1.8rem" />;
+              default:
+                return null;
+            }
+          })()}
           <Text tag="b4" color={status === 'completed' ? 'gray8' : 'black'}>
             {(() => {
               if (isReservation) {
