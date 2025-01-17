@@ -4,6 +4,7 @@ import ProgressBar from '@/components/ProgressBar';
 import { useFunnel } from '@/hooks/useFunnel';
 import CareerStep from './CareerStep';
 import ImageUploadStep from './ImageUploadStep';
+import IntroductionStep from './IntroductionStep';
 import PersonalSNSStep from './PersonalSNSStep';
 import VideoLinkStep from './VideoLinkStep';
 import { buttonContainerStyle, funnelContainerStyle, progressBarCustomStyle } from './index.css';
@@ -32,6 +33,9 @@ const InstructorRegister = () => {
           </Step>
           <Step name="4">
             <VideoLinkStep />
+          </Step>
+          <Step name="5">
+            <IntroductionStep />
           </Step>
         </Funnel>
       </div>
