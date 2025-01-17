@@ -3,7 +3,7 @@ import SearchBar from '@/pages/search/components/SearchBar';
 import TabContainer from '@/pages/search/components/TabContainer';
 import Flex from '@/components/Flex';
 import Header from '@/components/Header';
-import { DEFAULT_SORT_TAGS } from '@/pages/search/constants/DefaultSortTags';
+import { DEFAULT_SORT_TAGS } from '@/pages/search/constants/index';
 import { headerRootCutomStyle } from './index.css';
 
 const Search = () => {
