@@ -6,12 +6,9 @@ import {
 } from '@/pages/search/components/TabContainer/TagSection/BottomSheet/index.css';
 import BoxButton from '@/components/BoxButton';
 import Flex from '@/components/Flex';
+import LevelButton from '@/components/LevelButton';
 import { TabButton, TabList, TabPanel, TabRoot } from '@/components/Tab';
-
-interface BottomSheetProps {
-  onClose: () => void;
-  initialTabIndex: number;
-}
+import { levels } from '@/constants';
 
 interface BottomSheetProps {
   onClose: () => void;
@@ -20,7 +17,13 @@ interface BottomSheetProps {
 
 const BottomSheet = ({ onClose, initialTabIndex }: BottomSheetProps) => {
   const [selectedTab, setSelectedTab] = useState(initialTabIndex);
+  const [selectedLevelTitle, setSelectedLevelTitle] = useState<string | null>(null);
+
   document.body.style.overflow = 'hidden';
+
+  const handleLevelSelect = (title: string) => {
+    setSelectedLevelTitle((prev) => (prev === title ? null : title));
+  };
 
   return (
     <div className={bottomSheetStyle}>
@@ -39,14 +42,27 @@ const BottomSheet = ({ onClose, initialTabIndex }: BottomSheetProps) => {
             </TabButton>
           </TabList>
           <TabPanel isSelected={selectedTab === 0}>장르</TabPanel>
-          <TabPanel isSelected={selectedTab === 1}>난이도</TabPanel>
+          <TabPanel isSelected={selectedTab === 1}>
+            <Flex direction="column" gap="0.8rem" paddingTop="0.8rem" paddingBottom="4.6rem">
+              {levels.map((level) => (
+                <LevelButton
+                  key={level.title}
+                  level={level}
+                  isSelected={selectedLevelTitle === level.title}
+                  onClick={() => handleLevelSelect(level.title)}
+                />
+              ))}
+            </Flex>
+          </TabPanel>
           <TabPanel isSelected={selectedTab === 2}>
             <CalendarCustom />
           </TabPanel>
         </TabRoot>
         <Flex width="100%" gap="0.8rem">
-          <BoxButton variant="secondary">초기화</BoxButton>
-          <BoxButton isDisabled={true}>적용하기</BoxButton>
+          <BoxButton variant="secondary" onClick={() => setSelectedLevelTitle(null)}>
+            초기화
+          </BoxButton>
+          <BoxButton isDisabled={!selectedLevelTitle}>적용하기</BoxButton>
         </Flex>
       </Flex>
     </div>
