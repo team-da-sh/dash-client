@@ -1,5 +1,8 @@
 import { useState } from 'react';
-import { bottomSheetStyle, overlayStyle } from '@/pages/search/TabContainer/TagSection/BottomSheet/index.css';
+import {
+  bottomSheetStyle,
+  overlayStyle,
+} from '@/pages/search/components/TabContainer/TagSection/BottomSheet/index.css';
 import BoxButton from '@/components/BoxButton';
 import Flex from '@/components/Flex';
 import { TabButton, TabList, TabPanel, TabRoot } from '@/components/Tab';

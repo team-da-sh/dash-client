@@ -9,4 +9,5 @@ export type ClassTypes = {
   lessonStartDateTime: string;
   lessonEndDateTime: string;
   lessonStreetAddress: string;
+  lessonRemainingDays: number;
 };
