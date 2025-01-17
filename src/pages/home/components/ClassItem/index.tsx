@@ -11,7 +11,7 @@ import Tag from '@/components/Tag';
 import Text from '@/components/Text';
 import { getDateDiff } from '@/utils/getDateDiff';
 import { transformDateToDotFormat } from '@/utils/transformDateToDotFormat';
-import { ClassTypes } from '@/types/classTypes';
+import { ClassTypes } from '@/pages/home/types/classTypes';
 
 const ClassItem = ({
   lessonId,

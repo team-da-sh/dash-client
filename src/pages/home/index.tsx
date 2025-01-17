@@ -10,14 +10,15 @@ import {
   deadlineClassWrapperStyle,
   recommandClassWrapperStyle,
 } from '@/pages/home/index.css';
+import { DANCERLIST, GENRELIST, RECOMMAND_CLASSLIST } from '@/pages/home/mocks';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import { useIntersect } from '@/utils/useIntersect';
-import { DANCERLIST, GENRELIST, RECOMMAND_CLASSLIST } from '@/constants/home';
 import { vars } from '@/styles/theme.css';
 
 const Home = () => {
   const [targetRef, isVisible] = useIntersect(false);
+
   return (
     <>
       <div ref={targetRef} style={{ height: '37.5rem', backgroundColor: vars.colors.gray02 }}></div>
