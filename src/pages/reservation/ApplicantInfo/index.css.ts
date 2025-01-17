@@ -1,13 +1,15 @@
-import { vars } from "@/styles/theme.css";
 import { style } from '@vanilla-extract/css';
+import { vars } from '@/styles/theme.css';
 
 export const bookerComponentStyle = style({
-  background: vars.colors.white,
-  borderRadius: '4px',
+  display: 'flex',
+  flexDirection: 'column',
+
   padding: '2rem',
   width: '100%',
   margin: '0 auto',
-  display: 'flex',
-  flexDirection: 'column',
   gap: '1rem',
+
+  background: vars.colors.white,
+  borderRadius: '4px',
 });

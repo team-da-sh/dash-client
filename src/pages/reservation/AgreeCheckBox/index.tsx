@@ -1,6 +1,11 @@
 import Flex from '@/components/Flex';
 import Text from '@/components/Text';
-import { IcArrowRightSmallGray0732, IcArrowRightSmallMain0332New, IcCheckGray0724, IcCheckMain0324 } from '@/assets/svg';
+import {
+  IcArrowRightSmallGray0732,
+  IcArrowRightSmallMain0332New,
+  IcCheckGray0724,
+  IcCheckMain0324,
+} from '@/assets/svg';
 
 type AgreeComponentProps = {
   text: string;
@@ -27,13 +32,21 @@ const AgreeComponent = ({ text, isChecked, onToggle, link }: AgreeComponentProps
       align="center"
       onClick={onToggle}>
       <Flex gap="1.2rem">
-        {isChecked ? <IcCheckMain0324 width={'2.4rem'}  height={'2.4rem'} /> : <IcCheckGray0724 width={'2.4rem'} height={'2.4rem'} />}
+        {isChecked ? (
+          <IcCheckMain0324 width={'2.4rem'} height={'2.4rem'} />
+        ) : (
+          <IcCheckGray0724 width={'2.4rem'} height={'2.4rem'} />
+        )}
         <Text tag="b2" color={isChecked ? 'main4' : 'gray7'}>
           {text}
         </Text>
       </Flex>
-      <Flex onClick={handleArrowClick} style={{ cursor: 'pointer' }}>
-        {isChecked ? <IcArrowRightSmallMain0332New width={'3.2rem'}  height={'3.2rem'} /> : <IcArrowRightSmallGray0732 width={'3.2rem'}  height={'3.2rem'} />}
+      <Flex onClick={handleArrowClick}>
+        {isChecked ? (
+          <IcArrowRightSmallMain0332New width={'3.2rem'} height={'3.2rem'} />
+        ) : (
+          <IcArrowRightSmallGray0732 width={'3.2rem'} height={'3.2rem'} />
+        )}
       </Flex>
     </Flex>
   );

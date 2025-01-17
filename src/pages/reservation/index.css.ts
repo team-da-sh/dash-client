@@ -14,16 +14,17 @@ export const agreementContainerStyle = style({
 });
 
 export const agreementBox = style({
-  width: '100%',
   display: 'flex',
   alignItems: 'center',
-  gap: '1.2rem',
-  border: '1px solid',
-  backgroundColor: 'white',
   padding: '2rem',
-  borderRadius: '4px',
-  cursor: 'pointer',
   marginBottom: '0.4rem',
+
+  width: '100%',
+  gap: '1.2rem',
+
+  border: '1px solid',
+  borderRadius: '4px',
+  backgroundColor: vars.colors.white,
 });
 
 export const agreementChecked = style({
@@ -38,16 +39,19 @@ export const totalPriceContainer = style({
   display: 'flex',
   flexDirection: 'row',
   justifyContent: 'space-between',
+  alignItems: 'center',
+
   width: '100%',
   padding: '1.8rem 2rem 11.8rem 2rem',
-  alignItems: 'center',
 });
 
 export const bottomButtonStyle = style({
-  width: '100%',
   justifyItems: 'center',
   position: 'fixed',
   bottom: '0',
+  padding: '2.4rem 2rem',
+
+  width: '100%',
+
   zIndex: 1000,
-  padding: "2.4rem 2rem"
 });
