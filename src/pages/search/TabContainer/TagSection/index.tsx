@@ -53,8 +53,7 @@ const TagSection = ({ displayTags, activeTags, tagSize, tagType }: TagSectionPro
               key={index}
               size={tagSize}
               type={tagType}
-              onClick={() => handleTagClick(index)} // 태그 클릭 핸들러에 인덱스 전달
-            >
+              onClick={() => handleTagClick(index)}>
               {tag.label}
               {tag.icon && tag.icon}
             </Tag>
