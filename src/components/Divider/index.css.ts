@@ -23,8 +23,10 @@ export const dividerStyle = recipe({
       secondary: {
         backgroundColor: vars.colors.white,
       },
-      teritory: {
-        backgroundColor: vars.colors.gray03,
+
+      tertiary: {
+        backgroundColor: vars.colors.gray01,
+
       },
     },
   },

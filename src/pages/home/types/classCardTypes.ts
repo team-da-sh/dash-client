@@ -1,6 +1,6 @@
 export interface ClassCardProps {
-  lessonId?: string;
-  reservationId?: string;
+  lessonId?: number;
+  reservationId?: number;
   lessonName: string;
   lessonImageUrl: string;
   lessonGenre: string;

@@ -7,6 +7,7 @@ export const tagStyle = recipe({
     justifyContent: 'center',
     alignItems: 'center',
     color: vars.colors.white,
+    height: '100%',
   },
   variants: {
     type: {
@@ -20,10 +21,27 @@ export const tagStyle = recipe({
         backgroundColor: vars.colors.gray10,
       },
       search: {
-        color: vars.colors.main03,
+        color: vars.colors.main04,
+        backgroundColor: vars.colors.white,
+      },
+      sort: {
+        color: vars.colors.gray06,
         backgroundColor: vars.colors.white,
       },
     },
+    hasAuth: {
+      true: {
+        color: vars.colors.main04,
+        backgroundColor: vars.colors.white,
+        boxShadow: '0px 0px 4px 0px rgba(119,0,255,0.25)',
+      },
+      false: {
+        color: vars.colors.gray04,
+        backgroundColor: vars.colors.white,
+        boxShadow: '0px 0px 4px 0px rgba(0, 0, 0, 0.25)',
+      },
+    },
+
     size: {
       small: {
         height: '1.8rem',
@@ -50,6 +68,25 @@ export const tagStyle = recipe({
         padding: '0.2rem 0.8rem',
         gap: '1rem',
         ...vars.fonts.c1,
+      },
+      search: {
+        borderRadius: '14px',
+        border: `1px solid ${vars.colors.main04}`,
+        padding: '0.5rem 0.8rem 0.5rem 1.2rem',
+        ...vars.fonts.b9,
+      },
+      sort: {
+        borderRadius: '14px',
+        border: `1px solid ${vars.colors.gray07}`,
+        padding: '0.5rem 0.8rem 0.5rem 1.2rem',
+        ...vars.fonts.b9,
+      },    
+      mypage: {
+        borderRadius: '0.4rem',
+        height: '4rem',
+        gap: '0.4rem',
+        padding: '0.8rem 1.5rem',
+        ...vars.fonts.b9,  
       },
     },
   },

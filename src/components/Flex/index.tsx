@@ -25,8 +25,10 @@ interface FlexProps extends HTMLAttributes<HTMLDivElement> {
   paddingLeft?: string;
   border?: string;
   borderRadius?: string;
-  borderTop?: string;
+  borderColor?: string;
+  borderWidth?: string;
   borderBottom?: string;
+  borderTop?: string;
 }
 
 const Flex = ({
@@ -52,8 +54,10 @@ const Flex = ({
   paddingLeft,
   border,
   borderRadius,
-  borderTop,
+  borderColor,
+  borderWidth,
   borderBottom,
+  borderTop,
   children,
   className,
   ...props
@@ -77,8 +81,10 @@ const Flex = ({
     paddingLeft,
     border,
     borderRadius,
-    borderTop,
+    borderColor,
+    borderWidth,
     borderBottom,
+    borderTop,
   };
 
   return (
