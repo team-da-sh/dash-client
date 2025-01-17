@@ -1,14 +1,14 @@
+import InfoRow from '@/pages/reservation/InfoRow';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Text from '@/components/Text';
-import InfoRow from '@/pages/reservation/InfoRow';
 import { vars } from '@/styles/theme.css';
-import { RESERVATION_DATA } from '@/mocks/mockReservationData';
-import ScheduleItem from "./ScheduleItem";
-import { infoComponentStyle, textLabelStyle } from "./index.css";
+import { MY_RESERVATION_DATA } from '@/mocks/mockMyReservationData';
+import ScheduleItem from './ScheduleItem';
+import { infoComponentStyle, textLabelStyle } from './index.css';
 
 const InfoComponent = () => {
-  const { lessonName, lessonLocation, teacherName, lessonLevel, lessonRound } = RESERVATION_DATA;
+  const { lessonName, lessonLocation, teacherName, lessonLevel, lessonRound } = MY_RESERVATION_DATA;
 
   return (
     <div className={infoComponentStyle}>

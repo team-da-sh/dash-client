@@ -1,10 +1,10 @@
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
-import { RESERVATION_DATA } from '@/mocks/mockReservationData';
+import { MY_RESERVATION_DATA } from '@/mocks/mockMyReservationData';
 import { topImgStyle, gradientOverlay, textWrapper } from './index.css';
 
 const TopImageComponent = () => {
-  const { lessonName, teacherName } = RESERVATION_DATA;
+  const { lessonName, teacherName } = MY_RESERVATION_DATA;
 
   return (
     <div className={topImgStyle}>

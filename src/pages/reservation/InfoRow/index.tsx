@@ -1,6 +1,6 @@
 import Flex from '@/components/Flex';
 import Text from '@/components/Text';
-import { textLabelStyle } from "./index.css";
+import { textLabelStyle } from './index.css';
 
 interface InfoRowProps {
   label: string;

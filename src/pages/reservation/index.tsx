@@ -5,20 +5,39 @@ import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Header from '@/components/Header';
 import Text from '@/components/Text';
-import { IcArrowRightGray0614, IcCheckcircleGray0524, IcCheckcircleMain0324, IcCheckGray0724 } from '@/assets/svg';
-import { vars } from '@/styles/theme.css';
+import { IcCheckcircleGray0524, IcCheckcircleMain0324 } from '@/assets/svg';
+import { MY_RESERVATION_DATA } from '@/mocks/mockMyReservationData';
+import AgreeComponent from './AgreeComponent';
 import BookerComponent from './BookerComponent';
 import BottomButton from './BottomButton';
 import TopImageComponent from './TopImageComponent';
-import { headerStyle, reservationStyle } from './index.css';
+import { agreementBox, agreementChecked, agreementContainer, agreementUnchecked, headerStyle, reservationStyle, totalPriceContainer } from './index.css';
+import { useNavigate } from "react-router-dom";
+import { ROUTES_CONFIG } from "@/routes/routesConfig";
 
 const Reservation = () => {
-  const [isChecked, setIsChecked] = useState(false);
+  const [isAllChecked, setIsAllChecked] = useState(false);
+  const [agreements, setAgreements] = useState([false, false, false]);
 
-  const handleToggle = () => {
-    setIsChecked(!isChecked);
+  // 전체 체크박스, 상태 동기화
+  const handleToggleAll = () => {
+    const newState = !isAllChecked;
+    setIsAllChecked(newState);
+    setAgreements([newState, newState, newState]);
   };
 
+  const handleToggle = (index: number) => {
+    const newAgreements = [...agreements];
+    newAgreements[index] = !newAgreements[index];
+    setAgreements(newAgreements);
+
+    setIsAllChecked(newAgreements.every((isChecked) => isChecked));
+  };
+  const { lessonIndividualPrice } = MY_RESERVATION_DATA;
+  const navigate = useNavigate();
+  const handleButtonClick = () => {
+    navigate(ROUTES_CONFIG.home.path);
+  };
   return (
     <Flex direction="column" width="100%" className={reservationStyle}>
       <div className={headerStyle}>
@@ -58,105 +77,52 @@ const Reservation = () => {
           <Text tag="b4" color="gray9">
             필수 약관 전체 동의
           </Text>
-          <div style={{ width: '100%' }}>
-            <div
-              onClick={handleToggle}
-              style={{
-                width: '100%',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '1.2rem',
-                border: '1px solid',
-                borderColor: isChecked ? vars.colors.main04 : vars.colors.gray04,
-                backgroundColor: 'white',
-                padding: '2rem',
-                borderRadius: '4px',
-                cursor: 'pointer',
-                marginBottom: '0.4rem',
-              }}>
-              {isChecked ? <IcCheckcircleMain0324 height={24} /> : <IcCheckcircleGray0524 height={24} />}
+          <div className={agreementContainer}>
+          <div
+              onClick={handleToggleAll}
+              className={`${agreementBox} ${isAllChecked ? agreementChecked : agreementUnchecked}`}
+            >
+              {isAllChecked ? <IcCheckcircleMain0324 height={24} /> : <IcCheckcircleGray0524 height={24} />}
               <Head level="h5" tag="h6">
                 전체동의
               </Head>
             </div>
 
             <Flex direction="column" width="100%">
-              <Flex
-                width="100%"
-                marginTop="0.8rem"
-                paddingRight="0.8rem"
-                paddingBottom="0.8rem"
-                paddingLeft="0.8rem"
-                justify="spaceBetween"
-                align="center">
-                <Flex gap="1.2rem">
-                  <IcCheckGray0724 width={24} />
-                  <Text tag="b2" color="gray7">
-                    개인정보수집/이용 동의 (필수)
-                  </Text>
-                </Flex>
-                <IcArrowRightGray0614 width={32} />
-              </Flex>
-              <Flex
-                width="100%"
-                paddingTop="0.8rem"
-                paddingRight="0.8rem"
-                paddingBottom="0.8rem"
-                paddingLeft="0.8rem"
-                justify="spaceBetween"
-                align="center">
-                <Flex gap="1.2rem">
-                  <IcCheckGray0724 width={24} />
-                  <Text tag="b2" color="gray7">
-                    개인정보 제공 동의 (필수)
-                  </Text>
-                </Flex>
-                <IcArrowRightGray0614 width={32} />
-              </Flex>
-              <Flex
-                width="100%"
-                paddingTop="0.8rem"
-                paddingRight="0.8rem"
-                paddingBottom="0.8rem"
-                paddingLeft="0.8rem"
-                justify="spaceBetween"
-                align="center">
-                <Flex gap="1.2rem">
-                  <IcCheckGray0724 width={24} />
-                  <Text tag="b2" color="gray7">
-                    취소 및 환불 규칙 (필수)
-                  </Text>
-                </Flex>
-                <IcArrowRightGray0614 width={32} />
-              </Flex>
+              <AgreeComponent
+                text="개인정보 제공 동의  (필수)"
+                isChecked={agreements[1]}
+                onToggle={() => handleToggle(1)}
+                link="https://youtube.com"
+              />
+              <AgreeComponent
+                text="취소 및 환불 규칙  (필수)"
+                isChecked={agreements[2]}
+                onToggle={() => handleToggle(2)}
+                link="https://youtube.com"
+              />
             </Flex>
           </div>
-          <Text tag="b3" color="gray6" style={{paddingBottom:"4.2rem"}}>
+          <Text tag="b3" color="gray6" style={{ paddingBottom: '4.2rem' }}>
             * 예약 서비스 이용을 위한 개인정보 수집 및 제 3자 제공, 취소/환불 규정을 확인하였으며 이에 동의합니다.
           </Text>
         </Flex>
         <Divider direction="horizontal" length="100%" thickness="0.1rem" />
-
       </Flex>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          width: '100%',
-          padding: '1.8rem 2rem 1.6rem 2rem',
-          alignItems:'center',
-        }}>
+      <div className={totalPriceContainer}>
         <Head level="h3" tag="h4" color="gray9">
           총 결제 금액
         </Head>
         <Head level="h2" tag="h2" color="main4">
-          50,000원
+          {Number(lessonIndividualPrice).toLocaleString()}원{' '}
         </Head>
       </div>
-      <BottomButton />
-    </Flex>
+      <BottomButton
+        isEnabled={isAllChecked}
+        onClick={handleButtonClick}
+      />
+          </Flex>
   );
 };
 
