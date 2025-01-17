@@ -14,7 +14,7 @@ interface AgreeComponentProps {
   link?: string;
 }
 
-const AgreeCheckBox = ({ text, isChecked, onToggle, link }: AgreeComponentProps) => {
+const AgreeCheckBox = ({ text, isChecked, onToggle, link = '' }: AgreeComponentProps) => {
   const handleArrowClick = (e: React.MouseEvent) => {
     e.stopPropagation();
     if (link) {
