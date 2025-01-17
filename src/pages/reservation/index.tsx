@@ -26,13 +26,13 @@ import {
 
 const Reservation = () => {
   const [isAllChecked, setIsAllChecked] = useState(false);
-  const [agreements, setAgreements] = useState([false, false, false]);
+  const [agreements, setAgreements] = useState([false, false]);
 
   // 전체 체크박스, 상태 동기화
   const handleToggleAll = () => {
     const newState = !isAllChecked;
     setIsAllChecked(newState);
-    setAgreements([newState, newState, newState]);
+    setAgreements([newState, newState]);
   };
 
   const handleToggle = (index: number) => {
@@ -100,21 +100,23 @@ const Reservation = () => {
 
             <Flex direction="column" width="100%">
               <AgreeCheckBox
-                text="개인정보 제공 동의  (필수)"
-                isChecked={agreements[1]}
-                onToggle={() => handleToggle(1)}
-                link="https://youtube.com"
+                text="취소 및 환불 약관  (필수)"
+                isChecked={agreements[0]}
+                onToggle={() => handleToggle(0)}
+                link="https://youtu.be/i9c_dsBzc3Y?feature=shared"
               />
               <AgreeCheckBox
-                text="취소 및 환불 규칙  (필수)"
-                isChecked={agreements[2]}
-                onToggle={() => handleToggle(2)}
-                link="https://youtube.com"
+                text="전자결제 서비스 이용약관  (필수)"
+                isChecked={agreements[1]}
+                onToggle={() => handleToggle(1)}
+                link="https://youtu.be/i9c_dsBzc3Y?feature=sharedm"
               />
             </Flex>
           </div>
           <Text tag="b3" color="gray6" style={{ paddingBottom: '4.2rem' }}>
-            * 예약 서비스 이용을 위한 개인정보 수집 및 제 3자 제공, 취소/환불 규정을 확인하였으며 이에 동의합니다.
+            * 예약 서비스 이용을 위한 개인정보 수집 및 제 3자 제공,
+            <br />
+            취소/환불 규정을 확인하였으며 이에 동의합니다.
           </Text>
         </Flex>
         <Divider direction="horizontal" length="100%" thickness="0.1rem" color="gray3" />
