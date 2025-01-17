@@ -15,7 +15,7 @@ const InstructorRegister = () => {
   return (
     <>
       <Header.Root isColor={true}>
-        <Header.BackIcon />
+        {currentStep < 6 && <Header.BackIcon />}
         <Header.CloseIcon onClick={() => console.log('hi')} />
       </Header.Root>
       <ProgressBar totalStep={5} currentStep={currentStep} className={progressBarCustomStyle} />
@@ -35,6 +35,9 @@ const InstructorRegister = () => {
             <VideoLinkStep />
           </Step>
           <Step name="5">
+            <IntroductionStep />
+          </Step>
+          <Step name="6">
             <IntroductionStep />
           </Step>
         </Funnel>
