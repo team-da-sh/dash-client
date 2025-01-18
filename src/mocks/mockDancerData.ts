@@ -49,7 +49,7 @@ export const DANCER_DATA = {
       lessonLevel: '고급',
     },
   ],
-  education: ['숭실대학교 무용학석사', '솝트대학교 서버학과'],
+  education: ['숭실대학교 무용학석사', '솝트대학교 서버학과','서울예술학교 무용과 학사'],
   experience: ['33기 서버', '34기 서버', '35기 서버'],
   videoUrl: ['https://www.youtube.com/watch?v=DiyBJqGTmgE', 'https://www.youtube.com/watch?v=wqw9A88tliE','https://www.youtube.com/watch?v=Raz30d61HPM'],
 };

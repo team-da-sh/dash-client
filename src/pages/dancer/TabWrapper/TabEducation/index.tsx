@@ -1,4 +1,5 @@
 import { emptyStyle } from '@/pages/dancer/TabWrapper/TabExperience/index.css';
+import Flex from '@/components/Flex';
 import Text from '@/components/Text';
 import { DANCER_DATA } from '@/mocks/mockDancerData';
 
@@ -6,7 +7,7 @@ const TabExperience = () => {
   const { education } = DANCER_DATA;
 
   return (
-    <div>
+    <Flex direction="column" gap="0.8rem">
       {education.length === 0 ? (
         <Text tag="b6" color="gray9" className={emptyStyle}>
           아직 등록된 경력이 없어요
@@ -20,7 +21,7 @@ const TabExperience = () => {
           </div>
         ))
       )}
-    </div>
+    </Flex>
   );
 };
 
