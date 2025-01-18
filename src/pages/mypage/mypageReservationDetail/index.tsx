@@ -6,8 +6,8 @@ import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Header from '@/components/Header';
 import Text from '@/components/Text';
+import { getStatusMessage } from '@/utils/getStatusMessage';
 import { formatDateTime, getClassStatus } from '@/utils/timeCalculate';
-import { getStatusMessage } from './hooks/getStatusMessage';
 
 const ClassReservationDetail = () => {
   // 클래스 상태 계산
