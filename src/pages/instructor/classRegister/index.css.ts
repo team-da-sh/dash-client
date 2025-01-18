@@ -125,7 +125,19 @@ export const personnelTextStyle = style({
 });
 
 // 클래스 장소
-export const placeSectionStyle = style([commonSectionStyle, {}]);
+export const placeSectionStyle = style([
+  commonSectionStyle,
+  {
+    marginBottom: '4rem',
+  },
+]);
+
+export const searchContainerStyle = style({
+  height: '5.2rem',
+  backgroundColor: vars.colors.gray01,
+  borderRadius: '4px',
+  padding: '1.4rem 1.8rem',
+});
 
 // 수강료
 export const amountSectionStyle = style([commonSectionStyle, {}]);

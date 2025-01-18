@@ -6,7 +6,7 @@ import Header from '@/components/Header';
 import Input from '@/components/Input';
 import LevelButton from '@/components/LevelButton';
 import Text from '@/components/Text';
-import { IcPlusGray0524 } from '@/assets/svg';
+import { IcPlusGray0524, IcSearchGray } from '@/assets/svg';
 import { GENRE_CATEGORY, LEVEL } from '@/constants';
 import Description from './Description';
 
@@ -18,6 +18,8 @@ const ClassRegister = () => {
   const [selectedLevelTitle, setSelectedLevelTitle] = useState<string | null>();
   const [personnel, setPersonnelChange] = useState('');
   const [amount, setAmount] = useState('');
+  const [defaultPlace, setDefaultPlace] = useState('');
+  const [detailPlace, setDetailPlace] = useState('');
 
   const handlePersonnelChange = (e: ChangeEvent<HTMLInputElement>) => {
     // 숫자만 입력되도록
@@ -57,6 +59,15 @@ const ClassRegister = () => {
     }
   };
 
+  const handleDefaultPlace = () => {
+    console.log('여기에 도로명 주소 API 호출');
+    // 받은 데이터로 state 설정
+    setDefaultPlace('이런 값으로~');
+  };
+
+  const handleDetailPlace = (e: ChangeEvent<HTMLInputElement>) => {
+    setDetailPlace(e.target.value);
+  };
   return (
     <>
       <Header.Root isColor={true}>
@@ -156,6 +167,15 @@ const ClassRegister = () => {
         {/* 클래스 장소 */}
         <section className={styles.placeSectionStyle}>
           <Description title="클래스 장소" subTitle="클래스가 진행될 장소를 알려주세요" />
+          <Flex width="100%" direction="column" gap="0.8rem" onClick={handleDefaultPlace}>
+            <Flex width="100%" justify="spaceBetween" align="center" className={styles.searchContainerStyle}>
+              <Text tag="b5" color="gray5">
+                {defaultPlace ? defaultPlace : '지번, 도로명, 건물명으로 검색해 주세요'}
+              </Text>
+              {!defaultPlace && <IcSearchGray width={24} />}
+            </Flex>
+            <Input value={detailPlace} onChange={handleDetailPlace} />
+          </Flex>
         </section>
 
         <section className={styles.amountSectionStyle}>
