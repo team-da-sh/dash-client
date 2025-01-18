@@ -42,19 +42,6 @@ export const inputStyle = recipe({
   },
 });
 
-export const helperTextStyle = recipe({
-  base: {
-    ...vars.fonts.b6,
-    color: vars.colors.gray05,
-  },
-  variants: {
-    isError: {
-      true: {
-        color: vars.colors.alert03,
-      },
-      false: {
-        color: vars.colors.main04,
-      },
-    },
-  },
+export const focusStyle = style({
+  outline: `1px solid ${vars.colors.main04}`,
 });
