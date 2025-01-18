@@ -1,10 +1,4 @@
-import {
-  headerStyle,
-  profileStyle,
-  lessonNameStyle,
-  cardStyle,
-  thunderIconStyle,
-} from '@/pages/class/ClassInfoWrapper/index.css';
+import { profileStyle, lessonNameStyle, cardStyle, thunderIconStyle } from '@/pages/class/ClassInfoWrapper/index.css';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Tag from '@/components/Tag';
@@ -16,7 +10,6 @@ import { LESSON_DATA } from '@/mocks/mockLessonData';
 
 const ClassInfoWrapper = () => {
   const {
-    lessonImageUrl,
     lessonGenre,
     lessonName,
     teacherImageUrl,
@@ -43,12 +36,6 @@ const ClassInfoWrapper = () => {
 
   return (
     <>
-      <div
-        className={headerStyle}
-        style={{
-          backgroundImage: `url(${lessonImageUrl})`,
-        }}></div>
-
       <Flex direction="column" paddingTop="2rem" paddingRight="2.4rem" paddingBottom="2.4rem" paddingLeft="2rem">
         <Flex gap="0.4rem" marginBottom="1.2rem">
           <Tag type="genre" size="medium">
@@ -89,7 +76,7 @@ const ClassInfoWrapper = () => {
         </Flex>
 
         <div className={cardStyle}>
-          <IcThunderMain0424 width={24} color={iconColor} className={thunderIconStyle} />
+          <IcThunderMain0424 width={'2.4rem'} color={iconColor} className={thunderIconStyle} />
           <Text tag="b2" color="black">
             {isSoldOut ? '' : '마감까지'}
           </Text>

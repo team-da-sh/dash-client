@@ -16,9 +16,30 @@ interface TagSectionProps {
   activeTags: TagItem[];
   tagSize: 'search' | 'sort';
   tagType: 'search' | 'sort';
+  genre: string | null;
+  level: string | null;
+  startDate: string;
+  endDate: string;
+  setGenre: (genre: string | null) => void;
+  setLevel: (level: string | null) => void;
+  setStartDate: (date: string) => void;
+  setEndDate: (date: string) => void;
 }
 
-const TagSection = ({ displayTags, activeTags, tagSize, tagType }: TagSectionProps) => {
+const TagSection = ({
+  displayTags,
+  activeTags,
+  tagSize,
+  tagType,
+  genre,
+  setGenre,
+  setLevel,
+  level,
+  startDate,
+  endDate,
+  setStartDate,
+  setEndDate,
+}: TagSectionProps) => {
   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
   const [selectedTagIndex, setSelectedTagIndex] = useState(0);
 
@@ -61,7 +82,20 @@ const TagSection = ({ displayTags, activeTags, tagSize, tagType }: TagSectionPro
         </Flex>
         {!activeTags.length && <IcFilterGray width={28} onClick={() => handleTagClick(0)} />}
       </Flex>
-      {isBottomSheetOpen && <BottomSheet onClose={handleBottomSheetClose} initialTabIndex={selectedTagIndex} />}
+      {isBottomSheetOpen && (
+        <BottomSheet
+          onClose={handleBottomSheetClose}
+          initialTabIndex={selectedTagIndex}
+          genre={genre}
+          setGenre={setGenre}
+          setLevel={setLevel}
+          level={level}
+          startDate={startDate}
+          endDate={endDate}
+          setStartDate={setStartDate}
+          setEndDate={setEndDate}
+        />
+      )}
     </>
   );
 };
