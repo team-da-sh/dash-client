@@ -6,7 +6,7 @@ import LevelStep from '@/pages/onboarding/components/LevelStep';
 import OnboardingHeader from '@/pages/onboarding/components/OnboardingHeader';
 import ProfileStep from '@/pages/onboarding/components/ProfileStep';
 import { bodyWrapperStyle, containerStyle, footerWrapperStyle, progressBarStyle } from '@/pages/onboarding/index.css';
-import { GenreTypes, onboardInfoTypes } from '@/pages/onboarding/types';
+import { GenreTypes, LevelTypes, onboardInfoTypes } from '@/pages/onboarding/types';
 import BoxButton from '@/components/BoxButton';
 import ProgressBar from '@/components/ProgressBar';
 import { FunnelProps, StepProps } from '@/hooks/useFunnel';
@@ -19,10 +19,10 @@ interface OnboardingFunnelProps {
 }
 
 const OnboardingFunnel = ({ currentStep, Funnel, setStep, Step }: OnboardingFunnelProps) => {
-  const [info, setInfo] = useState({} as onboardInfoTypes);
+  const [info, setInfo] = useState({ level: null } as onboardInfoTypes);
 
   console.log(info);
-  const handleInfoChange = (key: string, value: string | GenreTypes[]) => {
+  const handleInfoChange = (key: string, value: string | GenreTypes[] | LevelTypes | null) => {
     setInfo((prev) => ({ ...prev, [key]: value }));
   };
 
@@ -48,7 +48,7 @@ const OnboardingFunnel = ({ currentStep, Funnel, setStep, Step }: OnboardingFunn
             <GenreStep genres={info.genres} onInfoChange={handleInfoChange} />
           </Step>
           <Step name="3" key={3}>
-            <LevelStep />
+            <LevelStep level={info.level} onInfoChange={handleInfoChange} />
           </Step>
           <Step name="4" key={4}>
             <ProfileStep />

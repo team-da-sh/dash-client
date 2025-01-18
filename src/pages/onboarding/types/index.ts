@@ -2,7 +2,7 @@ export type onboardInfoTypes = {
   name: string;
   phoneNumber: string;
   genres: GenreTypes[];
-  level: LevelTypes[];
+  level: null | LevelTypes;
 };
 
 export type GenreTypes =
@@ -19,4 +19,4 @@ export type GenreTypes =
   | 'CHOREOGRAPHY'
   | 'KPOP';
 
-type LevelTypes = 'BEGINNER' | 'NOVICE' | 'INTERMEDIATE' | 'ADVANCED';
+export type LevelTypes = 'BEGINNER' | 'NOVICE' | 'INTERMEDIATE' | 'ADVANCED';

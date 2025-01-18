@@ -1,17 +1,18 @@
-import { useState } from 'react';
+import { INFO_KEY, KO_LEVELS, LEVELS } from '@/pages/onboarding/constants';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import LevelButton from '@/components/LevelButton';
 import Text from '@/components/Text';
 import { LEVEL } from '@/constants';
 
-interface LevelStepProps {}
+interface LevelStepProps {
+  level: string | null;
+  onInfoChange: (key: string, value: string | null) => void;
+}
 
-const LevelStep = ({}: LevelStepProps) => {
-  const [selectedLevelTitle, setSelectedLevelTitle] = useState<string | null>(null);
-
-  const handleLevelSelect = (title: string) => {
-    setSelectedLevelTitle((prev) => (prev === title ? null : title));
+const LevelStep = ({ level, onInfoChange }: LevelStepProps) => {
+  const handleLevelSelect = (title: KO_LEVELS) => {
+    onInfoChange(INFO_KEY.LEVEL, level === LEVELS[title] ? null : LEVELS[title]);
   };
 
   return (
@@ -26,13 +27,13 @@ const LevelStep = ({}: LevelStepProps) => {
       </Flex>
 
       <Flex tag="ul" direction="column" gap="0.8rem" marginTop="2.8rem" paddingBottom="4.6rem" width="100%">
-        {LEVEL.map((level) => (
+        {LEVEL.map((elem) => (
           <LevelButton
-            key={level.title}
-            level={level}
-            isSelected={selectedLevelTitle === null ? null : selectedLevelTitle === level.title}
+            key={elem.title}
+            level={elem}
+            isSelected={level === null ? null : level === LEVELS[elem.title as KO_LEVELS]}
             isOnboard={true}
-            onClick={() => handleLevelSelect(level.title)}
+            onClick={() => handleLevelSelect(elem.title as KO_LEVELS)}
           />
         ))}
       </Flex>
