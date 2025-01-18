@@ -6,6 +6,7 @@ export const kakaoButtonStyle = style({
   padding: '1.6rem 9.5rem 1.6rem 9.5rem',
 
   backgroundColor: vars.colors.kakao01,
+  borderRadius: '4px',
 
   cursor: 'pointer',
 });
