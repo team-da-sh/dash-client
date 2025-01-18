@@ -62,3 +62,17 @@ export const calculateDday = (startDateTime: string): string => {
   return '마감';
 };
 
+// 현재 날짜 기준으로 특정 날짜가 4일 이하로 남았는지 확인하는 함수
+export const isWithinFourDays = (startDateTime: string): { isWithin: boolean; isPast: boolean } => {
+  const now = new Date(); // 현재 날짜 및 시간
+  const startDate = new Date(startDateTime); // 클래스 시작 날짜
+
+  const differenceInMs = startDate.getTime() - now.getTime(); // 밀리초 차이 계산
+  const oneDayInMs = 1000 * 60 * 60 * 24; // 하루를 밀리초로 환산
+
+  return {
+    isWithin: differenceInMs > 0 && differenceInMs <= 4 * oneDayInMs, // 4일 이하인지 확인
+    isPast: differenceInMs <= 0, // 마감 여부 확인
+  };
+};
+
