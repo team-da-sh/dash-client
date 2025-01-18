@@ -12,7 +12,9 @@ interface ClassHeaderProps {
 
 const ClassHeader = ({ isVisible }: ClassHeaderProps) => {
   const { lessonName } = LESSON_DATA;
+  
   const navigate = useNavigate();
+
   return (
     <div className={containerStyle({ isVisible })}>
       <Flex align="center" className={backIconStyle} onClick={() => navigate(-1)}>
