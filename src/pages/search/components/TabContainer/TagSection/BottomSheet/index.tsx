@@ -63,6 +63,18 @@ const BottomSheet = ({
     onClose();
   };
 
+  const handleReset = () => {
+    setSelectedLevelTitle(null);
+    setSelectedStartDate('');
+    setSelectedEndDate('');
+    setSelectedGenre(null);
+    setLevel(null);
+    setStartDate('');
+    setEndDate('');
+    setGenre(null);
+    handleClose();
+  };
+
   const toggleCategory = (category: string) => {
     setSelectedGenre((prev) => (prev === category ? null : category));
   };
@@ -117,14 +129,7 @@ const BottomSheet = ({
           </TabPanel>
         </TabRoot>
         <Flex width="100%" gap="0.8rem">
-          <BoxButton
-            variant="secondary"
-            onClick={() => {
-              setSelectedLevelTitle(null);
-              setSelectedStartDate('');
-              setSelectedEndDate('');
-              setSelectedGenre(null);
-            }}>
+          <BoxButton variant="secondary" onClick={handleReset}>
             초기화
           </BoxButton>
           <BoxButton
