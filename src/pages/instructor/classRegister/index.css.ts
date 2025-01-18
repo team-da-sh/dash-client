@@ -15,7 +15,7 @@ const commonSectionStyle = style({
   gap: '2rem',
 });
 
-// 클래스명명
+// 클래스명
 export const nameSectionStyle = style([
   commonSectionStyle,
   {

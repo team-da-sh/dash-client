@@ -19,9 +19,9 @@ const ClassRegister = () => {
   const [selectedLevelTitle, setSelectedLevelTitle] = useState<string | null>();
   const [recommend, setRecommend] = useState('');
   const [personnel, setPersonnelChange] = useState('');
-  const [amount, setAmount] = useState('');
   const [defaultPlace, setDefaultPlace] = useState('');
   const [detailPlace, setDetailPlace] = useState('');
+  const [amount, setAmount] = useState('');
 
   const handlePersonnelChange = (e: ChangeEvent<HTMLInputElement>) => {
     // 숫자만 입력되도록
