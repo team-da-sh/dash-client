@@ -2,12 +2,14 @@ import { useState } from 'react';
 import ClassItem from '@/pages/home/components/ClassItem';
 import DancerList from '@/pages/search/components/DancerList';
 import TagSection from '@/pages/search/components/TabContainer/TagSection';
-import { sortIconStyle, divCustomStyle } from '@/pages/search/components/TabContainer/index.css';
+import { divCustomStyle, dropdownDivStyle } from '@/pages/search/components/TabContainer/index.css';
 import { CLASS_LIST, DANCER_LIST } from '@/pages/search/mocks/index';
 import { defaultSortTagProps } from '@/pages/search/types/defaultSortTag';
 import Flex from '@/components/Flex';
 import { TabList, TabRoot, TabButton, TabPanel } from '@/components/Tab';
-import { IcBtnEtc, IcXMain04 } from '@/assets/svg';
+import Text from '@/components/Text';
+import { IcXMain04 } from '@/assets/svg';
+import Dropdown from './TagSection/Dropdown';
 
 interface TagItem {
   label: string;
@@ -39,6 +41,7 @@ const TabContainer = ({
   setEndDate,
 }: TabContainerProps) => {
   const [selectedTab, setSelectedTab] = useState(0);
+  const [selectedLabel, setSelectedLabel] = useState('최신 등록순'); // Default label
 
   const activeTags: TagItem[] = [
     { condition: genre, label: genre, type: 'genre' },
@@ -73,6 +76,20 @@ const TabContainer = ({
             <TabButton isSelected={selectedTab === 1} onClick={() => setSelectedTab(1)} colorScheme="primary">
               댄서
             </TabButton>
+            <div className={dropdownDivStyle}>
+              <Dropdown.Root>
+                <Dropdown.Trigger>
+                  <Text tag="b7" color="gray7">
+                    {selectedLabel}
+                  </Text>
+                </Dropdown.Trigger>
+                <Dropdown.Content>
+                  <Dropdown.Item label="최신 등록순" onClick={() => setSelectedLabel('최신 등록순')} />
+                  <Dropdown.Item label="찜많은 순" onClick={() => setSelectedLabel('찜많은 순')} />
+                  <Dropdown.Item label="마감 임박순" onClick={() => setSelectedLabel('마감 임박순')} />
+                </Dropdown.Content>
+              </Dropdown.Root>
+            </div>
           </TabList>
           <TabPanel isSelected={selectedTab === 0}>
             <TagSection
@@ -113,7 +130,6 @@ const TabContainer = ({
             <DancerList dancers={DANCER_LIST} />
           </TabPanel>
         </TabRoot>
-        <IcBtnEtc width={68} height={16} className={sortIconStyle} />
       </Flex>
     </Flex>
   );
