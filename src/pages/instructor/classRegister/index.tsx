@@ -28,7 +28,6 @@ const ClassRegister = () => {
   const handleExplainTextArea = () => {
     const textArea = explainTextAreaRef.current;
     if (textArea) {
-      console.log('이건 설명 textarea', textArea.value);
       textArea.style.height = '9.8rem';
       textArea.style.height = `${textArea.scrollHeight}px`;
     }
@@ -37,7 +36,6 @@ const ClassRegister = () => {
   const handleScheduleTextArea = () => {
     const textArea = scheduleTextAreaRef.current;
     if (textArea) {
-      console.log('이건 일정 textarea', textArea.value);
       textArea.style.height = '9.8rem';
       textArea.style.height = `${textArea.scrollHeight}px`;
     }
