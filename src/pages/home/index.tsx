@@ -10,7 +10,8 @@ import {
   deadlineClassWrapperStyle,
   recommandClassWrapperStyle,
 } from '@/pages/home/index.css';
-import { DANCERLIST, GENRELIST, RECOMMAND_CLASSLIST } from '@/pages/home/mocks';
+import { DANCERLIST, GENRELIST } from '@/pages/home/mocks';
+import { CLASS_LIST } from '@/pages/search/mocks';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import { useIntersect } from '@/utils/useIntersect';
@@ -29,19 +30,21 @@ const Home = () => {
           이 클래스는 꼭 들어야 해요!
         </Head>
         <Flex tag="ul" gap="0.8rem" marginTop="2rem" className={containerStyle}>
-          {RECOMMAND_CLASSLIST.map((data) => (
+          {CLASS_LIST.map((data) => (
             <ClassItem
-              key={data.lessonId}
-              lessonId={data.lessonId}
-              lessonImageUrl={data.teacherImageUrl}
-              lessonLevel={data.lessonLevel}
-              lessonGenre={data.lessonGenre}
-              lessonName={data.lessonName}
-              teacherNickname={data.teacherNickname}
-              teacherImageUrl={data.teacherImageUrl}
-              lessonStartDateTime={data.lessonStartDateTime}
-              lessonEndDateTime={data.lessonEndDateTime}
-              lessonStreetAddress={data.lessonStreetAddress}
+              key={data.id}
+              lessonId={data.id}
+              lessonImageUrl={data.teacherProfileImage}
+              lessonLevel={data.level}
+              lessonGenre={data.genre}
+              lessonName={data.name}
+              teacherNickname={data.teacherName}
+              teacherImageUrl={data.teacherProfileImage}
+              lessonStartDateTime={data.startDate}
+              lessonEndDateTime={data.endDate}
+              lessonStreetAddress={data.location}
+              lessonRemainingDays={data.remainingDays}
+              useNewStyles={false}
             />
           ))}
         </Flex>
@@ -79,19 +82,21 @@ const Home = () => {
           놓치면 아쉬울 마지막 기회
         </Head>
         <Flex tag="ul" marginTop="2rem" gap="0.8rem" className={containerStyle}>
-          {RECOMMAND_CLASSLIST.map((data) => (
+          {CLASS_LIST.map((data) => (
             <ClassItem
-              key={data.lessonId}
-              lessonId={data.lessonId}
-              lessonImageUrl={data.teacherImageUrl}
-              lessonLevel={data.lessonLevel}
-              lessonGenre={data.lessonGenre}
-              lessonName={data.lessonName}
-              teacherNickname={data.teacherNickname}
-              teacherImageUrl={data.teacherImageUrl}
-              lessonStartDateTime={data.lessonStartDateTime}
-              lessonEndDateTime={data.lessonEndDateTime}
-              lessonStreetAddress={data.lessonStreetAddress}
+              key={data.id}
+              lessonId={data.id}
+              lessonImageUrl={data.teacherProfileImage}
+              lessonLevel={data.level}
+              lessonGenre={data.genre}
+              lessonName={data.name}
+              teacherNickname={data.teacherName}
+              teacherImageUrl={data.teacherProfileImage}
+              lessonStartDateTime={data.startDate}
+              lessonEndDateTime={data.endDate}
+              lessonStreetAddress={data.location}
+              lessonRemainingDays={data.remainingDays}
+              useNewStyles={false}
             />
           ))}
         </Flex>

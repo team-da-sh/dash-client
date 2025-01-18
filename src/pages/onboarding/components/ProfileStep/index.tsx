@@ -1,4 +1,4 @@
-import { profileStyle } from '@/pages/onboarding/components/ProfileStep/index.css';
+import { icCameraStyle, profileStyle } from '@/pages/onboarding/components/ProfileStep/index.css';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Input from '@/components/Input';
@@ -10,7 +10,7 @@ interface ProfileStepProps {}
 const ProfileStep = ({}: ProfileStepProps) => {
   return (
     <Flex direction="column" width="100%">
-      <Flex direction="column" gap="0.8rem">
+      <Flex direction="column" gap="0.8rem" marginBottom="3.95rem">
         <Head level="h1" tag="h2">
           프로필 완성
         </Head>
@@ -19,9 +19,11 @@ const ProfileStep = ({}: ProfileStepProps) => {
         </Text>
       </Flex>
 
-      <Flex className={profileStyle}>
-        <IcProfileBasic width={100} height={100} />
-        <IcCameraMain0624 width={24} height={24} />
+      <Flex justify="center" width="100%">
+        <Flex className={profileStyle}>
+          <IcProfileBasic width={100} height={100} />
+          <IcCameraMain0624 width={24} height={24} className={icCameraStyle} />
+        </Flex>
       </Flex>
 
       <Flex direction="column" gap="1.6rem" marginTop="2.8rem" width="100%">

@@ -6,7 +6,7 @@ import Tag from '@/components/Tag';
 import Text from '@/components/Text';
 import { formatLessonDateRange } from '@/utils/timeCalculate';
 import { getClassStatus } from '@/utils/timeCalculate';
-import { IcArrowRightGray0614 } from '@/assets/svg';
+import { IcArrowRightGray0614, IcClassEndMain0324, IcClassIngMain0324, IcClassSoonMain0324 } from '@/assets/svg';
 
 const ClassCard = ({
   lessonName,
@@ -22,34 +22,53 @@ const ClassCard = ({
   // 클래스 상태 계산
   const { status, remainingDays } = getClassStatus(lessonStartDateTime, lessonEndDateTime);
 
+  // 상태 한글 번역
+  const korstatus = () => {
+    if (isReservation) {
+      switch (status) {
+        case 'upcoming':
+          return '수강예정';
+        case 'ongoing':
+          return '수강중';
+        case 'completed':
+          return '수강완료';
+        default:
+          return '';
+      }
+    } else {
+      switch (status) {
+        case 'upcoming':
+          return '모집중';
+        case 'completed':
+          return '모집완료';
+        default:
+          return '';
+      }
+    }
+  };
+
+  // 상태 아이콘 반환
+  const statusIcon = () => {
+    switch (status) {
+      case 'upcoming':
+        return <IcClassSoonMain0324 width="1.8rem" />;
+      case 'ongoing':
+        return <IcClassIngMain0324 width="1.8rem" />;
+      case 'completed':
+        return <IcClassEndMain0324 width="1.8rem" />;
+      default:
+        return null;
+    }
+  };
+
   return (
     <div className={styles.cardContainerStyle}>
       <Flex justify="spaceBetween" align="center">
-        <Flex align="center" gap="0.2rem" marginBottom="1.2rem">
+        <Flex align="center" gap="0.3rem" marginBottom="1.2rem">
+          <Flex marginRight="0.5rem">{statusIcon()}</Flex>
+
           <Text tag="b4" color={status === 'completed' ? 'gray8' : 'black'}>
-            {(() => {
-              if (isReservation) {
-                switch (status) {
-                  case 'upcoming':
-                    return '수강예정';
-                  case 'ongoing':
-                    return '수강중';
-                  case 'completed':
-                    return '수강완료';
-                  default:
-                    return '';
-                }
-              } else {
-                switch (status) {
-                  case 'upcoming':
-                    return '모집중';
-                  case 'completed':
-                    return '모집완료';
-                  default:
-                    return '';
-                }
-              }
-            })()}
+            {korstatus()}
           </Text>
           {isReservation && status === 'upcoming' && remainingDays !== undefined && (
             <Text tag="b7" color="main4">

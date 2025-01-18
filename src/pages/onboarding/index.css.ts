@@ -3,7 +3,6 @@ import { vars } from '@/styles/theme.css';
 
 export const containerStyle = style({
   position: 'relative',
-  height: '100vh',
 });
 
 export const headerWrapperStyle = style({
@@ -17,7 +16,7 @@ export const progressBarStyle = style({
 });
 
 export const bodyWrapperStyle = style({
-  padding: '11.2rem 2rem 0 2rem',
+  padding: '11.2rem 2rem 10.2rem 2rem',
 });
 
 export const footerWrapperStyle = style({
