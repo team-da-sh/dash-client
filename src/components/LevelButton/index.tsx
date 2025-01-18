@@ -1,5 +1,5 @@
 import Head from '@/components/Head/index';
-import { levelButtonStyle } from '@/components/LevelButton/index.css';
+import { levelButtonStyle, onboardingLevelButtonStyle } from '@/components/LevelButton/index.css';
 import Text from '@/components/Text';
 
 interface LevelButtonProps {
@@ -8,13 +8,16 @@ interface LevelButtonProps {
     title: string;
     description: string;
   };
-  isSelected: boolean;
+  isSelected: boolean | null;
+  isOnboard: boolean;
   onClick: () => void;
 }
 
 const LevelButton = ({ level, isSelected, onClick }: LevelButtonProps) => {
   return (
-    <button className={levelButtonStyle({ selected: isSelected })} onClick={onClick}>
+    <button
+      className={isSelected === null ? onboardingLevelButtonStyle : levelButtonStyle({ selected: isSelected })}
+      onClick={onClick}>
       {level.icon}
       <Head tag="h6" level="h6" color={isSelected ? 'white' : 'gray9'}>
         {level.title}
