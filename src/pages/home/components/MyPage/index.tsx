@@ -1,8 +1,8 @@
-import TopSection from '@/pages/mypage/TopSection';
-import * as styles from '@/pages/mypage/index.css';
+import * as styles from '@/pages/home/components/MyPage/index.css';
+import TopSection from '@/pages/home/components/TopSection';
 import Divider from '@/components/Divider';
 import { MYPAGE_DATA } from '@/mocks/mockMyPageData';
-import BottomSection from './BottomSection';
+import BottomSection from '../BottomSection';
 
 const MyPage = () => {
   const userData = MYPAGE_DATA[0];

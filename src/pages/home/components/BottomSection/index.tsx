@@ -1,4 +1,4 @@
-import * as styles from '@/pages/mypage/BottomSection/index.css';
+import * as styles from '@/pages/home/components/BottomSection/index.css';
 import { LIST_DATA } from '@/pages/mypage/constants/myPageList';
 import Divider from '@/components/Divider';
 import Flex from '@/components/Flex';

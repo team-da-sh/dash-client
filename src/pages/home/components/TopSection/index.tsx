@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import * as styles from '@/pages/mypage/TopSection/index.css';
+import * as styles from '@/pages/home/components/TopSection/index.css';
 import Divider from '@/components/Divider';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
