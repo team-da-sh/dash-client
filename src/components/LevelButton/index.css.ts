@@ -11,6 +11,7 @@ export const levelButtonStyle = recipe({
     backgroundColor: vars.colors.gray01,
     borderRadius: '4px',
     transition: 'background-color 0.3s ease',
+    cursor: 'pointer',
   },
   variants: {
     selected: {
