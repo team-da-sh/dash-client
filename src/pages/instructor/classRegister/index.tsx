@@ -1,13 +1,20 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import * as styles from '@/pages/instructor/classRegister/index.css';
+import GenreButton from '@/pages/search/components/TabContainer/TagSection/BottomSheet/GenreButton';
 import Flex from '@/components/Flex';
 import Header from '@/components/Header';
 import Input from '@/components/Input';
 import Text from '@/components/Text';
+import { GENRE_CATEGORY } from '@/constants';
 import Description from './Description';
 
 const ClassRegister = () => {
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
+  const [selectedGenre, setSelectedGenre] = useState<string | null>();
+
+  const toggleCategory = (category: string) => {
+    setSelectedGenre((prev) => (prev === category ? null : category));
+  };
 
   const handleInput = () => {
     const textArea = textAreaRef.current;
@@ -19,7 +26,7 @@ const ClassRegister = () => {
 
   return (
     <>
-      <Header.Root>
+      <Header.Root isColor={true}>
         <Header.BackIcon />
         <Header.Title title="클래스 개설"></Header.Title>
       </Header.Root>
@@ -50,8 +57,20 @@ const ClassRegister = () => {
           <Description title="클래스 대표 이미지" subTitle="대표 이미지는 최대 한 장까지 등록 가능해요" />
         </section>
 
+        {/* 장르 */}
         <section className={styles.genreSectionStyle}>
           <Description title="장르" subTitle="클래스에 해당하는 장르를 최대 2개까지 골라 주세요" />
+
+          <div className={styles.genreButtonContainerStyle}>
+            {GENRE_CATEGORY.flat().map((category, index) => (
+              <GenreButton
+                key={index}
+                category={category}
+                isSelected={selectedGenre === category}
+                onClick={() => toggleCategory(category)}
+              />
+            ))}
+          </div>
         </section>
 
         <section className={styles.levelSectionStyle}>
