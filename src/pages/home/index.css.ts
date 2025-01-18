@@ -1,5 +1,7 @@
 import { style } from '@vanilla-extract/css';
 
+export const homeContainerStyle = style({});
+
 export const containerStyle = style({
   overflow: 'auto',
   whiteSpace: 'nowrap',

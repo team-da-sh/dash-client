@@ -4,6 +4,8 @@ import { vars } from '@/styles/theme.css';
 export const sectionStyle = style({
   padding: '5.3rem 2rem 2.6rem 2rem',
 
+  whiteSpace: 'nowrap',
+
   backgroundColor: vars.colors.white,
 });
 

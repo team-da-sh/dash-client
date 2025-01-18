@@ -6,6 +6,7 @@ export const wrapperStyle = style({
   flexDirection: 'column',
   width: '31.2rem',
   height: '100vh',
+  overflow: 'auto',
 
   position: 'fixed',
   right: '0',
@@ -15,7 +16,7 @@ export const wrapperStyle = style({
 
 export const visibleStyle = style({
   width: '100%',
-  height: '100vh',
+  height: '100%',
 
   position: 'fixed',
   right: '0',

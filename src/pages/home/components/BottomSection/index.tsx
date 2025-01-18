@@ -20,18 +20,20 @@ const BottomSection = ({ userData }: { userData: MyPageProps }) => {
           const ArrowIcon = isDisabled ? IcArrowRightSmallGray0432 : IcArrowRightSmallGray0732;
 
           return (
-            <li key={item.id} className={styles.listStyle}>
-              <Text tag="b2" color={isDisabled ? 'gray4' : 'gray9'}>
-                {item.label}
-              </Text>
-              <ArrowIcon width={32} height={32} />
+            <>
+              <li key={item.id} className={styles.listStyle}>
+                <Text tag="b2" color={isDisabled ? 'gray4' : 'gray9'}>
+                  {item.label}
+                </Text>
+                <ArrowIcon width={32} height={32} />
+              </li>{' '}
               {/* Divider가 필요한 항목에 추가 */}
               {item.hasDivider && (
                 <div className={styles.dividerStyle}>
                   <Divider color="gray1" thickness={1} />
                 </div>
               )}
-            </li>
+            </>
           );
         })}
       </ul>

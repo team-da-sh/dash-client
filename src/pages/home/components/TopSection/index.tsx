@@ -85,22 +85,26 @@ const TopSection = ({ userData, onClose }: TopSectionProps) => {
 
         <Divider direction="vertical" color="gray2" length={32} thickness={1} />
 
-        <Flex direction="column" align="center">
-          <Head tag="h4" color={getTextColor(userData.reservationCount)}>
-            {userData.reservationCount}
+        <Flex direction="column" align="center" gap="0.5rem">
+          <Head tag="h4" color={getTextColor(userData.favoriteCount)}>
+            {userData.favoriteCount}
           </Head>
-          <Text tag="b6" color={getTextColor(userData.reservationCount)}>
+          <Text tag="b6" color={getTextColor(userData.favoriteCount)}>
             관심목록
           </Text>
         </Flex>
 
         <Divider direction="vertical" color="gray2" length={32} thickness={1} />
 
-        <Flex direction="column" align="center" onClick={() => handleNavigate(ROUTES_CONFIG.instructorClassList.path)}>
-          <Head tag="h4" color={getTextColor(userData.reservationCount)}>
+        <Flex
+          gap="0.5rem"
+          direction="column"
+          align="center"
+          onClick={() => handleNavigate(ROUTES_CONFIG.instructorClassList.path)}>
+          <Head tag="h4" color={getTextColor(userData.lessonCount ?? 0)}>
             {userData.lessonCount ?? 0}
           </Head>
-          <Text tag="b6" color={getTextColor(userData.reservationCount)}>
+          <Text tag="b6" color={getTextColor(userData.lessonCount ?? 0)}>
             내 클래스
           </Text>
         </Flex>
