@@ -1,4 +1,4 @@
-import TabWrapper from "./TabWrapper";
+import TabWrapper from '@/pages/dancer/TabWrapper';
 
 const Dancer = () => {
   return (

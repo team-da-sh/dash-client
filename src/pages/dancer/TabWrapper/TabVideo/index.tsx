@@ -1,6 +1,6 @@
-import Flex from "@/components/Flex";
-import { DANCER_DATA } from '@/mocks/mockDancerData';
 import { videoWrapper, videoItem, iframe } from '@/pages/dancer/TabWrapper/TabVideo/index.css';
+import Flex from '@/components/Flex';
+import { DANCER_DATA } from '@/mocks/mockDancerData';
 
 const TabVideo = () => {
   const { videoUrl } = DANCER_DATA;
@@ -22,8 +22,7 @@ const TabVideo = () => {
                 src={embedUrl || ''}
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
-                title={`video-${index}`}
-              ></iframe>
+                title={`video-${index}`}></iframe>
             </div>
           );
         })}

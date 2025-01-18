@@ -1,10 +1,10 @@
-import Flex from "@/components/Flex";
-import { TabButton, TabList, TabPanel, TabRoot } from "@/components/Tab";
-import { vars } from "@/styles/theme.css";
-import { useState } from "react";
-import TabVideo from "@/pages/dancer/TabWrapper/TabVideo";
-import TabEducation from "@/pages/dancer/TabWrapper/TabEducation";
-import TabHistory from "@/pages/dancer/TabWrapper/TabExperience";
+import { useState } from 'react';
+import TabEducation from '@/pages/dancer/TabWrapper/TabEducation';
+import TabHistory from '@/pages/dancer/TabWrapper/TabExperience';
+import TabVideo from '@/pages/dancer/TabWrapper/TabVideo';
+import Flex from '@/components/Flex';
+import { TabButton, TabList, TabPanel, TabRoot } from '@/components/Tab';
+import { vars } from '@/styles/theme.css';
 
 interface TabWrapperProps {
   colorScheme: 'primary' | 'secondary';
