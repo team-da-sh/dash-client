@@ -12,8 +12,15 @@ interface MyPageProps {
 const MyPage = ({ showMyPage, onClose }: MyPageProps) => {
   const userData = MYPAGE_DATA[0];
 
+  // wrapper 영역 외부 클릭시 onClose 호출
+  const handleClickOutside = (e: React.MouseEvent) => {
+    if (e.target === e.currentTarget) {
+      onClose();
+    }
+  };
+
   return (
-    <div className={showMyPage ? styles.visibleStyle : styles.invisibleStyle} onClick={onClose}>
+    <div onClick={handleClickOutside} className={showMyPage ? styles.visibleStyle : styles.invisibleStyle}>
       <div className={styles.wrapperStyle}>
         <TopSection userData={userData} onClose={onClose} />
         <Divider length="100%" color="gray1" thickness={8} />
