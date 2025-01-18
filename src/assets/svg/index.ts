@@ -1,3 +1,5 @@
+export { default as IcArrowRightWhite14 } from './IcArrowRightWhite14';
+
 export { default as IcClassEndMain0324 } from './IcClassEndMain0324';
 export { default as IcClassIngMain0324 } from './IcClassIngMain0324';
 export { default as IcClassSoonMain0324 } from './IcClassSoonMain0324';
@@ -9,6 +11,7 @@ export { default as IcAssetTop2 } from './IcAssetTop2';
 export { default as IcAssetTop3 } from './IcAssetTop3';
 export { default as IcArrowRightGray0614 } from './IcArrowRightGray0614';
 export { default as IcArrowUnderGray } from './IcArrowUnderGray';
+
 export { default as IcBack } from './IcBack';
 export { default as IcBtnEtc } from './IcBtnEtc';
 export { default as IcCalendarcheckColor3D24 } from './IcCalendarcheckColor3D24';
@@ -34,8 +37,8 @@ export { default as IcXCircleGray0424 } from './IcXCircleGray0424';
 export { default as IcXMain04 } from './IcXMain04';
 export { default as IcYoutube20 } from './IcYoutube20';
 
-export { default as IcArrowRightSmallMain0332New } from './IcArrowRightSmallMain0332New'
-export { default as IcCheckcircleGray0524 } from './IcCheckcircleGray0524'
-export { default as IcCheckcircleMain0324 } from './IcCheckcircleMain0324'
-export { default as IcCheckGray0724 } from './IcCheckGray0724'
-export { default as IcCheckMain0324 } from './IcCheckMain0324'
+export { default as IcArrowRightSmallMain0332New } from './IcArrowRightSmallMain0332New';
+export { default as IcCheckcircleGray0524 } from './IcCheckcircleGray0524';
+export { default as IcCheckcircleMain0324 } from './IcCheckcircleMain0324';
+export { default as IcCheckGray0724 } from './IcCheckGray0724';
+export { default as IcCheckMain0324 } from './IcCheckMain0324';

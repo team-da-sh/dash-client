@@ -9,6 +9,13 @@ globalStyle(':root', {
   },
 });
 
+globalStyle(':root', {
+  vars: {
+    '--swiper-theme-color': vars.colors.white,
+    '--swiper-pagination-bullet-inactive-color': vars.colors.white50,
+  },
+});
+
 // HTML, Body 스타일
 globalStyle('html, body', {
   minWidth: 'var(--min-width)',
