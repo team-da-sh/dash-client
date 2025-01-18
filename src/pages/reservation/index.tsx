@@ -29,6 +29,8 @@ const Reservation = () => {
   const [isAllChecked, setIsAllChecked] = useState(false);
   const [agreements, setAgreements] = useState([false, false]);
 
+  const data = MY_RESERVATION_DATA;
+
   // 전체 체크박스, 상태 동기화
   const handleToggleAll = () => {
     const newState = !isAllChecked;
@@ -72,13 +74,19 @@ const Reservation = () => {
           <Text tag="b4" color="gray9">
             클래스 정보
           </Text>
-          <ClassInfo />
+          <ClassInfo
+            lessonName={data.lessonName}
+            lessonLocation={data.lessonLocation}
+            teacherName={data.teacherName}
+            lessonLevel={data.lessonLevel}
+            lessonRound={data.lessonRound}
+          />
         </Flex>
         <Flex direction="column" width="100%" gap="1.6rem">
           <Text tag="b4" color="gray9">
             신청자 정보
           </Text>
-          <ApplicantInfo />
+          <ApplicantInfo bookerName={data.bookerName} bookerPhoneNumber={data.bookerPhoneNumber} />
         </Flex>
       </Flex>
 
