@@ -28,7 +28,6 @@ const Home = () => {
   };
 
   const handleCloseMyPageClick = () => {
-    console.log('클릭');
     setShowMyPage(false);
   };
 
