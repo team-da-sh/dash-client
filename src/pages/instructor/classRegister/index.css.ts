@@ -108,5 +108,18 @@ export const addInputBoxStyle = style({
 // 모집 인원
 export const personnelSectionStyle = style([commonSectionStyle, {}]);
 
+export const personnelContainerStyle = style({
+  position: 'relative',
+});
+
+
+
+export const personnelTextStyle = style({
+  position: 'absolute',
+  right: '1.8rem',
+  top: '50%',
+  transform: 'translateY(-50%)',
+});
+
 export const placeSectionStyle = style([commonSectionStyle, {}]);
 export const amountSectionStyle = style([commonSectionStyle, {}]);

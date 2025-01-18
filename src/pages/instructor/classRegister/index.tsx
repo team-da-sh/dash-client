@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { ChangeEvent, useRef, useState } from 'react';
 import * as styles from '@/pages/instructor/classRegister/index.css';
 import GenreButton from '@/pages/search/components/TabContainer/TagSection/BottomSheet/GenreButton';
 import Flex from '@/components/Flex';
@@ -16,6 +16,15 @@ const ClassRegister = () => {
 
   const [selectedGenre, setSelectedGenre] = useState<string | null>();
   const [selectedLevelTitle, setSelectedLevelTitle] = useState<string | null>();
+  const [personnel, setPersonnelChange] = useState('');
+
+  const handlePersonnelChange = (e: ChangeEvent<HTMLInputElement>) => {
+    // 숫자만 입력되도록
+    if (!e.target.value.match(/\D/g)) {
+      setPersonnelChange(e.target.value);
+      console.log(e.target.value);
+    }
+  };
 
   const toggleCategory = (category: string) => {
     setSelectedGenre((prev) => (prev === category ? null : category));
@@ -49,7 +58,7 @@ const ClassRegister = () => {
       </Header.Root>
 
       <div className={styles.containerStyle}>
-        {/* 클래스명 section */}
+        {/* 클래스명 */}
         <section className={styles.nameSectionStyle}>
           <Description title="클래스명" subTitle="돋보일 수 있는 클래스명을 최대 30자 입력해 주세요" />
           <Flex direction="column" gap="0.4rem">
@@ -126,8 +135,15 @@ const ClassRegister = () => {
           </Flex>
         </section>
 
+        {/* 모집 인원 */}
         <section className={styles.personnelSectionStyle}>
           <Description title="모집 인원" subTitle="원활한 클래스 진행을 위해 최대 인원을 알려주세요" />
+          <div className={styles.personnelContainerStyle}>
+            <Input placeholder="0" value={personnel} onChange={handlePersonnelChange} />
+            <Text tag="b5" className={styles.personnelTextStyle}>
+              명
+            </Text>
+          </div>
         </section>
 
         <section className={styles.placeSectionStyle}>
