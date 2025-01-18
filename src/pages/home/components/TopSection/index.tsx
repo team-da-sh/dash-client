@@ -9,7 +9,11 @@ import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { IcClose, IcArrowRightGray0614, IcCalendarcheckColor3D24, IcCalendarcheckMono3D24 } from '@/assets/svg';
 import { MyPageProps } from '@/types/myPageTypes';
 
-const TopSection = ({ userData }: { userData: MyPageProps }) => {
+interface TopSectionProps {
+  userData: MyPageProps;
+  onClose: () => void;
+}
+const TopSection = ({ userData, onClose }: TopSectionProps) => {
   const navigate = useNavigate();
 
   // 신청 내역, 내 클래스 클릭 시 이동
@@ -40,7 +44,7 @@ const TopSection = ({ userData }: { userData: MyPageProps }) => {
     <section className={styles.sectionStyle}>
       <Flex direction="column" align="center">
         <Flex align="center" width="100%" justify="spaceBetween">
-          <IcClose width={24} height={24} />
+          <IcClose width={24} height={24} onClick={onClose} />
           <Flex align="center" gap="0.2rem">
             <Text tag="b7" color="gray7">
               프로필 수정

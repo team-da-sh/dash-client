@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import ClassItem from '@/pages/home/components/ClassItem';
 import { genreWrapperStyle } from '@/pages/home/components/ClassItem/index.css';
 import DancerItem from '@/pages/home/components/DancerItem';
@@ -5,6 +6,7 @@ import Footer from '@/pages/home/components/Footer';
 import GenreItem from '@/pages/home/components/GenreItem';
 import HomeCarousel from '@/pages/home/components/HomeCarousel';
 import HomeHeader from '@/pages/home/components/HomeHeader';
+import MyPage from '@/pages/home/components/MyPage';
 import {
   containerStyle,
   dancerListWrapperstyle,
@@ -19,10 +21,27 @@ import { useIntersect } from '@/utils/useIntersect';
 
 const Home = () => {
   const [targetRef, isVisible] = useIntersect(false);
+  const [showMyPage, setShowMyPage] = useState(false);
+
+  // 마이페이지 보여주기
+  const handleMyPageClick = () => {
+    setShowMyPage(true);
+  };
+
+  const handleCloseMyPageClick = () => {
+    setShowMyPage(false);
+  };
 
   return (
     <>
-      <HomeHeader isVisible={isVisible} />
+      {showMyPage ? (
+        <MyPage onClose={handleCloseMyPageClick} />
+      ) : (
+        <>
+          <HomeHeader isVisible={isVisible} onMyPageClick={handleMyPageClick} /> {/* 클릭 핸들러 전달 */}
+          {/* 이하 기존 Home 컴포넌트 내용 */}
+        </>
+      )}
 
       <div ref={targetRef}>
         <HomeCarousel />
