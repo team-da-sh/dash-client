@@ -7,6 +7,7 @@ import Head from '@/components/Head';
 import Header from '@/components/Header';
 import Text from '@/components/Text';
 import { formatDateTime, getClassStatus } from '@/utils/timeCalculate';
+import { getStatusMessage } from './hooks/getStatusMessage';
 
 const ClassReservationDetail = () => {
   // 클래스 상태 계산
@@ -30,34 +31,7 @@ const ClassReservationDetail = () => {
       <div className={styles.containerStyle}>
         <Flex width="100%" justify="center">
           <Head tag="h5" color={status === 'completed' ? 'gray8' : 'black'}>
-            {(() => {
-              switch (status) {
-                case 'upcoming':
-                  return (
-                    <Flex gap="0.2rem">
-                      클래스 시작까지
-                      <Head tag="h5" color="main4">
-                        {remainingDays} 일
-                      </Head>
-                      남았어요
-                    </Flex>
-                  );
-                case 'ongoing':
-                  return (
-                    <Flex gap="0.2rem">
-                      클래스가
-                      <Head tag="h5" color="main4">
-                        진행 중
-                      </Head>
-                      이에요
-                    </Flex>
-                  );
-                case 'completed':
-                  return <>클래스 수강이 완료되었어요</>;
-                default:
-                  return '';
-              }
-            })()}
+            {getStatusMessage(status, remainingDays)}
           </Head>
         </Flex>
         <div className={styles.classHeaderStyle}>

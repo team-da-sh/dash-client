@@ -2,12 +2,22 @@ export type ClassStatus = 'ongoing' | 'upcoming' | 'completed';
 
 // 레슨 시작, 끝 시간과 현재 시간을 비교해서 클래스/레슨의 상태를 계산하는 함수
 export const getClassStatus = (
-  lessonStartDateTime: string,
-  lessonEndDateTime: string
+  lessonStartDateTime: string | undefined,
+  lessonEndDateTime: string | undefined
 ): { status: ClassStatus; remainingDays?: number } => {
+  if (!lessonStartDateTime || !lessonEndDateTime) {
+    // 날짜가 제공되지 않으면 기본 상태 반환
+    return { status: 'completed' };
+  }
+
   const currentTime = new Date();
   const startTime = new Date(lessonStartDateTime);
   const endTime = new Date(lessonEndDateTime);
+
+  // 유효하지 않은 날짜를 방어
+  if (isNaN(startTime.getTime()) || isNaN(endTime.getTime())) {
+    throw new Error('Invalid date format provided for lessonStartDateTime or lessonEndDateTime');
+  }
 
   // 날짜만 비교하기 위해 시간, 분, 초, 밀리초를 0으로 초기화
   currentTime.setHours(0, 0, 0, 0);
