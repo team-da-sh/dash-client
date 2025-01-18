@@ -1,8 +1,10 @@
+import { useEffect } from 'react';
 import BoxButton from '@/components/BoxButton';
 import Completion from '@/components/Completion';
 import Header from '@/components/Header';
 import ProgressBar from '@/components/ProgressBar';
 import { useFunnel } from '@/hooks/useFunnel';
+import { useUploadImg } from '@/hooks/useUploadImg';
 import CareerStep from './CareerStep';
 import ImageUploadStep from './ImageUploadStep';
 import IntroductionStep from './IntroductionStep';
@@ -13,6 +15,11 @@ import { buttonContainerStyle, funnelContainerStyle, progressBarCustomStyle } fr
 const InstructorRegister = () => {
   const TOTAL_STEP = 6;
   const { Funnel, Step, currentStep, setStep } = useFunnel(TOTAL_STEP, '/mypage');
+  const { imgRef, previewImg, imgFile, handleUploaderClick, uploadImgFile, deleteImgFile } = useUploadImg();
+
+  useEffect(() => {
+    console.log(imgFile);
+  }, [imgFile]);
 
   return (
     <>
@@ -27,7 +34,14 @@ const InstructorRegister = () => {
       <div className={funnelContainerStyle}>
         <Funnel>
           <Step name="1">
-            <ImageUploadStep />
+            <ImageUploadStep
+              imgRef={imgRef}
+              previewImg={previewImg}
+              imgFile={imgFile}
+              handleUploaderClick={handleUploaderClick}
+              uploadImgFile={uploadImgFile}
+              deleteImgFile={deleteImgFile}
+            />
           </Step>
           <Step name="2">
             <PersonalSNSStep />
