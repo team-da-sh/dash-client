@@ -5,7 +5,7 @@ import Text from '@/components/Text';
 import { calculatePeriod, formatDate } from '@/utils/dateCalculate';
 import { LESSON_DATA } from '@/mocks/mockLessonData';
 
-const Period = () => {
+const TabPeriod = () => {
   const { lessonRound } = LESSON_DATA;
 
   return (
@@ -40,4 +40,4 @@ const Period = () => {
   );
 };
 
-export default Period;
+export default TabPeriod;
