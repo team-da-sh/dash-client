@@ -17,20 +17,12 @@ export const genreButtonStyle = recipe({
         color: vars.colors.white,
       },
       unselected: {
-        backgroundColor: '#f4f4f4',
-        color: '#333',
+        backgroundColor: vars.colors.gray01,
+        color: vars.colors.gray09,
       },
     },
   },
   defaultVariants: {
     state: 'unselected',
-  },
-});
-
-export const buttonContainer = recipe({
-  base: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    gap: '10px',
   },
 });
