@@ -17,7 +17,7 @@ const InstructorRegister = () => {
   return (
     <>
       <Header.Root isColor={true}>
-        {currentStep < TOTAL_STEP && <Header.BackIcon />}
+        {currentStep < TOTAL_STEP && <Header.BackIcon onFunnelBackClick={() => setStep(-1)} />}
         <Header.CloseIcon onClick={() => console.log('hi')} />
       </Header.Root>
       {currentStep < TOTAL_STEP && (

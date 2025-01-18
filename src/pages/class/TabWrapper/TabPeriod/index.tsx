@@ -2,8 +2,8 @@ import Card from '@/pages/class/Card';
 import { roundBoxStyle } from '@/pages/class/TabWrapper/TabPeriod/index.css';
 import Flex from '@/components/Flex';
 import Text from '@/components/Text';
-import { LESSON_DATA } from '@/mocks/mockLessonData';
 import { calculatePeriod, formatDate } from '@/utils/dateCalculate';
+import { LESSON_DATA } from '@/mocks/mockLessonData';
 
 const Period = () => {
   const { lessonRound } = LESSON_DATA;

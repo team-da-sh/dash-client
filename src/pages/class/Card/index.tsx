@@ -1,5 +1,5 @@
 import type { ComponentProps } from 'react';
-import { cardStyle } from './index.css';
+import { cardStyle } from '@/pages/class/Card/index.css';
 
 type CardProps = ComponentProps<'div'>;
 

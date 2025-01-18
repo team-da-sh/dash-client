@@ -17,18 +17,32 @@ interface TagItem {
 
 interface TabContainerProps {
   defaultSortTags: defaultSortTagProps[];
-  genre: string;
-  level: string;
+  genre: string | null;
+  level: string | null;
   startDate: string;
   endDate: string;
+  setGenre: (genre: string | null) => void;
+  setLevel: (level: string | null) => void;
+  setStartDate: (date: string) => void;
+  setEndDate: (date: string) => void;
 }
 
-const TabContainer = ({ defaultSortTags, genre, level, startDate, endDate }: TabContainerProps) => {
+const TabContainer = ({
+  defaultSortTags,
+  genre,
+  level,
+  startDate,
+  endDate,
+  setGenre,
+  setLevel,
+  setStartDate,
+  setEndDate,
+}: TabContainerProps) => {
   const [selectedTab, setSelectedTab] = useState(0);
 
   const activeTags: TagItem[] = [
     { condition: genre, label: genre, type: 'genre' },
-    { condition: level, label: level, type: 'level' },
+    { condition: level, label: level || '', type: 'level' },
     {
       condition: startDate && endDate,
       label: `${startDate} ~ ${endDate}`,
@@ -61,7 +75,20 @@ const TabContainer = ({ defaultSortTags, genre, level, startDate, endDate }: Tab
             </TabButton>
           </TabList>
           <TabPanel isSelected={selectedTab === 0}>
-            <TagSection displayTags={displayTags} activeTags={activeTags} tagSize={tagSize} tagType={tagType} />
+            <TagSection
+              displayTags={displayTags}
+              activeTags={activeTags}
+              tagSize={tagSize}
+              tagType={tagType}
+              genre={genre}
+              setGenre={setGenre}
+              setLevel={setLevel}
+              level={level}
+              startDate={startDate}
+              endDate={endDate}
+              setStartDate={setStartDate}
+              setEndDate={setEndDate}
+            />
             <div className={divCustomStyle}>
               {CLASS_LIST.map((data) => (
                 <ClassItem
