@@ -22,7 +22,6 @@ const ClassRegister = () => {
   const handlePersonnelChange = (e: ChangeEvent<HTMLInputElement>) => {
     // 숫자만 입력되도록
     if (!e.target.value.match(/\D/g)) {
-      console.log(e.target.value);
       setPersonnelChange(e.target.value);
     }
   };
@@ -30,7 +29,6 @@ const ClassRegister = () => {
   const handleAmountChange = (e: ChangeEvent<HTMLInputElement>) => {
     // 숫자만 입력되도록
     if (!e.target.value.match(/\D/g)) {
-      console.log(e.target.value);
       setAmount(e.target.value);
     }
   };
