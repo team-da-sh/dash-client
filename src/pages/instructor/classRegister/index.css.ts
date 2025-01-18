@@ -64,11 +64,7 @@ export const imageSectionStyle = style([
 export const genreSectionStyle = style([
   commonSectionStyle,
   {
-    display: 'flex',
-    gap: '1.2rem',
-    flexWrap: 'wrap',
-    paddingTop: '1.2rem',
-    paddingBottom: '18.44rem',
+    marginBottom: '4rem',
   },
 ]);
 
@@ -76,8 +72,6 @@ export const genreButtonContainerStyle = style({
   display: 'flex',
   gap: '1.2rem',
   flexWrap: 'wrap',
-  paddingTop: '1.2rem',
-  paddingBottom: '18.44rem',
 });
 
 // 난이도도

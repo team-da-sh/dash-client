@@ -4,19 +4,25 @@ import GenreButton from '@/pages/search/components/TabContainer/TagSection/Botto
 import Flex from '@/components/Flex';
 import Header from '@/components/Header';
 import Input from '@/components/Input';
+import LevelButton from '@/components/LevelButton';
 import Text from '@/components/Text';
-import { GENRE_CATEGORY } from '@/constants';
+import { GENRE_CATEGORY, LEVEL } from '@/constants';
 import Description from './Description';
 
 const ClassRegister = () => {
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
   const [selectedGenre, setSelectedGenre] = useState<string | null>();
+  const [selectedLevelTitle, setSelectedLevelTitle] = useState<string | null>();
 
   const toggleCategory = (category: string) => {
     setSelectedGenre((prev) => (prev === category ? null : category));
   };
 
-  const handleInput = () => {
+  const handleLevelSelect = (title: string) => {
+    setSelectedLevelTitle((prev) => (prev === title ? null : title));
+  };
+
+  const handleTextArea = () => {
     const textArea = textAreaRef.current;
     if (textArea) {
       textArea.style.height = '9.8rem'; // Default 높이!
@@ -47,7 +53,7 @@ const ClassRegister = () => {
           <Description title="클래스 설명" subTitle="예비 수강생들을 위해 클래스를 소개해 주세요" />
           <textarea
             ref={textAreaRef}
-            onInput={handleInput}
+            onInput={handleTextArea}
             placeholder="저는 이런 댄서예요!"
             className={styles.textareaStyle}></textarea>{' '}
         </section>
@@ -73,10 +79,22 @@ const ClassRegister = () => {
           </div>
         </section>
 
+        {/* 난이도 */}
         <section className={styles.levelSectionStyle}>
           <Description title="난이도" subTitle="클래스에 해당하는 난이도를 골라주세요" />
+          <Flex direction="column" gap="0.8rem">
+            {LEVEL.map((level) => (
+              <LevelButton
+                key={level.title}
+                level={level}
+                isSelected={selectedLevelTitle === level.title}
+                onClick={() => handleLevelSelect(level.title)}
+              />
+            ))}
+          </Flex>
         </section>
 
+        {/* 클래스 추천 대상 */}
         <section className={styles.recommendSectionStyle}>
           <Description title="클래스 추천 대상" subTitle="어떤 수강생에게 추천하고 싶은지 알려주세요" />
         </section>
