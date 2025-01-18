@@ -2,7 +2,7 @@ import FinishStep from '@/pages/onboarding/components/FinishStep';
 import GenreStep from '@/pages/onboarding/components/GenreStep';
 import InfoStep from '@/pages/onboarding/components/InfoStep';
 import LevelStep from '@/pages/onboarding/components/LevelStep';
-import LoginHeader from '@/pages/onboarding/components/LoginHeader';
+import OnboardingHeader from '@/pages/onboarding/components/OnboardingHeader';
 import ProfileStep from '@/pages/onboarding/components/ProfileStep';
 import { footerWrapperStyle, containerStyle, bodyWrapperStyle, progressBarStyle } from '@/pages/onboarding/index.css';
 import BoxButton from '@/components/BoxButton';
@@ -25,7 +25,7 @@ const Onboarding = () => {
 
   return (
     <div className={containerStyle}>
-      <LoginHeader currentStep={currentStep} onPrevButtonClick={handlePrevButtonClick} />
+      <OnboardingHeader currentStep={currentStep} onPrevButtonClick={handlePrevButtonClick} />
       {currentStep < 5 && <ProgressBar totalStep={4} currentStep={currentStep} className={progressBarStyle} />}
 
       <div className={bodyWrapperStyle}>
