@@ -1,4 +1,4 @@
-import { labelStyle } from '@/pages/login/components/InfoStep/index.css';
+import { labelStyle } from '@/pages/onboarding/components/InfoStep/index.css';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Input from '@/components/Input';

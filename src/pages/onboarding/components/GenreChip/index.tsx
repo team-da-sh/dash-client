@@ -5,7 +5,7 @@ import {
   genreCheckboxContainerStyle,
   imageStyle,
   imageWrapperStyle,
-} from '@/pages/login/components/GenreChip/index.css';
+} from '@/pages/onboarding/components/GenreChip/index.css';
 import Flex from '@/components/Flex';
 import Text from '@/components/Text';
 import IcCheckMain0424 from '@/assets/svg/IcCheckMain0424';

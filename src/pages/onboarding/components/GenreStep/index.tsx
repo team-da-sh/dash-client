@@ -1,5 +1,5 @@
-import GenreChip from '@/pages/login/components/GenreChip';
-import { genreListStyle } from '@/pages/login/components/GenreStep/index.css';
+import { genreListStyle } from '@/pages/onboarding/components/GenreStep/index.css';
+import GenreChip from '@/pages/onboarding/components/GenreChip';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Text from '@/components/Text';
