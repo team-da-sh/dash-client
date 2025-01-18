@@ -1,5 +1,5 @@
-import Description from '../Description';
-import ImageUploader from './ImageUploader';
+import Description from '@/pages/instructorRegister/Description';
+import ImageUploader from '@/pages/instructorRegister/ImageUploadStep/ImageUploader';
 
 const ImageUploadStep = () => {
   return (
