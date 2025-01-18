@@ -10,7 +10,7 @@ const TabExperience = () => {
     <Flex direction="column" gap="0.8rem">
       {education.length === 0 ? (
         <Text tag="b6" color="gray9" className={emptyStyle}>
-          아직 등록된 경력이 없어요
+          아직 등록된 학력이 없어요
         </Text>
       ) : (
         education.map((edu, index) => (
