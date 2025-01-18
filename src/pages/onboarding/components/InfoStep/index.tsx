@@ -1,12 +1,22 @@
 import { labelStyle } from '@/pages/onboarding/components/InfoStep/index.css';
+import { onboardInfoTypes } from '@/pages/onboarding/types';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Input from '@/components/Input';
 import Text from '@/components/Text';
 
-interface InfoStepProps {}
+interface InfoStepProps {
+  name: string;
+  phoneNumber: string;
+  onInfoChange: (key: keyof onboardInfoTypes, value: string) => void;
+}
 
-const InfoStep = ({}: InfoStepProps) => {
+const InfoStep = ({ name, phoneNumber, onInfoChange }: InfoStepProps) => {
+  const handleNameChange = (name: string) => {
+    onInfoChange('name', name);
+  };
+
+  console.log('name step');
   return (
     <Flex direction="column" width="100%">
       <Flex direction="column" gap="0.8rem">
@@ -23,7 +33,7 @@ const InfoStep = ({}: InfoStepProps) => {
           <Text tag="b4" className={labelStyle}>
             이름
           </Text>
-          <Input placeholder="김대쉬" />
+          <Input placeholder="김대쉬" value={name} onChange={(e) => handleNameChange(e.target.value)} />
         </Flex>
         <Flex align="center" width="100%" gap="0.8rem">
           <Text tag="b4" className={labelStyle}>

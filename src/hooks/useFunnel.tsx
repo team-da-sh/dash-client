@@ -37,7 +37,7 @@ export const useFunnel = (totalSteps: number, completePath: string) => {
     }
   };
 
-  const Step = ({ children }: StepProps) => <>{children}</>;
+  const Step = ({ children, id }: StepProps) => <>{children}</>;
 
   const Funnel = ({ children }: FunnelProps) => {
     const targetStep = children.find((childStep) => childStep.props.name === String(step));

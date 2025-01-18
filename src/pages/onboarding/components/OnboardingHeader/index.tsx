@@ -9,7 +9,7 @@ interface OnboardingHeaderProps {
 const OnboardingHeader = ({ currentStep, onPrevButtonClick }: OnboardingHeaderProps) => {
   return (
     <Header.Root className={onboardingHeaderStyle}>
-      {currentStep < 5 && <Header.BackIcon onClick={onPrevButtonClick} />}
+      {currentStep < 5 && <Header.BackIcon onFunnelBackClick={onPrevButtonClick} />}
       <Header.CloseIcon onClick={() => {}} />
     </Header.Root>
   );
