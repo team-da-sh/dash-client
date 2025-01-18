@@ -60,6 +60,22 @@ export const buttonStyle = recipe({
           cursor: 'default',
         },
       },
+      heart: {
+        display: 'flex',
+        justifyContent: 'center',
+
+        width: '7.8rem',
+        padding: '1.3rem 0',
+
+        backgroundColor: vars.colors.gray03,
+
+        color: vars.colors.gray07,
+        ...vars.fonts.h6,
+
+        '&:disabled': {
+          cursor: 'default',
+        },
+      },
     },
   },
 });
