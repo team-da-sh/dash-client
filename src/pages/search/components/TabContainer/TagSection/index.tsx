@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import BottomSheet from '@/pages/search/TabContainer/TagSection/BottomSheet';
-import { tagCustomStyle } from '@/pages/search/TabContainer/TagSection/index.css';
+import BottomSheet from '@/pages/search/components/TabContainer/TagSection/BottomSheet';
+import { tagCustomStyle } from '@/pages/search/components/TabContainer/TagSection/index.css';
 import Flex from '@/components/Flex';
 import Tag from '@/components/Tag';
 import { IcFilterGray } from '@/assets/svg';
