@@ -6,6 +6,7 @@ import Header from '@/components/Header';
 import Input from '@/components/Input';
 import LevelButton from '@/components/LevelButton';
 import Text from '@/components/Text';
+import { IcPlusGray0524 } from '@/assets/svg';
 import { GENRE_CATEGORY, LEVEL } from '@/constants';
 import Description from './Description';
 
@@ -119,8 +120,12 @@ const ClassRegister = () => {
           />
         </section>
 
+        {/* 클래스 일정 */}
         <section className={styles.scheduleSectionStyle}>
           <Description title="클래스 일정" subTitle="클래스가 진행될 회차별 날짜와 시간을 등록해 주세요" />
+          <Flex justify="center" align="center" className={styles.addInputBoxStyle}>
+            <IcPlusGray0524 width={'2.4rem'} />
+          </Flex>
         </section>
 
         <section className={styles.personnelSectionStyle}>

@@ -82,7 +82,7 @@ export const levelSectionStyle = style([
   },
 ]);
 
-// 클래스 추천 대상상
+// 클래스 추천 대상
 export const recommendSectionStyle = style([
   commonSectionStyle,
   {
@@ -90,7 +90,22 @@ export const recommendSectionStyle = style([
   },
 ]);
 
-export const scheduleSectionStyle = style([commonSectionStyle, {}]);
+// 클래스 일정
+export const scheduleSectionStyle = style([
+  commonSectionStyle,
+  {
+    marginBottom: '5rem',
+  },
+]);
+
+export const addInputBoxStyle = style({
+  width: '100%',
+  height: '5.2rem',
+  backgroundColor: vars.colors.gray01,
+  cursor: 'pointer',
+});
+
+// 모집 인원
 export const personnelSectionStyle = style([commonSectionStyle, {}]);
 
 export const placeSectionStyle = style([commonSectionStyle, {}]);
