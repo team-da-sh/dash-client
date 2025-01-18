@@ -1,9 +1,9 @@
 import { useState } from 'react';
+import Description from '@/pages/instructorRegister/Description';
 import Flex from '@/components/Flex';
 import Input from '@/components/Input';
 import Text from '@/components/Text';
 import { IcInstagram20, IcYoutube20 } from '@/assets/svg';
-import Description from '../Description';
 
 const MIN_LENGTH = 9;
 
