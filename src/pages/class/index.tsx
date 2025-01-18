@@ -17,7 +17,8 @@ const Class = () => {
         className={headerStyle}
         style={{
           backgroundImage: `url(${lessonImageUrl})`,
-        }}/>
+        }}
+      />
       <ClassHeader isVisible={isVisible} />
 
       <ClassInfoWrapper />

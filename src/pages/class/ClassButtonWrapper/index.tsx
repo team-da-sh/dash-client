@@ -6,11 +6,9 @@ import Flex from '@/components/Flex';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { IcHeartOutlinedGray07, IcHeartFilledGray07 } from '@/assets/svg';
 import { LESSON_DATA } from '@/mocks/mockLessonData';
-import { BUTTON_CONFIG } from '@/constants/index.tsx';  // 수정된 경로로 import
+import { BUTTON_CONFIG, StatusType } from '@/constants/index.tsx';
 
-type StatusType = 'APPLY' | 'COMPLETE' | 'CLOSED';  // 여기서 타입 정의를 사용할 수 있습니다.
-
-const FixedFooter = () => {
+const ClassButtonWrapper = () => {
   const [isHeartFilled, setIsHeartFilled] = useState(false);
   const navigate = useNavigate();
 
@@ -41,4 +39,4 @@ const FixedFooter = () => {
   );
 };
 
-export default FixedFooter;
+export default ClassButtonWrapper;

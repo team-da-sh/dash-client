@@ -1,10 +1,9 @@
-// src/pages/class/Level.tsx
 import Card from '@/pages/class/Card';
 import { questionStyle } from '@/pages/class/TabWrapper/TabLevel/index.css';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Text from '@/components/Text';
-import { IcAssetLevelStarter, IcClose, IcQuesitonmark } from '@/assets/svg';
+import { IcLevelStarter, IcClose, IcQuesitonmark } from '@/assets/svg';
 import { LESSON_DATA } from '@/mocks/mockLessonData';
 import { LEVEL } from '@/constants/index';
 
@@ -25,7 +24,7 @@ const Level = () => {
       <Flex width="100%" align="flexEnd" direction="column" gap="0.6rem">
         <Card>
           <Flex gap="0.8rem" align="center">
-            {levelData?.icon || <IcAssetLevelStarter width={'3.6rem'} />}
+            {levelData?.icon || <IcLevelStarter width={'3.6rem'} />}
             <Head level="h6" tag="h6">
               {lessonLevel}
             </Head>
