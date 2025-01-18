@@ -8,26 +8,23 @@ import Description from '../Description';
 const MIN_LENGTH = 9;
 
 const PersonalSNSStep = () => {
-  // 각 Input의 값을 추적하고 유효성 검사를 위한 상태 추가
   const [instagramValue, setInstagramValue] = useState('');
   const [youtubeValue, setYoutubeValue] = useState('');
   const [instagramError, setInstagramError] = useState(false);
   const [youtubeError, setYoutubeError] = useState(false);
 
-  // 유효성 검사 로직
   const validateInput = (value: string) => value.length >= MIN_LENGTH;
 
-  // Input 값 변경 핸들러
   const handleInstagramChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setInstagramValue(value);
-    setInstagramError(!!value && !validateInput(value));
+    setInstagramError(!validateInput(value));
   };
 
   const handleYoutubeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setYoutubeValue(value);
-    setYoutubeError(!!value && !validateInput(value));
+    setYoutubeError(!validateInput(value));
   };
 
   return (
@@ -46,7 +43,7 @@ const PersonalSNSStep = () => {
             onChange={handleInstagramChange}
             isError={instagramError}
           />
-          {instagramError && (
+          {instagramError && instagramValue && (
             <Text tag="b6" style={{ color: 'red' }}>
               9글자 이상 입력해야 합니다.
             </Text>
@@ -64,7 +61,7 @@ const PersonalSNSStep = () => {
             onChange={handleYoutubeChange}
             isError={youtubeError}
           />
-          {youtubeError && (
+          {youtubeError && youtubeValue && (
             <Text tag="b6" style={{ color: 'red' }}>
               9글자 이상 입력해야 합니다.
             </Text>
