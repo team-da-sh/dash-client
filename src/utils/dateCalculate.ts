@@ -30,3 +30,21 @@ export const formatDate = (dateString: string) => {
   const days = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'];
   return `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일 ${days[date.getDay()]}`;
 };
+
+export const formatSimpleDate = (dateString: string) => {
+  const date = new Date(dateString);
+  const days = ['일', '월', '화', '수', '목', '금', '토'];
+  return `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일 (${days[date.getDay()]})`;
+};
+
+// D-day 계산
+export const calculateDday = (startDateTime: string): string => {
+  const today = new Date();
+  const startDate = new Date(startDateTime);
+
+  today.setHours(0, 0, 0, 0);
+  startDate.setHours(0, 0, 0, 0);
+
+  const difference = Math.ceil((startDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
+  return difference > 0 ? `D-${difference}` : difference === 0 ? 'D-Day' : '마감';
+};

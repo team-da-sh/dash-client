@@ -33,7 +33,7 @@ export const useFunnel = (totalSteps: number, completePath: string) => {
     } else {
       // 일반적인 step
       searchParams.set('step', String(newStep));
-      setSearchParams(searchParams);
+      setSearchParams(searchParams, { replace: true });
     }
   };
 
