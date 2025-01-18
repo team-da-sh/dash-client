@@ -14,6 +14,7 @@ const ClassRegister = () => {
   const explainTextAreaRef = useRef<HTMLTextAreaElement>(null);
   const scheduleTextAreaRef = useRef<HTMLTextAreaElement>(null);
 
+  const [className, setClassName] = useState('');
   const [explanation, setExplanation] = useState('');
   const [selectedGenre, setSelectedGenre] = useState<string | null>();
   const [selectedLevelTitle, setSelectedLevelTitle] = useState<string | null>();
@@ -22,6 +23,10 @@ const ClassRegister = () => {
   const [defaultPlace, setDefaultPlace] = useState('');
   const [detailPlace, setDetailPlace] = useState('');
   const [amount, setAmount] = useState('');
+
+  const handleClassName = (e: ChangeEvent<HTMLInputElement>) => {
+    setClassName(e.target.value);
+  };
 
   const handlePersonnelChange = (e: ChangeEvent<HTMLInputElement>) => {
     // 숫자만 입력되도록
@@ -84,9 +89,9 @@ const ClassRegister = () => {
         <section className={styles.nameSectionStyle}>
           <Description title="클래스명" subTitle="돋보일 수 있는 클래스명을 최대 30자 입력해 주세요" />
           <Flex direction="column" gap="0.4rem">
-            <Input placeholder="클래스명을 입력해 주세요" />
+            <Input placeholder="클래스명을 입력해 주세요" maxLength={30} onChange={handleClassName} />
             <Text tag="c3" color="gray4" className={styles.nameLengthStyle}>
-              0 / 30
+              {className.length} / 30
             </Text>
           </Flex>
         </section>
