@@ -5,17 +5,18 @@ export type onboardInfoTypes = {
   level: LevelTypes[];
 };
 
-type GenreTypes =
-  | 'LOCKING'
-  | 'VOGUING'
-  | 'BRAKING'
-  | 'SOUL'
-  | 'WAACKING'
-  | 'CHOREOGRAPHY'
-  | 'KRUMP'
-  | 'POPPING'
+export type GenreTypes =
+  | 'HIPHOP'
   | 'FEMALEHIPHOP'
+  | 'POPPING'
+  | 'BRAKING'
+  | 'WAACKING'
+  | 'LOCKING'
   | 'HOUSE'
+  | 'VOGUING'
+  | 'KRUMP'
+  | 'SOUL'
+  | 'CHOREOGRAPHY'
   | 'KPOP';
 
 type LevelTypes = 'BEGINNER' | 'NOVICE' | 'INTERMEDIATE' | 'ADVANCED';

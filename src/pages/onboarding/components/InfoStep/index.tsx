@@ -1,5 +1,5 @@
 import { labelStyle } from '@/pages/onboarding/components/InfoStep/index.css';
-import { onboardInfoTypes } from '@/pages/onboarding/types';
+import { INFO_KEY } from '@/pages/onboarding/constants';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Input from '@/components/Input';
@@ -8,15 +8,18 @@ import Text from '@/components/Text';
 interface InfoStepProps {
   name: string;
   phoneNumber: string;
-  onInfoChange: (key: keyof onboardInfoTypes, value: string) => void;
+  onInfoChange: (key: string, value: string) => void;
 }
 
 const InfoStep = ({ name, phoneNumber, onInfoChange }: InfoStepProps) => {
   const handleNameChange = (name: string) => {
-    onInfoChange('name', name);
+    onInfoChange(INFO_KEY.NAME, name);
   };
 
-  console.log('name step');
+  const handlePhoneNumberChange = (phoneNumber: string) => {
+    onInfoChange(INFO_KEY.PHONE_NUMBER, phoneNumber);
+  };
+
   return (
     <Flex direction="column" width="100%">
       <Flex direction="column" gap="0.8rem">
@@ -39,7 +42,11 @@ const InfoStep = ({ name, phoneNumber, onInfoChange }: InfoStepProps) => {
           <Text tag="b4" className={labelStyle}>
             전화번호
           </Text>
-          <Input placeholder="01012345678" />
+          <Input
+            placeholder="01012345678"
+            value={phoneNumber}
+            onChange={(e) => handlePhoneNumberChange(e.target.value)}
+          />
         </Flex>
       </Flex>
     </Flex>

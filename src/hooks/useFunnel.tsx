@@ -1,12 +1,12 @@
 import { ReactElement, ReactNode, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
-interface StepProps {
+export interface StepProps {
   name: string;
   children: ReactNode;
 }
 
-interface FunnelProps {
+export interface FunnelProps {
   children: ReactElement<StepProps>[];
 }
 
@@ -37,7 +37,7 @@ export const useFunnel = (totalSteps: number, completePath: string) => {
     }
   };
 
-  const Step = ({ children, id }: StepProps) => <>{children}</>;
+  const Step = ({ children }: StepProps) => <>{children}</>;
 
   const Funnel = ({ children }: FunnelProps) => {
     const targetStep = children.find((childStep) => childStep.props.name === String(step));

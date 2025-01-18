@@ -1,27 +1,36 @@
-import { genreListStyle } from '@/pages/onboarding/components/GenreStep/index.css';
 import GenreChip from '@/pages/onboarding/components/GenreChip';
+import { genreListStyle } from '@/pages/onboarding/components/GenreStep/index.css';
+import { GENRELIST, INFO_KEY } from '@/pages/onboarding/constants';
+import { GENRE_INFO } from '@/pages/onboarding/mocks';
+import { GenreTypes, onboardInfoTypes } from '@/pages/onboarding/types';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Text from '@/components/Text';
 
-interface GenreStepProps {}
+const MAX_GENRE_COUNT = 3;
 
-const GENRE_INFO = [
-  { genre: '힙합', url: '../../../../../public/svg/ic_image_temp.svg' },
-  { genre: '피메일힙합', url: '../../../../../public/svg/ic_image_temp.svg' },
-  { genre: '팝핑', url: '../../../../../public/svg/ic_image_temp.svg' },
-  { genre: '브레이킹', url: '../../../../../public/svg/ic_image_temp.svg' },
-  { genre: '왁킹', url: '../../../../../public/svg/ic_image_temp.svg' },
-  { genre: '락킹', url: '../../../../../public/svg/ic_image_temp.svg' },
-  { genre: '하우스', url: '../../../../../public/svg/ic_image_temp.svg' },
-  { genre: '보깅', url: '../../../../../public/svg/ic_image_temp.svg' },
-  { genre: '크럼프', url: '../../../../../public/svg/ic_image_temp.svg' },
-  { genre: '소울', url: '../../../../../public/svg/ic_image_temp.svg' },
-  { genre: '코레오그래피', url: '../../../../../public/svg/ic_image_temp.svg' },
-  { genre: '케이팝', url: '../../../../../public/svg/ic_image_temp.svg' },
-];
+interface GenreStepProps extends Pick<onboardInfoTypes, 'genres'> {
+  onInfoChange: (key: string, value: string | GenreTypes[]) => void;
+}
 
-const GenreStep = ({}: GenreStepProps) => {
+const GenreStep = ({ genres = [], onInfoChange }: GenreStepProps) => {
+  const handleCheckboxClick = (genre: GenreTypes) => {
+    if (genres.includes(genre)) {
+      onInfoChange(
+        INFO_KEY.GENRES,
+        genres.filter((i) => i !== genre)
+      );
+    } else {
+      if (genres.length === MAX_GENRE_COUNT) {
+        genres.shift();
+        onInfoChange(INFO_KEY.GENRES, [...genres, genre]);
+        return;
+      }
+
+      onInfoChange(INFO_KEY.GENRES, [...genres, genre]);
+    }
+  };
+
   return (
     <Flex direction="column" width="100%">
       <Flex direction="column" gap="0.8rem">
@@ -35,7 +44,14 @@ const GenreStep = ({}: GenreStepProps) => {
 
       <Flex tag="ul" marginTop="2.8rem" justify="spaceBetween" className={genreListStyle}>
         {GENRE_INFO.map((data, index) => (
-          <GenreChip key={`${index}-${data.genre}`} genre={data.genre} imageUrl={data.url} />
+          <GenreChip
+            key={`${index}-${data.genre}`}
+            id={GENRELIST[index] as GenreTypes}
+            genre={data.genre}
+            imageUrl={data.url}
+            isChecked={genres.includes(GENRELIST[index] as GenreTypes)}
+            onCheckboxClick={handleCheckboxClick}
+          />
         ))}
       </Flex>
     </Flex>
