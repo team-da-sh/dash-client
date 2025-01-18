@@ -74,9 +74,21 @@ export const genreButtonContainerStyle = style({
   flexWrap: 'wrap',
 });
 
-// 난이도도
-export const levelSectionStyle = style([commonSectionStyle, {}]);
-export const recommendSectionStyle = style([commonSectionStyle, {}]);
+// 난이도
+export const levelSectionStyle = style([
+  commonSectionStyle,
+  {
+    marginBottom: '4rem',
+  },
+]);
+
+// 클래스 추천 대상상
+export const recommendSectionStyle = style([
+  commonSectionStyle,
+  {
+    marginBottom: '3rem',
+  },
+]);
 
 export const scheduleSectionStyle = style([commonSectionStyle, {}]);
 export const personnelSectionStyle = style([commonSectionStyle, {}]);

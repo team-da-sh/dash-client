@@ -10,7 +10,9 @@ import { GENRE_CATEGORY, LEVEL } from '@/constants';
 import Description from './Description';
 
 const ClassRegister = () => {
-  const textAreaRef = useRef<HTMLTextAreaElement>(null);
+  const explainTextAreaRef = useRef<HTMLTextAreaElement>(null);
+  const scheduleTextAreaRef = useRef<HTMLTextAreaElement>(null);
+
   const [selectedGenre, setSelectedGenre] = useState<string | null>();
   const [selectedLevelTitle, setSelectedLevelTitle] = useState<string | null>();
 
@@ -22,11 +24,21 @@ const ClassRegister = () => {
     setSelectedLevelTitle((prev) => (prev === title ? null : title));
   };
 
-  const handleTextArea = () => {
-    const textArea = textAreaRef.current;
+  const handleExplainTextArea = () => {
+    const textArea = explainTextAreaRef.current;
     if (textArea) {
-      textArea.style.height = '9.8rem'; // Default 높이!
-      textArea.style.height = `${textArea.scrollHeight}px`; // 내용에 따라 높이 조정
+      console.log('이건 설명 textarea', textArea.value);
+      textArea.style.height = '9.8rem';
+      textArea.style.height = `${textArea.scrollHeight}px`;
+    }
+  };
+
+  const handleScheduleTextArea = () => {
+    const textArea = scheduleTextAreaRef.current;
+    if (textArea) {
+      console.log('이건 일정 textarea', textArea.value);
+      textArea.style.height = '9.8rem';
+      textArea.style.height = `${textArea.scrollHeight}px`;
     }
   };
 
@@ -36,6 +48,7 @@ const ClassRegister = () => {
         <Header.BackIcon />
         <Header.Title title="클래스 개설"></Header.Title>
       </Header.Root>
+
       <div className={styles.containerStyle}>
         {/* 클래스명 section */}
         <section className={styles.nameSectionStyle}>
@@ -52,10 +65,11 @@ const ClassRegister = () => {
         <section className={styles.explanationSectionStyle}>
           <Description title="클래스 설명" subTitle="예비 수강생들을 위해 클래스를 소개해 주세요" />
           <textarea
-            ref={textAreaRef}
-            onInput={handleTextArea}
-            placeholder="저는 이런 댄서예요!"
-            className={styles.textareaStyle}></textarea>{' '}
+            ref={explainTextAreaRef}
+            onInput={handleExplainTextArea}
+            placeholder="EX) 노래 제목, 회차별 커리큘럼, 진행 방식, 목표 등"
+            className={styles.textareaStyle}
+          />
         </section>
 
         {/* 클래스 대표 이미지 */}
@@ -97,6 +111,12 @@ const ClassRegister = () => {
         {/* 클래스 추천 대상 */}
         <section className={styles.recommendSectionStyle}>
           <Description title="클래스 추천 대상" subTitle="어떤 수강생에게 추천하고 싶은지 알려주세요" />
+          <textarea
+            ref={scheduleTextAreaRef}
+            onInput={handleScheduleTextArea}
+            placeholder="EX) 프리스타일에 자신감을 가지고 싶은 분, 힙합 기본기를 탄탄하게 다지고 싶은 분 등"
+            className={styles.textareaStyle}
+          />
         </section>
 
         <section className={styles.scheduleSectionStyle}>
