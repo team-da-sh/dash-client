@@ -3,11 +3,11 @@ import { containerStyle } from '@/pages/home/components/HomeHeader/index.css';
 import Flex from '@/components/Flex';
 import { IcBack, IcBackWhite24, IcCloseBlack24, IcCloseWhite24 } from '@/assets/svg';
 
-interface ClassHeaderProps {
+interface DancerHeaderProps {
   isVisible: boolean;
 }
 
-const DancerHeader = ({ isVisible }: ClassHeaderProps) => {
+const DancerHeader = ({ isVisible }: DancerHeaderProps) => {
   const navigate = useNavigate();
 
   const handleBackClick = () => {
