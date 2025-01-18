@@ -1,26 +1,14 @@
+// src/pages/class/Level.tsx
 import Card from '@/pages/class/Card';
 import { questionStyle } from '@/pages/class/TabWrapper/TabLevel/index.css';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Text from '@/components/Text';
-import {
-  IcAssetLevelStarter,
-  IcAssetLevelBasic,
-  IcAssetLevelIntermediate,
-  IcAssetLevelAdvanced,
-  IcClose,
-  IcQuesitonmark,
-} from '@/assets/svg';
+import { IcAssetLevelStarter, IcClose, IcQuesitonmark } from '@/assets/svg';
 import { LESSON_DATA } from '@/mocks/mockLessonData';
+import { LEVEL } from '@/constants/index';
 
 type LessonLevelType = '입문' | '초급' | '중급' | '고급';
-
-const levelIconMap = {
-  입문: <IcAssetLevelStarter width={'3.6rem'} />,
-  초급: <IcAssetLevelBasic width={'3.6rem'} />,
-  중급: <IcAssetLevelIntermediate width={'3.6rem'} />,
-  고급: <IcAssetLevelAdvanced width={'3.6rem'} />,
-};
 
 const Level = () => {
   const { lessonLevel, lessonLevelDetail, lessonRecommendation } = LESSON_DATA as {
@@ -29,12 +17,15 @@ const Level = () => {
     lessonRecommendation: string;
   };
 
+  // lessonLevel에 해당하는 인덱스를 찾기 (LEVEL 배열에서 해당하는 아이템 찾기)
+  const levelData = LEVEL.find((level) => level.title === lessonLevel);
+
   return (
     <Flex direction="column" gap="3.6rem">
       <Flex width="100%" align="flexEnd" direction="column" gap="0.6rem">
         <Card>
           <Flex gap="0.8rem" align="center">
-            {levelIconMap[lessonLevel] || <IcAssetLevelStarter width={'3.6rem'} />}
+            {levelData?.icon || <IcAssetLevelStarter width={'3.6rem'} />}
             <Head level="h6" tag="h6">
               {lessonLevel}
             </Head>

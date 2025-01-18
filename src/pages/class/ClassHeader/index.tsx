@@ -13,14 +13,9 @@ interface ClassHeaderProps {
 const ClassHeader = ({ isVisible }: ClassHeaderProps) => {
   const { lessonName } = LESSON_DATA;
   const navigate = useNavigate();
-
-  const handleBackClick = () => {
-    navigate(-1);
-  };
-
   return (
     <div className={containerStyle({ isVisible })}>
-      <Flex align="center" className={backIconStyle} onClick={handleBackClick}>
+      <Flex align="center" className={backIconStyle} onClick={() => navigate(-1)}>
         {isVisible ? <IcBack width={'2.4rem'} /> : <IcBackWhite24 width={'2.4rem'} />}
       </Flex>
 

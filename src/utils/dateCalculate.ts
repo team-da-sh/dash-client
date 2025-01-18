@@ -49,14 +49,16 @@ export const calculateDday = (startDateTime: string): string => {
   const oneDayInMs = 1000 * 60 * 60 * 24;
 
   if (difference > 0 && difference < oneDayInMs) {
-    // 당일이지만 시작 시간이 남은 경우
     return 'D-Day';
-  } else if (difference >= oneDayInMs) {
-    // 남은 일수
-    const remainingDays = Math.ceil(difference / oneDayInMs);
-    return `D-${remainingDays}`;
-  } else {
-    return '마감';
   }
+
+  // 남은 일수 계산 (양수일 때만)
+  const remainingDays = Math.ceil(difference / oneDayInMs);
+  if (remainingDays > 0) {
+    return `D-${remainingDays}`;
+  }
+
+  // 이미 지난 경우
+  return '마감';
 };
 

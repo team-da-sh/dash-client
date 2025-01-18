@@ -13,11 +13,11 @@ export const LESSON_DATA = {
   lessonDetail:
     '안녕하세요, 안무가 김태훈입니다.\n\n저는 인기 아이돌의 안무가로서 다양한 작업에 참여해왔고 현재는 안무 작업 뿐만 아니라 강습도 함께 진행하고 있습니다.\n\n이번 강의에서는 기본기와 프리스타일 위주로 진행하려고 합니다.\n\n💜먼저, 연결이라는 주제로 움직여보면서 자신만의 무브를 찾아가 볼 예정이고 익숙해진 후에는 컨트롤을 주제로 다양한 루틴을 시도해 볼 예정입니다.',
   lessonRecommendation: '초급자에게 적합한 수업입니다.\n김태훈만의 트렌디한 힙합 베이스를 배우고 싶은 분\n멋있다ㄷ',
-  lessonLevel: '입문',
+  lessonLevel: '고급',
   lessonLevelDetail: '기초적인 동작과 리듬을 익힐 냥냥 ',
   lessonRound: [
     {
-      lessonStartDateTime: '2025-01-18T03:57:40',
+      lessonStartDateTime: '2025-01-18T23:40:00',
       lessonEndDateTime: '2025-01-18T04:30:00',
     },
     {

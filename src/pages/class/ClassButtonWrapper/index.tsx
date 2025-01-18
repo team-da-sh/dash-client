@@ -6,8 +6,9 @@ import Flex from '@/components/Flex';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { IcHeartOutlinedGray07, IcHeartFilledGray07 } from '@/assets/svg';
 import { LESSON_DATA } from '@/mocks/mockLessonData';
+import { BUTTON_CONFIG } from '@/constants/index.tsx';  // 수정된 경로로 import
 
-type StatusType = 'APPLY' | 'COMPLETE' | 'CLOSED';
+type StatusType = 'APPLY' | 'COMPLETE' | 'CLOSED';  // 여기서 타입 정의를 사용할 수 있습니다.
 
 const FixedFooter = () => {
   const [isHeartFilled, setIsHeartFilled] = useState(false);
@@ -15,13 +16,7 @@ const FixedFooter = () => {
 
   const { status } = LESSON_DATA as { status: StatusType };
 
-  const buttonConfig: Record<StatusType, { text: string; isDisabled: boolean }> = {
-    APPLY: { text: '신청하기', isDisabled: false },
-    COMPLETE: { text: '신청 완료', isDisabled: true },
-    CLOSED: { text: '클래스 마감', isDisabled: true },
-  };
-
-  const { text, isDisabled } = buttonConfig[status];
+  const { text, isDisabled } = BUTTON_CONFIG[status];  // 상수 파일에서 가져오기
 
   const toggleHeart = () => {
     setIsHeartFilled((prev) => !prev);
