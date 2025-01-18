@@ -42,6 +42,7 @@ const CalendarCustom: React.FC<CalendarCustomProps> = ({ startDate, endDate, set
       formatDay={formatCalendarDay}
       showNeighboringMonth={false}
       minDetail="year"
+      defaultValue={startDate && endDate ? [new Date(startDate), new Date(endDate)] : undefined}
     />
   );
 };
