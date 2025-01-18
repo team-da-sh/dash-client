@@ -14,8 +14,10 @@ const ClassRegister = () => {
   const explainTextAreaRef = useRef<HTMLTextAreaElement>(null);
   const scheduleTextAreaRef = useRef<HTMLTextAreaElement>(null);
 
+  const [explanation, setExplanation] = useState('');
   const [selectedGenre, setSelectedGenre] = useState<string | null>();
   const [selectedLevelTitle, setSelectedLevelTitle] = useState<string | null>();
+  const [recommend, setRecommend] = useState('');
   const [personnel, setPersonnelChange] = useState('');
   const [amount, setAmount] = useState('');
   const [defaultPlace, setDefaultPlace] = useState('');
@@ -48,14 +50,16 @@ const ClassRegister = () => {
     if (textArea) {
       textArea.style.height = '9.8rem';
       textArea.style.height = `${textArea.scrollHeight}px`;
+      setExplanation(textArea.value);
     }
   };
 
-  const handleScheduleTextArea = () => {
+  const handleRecommendChange = () => {
     const textArea = scheduleTextAreaRef.current;
     if (textArea) {
       textArea.style.height = '9.8rem';
       textArea.style.height = `${textArea.scrollHeight}px`;
+      setRecommend(textArea.value);
     }
   };
 
@@ -92,6 +96,7 @@ const ClassRegister = () => {
           <Description title="클래스 설명" subTitle="예비 수강생들을 위해 클래스를 소개해 주세요" />
           <textarea
             ref={explainTextAreaRef}
+            value={explanation}
             onInput={handleExplainTextArea}
             placeholder="EX) 노래 제목, 회차별 커리큘럼, 진행 방식, 목표 등"
             className={styles.textareaStyle}
@@ -139,7 +144,8 @@ const ClassRegister = () => {
           <Description title="클래스 추천 대상" subTitle="어떤 수강생에게 추천하고 싶은지 알려주세요" />
           <textarea
             ref={scheduleTextAreaRef}
-            onInput={handleScheduleTextArea}
+            value={recommend}
+            onInput={handleRecommendChange}
             placeholder="EX) 프리스타일에 자신감을 가지고 싶은 분, 힙합 기본기를 탄탄하게 다지고 싶은 분 등"
             className={styles.textareaStyle}
           />
