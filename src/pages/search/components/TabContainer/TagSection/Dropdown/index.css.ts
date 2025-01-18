@@ -24,13 +24,13 @@ export const dropdownItem = style({
   display: 'flex',
   backgroundColor: vars.colors.white,
   borderRadius: '8px',
-  width: '11.2rem',
-  height: '3.2rem',
+  width: '12.8rem',
+  height: '4rem',
   padding: '0.4rem 1.6rem',
 });
 
 export const dropdownItemText = style({
   ...vars.fonts.b6,
-  padding: '0.4rem 1rem',
+  padding: '0.8rem 1rem',
   color: vars.colors.gray09,
 });

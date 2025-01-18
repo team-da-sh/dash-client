@@ -8,7 +8,7 @@ import { defaultSortTagProps } from '@/pages/search/types/defaultSortTag';
 import Flex from '@/components/Flex';
 import { TabList, TabRoot, TabButton, TabPanel } from '@/components/Tab';
 import Text from '@/components/Text';
-import { IcXMain04 } from '@/assets/svg';
+import { IcArrowUnderGray, IcXMain04 } from '@/assets/svg';
 import Dropdown from './TagSection/Dropdown';
 
 interface TagItem {
@@ -41,7 +41,7 @@ const TabContainer = ({
   setEndDate,
 }: TabContainerProps) => {
   const [selectedTab, setSelectedTab] = useState(0);
-  const [selectedLabel, setSelectedLabel] = useState('최신 등록순'); // Default label
+  const [selectedLabel, setSelectedLabel] = useState('최신 등록순');
 
   const activeTags: TagItem[] = [
     { condition: genre, label: genre, type: 'genre' },
@@ -79,13 +79,16 @@ const TabContainer = ({
             <div className={dropdownDivStyle}>
               <Dropdown.Root>
                 <Dropdown.Trigger>
-                  <Text tag="b7" color="gray7">
-                    {selectedLabel}
-                  </Text>
+                  <Flex align="center">
+                    <Text tag="b7" color="gray7">
+                      {selectedLabel}
+                    </Text>
+                    <IcArrowUnderGray width={14} />
+                  </Flex>
                 </Dropdown.Trigger>
                 <Dropdown.Content>
                   <Dropdown.Item label="최신 등록순" onClick={() => setSelectedLabel('최신 등록순')} />
-                  <Dropdown.Item label="찜많은 순" onClick={() => setSelectedLabel('찜많은 순')} />
+                  <Dropdown.Item label="찜이 많은순" onClick={() => setSelectedLabel('찜이 많은순')} />
                   <Dropdown.Item label="마감 임박순" onClick={() => setSelectedLabel('마감 임박순')} />
                 </Dropdown.Content>
               </Dropdown.Root>

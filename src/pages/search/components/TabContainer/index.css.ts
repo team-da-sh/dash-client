@@ -10,5 +10,5 @@ export const divCustomStyle = style({
 export const dropdownDivStyle = style({
   position: 'relative',
   top: 10,
-  left: 219,
+  left: 199.5,
 });
