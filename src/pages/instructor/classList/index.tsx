@@ -1,10 +1,11 @@
 import { useNavigate } from 'react-router-dom';
-import * as styles from '@/pages/instructor/classList/index.css';
+import { layoutStyle, containerStyle } from '@/pages/instructor/classList/index.css';
 import BoxButton from '@/components/BoxButton';
 import ClassCard from '@/components/ClassCard';
 import Flex from '@/components/Flex';
 import Header from '@/components/Header';
 import Text from '@/components/Text';
+import { notify } from '@/components/Toast';
 import { MOCK_MYLESSON_DATA } from '@/mocks/mockMyLessonData';
 import { LessonCardProps } from '@/types/lessonTypes';
 
@@ -18,19 +19,19 @@ const ClassList = () => {
   };
 
   return (
-    <div className={styles.layoutStyle}>
+    <div className={layoutStyle}>
       <Header.Root isColor={true}>
         <Header.BackIcon />
         <Header.Title title="내 클래스 목록" />
       </Header.Root>
-      <div className={styles.containerStyle}>
+      <div className={containerStyle}>
         <Text tag="b2" color="gray9">
           전체 {totalLessons}
         </Text>
         <Flex direction="column" gap="1.2rem" marginTop="1.6rem">
           {MOCK_MYLESSON_DATA.lessons.map((lesson: LessonCardProps) => (
             <ClassCard isReservation={false} key={lesson.lessonId} {...lesson}>
-              <BoxButton variant="outline" isDisabled={true}>
+              <BoxButton variant="temp" onClick={notify}>
                 취소하기
               </BoxButton>
               <BoxButton variant="outline" onClick={() => handleDetailClick(lesson.lessonId)}>

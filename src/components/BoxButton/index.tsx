@@ -3,7 +3,7 @@ import { HTMLAttributes } from 'react';
 import { buttonStyle } from '@/components/BoxButton/index.css';
 
 export interface BoxButtonProps extends HTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'secondary' | 'outline';
+  variant?: 'primary' | 'secondary' | 'outline' | 'temp';
   isDisabled?: boolean;
 }
 

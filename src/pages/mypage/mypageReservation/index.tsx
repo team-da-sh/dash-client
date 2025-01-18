@@ -44,7 +44,7 @@ const MyPageReservation = () => {
         <Flex direction="column" gap="1.2rem" marginTop="1.6rem">
           {MOCK_RESERVATION_DATA.reservations.map((reservation: ReservationCardProps) => (
             <ClassCard key={reservation.reservationId} {...reservation}>
-              <BoxButton variant="outline" onClick={notify}>
+              <BoxButton onClick={notify} variant="temp">
                 취소하기
               </BoxButton>
 
