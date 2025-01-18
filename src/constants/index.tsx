@@ -1,3 +1,10 @@
+import TabIntro from '@/pages/class/TabWrapper/TabIntro';
+import TabLevel from '@/pages/class/TabWrapper/TabLevel';
+import TabLocationInfo from '@/pages/class/TabWrapper/TabLocation';
+import TabPeriod from '@/pages/class/TabWrapper/TabPeriod';
+import TabEducation from '@/pages/dancer/TabWrapper/TabEducation';
+import TabHistory from '@/pages/dancer/TabWrapper/TabExperience';
+import TabVideo from '@/pages/dancer/TabWrapper/TabVideo';
 import { IcLevelAdvanced, IcLevelBasic, IcLevelIntermediate, IcLevelStarter } from '@/assets/svg';
 
 export const LEVEL = [
@@ -47,3 +54,16 @@ export const BUTTON_CONFIG: Record<StatusType, { text: string; isDisabled: boole
   COMPLETE: { text: '신청 완료', isDisabled: true },
   CLOSED: { text: '클래스 마감', isDisabled: true },
 };
+
+export const DANCER_TABS = [
+  { id: 1, label: '학력', component: <TabEducation /> },
+  { id: 2, label: '경력', component: <TabHistory /> },
+  { id: 3, label: '영상', component: <TabVideo /> },
+];
+
+export const CLASS_TABS = [
+  { id: 1, label: '소개', component: <TabIntro /> },
+  { id: 2, label: '난이도', component: <TabLevel /> },
+  { id: 3, label: '기간', component: <TabPeriod /> },
+  { id: 4, label: '위치', component: <TabLocationInfo /> },
+];

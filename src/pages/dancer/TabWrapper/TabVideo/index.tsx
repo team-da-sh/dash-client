@@ -1,4 +1,4 @@
-import { videoWrapper, videoItem, iframe } from '@/pages/dancer/TabWrapper/TabVideo/index.css';
+import { videoWrapperStyle, videoItemStyle, iframeStyle } from '@/pages/dancer/TabWrapper/TabVideo/index.css';
 import Flex from '@/components/Flex';
 import { DANCER_DATA } from '@/mocks/mockDancerData';
 
@@ -12,17 +12,17 @@ const TabVideo = () => {
 
   return (
     <Flex justify="center">
-      <div className={videoWrapper}>
+      <div className={videoWrapperStyle}>
         {videoUrl.map((url, index) => {
           const embedUrl = getYoutubeEmbedUrl(url);
           return (
-            <div key={index} className={videoItem}>
+            <div key={index} className={videoItemStyle}>
               <iframe
-                className={iframe}
+                className={iframeStyle}
                 src={embedUrl || ''}
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
-                title={`video-${index}`}></iframe>
+                title={`video-${index}`}/>
             </div>
           );
         })}

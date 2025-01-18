@@ -1,18 +1,18 @@
 import { style } from '@vanilla-extract/css';
 
-export const videoWrapper = style({
+export const videoWrapperStyle = style({
   display: 'flex',
   flexWrap: 'wrap',
-  gap: '20px',
+  gap: '2rem',
   justifyContent: 'center',
 });
 
-export const videoItem = style({
+export const videoItemStyle = style({
   width: '33.5rem',
   textAlign: 'center',
   border: 'none',
 });
 
-export const iframe = style({
+export const iframeStyle = style({
   width: '100%',
 });
