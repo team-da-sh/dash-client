@@ -5,11 +5,11 @@ import {
   genreButtonContainerStyle,
   overlayStyle,
 } from '@/pages/search/components/TabContainer/TagSection/BottomSheet/index.css';
-import { GENRE_CATEGORY } from '@/pages/search/constants';
 import BoxButton from '@/components/BoxButton';
 import Flex from '@/components/Flex';
 import LevelButton from '@/components/LevelButton';
 import { TabButton, TabList, TabPanel, TabRoot } from '@/components/Tab';
+import { GENRE_CATEGORY } from '@/constants/index';
 import { LEVEL } from '@/constants';
 import GenreButton from './GenreButton';
 

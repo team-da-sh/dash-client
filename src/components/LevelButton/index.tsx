@@ -1,6 +1,6 @@
-import Head from '../Head';
-import Text from '../Text';
-import { levelButtonStyle } from './index.css';
+import Head from '@/components/Head/index';
+import { levelButtonStyle } from '@/components/LevelButton/index.css';
+import Text from '@/components/Text';
 
 interface LevelButtonProps {
   level: {

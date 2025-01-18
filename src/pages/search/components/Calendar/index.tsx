@@ -11,7 +11,7 @@ interface CalendarCustomProps {
   setEndDate: (date: string) => void;
 }
 
-function CalendarCustom({ startDate, endDate, setStartDate, setEndDate }: CalendarCustomProps) {
+const CalendarCustom = ({ startDate, endDate, setStartDate, setEndDate }: CalendarCustomProps) => {
   const dateChangeHandler = (value: Value | Range<Value>) => {
     if (Array.isArray(value) && value[0] && value[1]) {
       setStartDate(formatDay(value[0]));
@@ -44,6 +44,6 @@ function CalendarCustom({ startDate, endDate, setStartDate, setEndDate }: Calend
       defaultValue={startDate && endDate ? [new Date(startDate), new Date(endDate)] : undefined}
     />
   );
-}
+};
 
 export default CalendarCustom;
