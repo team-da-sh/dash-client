@@ -60,8 +60,6 @@ const DropdownTrigger = ({ children }: DropdownTriggerProps) => {
 
 interface DropdownContentProps {
   children: ReactNode;
-  maxHeight?: string;
-  boxShadow?: string;
 }
 
 const DropdownContent = ({ children }: DropdownContentProps) => {
