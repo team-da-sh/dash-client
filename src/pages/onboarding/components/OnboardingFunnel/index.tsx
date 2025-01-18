@@ -51,7 +51,11 @@ const OnboardingFunnel = ({ currentStep, Funnel, setStep, Step }: OnboardingFunn
             <LevelStep level={info.level} onInfoChange={handleInfoChange} />
           </Step>
           <Step name="4" key={4}>
-            <ProfileStep />
+            <ProfileStep
+              nickName={info.nickName}
+              profileImageUrl={info.profileImageUrl}
+              onInfoChange={handleInfoChange}
+            />
           </Step>
           <Step name="5" key={5}>
             <FinishStep></FinishStep>

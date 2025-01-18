@@ -3,6 +3,8 @@ export type onboardInfoTypes = {
   phoneNumber: string;
   genres: GenreTypes[];
   level: null | LevelTypes;
+  nickName: string;
+  profileImageUrl: string;
 };
 
 export type GenreTypes =

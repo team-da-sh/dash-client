@@ -3,7 +3,7 @@ export const INFO_KEY = {
   PHONE_NUMBER: 'phoneNumber',
   GENRES: 'genres',
   LEVEL: 'level',
-  NICKNAME: 'nickname',
+  NICKNAME: 'nickName',
   PROFILE_IMAGE_URL: 'profileImageUrl',
 };
 
