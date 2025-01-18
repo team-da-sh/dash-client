@@ -2,19 +2,24 @@ import { useState } from 'react';
 import CalendarCustom from '@/pages/search/components/Calendar';
 import {
   bottomSheetStyle,
+  chekboxButtonContainerStyle,
   overlayStyle,
 } from '@/pages/search/components/TabContainer/TagSection/BottomSheet/index.css';
+import { GENRE_CATEGORY } from '@/pages/search/constants';
 import BoxButton from '@/components/BoxButton';
 import Flex from '@/components/Flex';
 import LevelButton from '@/components/LevelButton';
 import { TabButton, TabList, TabPanel, TabRoot } from '@/components/Tab';
 import { levels } from '@/constants';
+import GenreButton from './GenreButton';
 
 interface BottomSheetProps {
   onClose: () => void;
   initialTabIndex: number;
+  level: string | null;
+  genre: string | null;
+  setGenre: (genre: string | null) => void;
   setLevel: (level: string | null) => void;
-  appliedLevel: string | null;
   startDate: string;
   endDate: string;
   setStartDate: (date: string) => void;
@@ -24,15 +29,18 @@ interface BottomSheetProps {
 const BottomSheet = ({
   onClose,
   initialTabIndex,
+  genre,
+  setGenre,
   setLevel,
-  appliedLevel,
+  level,
   startDate,
   endDate,
   setStartDate,
   setEndDate,
 }: BottomSheetProps) => {
   const [selectedTab, setSelectedTab] = useState(initialTabIndex);
-  const [selectedLevelTitle, setSelectedLevelTitle] = useState<string | null>(appliedLevel);
+  const [selectedGenre, setSelectedGenre] = useState<string | null>(genre);
+  const [selectedLevelTitle, setSelectedLevelTitle] = useState<string | null>(level);
   const [selectedStartDate, setSelectedStartDate] = useState<string>(startDate);
   const [selectedEndDate, setSelectedEndDate] = useState<string>(endDate);
 
@@ -46,12 +54,17 @@ const BottomSheet = ({
     setLevel(selectedLevelTitle);
     setStartDate(selectedStartDate);
     setEndDate(selectedEndDate);
+    setGenre(selectedGenre);
     handleClose();
   };
 
   const handleClose = () => {
     document.body.style.overflow = '';
     onClose();
+  };
+
+  const toggleCategory = (category: string) => {
+    setSelectedGenre((prev) => (prev === category ? null : category));
   };
 
   return (
@@ -70,7 +83,18 @@ const BottomSheet = ({
               기간
             </TabButton>
           </TabList>
-          <TabPanel isSelected={selectedTab === 0}>장르</TabPanel>
+          <TabPanel isSelected={selectedTab === 0}>
+            <div className={chekboxButtonContainerStyle}>
+              {GENRE_CATEGORY.flat().map((category, index) => (
+                <GenreButton
+                  key={index}
+                  category={category}
+                  isSelected={selectedGenre === category}
+                  onClick={() => toggleCategory(category)}
+                />
+              ))}
+            </div>
+          </TabPanel>
           <TabPanel isSelected={selectedTab === 1}>
             <Flex direction="column" gap="0.8rem" paddingTop="0.8rem" paddingBottom="4.6rem">
               {levels.map((level) => (
@@ -99,11 +123,12 @@ const BottomSheet = ({
               setSelectedLevelTitle(null);
               setSelectedStartDate('');
               setSelectedEndDate('');
+              setSelectedGenre(null);
             }}>
             초기화
           </BoxButton>
           <BoxButton
-            isDisabled={!selectedLevelTitle && !selectedStartDate && !selectedEndDate}
+            isDisabled={!selectedLevelTitle && !selectedStartDate && !selectedEndDate && !selectedGenre}
             onClick={handleApplyClick}>
             적용하기
           </BoxButton>

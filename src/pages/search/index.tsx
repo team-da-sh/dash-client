@@ -8,7 +8,7 @@ import { headerRootCutomStyle } from './index.css';
 
 const Search = () => {
   const [searchValue, setSearchValue] = useState('');
-  const [genre, setGenre] = useState('');
+  const [genre, setGenre] = useState<string | null>(null);
   const [level, setLevel] = useState<string | null>(null);
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
@@ -37,6 +37,7 @@ const Search = () => {
         level={level}
         startDate={startDate}
         endDate={endDate}
+        setGenre={setGenre}
         setLevel={setLevel}
         setStartDate={setStartDate}
         setEndDate={setEndDate}

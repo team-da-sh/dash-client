@@ -29,3 +29,11 @@ export const bottomSheetStyle = style({
   zIndex: 3,
   borderRadius: '16px 16px 0 0',
 });
+
+export const chekboxButtonContainerStyle = style({
+  display: 'flex',
+  gap: '1.2rem',
+  flexWrap: 'wrap',
+  paddingTop: '1.2rem',
+  paddingBottom: '18.44rem',
+});

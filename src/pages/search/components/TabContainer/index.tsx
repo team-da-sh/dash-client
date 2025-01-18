@@ -17,10 +17,11 @@ interface TagItem {
 
 interface TabContainerProps {
   defaultSortTags: defaultSortTagProps[];
-  genre: string;
+  genre: string | null;
   level: string | null;
   startDate: string;
   endDate: string;
+  setGenre: (genre: string | null) => void;
   setLevel: (level: string | null) => void;
   setStartDate: (date: string) => void;
   setEndDate: (date: string) => void;
@@ -32,6 +33,7 @@ const TabContainer = ({
   level,
   startDate,
   endDate,
+  setGenre,
   setLevel,
   setStartDate,
   setEndDate,
@@ -78,8 +80,10 @@ const TabContainer = ({
               activeTags={activeTags}
               tagSize={tagSize}
               tagType={tagType}
+              genre={genre}
+              setGenre={setGenre}
               setLevel={setLevel}
-              appliedLevel={level}
+              level={level}
               startDate={startDate}
               endDate={endDate}
               setStartDate={setStartDate}
