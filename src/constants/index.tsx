@@ -1,6 +1,6 @@
 import { IcLevelAdvanced, IcLevelBasic, IcLevelIntermediate, IcLevelStarter } from '@/assets/svg';
 
-export const levels = [
+export const LEVEL = [
   {
     icon: <IcLevelStarter width={36} />,
     title: '입문',

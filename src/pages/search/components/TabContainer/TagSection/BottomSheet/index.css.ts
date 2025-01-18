@@ -30,7 +30,7 @@ export const bottomSheetStyle = style({
   borderRadius: '16px 16px 0 0',
 });
 
-export const chekboxButtonContainerStyle = style({
+export const genreButtonContainerStyle = style({
   display: 'flex',
   gap: '1.2rem',
   flexWrap: 'wrap',

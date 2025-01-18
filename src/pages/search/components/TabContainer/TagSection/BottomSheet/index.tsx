@@ -2,7 +2,7 @@ import { useState } from 'react';
 import CalendarCustom from '@/pages/search/components/Calendar';
 import {
   bottomSheetStyle,
-  chekboxButtonContainerStyle,
+  genreButtonContainerStyle,
   overlayStyle,
 } from '@/pages/search/components/TabContainer/TagSection/BottomSheet/index.css';
 import { GENRE_CATEGORY } from '@/pages/search/constants';
@@ -10,7 +10,7 @@ import BoxButton from '@/components/BoxButton';
 import Flex from '@/components/Flex';
 import LevelButton from '@/components/LevelButton';
 import { TabButton, TabList, TabPanel, TabRoot } from '@/components/Tab';
-import { levels } from '@/constants';
+import { LEVEL } from '@/constants';
 import GenreButton from './GenreButton';
 
 interface BottomSheetProps {
@@ -84,7 +84,7 @@ const BottomSheet = ({
             </TabButton>
           </TabList>
           <TabPanel isSelected={selectedTab === 0}>
-            <div className={chekboxButtonContainerStyle}>
+            <div className={genreButtonContainerStyle}>
               {GENRE_CATEGORY.flat().map((category, index) => (
                 <GenreButton
                   key={index}
@@ -97,7 +97,7 @@ const BottomSheet = ({
           </TabPanel>
           <TabPanel isSelected={selectedTab === 1}>
             <Flex direction="column" gap="0.8rem" paddingTop="0.8rem" paddingBottom="4.6rem">
-              {levels.map((level) => (
+              {LEVEL.map((level) => (
                 <LevelButton
                   key={level.title}
                   level={level}

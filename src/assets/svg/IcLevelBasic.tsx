@@ -2,7 +2,7 @@ import type { SVGProps } from 'react';
 
 const SvgIcLevelBasic = (props: SVGProps<SVGSVGElement>) => (
   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 37 36" {...props}>
-    <g clipPath="url(#ic_level_basic_svg__a)">
+    <g clipPath="url(#ic_level_basic_svg__a)" opacity={0.7}>
       <g opacity={0.4}>
         <path fill="url(#ic_level_basic_svg__b)" d="m21.524 29.478 4.453-2.59Z" />
         <path
@@ -457,8 +457,8 @@ const SvgIcLevelBasic = (props: SVGProps<SVGSVGElement>) => (
         <feGaussianBlur stdDeviation={2} />
         <feComposite in2="hardAlpha" operator="out" />
         <feColorMatrix values="0 0 0 0 0.512291 0 0 0 0 0.286279 0 0 0 0 1 0 0 0 0.17 0" />
-        <feBlend in2="BackgroundImageFix" result="effect1_dropShadow_1808_13294" />
-        <feBlend in="SourceGraphic" in2="effect1_dropShadow_1808_13294" result="shape" />
+        <feBlend in2="BackgroundImageFix" result="effect1_dropShadow_2009_8723" />
+        <feBlend in="SourceGraphic" in2="effect1_dropShadow_2009_8723" result="shape" />
       </filter>
       <filter
         id="ic_level_basic_svg__g"
@@ -473,8 +473,8 @@ const SvgIcLevelBasic = (props: SVGProps<SVGSVGElement>) => (
         <feOffset dy={0.688} />
         <feGaussianBlur stdDeviation={0.688} />
         <feColorMatrix values="0 0 0 0 0.287239 0 0 0 0 0.155102 0 0 0 0 0.511019 0 0 0 1 0" />
-        <feBlend in2="BackgroundImageFix" result="effect1_dropShadow_1808_13294" />
-        <feBlend in="SourceGraphic" in2="effect1_dropShadow_1808_13294" result="shape" />
+        <feBlend in2="BackgroundImageFix" result="effect1_dropShadow_2009_8723" />
+        <feBlend in="SourceGraphic" in2="effect1_dropShadow_2009_8723" result="shape" />
       </filter>
       <filter
         id="ic_level_basic_svg__i"
@@ -490,8 +490,8 @@ const SvgIcLevelBasic = (props: SVGProps<SVGSVGElement>) => (
         <feGaussianBlur stdDeviation={1} />
         <feComposite in2="hardAlpha" operator="out" />
         <feColorMatrix values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.5 0" />
-        <feBlend in2="BackgroundImageFix" result="effect1_dropShadow_1808_13294" />
-        <feBlend in="SourceGraphic" in2="effect1_dropShadow_1808_13294" result="shape" />
+        <feBlend in2="BackgroundImageFix" result="effect1_dropShadow_2009_8723" />
+        <feBlend in="SourceGraphic" in2="effect1_dropShadow_2009_8723" result="shape" />
       </filter>
       <filter
         id="ic_level_basic_svg__v"
@@ -507,8 +507,8 @@ const SvgIcLevelBasic = (props: SVGProps<SVGSVGElement>) => (
         <feGaussianBlur stdDeviation={1} />
         <feComposite in2="hardAlpha" operator="out" />
         <feColorMatrix values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.5 0" />
-        <feBlend in2="BackgroundImageFix" result="effect1_dropShadow_1808_13294" />
-        <feBlend in="SourceGraphic" in2="effect1_dropShadow_1808_13294" result="shape" />
+        <feBlend in2="BackgroundImageFix" result="effect1_dropShadow_2009_8723" />
+        <feBlend in="SourceGraphic" in2="effect1_dropShadow_2009_8723" result="shape" />
       </filter>
       <clipPath id="ic_level_basic_svg__a">
         <path fill="#fff" d="M.524 0h36v36h-36z" />
