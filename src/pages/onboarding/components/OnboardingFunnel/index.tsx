@@ -19,7 +19,7 @@ interface OnboardingFunnelProps {
 }
 
 const OnboardingFunnel = ({ currentStep, Funnel, setStep, Step }: OnboardingFunnelProps) => {
-  const [info, setInfo] = useState({ level: null } as onboardInfoTypes);
+  const [info, setInfo] = useState({ nickName: '', level: null } as onboardInfoTypes);
 
   console.log(info);
   const handleInfoChange = (key: string, value: string | GenreTypes[] | LevelTypes | null) => {
