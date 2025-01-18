@@ -106,13 +106,16 @@ export const addInputBoxStyle = style({
 });
 
 // 모집 인원
-export const personnelSectionStyle = style([commonSectionStyle, {}]);
+export const personnelSectionStyle = style([
+  commonSectionStyle,
+  {
+    marginBottom: '4rem',
+  },
+]);
 
 export const personnelContainerStyle = style({
   position: 'relative',
 });
-
-
 
 export const personnelTextStyle = style({
   position: 'absolute',
@@ -121,5 +124,18 @@ export const personnelTextStyle = style({
   transform: 'translateY(-50%)',
 });
 
+// 클래스 장소
 export const placeSectionStyle = style([commonSectionStyle, {}]);
+
+// 수강료
 export const amountSectionStyle = style([commonSectionStyle, {}]);
+export const amountContainerStyle = style({
+  position: 'relative',
+});
+
+export const amountTextStyle = style({
+  position: 'absolute',
+  right: '1.8rem',
+  top: '50%',
+  transform: 'translateY(-50%)',
+});

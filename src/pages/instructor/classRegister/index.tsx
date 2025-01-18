@@ -17,12 +17,21 @@ const ClassRegister = () => {
   const [selectedGenre, setSelectedGenre] = useState<string | null>();
   const [selectedLevelTitle, setSelectedLevelTitle] = useState<string | null>();
   const [personnel, setPersonnelChange] = useState('');
+  const [amount, setAmount] = useState('');
 
   const handlePersonnelChange = (e: ChangeEvent<HTMLInputElement>) => {
     // 숫자만 입력되도록
     if (!e.target.value.match(/\D/g)) {
-      setPersonnelChange(e.target.value);
       console.log(e.target.value);
+      setPersonnelChange(e.target.value);
+    }
+  };
+
+  const handleAmountChange = (e: ChangeEvent<HTMLInputElement>) => {
+    // 숫자만 입력되도록
+    if (!e.target.value.match(/\D/g)) {
+      console.log(e.target.value);
+      setAmount(e.target.value);
     }
   };
 
@@ -146,12 +155,19 @@ const ClassRegister = () => {
           </div>
         </section>
 
+        {/* 클래스 장소 */}
         <section className={styles.placeSectionStyle}>
           <Description title="클래스 장소" subTitle="클래스가 진행될 장소를 알려주세요" />
         </section>
 
         <section className={styles.amountSectionStyle}>
           <Description title="수강료" subTitle="전체 회차를 포함한 최종 금액을 알려주세요" />
+          <div className={styles.amountContainerStyle}>
+            <Input placeholder="0" value={amount} onChange={handleAmountChange} />
+            <Text tag="b5" className={styles.amountTextStyle}>
+              원
+            </Text>
+          </div>
         </section>
       </div>
     </>
