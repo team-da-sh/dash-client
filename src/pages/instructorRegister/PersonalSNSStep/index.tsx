@@ -44,7 +44,7 @@ const PersonalSNSStep = () => {
             isError={instagramError}
           />
           {instagramError && instagramValue && (
-            <Text tag="b6" style={{ color: 'red' }}>
+            <Text tag="b6" color="alert3">
               9글자 이상 입력해야 합니다.
             </Text>
           )}
@@ -62,7 +62,7 @@ const PersonalSNSStep = () => {
             isError={youtubeError}
           />
           {youtubeError && youtubeValue && (
-            <Text tag="b6" style={{ color: 'red' }}>
+            <Text tag="b6" color="alert3">
               9글자 이상 입력해야 합니다.
             </Text>
           )}
