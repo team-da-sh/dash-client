@@ -8,8 +8,8 @@ import { headerRootCutomStyle } from './index.css';
 
 const Search = () => {
   const [searchValue, setSearchValue] = useState('');
-  const [genre, setGenre] = useState('');
-  const [level, setLevel] = useState('');
+  const [genre, setGenre] = useState<string | null>(null);
+  const [level, setLevel] = useState<string | null>(null);
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
 
@@ -20,11 +20,6 @@ const Search = () => {
   const handleSearchIconClick = () => {
     console.log(searchValue);
   };
-
-  console.log(setGenre);
-  console.log(setLevel);
-  console.log(setStartDate);
-  console.log(setEndDate);
 
   return (
     <Flex>
@@ -42,6 +37,10 @@ const Search = () => {
         level={level}
         startDate={startDate}
         endDate={endDate}
+        setGenre={setGenre}
+        setLevel={setLevel}
+        setStartDate={setStartDate}
+        setEndDate={setEndDate}
       />
     </Flex>
   );

@@ -6,3 +6,4 @@ export const DEFAULT_SORT_TAGS: defaultSortTagProps[] = [
   { label: '난이도', icon: <IcArrowUnderGray width={18} /> },
   { label: '기간', icon: <IcArrowUnderGray width={18} /> },
 ];
+
