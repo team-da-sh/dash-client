@@ -44,12 +44,12 @@ const TopSection = ({ userData, onClose }: TopSectionProps) => {
     <section className={styles.sectionStyle}>
       <Flex direction="column" align="center">
         <Flex align="center" width="100%" justify="spaceBetween">
-          <IcClose width={24} height={24} onClick={onClose} />
+          <IcClose width={24} height={24} />
           <Flex align="center" gap="0.2rem">
             <Text tag="b7" color="gray7">
               프로필 수정
             </Text>
-            <IcArrowRightGray0614 width={14} height={14} />
+            <IcArrowRightGray0614 width={14} height={14} onClick={onClose} />
           </Flex>
         </Flex>
 

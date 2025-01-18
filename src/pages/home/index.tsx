@@ -23,25 +23,19 @@ const Home = () => {
   const [targetRef, isVisible] = useIntersect(false);
   const [showMyPage, setShowMyPage] = useState(false);
 
-  // 마이페이지 보여주기
   const handleMyPageClick = () => {
-    setShowMyPage(true);
+    setShowMyPage(!showMyPage);
   };
 
   const handleCloseMyPageClick = () => {
+    console.log('클릭');
     setShowMyPage(false);
   };
 
   return (
     <>
-      {showMyPage ? (
-        <MyPage onClose={handleCloseMyPageClick} />
-      ) : (
-        <>
-          <HomeHeader isVisible={isVisible} onMyPageClick={handleMyPageClick} /> {/* 클릭 핸들러 전달 */}
-          {/* 이하 기존 Home 컴포넌트 내용 */}
-        </>
-      )}
+      <MyPage showMyPage={showMyPage} onClose={handleCloseMyPageClick} />
+      <HomeHeader isVisible={isVisible} onMyPageClick={handleMyPageClick} />
 
       <div ref={targetRef}>
         <HomeCarousel />
