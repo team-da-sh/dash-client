@@ -9,6 +9,7 @@ import InstructorRegister from '@/pages/instructorRegister';
 import Login from '@/pages/login';
 import MyPage from '@/pages/mypage';
 import MyPageReservation from '@/pages/mypage/mypageReservation';
+import MyPageReservationDetail from '@/pages/mypage/mypageReservationDetail';
 import Onboarding from '@/pages/onboarding';
 import Reservation from '@/pages/reservation';
 import Search from '@/pages/search';
@@ -50,6 +51,10 @@ export const router = createBrowserRouter([
   {
     path: ROUTES_CONFIG.mypageReservation.path,
     element: <MyPageReservation />,
+  },
+  {
+    path: ROUTES_CONFIG.mypageReservationDetail.path,
+    element: <MyPageReservationDetail />,
   },
   {
     path: ROUTES_CONFIG.classRegister.path,

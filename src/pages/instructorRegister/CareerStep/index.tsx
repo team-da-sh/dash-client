@@ -1,10 +1,10 @@
 import { useState } from 'react';
+import { careerFlexStyle, checkboxStyle } from '@/pages/instructorRegister/CareerStep/index.css';
+import Description from '@/pages/instructorRegister/Description';
 import Flex from '@/components/Flex';
 import Input from '@/components/Input';
 import Text from '@/components/Text';
 import { BtnCheck, IcDocumentBlack20, IcGraduationBlack20, IcPlusGray0524 } from '@/assets/svg';
-import Description from '../Description';
-import { careerFlexStyle, checkboxStyle } from '../PersonalSNSStep/index.css';
 import { addInputBoxStyle } from './index.css';
 
 const CareerStep = () => {
@@ -22,6 +22,7 @@ const CareerStep = () => {
   return (
     <>
       <Description title="학력 및 경력" subTitle="춤에 관련된 것이라면 자유롭게 입력해 보세요" />
+
       {/* 학력 */}
       <Flex direction="column" gap="1.2rem" className={careerFlexStyle}>
         <Flex justify="spaceBetween" width="100%">

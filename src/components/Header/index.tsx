@@ -1,14 +1,17 @@
 import clsx from 'clsx';
-import React from 'react';
-import { ComponentPropsWithoutRef } from 'react';
+import React, { ComponentPropsWithoutRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Head from '@/components/Head';
-import { headerRootStyle, backIconStyle, titleStyle, closeIconStyle } from '@/components/Header/index.css';
+import { backIconStyle, closeIconStyle, headerRootStyle, titleStyle } from '@/components/Header/index.css';
 import { IcBack, IcClose } from '@/assets/svg';
 
 interface HeaderRootProps extends ComponentPropsWithoutRef<'div'> {
   children: React.ReactNode;
   isColor?: boolean;
+}
+
+interface BackIconProps {
+  onFunnelBackClick?: () => void;
 }
 
 interface TitleProps {
@@ -27,10 +30,15 @@ const HeaderRoot = ({ children, isColor = false, className }: HeaderRootProps): 
   return <div className={clsx(className, headerRootStyle({ isColor }))}>{children}</div>;
 };
 
-const BackIcon = ({ onClick = () => {} }: BackIconProps): JSX.Element => {
+const BackIcon = ({ onFunnelBackClick }: BackIconProps): JSX.Element => {
   const navigate = useNavigate();
   const handleBackClick = () => {
-    onClick();
+    // Funnel 구조에서는 이전 버튼 누를 시 setStep(-1)을 해준다.
+    if (onFunnelBackClick) {
+      onFunnelBackClick();
+      return;
+    }
+
     navigate(-1);
   };
   return (
