@@ -13,11 +13,13 @@ import { levels } from '@/constants';
 interface BottomSheetProps {
   onClose: () => void;
   initialTabIndex: number;
+  setLevel: (level: string | null) => void;
+  appliedLevel: string | null;
 }
 
-const BottomSheet = ({ onClose, initialTabIndex }: BottomSheetProps) => {
+const BottomSheet = ({ onClose, initialTabIndex, setLevel, appliedLevel }: BottomSheetProps) => {
   const [selectedTab, setSelectedTab] = useState(initialTabIndex);
-  const [selectedLevelTitle, setSelectedLevelTitle] = useState<string | null>(null);
+  const [selectedLevelTitle, setSelectedLevelTitle] = useState<string | null>(appliedLevel);
 
   document.body.style.overflow = 'hidden';
 
@@ -25,9 +27,19 @@ const BottomSheet = ({ onClose, initialTabIndex }: BottomSheetProps) => {
     setSelectedLevelTitle((prev) => (prev === title ? null : title));
   };
 
+  const handleApplyClick = () => {
+    setLevel(selectedLevelTitle);
+    handleClose();
+  };
+
+  const handleClose = () => {
+    document.body.style.overflow = '';
+    onClose();
+  };
+
   return (
     <div className={bottomSheetStyle}>
-      <div className={overlayStyle} onClick={onClose} />
+      <div className={overlayStyle} onClick={handleClose} />
       <Flex direction="column" className={bottomSheetStyle}>
         <TabRoot>
           <TabList>
@@ -62,7 +74,9 @@ const BottomSheet = ({ onClose, initialTabIndex }: BottomSheetProps) => {
           <BoxButton variant="secondary" onClick={() => setSelectedLevelTitle(null)}>
             초기화
           </BoxButton>
-          <BoxButton isDisabled={!selectedLevelTitle}>적용하기</BoxButton>
+          <BoxButton isDisabled={!selectedLevelTitle} onClick={handleApplyClick}>
+            적용하기
+          </BoxButton>
         </Flex>
       </Flex>
     </div>

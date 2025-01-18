@@ -16,9 +16,11 @@ interface TagSectionProps {
   activeTags: TagItem[];
   tagSize: 'search' | 'sort';
   tagType: 'search' | 'sort';
+  setLevel: (level: string | null) => void;
+  appliedLevel: string | null;
 }
 
-const TagSection = ({ displayTags, activeTags, tagSize, tagType }: TagSectionProps) => {
+const TagSection = ({ displayTags, activeTags, tagSize, tagType, setLevel, appliedLevel }: TagSectionProps) => {
   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
   const [selectedTagIndex, setSelectedTagIndex] = useState(0);
 
@@ -61,7 +63,14 @@ const TagSection = ({ displayTags, activeTags, tagSize, tagType }: TagSectionPro
         </Flex>
         {!activeTags.length && <IcFilterGray width={28} onClick={() => handleTagClick(0)} />}
       </Flex>
-      {isBottomSheetOpen && <BottomSheet onClose={handleBottomSheetClose} initialTabIndex={selectedTagIndex} />}
+      {isBottomSheetOpen && (
+        <BottomSheet
+          onClose={handleBottomSheetClose}
+          initialTabIndex={selectedTagIndex}
+          setLevel={setLevel}
+          appliedLevel={appliedLevel}
+        />
+      )}
     </>
   );
 };

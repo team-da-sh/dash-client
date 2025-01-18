@@ -18,17 +18,18 @@ interface TagItem {
 interface TabContainerProps {
   defaultSortTags: defaultSortTagProps[];
   genre: string;
-  level: string;
+  level: string | null;
   startDate: string;
   endDate: string;
+  setLevel: (level: string | null) => void;
 }
 
-const TabContainer = ({ defaultSortTags, genre, level, startDate, endDate }: TabContainerProps) => {
+const TabContainer = ({ defaultSortTags, genre, level, startDate, endDate, setLevel }: TabContainerProps) => {
   const [selectedTab, setSelectedTab] = useState(0);
 
   const activeTags: TagItem[] = [
     { condition: genre, label: genre, type: 'genre' },
-    { condition: level, label: level, type: 'level' },
+    { condition: level, label: level || '', type: 'level' },
     {
       condition: startDate && endDate,
       label: `${startDate} ~ ${endDate}`,
@@ -61,7 +62,14 @@ const TabContainer = ({ defaultSortTags, genre, level, startDate, endDate }: Tab
             </TabButton>
           </TabList>
           <TabPanel isSelected={selectedTab === 0}>
-            <TagSection displayTags={displayTags} activeTags={activeTags} tagSize={tagSize} tagType={tagType} />
+            <TagSection
+              displayTags={displayTags}
+              activeTags={activeTags}
+              tagSize={tagSize}
+              tagType={tagType}
+              setLevel={setLevel}
+              appliedLevel={level}
+            />
             <div className={divCustomStyle}>
               {CLASS_LIST.map((data) => (
                 <ClassItem
