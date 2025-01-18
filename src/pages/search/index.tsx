@@ -38,6 +38,8 @@ const Search = () => {
         startDate={startDate}
         endDate={endDate}
         setLevel={setLevel}
+        setStartDate={setStartDate}
+        setEndDate={setEndDate}
       />
     </Flex>
   );

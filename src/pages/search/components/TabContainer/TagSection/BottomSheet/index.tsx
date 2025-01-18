@@ -15,11 +15,26 @@ interface BottomSheetProps {
   initialTabIndex: number;
   setLevel: (level: string | null) => void;
   appliedLevel: string | null;
+  startDate: string;
+  endDate: string;
+  setStartDate: (date: string) => void;
+  setEndDate: (date: string) => void;
 }
 
-const BottomSheet = ({ onClose, initialTabIndex, setLevel, appliedLevel }: BottomSheetProps) => {
+const BottomSheet = ({
+  onClose,
+  initialTabIndex,
+  setLevel,
+  appliedLevel,
+  startDate,
+  endDate,
+  setStartDate,
+  setEndDate,
+}: BottomSheetProps) => {
   const [selectedTab, setSelectedTab] = useState(initialTabIndex);
   const [selectedLevelTitle, setSelectedLevelTitle] = useState<string | null>(appliedLevel);
+  const [selectedStartDate, setSelectedStartDate] = useState<string>(startDate);
+  const [selectedEndDate, setSelectedEndDate] = useState<string>(endDate);
 
   document.body.style.overflow = 'hidden';
 
@@ -29,6 +44,8 @@ const BottomSheet = ({ onClose, initialTabIndex, setLevel, appliedLevel }: Botto
 
   const handleApplyClick = () => {
     setLevel(selectedLevelTitle);
+    setStartDate(selectedStartDate);
+    setEndDate(selectedEndDate);
     handleClose();
   };
 
@@ -67,14 +84,27 @@ const BottomSheet = ({ onClose, initialTabIndex, setLevel, appliedLevel }: Botto
             </Flex>
           </TabPanel>
           <TabPanel isSelected={selectedTab === 2}>
-            <CalendarCustom />
+            <CalendarCustom
+              startDate={selectedStartDate}
+              endDate={selectedEndDate}
+              setStartDate={(date) => setSelectedStartDate(date)}
+              setEndDate={(date) => setSelectedEndDate(date)}
+            />
           </TabPanel>
         </TabRoot>
         <Flex width="100%" gap="0.8rem">
-          <BoxButton variant="secondary" onClick={() => setSelectedLevelTitle(null)}>
+          <BoxButton
+            variant="secondary"
+            onClick={() => {
+              setSelectedLevelTitle(null);
+              setSelectedStartDate('');
+              setSelectedEndDate('');
+            }}>
             초기화
           </BoxButton>
-          <BoxButton isDisabled={!selectedLevelTitle} onClick={handleApplyClick}>
+          <BoxButton
+            isDisabled={!selectedLevelTitle && !selectedStartDate && !selectedEndDate}
+            onClick={handleApplyClick}>
             적용하기
           </BoxButton>
         </Flex>

@@ -18,9 +18,24 @@ interface TagSectionProps {
   tagType: 'search' | 'sort';
   setLevel: (level: string | null) => void;
   appliedLevel: string | null;
+  startDate: string;
+  endDate: string;
+  setStartDate: (date: string) => void;
+  setEndDate: (date: string) => void;
 }
 
-const TagSection = ({ displayTags, activeTags, tagSize, tagType, setLevel, appliedLevel }: TagSectionProps) => {
+const TagSection = ({
+  displayTags,
+  activeTags,
+  tagSize,
+  tagType,
+  setLevel,
+  appliedLevel,
+  startDate,
+  endDate,
+  setStartDate,
+  setEndDate,
+}: TagSectionProps) => {
   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
   const [selectedTagIndex, setSelectedTagIndex] = useState(0);
 
@@ -69,6 +84,10 @@ const TagSection = ({ displayTags, activeTags, tagSize, tagType, setLevel, appli
           initialTabIndex={selectedTagIndex}
           setLevel={setLevel}
           appliedLevel={appliedLevel}
+          startDate={startDate}
+          endDate={endDate}
+          setStartDate={setStartDate}
+          setEndDate={setEndDate}
         />
       )}
     </>

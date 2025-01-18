@@ -22,9 +22,20 @@ interface TabContainerProps {
   startDate: string;
   endDate: string;
   setLevel: (level: string | null) => void;
+  setStartDate: (date: string) => void;
+  setEndDate: (date: string) => void;
 }
 
-const TabContainer = ({ defaultSortTags, genre, level, startDate, endDate, setLevel }: TabContainerProps) => {
+const TabContainer = ({
+  defaultSortTags,
+  genre,
+  level,
+  startDate,
+  endDate,
+  setLevel,
+  setStartDate,
+  setEndDate,
+}: TabContainerProps) => {
   const [selectedTab, setSelectedTab] = useState(0);
 
   const activeTags: TagItem[] = [
@@ -69,6 +80,10 @@ const TabContainer = ({ defaultSortTags, genre, level, startDate, endDate, setLe
               tagType={tagType}
               setLevel={setLevel}
               appliedLevel={level}
+              startDate={startDate}
+              endDate={endDate}
+              setStartDate={setStartDate}
+              setEndDate={setEndDate}
             />
             <div className={divCustomStyle}>
               {CLASS_LIST.map((data) => (
