@@ -7,7 +7,8 @@ export const containerStyle = recipe({
     position: 'fixed',
     top: 0,
     alignItems: 'center',
-    justifyContent:'space-between',
+    
+    justifyContent: 'space-between',
     width: '100%',
     height: '6rem',
     padding: '1.8rem 2rem',

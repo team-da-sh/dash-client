@@ -15,10 +15,6 @@ const DancerHeader = ({ isVisible }: DancerHeaderProps) => {
       <Flex align="center" justify="center" onClick={() => navigate(-1)}>
         {isVisible ? <IcBack width={'2.4rem'} /> : <IcBackWhite24 width={'2.4rem'} />}
       </Flex>
-
-      <Flex align="center" justify="center">
-        {isVisible ? <IcCloseBlack24 width={'2.4rem'} /> : <IcCloseWhite24 width={'2.4rem'} />}
-      </Flex>
     </div>
   );
 };
