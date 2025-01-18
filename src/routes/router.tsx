@@ -2,7 +2,6 @@ import { createBrowserRouter } from 'react-router-dom';
 import Class from '@/pages/class';
 import Dancer from '@/pages/dancer';
 import Home from '@/pages/home';
-import MyPage from '@/pages/home/components/MyPage';
 import ClassDetail from '@/pages/instructor/classDetail';
 import ClassList from '@/pages/instructor/classList';
 import ClassRegister from '@/pages/instructor/classRegister';
@@ -38,10 +37,6 @@ export const router = createBrowserRouter([
   {
     path: ROUTES_CONFIG.reservation.path,
     element: <Reservation />,
-  },
-  {
-    path: ROUTES_CONFIG.mypage.path,
-    element: <MyPage />,
   },
   {
     path: ROUTES_CONFIG.mypageReservation.path,

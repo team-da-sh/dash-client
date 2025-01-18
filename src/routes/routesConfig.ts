@@ -23,10 +23,6 @@ export const ROUTES_CONFIG = {
     title: 'Reservation',
     path: '/reservation',
   },
-  mypage: {
-    title: 'Mypage',
-    path: '/mypage',
-  },
   mypageReservation: {
     title: 'MypageReservation',
     path: '/mypage/reservation',
