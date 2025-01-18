@@ -43,3 +43,11 @@ export { default as IcCheckcircleGray0524 } from './IcCheckcircleGray0524';
 export { default as IcCheckcircleMain0324 } from './IcCheckcircleMain0324';
 export { default as IcCheckGray0724 } from './IcCheckGray0724';
 export { default as IcCheckMain0324 } from './IcCheckMain0324';
+
+export { default as IcBackWhite24 } from './IcBackWhite24'
+export { default as IcClassCanceledGray0824 } from './IcClassCanceledGray0824'
+export { default as IcHeartFilledGray07 } from './IcHeartFilledGray07'
+export { default as IcHeartOutlinedGray07 } from './IcHeartOutlinedGray07'
+export { default as IcLocation60 } from './IcLocation60'
+export { default as IcCloseBlack24 } from './IcCloseBlack24'
+export { default as IcCloseWhite24 } from './IcCloseWhite24'
