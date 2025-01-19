@@ -19,6 +19,9 @@ export type GenreTypes =
   | 'KRUMP'
   | 'SOUL'
   | 'CHOREOGRAPHY'
-  | 'KPOP';
+  | 'KPOP'
+  | null;
 
 export type LevelTypes = 'BEGINNER' | 'NOVICE' | 'INTERMEDIATE' | 'ADVANCED';
+
+export type KO_LEVELS = '입문' | '초급' | '중급' | '고급';

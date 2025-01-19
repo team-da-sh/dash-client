@@ -29,4 +29,6 @@ export const LEVELS = {
   고급: 'ADVANCED',
 };
 
-export type KO_LEVELS = '입문' | '초급' | '중급' | '고급';
+
+
+export const excludeSpecialBlankChar = /^[^!@#$%^&*(),.?":{}|<>_\[\]\\\-\/+=~`'\s]+$/;

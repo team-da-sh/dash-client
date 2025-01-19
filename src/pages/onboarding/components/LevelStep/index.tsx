@@ -1,4 +1,5 @@
-import { INFO_KEY, KO_LEVELS, LEVELS } from '@/pages/onboarding/constants';
+import { INFO_KEY, LEVELS } from '@/pages/onboarding/constants';
+import { KO_LEVELS } from '@/pages/onboarding/types';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import LevelButton from '@/components/LevelButton';
@@ -32,7 +33,6 @@ const LevelStep = ({ level, onInfoChange }: LevelStepProps) => {
             key={elem.title}
             level={elem}
             isSelected={level === null ? null : level === LEVELS[elem.title as KO_LEVELS]}
-            isOnboard={true}
             onClick={() => handleLevelSelect(elem.title as KO_LEVELS)}
           />
         ))}

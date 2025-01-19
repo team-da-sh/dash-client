@@ -9,7 +9,6 @@ interface LevelButtonProps {
     description: string;
   };
   isSelected: boolean | null;
-  isOnboard: boolean;
   onClick: () => void;
 }
 

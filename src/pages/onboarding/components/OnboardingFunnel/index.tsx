@@ -19,7 +19,20 @@ interface OnboardingFunnelProps {
 }
 
 const OnboardingFunnel = ({ currentStep, Funnel, setStep, Step }: OnboardingFunnelProps) => {
-  const [info, setInfo] = useState({ nickName: '', level: null, profileImageUrl: 'http' } as onboardInfoTypes);
+  const [info, setInfo] = useState({
+    name: '',
+    phoneNumber: '',
+    genres: [],
+    nickName: '',
+    level: null,
+    profileImageUrl: 'http',
+  } as onboardInfoTypes);
+
+  const [isNickNameError, setIsNickNameError] = useState(false);
+
+  const changeNickNameError = (isError: boolean) => {
+    setIsNickNameError(isError);
+  };
 
   console.log(info);
   const handleInfoChange = (key: string, value: string | GenreTypes[] | LevelTypes | null) => {
@@ -40,7 +53,7 @@ const OnboardingFunnel = ({ currentStep, Funnel, setStep, Step }: OnboardingFunn
       case 1:
         return !(info.name && info.phoneNumber);
       case 2:
-        return !info.genres;
+        return !info.genres.length;
       case 3:
         return !info.level;
       case 4:
@@ -71,12 +84,14 @@ const OnboardingFunnel = ({ currentStep, Funnel, setStep, Step }: OnboardingFunn
           <Step name="4" key={4}>
             <ProfileStep
               nickName={info.nickName}
+              isNickNameError={isNickNameError}
+              changeIsNickNameError={changeNickNameError}
               profileImageUrl={info.profileImageUrl}
               onInfoChange={handleInfoChange}
             />
           </Step>
           <Step name="5" key={5}>
-            <FinishStep></FinishStep>
+            <FinishStep nickName={info.nickName}></FinishStep>
           </Step>
         </Funnel>
       </div>
