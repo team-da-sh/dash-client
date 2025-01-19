@@ -6,13 +6,7 @@ export const containerStyle = style({
   flexDirection: 'column',
 
   width: '100%',
-  padding: '8.4rem 2rem 15rem 2rem', //아래 이거 맞을까~!~?
-});
-
-const commonSectionStyle = style({
-  display: 'flex',
-  flexDirection: 'column',
-  gap: '2rem',
+  padding: '8.4rem 2rem 15rem 2rem',
 });
 
 // 클래스명
@@ -40,14 +34,6 @@ export const textareaStyle = style({
   },
 });
 
-// 이미지 업로드
-export const imageSectionStyle = style([
-  commonSectionStyle,
-  {
-    marginBottom: '4rem',
-  },
-]);
-
 // 장르
 
 export const genreButtonContainerStyle = style({
@@ -55,10 +41,6 @@ export const genreButtonContainerStyle = style({
   gap: '1.2rem',
   flexWrap: 'wrap',
 });
-
-// 난이도
-
-// 클래스 추천 대상
 
 // 클래스 일정
 
@@ -92,7 +74,6 @@ export const searchContainerStyle = style({
 });
 
 // 수강료
-export const amountSectionStyle = style([commonSectionStyle, {}]);
 export const amountContainerStyle = style({
   width: '100%',
   position: 'relative',
