@@ -1,5 +1,5 @@
 import Card from '@/pages/class/Card';
-import { questionStyle } from '@/pages/class/TabWrapper/TabLevel/index.css';
+import { questionStyle, recommendClassStyle } from '@/pages/class/TabWrapper/TabLevel/index.css';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Text from '@/components/Text';
@@ -16,7 +16,7 @@ const Level = () => {
     lessonRecommendation: string;
   };
 
-  // lessonLevel에 해당하는 인덱스를 찾기 (LEVEL 배열에서 해당하는 아이템 찾기)
+  // lessonLevel에 해당하는 인덱스를 찾기
   const levelData = LEVEL.find((level) => level.title === lessonLevel);
 
   return (
@@ -50,7 +50,7 @@ const Level = () => {
           </Head>
         </Flex>
 
-        <Text tag="b3" color="gray8" style={{ whiteSpace: 'pre-line' }}>
+        <Text tag="b3" color="gray8" className={recommendClassStyle}>
           {lessonRecommendation}
         </Text>
       </Flex>

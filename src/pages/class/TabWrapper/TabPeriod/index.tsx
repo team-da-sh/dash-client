@@ -10,17 +10,17 @@ const Period = () => {
 
   return (
     <Flex direction="column" justify="center" gap="1.2rem">
-      {lessonRound.map((item, index) => {
+      {lessonRound.map((item, id) => {
         const { lessonStartDateTime, lessonEndDateTime } = item;
         const { startTime, formattedEndTime, durationString } = calculatePeriod(lessonStartDateTime, lessonEndDateTime);
 
         return (
-          <Card key={index}>
+          <Card key={id}>
             <div>
               <Flex align="center" width="100%">
                 <div className={roundBoxStyle}>
                   <Text tag="b10" color="white">
-                    {index + 1}회차
+                    {id + 1}회차
                   </Text>
                 </div>
                 <div>

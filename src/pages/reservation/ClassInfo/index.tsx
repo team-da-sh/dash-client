@@ -35,10 +35,10 @@ const ClassInfo = ({ lessonName, lessonLocation, teacherName, lessonLevel, lesso
               일정
             </Text>
             <Flex direction="column" gap="1.2rem">
-              {lessonRound.map(({ lessonStartDateTime, lessonEndDateTime }, index) => (
+              {lessonRound.map(({ lessonStartDateTime, lessonEndDateTime }, id) => (
                 <ScheduleItem
-                  key={index}
-                  index={index}
+                  key={id}
+                  index={id}
                   startDateTime={lessonStartDateTime}
                   endDateTime={lessonEndDateTime}
                 />
