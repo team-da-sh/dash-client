@@ -9,7 +9,7 @@ import { LEVEL } from '@/constants/index';
 
 type LessonLevelType = '입문' | '초급' | '중급' | '고급';
 
-const Level = () => {
+const TabLevel = () => {
   const { lessonLevel, lessonLevelDetail, lessonRecommendation } = LESSON_DATA as {
     lessonLevel: LessonLevelType;
     lessonLevelDetail: string;
@@ -58,4 +58,4 @@ const Level = () => {
   );
 };
 
-export default Level;
+export default TabLevel;
