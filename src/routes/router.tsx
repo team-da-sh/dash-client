@@ -1,4 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom';
+import { LoginCallback } from '@/pages/auth';
 import Class from '@/pages/class';
 import Dancer from '@/pages/dancer';
 import Home from '@/pages/home';
@@ -21,6 +22,10 @@ export const router = createBrowserRouter([
   {
     path: ROUTES_CONFIG.login.path,
     element: <Login />,
+  },
+  {
+    path: ROUTES_CONFIG.auth.path,
+    element: <LoginCallback />,
   },
   {
     path: ROUTES_CONFIG.search.path,
