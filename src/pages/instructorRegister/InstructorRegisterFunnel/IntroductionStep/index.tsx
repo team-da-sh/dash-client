@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import Description from '@/pages/instructorRegister/Description';
-import { textAreaStyle } from '@/pages/instructorRegister/IntroductionStep/index.css';
+import { textAreaStyle } from '@/pages/instructorRegister/InstructorRegisterFunnel/IntroductionStep/index.css';
 
 const IntroductionStep = () => {
   const textAreaRef = useRef<HTMLTextAreaElement>(null);

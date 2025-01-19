@@ -1,5 +1,5 @@
 import Description from '@/pages/instructorRegister/Description';
-import { addInputBoxStyle } from '@/pages/instructorRegister/VideoLinkStep/index.css';
+import { addInputBoxStyle } from '@/pages/instructorRegister/InstructorRegisterFunnel/VideoLinkStep/index.css';
 import Flex from '@/components/Flex';
 import Input from '@/components/Input';
 import { IcPlusGray0524 } from '@/assets/svg';

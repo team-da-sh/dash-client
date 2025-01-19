@@ -1,10 +1,10 @@
+import CareerStep from '@/pages/instructorRegister/InstructorRegisterFunnel//CareerStep';
+import ImageUploadStep from '@/pages/instructorRegister/InstructorRegisterFunnel//ImageUploadStep';
+import IntroductionStep from '@/pages/instructorRegister/InstructorRegisterFunnel/IntroductionStep';
+import PersonalSNSStep from '@/pages/instructorRegister/InstructorRegisterFunnel/PersonalSNSStep';
+import VideoLinkStep from '@/pages/instructorRegister/InstructorRegisterFunnel/VideoLinkStep';
 import { FunnelProps, StepProps } from '@/pages/search/types/funnel';
 import Completion from '@/components/Completion';
-import CareerStep from '../CareerStep';
-import ImageUploadStep from '../ImageUploadStep';
-import IntroductionStep from '../IntroductionStep';
-import PersonalSNSStep from '../PersonalSNSStep';
-import VideoLinkStep from '../VideoLinkStep';
 
 interface InstructorRegisterFunnelProps {
   currentStep: number;
