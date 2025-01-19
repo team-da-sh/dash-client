@@ -19,7 +19,7 @@ interface OnboardingFunnelProps {
 }
 
 const OnboardingFunnel = ({ currentStep, Funnel, setStep, Step }: OnboardingFunnelProps) => {
-  const [info, setInfo] = useState({ nickName: '', level: null } as onboardInfoTypes);
+  const [info, setInfo] = useState({ nickName: '', level: null, profileImageUrl: 'http' } as onboardInfoTypes);
 
   console.log(info);
   const handleInfoChange = (key: string, value: string | GenreTypes[] | LevelTypes | null) => {
@@ -32,6 +32,24 @@ const OnboardingFunnel = ({ currentStep, Funnel, setStep, Step }: OnboardingFunn
 
   const handlePrevButtonClick = () => {
     setStep(-1);
+  };
+
+  // 다음 버튼 활성화 판단
+  const buttonActive = (currentStep: number) => {
+    switch (currentStep) {
+      case 1:
+        return !(info.name && info.phoneNumber);
+      case 2:
+        return !info.genres;
+      case 3:
+        return !info.level;
+      case 4:
+        return !(info.profileImageUrl && info.nickName);
+      case 5:
+        return false;
+      default:
+        return true;
+    }
   };
 
   return (
@@ -64,7 +82,7 @@ const OnboardingFunnel = ({ currentStep, Funnel, setStep, Step }: OnboardingFunn
       </div>
 
       <div className={footerWrapperStyle}>
-        <BoxButton variant="primary" onClick={handleNextButtonClick}>
+        <BoxButton variant="primary" onClick={handleNextButtonClick} isDisabled={buttonActive(currentStep)}>
           {currentStep === 5 ? '홈으로 이동' : '다음'}
         </BoxButton>
       </div>

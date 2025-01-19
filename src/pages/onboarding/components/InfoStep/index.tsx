@@ -17,6 +17,10 @@ const InfoStep = ({ name, phoneNumber, onInfoChange }: InfoStepProps) => {
   };
 
   const handlePhoneNumberChange = (phoneNumber: string) => {
+    if (phoneNumber.length > 11) {
+      return;
+    }
+
     onInfoChange(INFO_KEY.PHONE_NUMBER, phoneNumber);
   };
 
