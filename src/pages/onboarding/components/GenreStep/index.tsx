@@ -10,7 +10,7 @@ import Text from '@/components/Text';
 const MAX_GENRE_COUNT = 3;
 
 interface GenreStepProps extends Pick<onboardInfoTypes, 'genres'> {
-  onInfoChange: (key: string, value: string | GenreTypes[]) => void;
+  onInfoChange: <K extends keyof onboardInfoTypes>(key: K, value: onboardInfoTypes[K]) => void;
 }
 
 const GenreStep = ({ genres = [], onInfoChange }: GenreStepProps) => {

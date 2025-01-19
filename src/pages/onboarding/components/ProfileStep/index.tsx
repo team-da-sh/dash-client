@@ -1,5 +1,6 @@
 import { icCameraStyle, inputStyle, previewImgStyle } from '@/pages/onboarding/components/ProfileStep/index.css';
 import { excludeSpecialBlankChar, INFO_KEY } from '@/pages/onboarding/constants';
+import { onboardInfoTypes } from '@/pages/onboarding/types';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Input from '@/components/Input';
@@ -13,16 +14,10 @@ interface ProfileStepProps {
   profileImageUrl: string;
   isNickNameError: boolean;
   changeIsNickNameError: (isError: boolean) => void;
-  onInfoChange: (key: string, value: string) => void;
+  onInfoChange: <K extends keyof onboardInfoTypes>(key: K, value: onboardInfoTypes[K]) => void;
 }
 
-const ProfileStep = ({
-  nickName,
-
-  isNickNameError,
-  changeIsNickNameError,
-  onInfoChange,
-}: ProfileStepProps) => {
+const ProfileStep = ({ nickName, isNickNameError, changeIsNickNameError, onInfoChange }: ProfileStepProps) => {
   const { imgRef, previewImg, handleUploaderClick, uploadImgFile } = useUploadImg();
 
   const handleNickNameChange = (nickName: string) => {
@@ -40,6 +35,7 @@ const ProfileStep = ({
     onInfoChange(INFO_KEY.NICKNAME, nickName);
   };
 
+  // 이미지 url 정상화 되면 사용할 예정
   // const handleProfileImageUrlChange = (profileImageUrl: string) => {
   //   onInfoChange(INFO_KEY.PROFILE_IMAGE_URL, profileImageUrl);
   // };

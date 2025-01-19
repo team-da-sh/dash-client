@@ -1,5 +1,6 @@
 import { labelStyle } from '@/pages/onboarding/components/InfoStep/index.css';
 import { INFO_KEY } from '@/pages/onboarding/constants';
+import { onboardInfoTypes } from '@/pages/onboarding/types';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Input from '@/components/Input';
@@ -8,7 +9,7 @@ import Text from '@/components/Text';
 interface InfoStepProps {
   name: string;
   phoneNumber: string;
-  onInfoChange: (key: string, value: string) => void;
+  onInfoChange: <K extends keyof onboardInfoTypes>(key: K, value: onboardInfoTypes[K]) => void;
 }
 
 const InfoStep = ({ name, phoneNumber, onInfoChange }: InfoStepProps) => {

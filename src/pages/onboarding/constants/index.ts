@@ -5,7 +5,7 @@ export const INFO_KEY = {
   LEVEL: 'level',
   NICKNAME: 'nickName',
   PROFILE_IMAGE_URL: 'profileImageUrl',
-};
+} as const;
 
 export const GENRELIST = [
   'HIPHOP',
@@ -27,8 +27,6 @@ export const LEVELS = {
   초급: 'NOVICE',
   중급: 'INTERMEDIATE',
   고급: 'ADVANCED',
-};
-
-
+} as const;
 
 export const excludeSpecialBlankChar = /^[^!@#$%^&*(),.?":{}|<>_\[\]\\\-\/+=~`'\s]+$/;

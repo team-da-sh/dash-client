@@ -1,5 +1,5 @@
 import { INFO_KEY, LEVELS } from '@/pages/onboarding/constants';
-import { KO_LEVELS } from '@/pages/onboarding/types';
+import { KO_LEVELS, onboardInfoTypes } from '@/pages/onboarding/types';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import LevelButton from '@/components/LevelButton';
@@ -8,7 +8,7 @@ import { LEVEL } from '@/constants';
 
 interface LevelStepProps {
   level: string | null;
-  onInfoChange: (key: string, value: string | null) => void;
+  onInfoChange: <K extends keyof onboardInfoTypes>(key: K, value: onboardInfoTypes[K]) => void;
 }
 
 const LevelStep = ({ level, onInfoChange }: LevelStepProps) => {

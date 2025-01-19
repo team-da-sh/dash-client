@@ -34,8 +34,7 @@ const OnboardingFunnel = ({ currentStep, Funnel, setStep, Step }: OnboardingFunn
     setIsNickNameError(isError);
   };
 
-  console.log(info);
-  const handleInfoChange = (key: string, value: string | GenreTypes[] | LevelTypes | null) => {
+  const handleInfoChange = <K extends keyof onboardInfoTypes>(key: K, value: onboardInfoTypes[K]) => {
     setInfo((prev) => ({ ...prev, [key]: value }));
   };
 
