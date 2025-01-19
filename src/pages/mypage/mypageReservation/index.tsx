@@ -5,6 +5,7 @@ import ClassCard from '@/components/ClassCard';
 import Flex from '@/components/Flex';
 import Header from '@/components/Header';
 import Text from '@/components/Text';
+import { notify } from '@/components/Toast';
 import { MOCK_RESERVATION_DATA } from '@/mocks/mockReservationData';
 import { ReservationCardProps } from '@/types/reservationTypes';
 
@@ -26,6 +27,7 @@ const MyPageReservation = () => {
   const handleDetailClick = (reservationId: number) => {
     navigate(`/mypage/reservation/${reservationId}`);
   };
+
   const totalReservation = MOCK_RESERVATION_DATA.reservations.length;
 
   return (
@@ -42,9 +44,10 @@ const MyPageReservation = () => {
         <Flex direction="column" gap="1.2rem" marginTop="1.6rem">
           {MOCK_RESERVATION_DATA.reservations.map((reservation: ReservationCardProps) => (
             <ClassCard key={reservation.reservationId} {...reservation}>
-              <BoxButton variant="outline" isDisabled={true}>
+              <BoxButton onClick={notify} variant="temp">
                 취소하기
               </BoxButton>
+
               <BoxButton variant="outline" onClick={() => handleDetailClick(reservation.reservationId)}>
                 상세보기
               </BoxButton>
