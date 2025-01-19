@@ -3,7 +3,7 @@ import Flex from '@/components/Flex';
 import { DANCER_DATA } from '@/mocks/mockDancerData';
 
 const TabVideo = () => {
-  const { videoUrl } = DANCER_DATA;
+  const { videoUrls } = DANCER_DATA;
 
   const getYoutubeEmbedUrl = (url: string) => {
     const videoId = url.match(/(?:youtube\.com\/.*v=|youtu\.be\/)([^&]+)/)?.[1];
@@ -13,16 +13,16 @@ const TabVideo = () => {
   return (
     <Flex justify="center">
       <div className={videoWrapperStyle}>
-        {videoUrl.map((url, index) => {
+        {videoUrls.map((url, id) => {
           const embedUrl = getYoutubeEmbedUrl(url);
           return (
-            <div key={index} className={videoItemStyle}>
+            <div key={id} className={videoItemStyle}>
               <iframe
                 className={iframeStyle}
                 src={embedUrl || ''}
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
-                title={`video-${index}`}/>
+                title={`video-${id}`}/>
             </div>
           );
         })}

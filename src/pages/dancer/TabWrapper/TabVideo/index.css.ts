@@ -3,7 +3,7 @@ import { style } from '@vanilla-extract/css';
 export const videoWrapperStyle = style({
   display: 'flex',
   flexWrap: 'wrap',
-  gap: '2rem',
+  gap: '1.6rem',
   justifyContent: 'center',
 });
 

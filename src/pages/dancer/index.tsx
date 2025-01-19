@@ -12,7 +12,7 @@ import TabWrapper from '@/pages/dancer/TabWrapper';
 
 const Dancer = () => {
   const [targetRef, isVisible] = useIntersect(false);
-  const { nickname, imageUrl, genre } = DANCER_DATA;
+  const { nickname, imageUrls, genres } = DANCER_DATA;
 
   return (
     <>
@@ -21,13 +21,13 @@ const Dancer = () => {
           ref={targetRef}
           className={topImgStyle}
           style={{
-            backgroundImage: `url(${imageUrl})`,
+            backgroundImage: `url(${imageUrls[0]})`,
           }}>
           <div className={gradientOverlayStyle} />
           <Flex direction="column" gap="0.8rem" paddingTop="28.9rem" paddingLeft="2rem" className={textWrapperStyle}>
             <Flex direction="row" gap="0.4rem">
-              {genre.map((g, index) => (
-                <Tag key={index} size="medium" type="genre">
+              {genres.map((g, id) => (
+                <Tag key={id} size="medium" type="genre">
                   <Text tag="b7" color="white">
                     {g}
                   </Text>

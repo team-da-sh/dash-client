@@ -1,13 +1,11 @@
+import { classImageStyle, wrapperStyle, deadlineTagStyle } from '@/pages/dancer/DancerInfo/DancerClassItem/index.css';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Tag from '@/components/Tag';
-import { classImageStyle, wrapperStyle, deadlineTagStyle } from '@/pages/dancer/DancerInfo/DancerClassItem/index.css';
-import { calculateDday } from '@/utils/dateCalculate';
-import { isWithinFourDays } from '@/utils/dateCalculate';
 
 interface DancerClassItemProps {
   lessonImageUrl: string;
-  lessonStartDateTime: string;
+  lessonRemainingDays: number;
   lessonGenre: string;
   lessonLevel: string;
   lessonName: string;
@@ -15,28 +13,33 @@ interface DancerClassItemProps {
 
 const DancerClassItem = ({
   lessonImageUrl,
-  lessonStartDateTime,
+  lessonRemainingDays,
   lessonGenre,
   lessonLevel,
   lessonName,
 }: DancerClassItemProps) => {
-  const dDay = calculateDday(lessonStartDateTime);
-  const { isWithin, isPast } = isWithinFourDays(lessonStartDateTime);
+  const renderDeadlineTag = () => {
+    if (lessonRemainingDays < 0) {
+      return (
+        <Tag type="deadline" size="thumbnail" className={deadlineTagStyle}>
+          마감
+        </Tag>
+      );
+    }
+    if (lessonRemainingDays <= 4) {
+      return (
+        <Tag type="deadline" size="thumbnail" className={deadlineTagStyle}>
+          마감 D-{lessonRemainingDays}
+        </Tag>
+      );
+    }
+    return null;
+  };
 
   return (
     <Flex width="16.4rem" direction="column" gap="0.8rem" className={wrapperStyle}>
       <img src={lessonImageUrl} alt="클래스 섬네일" className={classImageStyle} />
-
-      {isWithin && !isPast && (
-        <Tag type="deadline" size="thumbnail" className={deadlineTagStyle}>
-          {dDay === '마감' ? '마감' : `마감 ${dDay}`}
-        </Tag>
-      )}
-      {isPast && (
-        <Tag type="deadline" size="thumbnail" className={deadlineTagStyle}>
-          마감
-        </Tag>
-      )}
+      {renderDeadlineTag()}
 
       <Flex gap="0.4rem">
         <Tag type="genre" size="small">

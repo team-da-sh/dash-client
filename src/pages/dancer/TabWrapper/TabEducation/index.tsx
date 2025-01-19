@@ -5,19 +5,19 @@ import Text from '@/components/Text';
 import { DANCER_DATA } from '@/mocks/mockDancerData';
 
 const TabExperience = () => {
-  const { education } = DANCER_DATA;
+  const { educations } = DANCER_DATA;
 
   return (
     <Flex direction="column" gap="0.8rem">
-      {education.length === 0 ? (
+      {educations.length === 0 ? (
         <Head level="h5" tag="h6" color="gray9" className={emptyStyle}>
           아직 등록된 학력이 없어요
         </Head>
       ) : (
-        education.map((edu, index) => (
-          <div key={index}>
+        educations.map((edu, id) => (
+          <div key={id}>
             <Text tag="b2" color="gray7">
-              {edu}
+              {edu.education}
             </Text>
           </div>
         ))

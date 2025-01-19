@@ -5,16 +5,10 @@ import Head from '@/components/Head';
 import Text from '@/components/Text';
 import { IcInstagram20, IcYoutube20 } from '@/assets/svg';
 import { DANCER_DATA } from '@/mocks/mockDancerData';
-import {
-  classTitleStyle,
-  rowScrollStyle,
-  classItemStyle,
-  firstClassItemStyle,
-  lastClassItemStyle,
-} from './index.css';
+import { classTitleStyle, rowScrollStyle, classItemStyle, firstClassItemStyle, lastClassItemStyle } from './index.css';
 
 const DancerInfo = () => {
-  const { instagram, youtube, detail, nickname, classes } = DANCER_DATA;
+  const { instagram, youtube, detail, nickname, lessons } = DANCER_DATA;
 
   const instagramHandle = instagram.split('/').filter(Boolean).pop();
   const youtubeHandle = youtube.split('/').filter(Boolean).pop();
@@ -27,8 +21,7 @@ const DancerInfo = () => {
         paddingRight="2rem"
         paddingLeft="2rem"
         paddingBottom="3.2rem"
-        gap="2rem"
-      >
+        gap="2rem">
         <Flex gap="2.8rem">
           {instagram && (
             <a href={instagram} target="_blank" rel="noopener noreferrer">
@@ -64,26 +57,21 @@ const DancerInfo = () => {
         </Head>
 
         <div className={rowScrollStyle}>
-          {classes.map((data, index) => {
-            const isFirst = index === 0;
-            const isLast = index === classes.length - 1;
+          {lessons.map((data, id) => {
+            const isFirst = id === 0;
+            const isLast = id === lessons.length - 1;
 
             return (
               <div
                 key={data.id}
-                className={[
-                  classItemStyle,
-                  isFirst && firstClassItemStyle,
-                  isLast && lastClassItemStyle,
-                ]
+                className={[classItemStyle, isFirst && firstClassItemStyle, isLast && lastClassItemStyle]
                   .filter(Boolean)
-                  .join(' ')}
-              >
+                  .join(' ')}>
                 <DancerClassItem
                   lessonImageUrl={data.imageUrl}
-                  lessonStartDateTime={data.lessonStartDateTime}
-                  lessonGenre={data.lessonGenre}
-                  lessonLevel={data.lessonLevel}
+                  lessonRemainingDays={data.remainingDays}
+                  lessonGenre={data.genre}
+                  lessonLevel={data.level}
                   lessonName={data.name}
                 />
               </div>

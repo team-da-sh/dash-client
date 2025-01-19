@@ -5,3 +5,7 @@ export const questionStyle = style({
   justifyContent: 'center',
   alignItems: 'center',
 });
+
+export const recommendClassStyle = style({
+  whiteSpace: 'pre-line',
+});
