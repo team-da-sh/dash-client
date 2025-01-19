@@ -16,23 +16,11 @@ const commonSectionStyle = style({
 });
 
 // 클래스명
-export const nameSectionStyle = style([
-  commonSectionStyle,
-  {
-    marginBottom: '2rem',
-  },
-]);
 export const nameLengthStyle = style({
   alignSelf: 'flex-end',
 });
 
 // 클래스 설명
-export const explanationSectionStyle = style([
-  commonSectionStyle,
-  {
-    marginBottom: '4rem',
-  },
-]);
 export const textareaStyle = style({
   width: '100%',
   padding: '1.6rem 1.8rem',
@@ -61,12 +49,6 @@ export const imageSectionStyle = style([
 ]);
 
 // 장르
-export const genreSectionStyle = style([
-  commonSectionStyle,
-  {
-    marginBottom: '4rem',
-  },
-]);
 
 export const genreButtonContainerStyle = style({
   display: 'flex',
@@ -75,28 +57,10 @@ export const genreButtonContainerStyle = style({
 });
 
 // 난이도
-export const levelSectionStyle = style([
-  commonSectionStyle,
-  {
-    marginBottom: '4rem',
-  },
-]);
 
 // 클래스 추천 대상
-export const recommendSectionStyle = style([
-  commonSectionStyle,
-  {
-    marginBottom: '3rem',
-  },
-]);
 
 // 클래스 일정
-export const scheduleSectionStyle = style([
-  commonSectionStyle,
-  {
-    marginBottom: '5rem',
-  },
-]);
 
 export const addInputBoxStyle = style({
   width: '100%',
@@ -106,14 +70,9 @@ export const addInputBoxStyle = style({
 });
 
 // 모집 인원
-export const personnelSectionStyle = style([
-  commonSectionStyle,
-  {
-    marginBottom: '4rem',
-  },
-]);
 
 export const personnelContainerStyle = style({
+  width: '100%',
   position: 'relative',
 });
 
@@ -125,13 +84,6 @@ export const personnelTextStyle = style({
 });
 
 // 클래스 장소
-export const placeSectionStyle = style([
-  commonSectionStyle,
-  {
-    marginBottom: '4rem',
-  },
-]);
-
 export const searchContainerStyle = style({
   height: '5.2rem',
   backgroundColor: vars.colors.gray01,
@@ -142,6 +94,7 @@ export const searchContainerStyle = style({
 // 수강료
 export const amountSectionStyle = style([commonSectionStyle, {}]);
 export const amountContainerStyle = style({
+  width: '100%',
   position: 'relative',
 });
 
