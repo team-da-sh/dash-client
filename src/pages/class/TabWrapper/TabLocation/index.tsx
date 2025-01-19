@@ -1,8 +1,9 @@
 import Card from '@/pages/class/Card';
+import { streetAddressStyle, addressTitleStyle } from '@/pages/class/TabWrapper/TabLocation/index.css';
 import Flex from '@/components/Flex';
 import Text from '@/components/Text';
+import { IcLocation60 } from '@/assets/svg';
 import { LESSON_DATA } from '@/mocks/mockLessonData';
-import { IcClose } from '@/assets/svg';
 
 const LocationInfo = () => {
   const { lessonLocation, lessonStreetAddress, lessonOldStreetAddress } = LESSON_DATA;
@@ -19,11 +20,11 @@ const LocationInfo = () => {
             <Flex direction="column" gap="0.4rem">
               <Flex justify="spaceBetween">
                 <Flex marginRight="0.4rem">
-                  <Text tag="b7" color="gray6">
+                  <Text tag="b7" color="gray6" className={addressTitleStyle}>
                     주소
                   </Text>
                 </Flex>
-                <Text tag="b7" color="gray7" style={{ whiteSpace: 'pre-line' }}>
+                <Text tag="b7" color="gray7" className={streetAddressStyle}>
                   {lessonStreetAddress}
                 </Text>
               </Flex>
@@ -42,7 +43,7 @@ const LocationInfo = () => {
           </Flex>
 
           {/* 오른쪽 */}
-          <IcClose width={41} />
+          <IcLocation60 width={'6rem'} />
         </Flex>
       </Card>
     </Flex>
