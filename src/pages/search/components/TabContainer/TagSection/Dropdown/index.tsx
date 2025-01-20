@@ -1,5 +1,5 @@
-import { ButtonHTMLAttributes, ReactNode, createContext, useContext, useRef, useState } from 'react';
-import useClickOutside from '@/hooks/useClickOutside';
+import { ButtonHTMLAttributes, ReactNode, createContext, useContext, useState } from 'react';
+import useOutsideClick from '@/hooks/useOutsideClick';
 import * as styles from './index.css';
 
 interface DropdownContextProps {
@@ -27,8 +27,7 @@ const DropdownRoot = ({ children }: DropdownRootProps) => {
   const handleToggleOpen = () => setOpen((prev) => !prev);
   const handleClose = () => setOpen(false);
 
-  const ref = useRef(null);
-  useClickOutside(ref, handleClose);
+  const ref = useOutsideClick(handleClose);
 
   const contextValue: DropdownContextProps = {
     open,

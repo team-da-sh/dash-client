@@ -2,6 +2,7 @@ import { useState } from 'react';
 import ClassItem from '@/pages/home/components/ClassItem';
 import DancerList from '@/pages/search/components/DancerList';
 import TagSection from '@/pages/search/components/TabContainer/TagSection';
+import Dropdown from '@/pages/search/components/TabContainer/TagSection/Dropdown';
 import { divCustomStyle, dropdownDivStyle } from '@/pages/search/components/TabContainer/index.css';
 import { CLASS_LIST, DANCER_LIST } from '@/pages/search/mocks/index';
 import { defaultSortTagProps } from '@/pages/search/types/defaultSortTag';
@@ -9,7 +10,6 @@ import Flex from '@/components/Flex';
 import { TabList, TabRoot, TabButton, TabPanel } from '@/components/Tab';
 import Text from '@/components/Text';
 import { IcArrowUnderGray, IcXMain04 } from '@/assets/svg';
-import Dropdown from './TagSection/Dropdown';
 
 interface TagItem {
   label: string;
