@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import Description from '@/pages/instructorRegister/Description';
 import { textAreaStyle } from '@/pages/instructorRegister/InstructorRegisterFunnel/IntroductionStep/index.css';
 import { INFO_KEY } from '../../constants';
@@ -15,10 +15,6 @@ const IntroductionStep = ({ detail, onInfoChange }: IntroductionStepProps) => {
   const handleTextareaChange = (value: string) => {
     onInfoChange(INFO_KEY.DETAIL, value);
   };
-
-  useEffect(() => {
-    console.log(detail);
-  }, [detail]);
 
   const handleInput = () => {
     const textArea = textAreaRef.current;
