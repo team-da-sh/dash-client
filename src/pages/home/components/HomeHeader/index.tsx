@@ -11,9 +11,10 @@ import {
 
 interface HomeHeaderProps {
   isVisible: boolean;
+  onMyPageClick: () => void;
 }
 
-const HomeHeader = ({ isVisible }: HomeHeaderProps) => {
+const HomeHeader = ({ isVisible, onMyPageClick }: HomeHeaderProps) => {
   return (
     <Flex tag="header" className={containerStyle({ isVisible })}>
       {isVisible ? (
@@ -21,7 +22,7 @@ const HomeHeader = ({ isVisible }: HomeHeaderProps) => {
           <IcLogoSmallBlack width={54} height={18} />
           <Flex gap="2rem">
             <IcSearchBlack24 width={24} height={24} />
-            <IcMypageBlack24 width={24} height={24} />
+            <IcMypageBlack24 width={24} height={24} onClick={onMyPageClick} />
           </Flex>
         </>
       ) : (
@@ -29,7 +30,7 @@ const HomeHeader = ({ isVisible }: HomeHeaderProps) => {
           <IcLogoSmallWhite width={54} height={18} />
           <Flex gap="2rem">
             <IcSearchWhite24 width={24} height={24} />
-            <IcMypageWhite24 width={24} height={24} />
+            <IcMypageWhite24 width={24} height={24} onClick={onMyPageClick} />
           </Flex>
         </>
       )}

@@ -9,8 +9,8 @@ export const MYPAGE_DATA = [
         roleName: '강사',
       },
     ],
-    reservationCount: 50,
-    favoriteCount: 200,
+    reservationCount: 12,
+    favoriteCount: 10,
     // 수강생의 경우 null 반환 예정
     lessonCount: null,
   },
