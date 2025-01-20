@@ -37,7 +37,7 @@ const Home = () => {
 
   const { data } = useAdvertisements();
 
-  console.log(data?.data);
+  console.log(data);
 
   return (
     <div className={myPageContainerStyle}>
