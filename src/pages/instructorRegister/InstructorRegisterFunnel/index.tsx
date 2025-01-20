@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import CareerStep from '@/pages/instructorRegister/InstructorRegisterFunnel//CareerStep';
 import ImageUploadStep from '@/pages/instructorRegister/InstructorRegisterFunnel//ImageUploadStep';
 import IntroductionStep from '@/pages/instructorRegister/InstructorRegisterFunnel/IntroductionStep';
@@ -6,6 +7,7 @@ import VideoLinkStep from '@/pages/instructorRegister/InstructorRegisterFunnel/V
 import { funnelContainerStyle } from '@/pages/instructorRegister/InstructorRegisterFunnel/index.css';
 import { FunnelProps, StepProps } from '@/pages/search/types/funnel';
 import Completion from '@/components/Completion';
+import { InstructorRegisterInfoTypes } from '../types';
 
 interface InstructorRegisterFunnelProps {
   currentStep: number;
@@ -15,6 +17,23 @@ interface InstructorRegisterFunnelProps {
 }
 
 const InstructorRegisterFunnel = ({ Funnel, Step }: InstructorRegisterFunnelProps) => {
+  const [info, setInfo] = useState({
+    imageUrl: '',
+    instagram: '',
+    youtube: '',
+    education: '',
+    experience: '',
+    detail: '',
+    videoUrls: [],
+  });
+
+  const handleInfoChange = <K extends keyof InstructorRegisterInfoTypes>(
+    key: K,
+    value: InstructorRegisterInfoTypes[K]
+  ) => {
+    setInfo((prev) => ({ ...prev, [key]: value }));
+  };
+
   return (
     <div className={funnelContainerStyle}>
       <Funnel>
@@ -22,7 +41,7 @@ const InstructorRegisterFunnel = ({ Funnel, Step }: InstructorRegisterFunnelProp
           <ImageUploadStep />
         </Step>
         <Step name="2">
-          <PersonalSNSStep />
+          <PersonalSNSStep instagram={info.instagram} youtube={info.youtube} onInfoChange={handleInfoChange} />
         </Step>
         <Step name="3">
           <CareerStep />

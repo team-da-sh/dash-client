@@ -1,30 +1,24 @@
-import { useState } from 'react';
 import Description from '@/pages/instructorRegister/Description';
+import { INFO_KEY } from '@/pages/instructorRegister/constants';
 import Flex from '@/components/Flex';
 import Input from '@/components/Input';
 import Text from '@/components/Text';
 import { IcInstagram20, IcYoutube20 } from '@/assets/svg';
+import { InstructorRegisterInfoTypes } from '../../types';
 
-const MIN_LENGTH = 9;
+interface PersonalSNSStepProps {
+  instagram: string;
+  youtube: string;
+  onInfoChange: <K extends keyof InstructorRegisterInfoTypes>(key: K, value: InstructorRegisterInfoTypes[K]) => void;
+}
 
-const PersonalSNSStep = () => {
-  const [instagramValue, setInstagramValue] = useState('');
-  const [youtubeValue, setYoutubeValue] = useState('');
-  const [instagramError, setInstagramError] = useState(false);
-  const [youtubeError, setYoutubeError] = useState(false);
-
-  const validateInput = (value: string) => value.length >= MIN_LENGTH;
-
-  const handleInstagramChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setInstagramValue(value);
-    setInstagramError(!validateInput(value));
+const PersonalSNSStep = ({ instagram, youtube, onInfoChange }: PersonalSNSStepProps) => {
+  const handleInstagramChange = (value: string) => {
+    onInfoChange(INFO_KEY.INSTAGRAM, value);
   };
 
-  const handleYoutubeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setYoutubeValue(value);
-    setYoutubeError(!validateInput(value));
+  const handleYoutubeChange = (value: string) => {
+    onInfoChange(INFO_KEY.YOUTUBE, value);
   };
 
   return (
@@ -39,15 +33,9 @@ const PersonalSNSStep = () => {
           </Flex>
           <Input
             placeholder="http://instagram.com/dashofficial"
-            value={instagramValue}
-            onChange={handleInstagramChange}
-            isError={instagramError}
+            value={instagram}
+            onChange={(e) => handleInstagramChange(e.target.value)}
           />
-          {instagramError && instagramValue && (
-            <Text tag="b6" color="alert3">
-              9글자 이상 입력해야 합니다.
-            </Text>
-          )}
         </Flex>
 
         <Flex direction="column" gap="1.2rem" width="100%">
@@ -57,15 +45,9 @@ const PersonalSNSStep = () => {
           </Flex>
           <Input
             placeholder="http://youtube.com/dashofficial"
-            value={youtubeValue}
-            onChange={handleYoutubeChange}
-            isError={youtubeError}
+            value={youtube}
+            onChange={(e) => handleYoutubeChange(e.target.value)}
           />
-          {youtubeError && youtubeValue && (
-            <Text tag="b6" color="alert3">
-              9글자 이상 입력해야 합니다.
-            </Text>
-          )}
         </Flex>
       </Flex>
     </>
