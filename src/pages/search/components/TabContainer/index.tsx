@@ -3,7 +3,7 @@ import ClassItem from '@/pages/home/components/ClassItem';
 import DancerList from '@/pages/search/components/DancerList';
 import TagSection from '@/pages/search/components/TabContainer/TagSection';
 import Dropdown from '@/pages/search/components/TabContainer/TagSection/Dropdown';
-import { divCustomStyle, dropdownDivStyle } from '@/pages/search/components/TabContainer/index.css';
+import { divCustomStyle } from '@/pages/search/components/TabContainer/index.css';
 import { CLASS_LIST, DANCER_LIST } from '@/pages/search/mocks/index';
 import { defaultSortTagProps } from '@/pages/search/types/defaultSortTag';
 import Flex from '@/components/Flex';
@@ -69,31 +69,32 @@ const TabContainer = ({
     <Flex direction="column" paddingTop="8.4rem" width="100%" paddingLeft="2rem" paddingRight="2rem">
       <Flex align="center" width="100%" justify="spaceBetween" position="relative">
         <TabRoot>
-          <TabList>
-            <TabButton isSelected={selectedTab === 0} onClick={() => setSelectedTab(0)} colorScheme="primary">
-              클래스
-            </TabButton>
-            <TabButton isSelected={selectedTab === 1} onClick={() => setSelectedTab(1)} colorScheme="primary">
-              댄서
-            </TabButton>
-            <div className={dropdownDivStyle}>
-              <Dropdown.Root>
-                <Dropdown.Trigger>
-                  <Flex align="center">
-                    <Text tag="b7" color="gray7">
-                      {selectedLabel}
-                    </Text>
-                    <IcArrowUnderGray width={14} />
-                  </Flex>
-                </Dropdown.Trigger>
-                <Dropdown.Content>
-                  <Dropdown.Item label="최신 등록순" onClick={() => setSelectedLabel('최신 등록순')} />
-                  <Dropdown.Item label="찜이 많은순" onClick={() => setSelectedLabel('찜이 많은순')} />
-                  <Dropdown.Item label="마감 임박순" onClick={() => setSelectedLabel('마감 임박순')} />
-                </Dropdown.Content>
-              </Dropdown.Root>
-            </div>
-          </TabList>
+          <Flex justify="spaceBetween">
+            <TabList>
+              <TabButton isSelected={selectedTab === 0} onClick={() => setSelectedTab(0)} colorScheme="primary">
+                클래스
+              </TabButton>
+              <TabButton isSelected={selectedTab === 1} onClick={() => setSelectedTab(1)} colorScheme="primary">
+                댄서
+              </TabButton>
+            </TabList>
+            <Dropdown.Root>
+              <Dropdown.Trigger>
+                <Flex align="center">
+                  <Text tag="b7" color="gray7">
+                    {selectedLabel}
+                  </Text>
+                  <IcArrowUnderGray width={14} />
+                </Flex>
+              </Dropdown.Trigger>
+              <Dropdown.Content>
+                <Dropdown.Item label="최신 등록순" onClick={() => setSelectedLabel('최신 등록순')} />
+                <Dropdown.Item label="찜이 많은순" onClick={() => setSelectedLabel('찜이 많은순')} />
+                <Dropdown.Item label="마감 임박순" onClick={() => setSelectedLabel('마감 임박순')} />
+              </Dropdown.Content>
+            </Dropdown.Root>
+          </Flex>
+
           <TabPanel isSelected={selectedTab === 0}>
             <TagSection
               displayTags={displayTags}
