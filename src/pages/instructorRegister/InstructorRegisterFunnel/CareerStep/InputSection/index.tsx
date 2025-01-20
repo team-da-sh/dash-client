@@ -26,7 +26,6 @@ const InputSection = ({ title, icon, isActive, onToggleActive, inputItems, setIn
 
   const addItem = () => {
     if (inputItems[inputItems.length - 1]?.value.trim() === '') {
-      alert('마지막 입력란을 채워주세요!');
       return;
     }
 

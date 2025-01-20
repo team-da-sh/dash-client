@@ -68,7 +68,7 @@ const InstructorRegisterFunnel = ({ Funnel, Step }: InstructorRegisterFunnelProp
           <VideoLinkStep />
         </Step>
         <Step name="5">
-          <IntroductionStep />
+          <IntroductionStep detail={info.detail} onInfoChange={handleInfoChange}/>
         </Step>
         <Step name="6">
           <Completion
