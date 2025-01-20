@@ -4,19 +4,22 @@ import { vars } from '@/styles/theme.css';
 export const wrapperStyle = style({
   display: 'flex',
   flexDirection: 'column',
+
+  position: 'absolute',
+  top: '0',
+  right: '0',
+
   width: '31.2rem',
   height: '100vh',
 
   overflow: 'auto',
 
-  position: 'fixed',
-  right: '0',
-
   backgroundColor: vars.colors.white,
 });
 
 export const visibleStyle = style({
-  position: 'fixed',
+  position: 'absolute',
+  top: '0',
   right: '0',
   zIndex: 6,
 
@@ -29,9 +32,12 @@ export const visibleStyle = style({
 });
 
 export const invisibleStyle = style({
-  position: 'fixed',
-  height: '100vh',
+  position: 'absolute',
+  top: '0',
   right: '0',
+
+  height: '100vh',
+
   zIndex: 6,
 
   transform: 'translateX(31.2rem)',

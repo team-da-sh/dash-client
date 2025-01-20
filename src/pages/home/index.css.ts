@@ -33,8 +33,12 @@ export const deadlineClassWrapperStyle = style({
   marginTop: '6.1rem',
 });
 
+export const myPageContainerStyle = style({
+  position: 'relative',
+});
+
 export const overlayStyle = style({
-  position: 'fixed',
+  position: 'absolute',
   top: 0,
   left: 0,
 
