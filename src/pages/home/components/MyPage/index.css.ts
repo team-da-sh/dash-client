@@ -6,6 +6,7 @@ export const wrapperStyle = style({
   flexDirection: 'column',
   width: '31.2rem',
   height: '100vh',
+
   overflow: 'auto',
 
   position: 'fixed',
@@ -15,23 +16,25 @@ export const wrapperStyle = style({
 });
 
 export const visibleStyle = style({
+  position: 'fixed',
+  right: '0',
+  zIndex: 6,
+
   width: '100%',
   height: '100%',
 
-  position: 'fixed',
-  right: '0',
   transform: 'translateX(0)',
   opacity: 1,
   transition: 'transform 0.3s ease-in-out, opacity 0.3s ease-in-out',
-  zIndex: 6,
 });
 
 export const invisibleStyle = style({
-  height: '100vh',
   position: 'fixed',
+  height: '100vh',
   right: '0',
+  zIndex: 6,
+
   transform: 'translateX(31.2rem)',
   opacity: 0,
   transition: 'transform 0.3s ease-in-out, opacity 0.3s ease-in-out',
-  zIndex: 6,
 });
