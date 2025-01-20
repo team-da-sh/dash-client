@@ -26,6 +26,7 @@ const Input = (
         className,
         style.inputStyle({
           isError: hasValue ? isError : undefined,
+          isSearch,
         }),
         { [style.focusStyle]: isFocused && !hasValue }
       )}
