@@ -1,4 +1,6 @@
 
+export { default as IcAsset1 } from './IcAsset1'
+export { default as IcKakaoKakaobrown28 } from './IcKakaoKakaobrown28'
 export { default as IcCameraMain0624 } from './IcCameraMain0624';
 export { default as IcCheckMain0424 } from './IcCheckMain0424';
 export { default as IcClose } from './IcClose';
