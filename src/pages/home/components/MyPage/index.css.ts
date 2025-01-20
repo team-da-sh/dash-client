@@ -24,8 +24,6 @@ export const visibleStyle = style({
   opacity: 1,
   transition: 'transform 0.3s ease-in-out, opacity 0.3s ease-in-out',
   zIndex: 6,
-
-  backgroundColor: vars.colors.black70,
 });
 
 export const invisibleStyle = style({

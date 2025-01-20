@@ -8,9 +8,11 @@ import HomeCarousel from '@/pages/home/components/HomeCarousel';
 import HomeHeader from '@/pages/home/components/HomeHeader';
 import MyPage from '@/pages/home/components/MyPage';
 import {
+  overlayActiveStyle,
   containerStyle,
   dancerListWrapperstyle,
   deadlineClassWrapperStyle,
+  overlayStyle,
   recommandClassWrapperStyle,
 } from '@/pages/home/index.css';
 import { DANCERLIST, GENRELIST } from '@/pages/home/mocks';
@@ -33,7 +35,9 @@ const Home = () => {
 
   return (
     <>
+      <div className={`${overlayStyle} ${showMyPage ? overlayActiveStyle : ''}`} />
       <MyPage showMyPage={showMyPage} onClose={handleCloseMyPageClick} />
+
       <HomeHeader isVisible={isVisible} onMyPageClick={handleMyPageClick} />
 
       <div ref={targetRef}>
