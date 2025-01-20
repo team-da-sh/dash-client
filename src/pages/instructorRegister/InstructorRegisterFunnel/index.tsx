@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import CareerStep from '@/pages/instructorRegister/InstructorRegisterFunnel//CareerStep';
 import ImageUploadStep from '@/pages/instructorRegister/InstructorRegisterFunnel//ImageUploadStep';
 import IntroductionStep from '@/pages/instructorRegister/InstructorRegisterFunnel/IntroductionStep';
@@ -24,7 +24,7 @@ const InstructorRegisterFunnel = ({ Funnel, Step }: InstructorRegisterFunnelProp
     education: [''],
     experience: [''],
     detail: '',
-    videoUrls: [],
+    videoUrls: [''],
   });
   const [isInstaError, setIsInstaError] = useState(false);
   const [isYoutubeError, setIsYoutubeError] = useState(false);
@@ -65,10 +65,10 @@ const InstructorRegisterFunnel = ({ Funnel, Step }: InstructorRegisterFunnelProp
           <CareerStep education={info.education} experience={info.experience} onInfoChange={handleInfoChange} />
         </Step>
         <Step name="4">
-          <VideoLinkStep />
+          <VideoLinkStep videoUrls={info.videoUrls} onInfoChange={handleInfoChange} />
         </Step>
         <Step name="5">
-          <IntroductionStep detail={info.detail} onInfoChange={handleInfoChange}/>
+          <IntroductionStep detail={info.detail} onInfoChange={handleInfoChange} />
         </Step>
         <Step name="6">
           <Completion
