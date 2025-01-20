@@ -66,7 +66,7 @@ const TagSection = ({
 
   return (
     <>
-      <Flex justify="spaceBetween" paddingTop="1.2rem" paddingBottom="1.6rem">
+      <Flex gap="15.2rem" paddingTop="1.2rem" paddingBottom="1.6rem">
         <Flex gap="0.6rem">
           {displayTags.map((tag, index) => (
             <Tag
