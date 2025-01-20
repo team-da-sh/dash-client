@@ -7,6 +7,10 @@ export const ROUTES_CONFIG = {
     title: 'Login',
     path: '/login',
   },
+  auth: {
+    title: 'Auth',
+    path: '/auth',
+  },
   onboarding: {
     title: 'Onboarding',
     path: '/onboarding',
@@ -41,7 +45,7 @@ export const ROUTES_CONFIG = {
   },
   instructorRegister: {
     title: 'InstructorRegister',
-    path: '/mypage/instructor/class-register',
+    path: '/mypage/instructor-register',
   },
   instructorClassList: {
     title: 'instructorClassList',

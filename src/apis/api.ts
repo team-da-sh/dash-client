@@ -3,6 +3,9 @@ import { useNavigate } from 'react-router-dom';
 
 export const axiosInstance = axios.create({
   baseURL: import.meta.env.VITE_DEV_BASE_URL,
+  headers: {
+    'Content-Type': 'application/json',
+  },
 });
 
 const navigate = useNavigate();

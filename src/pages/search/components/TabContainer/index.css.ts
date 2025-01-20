@@ -6,9 +6,3 @@ export const divCustomStyle = style({
   flexWrap: 'wrap',
   justifyContent: 'space-between',
 });
-
-export const dropdownDivStyle = style({
-  position: 'relative',
-  top: 10,
-  left: 199.5,
-});
