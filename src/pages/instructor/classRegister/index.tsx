@@ -1,19 +1,21 @@
 import * as styles from '@/pages/instructor/classRegister/index.css';
-import GenreButton from '@/pages/search/components/TabContainer/TagSection/BottomSheet/GenreButton';
-import Flex from '@/components/Flex';
 import Header from '@/components/Header';
-import Input from '@/components/Input';
-import LevelButton from '@/components/LevelButton';
-import Text from '@/components/Text';
-import { IcPlusGray0524, IcSearchGray } from '@/assets/svg';
-import { GENRE_CATEGORY, LEVEL } from '@/constants';
-import Description from './Description';
+import ClassAmount from './ClassAmount';
+import ClassDescription from './ClassDescription';
+import ClassGenre from './ClassGenre';
+import ClassLevel from './ClassLevel';
+import ClassName from './ClassName';
+import ClassPersonnel from './ClassPersonnel';
+import ClassPlace from './ClassPlace';
+import ClassRecommend from './ClassRecommend';
+import ClassRepresentImage from './ClassRepresentImage';
+import ClassSchedule from './ClassSchedule';
 import { useClassRegisterForm } from './hooks/useClassRegisterForm';
 
 const ClassRegister = () => {
   const {
     explainTextAreaRef,
-    scheduleTextAreaRef,
+    recommendTextAreaRef,
     className,
     explanation,
     selectedGenre,
@@ -23,7 +25,7 @@ const ClassRegister = () => {
     defaultPlace,
     detailPlace,
     amount,
-    handleClassName,
+    handleClassNameChange,
     handlePersonnelChange,
     handleAmountChange,
     toggleCategory,
@@ -38,123 +40,33 @@ const ClassRegister = () => {
     <>
       <Header.Root isColor={true}>
         <Header.BackIcon />
-        <Header.Title title="클래스 개설"></Header.Title>
+        <Header.Title title="클래스 개설" />
       </Header.Root>
 
       <div className={styles.containerStyle}>
-        {/* 클래스명 */}
-        <Flex tag="section" direction="column" gap="2rem" width="100%" marginBottom="2rem">
-          <Description title="클래스명" subTitle="돋보일 수 있는 클래스명을 최대 30자 입력해 주세요" />
-          <Flex direction="column" gap="0.4rem" width="100%">
-            <Input placeholder="클래스명을 입력해 주세요" maxLength={30} onChange={handleClassName} />
-            <Text tag="c3" color="gray4" className={styles.nameLengthStyle}>
-              {className.length} / 30
-            </Text>
-          </Flex>
-        </Flex>
-
-        {/* 클래스 설명 */}
-        <Flex tag="section" direction="column" gap="2rem" width="100%" marginBottom="4rem">
-          <Description title="클래스 설명" subTitle="예비 수강생들을 위해 클래스를 소개해 주세요" />
-          <textarea
-            ref={explainTextAreaRef}
-            value={explanation}
-            onInput={handleExplainTextArea}
-            placeholder="EX) 노래 제목, 회차별 커리큘럼, 진행 방식, 목표 등"
-            className={styles.textareaStyle}
-          />
-        </Flex>
-
-        {/* 클래스 대표 이미지 */}
-        <Flex tag="section" direction="column" gap="2rem" width="100%" marginBottom="4rem">
-          <Description title="클래스 대표 이미지" subTitle="대표 이미지는 최대 한 장까지 등록 가능해요" />
-        </Flex>
-
-        {/* 장르 */}
-        <Flex tag="section" direction="column" gap="2rem" width="100%" marginBottom="4rem">
-          <Description title="장르" subTitle="클래스에 해당하는 장르를 최대 2개까지 골라 주세요" />
-
-          <div className={styles.genreButtonContainerStyle}>
-            {GENRE_CATEGORY.flat().map((category, index) => (
-              <GenreButton
-                key={index}
-                category={category}
-                isSelected={selectedGenre === category}
-                onClick={() => toggleCategory(category)}
-              />
-            ))}
-          </div>
-        </Flex>
-
-        {/* 난이도 */}
-        <Flex tag="section" direction="column" gap="2rem" width="100%" marginBottom="4rem">
-          <Description title="난이도" subTitle="클래스에 해당하는 난이도를 골라주세요" />
-          <Flex direction="column" gap="0.8rem" width="100%">
-            {LEVEL.map((level) => (
-              <LevelButton
-                key={level.title}
-                level={level}
-                isSelected={selectedLevelTitle === level.title}
-                onClick={() => handleLevelSelect(level.title)}
-              />
-            ))}
-          </Flex>
-        </Flex>
-
-        {/* 클래스 추천 대상 */}
-        <Flex tag="section" direction="column" gap="2rem" width="100%" marginBottom="3rem">
-          <Description title="클래스 추천 대상" subTitle="어떤 수강생에게 추천하고 싶은지 알려주세요" />
-          <textarea
-            ref={scheduleTextAreaRef}
-            value={recommend}
-            onInput={handleRecommendChange}
-            placeholder="EX) 프리스타일에 자신감을 가지고 싶은 분, 힙합 기본기를 탄탄하게 다지고 싶은 분 등"
-            className={styles.textareaStyle}
-          />
-        </Flex>
-
-        {/* 클래스 일정 */}
-        <Flex tag="section" direction="column" gap="2rem" width="100%" marginBottom="5rem">
-          <Description title="클래스 일정" subTitle="클래스가 진행될 회차별 날짜와 시간을 등록해 주세요" />
-          <Flex justify="center" align="center" className={styles.addInputBoxStyle}>
-            <IcPlusGray0524 width={'2.4rem'} />
-          </Flex>
-        </Flex>
-
-        {/* 모집 인원 */}
-        <Flex tag="section" direction="column" gap="2rem" width="100%" marginBottom="4rem">
-          <Description title="모집 인원" subTitle="원활한 클래스 진행을 위해 최대 인원을 알려주세요" />
-          <div className={styles.personnelContainerStyle}>
-            <Input placeholder="0" value={personnel} onChange={handlePersonnelChange} />
-            <Text tag="b5" className={styles.personnelTextStyle}>
-              명
-            </Text>
-          </div>
-        </Flex>
-
-        {/* 클래스 장소 */}
-        <Flex tag="section" direction="column" gap="2rem" width="100%" marginBottom="4rem">
-          <Description title="클래스 장소" subTitle="클래스가 진행될 장소를 알려주세요" />
-          <Flex width="100%" direction="column" gap="0.8rem" onClick={handleDefaultPlace}>
-            <Flex width="100%" justify="spaceBetween" align="center" className={styles.searchContainerStyle}>
-              <Text tag="b5" color="gray5">
-                {defaultPlace ? defaultPlace : '지번, 도로명, 건물명으로 검색해 주세요'}
-              </Text>
-              {!defaultPlace && <IcSearchGray width={24} />}
-            </Flex>
-            <Input value={detailPlace} onChange={handleDetailPlace} />
-          </Flex>
-        </Flex>
-
-        <Flex tag="section" direction="column" gap="2rem" width="100%" marginBottom="4rem">
-          <Description title="수강료" subTitle="전체 회차를 포함한 최종 금액을 알려주세요" />
-          <div className={styles.amountContainerStyle}>
-            <Input placeholder="0" value={amount} onChange={handleAmountChange} />
-            <Text tag="b5" className={styles.amountTextStyle}>
-              원
-            </Text>
-          </div>
-        </Flex>
+        <ClassName className={className} handleClassNameChange={handleClassNameChange} />
+        <ClassDescription
+          ref={explainTextAreaRef}
+          explanation={explanation}
+          handleExplainTextArea={handleExplainTextArea}
+        />
+        <ClassRepresentImage />
+        <ClassGenre selectedGenre={selectedGenre} toggleCategory={toggleCategory} />
+        <ClassLevel selectedLevelTitle={selectedLevelTitle} handleLevelSelect={handleLevelSelect} />
+        <ClassRecommend
+          ref={recommendTextAreaRef}
+          recommend={recommend}
+          handleRecommendChange={handleRecommendChange}
+        />
+        <ClassSchedule />
+        <ClassPersonnel personnel={personnel} handlePersonnelChange={handlePersonnelChange} />
+        <ClassPlace
+          defaultPlace={defaultPlace}
+          detailPlace={detailPlace}
+          handleDefaultPlace={handleDefaultPlace}
+          handleDetailPlace={handleDetailPlace}
+        />
+        <ClassAmount amount={amount} handleAmountChange={handleAmountChange} />
       </div>
     </>
   );

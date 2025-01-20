@@ -2,7 +2,7 @@ import { ChangeEvent, useRef, useState } from 'react';
 
 export const useClassRegisterForm = () => {
   const explainTextAreaRef = useRef<HTMLTextAreaElement>(null);
-  const scheduleTextAreaRef = useRef<HTMLTextAreaElement>(null);
+  const recommendTextAreaRef = useRef<HTMLTextAreaElement>(null);
 
   const [className, setClassName] = useState('');
   const [explanation, setExplanation] = useState('');
@@ -14,7 +14,7 @@ export const useClassRegisterForm = () => {
   const [detailPlace, setDetailPlace] = useState('');
   const [amount, setAmount] = useState('');
 
-  const handleClassName = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleClassNameChange = (e: ChangeEvent<HTMLInputElement>) => {
     setClassName(e.target.value);
   };
 
@@ -50,7 +50,7 @@ export const useClassRegisterForm = () => {
   };
 
   const handleRecommendChange = () => {
-    const textArea = scheduleTextAreaRef.current;
+    const textArea = recommendTextAreaRef.current;
     if (textArea) {
       textArea.style.height = '9.8rem';
       textArea.style.height = `${textArea.scrollHeight}px`;
@@ -70,7 +70,7 @@ export const useClassRegisterForm = () => {
 
   return {
     explainTextAreaRef,
-    scheduleTextAreaRef,
+    recommendTextAreaRef,
     className,
     explanation,
     selectedGenre,
@@ -80,7 +80,7 @@ export const useClassRegisterForm = () => {
     defaultPlace,
     detailPlace,
     amount,
-    handleClassName,
+    handleClassNameChange,
     handlePersonnelChange,
     handleAmountChange,
     toggleCategory,
