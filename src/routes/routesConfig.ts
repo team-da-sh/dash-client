@@ -37,7 +37,7 @@ export const ROUTES_CONFIG = {
   },
   instructorRegister: {
     title: 'InstructorRegister',
-    path: '/mypage/instructor/class-register',
+    path: '/mypage/instructor-register',
   },
   instructorClassList: {
     title: 'instructorClassList',
