@@ -23,7 +23,7 @@ const Search = () => {
 
   return (
     <Flex>
-      <Header.Root className={headerRootCutomStyle}>
+      <Header.Root className={headerRootCutomStyle} isColor={true}>
         <Header.BackIcon />
         <SearchBar
           searchValue={searchValue}
