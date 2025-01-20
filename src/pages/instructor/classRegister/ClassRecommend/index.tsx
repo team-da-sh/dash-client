@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
+import { textareaStyle } from '@/pages/instructor/classRegister/ClassRecommend/index.css';
+import Description from '@/pages/instructor/classRegister/Description';
 import Flex from '@/components/Flex';
-import Description from '../Description';
-import { textareaStyle } from './index.css';
 
 interface ClassRecommendProps {
   recommend: string; // 추천 대상 텍스트

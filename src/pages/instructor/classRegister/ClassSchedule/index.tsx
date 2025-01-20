@@ -1,7 +1,7 @@
+import { addInputBoxStyle } from '@/pages/instructor/classRegister/ClassSchedule/index.css';
+import Description from '@/pages/instructor/classRegister/Description';
 import Flex from '@/components/Flex';
 import { IcPlusGray0524 } from '@/assets/svg';
-import Description from '../Description';
-import { addInputBoxStyle } from './index.css';
 
 const ClassSchedule = () => {
   return (

@@ -1,7 +1,7 @@
+import Description from '@/pages/instructor/classRegister/Description';
 import Flex from '@/components/Flex';
 import LevelButton from '@/components/LevelButton';
 import { LEVEL } from '@/constants';
-import Description from '../Description';
 
 interface ClassLevelProps {
   selectedLevelTitle: string | null;

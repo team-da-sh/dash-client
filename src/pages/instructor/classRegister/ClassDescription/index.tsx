@@ -1,11 +1,11 @@
 import React, { forwardRef } from 'react';
+import { textareaStyle } from '@/pages/instructor/classRegister/ClassDescription/index.css';
+import Description from '@/pages/instructor/classRegister/Description';
 import Flex from '@/components/Flex';
-import Description from '../Description';
-import { textareaStyle } from './index.css';
 
 interface ClassDescriptionProps {
-  explanation: string; // 클래스 설명 텍스트
-  handleExplainTextArea: (event: React.ChangeEvent<HTMLTextAreaElement>) => void; // 설명 입력 핸들러
+  explanation: string;
+  handleExplainTextArea: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
 }
 
 const ClassDescription = forwardRef<HTMLTextAreaElement, ClassDescriptionProps>(

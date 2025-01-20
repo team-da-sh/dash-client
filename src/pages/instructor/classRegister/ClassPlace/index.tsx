@@ -1,10 +1,10 @@
 import { ChangeEvent } from 'react';
+import { searchContainerStyle } from '@/pages/instructor/classRegister/ClassPlace/index.css';
+import Description from '@/pages/instructor/classRegister/Description';
 import Flex from '@/components/Flex';
 import Input from '@/components/Input';
 import Text from '@/components/Text';
 import { IcSearchGray } from '@/assets/svg';
-import Description from '../Description';
-import { searchContainerStyle } from './index.css';
 
 interface ClassPlaceProps {
   defaultPlace: string;

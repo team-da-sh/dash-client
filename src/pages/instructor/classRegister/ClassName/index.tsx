@@ -1,9 +1,9 @@
 import { ChangeEvent } from 'react';
+import { nameLengthStyle } from '@/pages/instructor/classRegister/ClassName/index.css';
+import Description from '@/pages/instructor/classRegister/Description';
 import Flex from '@/components/Flex';
 import Input from '@/components/Input';
 import Text from '@/components/Text';
-import Description from '../Description';
-import { nameLengthStyle } from './index.css';
 
 interface ClassNameProps {
   className: string;

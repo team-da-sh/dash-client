@@ -1,9 +1,9 @@
 import { ChangeEvent } from 'react';
+import { amountContainerStyle, amountTextStyle } from '@/pages/instructor/classRegister/ClassAmount/index.css';
+import Description from '@/pages/instructor/classRegister/Description';
 import Flex from '@/components/Flex';
 import Input from '@/components/Input';
 import Text from '@/components/Text';
-import Description from '../Description';
-import { amountContainerStyle, amountTextStyle } from './index.css';
 
 interface ClassAmountProps {
   amount: string;

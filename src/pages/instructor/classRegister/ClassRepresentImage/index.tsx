@@ -1,5 +1,5 @@
+import Description from '@/pages/instructor/classRegister/Description';
 import Flex from '@/components/Flex';
-import Description from '../Description';
 
 const ClassRepresentImage = () => {
   return (
