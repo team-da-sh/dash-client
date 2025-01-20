@@ -94,8 +94,8 @@ const DancerInfo = () => {
             })}
           </div>
         )}
-        <Divider color="gray1" length="100%" thickness="0.8rem" />
       </Flex>
+      <Divider color="gray1" length="100%" thickness="0.8rem" />
     </>
   );
 };
