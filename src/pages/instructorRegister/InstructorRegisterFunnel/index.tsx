@@ -3,6 +3,7 @@ import ImageUploadStep from '@/pages/instructorRegister/InstructorRegisterFunnel
 import IntroductionStep from '@/pages/instructorRegister/InstructorRegisterFunnel/IntroductionStep';
 import PersonalSNSStep from '@/pages/instructorRegister/InstructorRegisterFunnel/PersonalSNSStep';
 import VideoLinkStep from '@/pages/instructorRegister/InstructorRegisterFunnel/VideoLinkStep';
+import { funnelContainerStyle } from '@/pages/instructorRegister/InstructorRegisterFunnel/index.css';
 import { FunnelProps, StepProps } from '@/pages/search/types/funnel';
 import Completion from '@/components/Completion';
 
@@ -15,7 +16,7 @@ interface InstructorRegisterFunnelProps {
 
 const InstructorRegisterFunnel = ({ Funnel, Step }: InstructorRegisterFunnelProps) => {
   return (
-    <>
+    <div className={funnelContainerStyle}>
       <Funnel>
         <Step name="1">
           <ImageUploadStep />
@@ -40,7 +41,7 @@ const InstructorRegisterFunnel = ({ Funnel, Step }: InstructorRegisterFunnelProp
           />
         </Step>
       </Funnel>
-    </>
+    </div>
   );
 };
 

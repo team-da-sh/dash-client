@@ -3,7 +3,7 @@ import Header from '@/components/Header';
 import ProgressBar from '@/components/ProgressBar';
 import { useFunnel } from '@/hooks/useFunnel';
 import InstructorRegisterFunnel from './InstructorRegisterFunnel';
-import { buttonContainerStyle, funnelContainerStyle, progressBarCustomStyle } from './index.css';
+import { buttonContainerStyle, progressBarCustomStyle } from './index.css';
 
 const InstructorRegister = () => {
   const TOTAL_STEP = 6;
@@ -19,9 +19,7 @@ const InstructorRegister = () => {
         <ProgressBar totalStep={5} currentStep={currentStep} className={progressBarCustomStyle} />
       )}
 
-      <div className={funnelContainerStyle}>
-        <InstructorRegisterFunnel Funnel={Funnel} Step={Step} currentStep={currentStep} setStep={setStep} />
-      </div>
+      <InstructorRegisterFunnel Funnel={Funnel} Step={Step} currentStep={currentStep} setStep={setStep} />
 
       <div className={buttonContainerStyle}>
         {currentStep < TOTAL_STEP ? (
