@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import ClassItem from '@/pages/home/components/ClassItem';
 import { genreWrapperStyle } from '@/pages/home/components/ClassItem/index.css';
 import DancerItem from '@/pages/home/components/DancerItem';
@@ -5,10 +6,14 @@ import Footer from '@/pages/home/components/Footer';
 import GenreItem from '@/pages/home/components/GenreItem';
 import HomeCarousel from '@/pages/home/components/HomeCarousel';
 import HomeHeader from '@/pages/home/components/HomeHeader';
+import MyPage from '@/pages/home/components/MyPage';
 import {
+  myPageContainerStyle,
+  overlayActiveStyle,
   containerStyle,
   dancerListWrapperstyle,
   deadlineClassWrapperStyle,
+  overlayStyle,
   recommandClassWrapperStyle,
 } from '@/pages/home/index.css';
 import { DANCERLIST, GENRELIST } from '@/pages/home/mocks';
@@ -19,10 +24,22 @@ import { useIntersect } from '@/utils/useIntersect';
 
 const Home = () => {
   const [targetRef, isVisible] = useIntersect(false);
+  const [showMyPage, setShowMyPage] = useState(false);
+
+  const handleMyPageClick = () => {
+    setShowMyPage(!showMyPage);
+  };
+
+  const handleCloseMyPageClick = () => {
+    setShowMyPage(false);
+  };
 
   return (
-    <>
-      <HomeHeader isVisible={isVisible} />
+    <div className={myPageContainerStyle}>
+      <div className={`${overlayStyle} ${showMyPage ? overlayActiveStyle : ''}`} />
+      <MyPage showMyPage={showMyPage} onClose={handleCloseMyPageClick} />
+
+      <HomeHeader isVisible={isVisible} onMyPageClick={handleMyPageClick} />
 
       <div ref={targetRef}>
         <HomeCarousel />
@@ -106,7 +123,7 @@ const Home = () => {
       </div>
 
       <Footer />
-    </>
+    </div>
   );
 };
 

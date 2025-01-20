@@ -3,7 +3,7 @@ import Flex from '@/components/Flex';
 import Text from '@/components/Text';
 import { LESSON_DATA } from '@/mocks/mockLessonData';
 
-const Intro = () => {
+const TabIntro = () => {
   const { lessonDetail } = LESSON_DATA;
 
   return (
@@ -15,4 +15,4 @@ const Intro = () => {
   );
 };
 
-export default Intro;
+export default TabIntro;

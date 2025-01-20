@@ -46,12 +46,13 @@ const Reservation = () => {
     setIsAllChecked(newAgreements.every((isChecked) => isChecked));
   };
 
-  const { lessonIndividualPrice } = MY_RESERVATION_DATA;
+  const { lessonRound, lessonIndividualPrice } = MY_RESERVATION_DATA;
   const navigate = useNavigate();
 
   const handleButtonClick = () => {
     navigate(ROUTES_CONFIG.home.path);
   };
+  const totalPrice = lessonRound.length * lessonIndividualPrice;
 
   return (
     <Flex direction="column" width="100%" className={reservationStyle}>
@@ -136,7 +137,7 @@ const Reservation = () => {
           총 결제 금액
         </Head>
         <Head level="h2" tag="h2" color="main4">
-          {Number(lessonIndividualPrice).toLocaleString()}원{' '}
+          {Number(totalPrice).toLocaleString()}원
         </Head>
       </div>
       <Flex width="100%" className={bottomButtonStyle}>

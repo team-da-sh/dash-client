@@ -13,6 +13,7 @@ export const ulStyle = style({
 export const listStyle = style({
   display: 'flex',
   alignItems: 'center',
+
   justifyContent: 'space-between',
 });
 

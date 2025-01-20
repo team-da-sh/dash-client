@@ -71,22 +71,22 @@ export const buttonStyle = recipe({
         ...vars.fonts.b8,
 
         cursor: 'default',
+      },
+      heart: {
+        display: 'flex',
+        justifyContent: 'center',
 
-        heart: {
-          display: 'flex',
-          justifyContent: 'center',
-
-          width: '7.8rem',
-          padding: '1.3rem 0',
+        width: '7.8rem',
+        height: '5.4rem',
+        padding: '1.3rem 2.5rem',
 
           backgroundColor: vars.colors.gray03,
 
           color: vars.colors.gray07,
           ...vars.fonts.h6,
 
-          '&:disabled': {
-            cursor: 'default',
-          },
+        '&:disabled': {
+          cursor: 'default',
         },
       },
     },
