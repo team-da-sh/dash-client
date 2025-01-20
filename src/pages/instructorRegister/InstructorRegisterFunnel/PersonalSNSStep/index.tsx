@@ -1,5 +1,5 @@
 import Description from '@/pages/instructorRegister/Description';
-import { INFO_KEY } from '@/pages/instructorRegister/constants';
+import { INFO_KEY, INSTAGRAM_REGEX, YOUTUBE_REGEX } from '@/pages/instructorRegister/constants';
 import Flex from '@/components/Flex';
 import Input from '@/components/Input';
 import Text from '@/components/Text';
@@ -25,10 +25,6 @@ const PersonalSNSStep = ({
   handleYoutubeError,
   onInfoChange,
 }: PersonalSNSStepProps) => {
-  const INSTAGRAM_REGEX = /^https?:\/\/(www\.)?instagram\.com\/[a-zA-Z0-9_.-]+\/?$/;
-  const YOUTUBE_REGEX =
-    /^https?:\/\/(www\.)?youtube\.com\/(@[a-zA-Z0-9_]+|(channel|c|user)\/[a-zA-Z0-9_-]+)|youtu\.be\/[a-zA-Z0-9_-]+$/;
-
   const handleInstagramChange = (value: string) => {
     onInfoChange(INFO_KEY.INSTAGRAM, value);
     if (value === '') {
