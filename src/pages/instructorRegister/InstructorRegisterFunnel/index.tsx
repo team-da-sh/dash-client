@@ -26,12 +26,22 @@ const InstructorRegisterFunnel = ({ Funnel, Step }: InstructorRegisterFunnelProp
     detail: '',
     videoUrls: [],
   });
+  const [isInstaError, setIsInstaError] = useState(false);
+  const [isYoutubeError, setIsYoutubeError] = useState(false);
 
   const handleInfoChange = <K extends keyof InstructorRegisterInfoTypes>(
     key: K,
     value: InstructorRegisterInfoTypes[K]
   ) => {
     setInfo((prev) => ({ ...prev, [key]: value }));
+  };
+
+  const handleInstaError = (isError: boolean) => {
+    setIsInstaError(isError);
+  };
+
+  const handleYoutubeError = (isError: boolean) => {
+    setIsYoutubeError(isError);
   };
 
   return (
@@ -41,7 +51,15 @@ const InstructorRegisterFunnel = ({ Funnel, Step }: InstructorRegisterFunnelProp
           <ImageUploadStep />
         </Step>
         <Step name="2">
-          <PersonalSNSStep instagram={info.instagram} youtube={info.youtube} onInfoChange={handleInfoChange} />
+          <PersonalSNSStep
+            instagram={info.instagram}
+            youtube={info.youtube}
+            isInstaError={isInstaError}
+            isYoutubeError={isYoutubeError}
+            handleInstaError={handleInstaError}
+            handleYoutubeError={handleYoutubeError}
+            onInfoChange={handleInfoChange}
+          />
         </Step>
         <Step name="3">
           <CareerStep />

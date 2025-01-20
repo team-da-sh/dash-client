@@ -9,16 +9,42 @@ import { InstructorRegisterInfoTypes } from '../../types';
 interface PersonalSNSStepProps {
   instagram: string;
   youtube: string;
+  isInstaError: boolean;
+  isYoutubeError: boolean;
+  handleInstaError: (isError: boolean) => void;
+  handleYoutubeError: (isError: boolean) => void;
   onInfoChange: <K extends keyof InstructorRegisterInfoTypes>(key: K, value: InstructorRegisterInfoTypes[K]) => void;
 }
 
-const PersonalSNSStep = ({ instagram, youtube, onInfoChange }: PersonalSNSStepProps) => {
+const PersonalSNSStep = ({
+  instagram,
+  youtube,
+  isInstaError,
+  isYoutubeError,
+  handleInstaError,
+  handleYoutubeError,
+  onInfoChange,
+}: PersonalSNSStepProps) => {
+  const INSTAGRAM_REGEX = /^https?:\/\/(www\.)?instagram\.com\/[a-zA-Z0-9_.-]+\/?$/;
+  const YOUTUBE_REGEX =
+    /^https?:\/\/(www\.)?youtube\.com\/(@[a-zA-Z0-9_]+|(channel|c|user)\/[a-zA-Z0-9_-]+)|youtu\.be\/[a-zA-Z0-9_-]+$/;
+
   const handleInstagramChange = (value: string) => {
     onInfoChange(INFO_KEY.INSTAGRAM, value);
+    if (value === '') {
+      handleInstaError(false);
+    } else {
+      handleInstaError(!INSTAGRAM_REGEX.test(value));
+    }
   };
 
   const handleYoutubeChange = (value: string) => {
     onInfoChange(INFO_KEY.YOUTUBE, value);
+    if (value === '') {
+      handleYoutubeError(false);
+    } else {
+      handleYoutubeError(!YOUTUBE_REGEX.test(value));
+    }
   };
 
   return (
@@ -35,7 +61,13 @@ const PersonalSNSStep = ({ instagram, youtube, onInfoChange }: PersonalSNSStepPr
             placeholder="http://instagram.com/dashofficial"
             value={instagram}
             onChange={(e) => handleInstagramChange(e.target.value)}
+            isError={isInstaError}
           />
+          {isInstaError && (
+            <Text tag="b6" color="alert3">
+              올바른 인스타그램 링크를 입력해 주세요.
+            </Text>
+          )}
         </Flex>
 
         <Flex direction="column" gap="1.2rem" width="100%">
@@ -47,7 +79,13 @@ const PersonalSNSStep = ({ instagram, youtube, onInfoChange }: PersonalSNSStepPr
             placeholder="http://youtube.com/dashofficial"
             value={youtube}
             onChange={(e) => handleYoutubeChange(e.target.value)}
+            isError={isYoutubeError}
           />
+          {isYoutubeError && (
+            <Text tag="b6" color="alert3">
+              올바른 유튜브 링크를 입력해 주세요.
+            </Text>
+          )}
         </Flex>
       </Flex>
     </>
