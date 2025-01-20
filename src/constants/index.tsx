@@ -1,10 +1,10 @@
-import TabIntro from '@/pages/class/TabWrapper/TabIntro';
-import TabLevel from '@/pages/class/TabWrapper/TabLevel';
-import TabLocationInfo from '@/pages/class/TabWrapper/TabLocation';
-import TabPeriod from '@/pages/class/TabWrapper/TabPeriod';
-import TabEducation from '@/pages/dancer/TabWrapper/TabEducation';
-import TabHistory from '@/pages/dancer/TabWrapper/TabExperience';
-import TabVideo from '@/pages/dancer/TabWrapper/TabVideo';
+import TabIntro from '@/pages/class/components/TabWrapper/TabIntro';
+import TabLevel from '@/pages/class/components/TabWrapper/TabLevel';
+import TabLocationInfo from '@/pages/class/components/TabWrapper/TabLocation';
+import TabPeriod from '@/pages/class/components/TabWrapper/TabPeriod';
+import TabEducation from '@/pages/dancer/components/TabWrapper/TabEducation';
+import TabHistory from '@/pages/dancer/components/TabWrapper/TabExperience';
+import TabVideo from '@/pages/dancer/components/TabWrapper/TabVideo';
 import { IcLevelAdvanced, IcLevelBasic, IcLevelIntermediate, IcLevelStarter } from '@/assets/svg';
 
 export const LEVEL = [
@@ -47,12 +47,12 @@ export const GENRE_CATEGORY = [
   ],
 ];
 
-export type StatusType = 'APPLY' | 'COMPLETE' | 'CLOSED';
+export type StatusType = 'OPEN' | 'EXPIRED' | 'OVER_BOOKED';
 
 export const BUTTON_CONFIG: Record<StatusType, { text: string; isDisabled: boolean }> = {
-  APPLY: { text: '신청하기', isDisabled: false },
-  COMPLETE: { text: '신청 완료', isDisabled: true },
-  CLOSED: { text: '클래스 마감', isDisabled: true },
+  OPEN: { text: '신청하기', isDisabled: false },
+  EXPIRED: { text: '신청 완료', isDisabled: true },
+  OVER_BOOKED: { text: '클래스 마감', isDisabled: true },
 };
 
 export const DANCER_TABS = [
@@ -67,3 +67,27 @@ export const CLASS_TABS = [
   { id: 3, label: '기간', component: <TabPeriod /> },
   { id: 4, label: '위치', component: <TabLocationInfo /> },
 ];
+
+// 장르 영한 변환
+export const genreMapping: { [key: string]: string } = {
+  HIPHOP: '힙합',
+  FEMALEHIPHOP: '피메일힙합',
+  POPPING: '팝핑',
+  BRAKING: '브레이킹',
+  WAACKING: '왁킹',
+  LOCKING: '락킹',
+  HOUSE: '하우스',
+  VOGUING: '보깅',
+  KRUMP: '크럼프',
+  SOUL: '소울',
+  CHOREOGRAPHY: '코레오그래피',
+  KPOP: '케이팝',
+};
+
+// 레벨 영한 변환
+export const levelMapping: { [key: string]: string } = {
+  BEGINNER: '입문',
+  NOVICE: '초급',
+  INTERMEDIATE: '중급',
+  ADVANCED: '고급',
+};

@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import AgreeCheckBox from '@/pages/reservation/AgreeCheckBox';
-import ApplicantInfo from '@/pages/reservation/ApplicantInfo';
-import ClassInfo from '@/pages/reservation/ClassInfo';
-import TopInfoContent from '@/pages/reservation/TopInfoContent';
+import AgreeCheckBox from '@/pages/reservation/components/AgreeCheckBox';
+import ApplicantInfo from '@/pages/reservation/components/ApplicantInfo';
+import ClassInfo from '@/pages/reservation/components/ClassInfo';
+import TopInfoContent from '@/pages/reservation/components/TopInfoContent';
 import BoxButton from '@/components/BoxButton';
 import Divider from '@/components/Divider';
 import Flex from '@/components/Flex';
@@ -12,7 +12,7 @@ import Header from '@/components/Header';
 import Text from '@/components/Text';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { IcCheckcircleGray0524, IcCheckcircleMain0324 } from '@/assets/svg';
-import { MY_RESERVATION_DATA } from '@/mocks/mockMyReservationData';
+import { MY_RESERVATION_DATA } from '@/pages/reservation/mocks/mockMyReservationData';
 import {
   agreementBoxStyle,
   agreementCheckedStyle,
