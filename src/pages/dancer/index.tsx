@@ -6,7 +6,7 @@ import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Tag from '@/components/Tag';
 import Text from '@/components/Text';
-import { genreMapping } from '@/utils/genreLevelTranslator';
+import { genreMapping } from '@/constants/index';
 import { useIntersect } from '@/utils/useIntersect';
 import { DANCER_DATA } from '@/pages/dancer/mocks/mockDancerData';
 
