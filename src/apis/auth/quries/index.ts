@@ -19,8 +19,6 @@ export const useLoginMutation = () => {
 
     onError: (error: AxiosError) => {
       if (!error.response) return;
-
-      console.log(error);
     },
   });
 };
