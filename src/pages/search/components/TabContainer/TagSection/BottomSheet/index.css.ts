@@ -39,7 +39,7 @@ export const overlayStyle = style({
   height: '100vh',
   width: '100%',
   background: vars.colors.black70,
-  zIndex: 2,
+  zIndex: vars.zIndex.one,
   cursor: 'pointer',
 });
 
@@ -78,7 +78,7 @@ export const bottomSheetStyle = style({
   transform: 'translateX(-50%)',
   background: vars.colors.white,
   padding: '3.4rem 2rem 2.4rem 2rem',
-  zIndex: 3,
+  zIndex: vars.zIndex.two,
   borderRadius: '16px 16px 0 0',
 });
 
