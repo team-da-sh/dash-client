@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import CareerStep from '@/pages/instructorRegister/InstructorRegisterFunnel//CareerStep';
 import ImageUploadStep from '@/pages/instructorRegister/InstructorRegisterFunnel//ImageUploadStep';
 import IntroductionStep from '@/pages/instructorRegister/InstructorRegisterFunnel/IntroductionStep';

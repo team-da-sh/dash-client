@@ -6,11 +6,15 @@ import {
   inputContainerStyle,
   inputIconStyle,
 } from '@/pages/instructorRegister/InstructorRegisterFunnel/CareerStep/index.css';
-import { InputItemTypes } from '@/pages/instructorRegister/types';
 import Flex from '@/components/Flex';
 import Input from '@/components/Input';
 import Text from '@/components/Text';
 import { BtnCheck, IcPlusGray0524, IcXCircleGray } from '@/assets/svg';
+
+interface InputItemTypes {
+  id: number;
+  value: string;
+}
 
 interface InputSectionProps {
   title: string;
@@ -18,10 +22,10 @@ interface InputSectionProps {
   isActive: boolean;
   onToggleActive: () => void;
   inputItems: InputItemTypes[];
-  setInputItems: React.Dispatch<React.SetStateAction<InputItemTypes[]>>;
+  onItemsChange: (updatedItems: InputItemTypes[]) => void;
 }
 
-const InputSection = ({ title, icon, isActive, onToggleActive, inputItems, setInputItems }: InputSectionProps) => {
+const InputSection = ({ title, icon, isActive, onToggleActive, inputItems, onItemsChange }: InputSectionProps) => {
   const nextID = useRef<number>(inputItems.length + 1);
 
   const addItem = () => {
@@ -34,15 +38,15 @@ const InputSection = ({ title, icon, isActive, onToggleActive, inputItems, setIn
       value: '',
     };
 
-    setInputItems([...inputItems, input]);
+    onItemsChange([...inputItems, input]);
     nextID.current += 1;
   };
 
   const deleteItem = (id: number) => {
     if (id === 1) {
-      setInputItems((prevItems) => prevItems.map((item) => (item.id === id ? { ...item, value: '' } : item)));
+      onItemsChange(inputItems.map((item) => (item.id === id ? { ...item, value: '' } : item)));
     } else {
-      setInputItems(inputItems.filter((item) => item.id !== id));
+      onItemsChange(inputItems.filter((item) => item.id !== id));
     }
   };
 
@@ -77,7 +81,7 @@ const InputSection = ({ title, icon, isActive, onToggleActive, inputItems, setIn
                   const updatedItems = inputItems.map((item) =>
                     item.id === id ? { ...item, value: e.target.value } : item
                   );
-                  setInputItems(updatedItems);
+                  onItemsChange(updatedItems);
                 }}
               />
               {value && <IcXCircleGray className={inputIconStyle} width={'2.4rem'} onClick={() => deleteItem(id)} />}

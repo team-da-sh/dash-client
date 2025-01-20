@@ -1,20 +1,18 @@
 import { useState } from 'react';
 import Description from '@/pages/instructorRegister/Description';
-import { IcDocumentBlack20, IcGraduationBlack20 } from '@/assets/svg';
-import { InputItemTypes } from '../../types';
 import InputSection from './InputSection';
+import { InstructorRegisterInfoTypes } from '../../types';
+import { IcDocumentBlack20, IcGraduationBlack20 } from '@/assets/svg';
 
-// interface CareerStepProps {
-//   education: string[];
-//   experience: string[];
-//   onInfoChange: <K extends keyof InstructorRegisterInfoTypes>(key: K, value: InstructorRegisterInfoTypes[K]) => void;
-// }
+interface CareerStepProps {
+  education: string[];
+  experience: string[];
+  onInfoChange: <K extends keyof InstructorRegisterInfoTypes>(key: K, value: InstructorRegisterInfoTypes[K]) => void;
+}
 
-const CareerStep = () => {
+const CareerStep = ({ education, experience, onInfoChange }: CareerStepProps) => {
   const [isEducationActive, setIsEducationActive] = useState(false);
   const [isCareerActive, setIsCareerActive] = useState(false);
-  const [educationItems, setEducationItems] = useState<InputItemTypes[]>([{ id: 1, value: '' }]);
-  const [careerItems, setCareerItems] = useState<InputItemTypes[]>([{ id: 1, value: '' }]);
 
   return (
     <>
@@ -25,8 +23,10 @@ const CareerStep = () => {
         icon={<IcGraduationBlack20 width={'2rem'} />}
         isActive={isEducationActive}
         onToggleActive={() => setIsEducationActive((prev) => !prev)}
-        inputItems={educationItems}
-        setInputItems={setEducationItems}
+        inputItems={education.map((value, id) => ({ id: id + 1, value }))}
+        onItemsChange={(updatedItems) =>
+          onInfoChange('education', updatedItems.map((item) => item.value))
+        }
       />
 
       <InputSection
@@ -34,8 +34,10 @@ const CareerStep = () => {
         icon={<IcDocumentBlack20 width={'2rem'} />}
         isActive={isCareerActive}
         onToggleActive={() => setIsCareerActive((prev) => !prev)}
-        inputItems={careerItems}
-        setInputItems={setCareerItems}
+        inputItems={experience.map((value, id) => ({ id: id + 1, value }))}
+        onItemsChange={(updatedItems) =>
+          onInfoChange('experience', updatedItems.map((item) => item.value))
+        }
       />
     </>
   );
