@@ -1,3 +1,4 @@
+import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 import { vars } from '@/styles/theme.css';
 
@@ -26,4 +27,19 @@ export const levelButtonStyle = recipe({
   defaultVariants: {
     selected: false,
   },
+});
+
+export const onboardingLevelButtonStyle = style({
+  display: 'flex',
+  alignItems: 'center',
+  gap: '0.8rem',
+
+  width: '100%',
+  padding: '1.5rem 1.9rem',
+
+  borderRadius: '4px',
+  border: `1px solid ${vars.colors.gray03}`,
+
+  transition: 'background-color 0.3s ease',
+  cursor: 'pointer',
 });

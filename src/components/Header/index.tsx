@@ -22,6 +22,10 @@ interface CloseIconProps {
   onClick?: () => void;
 }
 
+interface BackIconProps {
+  onClick?: () => void;
+}
+
 const HeaderRoot = ({ children, isColor = false, className }: HeaderRootProps): JSX.Element => {
   return <div className={clsx(className, headerRootStyle({ isColor }))}>{children}</div>;
 };
