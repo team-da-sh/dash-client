@@ -1,17 +1,15 @@
 import axios, { InternalAxiosRequestConfig } from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-export const axiosInstance = axios.create({
+export const instance = axios.create({
   baseURL: import.meta.env.VITE_DEV_BASE_URL,
   headers: {
     'Content-Type': 'application/json',
   },
 });
 
-const navigate = useNavigate();
-
-// 요청 전 header에 accesstoken 입력
-axiosInstance.interceptors.request.use(
+//요청 전 header에 accesstoken 입력
+instance.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
     const accessToken = localStorage.getItem('ACCESS_TOKEN');
 
@@ -29,11 +27,13 @@ axiosInstance.interceptors.request.use(
   }
 );
 
-axiosInstance.interceptors.response.use(
+//
+instance.interceptors.response.use(
   (response) => {
     return response;
   },
   (error) => {
+    const navigate = useNavigate();
     const statusCode = error.response?.status;
     if (statusCode === 401) {
       error.response.statuesText = 'Unauthorized';
