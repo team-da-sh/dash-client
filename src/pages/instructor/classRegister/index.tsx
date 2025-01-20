@@ -1,4 +1,3 @@
-import { ChangeEvent, useRef, useState } from 'react';
 import * as styles from '@/pages/instructor/classRegister/index.css';
 import GenreButton from '@/pages/search/components/TabContainer/TagSection/BottomSheet/GenreButton';
 import Flex from '@/components/Flex';
@@ -9,74 +8,32 @@ import Text from '@/components/Text';
 import { IcPlusGray0524, IcSearchGray } from '@/assets/svg';
 import { GENRE_CATEGORY, LEVEL } from '@/constants';
 import Description from './Description';
+import { useClassRegisterForm } from './hooks/useClassRegisterForm';
 
 const ClassRegister = () => {
-  const explainTextAreaRef = useRef<HTMLTextAreaElement>(null);
-  const scheduleTextAreaRef = useRef<HTMLTextAreaElement>(null);
+  const {
+    explainTextAreaRef,
+    scheduleTextAreaRef,
+    className,
+    explanation,
+    selectedGenre,
+    selectedLevelTitle,
+    recommend,
+    personnel,
+    defaultPlace,
+    detailPlace,
+    amount,
+    handleClassName,
+    handlePersonnelChange,
+    handleAmountChange,
+    toggleCategory,
+    handleLevelSelect,
+    handleExplainTextArea,
+    handleRecommendChange,
+    handleDefaultPlace,
+    handleDetailPlace,
+  } = useClassRegisterForm();
 
-  const [className, setClassName] = useState('');
-  const [explanation, setExplanation] = useState('');
-  const [selectedGenre, setSelectedGenre] = useState<string | null>();
-  const [selectedLevelTitle, setSelectedLevelTitle] = useState<string | null>();
-  const [recommend, setRecommend] = useState('');
-  const [personnel, setPersonnelChange] = useState('');
-  const [defaultPlace, setDefaultPlace] = useState('');
-  const [detailPlace, setDetailPlace] = useState('');
-  const [amount, setAmount] = useState('');
-
-  const handleClassName = (e: ChangeEvent<HTMLInputElement>) => {
-    setClassName(e.target.value);
-  };
-
-  const handlePersonnelChange = (e: ChangeEvent<HTMLInputElement>) => {
-    // 숫자만 입력되도록
-    if (!e.target.value.match(/\D/g)) {
-      setPersonnelChange(e.target.value);
-    }
-  };
-
-  const handleAmountChange = (e: ChangeEvent<HTMLInputElement>) => {
-    // 숫자만 입력되도록
-    if (!e.target.value.match(/\D/g)) {
-      setAmount(e.target.value);
-    }
-  };
-
-  const toggleCategory = (category: string) => {
-    setSelectedGenre((prev) => (prev === category ? null : category));
-  };
-
-  const handleLevelSelect = (title: string) => {
-    setSelectedLevelTitle((prev) => (prev === title ? null : title));
-  };
-
-  const handleExplainTextArea = () => {
-    const textArea = explainTextAreaRef.current;
-    if (textArea) {
-      textArea.style.height = '9.8rem';
-      textArea.style.height = `${textArea.scrollHeight}px`;
-      setExplanation(textArea.value);
-    }
-  };
-
-  const handleRecommendChange = () => {
-    const textArea = scheduleTextAreaRef.current;
-    if (textArea) {
-      textArea.style.height = '9.8rem';
-      textArea.style.height = `${textArea.scrollHeight}px`;
-      setRecommend(textArea.value);
-    }
-  };
-
-  const handleDefaultPlace = () => {
-    console.log('여기에 도로명 주소 API 호출');
-    // 받은 데이터로 state 설정
-    setDefaultPlace('이런 값으로~');
-  };
-
-  const handleDetailPlace = (e: ChangeEvent<HTMLInputElement>) => {
-    setDetailPlace(e.target.value);
-  };
   return (
     <>
       <Header.Root isColor={true}>
