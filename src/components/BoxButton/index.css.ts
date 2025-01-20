@@ -78,7 +78,8 @@ export const buttonStyle = recipe({
         justifyContent: 'center',
 
         width: '7.8rem',
-        padding: '1.3rem 0',
+        height: '5.4rem',
+        padding: '1.3rem 2.5rem',
 
         backgroundColor: vars.colors.gray03,
 
