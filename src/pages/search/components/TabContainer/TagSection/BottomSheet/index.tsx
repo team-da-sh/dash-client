@@ -4,6 +4,9 @@ import {
   bottomSheetStyle,
   genreButtonContainerStyle,
   overlayStyle,
+  bottomSheetHidden,
+  bottomSheetVisible,
+  bottomSheetContainerStyle,
 } from '@/pages/search/components/TabContainer/TagSection/BottomSheet/index.css';
 import BoxButton from '@/components/BoxButton';
 import Flex from '@/components/Flex';
@@ -43,6 +46,15 @@ const BottomSheet = ({
   const [selectedLevelTitle, setSelectedLevelTitle] = useState<string | null>(level);
   const [selectedStartDate, setSelectedStartDate] = useState<string>(startDate);
   const [selectedEndDate, setSelectedEndDate] = useState<string>(endDate);
+  const [isClosing, setIsClosing] = useState(false);
+
+  const handleClose = () => {
+    setIsClosing(true);
+    setTimeout(() => {
+      document.body.style.overflow = '';
+      onClose();
+    }, 300); // 애니메이션 지속 시간과 동일하게 설정
+  };
 
   document.body.style.overflow = 'hidden';
 
@@ -56,11 +68,6 @@ const BottomSheet = ({
     setEndDate(selectedEndDate);
     setGenre(selectedGenre);
     handleClose();
-  };
-
-  const handleClose = () => {
-    document.body.style.overflow = '';
-    onClose();
   };
 
   const handleReset = () => {
@@ -80,9 +87,9 @@ const BottomSheet = ({
   };
 
   return (
-    <div className={bottomSheetStyle}>
+    <div className={bottomSheetContainerStyle}>
       <div className={overlayStyle} onClick={handleClose} />
-      <Flex direction="column" className={bottomSheetStyle}>
+      <Flex direction="column" className={`${bottomSheetStyle} ${isClosing ? bottomSheetHidden : bottomSheetVisible}`}>
         <TabRoot>
           <TabList>
             <TabButton isSelected={selectedTab === 0} onClick={() => setSelectedTab(0)} colorScheme="secondary">

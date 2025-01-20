@@ -1,7 +1,7 @@
-import { style } from '@vanilla-extract/css';
+import { style, keyframes } from '@vanilla-extract/css';
 import { vars } from '@/styles/theme.css';
 
-export const bottomSheet = style({
+export const bottomSheetContainerStyle = style({
   overflow: 'hidden',
 });
 
@@ -15,6 +15,32 @@ export const overlayStyle = style({
   background: vars.colors.black70,
   zIndex: 2,
   cursor: 'pointer',
+});
+
+const slideIn = keyframes({
+  from: {
+    transform: 'translate(-50%, 100%)',
+  },
+  to: {
+    transform: 'translate(-50%, 0)',
+  },
+});
+
+const slideOut = keyframes({
+  from: {
+    transform: 'translate(-50%, 0)',
+  },
+  to: {
+    transform: 'translate(-50%, 100%)',
+  },
+});
+
+export const bottomSheetVisible = style({
+  animation: `${slideIn} 0.3s ease-out forwards`,
+});
+
+export const bottomSheetHidden = style({
+  animation: `${slideOut} 0.3s ease-in forwards`,
 });
 
 export const bottomSheetStyle = style({
