@@ -12,9 +12,6 @@ export const useLoginMutation = () => {
     mutationFn: ({ redirectUrl, code }: loginTypes) => kakaoLogin(redirectUrl, code),
 
     onSuccess: ({ data: { accessToken } }) => {
-      localStorage.setItem('ACCESS_TOKEN', accessToken);
-
-      console.log('성공');
       instance.defaults.headers.Authorization = `Bearer ${accessToken}`;
 
       navigate(ROUTES_CONFIG.onboarding.path);
