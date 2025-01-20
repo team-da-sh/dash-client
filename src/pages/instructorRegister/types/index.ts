@@ -1,4 +1,4 @@
-export type InstructorRegisterInfoTypes = {
+export interface InstructorRegisterInfoTypes {
   imageUrl: string;
   instagram: string;
   youtube: string;
@@ -7,3 +7,8 @@ export type InstructorRegisterInfoTypes = {
   detail: string;
   videoUrls: string[];
 };
+
+export interface InputItemTypes {
+  id: number;
+  value: string;
+}
