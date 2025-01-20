@@ -1,6 +1,6 @@
 // DancerInfo 컴포넌트 수정
 import { useNavigate } from 'react-router-dom';
-import DancerClassItem from '@/pages/dancer/DancerInfo/DancerClassItem';
+import DancerClassItem from '@/pages/dancer/components/DancerInfo/DancerClassItem';
 import { DANCER_DATA } from '@/pages/dancer/mocks/mockDancerData';
 import Divider from '@/components/Divider';
 import Flex from '@/components/Flex';

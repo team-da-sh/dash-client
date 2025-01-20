@@ -1,4 +1,4 @@
-import { introTextStyle } from '@/pages/class/TabWrapper/TabIntro/index.css';
+import { introTextStyle } from '@/pages/class/components/TabWrapper/TabIntro/index.css';
 import Flex from '@/components/Flex';
 import Text from '@/components/Text';
 import { LESSON_DATA } from '@/pages/class/mocks/mockLessonData';

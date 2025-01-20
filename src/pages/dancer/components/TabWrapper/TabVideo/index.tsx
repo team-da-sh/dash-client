@@ -1,4 +1,4 @@
-import { videoWrapperStyle, videoItemStyle, iframeStyle } from '@/pages/dancer/TabWrapper/TabVideo/index.css';
+import { videoWrapperStyle, videoItemStyle, iframeStyle } from '@/pages/dancer/components/TabWrapper/TabVideo/index.css';
 import Flex from '@/components/Flex';
 import { DANCER_DATA } from '@/pages/dancer/mocks/mockDancerData';
 

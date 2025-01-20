@@ -1,7 +1,7 @@
-import ClassButtonWrapper from '@/pages/class/ClassButtonWrapper';
-import ClassHeader from '@/pages/class/ClassHeader';
-import ClassInfoWrapper from '@/pages/class/ClassInfoWrapper';
-import TabWrapper from '@/pages/class/TabWrapper';
+import ClassButtonWrapper from '@/pages/class/components/ClassButtonWrapper';
+import ClassHeader from '@/pages/class/components/ClassHeader';
+import ClassInfoWrapper from '@/pages/class/components/ClassInfoWrapper';
+import TabWrapper from '@/pages/class/components/TabWrapper';
 import { headerStyle } from '@/pages/class/index.css';
 import Divider from '@/components/Divider';
 import { useIntersect } from '@/utils/useIntersect';

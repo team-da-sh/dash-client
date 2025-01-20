@@ -1,4 +1,4 @@
-import { classImageStyle, wrapperStyle, deadlineTagStyle } from '@/pages/dancer/DancerInfo/DancerClassItem/index.css';
+import { classImageStyle, wrapperStyle, deadlineTagStyle } from '@/pages/dancer/components/DancerInfo/DancerClassItem/index.css';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Tag from '@/components/Tag';

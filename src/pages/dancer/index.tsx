@@ -1,6 +1,6 @@
-import ClassHeader from '@/pages/dancer/DancerHeader';
-import DancerInfo from '@/pages/dancer/DancerInfo';
-import TabWrapper from '@/pages/dancer/TabWrapper';
+import ClassHeader from '@/pages/dancer/components/DancerHeader';
+import DancerInfo from '@/pages/dancer/components/DancerInfo';
+import TabWrapper from '@/pages/dancer/components/TabWrapper';
 import { gradientOverlayStyle, textWrapperStyle, topImgStyle } from '@/pages/dancer/index.css';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';

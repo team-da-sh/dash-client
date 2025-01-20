@@ -1,10 +1,10 @@
-import TabIntro from '@/pages/class/TabWrapper/TabIntro';
-import TabLevel from '@/pages/class/TabWrapper/TabLevel';
-import TabLocationInfo from '@/pages/class/TabWrapper/TabLocation';
-import TabPeriod from '@/pages/class/TabWrapper/TabPeriod';
-import TabEducation from '@/pages/dancer/TabWrapper/TabEducation';
-import TabHistory from '@/pages/dancer/TabWrapper/TabExperience';
-import TabVideo from '@/pages/dancer/TabWrapper/TabVideo';
+import TabIntro from '@/pages/class/components/TabWrapper/TabIntro';
+import TabLevel from '@/pages/class/components/TabWrapper/TabLevel';
+import TabLocationInfo from '@/pages/class/components/TabWrapper/TabLocation';
+import TabPeriod from '@/pages/class/components/TabWrapper/TabPeriod';
+import TabEducation from '@/pages/dancer/components/TabWrapper/TabEducation';
+import TabHistory from '@/pages/dancer/components/TabWrapper/TabExperience';
+import TabVideo from '@/pages/dancer/components/TabWrapper/TabVideo';
 import { IcLevelAdvanced, IcLevelBasic, IcLevelIntermediate, IcLevelStarter } from '@/assets/svg';
 
 export const LEVEL = [

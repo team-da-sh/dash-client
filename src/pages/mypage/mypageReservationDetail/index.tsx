@@ -1,7 +1,7 @@
 import * as styles from '@/pages/mypage/mypageReservationDetail/index.css';
 import { RESERVATION_DETAIL } from '@/pages/mypage/mypageReservationDetail/mocks/reservationDetail';
-import ApplicantInfo from '@/pages/reservation/ApplicantInfo';
-import ClassInfo from '@/pages/reservation/ClassInfo';
+import ApplicantInfo from '@/pages/reservation/components/ApplicantInfo';
+import ClassInfo from '@/pages/reservation/components/ClassInfo';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Header from '@/components/Header';

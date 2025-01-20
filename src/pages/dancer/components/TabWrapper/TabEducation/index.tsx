@@ -1,4 +1,4 @@
-import { emptyStyle } from '@/pages/dancer/TabWrapper/TabExperience/index.css';
+import { emptyStyle } from '@/pages/dancer/components/TabWrapper/TabExperience/index.css';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Text from '@/components/Text';

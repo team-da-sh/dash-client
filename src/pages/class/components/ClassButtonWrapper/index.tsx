@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { buttonWrapperStyle } from '@/pages/class/ClassButtonWrapper/index.css';
+import { buttonWrapperStyle } from '@/pages/class/components/ClassButtonWrapper/index.css';
 import BoxButton from '@/components/BoxButton';
 import Flex from '@/components/Flex';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';

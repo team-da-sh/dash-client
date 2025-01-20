@@ -1,5 +1,5 @@
-import Card from '@/pages/class/Card';
-import { questionStyle, recommendClassStyle } from '@/pages/class/TabWrapper/TabLevel/index.css';
+import Card from '@/pages/class/components/Card';
+import { questionStyle, recommendClassStyle } from '@/pages/class/components/TabWrapper/TabLevel/index.css';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Text from '@/components/Text';

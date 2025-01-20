@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { profileStyle, lessonNameStyle, cardStyle, thunderIconStyle } from '@/pages/class/ClassInfoWrapper/index.css';
+import { profileStyle, lessonNameStyle, cardStyle, thunderIconStyle } from '@/pages/class/components/ClassInfoWrapper/index.css';
 import { LESSON_DATA } from '@/pages/class/mocks/mockLessonData';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';

@@ -1,5 +1,5 @@
-import Card from '@/pages/class/Card';
-import { roundBoxStyle } from '@/pages/class/TabWrapper/TabPeriod/index.css';
+import Card from '@/pages/class/components/Card';
+import { roundBoxStyle } from '@/pages/class/components/TabWrapper/TabPeriod/index.css';
 import Flex from '@/components/Flex';
 import Text from '@/components/Text';
 import { calculatePeriod, formatDate } from '@/utils/dateCalculate';

@@ -1,6 +1,6 @@
-import Card from '@/pages/class/Card';
-import { streetAddressStyle, addressTitleStyle } from '@/pages/class/TabWrapper/TabLocation/index.css';
-import { emptyStyle } from '@/pages/class/TabWrapper/TabLocation/index.css';
+import Card from '@/pages/class/components/Card';
+import { streetAddressStyle, addressTitleStyle } from '@/pages/class/components/TabWrapper/TabLocation/index.css';
+import { emptyStyle } from '@/pages/class/components/TabWrapper/TabLocation/index.css';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Text from '@/components/Text';

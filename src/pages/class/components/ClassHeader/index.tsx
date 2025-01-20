@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { backIconStyle, classNameHeaderStyle } from '@/pages/class/ClassHeader/index.css';
+import { backIconStyle, classNameHeaderStyle } from '@/pages/class/components/ClassHeader/index.css';
 import { containerStyle } from '@/pages/home/components/HomeHeader/index.css';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
