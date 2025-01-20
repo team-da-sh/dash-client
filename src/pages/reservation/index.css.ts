@@ -6,7 +6,7 @@ export const reservationStyle = style({
 });
 
 export const headerStyle = style({
-  zIndex: 10,
+  zIndex: vars.zIndex.two,
 });
 
 export const agreementContainerStyle = style({
