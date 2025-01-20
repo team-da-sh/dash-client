@@ -1,12 +1,12 @@
 import { ReactElement, ReactNode, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
-interface StepProps {
+export interface StepProps {
   name: string;
   children: ReactNode;
 }
 
-interface FunnelProps {
+export interface FunnelProps {
   children: ReactElement<StepProps>[];
 }
 
@@ -33,7 +33,7 @@ export const useFunnel = (totalSteps: number, completePath: string) => {
     } else {
       // 일반적인 step
       searchParams.set('step', String(newStep));
-      setSearchParams(searchParams);
+      setSearchParams(searchParams, { replace: true });
     }
   };
 

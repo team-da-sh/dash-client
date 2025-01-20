@@ -11,6 +11,10 @@ export const ROUTES_CONFIG = {
     title: 'Auth',
     path: '/auth',
   },
+  onboarding: {
+    title: 'Onboarding',
+    path: '/onboarding',
+  },
   search: {
     title: 'Search',
     path: '/search',
@@ -26,10 +30,6 @@ export const ROUTES_CONFIG = {
   reservation: {
     title: 'Reservation',
     path: '/reservation',
-  },
-  mypage: {
-    title: 'Mypage',
-    path: '/mypage',
   },
   mypageReservation: {
     title: 'MypageReservation',

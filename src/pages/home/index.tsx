@@ -1,29 +1,54 @@
+import { useState } from 'react';
 import ClassItem from '@/pages/home/components/ClassItem';
 import { genreWrapperStyle } from '@/pages/home/components/ClassItem/index.css';
 import DancerItem from '@/pages/home/components/DancerItem';
 import Footer from '@/pages/home/components/Footer';
 import GenreItem from '@/pages/home/components/GenreItem';
+import HomeCarousel from '@/pages/home/components/HomeCarousel';
 import HomeHeader from '@/pages/home/components/HomeHeader';
+import MyPage from '@/pages/home/components/MyPage';
 import {
+  myPageContainerStyle,
+  overlayActiveStyle,
   containerStyle,
   dancerListWrapperstyle,
   deadlineClassWrapperStyle,
+  overlayStyle,
   recommandClassWrapperStyle,
 } from '@/pages/home/index.css';
 import { DANCERLIST, GENRELIST } from '@/pages/home/mocks';
 import { CLASS_LIST } from '@/pages/search/mocks';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
+import { useAdvertisements } from '@/apis/home/quries';
 import { useIntersect } from '@/utils/useIntersect';
-import { vars } from '@/styles/theme.css';
 
 const Home = () => {
   const [targetRef, isVisible] = useIntersect(false);
+  const [showMyPage, setShowMyPage] = useState(false);
+
+  const handleMyPageClick = () => {
+    setShowMyPage(!showMyPage);
+  };
+
+  const handleCloseMyPageClick = () => {
+    setShowMyPage(false);
+  };
+
+  const { data } = useAdvertisements();
+
+  console.log(data?.data);
 
   return (
-    <>
-      <div ref={targetRef} style={{ height: '37.5rem', backgroundColor: vars.colors.gray02 }}></div>
-      <HomeHeader isVisible={isVisible} />
+    <div className={myPageContainerStyle}>
+      <div className={`${overlayStyle} ${showMyPage ? overlayActiveStyle : ''}`} />
+      <MyPage showMyPage={showMyPage} onClose={handleCloseMyPageClick} />
+
+      <HomeHeader isVisible={isVisible} onMyPageClick={handleMyPageClick} />
+
+      <div ref={targetRef}>
+        <HomeCarousel />
+      </div>
 
       <div className={recommandClassWrapperStyle}>
         <Head level="h2" tag="h4">
@@ -103,7 +128,7 @@ const Home = () => {
       </div>
 
       <Footer />
-    </>
+    </div>
   );
 };
 

@@ -5,11 +5,21 @@ import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Text from '@/components/Text';
 import { vars } from '@/styles/theme.css';
-import { MY_RESERVATION_DATA } from '@/mocks/mockMyReservationData';
 
-const ClassInfo = () => {
-  const { lessonName, lessonLocation, teacherName, lessonLevel, lessonRound } = MY_RESERVATION_DATA;
+interface LessonRoundProps {
+  lessonStartDateTime: string;
+  lessonEndDateTime: string;
+}
 
+interface ClassInfoProps {
+  lessonName: string;
+  lessonLocation: string;
+  teacherName: string;
+  lessonLevel: string;
+  lessonRound: LessonRoundProps[];
+}
+
+const ClassInfo = ({ lessonName, lessonLocation, teacherName, lessonLevel, lessonRound }: ClassInfoProps) => {
   return (
     <div className={infoContainerStyle}>
       <Flex direction="column" gap="2rem">
@@ -25,10 +35,10 @@ const ClassInfo = () => {
               일정
             </Text>
             <Flex direction="column" gap="1.2rem">
-              {lessonRound.map(({ lessonStartDateTime, lessonEndDateTime }, index) => (
+              {lessonRound.map(({ lessonStartDateTime, lessonEndDateTime }, id) => (
                 <ScheduleItem
-                  key={index}
-                  index={index}
+                  key={id}
+                  index={id}
                   startDateTime={lessonStartDateTime}
                   endDateTime={lessonEndDateTime}
                 />

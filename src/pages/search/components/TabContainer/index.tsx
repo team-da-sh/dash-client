@@ -2,12 +2,14 @@ import { useState } from 'react';
 import ClassItem from '@/pages/home/components/ClassItem';
 import DancerList from '@/pages/search/components/DancerList';
 import TagSection from '@/pages/search/components/TabContainer/TagSection';
-import { sortIconStyle, divCustomStyle } from '@/pages/search/components/TabContainer/index.css';
+import Dropdown from '@/pages/search/components/TabContainer/TagSection/Dropdown';
+import { divCustomStyle } from '@/pages/search/components/TabContainer/index.css';
 import { CLASS_LIST, DANCER_LIST } from '@/pages/search/mocks/index';
 import { defaultSortTagProps } from '@/pages/search/types/defaultSortTag';
 import Flex from '@/components/Flex';
 import { TabList, TabRoot, TabButton, TabPanel } from '@/components/Tab';
-import { IcBtnEtc, IcXMain04 } from '@/assets/svg';
+import Text from '@/components/Text';
+import { IcArrowUnderGray, IcXMain04 } from '@/assets/svg';
 
 interface TagItem {
   label: string;
@@ -17,18 +19,33 @@ interface TagItem {
 
 interface TabContainerProps {
   defaultSortTags: defaultSortTagProps[];
-  genre: string;
-  level: string;
+  genre: string | null;
+  level: string | null;
   startDate: string;
   endDate: string;
+  setGenre: (genre: string | null) => void;
+  setLevel: (level: string | null) => void;
+  setStartDate: (date: string) => void;
+  setEndDate: (date: string) => void;
 }
 
-const TabContainer = ({ defaultSortTags, genre, level, startDate, endDate }: TabContainerProps) => {
+const TabContainer = ({
+  defaultSortTags,
+  genre,
+  level,
+  startDate,
+  endDate,
+  setGenre,
+  setLevel,
+  setStartDate,
+  setEndDate,
+}: TabContainerProps) => {
   const [selectedTab, setSelectedTab] = useState(0);
+  const [selectedLabel, setSelectedLabel] = useState('최신 등록순');
 
   const activeTags: TagItem[] = [
     { condition: genre, label: genre, type: 'genre' },
-    { condition: level, label: level, type: 'level' },
+    { condition: level, label: level || '', type: 'level' },
     {
       condition: startDate && endDate,
       label: `${startDate} ~ ${endDate}`,
@@ -52,16 +69,47 @@ const TabContainer = ({ defaultSortTags, genre, level, startDate, endDate }: Tab
     <Flex direction="column" paddingTop="8.4rem" width="100%" paddingLeft="2rem" paddingRight="2rem">
       <Flex align="center" width="100%" justify="spaceBetween" position="relative">
         <TabRoot>
-          <TabList>
-            <TabButton isSelected={selectedTab === 0} onClick={() => setSelectedTab(0)} colorScheme="primary">
-              클래스
-            </TabButton>
-            <TabButton isSelected={selectedTab === 1} onClick={() => setSelectedTab(1)} colorScheme="primary">
-              댄서
-            </TabButton>
-          </TabList>
+          <Flex justify="spaceBetween">
+            <TabList>
+              <TabButton isSelected={selectedTab === 0} onClick={() => setSelectedTab(0)} colorScheme="primary">
+                클래스
+              </TabButton>
+              <TabButton isSelected={selectedTab === 1} onClick={() => setSelectedTab(1)} colorScheme="primary">
+                댄서
+              </TabButton>
+            </TabList>
+            <Dropdown.Root>
+              <Dropdown.Trigger>
+                <Flex align="center">
+                  <Text tag="b7" color="gray7">
+                    {selectedLabel}
+                  </Text>
+                  <IcArrowUnderGray width={14} />
+                </Flex>
+              </Dropdown.Trigger>
+              <Dropdown.Content>
+                <Dropdown.Item label="최신 등록순" onClick={() => setSelectedLabel('최신 등록순')} />
+                <Dropdown.Item label="찜이 많은순" onClick={() => setSelectedLabel('찜이 많은순')} />
+                <Dropdown.Item label="마감 임박순" onClick={() => setSelectedLabel('마감 임박순')} />
+              </Dropdown.Content>
+            </Dropdown.Root>
+          </Flex>
+
           <TabPanel isSelected={selectedTab === 0}>
-            <TagSection displayTags={displayTags} activeTags={activeTags} tagSize={tagSize} tagType={tagType} />
+            <TagSection
+              displayTags={displayTags}
+              activeTags={activeTags}
+              tagSize={tagSize}
+              tagType={tagType}
+              genre={genre}
+              setGenre={setGenre}
+              setLevel={setLevel}
+              level={level}
+              startDate={startDate}
+              endDate={endDate}
+              setStartDate={setStartDate}
+              setEndDate={setEndDate}
+            />
             <div className={divCustomStyle}>
               {CLASS_LIST.map((data) => (
                 <ClassItem
@@ -86,7 +134,6 @@ const TabContainer = ({ defaultSortTags, genre, level, startDate, endDate }: Tab
             <DancerList dancers={DANCER_LIST} />
           </TabPanel>
         </TabRoot>
-        <IcBtnEtc width={68} height={16} className={sortIconStyle} />
       </Flex>
     </Flex>
   );

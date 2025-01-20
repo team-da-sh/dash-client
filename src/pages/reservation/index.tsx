@@ -29,6 +29,8 @@ const Reservation = () => {
   const [isAllChecked, setIsAllChecked] = useState(false);
   const [agreements, setAgreements] = useState([false, false]);
 
+  const data = MY_RESERVATION_DATA;
+
   // 전체 체크박스, 상태 동기화
   const handleToggleAll = () => {
     const newState = !isAllChecked;
@@ -44,12 +46,13 @@ const Reservation = () => {
     setIsAllChecked(newAgreements.every((isChecked) => isChecked));
   };
 
-  const { lessonIndividualPrice } = MY_RESERVATION_DATA;
+  const { lessonRound, lessonIndividualPrice } = MY_RESERVATION_DATA;
   const navigate = useNavigate();
 
   const handleButtonClick = () => {
     navigate(ROUTES_CONFIG.home.path);
   };
+  const totalPrice = lessonRound.length * lessonIndividualPrice;
 
   return (
     <Flex direction="column" width="100%" className={reservationStyle}>
@@ -72,13 +75,19 @@ const Reservation = () => {
           <Text tag="b4" color="gray9">
             클래스 정보
           </Text>
-          <ClassInfo />
+          <ClassInfo
+            lessonName={data.lessonName}
+            lessonLocation={data.lessonLocation}
+            teacherName={data.teacherName}
+            lessonLevel={data.lessonLevel}
+            lessonRound={data.lessonRound}
+          />
         </Flex>
         <Flex direction="column" width="100%" gap="1.6rem">
           <Text tag="b4" color="gray9">
             신청자 정보
           </Text>
-          <ApplicantInfo />
+          <ApplicantInfo bookerName={data.bookerName} bookerPhoneNumber={data.bookerPhoneNumber} />
         </Flex>
       </Flex>
 
@@ -128,7 +137,7 @@ const Reservation = () => {
           총 결제 금액
         </Head>
         <Head level="h2" tag="h2" color="main4">
-          {Number(lessonIndividualPrice).toLocaleString()}원{' '}
+          {Number(totalPrice).toLocaleString()}원
         </Head>
       </div>
       <Flex width="100%" className={bottomButtonStyle}>

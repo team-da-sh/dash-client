@@ -14,10 +14,10 @@ export const useLoginMutation = () => {
     onSuccess: ({ data: { accessToken } }) => {
       localStorage.setItem('ACCESS_TOKEN', accessToken);
 
-      console.log('성공')
+      console.log('성공');
       instance.defaults.headers.Authorization = `Bearer ${accessToken}`;
 
-      navigate(ROUTES_CONFIG.home.path);
+      navigate(ROUTES_CONFIG.onboarding.path);
     },
 
     onError: (error: AxiosError) => {
