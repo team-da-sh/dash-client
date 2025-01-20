@@ -1,5 +1,5 @@
 import { labelStyle } from '@/pages/onboarding/components/InfoStep/index.css';
-import { INFO_KEY } from '@/pages/onboarding/constants';
+import { INFO_KEY, MAX_PHONENUMBER_LENGTH } from '@/pages/onboarding/constants';
 import { onboardInfoTypes } from '@/pages/onboarding/types';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
@@ -18,7 +18,7 @@ const InfoStep = ({ name, phoneNumber, onInfoChange }: InfoStepProps) => {
   };
 
   const handlePhoneNumberChange = (phoneNumber: string) => {
-    if (phoneNumber.length > 11) {
+    if (phoneNumber.length > MAX_PHONENUMBER_LENGTH) {
       return;
     }
 

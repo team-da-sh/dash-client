@@ -1,5 +1,5 @@
 import { icCameraStyle, inputStyle, previewImgStyle } from '@/pages/onboarding/components/ProfileStep/index.css';
-import { excludeSpecialBlankChar, INFO_KEY } from '@/pages/onboarding/constants';
+import { excludeSpecialBlankChar, INFO_KEY, MAX_NICKNAME_LENGTH } from '@/pages/onboarding/constants';
 import { onboardInfoTypes } from '@/pages/onboarding/types';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
@@ -21,7 +21,7 @@ const ProfileStep = ({ nickName, isNickNameError, changeIsNickNameError, onInfoC
   const { imgRef, previewImg, handleUploaderClick, uploadImgFile } = useUploadImg();
 
   const handleNickNameChange = (nickName: string) => {
-    if (nickName.length > 8) {
+    if (nickName.length > MAX_NICKNAME_LENGTH) {
       return;
     }
     if (nickName.length) {
@@ -59,7 +59,6 @@ const ProfileStep = ({ nickName, isNickNameError, changeIsNickNameError, onInfoC
           style={previewImg ? { backgroundImage: `url(${previewImg})` } : { backgroundImage: `url(${preview})` }}
           className={previewImgStyle({ hasImage: !!previewImg })}>
           <IcCameraMain0624 width={24} height={24} className={icCameraStyle} />
-
           <input
             type="file"
             accept="image/*"
@@ -83,7 +82,7 @@ const ProfileStep = ({ nickName, isNickNameError, changeIsNickNameError, onInfoC
           </Text>
 
           <Text tag="c3" color={isNickNameError ? 'alert3' : 'main4'}>
-            {nickName && `${nickName.length}/8`}
+            {nickName && `${nickName.length}/${MAX_NICKNAME_LENGTH}`}
           </Text>
         </Flex>
       </Flex>

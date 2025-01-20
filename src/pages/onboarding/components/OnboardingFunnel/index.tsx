@@ -6,7 +6,7 @@ import LevelStep from '@/pages/onboarding/components/LevelStep';
 import OnboardingHeader from '@/pages/onboarding/components/OnboardingHeader';
 import ProfileStep from '@/pages/onboarding/components/ProfileStep';
 import { bodyWrapperStyle, containerStyle, footerWrapperStyle, progressBarStyle } from '@/pages/onboarding/index.css';
-import { GenreTypes, LevelTypes, onboardInfoTypes } from '@/pages/onboarding/types';
+import { GenreTypes, onboardInfoTypes } from '@/pages/onboarding/types';
 import BoxButton from '@/components/BoxButton';
 import ProgressBar from '@/components/ProgressBar';
 import { FunnelProps, StepProps } from '@/hooks/useFunnel';
@@ -19,14 +19,14 @@ interface OnboardingFunnelProps {
 }
 
 const OnboardingFunnel = ({ currentStep, Funnel, setStep, Step }: OnboardingFunnelProps) => {
-  const [info, setInfo] = useState({
+  const [info, setInfo] = useState<onboardInfoTypes>({
     name: '',
     phoneNumber: '',
-    genres: [],
+    genres: [] as GenreTypes[],
     nickName: '',
     level: null,
     profileImageUrl: 'http',
-  } as onboardInfoTypes);
+  });
 
   const [isNickNameError, setIsNickNameError] = useState(false);
 

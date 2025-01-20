@@ -30,3 +30,7 @@ export const LEVELS = {
 } as const;
 
 export const excludeSpecialBlankChar = /^[^!@#$%^&*(),.?":{}|<>_\[\]\\\-\/+=~`'\s]+$/;
+
+export const MAX_PHONENUMBER_LENGTH = 11;
+
+export const MAX_NICKNAME_LENGTH = 8;

@@ -15,18 +15,21 @@ interface GenreStepProps extends Pick<onboardInfoTypes, 'genres'> {
 
 const GenreStep = ({ genres = [], onInfoChange }: GenreStepProps) => {
   const handleCheckboxClick = (genre: GenreTypes) => {
+    // 클릭된 장르 클릭시 제거
     if (genres.includes(genre)) {
       onInfoChange(
         INFO_KEY.GENRES,
         genres.filter((i) => i !== genre)
       );
     } else {
+      // 최대개수만큼 선택하고 한번 더 선택하면 가장 처음 클릭된 장르 제거
       if (genres.length === MAX_GENRE_COUNT) {
         genres.shift();
         onInfoChange(INFO_KEY.GENRES, [...genres, genre]);
         return;
       }
 
+      // 클릭한 장르 추가
       onInfoChange(INFO_KEY.GENRES, [...genres, genre]);
     }
   };
