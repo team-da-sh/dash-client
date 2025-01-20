@@ -3,16 +3,17 @@ import { roundBoxStyle } from '@/pages/class/TabWrapper/TabPeriod/index.css';
 import Flex from '@/components/Flex';
 import Text from '@/components/Text';
 import { calculatePeriod, formatDate } from '@/utils/dateCalculate';
-import { LESSON_DATA } from '@/mocks/mockLessonData';
+import { LESSON_DATA } from '@/pages/class/mocks/mockLessonData';
 
 const TabPeriod = () => {
-  const { lessonRound } = LESSON_DATA;
+  const { lessonRound } = LESSON_DATA; // lessonRound 객체 가져오기
+  const lessonRounds = lessonRound.lessonRounds; // lessonRounds 배열로 수정
 
   return (
     <Flex direction="column" justify="center" gap="1.2rem">
-      {lessonRound.map((item, id) => {
-        const { lessonStartDateTime, lessonEndDateTime } = item;
-        const { startTime, formattedEndTime, durationString } = calculatePeriod(lessonStartDateTime, lessonEndDateTime);
+      {lessonRounds.map((item, id) => { // lessonRounds 배열 순회
+        const { startDateTime, endDateTime } = item; // lessonRound의 startDateTime과 endDateTime 가져오기
+        const { startTime, formattedEndTime, durationString } = calculatePeriod(startDateTime, endDateTime); // 기간 계산
 
         return (
           <Card key={id}>
@@ -25,10 +26,10 @@ const TabPeriod = () => {
                 </div>
                 <div>
                   <Text tag="b4" color="black">
-                    {formatDate(lessonStartDateTime)}
+                    {formatDate(startDateTime)} {/* 시작 날짜 형식 지정 */}
                   </Text>
                   <Text tag="b7" color="gray7">
-                    {startTime} - {formattedEndTime} ({durationString})
+                    {startTime} - {formattedEndTime} ({durationString}) {/* 시간 및 기간 표시 */}
                   </Text>
                 </div>
               </Flex>

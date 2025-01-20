@@ -20,11 +20,11 @@ export const classItemStyle = style({
 });
 
 export const firstClassItemStyle = style({
-  marginLeft: '2rem',
+  paddingLeft: '2rem',
 });
 
 export const lastClassItemStyle = style({
-  marginRight: '2rem',
+  paddingRight: '2rem',
 });
 
 export const detailStyle = style({

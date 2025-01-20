@@ -2,7 +2,7 @@ import { emptyStyle } from '@/pages/dancer/TabWrapper/TabExperience/index.css';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Text from '@/components/Text';
-import { DANCER_DATA } from '@/mocks/mockDancerData';
+import { DANCER_DATA } from '@/pages/dancer/mocks/mockDancerData';
 
 const TabExperience = () => {
   const { educations } = DANCER_DATA;

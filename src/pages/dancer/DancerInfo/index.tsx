@@ -1,11 +1,13 @@
 // DancerInfo 컴포넌트 수정
+import { useNavigate } from 'react-router-dom';
 import DancerClassItem from '@/pages/dancer/DancerInfo/DancerClassItem';
+import { DANCER_DATA } from '@/pages/dancer/mocks/mockDancerData';
 import Divider from '@/components/Divider';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Text from '@/components/Text';
+import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { IcInstagram20, IcYoutube20 } from '@/assets/svg';
-import { DANCER_DATA } from '@/mocks/mockDancerData';
 import {
   classTitleStyle,
   rowScrollStyle,
@@ -21,6 +23,12 @@ const DancerInfo = () => {
 
   const instagramHandle = instagram.split('/').filter(Boolean).pop();
   const youtubeHandle = youtube.split('/').filter(Boolean).pop();
+
+  const navigate = useNavigate();
+
+  const handleClassClick = (lessonId: number) => {
+    navigate(`${ROUTES_CONFIG.class.path}${lessonId}`);
+  };
 
   return (
     <>
@@ -81,7 +89,8 @@ const DancerInfo = () => {
                   key={data.id}
                   className={[classItemStyle, isFirst && firstClassItemStyle, isLast && lastClassItemStyle]
                     .filter(Boolean)
-                    .join(' ')}>
+                    .join(' ')}
+                  onClick={() => handleClassClick(data.id)}>
                   <DancerClassItem
                     lessonImageUrl={data.imageUrl}
                     lessonRemainingDays={data.remainingDays}

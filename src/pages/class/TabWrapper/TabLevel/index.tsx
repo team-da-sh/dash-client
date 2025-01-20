@@ -4,20 +4,20 @@ import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Text from '@/components/Text';
 import { IcLevelStarter, IcClose, IcQuesitonmark } from '@/assets/svg';
-import { LESSON_DATA } from '@/mocks/mockLessonData';
+import { LESSON_DATA } from '@/pages/class/mocks/mockLessonData';
 import { LEVEL } from '@/constants/index';
 
 type LessonLevelType = '입문' | '초급' | '중급' | '고급';
 
 const TabLevel = () => {
-  const { lessonLevel, lessonLevelDetail, lessonRecommendation } = LESSON_DATA as {
-    lessonLevel: LessonLevelType;
-    lessonLevelDetail: string;
-    lessonRecommendation: string;
+  const { level, levelDetail, recommendation } = LESSON_DATA as {
+    level: LessonLevelType;
+    levelDetail: string;
+    recommendation: string;
   };
 
   // lessonLevel에 해당하는 인덱스를 찾기
-  const levelData = LEVEL.find((level) => level.title === lessonLevel);
+  const levelData = LEVEL.find((item) => item.title === level);
 
   return (
     <Flex direction="column" gap="3.6rem">
@@ -26,10 +26,10 @@ const TabLevel = () => {
           <Flex gap="0.8rem" align="center">
             {levelData?.icon || <IcLevelStarter width={'3.6rem'} />}
             <Head level="h6" tag="h6">
-              {lessonLevel}
+              {level}
             </Head>
             <Text tag="b8" color="gray8">
-              {lessonLevelDetail}
+              {levelDetail}
             </Text>
           </Flex>
         </Card>
@@ -51,7 +51,7 @@ const TabLevel = () => {
         </Flex>
 
         <Text tag="b3" color="gray8" className={recommendClassStyle}>
-          {lessonRecommendation}
+          {recommendation}
         </Text>
       </Flex>
     </Flex>

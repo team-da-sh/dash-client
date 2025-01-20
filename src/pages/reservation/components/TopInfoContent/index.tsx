@@ -1,7 +1,7 @@
-import { topImgStyle, gradientOverlayStyle, textWrapperStyle } from '@/pages/reservation/TopInfoContent/index.css';
+import { topImgStyle, gradientOverlayStyle, textWrapperStyle } from '@/pages/reservation/components/TopInfoContent/index.css';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
-import { MY_RESERVATION_DATA } from '@/mocks/mockMyReservationData';
+import { MY_RESERVATION_DATA } from '@/pages/reservation/mocks/mockMyReservationData';
 
 const TopInfoContent = () => {
   const { lessonName, teacherName, lessonImageUrl } = MY_RESERVATION_DATA;

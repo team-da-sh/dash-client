@@ -1,5 +1,5 @@
-import { bookerComponentStyle } from '@/pages/reservation/ApplicantInfo/index.css';
-import InfoRow from '@/pages/reservation/InfoRow';
+import { bookerComponentStyle } from '@/pages/reservation/components/ApplicantInfo/index.css';
+import InfoRow from '@/pages/reservation/components/InfoRow';
 
 interface ApplicantInfoProps {
   bookerName: string;

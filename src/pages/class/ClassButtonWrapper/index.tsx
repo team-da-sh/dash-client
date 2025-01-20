@@ -6,7 +6,7 @@ import Flex from '@/components/Flex';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { BUTTON_CONFIG } from '@/constants/index.tsx';
 import { IcHeartOutlinedGray07, IcHeartFilledGray07 } from '@/assets/svg';
-import { LESSON_DATA } from '@/mocks/mockLessonData';
+import { LESSON_DATA } from '@/pages/class/mocks/mockLessonData';
 
 const ClassButtonWrapper = () => {
   const [isHeartFilled, setIsHeartFilled] = useState(false);

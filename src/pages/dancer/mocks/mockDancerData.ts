@@ -69,12 +69,21 @@ export const DANCER_DATA: {
     },
     {
       id: 3,
-      genre: 'KPOP',
-      level: 'BEGINNER',
-      name: 'KPOP Dance Moves',
+      genre: 'WAACKING',
+      level: 'NOVICE',
+      name: '한 줄은 너무 짧다고 생각합니다 두 줄짜리 대령이오.',
       imageUrl:
         'https://hankki-prod-bucket.s3.ap-northeast-2.amazonaws.com/dummy/%E1%84%80%E1%85%A9%E1%84%85%E1%85%A7%E1%84%83%E1%85%A2+%E1%84%86%E1%85%B5%E1%86%AF%E1%84%91%E1%85%B3%E1%86%AF%E1%84%85%E1%85%A2%E1%86%AB%E1%84%87%E1%85%B5.jpeg',
       remainingDays: 4,
+    },
+    {
+      id: 4,
+      genre: 'KPOP',
+      level: 'BEGINNER',
+      name: '한 줄은 너무 짧다고 생각합니다. 두 줄짜리 대령이오. 두 줄짜리 대령이오.',
+      imageUrl:
+        'https://hankki-prod-bucket.s3.ap-northeast-2.amazonaws.com/dummy/%E1%84%80%E1%85%A9%E1%84%85%E1%85%A7%E1%84%83%E1%85%A2+%E1%84%86%E1%85%B5%E1%86%AF%E1%84%91%E1%85%B3%E1%86%AF%E1%84%85%E1%85%A2%E1%86%AB%E1%84%87%E1%85%B5.jpeg',
+      remainingDays: 5,
     },
   ],
 };

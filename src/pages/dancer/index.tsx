@@ -8,7 +8,7 @@ import Tag from '@/components/Tag';
 import Text from '@/components/Text';
 import { genreMapping } from '@/utils/genreLevelTranslator';
 import { useIntersect } from '@/utils/useIntersect';
-import { DANCER_DATA } from '@/mocks/mockDancerData';
+import { DANCER_DATA } from '@/pages/dancer/mocks/mockDancerData';
 
 const Dancer = () => {
   const [targetRef, isVisible] = useIntersect(false);

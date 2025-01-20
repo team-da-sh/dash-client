@@ -1,6 +1,6 @@
-import ScheduleItem from '@/pages/reservation/ClassInfo/ScheduleItem';
-import { infoContainerStyle, textLabelStyle } from '@/pages/reservation/ClassInfo/index.css';
-import InfoRow from '@/pages/reservation/InfoRow';
+import ScheduleItem from '@/pages/reservation/components/ClassInfo/ScheduleItem';
+import { infoContainerStyle, textLabelStyle } from '@/pages/reservation/components/ClassInfo/index.css';
+import InfoRow from '@/pages/reservation/components/InfoRow';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Text from '@/components/Text';
@@ -36,12 +36,7 @@ const ClassInfo = ({ lessonName, lessonLocation, teacherName, lessonLevel, lesso
             </Text>
             <Flex direction="column" gap="1.2rem">
               {lessonRound.map(({ lessonStartDateTime, lessonEndDateTime }, id) => (
-                <ScheduleItem
-                  key={id}
-                  index={id}
-                  startDateTime={lessonStartDateTime}
-                  endDateTime={lessonEndDateTime}
-                />
+                <ScheduleItem key={id} index={id} startDateTime={lessonStartDateTime} endDateTime={lessonEndDateTime} />
               ))}
             </Flex>
           </Flex>

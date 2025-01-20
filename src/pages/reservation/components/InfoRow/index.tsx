@@ -1,4 +1,4 @@
-import { textLabelStyle } from '@/pages/reservation/InfoRow/index.css';
+import { textLabelStyle } from '@/pages/reservation/components/InfoRow/index.css';
 import Flex from '@/components/Flex';
 import Text from '@/components/Text';
 

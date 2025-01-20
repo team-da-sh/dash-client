@@ -8,12 +8,12 @@ export const MY_RESERVATION_DATA = {
       lessonEndDateTime: '2023-12-10T12:00:00',
     },
     {
-      lessonStartDateTime: '2023-12-10T10:00:00',
-      lessonEndDateTime: '2023-12-10T12:00:00',
+      lessonStartDateTime: '2023-12-12T10:00:00',
+      lessonEndDateTime: '2023-12-13T01:00:00',
     },
     {
-      lessonStartDateTime: '2023-12-10T10:00:00',
-      lessonEndDateTime: '2023-12-10T12:00:00',
+      lessonStartDateTime: '2023-12-16T10:00:00',
+      lessonEndDateTime: '2023-12-16T22:00:00',
     },
   ],
   lessonLocation: '서울특별시 강남구',

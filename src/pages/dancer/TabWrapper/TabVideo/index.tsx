@@ -1,6 +1,6 @@
 import { videoWrapperStyle, videoItemStyle, iframeStyle } from '@/pages/dancer/TabWrapper/TabVideo/index.css';
 import Flex from '@/components/Flex';
-import { DANCER_DATA } from '@/mocks/mockDancerData';
+import { DANCER_DATA } from '@/pages/dancer/mocks/mockDancerData';
 
 const TabVideo = () => {
   const { videoUrls } = DANCER_DATA;
