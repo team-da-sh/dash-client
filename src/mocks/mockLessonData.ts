@@ -17,7 +17,7 @@ export const LESSON_DATA = {
   lessonLevelDetail: '기초적인 동작과 리듬을 익힐 냥냥 ',
   lessonRound: [
     {
-      lessonStartDateTime: '2025-01-18T23:40:00',
+      lessonStartDateTime: '2025-01-21T23:40:00',
       lessonEndDateTime: '2025-01-18T04:30:00',
     },
     {
@@ -29,10 +29,11 @@ export const LESSON_DATA = {
       lessonEndDateTime: '2025-02-16T22:00:00',
     },
   ],
-  lessonLocation: '로제이 댄스홀 합정점',
-  lessonStreetAddress: '서울특별시 송파구 올림픽로 240\n잠실종합운동장제2경기장 동문 앞 주차장',
-  lessonOldStreetAddress: '서교동 395-124',
+  location: '로제이 댄스홀 합정점',
+  streetAddress: '서울특별시 강남구 테헤란로 123',
+  streetDetailAddress: '2층',
+  oldStreetAddress: '서교동 395-124',
   favoriteCount: 120,
-  favoriteStatus: true,
-  status: 'APPLY',
+  bookStatus: false,
+  status: 'OPEN',
 };

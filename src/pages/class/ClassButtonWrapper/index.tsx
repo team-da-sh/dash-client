@@ -4,17 +4,30 @@ import { buttonWrapperStyle } from '@/pages/class/ClassButtonWrapper/index.css';
 import BoxButton from '@/components/BoxButton';
 import Flex from '@/components/Flex';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
+import { BUTTON_CONFIG } from '@/constants/index.tsx';
 import { IcHeartOutlinedGray07, IcHeartFilledGray07 } from '@/assets/svg';
 import { LESSON_DATA } from '@/mocks/mockLessonData';
-import { BUTTON_CONFIG, StatusType } from '@/constants/index.tsx';
 
 const ClassButtonWrapper = () => {
   const [isHeartFilled, setIsHeartFilled] = useState(false);
   const navigate = useNavigate();
 
-  const { status } = LESSON_DATA as { status: StatusType };
+  const { status, bookStatus } = LESSON_DATA;
+  let buttonText = '';
+  let isDisabled = false;
 
-  const { text, isDisabled } = BUTTON_CONFIG[status];  // 상수 파일에서 가져오기
+  if (status === 'EXPIRED' || status === 'OVER_BOOKED') {
+    buttonText = BUTTON_CONFIG[status].text;
+    isDisabled = true;
+  } else if (status === 'OPEN') {
+    if (bookStatus) {
+      buttonText = '신청 완료';
+      isDisabled = true;
+    } else {
+      buttonText = '신청하기';
+      isDisabled = false;
+    }
+  }
 
   const toggleHeart = () => {
     setIsHeartFilled((prev) => !prev);
@@ -25,7 +38,6 @@ const ClassButtonWrapper = () => {
       navigate(ROUTES_CONFIG.reservation.path);
     }
   };
-
   return (
     <Flex height="10.2rem" width="100%" className={buttonWrapperStyle}>
       <BoxButton variant="heart" isDisabled={false} onClick={toggleHeart}>
@@ -33,7 +45,7 @@ const ClassButtonWrapper = () => {
       </BoxButton>
 
       <BoxButton variant="primary" isDisabled={isDisabled} onClick={handleApplyClick}>
-        {text}
+        {buttonText}
       </BoxButton>
     </Flex>
   );

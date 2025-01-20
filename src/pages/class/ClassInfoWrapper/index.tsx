@@ -18,10 +18,11 @@ const ClassInfoWrapper = () => {
     individualPrice,
     maxReservationCount,
     reservationCount,
+    status,
   } = LESSON_DATA;
 
   // D-Day 계산
-  const dDay = calculateDday(lessonRound[0].lessonStartDateTime);
+  const dDay = status === 'EXPIRED' || status === 'OVER_BOOKED' ? '마감' : calculateDday(lessonRound[0].lessonStartDateTime);
 
   // 총 가격 계산
   const totalPrice = lessonRound.length * individualPrice;
@@ -54,7 +55,7 @@ const ClassInfoWrapper = () => {
           {lessonName}
         </Head>
 
-        <Flex align="center" gap="0.8rem">
+        <Flex align="center" gap="0.8rem" >
           <img src={teacherImageUrl} alt={`${teacherNickname} 프로필`} className={profileStyle} />
           <Text tag="b2" color="gray9">
             {teacherNickname}

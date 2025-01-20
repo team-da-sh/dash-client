@@ -26,3 +26,15 @@ export const firstClassItemStyle = style({
 export const lastClassItemStyle = style({
   marginRight: '2rem',
 });
+
+export const detailStyle = style({
+  whiteSpace: 'pre-line',
+});
+
+export const emptyStyle = style({
+  display: 'flex',
+  alignItems: 'center',
+  margin: '0 auto',
+  padding: '5.2rem 0 7.2rem 0',
+  
+});

@@ -47,12 +47,12 @@ export const GENRE_CATEGORY = [
   ],
 ];
 
-export type StatusType = 'APPLY' | 'COMPLETE' | 'CLOSED';
+export type StatusType = 'OPEN' | 'EXPIRED' | 'OVER_BOOKED';
 
 export const BUTTON_CONFIG: Record<StatusType, { text: string; isDisabled: boolean }> = {
-  APPLY: { text: '신청하기', isDisabled: false },
-  COMPLETE: { text: '신청 완료', isDisabled: true },
-  CLOSED: { text: '클래스 마감', isDisabled: true },
+  OPEN: { text: '신청하기', isDisabled: false },
+  EXPIRED: { text: '신청 완료', isDisabled: true },
+  OVER_BOOKED: { text: '클래스 마감', isDisabled: true },
 };
 
 export const DANCER_TABS = [

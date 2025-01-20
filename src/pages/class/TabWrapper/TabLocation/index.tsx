@@ -8,9 +8,9 @@ import { IcLocation60 } from '@/assets/svg';
 import { LESSON_DATA } from '@/mocks/mockLessonData';
 
 const TabLocation = () => {
-  const { lessonLocation, lessonStreetAddress, lessonOldStreetAddress } = LESSON_DATA;
+  const { location, streetAddress, streetDetailAddress, oldStreetAddress } = LESSON_DATA;
 
-  const isEmpty = !lessonLocation || !lessonStreetAddress || !lessonOldStreetAddress;
+  const isEmpty = !location || !streetAddress || !oldStreetAddress;
 
   return (
     <Flex direction="column" justify="center" gap="1.2rem">
@@ -23,7 +23,7 @@ const TabLocation = () => {
           <Flex align="center" justify="spaceBetween" gap="1.6rem" width="100%">
             <Flex direction="column" gap="0.6rem">
               <Text tag="b4" color="black">
-                {lessonLocation}
+                {location}
               </Text>
               <Flex direction="column" gap="0.4rem">
                 <Flex justify="spaceBetween">
@@ -32,9 +32,14 @@ const TabLocation = () => {
                       주소
                     </Text>
                   </Flex>
-                  <Text tag="b7" color="gray7" className={streetAddressStyle}>
-                    {lessonStreetAddress}
-                  </Text>
+                  <Flex direction="column">
+                    <Text tag="b7" color="gray7" className={streetAddressStyle}>
+                      {streetAddress}
+                    </Text>
+                    <Text tag="b7" color="gray7" className={streetAddressStyle}>
+                      {streetDetailAddress}
+                    </Text>
+                  </Flex>
                 </Flex>
 
                 <Flex justify="spaceBetween">
@@ -44,7 +49,7 @@ const TabLocation = () => {
                     </Text>
                   </Flex>
                   <Text tag="b7" color="gray7">
-                    {lessonOldStreetAddress}
+                    {oldStreetAddress}
                   </Text>
                 </Flex>
               </Flex>

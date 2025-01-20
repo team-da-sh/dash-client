@@ -1,4 +1,4 @@
-// 장르 영한 변환환
+// 장르 영한 변환
 export const genreMapping: { [key: string]: string } = {
   HIPHOP: '힙합',
   FEMALEHIPHOP: '피메일힙합',
@@ -14,7 +14,7 @@ export const genreMapping: { [key: string]: string } = {
   KPOP: '케이팝',
 };
 
-// 레벨 영한 변환환
+// 레벨 영한 변환
 export const levelMapping: { [key: string]: string } = {
   BEGINNER: '입문',
   NOVICE: '초급',

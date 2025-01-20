@@ -1,3 +1,4 @@
+// DancerInfo 컴포넌트 수정
 import DancerClassItem from '@/pages/dancer/DancerInfo/DancerClassItem';
 import Divider from '@/components/Divider';
 import Flex from '@/components/Flex';
@@ -5,7 +6,15 @@ import Head from '@/components/Head';
 import Text from '@/components/Text';
 import { IcInstagram20, IcYoutube20 } from '@/assets/svg';
 import { DANCER_DATA } from '@/mocks/mockDancerData';
-import { classTitleStyle, rowScrollStyle, classItemStyle, firstClassItemStyle, lastClassItemStyle } from './index.css';
+import {
+  classTitleStyle,
+  rowScrollStyle,
+  classItemStyle,
+  firstClassItemStyle,
+  lastClassItemStyle,
+  detailStyle,
+  emptyStyle,
+} from './index.css';
 
 const DancerInfo = () => {
   const { instagram, youtube, detail, nickname, lessons } = DANCER_DATA;
@@ -46,7 +55,7 @@ const DancerInfo = () => {
           )}
         </Flex>
 
-        <Text tag="b3" color="gray8">
+        <Text tag="b3" color="gray8" className={detailStyle}>
           {detail}
         </Text>
       </Flex>
@@ -56,28 +65,35 @@ const DancerInfo = () => {
           {nickname}님의 클래스
         </Head>
 
-        <div className={rowScrollStyle}>
-          {lessons.map((data, id) => {
-            const isFirst = id === 0;
-            const isLast = id === lessons.length - 1;
+        {/* 개설한 클래스 없을 때 */}
+        {lessons.length === 0 ? (
+          <Head level="h5" tag="h6" color="gray9" className={emptyStyle}>
+            아직 개설한 클래스가 없어요
+          </Head>
+        ) : (
+          <div className={rowScrollStyle}>
+            {lessons.map((data, id) => {
+              const isFirst = id === 0;
+              const isLast = id === lessons.length - 1;
 
-            return (
-              <div
-                key={data.id}
-                className={[classItemStyle, isFirst && firstClassItemStyle, isLast && lastClassItemStyle]
-                  .filter(Boolean)
-                  .join(' ')}>
-                <DancerClassItem
-                  lessonImageUrl={data.imageUrl}
-                  lessonRemainingDays={data.remainingDays}
-                  lessonGenre={data.genre}
-                  lessonLevel={data.level}
-                  lessonName={data.name}
-                />
-              </div>
-            );
-          })}
-        </div>
+              return (
+                <div
+                  key={data.id}
+                  className={[classItemStyle, isFirst && firstClassItemStyle, isLast && lastClassItemStyle]
+                    .filter(Boolean)
+                    .join(' ')}>
+                  <DancerClassItem
+                    lessonImageUrl={data.imageUrl}
+                    lessonRemainingDays={data.remainingDays}
+                    lessonGenre={data.genre}
+                    lessonLevel={data.level}
+                    lessonName={data.name}
+                  />
+                </div>
+              );
+            })}
+          </div>
+        )}
         <Divider color="gray1" length="100%" thickness="0.8rem" />
       </Flex>
     </>

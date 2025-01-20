@@ -2,6 +2,7 @@ import { classImageStyle, wrapperStyle, deadlineTagStyle } from '@/pages/dancer/
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Tag from '@/components/Tag';
+import { genreMapping, levelMapping } from '@/utils/genreLevelTranslator';
 
 interface DancerClassItemProps {
   lessonImageUrl: string;
@@ -36,6 +37,9 @@ const DancerClassItem = ({
     return null;
   };
 
+  const translatedGenre = genreMapping[lessonGenre] || lessonGenre;
+  const translatedLevel = levelMapping[lessonLevel] || lessonLevel;
+
   return (
     <Flex width="16.4rem" direction="column" gap="0.8rem" className={wrapperStyle}>
       <img src={lessonImageUrl} alt="클래스 섬네일" className={classImageStyle} />
@@ -43,10 +47,10 @@ const DancerClassItem = ({
 
       <Flex gap="0.4rem">
         <Tag type="genre" size="small">
-          {lessonGenre}
+          {translatedGenre}
         </Tag>
         <Tag type="level" size="small">
-          {lessonLevel}
+          {translatedLevel}
         </Tag>
       </Flex>
 
