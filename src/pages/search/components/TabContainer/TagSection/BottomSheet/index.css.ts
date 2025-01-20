@@ -5,6 +5,32 @@ export const bottomSheetContainerStyle = style({
   overflow: 'hidden',
 });
 
+const fadeIn = keyframes({
+  from: {
+    opacity: 0,
+  },
+  to: {
+    opacity: 1,
+  },
+});
+
+const fadeOut = keyframes({
+  from: {
+    opacity: 1,
+  },
+  to: {
+    opacity: 0,
+  },
+});
+
+export const overlayVisible = style({
+  animation: `${fadeIn} 0.3s ease-out forwards`,
+});
+
+export const overlayHidden = style({
+  animation: `${fadeOut} 0.3s ease-in forwards`,
+});
+
 export const overlayStyle = style({
   position: 'fixed',
   left: '50%',

@@ -7,6 +7,8 @@ import {
   bottomSheetHidden,
   bottomSheetVisible,
   bottomSheetContainerStyle,
+  overlayHidden,
+  overlayVisible,
 } from '@/pages/search/components/TabContainer/TagSection/BottomSheet/index.css';
 import BoxButton from '@/components/BoxButton';
 import Flex from '@/components/Flex';
@@ -53,7 +55,7 @@ const BottomSheet = ({
     setTimeout(() => {
       document.body.style.overflow = '';
       onClose();
-    }, 300); // 애니메이션 지속 시간과 동일하게 설정
+    }, 300);
   };
 
   document.body.style.overflow = 'hidden';
@@ -88,7 +90,7 @@ const BottomSheet = ({
 
   return (
     <div className={bottomSheetContainerStyle}>
-      <div className={overlayStyle} onClick={handleClose} />
+      <div className={`${overlayStyle} ${isClosing ? overlayHidden : overlayVisible}`} onClick={handleClose} />
       <Flex direction="column" className={`${bottomSheetStyle} ${isClosing ? bottomSheetHidden : bottomSheetVisible}`}>
         <TabRoot>
           <TabList>
