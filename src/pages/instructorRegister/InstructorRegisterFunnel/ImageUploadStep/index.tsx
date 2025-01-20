@@ -1,5 +1,5 @@
 import Description from '@/pages/instructorRegister/Description';
-import ImageUploader from '@/pages/instructorRegister/ImageUploadStep/ImageUploader';
+import ImageUploader from '@/pages/instructorRegister/InstructorRegisterFunnel/ImageUploadStep/ImageUploader';
 
 const ImageUploadStep = () => {
   return (

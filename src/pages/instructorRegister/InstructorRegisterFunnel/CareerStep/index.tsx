@@ -1,6 +1,9 @@
 import { useState } from 'react';
-import { careerFlexStyle, checkboxStyle } from '@/pages/instructorRegister/CareerStep/index.css';
 import Description from '@/pages/instructorRegister/Description';
+import {
+  careerFlexStyle,
+  checkboxStyle,
+} from '@/pages/instructorRegister/InstructorRegisterFunnel/CareerStep/index.css';
 import Flex from '@/components/Flex';
 import Input from '@/components/Input';
 import Text from '@/components/Text';
