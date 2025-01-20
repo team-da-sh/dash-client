@@ -1,4 +1,5 @@
 import { ChangeEvent, useRef, useState } from 'react';
+import { ONLY_NUMERIC } from '@/constants/regex';
 
 export const useClassRegisterForm = () => {
   const explainTextAreaRef = useRef<HTMLTextAreaElement>(null);
@@ -20,14 +21,14 @@ export const useClassRegisterForm = () => {
 
   const handlePersonnelChange = (e: ChangeEvent<HTMLInputElement>) => {
     // 숫자만 입력되도록
-    if (!e.target.value.match(/\D/g)) {
+    if (!e.target.value.match(ONLY_NUMERIC)) {
       setPersonnelChange(e.target.value);
     }
   };
 
   const handleAmountChange = (e: ChangeEvent<HTMLInputElement>) => {
     // 숫자만 입력되도록
-    if (!e.target.value.match(/\D/g)) {
+    if (!e.target.value.match(ONLY_NUMERIC)) {
       setAmount(e.target.value);
     }
   };
@@ -59,7 +60,6 @@ export const useClassRegisterForm = () => {
   };
 
   const handleDefaultPlace = () => {
-    console.log('여기에 도로명 주소 API 호출');
     // 받은 데이터로 state 설정
     setDefaultPlace('이런 값으로~');
   };

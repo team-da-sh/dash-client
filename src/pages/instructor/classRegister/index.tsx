@@ -1,4 +1,6 @@
 import * as styles from '@/pages/instructor/classRegister/index.css';
+import { buttonContainerStyle } from '@/pages/instructorRegister/index.css';
+import BoxButton from '@/components/BoxButton';
 import Header from '@/components/Header';
 import ClassAmount from './ClassAmount';
 import ClassDescription from './ClassDescription';
@@ -67,6 +69,10 @@ const ClassRegister = () => {
           handleDetailPlace={handleDetailPlace}
         />
         <ClassAmount amount={amount} handleAmountChange={handleAmountChange} />
+      </div>
+
+      <div className={buttonContainerStyle}>
+        <BoxButton>완료</BoxButton>
       </div>
     </>
   );
