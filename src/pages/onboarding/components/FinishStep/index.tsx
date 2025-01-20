@@ -18,7 +18,7 @@ const FinishStep = ({ nickName }: FinishStepProps) => {
         </Text>
       </Flex>
 
-      <Flex marginTop="9.8rem" margin="9.8rem auto 0 auto">
+      <Flex margin="9.8rem auto 0 auto">
         <div>이미지</div>
       </Flex>
     </Flex>

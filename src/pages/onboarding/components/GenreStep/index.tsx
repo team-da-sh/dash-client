@@ -45,7 +45,7 @@ const GenreStep = ({ genres = [], onInfoChange }: GenreStepProps) => {
         </Text>
       </Flex>
 
-      <Flex tag="ul" marginTop="2.8rem" justify="spaceBetween" className={genreListStyle}>
+      <Flex marginTop="2.8rem" justify="spaceBetween" className={genreListStyle}>
         {GENRE_INFO.map((data, index) => (
           <GenreChip
             key={`${index}-${data.genre}`}
