@@ -1,15 +1,16 @@
 import { useState } from 'react';
 import ClassItem from '@/pages/home/components/ClassItem';
+import { defaultSortTagProps } from '@/pages/home/types/defaultSortTag';
 import DancerList from '@/pages/search/components/DancerList';
 import TagSection from '@/pages/search/components/TabContainer/TagSection';
 import Dropdown from '@/pages/search/components/TabContainer/TagSection/Dropdown';
 import { divCustomStyle } from '@/pages/search/components/TabContainer/index.css';
-import { CLASS_LIST, DANCER_LIST } from '@/pages/search/mocks/index';
-import { defaultSortTagProps } from '@/pages/search/types/defaultSortTag';
+import { CLASS_LIST } from '@/pages/search/mocks/index';
 import Flex from '@/components/Flex';
 import { TabList, TabRoot, TabButton, TabPanel } from '@/components/Tab';
 import Text from '@/components/Text';
-import { IcArrowUnderGray, IcXMain04 } from '@/assets/svg';
+import { IcArrowUnderGray } from '@/assets/svg';
+import { IcXMain04 } from '@/assets/svg';
 
 interface TagItem {
   label: string;
@@ -27,6 +28,9 @@ interface TabContainerProps {
   setLevel: (level: string | null) => void;
   setStartDate: (date: string) => void;
   setEndDate: (date: string) => void;
+  dancerList: any;
+  isLoading: boolean;
+  error: any;
 }
 
 const TabContainer = ({
@@ -39,9 +43,12 @@ const TabContainer = ({
   setLevel,
   setStartDate,
   setEndDate,
+  dancerList,
+  isLoading,
+  error,
 }: TabContainerProps) => {
   const [selectedTab, setSelectedTab] = useState(0);
-  const [selectedLabel, setSelectedLabel] = useState('최신 등록순');
+  const [selectedLabel, setSelectedLabel] = useState<'최신 등록순' | '찜이 많은순' | '마감 임박순'>('최신 등록순');
 
   const activeTags: TagItem[] = [
     { condition: genre, label: genre, type: 'genre' },
@@ -131,7 +138,9 @@ const TabContainer = ({
             </div>
           </TabPanel>
           <TabPanel isSelected={selectedTab === 1}>
-            <DancerList dancers={DANCER_LIST} />
+            {isLoading && <div>Loading...</div>}
+            {error && <div>Error: {error.message}</div>}
+            {dancerList && <DancerList dancers={dancerList.teachers} />}
           </TabPanel>
         </TabRoot>
       </Flex>

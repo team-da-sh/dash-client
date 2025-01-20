@@ -1,9 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
 import { getDancerList } from '@/apis/search/axios';
 
-export const useGetDancerList = (params: { sortOption: 'LATEST' | 'MOSTFAVORITE' | 'UPCOMING'; keyword?: string }) => {
+export const useGetDancerList = (params: { keyword?: string }) => {
   return useQuery({
     queryKey: ['dancerList', params],
-    queryFn: () => getDancerList(params),
+    queryFn: async () => {
+      return await getDancerList(params);
+    },
   });
 };

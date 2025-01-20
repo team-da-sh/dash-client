@@ -5,14 +5,12 @@ const SEARCH_URL = {
 };
 
 interface DancerListParams {
-  sortOption: 'LATEST' | 'MOSTFAVORITE' | 'UPCOMING';
   keyword?: string;
 }
 
-export const getDancerList = async ({ sortOption, keyword }: DancerListParams) => {
+export const getDancerList = async ({ keyword }: DancerListParams) => {
   const { data } = await instance.get(SEARCH_URL.GET_DANCERLIST, {
     params: {
-      sortOption,
       keyword,
     },
   });
