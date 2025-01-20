@@ -1,12 +1,12 @@
 import { ReactElement, ReactNode, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
-interface StepProps {
+export interface StepProps {
   name: string;
   children: ReactNode;
 }
 
-interface FunnelProps {
+export interface FunnelProps {
   children: ReactElement<StepProps>[];
 }
 

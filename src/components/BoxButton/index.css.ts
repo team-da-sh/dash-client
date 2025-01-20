@@ -72,6 +72,7 @@ export const buttonStyle = recipe({
 
         cursor: 'default',
       },
+
       heart: {
         display: 'flex',
         justifyContent: 'center',

@@ -1,7 +1,18 @@
+
+export { default as IcCameraMain0624 } from './IcCameraMain0624';
+export { default as IcCheckMain0424 } from './IcCheckMain0424';
+export { default as IcClose } from './IcClose';
+
+export { default as IcImageTemp } from './IcImageTemp';
+
+export { default as IcProfileBasic } from './IcProfileBasic';
+
+
 export { default as IcLevelAdvanced } from './IcLevelAdvanced';
 export { default as IcLevelBasic } from './IcLevelBasic';
 export { default as IcLevelIntermediate } from './IcLevelIntermediate';
 export { default as IcLevelStarter } from './IcLevelStarter';
+
 export { default as IcArrowRightWhite14 } from './IcArrowRightWhite14';
 export { default as IcClassEndMain0324 } from './IcClassEndMain0324';
 export { default as IcClassIngMain0324 } from './IcClassIngMain0324';
@@ -18,7 +29,7 @@ export { default as IcBack } from './IcBack';
 export { default as IcBtnEtc } from './IcBtnEtc';
 export { default as IcCalendarcheckColor3D24 } from './IcCalendarcheckColor3D24';
 export { default as IcCalendarcheckMono3D24 } from './IcCalendarcheckMono3D24';
-export { default as IcClose } from './IcClose';
+
 export { default as IcDocumentBlack20 } from './IcDocumentBlack20';
 export { default as IcFilterGray } from './IcFilterGray';
 export { default as IcGraduationBlack20 } from './IcGraduationBlack20';
