@@ -7,6 +7,10 @@ export const ROUTES_CONFIG = {
     title: 'Login',
     path: '/login',
   },
+  auth: {
+    title: 'Auth',
+    path: '/auth',
+  },
   onboarding: {
     title: 'Onboarding',
     path: '/onboarding',
