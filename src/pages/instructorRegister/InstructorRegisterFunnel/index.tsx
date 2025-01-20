@@ -21,8 +21,8 @@ const InstructorRegisterFunnel = ({ Funnel, Step }: InstructorRegisterFunnelProp
     imageUrl: '',
     instagram: '',
     youtube: '',
-    education: '',
-    experience: '',
+    education: [''],
+    experience: [''],
     detail: '',
     videoUrls: [],
   });
@@ -62,7 +62,7 @@ const InstructorRegisterFunnel = ({ Funnel, Step }: InstructorRegisterFunnelProp
           />
         </Step>
         <Step name="3">
-          <CareerStep />
+          <CareerStep education={info.education} experience={info.experience} onInfoChange={handleInfoChange} />
         </Step>
         <Step name="4">
           <VideoLinkStep />
