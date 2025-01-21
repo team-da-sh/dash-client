@@ -3,7 +3,7 @@ import { instance } from '@/apis/api';
 const INSTRUCTOR_REGISTER_URL = '/api/v1/teachers';
 
 interface InstructorRegisterInfoTypes {
-  imageUrls: string;
+  imageUrls: string[];
   instagram: string;
   youtube: string;
   educations: string[];

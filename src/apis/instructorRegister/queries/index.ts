@@ -2,7 +2,7 @@ import { useMutation } from '@tanstack/react-query';
 import { postInstructorRegisterInfo } from '../axios';
 
 interface InstructorRegisterInfoTypes {
-  imageUrls: string;
+  imageUrls: string[];
   instagram: string;
   youtube: string;
   educations: string[];

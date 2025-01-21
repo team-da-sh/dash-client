@@ -25,8 +25,8 @@ const useImageUploader = <T extends { imageUrls: string }>(
 
     uploadImage(formData, {
       onSuccess: (data) => {
-        if (data?.imageUrl) {
-          onSuccess(data.imageUrl);
+        if (data?.imageUrls) {
+          onSuccess(data.imageUrls);
         }
       },
     });
@@ -48,7 +48,7 @@ const useImageUploader = <T extends { imageUrls: string }>(
     setImgFile(undefined);
     setPreviewImg('');
 
-    setInfo((prev) => ({ ...prev, imageUrl: '' }));
+    setInfo((prev) => ({ ...prev, imageUrls: '' }));
 
     if (imgRef.current) {
       imgRef.current.value = '';

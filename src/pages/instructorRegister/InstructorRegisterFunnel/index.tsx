@@ -67,7 +67,7 @@ const InstructorRegisterFunnel = ({ currentStep, Funnel, Step, setStep }: Instru
   const buttonActive = (currentStep: number) => {
     switch (currentStep) {
       case 1:
-        return !!info.imageUrls;
+        return true;
       case 2:
         return !isInstaError && !isYoutubeError && (info.instagram.length > 0 || info.youtube.length > 0);
       case 3:
@@ -86,7 +86,13 @@ const InstructorRegisterFunnel = ({ currentStep, Funnel, Step, setStep }: Instru
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    submitInfo(info);
+
+    const updatedInfo = {
+      ...info,
+      imageUrls: [info.imageUrls], // 항상 배열 형태로 변환
+    };
+
+    submitInfo(updatedInfo);
   };
 
   return (
