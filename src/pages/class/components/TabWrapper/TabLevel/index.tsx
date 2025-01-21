@@ -4,20 +4,20 @@ import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Text from '@/components/Text';
 import { IcLevelStarter, IcClose, IcQuesitonmark } from '@/assets/svg';
-import { LESSON_DATA } from '@/pages/class/mocks/mockLessonData';
-import { LEVEL } from '@/constants/index';
+//import { LESSON_DATA } from '@/pages/class/mocks/mockLessonData';
+import { levelMapping, LEVEL } from '@/constants/index';
+import { LessonDetail } from "@/apis/class/axios";
 
-type LessonLevelType = '입문' | '초급' | '중급' | '고급';
+//type LessonLevelType = '입문' | '초급' | '중급' | '고급';
 
-const TabLevel = () => {
-  const { level, levelDetail, recommendation } = LESSON_DATA as {
-    level: LessonLevelType;
-    levelDetail: string;
-    recommendation: string;
-  };
+const TabLevel = ({ lessonData }: { lessonData: LessonDetail }) => {
+  const { level, recommendation } = lessonData;
 
-  // lessonLevel에 해당하는 인덱스를 찾기
-  const levelData = LEVEL.find((item) => item.title === level);
+  // 1. 레벨을 영어에서 한국어로 변환
+  const translatedLevel = levelMapping[level] || level; // levelMapping으로 레벨을 한국어로 변환
+
+  // 2. LEVEL 배열에서 해당 한국어 레벨에 맞는 데이터를 찾기
+  const levelData = LEVEL.find((item) => item.title === translatedLevel);
 
   return (
     <Flex direction="column" gap="3.6rem">
@@ -26,10 +26,10 @@ const TabLevel = () => {
           <Flex gap="0.8rem" align="center">
             {levelData?.icon || <IcLevelStarter width={'3.6rem'} />}
             <Head level="h6" tag="h6">
-              {level}
+              {translatedLevel}
             </Head>
             <Text tag="b8" color="gray8">
-              {levelDetail}
+              {levelData?.description}
             </Text>
           </Flex>
         </Card>

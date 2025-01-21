@@ -6,13 +6,13 @@ import Flex from '@/components/Flex';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { BUTTON_CONFIG } from '@/constants/index.tsx';
 import { IcHeartOutlinedGray07, IcHeartFilledGray07 } from '@/assets/svg';
-import { LESSON_DATA } from '@/pages/class/mocks/mockLessonData';
+import { LessonDetail } from "@/apis/class/axios";
 
-const ClassButtonWrapper = () => {
+const ClassButtonWrapper = ({ lessonData }: { lessonData: LessonDetail }) => {
   const [isHeartFilled, setIsHeartFilled] = useState(false);
   const navigate = useNavigate();
 
-  const { status, bookStatus } = LESSON_DATA;
+  const { status, bookStatus } = lessonData;
   let buttonText = '';
   let isDisabled = false;
 

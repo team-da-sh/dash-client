@@ -1,14 +1,16 @@
 import { useState } from 'react';
 import Flex from '@/components/Flex';
 import { TabRoot, TabList, TabButton, TabPanel } from '@/components/Tab';
+import { LessonDetail } from '@/apis/class/axios';
 import { vars } from '@/styles/theme.css';
 import { CLASS_TABS } from '@/constants';
 
 interface TabWrapperProps {
   colorScheme: 'primary' | 'secondary';
+  lessonData: LessonDetail;
 }
 
-const TabWrapper = ({ colorScheme }: TabWrapperProps) => {
+const TabWrapper = ({ colorScheme, lessonData }: TabWrapperProps) => {
   const [selectedTab, setSelectedTab] = useState(0);
 
   return (
@@ -35,7 +37,7 @@ const TabWrapper = ({ colorScheme }: TabWrapperProps) => {
         borderTop={`1px solid ${vars.colors.gray01}`}>
         {CLASS_TABS.map((tab) => (
           <TabPanel key={tab.id} isSelected={selectedTab === tab.id - 1}>
-            {tab.component}
+            {tab.component(lessonData)}
           </TabPanel>
         ))}
       </Flex>

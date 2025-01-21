@@ -5,10 +5,11 @@ import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Text from '@/components/Text';
 import { IcLocation60 } from '@/assets/svg';
-import { LESSON_DATA } from '@/pages/class/mocks/mockLessonData';
+//import { LESSON_DATA } from '@/pages/class/mocks/mockLessonData';
+import { LessonDetail } from "@/apis/class/axios";
 
-const TabLocation = () => {
-  const { location, streetAddress, streetDetailAddress, oldStreetAddress } = LESSON_DATA;
+const TabLocation = ({ lessonData }: { lessonData: LessonDetail }) => {
+  const { location, streetAddress, streetDetailAddress, oldStreetAddress } = lessonData;
 
   const isEmpty = !location || !streetAddress || !oldStreetAddress;
 

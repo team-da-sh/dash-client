@@ -6,6 +6,7 @@ import TabEducation from '@/pages/dancer/components/TabWrapper/TabEducation';
 import TabHistory from '@/pages/dancer/components/TabWrapper/TabExperience';
 import TabVideo from '@/pages/dancer/components/TabWrapper/TabVideo';
 import { IcLevelAdvanced, IcLevelBasic, IcLevelIntermediate, IcLevelStarter } from '@/assets/svg';
+import { LessonDetail } from "@/apis/class/axios";
 
 export const LEVEL = [
   {
@@ -62,10 +63,10 @@ export const DANCER_TABS = [
 ];
 
 export const CLASS_TABS = [
-  { id: 1, label: '소개', component: <TabIntro /> },
-  { id: 2, label: '난이도', component: <TabLevel /> },
-  { id: 3, label: '기간', component: <TabPeriod /> },
-  { id: 4, label: '위치', component: <TabLocationInfo /> },
+  { id: 1, label: '소개', component: (lessonData: LessonDetail) => <TabIntro lessonData={lessonData} /> },
+  { id: 2, label: '난이도', component: (lessonData: LessonDetail) => <TabLevel lessonData={lessonData} /> },
+  { id: 3, label: '기간', component: (lessonData: LessonDetail) => <TabPeriod lessonData={lessonData} /> },
+  { id: 4, label: '위치', component: (lessonData: LessonDetail) => <TabLocationInfo lessonData={lessonData} /> },
 ];
 
 // 장르 영한 변환
