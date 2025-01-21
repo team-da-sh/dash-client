@@ -1,10 +1,9 @@
-import BoxButton from '@/components/BoxButton';
 import Header from '@/components/Header';
 import ProgressBar from '@/components/ProgressBar';
 import { useFunnel } from '@/hooks/useFunnel';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import InstructorRegisterFunnel from './InstructorRegisterFunnel';
-import { buttonContainerStyle, progressBarCustomStyle } from './index.css';
+import { progressBarCustomStyle } from './index.css';
 
 const InstructorRegister = () => {
   const TOTAL_STEP = 6;
@@ -22,10 +21,6 @@ const InstructorRegister = () => {
 
       {/* Funnel */}
       <InstructorRegisterFunnel Funnel={Funnel} Step={Step} currentStep={currentStep} setStep={setStep} />
-
-      <div className={buttonContainerStyle}>
-        <BoxButton onClick={() => setStep(1)}>{currentStep < TOTAL_STEP ? '다음' : '완료'}</BoxButton>
-      </div>
     </>
   );
 };
