@@ -2,14 +2,11 @@ import { useMutation } from '@tanstack/react-query';
 import queryClient from '@/queryClient';
 import { postImage } from '../axios';
 
-export const useImageMutation = (fileData: FormData) => {
+export const useImageMutation = () => {
   return useMutation({
-    mutationFn: () => postImage(fileData),
+    mutationFn: (fileData: FormData) => postImage(fileData),
     onSuccess: () => {
       queryClient.invalidateQueries({});
-    },
-    onError: () => {
-      console.error();
     },
   });
 };

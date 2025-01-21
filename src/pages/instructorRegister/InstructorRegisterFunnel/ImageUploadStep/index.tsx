@@ -5,12 +5,25 @@ import {
   previewImgStyle,
 } from '@/pages/instructorRegister/InstructorRegisterFunnel/ImageUploadStep/index.css';
 import Flex from '@/components/Flex';
-import { useUploadImg } from '@/hooks/useUploadImg';
 import { IcPlusGray0524, IcXCircleGray0424 } from '@/assets/svg';
 
-const ImageUploadStep = () => {
-  const { imgRef, previewImg, imgFile, handleUploaderClick, uploadImgFile, deleteImgFile } = useUploadImg();
+interface ImageUploadStepProps {
+  handleUploaderClick: () => void;
+  uploadImgFile: () => void;
+  deleteImgFile: (e: React.MouseEvent) => void;
+  previewImg: string;
+  imgFile: File | undefined;
+  imgRef: React.MutableRefObject<HTMLInputElement | null>;
+}
 
+const ImageUploadStep = ({
+  imgFile,
+  imgRef,
+  previewImg,
+  deleteImgFile,
+  uploadImgFile,
+  handleUploaderClick,
+}: ImageUploadStepProps) => {
   return (
     <>
       <Description title="강사 이미지 업로드" subTitle="대표 이미지는 최대 한 장까지 등록 가능해요" />
