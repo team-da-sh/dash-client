@@ -34,9 +34,6 @@ const Search = () => {
     sortOption: sortOption,
   });
 
-  console.log('startDate', startDate);
-  console.log('startDate', endDate);
-
   const handleSearchChange = (value: string) => {
     setSearchValue(value);
   };

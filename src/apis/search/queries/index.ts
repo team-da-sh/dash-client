@@ -15,12 +15,16 @@ export interface DancerListResponse {
 
 export interface Class {
   id: number;
-  name: string;
   genre: string;
   level: string;
+  name: string;
+  imageUrl: string;
+  teacherProfileImage: string;
+  teacherName: string;
   startDate: string;
   endDate: string;
-  instructor: string;
+  location: string;
+  remainingDays: number;
 }
 
 export interface ClassListResponse {
