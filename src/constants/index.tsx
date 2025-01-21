@@ -91,3 +91,17 @@ export const levelMapping: { [key: string]: string } = {
   INTERMEDIATE: '중급',
   ADVANCED: '고급',
 };
+
+export const TIME_RANGE = [
+  { id: 1, label: '1시간' },
+  { id: 1.5, label: '1시간 30분' },
+  { id: 2, label: '2시간' },
+  { id: 2.5, label: '2시간 30분' },
+  { id: 3, label: '3시간' },
+  { id: 3.5, label: '3시간 30분' },
+  { id: 4, label: '4시간' },
+  { id: 4.5, label: '4시간 30분' },
+  { id: 5, label: '5시간' },
+  { id: 5.5, label: '5시간 30분' },
+  { id: 6, label: '6시간' },
+];
