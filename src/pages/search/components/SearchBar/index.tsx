@@ -16,10 +16,6 @@ const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(
       handleSearchChange(event.target.value);
     };
 
-    const handleClearInput = () => {
-      handleSearchChange('');
-    };
-
     return (
       <Flex align="center" width="29.9rem" height="4.4rem" position="relative" margin="0 0 0 1.2rem">
         <IcSearchGray className={searchGrayStyle} width={24} onClick={handleSearchIconClick} />
@@ -30,12 +26,10 @@ const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(
           placeholder="장르나 댄서 네임을 검색해 보세요"
           onChange={handleInputChange}
         />
-        <IcXCircleGray className={xCircleGrayStyle} width={24} onClick={handleClearInput} />
+        <IcXCircleGray className={xCircleGrayStyle} width={24} onClick={() => handleSearchChange('')} />
       </Flex>
     );
   }
 );
-
-SearchBar.displayName = 'SearchBar';
 
 export default SearchBar;
