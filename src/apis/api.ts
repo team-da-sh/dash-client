@@ -8,5 +8,6 @@ export const instance = axios.create({
   headers: {
     'Authorization': `Bearer ${accessToken}`, // Bearer 토큰 헤더
     'Content-Type': 'application/json',
+    Authorization: `Bearer ${import.meta.env.VITE_ACCESS_TOKEN}`,
   },
 });
