@@ -4,21 +4,27 @@ import TabContainer from '@/pages/search/components/TabContainer';
 import { DEFAULT_SORT_TAGS } from '@/pages/search/constants/index';
 import Flex from '@/components/Flex';
 import Header from '@/components/Header';
+import { useGetDancerList } from '@/apis/search/queries';
 import { headerRootCutomStyle } from './index.css';
 
 const Search = () => {
   const [searchValue, setSearchValue] = useState('');
+  const [submittedSearchValue, setSubmittedSearchValue] = useState('');
   const [genre, setGenre] = useState<string | null>(null);
   const [level, setLevel] = useState<string | null>(null);
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
+
+  const { data: dancerList, error } = useGetDancerList({
+    keyword: submittedSearchValue,
+  });
 
   const handleSearchChange = (value: string) => {
     setSearchValue(value);
   };
 
   const handleSearchIconClick = () => {
-    console.log(searchValue);
+    setSubmittedSearchValue(searchValue);
   };
 
   return (
@@ -41,6 +47,8 @@ const Search = () => {
         setLevel={setLevel}
         setStartDate={setStartDate}
         setEndDate={setEndDate}
+        dancerList={dancerList}
+        error={error}
       />
     </Flex>
   );
