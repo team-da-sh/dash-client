@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 import { useImageMutation } from '@/apis/common/queries';
 
-const useImageUploader = <T extends { imageUrl: string }>(
+const useImageUploader = <T extends { imageUrls: string }>(
   onSuccess: (url: string) => void,
   setInfo: React.Dispatch<React.SetStateAction<T>>
 ) => {

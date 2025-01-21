@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import CareerStep from '@/pages/instructorRegister/InstructorRegisterFunnel//CareerStep';
 import ImageUploadStep from '@/pages/instructorRegister/InstructorRegisterFunnel//ImageUploadStep';
 import IntroductionStep from '@/pages/instructorRegister/InstructorRegisterFunnel/IntroductionStep';
@@ -12,6 +12,7 @@ import { FunnelProps, StepProps } from '@/pages/search/types/funnel';
 import BoxButton from '@/components/BoxButton';
 import Completion from '@/components/Completion';
 import useImageUploader from '@/hooks/useImageUploader';
+import { useInstructorMutation } from '@/apis/instructorRegister/queries';
 
 interface InstructorRegisterFunnelProps {
   currentStep: number;
@@ -22,16 +23,22 @@ interface InstructorRegisterFunnelProps {
 
 const InstructorRegisterFunnel = ({ currentStep, Funnel, Step, setStep }: InstructorRegisterFunnelProps) => {
   const [info, setInfo] = useState({
-    imageUrl: '',
+    imageUrls: '',
     instagram: '',
     youtube: '',
-    education: [''],
-    experience: [''],
+    educations: [''],
+    experiences: [''],
     detail: '',
     videoUrls: [''],
   });
   const [isInstaError, setIsInstaError] = useState(false);
   const [isYoutubeError, setIsYoutubeError] = useState(false);
+
+  const { mutate: submitInfo, data } = useInstructorMutation();
+
+  useEffect(() => {
+    console.log(info);
+  }, [info]);
 
   // 이미지 업로드 로직
   const handleImageUploadSuccess = (url: string) => {
@@ -60,16 +67,16 @@ const InstructorRegisterFunnel = ({ currentStep, Funnel, Step, setStep }: Instru
   const buttonActive = (currentStep: number) => {
     switch (currentStep) {
       case 1:
-        return !!info.imageUrl;
+        return !!info.imageUrls;
       case 2:
         return !isInstaError && !isYoutubeError && (info.instagram.length > 0 || info.youtube.length > 0);
       case 3:
         // 더 고민해볼게요...
-        return;
+        return true;
       case 4:
         return info.videoUrls[0]?.trim() !== '';
       case 5:
-        return info.detail.trim() !== '' && info.detail.length >= 30;
+        return info.detail.trim() !== '' && info.detail.length <= 30;
       case 6:
         return true;
       default:
@@ -77,8 +84,14 @@ const InstructorRegisterFunnel = ({ currentStep, Funnel, Step, setStep }: Instru
     }
   };
 
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    submitInfo(info);
+  };
+
   return (
     <>
+      {/* <form onSubmit={handleSubmit}> */}
       <div className={funnelContainerStyle}>
         <Funnel>
           <Step name="1">
@@ -103,7 +116,7 @@ const InstructorRegisterFunnel = ({ currentStep, Funnel, Step, setStep }: Instru
             />
           </Step>
           <Step name="3">
-            <CareerStep education={info.education} experience={info.experience} onInfoChange={handleInfoChange} />
+            <CareerStep educations={info.educations} experiences={info.experiences} onInfoChange={handleInfoChange} />
           </Step>
           <Step name="4">
             <VideoLinkStep videoUrls={info.videoUrls} onInfoChange={handleInfoChange} />
@@ -122,10 +135,23 @@ const InstructorRegisterFunnel = ({ currentStep, Funnel, Step, setStep }: Instru
       </div>
 
       <div className={buttonContainerStyle}>
-        <BoxButton variant="primary" onClick={() => setStep(1)} isDisabled={!buttonActive(currentStep)}>
-          {currentStep < TOTAL_STEP ? '다음' : '완료'}
-        </BoxButton>
+        {currentStep < TOTAL_STEP ? (
+          <BoxButton type="button" variant="primary" onClick={() => setStep(1)} isDisabled={!buttonActive(currentStep)}>
+            다음
+          </BoxButton>
+        ) : (
+          <BoxButton
+            type="submit"
+            variant="primary"
+            onClick={(e) => {
+              setStep(1);
+              handleSubmit(e);
+            }}>
+            완료
+          </BoxButton>
+        )}
       </div>
+      {/* </form> */}
     </>
   );
 };

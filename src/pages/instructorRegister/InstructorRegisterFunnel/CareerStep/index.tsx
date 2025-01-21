@@ -6,12 +6,12 @@ import { InstructorRegisterInfoTypes } from '@/pages/instructorRegister/types';
 import { IcDocumentBlack20, IcGraduationBlack20 } from '@/assets/svg';
 
 interface CareerStepProps {
-  education: string[];
-  experience: string[];
+  educations: string[];
+  experiences: string[];
   onInfoChange: <K extends keyof InstructorRegisterInfoTypes>(key: K, value: InstructorRegisterInfoTypes[K]) => void;
 }
 
-const CareerStep = ({ education, experience, onInfoChange }: CareerStepProps) => {
+const CareerStep = ({ educations, experiences, onInfoChange }: CareerStepProps) => {
   const [isEducationActive, setIsEducationActive] = useState(false);
   const [isCareerActive, setIsCareerActive] = useState(false);
 
@@ -24,10 +24,10 @@ const CareerStep = ({ education, experience, onInfoChange }: CareerStepProps) =>
         icon={<IcGraduationBlack20 width={'2rem'} />}
         isActive={isEducationActive}
         onToggleActive={() => setIsEducationActive((prev) => !prev)}
-        inputItems={education.map((value, id) => ({ id: id + 1, value }))}
+        inputItems={educations.map((value, id) => ({ id: id + 1, value }))}
         onItemsChange={(updatedItems) =>
           onInfoChange(
-            INFO_KEY.EDUCATION,
+            INFO_KEY.EDUCATIONS,
             updatedItems.map((item) => item.value)
           )
         }
@@ -38,10 +38,10 @@ const CareerStep = ({ education, experience, onInfoChange }: CareerStepProps) =>
         icon={<IcDocumentBlack20 width={'2rem'} />}
         isActive={isCareerActive}
         onToggleActive={() => setIsCareerActive((prev) => !prev)}
-        inputItems={experience.map((value, id) => ({ id: id + 1, value }))}
+        inputItems={experiences.map((value, id) => ({ id: id + 1, value }))}
         onItemsChange={(updatedItems) =>
           onInfoChange(
-            INFO_KEY.EXPERIENCE,
+            INFO_KEY.EXPERIENCES,
             updatedItems.map((item) => item.value)
           )
         }
