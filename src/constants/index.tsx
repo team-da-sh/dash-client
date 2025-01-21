@@ -103,7 +103,7 @@ export const genreEngMapping: { [key: string]: string } = {
   하우스: 'HOUSE',
   보깅: 'VOGUING',
   크럼프: 'KRUMP',
-  소울: 'SOUㅣ',
+  소울: 'SOUL',
   코레오그래피: 'CHOREOGRAPHY',
   케이팝: 'KPOP',
 };
@@ -118,9 +118,9 @@ export const levelEngMapping: { [key: string]: string } = {
 
 export const labelToSortOptionMap: Record<
   '최신 등록순' | '찜이 많은순' | '마감 임박순',
-  'LATEST' | 'MOSTFAVORITE' | 'UPCOMING'
+  'LATEST' | 'MOST_FAVORITE' | 'UPCOMING'
 > = {
   '최신 등록순': 'LATEST',
-  '찜이 많은순': 'MOSTFAVORITE',
+  '찜이 많은순': 'MOST_FAVORITE',
   '마감 임박순': 'UPCOMING',
 };

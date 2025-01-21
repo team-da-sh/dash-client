@@ -2,6 +2,7 @@ import { useState } from 'react';
 import SearchBar from '@/pages/search/components/SearchBar';
 import TabContainer from '@/pages/search/components/TabContainer';
 import { DEFAULT_SORT_TAGS } from '@/pages/search/constants/index';
+import { formatDateStartTime, formatDateEndTime } from '@/pages/search/utils';
 import Flex from '@/components/Flex';
 import Header from '@/components/Header';
 import { useGetClassList, useGetDancerList } from '@/apis/search/queries';
@@ -28,8 +29,8 @@ const Search = () => {
     keyword: submittedSearchValue,
     genre: genre ? genreEngMapping[genre] : undefined,
     level: level ? levelEngMapping[level] : undefined,
-    startDate: startDate || undefined,
-    endDate: endDate || undefined,
+    startDate: formatDateStartTime(startDate),
+    endDate: formatDateEndTime(endDate),
     sortOption: sortOption,
   });
 
