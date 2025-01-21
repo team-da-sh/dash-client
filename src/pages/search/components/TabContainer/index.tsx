@@ -10,6 +10,7 @@ import { CLASS_LIST } from '@/pages/search/mocks/index';
 import Flex from '@/components/Flex';
 import { TabList, TabRoot, TabButton, TabPanel } from '@/components/Tab';
 import Text from '@/components/Text';
+import { DancerListResponse } from '@/apis/search/queries';
 import { IcArrowUnderGray } from '@/assets/svg';
 import { IcXMain04 } from '@/assets/svg';
 
@@ -29,8 +30,8 @@ interface TabContainerProps {
   setLevel: (level: string | null) => void;
   setStartDate: (date: string) => void;
   setEndDate: (date: string) => void;
-  dancerList: any;
-  error: any;
+  dancerList: DancerListResponse | undefined;
+  error: Error | null;
 }
 
 const TabContainer = ({

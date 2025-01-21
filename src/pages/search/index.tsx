@@ -4,7 +4,7 @@ import TabContainer from '@/pages/search/components/TabContainer';
 import { DEFAULT_SORT_TAGS } from '@/pages/search/constants/index';
 import Flex from '@/components/Flex';
 import Header from '@/components/Header';
-import { useGetDancerList } from '@/apis/search/quries';
+import { useGetDancerList } from '@/apis/search/queries';
 import { headerRootCutomStyle } from './index.css';
 
 const Search = () => {

@@ -2,14 +2,8 @@ import { dancerImageStyle } from '@/pages/search/components/TabContainer/DancerL
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Tag from '@/components/Tag';
+import { Dancer } from '@/apis/search/queries';
 import { vars } from '@/styles/theme.css';
-
-interface Dancer {
-  id: number;
-  profileImage: string;
-  nickname: string;
-  genres: string[];
-}
 
 interface DancerListProps {
   dancers: Dancer[];
