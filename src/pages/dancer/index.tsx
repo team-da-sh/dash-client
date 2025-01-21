@@ -1,3 +1,4 @@
+import { useParams } from 'react-router-dom';
 import ClassHeader from '@/pages/dancer/components/DancerHeader';
 import DancerInfo from '@/pages/dancer/components/DancerInfo';
 import TabWrapper from '@/pages/dancer/components/TabWrapper';
@@ -6,17 +7,36 @@ import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Tag from '@/components/Tag';
 import Text from '@/components/Text';
-import { genreMapping } from '@/constants/index';
+import { useDancerDetail } from '@/apis/dancer/axios';
 import { useIntersect } from '@/utils/useIntersect';
-import { DANCER_DATA } from '@/pages/dancer/mocks/mockDancerData';
+import { genreMapping } from '@/constants/index';
+import { DancerDetail } from './types';
+
+// import { DANCER_DATA } from '@/pages/dancer/mocks/mockDancerData';
 
 const Dancer = () => {
-  const [targetRef, isVisible] = useIntersect(false);
-  const { nickname, imageUrls, genres } = DANCER_DATA;
+  const { id } = useParams<{ id: string }>();
 
-  // 장르 변환
-  const translatedGenres = genres.map((genre) => genreMapping[genre] || genre);
-  
+  if (!id) {
+    return <div>Error: lessonId is missing</div>;
+  }
+
+  const { data, error } = useDancerDetail(id);
+  const [targetRef, isVisible] = useIntersect(false);
+
+  console.log(isVisible);
+  if (error instanceof Error) {
+    return <div>Error: {error.message}</div>;
+  }
+
+  if (!data) {
+    return <div>No lesson data available</div>;
+  }
+  const { imageUrls, genres, nickname, instagram, youtube, detail, lessons } = data as DancerDetail;
+
+  // 장르 매핑
+  const translatedGenres = (genres || []).map((genre) => genreMapping[genre] || genre);
+
   return (
     <>
       <Flex width="100%">
@@ -44,10 +64,8 @@ const Dancer = () => {
           </Flex>
         </div>
       </Flex>
-
       <ClassHeader isVisible={isVisible} />
-
-      <DancerInfo />
+      <DancerInfo instagram={instagram} youtube={youtube} detail={detail} nickname={nickname} lessons={lessons} educations={[]} experiences={[]} imageUrls={[]} videoUrls={[]} genres={[]}/>
       <TabWrapper colorScheme="primary" />
     </>
   );

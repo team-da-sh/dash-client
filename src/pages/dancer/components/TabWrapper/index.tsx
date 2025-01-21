@@ -8,7 +8,7 @@ interface TabWrapperProps {
   colorScheme: 'primary' | 'secondary';
 }
 
-const TabWrapper = ({ colorScheme }: TabWrapperProps) => {
+const TabWrapper = ({ colorScheme,  }: TabWrapperProps) => {
   const [selectedTab, setSelectedTab] = useState(0);
 
   return (
