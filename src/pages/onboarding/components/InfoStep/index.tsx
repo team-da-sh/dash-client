@@ -1,5 +1,5 @@
 import { labelStyle } from '@/pages/onboarding/components/InfoStep/index.css';
-import { INFO_KEY, MAX_PHONENUMBER_LENGTH } from '@/pages/onboarding/constants';
+import { INFO_KEY } from '@/pages/onboarding/constants';
 import { onboardInfoTypes } from '@/pages/onboarding/types';
 import { validateTypingName, validateTypingPhoneNumber } from '@/pages/onboarding/utils/validate';
 import Flex from '@/components/Flex';

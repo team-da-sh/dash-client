@@ -6,7 +6,7 @@ import InfoStep from '@/pages/onboarding/components/InfoStep';
 import LevelStep from '@/pages/onboarding/components/LevelStep';
 import OnboardingHeader from '@/pages/onboarding/components/OnboardingHeader';
 import ProfileStep from '@/pages/onboarding/components/ProfileStep';
-import { MAX_NAME_LENGTH, MAX_ONBOARDING_STEP, MIN_NAME_LENGTH } from '@/pages/onboarding/constants';
+import { MAX_ONBOARDING_STEP } from '@/pages/onboarding/constants';
 import { bodyWrapperStyle, containerStyle, footerWrapperStyle, progressBarStyle } from '@/pages/onboarding/index.css';
 import { GenreTypes, onboardInfoTypes } from '@/pages/onboarding/types';
 import { validateName, validatePhoneNumber } from '@/pages/onboarding/utils/validate';
@@ -15,6 +15,7 @@ import ProgressBar from '@/components/ProgressBar';
 import { FunnelProps, StepProps } from '@/hooks/useFunnel';
 import { useOnboardMutation } from '@/apis/onboarding/quries';
 import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from '@/constants/api';
+import defaultProfile from '@/assets/images/image_profile_basic.png';
 
 interface OnboardingFunnelProps {
   currentStep: number;
@@ -30,7 +31,7 @@ const OnboardingFunnel = ({ currentStep, Funnel, setStep, Step }: OnboardingFunn
     genres: [] as GenreTypes[],
     nickname: '',
     level: null,
-    profileImageUrl: 'http',
+    profileImageUrl: defaultProfile,
   });
 
   const [isNicknameError, setIsNicknameError] = useState(false);
@@ -86,7 +87,7 @@ const OnboardingFunnel = ({ currentStep, Funnel, setStep, Step }: OnboardingFunn
       case 3:
         return !info.level;
       case 4:
-        return !(info.profileImageUrl && info.nickname);
+        return !info.nickname;
       case 5:
         return false;
       default:
@@ -122,7 +123,7 @@ const OnboardingFunnel = ({ currentStep, Funnel, setStep, Step }: OnboardingFunn
             />
           </Step>
           <Step name="5" key={5}>
-            <FinishStep nickname={info.nickname}></FinishStep>
+            <FinishStep nickname={info.nickname} />
           </Step>
         </Funnel>
       </div>

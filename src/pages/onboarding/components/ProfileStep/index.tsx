@@ -7,8 +7,8 @@ import Input from '@/components/Input';
 import Text from '@/components/Text';
 import { useUploadImg } from '@/hooks/useUploadImg';
 import { INCLUDE_BLANK, INCLUDE_SPECIAL } from '@/constants/regex';
+import defaultProfile from '@/assets/images/image_profile_basic.png';
 import { IcCameraMain0624 } from '@/assets/svg';
-import preview from '@/../public/svg/ic_profile_basic.svg';
 
 interface ProfileStepProps {
   nickname: string;
@@ -22,15 +22,16 @@ const ProfileStep = ({ nickname, isNicknameError, changeIsNicknameError, onInfoC
   const { imgRef, previewImg, handleUploaderClick, uploadImgFile } = useUploadImg();
 
   const handleNicknameChange = (nickname: string) => {
-    if (nickname.length > MAX_NICKNAME_LENGTH) {
-      return;
-    }
+    if (nickname.length > MAX_NICKNAME_LENGTH) return;
+
     if (nickname.length) {
       if (INCLUDE_SPECIAL.test(nickname) || INCLUDE_BLANK.test(nickname)) {
-        changeIsNicknameError(false);
-      } else {
         changeIsNicknameError(true);
+      } else {
+        changeIsNicknameError(false);
       }
+    } else {
+      changeIsNicknameError(false);
     }
 
     onInfoChange(INFO_KEY.NICKNAME, nickname);
@@ -52,7 +53,7 @@ const ProfileStep = ({ nickname, isNicknameError, changeIsNicknameError, onInfoC
           justify="center"
           width="100%"
           onClick={handleUploaderClick}
-          style={previewImg ? { backgroundImage: `url(${previewImg})` } : { backgroundImage: `url(${preview})` }}
+          style={previewImg ? { backgroundImage: `url(${previewImg})` } : { backgroundImage: `url(${defaultProfile})` }}
           className={previewImgStyle({ hasImage: !!previewImg })}>
           <IcCameraMain0624 width={24} height={24} className={icCameraStyle} />
           <input
