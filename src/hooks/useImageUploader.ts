@@ -25,8 +25,9 @@ const useImageUploader = <T extends { imageUrls: string }>(
 
     uploadImage(formData, {
       onSuccess: (data) => {
-        if (data?.imageUrls) {
-          onSuccess(data.imageUrls);
+        // 이미지 업로드 api res는 imageUrl (string)
+        if (data?.imageUrl) {
+          onSuccess(data.imageUrl);
         }
       },
     });
