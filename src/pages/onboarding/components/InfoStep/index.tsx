@@ -1,6 +1,7 @@
 import { labelStyle } from '@/pages/onboarding/components/InfoStep/index.css';
 import { INFO_KEY, MAX_PHONENUMBER_LENGTH } from '@/pages/onboarding/constants';
 import { onboardInfoTypes } from '@/pages/onboarding/types';
+import { validateTypingName, validateTypingPhoneNumber } from '@/pages/onboarding/utils/validate';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Input from '@/components/Input';
@@ -14,13 +15,13 @@ interface InfoStepProps {
 
 const InfoStep = ({ name, phoneNumber, onInfoChange }: InfoStepProps) => {
   const handleNameChange = (name: string) => {
+    if (!validateTypingName(name)) return;
+
     onInfoChange(INFO_KEY.NAME, name);
   };
 
   const handlePhoneNumberChange = (phoneNumber: string) => {
-    if (phoneNumber.length > MAX_PHONENUMBER_LENGTH) {
-      return;
-    }
+    if (!validateTypingPhoneNumber(phoneNumber)) return;
 
     onInfoChange(INFO_KEY.PHONE_NUMBER, phoneNumber);
   };

@@ -6,8 +6,10 @@ import InfoStep from '@/pages/onboarding/components/InfoStep';
 import LevelStep from '@/pages/onboarding/components/LevelStep';
 import OnboardingHeader from '@/pages/onboarding/components/OnboardingHeader';
 import ProfileStep from '@/pages/onboarding/components/ProfileStep';
+import { MAX_NAME_LENGTH, MAX_ONBOARDING_STEP, MIN_NAME_LENGTH } from '@/pages/onboarding/constants';
 import { bodyWrapperStyle, containerStyle, footerWrapperStyle, progressBarStyle } from '@/pages/onboarding/index.css';
 import { GenreTypes, onboardInfoTypes } from '@/pages/onboarding/types';
+import { validateName, validatePhoneNumber } from '@/pages/onboarding/utils/validate';
 import BoxButton from '@/components/BoxButton';
 import ProgressBar from '@/components/ProgressBar';
 import { FunnelProps, StepProps } from '@/hooks/useFunnel';
@@ -63,14 +65,11 @@ const OnboardingFunnel = ({ currentStep, Funnel, setStep, Step }: OnboardingFunn
       },
       {
         onSuccess: ({ response }) => {
-          console.log(response.status);
-          console.log(response.data.status);
+          // 온보딩 성공시 로컬스토리지에 토큰 등록
           if (response.status === 200) {
-            console.log('온보딩 성공');
             localStorage.setItem(ACCESS_TOKEN_KEY, tokenRef.current.accessToken);
             localStorage.setItem(REFRESH_TOKEN_KEY, tokenRef.current.refreshToken);
             setStep(1);
-            return;
           }
         },
       }
@@ -81,7 +80,7 @@ const OnboardingFunnel = ({ currentStep, Funnel, setStep, Step }: OnboardingFunn
   const buttonActive = (currentStep: number) => {
     switch (currentStep) {
       case 1:
-        return !(info.name && info.phoneNumber);
+        return !(validateName(info.name) && validatePhoneNumber(info.phoneNumber));
       case 2:
         return !info.genres.length;
       case 3:
@@ -98,7 +97,9 @@ const OnboardingFunnel = ({ currentStep, Funnel, setStep, Step }: OnboardingFunn
   return (
     <form className={containerStyle} onSubmit={handleOnboardSubmit}>
       <OnboardingHeader currentStep={currentStep} onPrevButtonClick={handlePrevButtonClick} />
-      {currentStep < 5 && <ProgressBar totalStep={4} currentStep={currentStep} className={progressBarStyle} />}
+      {currentStep < MAX_ONBOARDING_STEP && (
+        <ProgressBar totalStep={MAX_ONBOARDING_STEP - 1} currentStep={currentStep} className={progressBarStyle} />
+      )}
 
       <div className={bodyWrapperStyle}>
         <Funnel>
@@ -129,10 +130,10 @@ const OnboardingFunnel = ({ currentStep, Funnel, setStep, Step }: OnboardingFunn
       <div className={footerWrapperStyle}>
         <BoxButton
           variant="primary"
-          onClick={currentStep === 4 ? () => {} : handleNextButtonClick}
+          onClick={currentStep === MAX_ONBOARDING_STEP - 1 ? () => {} : handleNextButtonClick}
           isDisabled={buttonActive(currentStep)}
-          type={currentStep === 4 ? 'submit' : 'button'}>
-          {currentStep === 5 ? '홈으로 이동' : '다음'}
+          type={currentStep === MAX_ONBOARDING_STEP - 1 ? 'submit' : 'button'}>
+          {currentStep === MAX_ONBOARDING_STEP ? '홈으로 이동' : '다음'}
         </BoxButton>
       </div>
     </form>

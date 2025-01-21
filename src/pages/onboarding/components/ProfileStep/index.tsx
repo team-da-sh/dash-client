@@ -1,11 +1,12 @@
 import { icCameraStyle, inputStyle, previewImgStyle } from '@/pages/onboarding/components/ProfileStep/index.css';
-import { excludeSpecialBlankChar, INFO_KEY, MAX_NICKNAME_LENGTH } from '@/pages/onboarding/constants';
+import { INFO_KEY, MAX_NICKNAME_LENGTH } from '@/pages/onboarding/constants';
 import { onboardInfoTypes } from '@/pages/onboarding/types';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Input from '@/components/Input';
 import Text from '@/components/Text';
 import { useUploadImg } from '@/hooks/useUploadImg';
+import { INCLUDE_BLANK, INCLUDE_SPECIAL } from '@/constants/regex';
 import { IcCameraMain0624 } from '@/assets/svg';
 import preview from '@/../public/svg/ic_profile_basic.svg';
 
@@ -25,7 +26,7 @@ const ProfileStep = ({ nickname, isNicknameError, changeIsNicknameError, onInfoC
       return;
     }
     if (nickname.length) {
-      if (excludeSpecialBlankChar.test(nickname)) {
+      if (INCLUDE_SPECIAL.test(nickname) || INCLUDE_BLANK.test(nickname)) {
         changeIsNicknameError(false);
       } else {
         changeIsNicknameError(true);
@@ -34,11 +35,6 @@ const ProfileStep = ({ nickname, isNicknameError, changeIsNicknameError, onInfoC
 
     onInfoChange(INFO_KEY.NICKNAME, nickname);
   };
-
-  // 이미지 url 정상화 되면 사용할 예정
-  // const handleProfileImageUrlChange = (profileImageUrl: string) => {
-  //   onInfoChange(INFO_KEY.PROFILE_IMAGE_URL, profileImageUrl);
-  // };
 
   return (
     <Flex direction="column" width="100%">
