@@ -9,7 +9,7 @@ export const INFO_KEY = {
 
 export const GENRELIST = [
   'HIPHOP',
-  'FEMALEHIPHOP',
+  'FEMALE_HIPHOP',
   'POPPING',
   'BRAKING',
   'WAACKING',

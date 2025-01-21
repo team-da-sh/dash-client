@@ -3,7 +3,6 @@ import { instance } from '@/apis/api';
 
 export interface tokenTypes {
   accessToken: string;
-  refreshToken: string;
 }
 
 export const patchOnboard = async ({
@@ -14,11 +13,9 @@ export const patchOnboard = async ({
   profileImageUrl,
   genres,
   accessToken,
-  refreshToken,
 }: onboardInfoTypes & tokenTypes) => {
-  console.log(name, phoneNumber, level, nickname, profileImageUrl, genres, accessToken);
-  const response = await instance.patch(
-    `/api/v1/users/onboard`,
+  const response = await instance.post(
+    `/api/v1/members/onboard`,
     {
       name: name,
       phoneNumber: phoneNumber,
@@ -34,5 +31,5 @@ export const patchOnboard = async ({
     }
   );
 
-  return { response, accessToken, refreshToken };
+  return { response };
 };

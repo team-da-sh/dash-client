@@ -16,7 +16,6 @@ const BoxButton = ({
   type,
   ...props
 }: BoxButtonProps) => {
-  console.log(type);
   return (
     <button
       className={clsx(

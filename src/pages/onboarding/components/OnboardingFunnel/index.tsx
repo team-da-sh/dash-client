@@ -12,6 +12,7 @@ import BoxButton from '@/components/BoxButton';
 import ProgressBar from '@/components/ProgressBar';
 import { FunnelProps, StepProps } from '@/hooks/useFunnel';
 import { useOnboardMutation } from '@/apis/onboarding/quries';
+import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from '@/constants/api';
 
 interface OnboardingFunnelProps {
   currentStep: number;
@@ -38,7 +39,6 @@ const OnboardingFunnel = ({ currentStep, Funnel, setStep, Step }: OnboardingFunn
   const location = useLocation();
   const tokenRef = useRef(location.state);
 
-  console.log(tokenRef);
   const handleInfoChange = <K extends keyof onboardInfoTypes>(key: K, value: onboardInfoTypes[K]) => {
     setInfo((prev) => ({ ...prev, [key]: value }));
   };
@@ -56,16 +56,25 @@ const OnboardingFunnel = ({ currentStep, Funnel, setStep, Step }: OnboardingFunn
   const handleOnboardSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    onboardMutate({
-      name: info.name,
-      phoneNumber: info.phoneNumber,
-      level: info.level,
-      nickname: info.nickname,
-      profileImageUrl: info.profileImageUrl,
-      genres: info.genres,
-      accessToken: tokenRef.current.accessToken,
-      refreshToken: tokenRef.current.refreshToken,
-    });
+    onboardMutate(
+      {
+        ...info,
+        accessToken: tokenRef.current.accessToken,
+      },
+      {
+        onSuccess: ({ response }) => {
+          console.log(response.status);
+          console.log(response.data.status);
+          if (response.status === 200) {
+            console.log('온보딩 성공');
+            localStorage.setItem(ACCESS_TOKEN_KEY, tokenRef.current.accessToken);
+            localStorage.setItem(REFRESH_TOKEN_KEY, tokenRef.current.refreshToken);
+            setStep(1);
+            return;
+          }
+        },
+      }
+    );
   };
 
   // 다음 버튼 활성화 판단
