@@ -17,6 +17,7 @@ export const useFunnel = (totalSteps: number, completePath: string) => {
   const [currentStep, setCurrentStep] = useState(Number(searchParams.get('step') || 1));
 
   const navigate = useNavigate();
+
   const step = searchParams.get('step') || '1';
 
   const setStep = (stepChange: number) => {

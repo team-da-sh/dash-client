@@ -42,6 +42,7 @@ const CalendarCustom = ({ startDate, endDate, setStartDate, setEndDate, isSearch
   };
 
   const today = new Date();
+  today.setHours(0, 0, 0, 0);
 
   const minDate = isSearch ? undefined : today;
 
@@ -56,7 +57,7 @@ const CalendarCustom = ({ startDate, endDate, setStartDate, setEndDate, isSearch
     <div className={isSearch ? `search-calendar` : `class-register-calendar`}>
       <Calendar
         locale="ko"
-        selectRange={true}
+        selectRange={isSearch}
         onChange={dateChangeHandler}
         formatDay={formatCalendarDay}
         showNeighboringMonth={false}

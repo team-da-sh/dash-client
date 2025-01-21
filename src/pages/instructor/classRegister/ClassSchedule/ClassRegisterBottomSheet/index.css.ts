@@ -16,7 +16,8 @@ export const bottomSheetContainerStyle = style({
 
 export const mainWrapperStyle = style({
   display: 'flex',
-  justifyContent: 'center',
+  flexDirection: 'column',
+  alignItems: 'center',
 
   position: 'fixed',
   bottom: 0,
@@ -25,7 +26,6 @@ export const mainWrapperStyle = style({
 
   height: '50rem',
   width: '100%',
-  padding: '0rem 2rem 2.4rem 2rem',
 
   borderRadius: '16px 16px 0 0',
 
@@ -37,4 +37,10 @@ export const headerStyle = style({
   borderRadius: '16px 16px 0 0',
 });
 
-export const buttonWrapperStyle = style({});
+export const buttonWrapperStyle = style({
+  position: 'fixed',
+  bottom: '0',
+
+  width: '100%',
+  padding: '2.4rem 2rem',
+});
