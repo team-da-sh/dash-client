@@ -10,29 +10,29 @@ import { IcCameraMain0624 } from '@/assets/svg';
 import preview from '@/../public/svg/ic_profile_basic.svg';
 
 interface ProfileStepProps {
-  nickName: string;
+  nickname: string;
   profileImageUrl: string;
-  isNickNameError: boolean;
-  changeIsNickNameError: (isError: boolean) => void;
+  isNicknameError: boolean;
+  changeIsNicknameError: (isError: boolean) => void;
   onInfoChange: <K extends keyof onboardInfoTypes>(key: K, value: onboardInfoTypes[K]) => void;
 }
 
-const ProfileStep = ({ nickName, isNickNameError, changeIsNickNameError, onInfoChange }: ProfileStepProps) => {
+const ProfileStep = ({ nickname, isNicknameError, changeIsNicknameError, onInfoChange }: ProfileStepProps) => {
   const { imgRef, previewImg, handleUploaderClick, uploadImgFile } = useUploadImg();
 
-  const handleNickNameChange = (nickName: string) => {
-    if (nickName.length > MAX_NICKNAME_LENGTH) {
+  const handleNicknameChange = (nickname: string) => {
+    if (nickname.length > MAX_NICKNAME_LENGTH) {
       return;
     }
-    if (nickName.length) {
-      if (excludeSpecialBlankChar.test(nickName)) {
-        changeIsNickNameError(false);
+    if (nickname.length) {
+      if (excludeSpecialBlankChar.test(nickname)) {
+        changeIsNicknameError(false);
       } else {
-        changeIsNickNameError(true);
+        changeIsNicknameError(true);
       }
     }
 
-    onInfoChange(INFO_KEY.NICKNAME, nickName);
+    onInfoChange(INFO_KEY.NICKNAME, nickname);
   };
 
   // 이미지 url 정상화 되면 사용할 예정
@@ -73,16 +73,16 @@ const ProfileStep = ({ nickName, isNickNameError, changeIsNickNameError, onInfoC
       <Flex direction="column" gap="0.8rem" marginTop="2.8rem" width="100%">
         <Input
           placeholder="댄서네임을 입력하세요"
-          value={nickName}
-          onChange={(e) => handleNickNameChange(e.target.value)}
+          value={nickname}
+          onChange={(e) => handleNicknameChange(e.target.value)}
         />
         <Flex width="100%" justify="spaceBetween">
           <Text tag="b6" color="alert3">
-            {isNickNameError ? '특수기호, 띄어쓰기는 입력할 수 없어요' : ''}
+            {isNicknameError ? '특수기호, 띄어쓰기는 입력할 수 없어요' : ''}
           </Text>
 
-          <Text tag="c3" color={isNickNameError ? 'alert3' : 'main4'}>
-            {nickName && `${nickName.length}/${MAX_NICKNAME_LENGTH}`}
+          <Text tag="c3" color={isNicknameError ? 'alert3' : 'main4'}>
+            {nickname && `${nickname.length}/${MAX_NICKNAME_LENGTH}`}
           </Text>
         </Flex>
       </Flex>

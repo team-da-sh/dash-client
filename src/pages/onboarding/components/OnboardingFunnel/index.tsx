@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import FinishStep from '@/pages/onboarding/components/FinishStep';
 import GenreStep from '@/pages/onboarding/components/GenreStep';
 import InfoStep from '@/pages/onboarding/components/InfoStep';
@@ -10,6 +11,7 @@ import { GenreTypes, onboardInfoTypes } from '@/pages/onboarding/types';
 import BoxButton from '@/components/BoxButton';
 import ProgressBar from '@/components/ProgressBar';
 import { FunnelProps, StepProps } from '@/hooks/useFunnel';
+import { useOnboardMutation } from '@/apis/onboarding/quries';
 
 interface OnboardingFunnelProps {
   currentStep: number;
@@ -23,27 +25,47 @@ const OnboardingFunnel = ({ currentStep, Funnel, setStep, Step }: OnboardingFunn
     name: '',
     phoneNumber: '',
     genres: [] as GenreTypes[],
-    nickName: '',
+    nickname: '',
     level: null,
     profileImageUrl: 'http',
   });
 
-  const [isNickNameError, setIsNickNameError] = useState(false);
+  const [isNicknameError, setIsNicknameError] = useState(false);
 
-  const changeNickNameError = (isError: boolean) => {
-    setIsNickNameError(isError);
-  };
+  const { mutate: onboardMutate } = useOnboardMutation();
 
+  // 토큰 ref로 전역변수로 저장
+  const location = useLocation();
+  const tokenRef = useRef(location.state);
+
+  console.log(tokenRef);
   const handleInfoChange = <K extends keyof onboardInfoTypes>(key: K, value: onboardInfoTypes[K]) => {
     setInfo((prev) => ({ ...prev, [key]: value }));
+  };
+  const changeNicknameError = (isError: boolean) => {
+    setIsNicknameError(isError);
   };
 
   const handleNextButtonClick = () => {
     setStep(1);
   };
-
   const handlePrevButtonClick = () => {
     setStep(-1);
+  };
+
+  const handleOnboardSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    onboardMutate({
+      name: info.name,
+      phoneNumber: info.phoneNumber,
+      level: info.level,
+      nickname: info.nickname,
+      profileImageUrl: info.profileImageUrl,
+      genres: info.genres,
+      accessToken: tokenRef.current.accessToken,
+      refreshToken: tokenRef.current.refreshToken,
+    });
   };
 
   // 다음 버튼 활성화 판단
@@ -56,7 +78,7 @@ const OnboardingFunnel = ({ currentStep, Funnel, setStep, Step }: OnboardingFunn
       case 3:
         return !info.level;
       case 4:
-        return !(info.profileImageUrl && info.nickName);
+        return !(info.profileImageUrl && info.nickname);
       case 5:
         return false;
       default:
@@ -65,7 +87,7 @@ const OnboardingFunnel = ({ currentStep, Funnel, setStep, Step }: OnboardingFunn
   };
 
   return (
-    <div className={containerStyle}>
+    <form className={containerStyle} onSubmit={handleOnboardSubmit}>
       <OnboardingHeader currentStep={currentStep} onPrevButtonClick={handlePrevButtonClick} />
       {currentStep < 5 && <ProgressBar totalStep={4} currentStep={currentStep} className={progressBarStyle} />}
 
@@ -82,25 +104,29 @@ const OnboardingFunnel = ({ currentStep, Funnel, setStep, Step }: OnboardingFunn
           </Step>
           <Step name="4" key={4}>
             <ProfileStep
-              nickName={info.nickName}
-              isNickNameError={isNickNameError}
-              changeIsNickNameError={changeNickNameError}
+              nickname={info.nickname}
+              isNicknameError={isNicknameError}
+              changeIsNicknameError={changeNicknameError}
               profileImageUrl={info.profileImageUrl}
               onInfoChange={handleInfoChange}
             />
           </Step>
           <Step name="5" key={5}>
-            <FinishStep nickName={info.nickName}></FinishStep>
+            <FinishStep nickname={info.nickname}></FinishStep>
           </Step>
         </Funnel>
       </div>
 
       <div className={footerWrapperStyle}>
-        <BoxButton variant="primary" onClick={handleNextButtonClick} isDisabled={buttonActive(currentStep)}>
+        <BoxButton
+          variant="primary"
+          onClick={currentStep === 4 ? () => {} : handleNextButtonClick}
+          isDisabled={buttonActive(currentStep)}
+          type={currentStep === 4 ? 'submit' : 'button'}>
           {currentStep === 5 ? '홈으로 이동' : '다음'}
         </BoxButton>
       </div>
-    </div>
+    </form>
   );
 };
 
