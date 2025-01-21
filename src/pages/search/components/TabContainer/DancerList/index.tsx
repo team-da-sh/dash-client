@@ -3,6 +3,7 @@ import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Tag from '@/components/Tag';
 import { Dancer } from '@/apis/search/queries';
+import { genreMapping } from '@/constants/index';
 import { vars } from '@/styles/theme.css';
 
 interface DancerListProps {
@@ -30,7 +31,7 @@ const DancerList = ({ dancers }: DancerListProps) => {
             <Flex gap="0.5rem">
               {dancer.genres.map((genre, index) => (
                 <Tag key={index} type="search" size="large">
-                  {genre}
+                  {genreMapping[genre] || genre}
                 </Tag>
               ))}
             </Flex>
