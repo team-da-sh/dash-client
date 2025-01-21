@@ -28,7 +28,7 @@ const VideoLinkStep = ({ videoUrls, onInfoChange }: VideoLinkStepProps) => {
     );
 
   const addItem = () => {
-    if (inputItems[inputItems.length - 1]?.value.trim() === '') {
+    if (inputItems.length >= 5 || inputItems[inputItems.length - 1]?.value.trim() === '') {
       return;
     }
 
@@ -68,9 +68,11 @@ const VideoLinkStep = ({ videoUrls, onInfoChange }: VideoLinkStepProps) => {
           </div>
         ))}
 
-        <Flex justify="center" align="center" className={addInputBoxStyle} onClick={addItem}>
-          <IcPlusGray0524 width={'2.4rem'} />
-        </Flex>
+        {inputItems.length < 5 && (
+          <Flex justify="center" align="center" className={addInputBoxStyle} onClick={addItem}>
+            <IcPlusGray0524 width={'2.4rem'} />
+          </Flex>
+        )}
       </Flex>
     </>
   );
