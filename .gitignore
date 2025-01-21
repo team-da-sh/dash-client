@@ -26,5 +26,3 @@ dist-ssr
 .env
 
 *storybook.log
-
-.env
