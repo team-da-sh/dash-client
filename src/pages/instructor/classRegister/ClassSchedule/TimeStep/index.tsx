@@ -21,6 +21,7 @@ const TimeStep = () => {
       <Head level="h2" tag="h6">
         클래스 시작 시간
       </Head>
+
       <Flex justify="center" gap="1rem" paddingTop="1.6rem" paddingBottom="2.4rem">
         <TimeControl
           label="hour"
