@@ -20,7 +20,6 @@ import { DANCERLIST, GENRELIST } from '@/pages/home/mocks';
 import { CLASS_LIST } from '@/pages/search/mocks';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
-import { useAdvertisements } from '@/apis/home/quries';
 import { useIntersect } from '@/utils/useIntersect';
 
 const Home = () => {
@@ -35,10 +34,6 @@ const Home = () => {
     setShowMyPage(false);
   };
 
-  const { data } = useAdvertisements();
-
-  console.log(data);
-
   return (
     <div className={myPageContainerStyle}>
       <div className={`${overlayStyle} ${showMyPage ? overlayActiveStyle : ''}`} />
@@ -46,7 +41,7 @@ const Home = () => {
 
       <HomeHeader isVisible={isVisible} onMyPageClick={handleMyPageClick} />
 
-      <div ref={targetRef}>
+      <div ref={targetRef} style={{ minHeight: '37.5rem' }}>
         <HomeCarousel />
       </div>
 

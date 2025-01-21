@@ -3,10 +3,14 @@ import { Pagination, Autoplay } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SliderItem from '@/pages/home/components/SliderItem';
 import { ADVERTISEMENTS } from '@/pages/home/mocks';
+import { useAdvertisements } from '@/apis/home/quries';
 
 interface HomeCarouselProps {}
 
 const HomeCarousel = ({}: HomeCarouselProps) => {
+  const { data } = useAdvertisements();
+
+  console.log(data?.data?.advertisements);
   return (
     <Swiper
       loop={true}
@@ -18,7 +22,7 @@ const HomeCarousel = ({}: HomeCarouselProps) => {
         delay: 4500,
         disableOnInteraction: false,
       }}>
-      {ADVERTISEMENTS.map((data, index) => (
+      {data?.data.advertisements.map((data, index) => (
         <SwiperSlide key={`${index}-${data.description}`}>
           <SliderItem imageUrl={data.imageUrl} description={data.description} />
         </SwiperSlide>
