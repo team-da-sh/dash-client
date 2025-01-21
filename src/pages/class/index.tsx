@@ -6,7 +6,7 @@ import TabWrapper from '@/pages/class/components/TabWrapper';
 import { headerStyle } from '@/pages/class/index.css';
 import Divider from '@/components/Divider';
 import { getLessonDetail } from '@/apis/class/axios';
-import { useLessonDetail } from '@/apis/class/quries';
+import { useLessonDetail } from '@/apis/class/queries';
 import { useIntersect } from '@/utils/useIntersect';
 import { LESSON_DATA } from './mocks/mockLessonData';
 
