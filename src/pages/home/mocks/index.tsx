@@ -131,18 +131,3 @@ export const DANCERLIST = [
     teacherNickName: '댄서 네임',
   },
 ];
-
-export const ADVERTISEMENTS = [
-  {
-    imageUrl: 'https://cdn.spotvnews.co.kr/news/photo/202405/681149_1047749_1528.jpg',
-    description: '서울여자대학교 디지털댄스전공 Say Jang 길거리 댄스 이벤트',
-  },
-  {
-    imageUrl: 'https://cdn.spotvnews.co.kr/news/photo/202405/681149_1047749_1528.jpg',
-    description: '서울여자대 디지털댄스전공 Say Jang 길거리 댄스 ㅁㄴㅇ이벤트',
-  },
-  {
-    imageUrl: 'https://cdn.spotvnews.co.kr/news/photo/202405/681149_1047749_1528.jpg',
-    description: '서울여자대학교 디지털전공 Say Jang 길거리 댄스 ㅇㅇㅇ이벤트',
-  },
-];
