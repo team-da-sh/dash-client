@@ -19,6 +19,19 @@ interface TagItem {
   type?: string;
 }
 
+interface ClassTypes {
+  id: number;
+  teacherProfileImage: string;
+  level: string;
+  genre: string;
+  name: string;
+  teacherName: string;
+  startDate: string;
+  endDate: string;
+  location: string;
+  remainingDays: number;
+}
+
 interface TabContainerProps {
   defaultSortTags: defaultSortTagProps[];
   genre: string | null;
@@ -123,7 +136,7 @@ const TabContainer = ({
             />
             <div className={divCustomStyle}>
               {classList && classList.lessons && classList.lessons.length > 0 ? (
-                classList.lessons.map((data) => (
+                classList.lessons.map((data: ClassTypes) => (
                   <ClassItem
                     key={data.id}
                     lessonId={data.id}
