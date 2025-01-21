@@ -64,25 +64,17 @@ globalStyle('.react-calendar__year-view__months', {
 
 globalStyle('.react-calendar__month-view__days__day', {
   height: '3.6rem',
+  padding: '0 !important',
+  margin: '0 !important',
+  border: 'none !important',
 });
 
 globalStyle('.react-calendar__month-view__days', {
   height: '26.9rem',
+  display: 'grid',
+  borderSpacing: '0' /* 테이블 셀 간의 여백 제거 */,
+  gap: '0',
   ...vars.fonts.h6,
-});
-
-// 기간 첫 날짜 스타일
-globalStyle(' .react-calendar__tile--rangeStart', {
-  position: 'relative',
-  color: 'white',
-  background: 'linear-gradient(to right, white 50%, #C3B9FF 50%) !important',
-});
-
-// 기간 끝 날짜 스타일
-globalStyle('.react-calendar__month-view__days .react-calendar__tile--rangeEnd', {
-  position: 'relative',
-  color: 'white',
-  background: 'linear-gradient(to right, #C3B9FF 50%, white 50%) ',
 });
 
 // 기간 첫 날짜 배경 원 스타일
@@ -113,7 +105,45 @@ globalStyle(' .react-calendar__tile--rangeEnd abbr', {
   alignContent: 'center',
 });
 
-globalStyle('.react-calendar__tile--range', {
+// search 페이지 캘린더 날짜 스타일
+// 기간 첫 날짜 스타일
+globalStyle('.search-calendar .react-calendar__tile--rangeStart', {
+  position: 'relative',
+  color: 'white',
+  background: 'linear-gradient(to right, white 50%, #C3B9FF 50%) !important',
+});
+
+// 기간 끝 날짜 스타일
+globalStyle('.search-calendar .react-calendar__month-view__days .react-calendar__tile--rangeEnd', {
+  position: 'relative',
+  color: 'white',
+  background: 'linear-gradient(to right, #C3B9FF 50%, white 50%) ',
+});
+
+globalStyle('.search-calendar  .react-calendar__tile--range', {
   borderRadius: '0',
   background: vars.colors.main01,
+});
+
+// class-register 페이지 캘린더 날짜 스타일
+// 기간 첫 날짜 스타일
+globalStyle('.class-register-calendar .react-calendar__tile--rangeStart', {
+  position: 'relative',
+  color: 'white',
+});
+
+// 기간 끝 날짜 스타일
+globalStyle('.class-register-calendar .react-calendar__month-view__days .react-calendar__tile--rangeEnd', {
+  position: 'relative',
+  color: 'white',
+});
+
+globalStyle('.class-register-calendar  .react-calendar__tile--range', {
+  borderRadius: '0',
+});
+
+// 이전 날짜 disabled 스타일
+globalStyle('.disabled-date', {
+  color: vars.colors.gray03,
+  pointerEvents: 'none',
 });
