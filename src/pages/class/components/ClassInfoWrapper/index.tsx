@@ -9,7 +9,7 @@ import { calculateDday } from '@/utils/dateCalculate';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { IcThunderMain0424 } from '@/assets/svg';
 import { vars } from '@/styles/theme.css';
-import { LessonDetail } from '@/apis/class/axios';
+import { LessonDetail } from '@/pages/class/types/index';
 import { genreMapping } from '@/constants/index';
 
 const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetail }) => {

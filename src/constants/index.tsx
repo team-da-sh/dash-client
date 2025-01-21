@@ -6,7 +6,7 @@ import TabEducation from '@/pages/dancer/components/TabWrapper/TabEducation';
 import TabHistory from '@/pages/dancer/components/TabWrapper/TabExperience';
 import TabVideo from '@/pages/dancer/components/TabWrapper/TabVideo';
 import { IcLevelAdvanced, IcLevelBasic, IcLevelIntermediate, IcLevelStarter } from '@/assets/svg';
-import { LessonDetail } from "@/apis/class/axios";
+import { LessonDetail } from "@/pages/class/types/index";
 
 export const LEVEL = [
   {

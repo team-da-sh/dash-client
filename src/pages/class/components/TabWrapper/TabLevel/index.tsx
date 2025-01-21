@@ -4,19 +4,18 @@ import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Text from '@/components/Text';
 import { IcLevelStarter, IcClose, IcQuesitonmark } from '@/assets/svg';
-//import { LESSON_DATA } from '@/pages/class/mocks/mockLessonData';
 import { levelMapping, LEVEL } from '@/constants/index';
-import { LessonDetail } from "@/apis/class/axios";
+import { LessonDetail } from "@/pages/class/types/index";
 
 //type LessonLevelType = '입문' | '초급' | '중급' | '고급';
 
 const TabLevel = ({ lessonData }: { lessonData: LessonDetail }) => {
   const { level, recommendation } = lessonData;
 
-  // 1. 레벨을 영어에서 한국어로 변환
-  const translatedLevel = levelMapping[level] || level; // levelMapping으로 레벨을 한국어로 변환
+  // 영 -> 한한
+  const translatedLevel = levelMapping[level] || level;
 
-  // 2. LEVEL 배열에서 해당 한국어 레벨에 맞는 데이터를 찾기
+  // 레벨에 맞는 description
   const levelData = LEVEL.find((item) => item.title === translatedLevel);
 
   return (
