@@ -54,9 +54,10 @@ const InstructorRegisterFunnel = ({ currentStep, Funnel, Step, setStep }: Instru
       case 2:
         return !isInstaError && !isYoutubeError && (info.instagram.length > 0 || info.youtube.length > 0);
       case 3:
-        return info.education.length > 0 && info.experience.length > 0;
+        // 더 고민해볼게요...
+        return;
       case 4:
-      // return info.videoUrls.length > 0 && info.videoUrls[0].trim() !== '';
+        return info.videoUrls[0]?.trim() !== '';
       case 5:
         return info.detail.trim() !== '' && info.detail.length >= 30;
       case 6:
