@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import Description from '@/pages/instructorRegister/Description';
-import InputSection from './InputSection';
-import { InstructorRegisterInfoTypes } from '../../types';
+import InputSection from '@/pages/instructorRegister/InstructorRegisterFunnel/CareerStep/InputSection';
+import { INFO_KEY } from '@/pages/instructorRegister/constants';
+import { InstructorRegisterInfoTypes } from '@/pages/instructorRegister/types';
 import { IcDocumentBlack20, IcGraduationBlack20 } from '@/assets/svg';
 
 interface CareerStepProps {
@@ -25,7 +26,10 @@ const CareerStep = ({ education, experience, onInfoChange }: CareerStepProps) =>
         onToggleActive={() => setIsEducationActive((prev) => !prev)}
         inputItems={education.map((value, id) => ({ id: id + 1, value }))}
         onItemsChange={(updatedItems) =>
-          onInfoChange('education', updatedItems.map((item) => item.value))
+          onInfoChange(
+            INFO_KEY.EDUCATION,
+            updatedItems.map((item) => item.value)
+          )
         }
       />
 
@@ -36,7 +40,10 @@ const CareerStep = ({ education, experience, onInfoChange }: CareerStepProps) =>
         onToggleActive={() => setIsCareerActive((prev) => !prev)}
         inputItems={experience.map((value, id) => ({ id: id + 1, value }))}
         onItemsChange={(updatedItems) =>
-          onInfoChange('experience', updatedItems.map((item) => item.value))
+          onInfoChange(
+            INFO_KEY.EXPERIENCE,
+            updatedItems.map((item) => item.value)
+          )
         }
       />
     </>

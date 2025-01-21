@@ -8,6 +8,8 @@ export const INFO_KEY = {
   VIDEO_URLS: 'videoUrls',
 } as const;
 
+export const VIDEO_INPUT_MAX = 5;
+
 // 정규식
 export const INSTAGRAM_REGEX = /^https?:\/\/(www\.)?instagram\.com\/[a-zA-Z0-9_.-]+\/?$/;
 export const YOUTUBE_REGEX =

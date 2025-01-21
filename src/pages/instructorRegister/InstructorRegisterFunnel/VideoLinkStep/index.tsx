@@ -1,21 +1,19 @@
 import { useRef } from 'react';
 import Description from '@/pages/instructorRegister/Description';
-import { addInputBoxStyle } from '@/pages/instructorRegister/InstructorRegisterFunnel/VideoLinkStep/index.css';
+import {
+  addInputBoxStyle,
+  inputContainerStyle,
+  inputIconStyle,
+} from '@/pages/instructorRegister/InstructorRegisterFunnel/VideoLinkStep/index.css';
+import { INFO_KEY, VIDEO_INPUT_MAX } from '@/pages/instructorRegister/constants';
+import { InputItemTypes, InstructorRegisterInfoTypes } from '@/pages/instructorRegister/types';
 import Flex from '@/components/Flex';
 import Input from '@/components/Input';
 import { IcPlusGray0524, IcXCircleGray } from '@/assets/svg';
-import { INFO_KEY } from '../../constants';
-import { InstructorRegisterInfoTypes } from '../../types';
-import { inputContainerStyle, inputIconStyle } from '../CareerStep/index.css';
 
 interface VideoLinkStepProps {
   videoUrls: string[];
   onInfoChange: <K extends keyof InstructorRegisterInfoTypes>(key: K, value: InstructorRegisterInfoTypes[K]) => void;
-}
-
-interface InputItemTypes {
-  id: number;
-  value: string;
 }
 
 const VideoLinkStep = ({ videoUrls, onInfoChange }: VideoLinkStepProps) => {
@@ -68,7 +66,7 @@ const VideoLinkStep = ({ videoUrls, onInfoChange }: VideoLinkStepProps) => {
           </div>
         ))}
 
-        {inputItems.length < 5 && (
+        {inputItems.length < VIDEO_INPUT_MAX && (
           <Flex justify="center" align="center" className={addInputBoxStyle} onClick={addItem}>
             <IcPlusGray0524 width={'2.4rem'} />
           </Flex>

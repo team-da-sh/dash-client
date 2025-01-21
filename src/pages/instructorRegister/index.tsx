@@ -1,9 +1,9 @@
+import InstructorRegisterFunnel from '@/pages/instructorRegister/InstructorRegisterFunnel';
+import { progressBarCustomStyle } from '@/pages/instructorRegister/index.css';
 import Header from '@/components/Header';
 import ProgressBar from '@/components/ProgressBar';
 import { useFunnel } from '@/hooks/useFunnel';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import InstructorRegisterFunnel from './InstructorRegisterFunnel';
-import { progressBarCustomStyle } from './index.css';
 
 const InstructorRegister = () => {
   const TOTAL_STEP = 6;
