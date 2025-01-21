@@ -15,11 +15,7 @@ const Search = () => {
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
 
-  const {
-    data: dancerList,
-    isLoading,
-    error,
-  } = useGetDancerList({
+  const { data: dancerList, error } = useGetDancerList({
     keyword: submittedSearchValue,
   });
 
@@ -52,7 +48,6 @@ const Search = () => {
         setStartDate={setStartDate}
         setEndDate={setEndDate}
         dancerList={dancerList}
-        isLoading={isLoading}
         error={error}
       />
     </Flex>

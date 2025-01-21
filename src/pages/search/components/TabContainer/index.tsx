@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import ClassItem from '@/pages/home/components/ClassItem';
 import { defaultSortTagProps } from '@/pages/home/types/defaultSortTag';
-import DancerList from '@/pages/search/components/DancerList';
+import DancerList from '@/pages/search/components/TabContainer/DancerList';
+import EmptyView from '@/pages/search/components/TabContainer/EmptyView';
 import TagSection from '@/pages/search/components/TabContainer/TagSection';
 import Dropdown from '@/pages/search/components/TabContainer/TagSection/Dropdown';
 import { divCustomStyle } from '@/pages/search/components/TabContainer/index.css';
@@ -29,7 +30,6 @@ interface TabContainerProps {
   setStartDate: (date: string) => void;
   setEndDate: (date: string) => void;
   dancerList: any;
-  isLoading: boolean;
   error: any;
 }
 
@@ -44,7 +44,6 @@ const TabContainer = ({
   setStartDate,
   setEndDate,
   dancerList,
-  isLoading,
   error,
 }: TabContainerProps) => {
   const [selectedTab, setSelectedTab] = useState(0);
@@ -138,9 +137,12 @@ const TabContainer = ({
             </div>
           </TabPanel>
           <TabPanel isSelected={selectedTab === 1}>
-            {isLoading && <div>Loading...</div>}
             {error && <div>Error: {error.message}</div>}
-            {dancerList && <DancerList dancers={dancerList.teachers} />}
+            {dancerList && dancerList.teachers && dancerList.teachers.length > 0 ? (
+              <DancerList dancers={dancerList.teachers} />
+            ) : (
+              <EmptyView />
+            )}
           </TabPanel>
         </TabRoot>
       </Flex>

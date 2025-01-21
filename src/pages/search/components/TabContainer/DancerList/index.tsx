@@ -1,4 +1,4 @@
-import { dancerImageStyle } from '@/pages/search/components/DancerList/index.css';
+import { dancerImageStyle } from '@/pages/search/components/TabContainer/DancerList/index.css';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Tag from '@/components/Tag';
