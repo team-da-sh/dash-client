@@ -5,6 +5,7 @@ import IntroductionStep from '@/pages/instructorRegister/InstructorRegisterFunne
 import PersonalSNSStep from '@/pages/instructorRegister/InstructorRegisterFunnel/PersonalSNSStep';
 import VideoLinkStep from '@/pages/instructorRegister/InstructorRegisterFunnel/VideoLinkStep';
 import { funnelContainerStyle } from '@/pages/instructorRegister/InstructorRegisterFunnel/index.css';
+import { TOTAL_STEP } from '@/pages/instructorRegister/constants';
 import { buttonContainerStyle } from '@/pages/instructorRegister/index.css';
 import { InstructorRegisterInfoTypes } from '@/pages/instructorRegister/types';
 import { FunnelProps, StepProps } from '@/pages/search/types/funnel';
@@ -17,7 +18,6 @@ interface InstructorRegisterFunnelProps {
   setStep: (step: number) => void;
   Step: ({ children }: StepProps) => JSX.Element;
 }
-const TOTAL_STEP = 6;
 
 const InstructorRegisterFunnel = ({ currentStep, Funnel, Step, setStep }: InstructorRegisterFunnelProps) => {
   const [info, setInfo] = useState({
