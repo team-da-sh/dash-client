@@ -5,6 +5,7 @@ import {
   previewImgStyle,
 } from '@/pages/instructorRegister/InstructorRegisterFunnel/ImageUploadStep/index.css';
 import Flex from '@/components/Flex';
+import Text from '@/components/Text';
 import { IcPlusGray0524, IcXCircleGray0424 } from '@/assets/svg';
 
 interface ImageUploadStepProps {
@@ -37,7 +38,9 @@ const ImageUploadStep = ({
         {!previewImg && (
           <Flex direction="column" align="center">
             <IcPlusGray0524 width={'2.4rem'} />
-            <p>1/1</p>
+            <Text tag="c1" color="gray5">
+              1/1
+            </Text>
           </Flex>
         )}
 

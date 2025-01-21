@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
+import { postImage } from '@/apis/common/axios';
 import queryClient from '@/queryClient';
-import { postImage } from '../axios';
 
 export const useImageMutation = () => {
   return useMutation({
