@@ -8,6 +8,7 @@ import { buttonContainerStyle, progressBarCustomStyle } from './index.css';
 const InstructorRegister = () => {
   const TOTAL_STEP = 6;
   const { Funnel, Step, currentStep, setStep } = useFunnel(TOTAL_STEP, '/mypage');
+  
 
   return (
     <>
