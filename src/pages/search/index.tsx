@@ -4,7 +4,9 @@ import TabContainer from '@/pages/search/components/TabContainer';
 import { DEFAULT_SORT_TAGS } from '@/pages/search/constants/index';
 import Flex from '@/components/Flex';
 import Header from '@/components/Header';
-import { useGetDancerList } from '@/apis/search/queries';
+import { useGetClassList, useGetDancerList } from '@/apis/search/queries';
+import { genreEngMapping, levelEngMapping } from '@/constants';
+import { labelToSortOptionMap } from '@/constants';
 import { headerRootCutomStyle } from './index.css';
 
 const Search = () => {
@@ -14,10 +16,25 @@ const Search = () => {
   const [level, setLevel] = useState<string | null>(null);
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
+  const [selectedLabel, setSelectedLabel] = useState<'최신 등록순' | '찜이 많은순' | '마감 임박순'>('최신 등록순');
+
+  const sortOption = labelToSortOptionMap[selectedLabel];
 
   const { data: dancerList, error } = useGetDancerList({
     keyword: submittedSearchValue,
   });
+
+  const { data: classList } = useGetClassList({
+    keyword: submittedSearchValue,
+    genre: genre ? genreEngMapping[genre] : undefined,
+    level: level ? levelEngMapping[level] : undefined,
+    startDate: startDate || undefined,
+    endDate: endDate || undefined,
+    sortOption: sortOption,
+  });
+
+  console.log('startDate', startDate);
+  console.log('startDate', endDate);
 
   const handleSearchChange = (value: string) => {
     setSearchValue(value);
@@ -48,7 +65,10 @@ const Search = () => {
         setStartDate={setStartDate}
         setEndDate={setEndDate}
         dancerList={dancerList}
+        classList={classList}
         error={error}
+        selectedLabel={selectedLabel}
+        setSelectedLabel={setSelectedLabel}
       />
     </Flex>
   );

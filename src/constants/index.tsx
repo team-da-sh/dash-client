@@ -91,3 +91,36 @@ export const levelMapping: { [key: string]: string } = {
   INTERMEDIATE: '중급',
   ADVANCED: '고급',
 };
+
+// 장르 한영 변환
+export const genreEngMapping: { [key: string]: string } = {
+  힙합: 'HIPHOP',
+  피메일힙합: 'FEMALEHIPHOP',
+  팝핑: 'POPPING',
+  브레이킹: 'BRAKING',
+  왁킹: 'WAACKING',
+  락킹: 'LOCKING',
+  하우스: 'HOUSE',
+  보깅: 'VOGUING',
+  크럼프: 'KRUMP',
+  소울: 'SOUㅣ',
+  코레오그래피: 'CHOREOGRAPHY',
+  케이팝: 'KPOP',
+};
+
+// 레벨 한영 변환
+export const levelEngMapping: { [key: string]: string } = {
+  입문: 'BEGINNER',
+  초급: 'NOVICE',
+  중급: 'INTERMEDIATE',
+  고급: 'ADVANCED',
+};
+
+export const labelToSortOptionMap: Record<
+  '최신 등록순' | '찜이 많은순' | '마감 임박순',
+  'LATEST' | 'MOSTFAVORITE' | 'UPCOMING'
+> = {
+  '최신 등록순': 'LATEST',
+  '찜이 많은순': 'MOSTFAVORITE',
+  '마감 임박순': 'UPCOMING',
+};
