@@ -2,11 +2,12 @@ import ClassRegisterFunnel from '@/pages/instructor/classRegister/ClassSchedule/
 import BoxButton from '@/components/BoxButton';
 import Header from '@/components/Header';
 import { useFunnel } from '@/hooks/useFunnel';
+import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import * as styles from './index.css';
 
 const ClassRegisterBottomSheet = ({ onClose }: { onClose: () => void }) => {
   const TOTAL_STEP = 2;
-  const { Funnel, Step, currentStep, setStep } = useFunnel(TOTAL_STEP, '/mypage/class-register');
+  const { Funnel, Step, currentStep, setStep } = useFunnel(TOTAL_STEP, `${ROUTES_CONFIG.classRegister}`);
 
   const handleBackClick = () => {
     if (currentStep === 1) {
