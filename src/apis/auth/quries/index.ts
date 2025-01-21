@@ -13,7 +13,6 @@ export const useLoginMutation = () => {
     mutationFn: ({ redirectUrl, code }: loginTypes) => kakaoLogin(redirectUrl, code),
 
     onSuccess: ({ data: { accessToken, refreshToken, isOnboarded } }) => {
-      console.log('로그인 성공');
       instance.defaults.headers.Authorization = `Bearer ${accessToken}`;
 
       if (!isOnboarded) {
