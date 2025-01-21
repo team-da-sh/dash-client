@@ -20,7 +20,7 @@ import { DANCERLIST, GENRELIST } from '@/pages/home/mocks';
 import { CLASS_LIST } from '@/pages/search/mocks';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
-import { useAdvertisements } from '@/apis/home/quries';
+import { useAdvertisements } from '@/apis/home/queries';
 import { useIntersect } from '@/utils/useIntersect';
 
 const Home = () => {
