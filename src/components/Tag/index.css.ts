@@ -41,6 +41,17 @@ export const tagStyle = recipe({
       },
     },
 
+    isSelected: {
+      true: {
+        color: vars.colors.white,
+        backgroundColor: vars.colors.main04,
+      },
+      false: {
+        color: vars.colors.gray09,
+        outline: `1px solid ${vars.colors.gray04}`,
+      },
+    },
+
     size: {
       small: {
         height: '1.8rem',
@@ -87,6 +98,15 @@ export const tagStyle = recipe({
         gap: '0.4rem',
         padding: '0.8rem 1.5rem',
         ...vars.fonts.b9,
+      },
+      timeSelector: {
+        gap: '1rem',
+
+        padding: '0.8rem 1.4rem',
+
+        borderRadius: '30px',
+
+        ...vars.fonts.b3,
       },
     },
   },

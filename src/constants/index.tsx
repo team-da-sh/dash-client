@@ -124,3 +124,19 @@ export const labelToSortOptionMap: Record<
   '찜이 많은순': 'MOST_FAVORITE',
   '마감 임박순': 'UPCOMING',
 };
+
+export const TIME_RANGE = [
+  { id: 1, label: '1시간' },
+  { id: 1.5, label: '1시간 30분' },
+  { id: 2, label: '2시간' },
+  { id: 2.5, label: '2시간 30분' },
+  { id: 3, label: '3시간' },
+  { id: 3.5, label: '3시간 30분' },
+  { id: 4, label: '4시간' },
+  { id: 4.5, label: '4시간 30분' },
+  { id: 5, label: '5시간' },
+  { id: 5.5, label: '5시간 30분' },
+  { id: 6, label: '6시간' },
+];
+
+export const CLASS_REGISTER_TOTAL_STEP = 2;
