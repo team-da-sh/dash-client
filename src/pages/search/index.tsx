@@ -8,6 +8,7 @@ import Header from '@/components/Header';
 import { useGetClassList, useGetDancerList } from '@/apis/search/queries';
 import { genreEngMapping, levelEngMapping } from '@/constants';
 import { labelToSortOptionMap } from '@/constants';
+import SearchIntro from './components/SearchIntro';
 import { headerRootCutomStyle } from './index.css';
 
 const Search = () => {
@@ -18,6 +19,7 @@ const Search = () => {
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const [selectedLabel, setSelectedLabel] = useState<keyof typeof labelToSortOptionMap>(SORT_LABELS.LATEST);
+  const [hasSearched, setHasSearched] = useState(false);
 
   const sortOption = labelToSortOptionMap[selectedLabel];
 
@@ -40,6 +42,7 @@ const Search = () => {
 
   const handleSearchIconClick = () => {
     setSubmittedSearchValue(searchValue);
+    setHasSearched(true);
   };
 
   return (
@@ -52,22 +55,28 @@ const Search = () => {
           handleSearchIconClick={handleSearchIconClick}
         />
       </Header.Root>
-      <TabContainer
-        defaultSortTags={DEFAULT_SORT_TAGS}
-        genre={genre}
-        level={level}
-        startDate={startDate}
-        endDate={endDate}
-        setGenre={setGenre}
-        setLevel={setLevel}
-        setStartDate={setStartDate}
-        setEndDate={setEndDate}
-        dancerList={dancerList}
-        classList={classList}
-        error={error}
-        selectedLabel={selectedLabel}
-        setSelectedLabel={setSelectedLabel}
-      />
+      {!hasSearched ? (
+        <Flex paddingTop="7.9rem" paddingLeft="2rem">
+          <SearchIntro />
+        </Flex>
+      ) : (
+        <TabContainer
+          defaultSortTags={DEFAULT_SORT_TAGS}
+          genre={genre}
+          level={level}
+          startDate={startDate}
+          endDate={endDate}
+          setGenre={setGenre}
+          setLevel={setLevel}
+          setStartDate={setStartDate}
+          setEndDate={setEndDate}
+          dancerList={dancerList}
+          classList={classList}
+          error={error}
+          selectedLabel={selectedLabel}
+          setSelectedLabel={setSelectedLabel}
+        />
+      )}
     </Flex>
   );
 };
