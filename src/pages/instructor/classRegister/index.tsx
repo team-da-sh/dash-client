@@ -2,6 +2,7 @@ import * as styles from '@/pages/instructor/classRegister/index.css';
 import { buttonContainerStyle } from '@/pages/instructorRegister/index.css';
 import BoxButton from '@/components/BoxButton';
 import Header from '@/components/Header';
+import useBottomSheet from '@/hooks/useBottomSheet';
 import ClassAmount from './ClassAmount';
 import ClassDescription from './ClassDescription';
 import ClassGenre from './ClassGenre';
@@ -12,9 +13,12 @@ import ClassPlace from './ClassPlace';
 import ClassRecommend from './ClassRecommend';
 import ClassRepresentImage from './ClassRepresentImage';
 import ClassSchedule from './ClassSchedule';
+import ClassRegisterBottomSheet from './ClassSchedule/ClassRegisterBottomSheet';
 import { useClassRegisterForm } from './hooks/useClassRegisterForm';
 
 const ClassRegister = () => {
+  const { isBottomSheetOpen, openBottomSheet, closeBottomSheet } = useBottomSheet();
+
   const {
     explainTextAreaRef,
     recommendTextAreaRef,
@@ -60,7 +64,7 @@ const ClassRegister = () => {
           recommend={recommend}
           handleRecommendChange={handleRecommendChange}
         />
-        <ClassSchedule />
+        <ClassSchedule openBottomSheet={openBottomSheet} />
         <ClassPersonnel personnel={personnel} handlePersonnelChange={handlePersonnelChange} />
         <ClassPlace
           defaultPlace={defaultPlace}
@@ -74,6 +78,8 @@ const ClassRegister = () => {
       <div className={buttonContainerStyle}>
         <BoxButton>완료</BoxButton>
       </div>
+
+      {isBottomSheetOpen && <ClassRegisterBottomSheet onClose={closeBottomSheet} />}
     </>
   );
 };

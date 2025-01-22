@@ -1,6 +1,8 @@
-import { useMutation } from '@tanstack/react-query';
-import { postImage } from '@/apis/common/axios';
+import { useMutation, useQuery } from '@tanstack/react-query';
+import { postImage, postRole } from '@/apis/common/axios';
+import { QUERY_KEYS } from '@/apis/constants/queryKey';
 import queryClient from '@/queryClient';
+import { RoleType } from '@/types/roleTypes';
 
 export const useImageMutation = () => {
   return useMutation({
@@ -8,5 +10,12 @@ export const useImageMutation = () => {
     onSuccess: () => {
       queryClient.invalidateQueries({});
     },
+  });
+};
+
+export const useGetRole = () => {
+  return useQuery<RoleType>({
+    queryKey: [QUERY_KEYS.AUTH_ROLE],
+    queryFn: postRole,
   });
 };
