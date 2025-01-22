@@ -1,8 +1,8 @@
-import { useState } from 'react';
 import * as styles from '@/pages/instructor/classRegister/index.css';
 import { buttonContainerStyle } from '@/pages/instructorRegister/index.css';
 import BoxButton from '@/components/BoxButton';
 import Header from '@/components/Header';
+import useBottomSheet from '@/hooks/useBottomSheet';
 import ClassAmount from './ClassAmount';
 import ClassDescription from './ClassDescription';
 import ClassGenre from './ClassGenre';
@@ -17,7 +17,7 @@ import ClassRegisterBottomSheet from './ClassSchedule/ClassRegisterBottomSheet';
 import { useClassRegisterForm } from './hooks/useClassRegisterForm';
 
 const ClassRegister = () => {
-  const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
+  const { isBottomSheetOpen, openBottomSheet, closeBottomSheet } = useBottomSheet();
 
   const {
     explainTextAreaRef,
@@ -42,14 +42,6 @@ const ClassRegister = () => {
     handleDetailPlace,
   } = useClassRegisterForm();
 
-  const handleBottomSheetOpen = () => {
-    setIsBottomSheetOpen(true);
-  };
-
-  const handleBottomSheetClose = () => {
-    setIsBottomSheetOpen(false);
-  };
-
   return (
     <>
       <Header.Root isColor={true}>
@@ -72,7 +64,7 @@ const ClassRegister = () => {
           recommend={recommend}
           handleRecommendChange={handleRecommendChange}
         />
-        <ClassSchedule openBottomSheet={handleBottomSheetOpen} />
+        <ClassSchedule openBottomSheet={openBottomSheet} />
         <ClassPersonnel personnel={personnel} handlePersonnelChange={handlePersonnelChange} />
         <ClassPlace
           defaultPlace={defaultPlace}
@@ -87,7 +79,7 @@ const ClassRegister = () => {
         <BoxButton>완료</BoxButton>
       </div>
 
-      {isBottomSheetOpen && <ClassRegisterBottomSheet onClose={handleBottomSheetClose} />}
+      {isBottomSheetOpen && <ClassRegisterBottomSheet onClose={closeBottomSheet} />}
     </>
   );
 };

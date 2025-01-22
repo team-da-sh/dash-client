@@ -105,3 +105,5 @@ export const TIME_RANGE = [
   { id: 5.5, label: '5시간 30분' },
   { id: 6, label: '6시간' },
 ];
+
+export const CLASS_REGISTER_TOTAL_STEP = 2;

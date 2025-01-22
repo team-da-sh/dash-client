@@ -3,11 +3,11 @@ import BoxButton from '@/components/BoxButton';
 import Header from '@/components/Header';
 import { useFunnel } from '@/hooks/useFunnel';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
+import { CLASS_REGISTER_TOTAL_STEP } from '@/constants';
 import * as styles from './index.css';
 
 const ClassRegisterBottomSheet = ({ onClose }: { onClose: () => void }) => {
-  const TOTAL_STEP = 2;
-  const { Funnel, Step, currentStep, setStep } = useFunnel(TOTAL_STEP, `${ROUTES_CONFIG.classRegister}`);
+  const { Funnel, Step, currentStep, setStep } = useFunnel(CLASS_REGISTER_TOTAL_STEP, `${ROUTES_CONFIG.classRegister}`);
 
   const handleBackClick = () => {
     if (currentStep === 1) {
@@ -28,7 +28,7 @@ const ClassRegisterBottomSheet = ({ onClose }: { onClose: () => void }) => {
         <ClassRegisterFunnel Funnel={Funnel} Step={Step} currentStep={currentStep} setStep={setStep} />
 
         <div className={styles.buttonWrapperStyle}>
-          {currentStep < TOTAL_STEP ? (
+          {currentStep < CLASS_REGISTER_TOTAL_STEP ? (
             <BoxButton onClick={() => setStep(1)}>다음</BoxButton>
           ) : (
             <BoxButton

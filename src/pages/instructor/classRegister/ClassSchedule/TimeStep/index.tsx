@@ -1,10 +1,10 @@
 import { useState } from 'react';
+import TimeControl from '@/pages/instructor/classRegister/ClassSchedule/TimeStep/TimeControl';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Tag from '@/components/Tag';
 import { increaseHour, decreaseHour, increaseMinute, decreaseMinute, toggleAmpm } from '@/utils/timeUtils';
 import { TIME_RANGE } from '@/constants';
-import TimeControl from './TimeSelector';
 
 const TimeStep = () => {
   const [hour, setHour] = useState(12);
