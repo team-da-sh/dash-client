@@ -6,9 +6,7 @@ import Head from '@/components/Head';
 import { useGetPopularGenres } from '@/apis/home/queries';
 import { genreMapping } from '@/constants';
 
-interface PopularGenreProps {}
-
-const PopularGenre = ({}: PopularGenreProps) => {
+const PopularGenre = () => {
   const { data } = useGetPopularGenres();
 
   return (
@@ -18,8 +16,8 @@ const PopularGenre = ({}: PopularGenreProps) => {
       </Head>
 
       <Flex tag="ul" gap="0.7rem" marginTop="2rem">
-        {data?.genres.map((elem, index) => (
-          <GenreItem key={`${index}-${elem}`} medalIcon={GENRE_ICONS[index]} genre={genreMapping[elem]} />
+        {data?.genres.map((genre, index) => (
+          <GenreItem key={`${index}-${genre}`} medalIcon={GENRE_ICONS[index]} genre={genreMapping[genre]} />
         ))}
       </Flex>
     </div>
