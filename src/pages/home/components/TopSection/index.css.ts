@@ -17,3 +17,7 @@ export const profileImageStyle = style({
   borderRadius: '50%',
   backgroundColor: vars.colors.gray04,
 });
+
+export const disabledStyle = style({
+  cursor: 'not-allowed',
+});

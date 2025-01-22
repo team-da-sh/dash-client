@@ -82,7 +82,7 @@ export const genreMapping: { [key: string]: string } = {
   SOUL: '소울',
   CHOREOGRAPHY: '코레오그래피',
   KPOP: '케이팝',
-};
+} as const;
 
 // 레벨 영한 변환
 export const levelMapping: { [key: string]: string } = {
@@ -90,4 +90,53 @@ export const levelMapping: { [key: string]: string } = {
   NOVICE: '초급',
   INTERMEDIATE: '중급',
   ADVANCED: '고급',
+} as const;
+
+// 장르 한영 변환
+export const genreEngMapping: { [key: string]: string } = {
+  힙합: 'HIPHOP',
+  피메일힙합: 'FEMALEHIPHOP',
+  팝핑: 'POPPING',
+  브레이킹: 'BRAKING',
+  왁킹: 'WAACKING',
+  락킹: 'LOCKING',
+  하우스: 'HOUSE',
+  보깅: 'VOGUING',
+  크럼프: 'KRUMP',
+  소울: 'SOUL',
+  코레오그래피: 'CHOREOGRAPHY',
+  케이팝: 'KPOP',
 };
+
+// 레벨 한영 변환
+export const levelEngMapping: { [key: string]: string } = {
+  입문: 'BEGINNER',
+  초급: 'NOVICE',
+  중급: 'INTERMEDIATE',
+  고급: 'ADVANCED',
+};
+
+export const labelToSortOptionMap: Record<
+  '최신 등록순' | '찜이 많은순' | '마감 임박순',
+  'LATEST' | 'MOST_FAVORITE' | 'UPCOMING'
+> = {
+  '최신 등록순': 'LATEST',
+  '찜이 많은순': 'MOST_FAVORITE',
+  '마감 임박순': 'UPCOMING',
+};
+
+export const TIME_RANGE = [
+  { id: 1, label: '1시간' },
+  { id: 1.5, label: '1시간 30분' },
+  { id: 2, label: '2시간' },
+  { id: 2.5, label: '2시간 30분' },
+  { id: 3, label: '3시간' },
+  { id: 3.5, label: '3시간 30분' },
+  { id: 4, label: '4시간' },
+  { id: 4.5, label: '4시간 30분' },
+  { id: 5, label: '5시간' },
+  { id: 5.5, label: '5시간 30분' },
+  { id: 6, label: '6시간' },
+];
+
+export const CLASS_REGISTER_TOTAL_STEP = 2;

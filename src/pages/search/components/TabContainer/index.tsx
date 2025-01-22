@@ -6,11 +6,10 @@ import EmptyView from '@/pages/search/components/TabContainer/EmptyView';
 import TagSection from '@/pages/search/components/TabContainer/TagSection';
 import Dropdown from '@/pages/search/components/TabContainer/TagSection/Dropdown';
 import { divCustomStyle } from '@/pages/search/components/TabContainer/index.css';
-import { CLASS_LIST } from '@/pages/search/mocks/index';
 import Flex from '@/components/Flex';
 import { TabList, TabRoot, TabButton, TabPanel } from '@/components/Tab';
 import Text from '@/components/Text';
-import { DancerListResponse } from '@/apis/search/queries';
+import { DancerListResponse, ClassListResponse } from '@/apis/search/queries';
 import { IcArrowUnderGray } from '@/assets/svg';
 import { IcXMain04 } from '@/assets/svg';
 
@@ -18,6 +17,19 @@ interface TagItem {
   label: string;
   icon?: JSX.Element;
   type?: string;
+}
+
+interface ClassTypes {
+  id: number;
+  teacherProfileImage: string;
+  level: string;
+  genre: string;
+  name: string;
+  teacherName: string;
+  startDate: string;
+  endDate: string;
+  location: string;
+  remainingDays: number;
 }
 
 interface TabContainerProps {
@@ -30,8 +42,11 @@ interface TabContainerProps {
   setLevel: (level: string | null) => void;
   setStartDate: (date: string) => void;
   setEndDate: (date: string) => void;
+  classList: ClassListResponse | undefined;
   dancerList: DancerListResponse | undefined;
   error: Error | null;
+  selectedLabel: '최신 등록순' | '찜이 많은순' | '마감 임박순';
+  setSelectedLabel: (label: '최신 등록순' | '찜이 많은순' | '마감 임박순') => void;
 }
 
 const TabContainer = ({
@@ -46,9 +61,11 @@ const TabContainer = ({
   setEndDate,
   dancerList,
   error,
+  classList,
+  selectedLabel,
+  setSelectedLabel,
 }: TabContainerProps) => {
   const [selectedTab, setSelectedTab] = useState(0);
-  const [selectedLabel, setSelectedLabel] = useState<'최신 등록순' | '찜이 많은순' | '마감 임박순'>('최신 등록순');
 
   const activeTags: TagItem[] = [
     { condition: genre, label: genre, type: 'genre' },
@@ -118,23 +135,27 @@ const TabContainer = ({
               setEndDate={setEndDate}
             />
             <div className={divCustomStyle}>
-              {CLASS_LIST.map((data) => (
-                <ClassItem
-                  key={data.id}
-                  id={data.id}
-                  imageUrl={data.teacherProfileImage}
-                  level={data.level}
-                  genre={data.genre}
-                  name={data.name}
-                  teacherName={data.teacherName}
-                  teacherProfileImage={data.teacherProfileImage}
-                  startDate={data.startDate}
-                  endDate={data.endDate}
-                  location={data.location}
-                  remainingDays={data.remainingDays}
-                  useNewStyles={true}
-                />
-              ))}
+              {classList && classList.lessons && classList.lessons.length > 0 ? (
+                classList.lessons.map((data: ClassTypes) => (
+                  <ClassItem
+                    key={data.id}
+                    lessonId={data.id}
+                    lessonImageUrl={data.teacherProfileImage}
+                    lessonLevel={data.level}
+                    lessonGenre={data.genre}
+                    lessonName={data.name}
+                    teacherNickname={data.teacherName}
+                    teacherImageUrl={data.teacherProfileImage}
+                    lessonStartDateTime={data.startDate}
+                    lessonEndDateTime={data.endDate}
+                    lessonStreetAddress={data.location}
+                    lessonRemainingDays={data.remainingDays}
+                    useNewStyles={true}
+                  />
+                ))
+              ) : (
+                <EmptyView />
+              )}
             </div>
           </TabPanel>
           <TabPanel isSelected={selectedTab === 1}>

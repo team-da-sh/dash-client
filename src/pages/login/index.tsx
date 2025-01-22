@@ -3,7 +3,7 @@ import LoginHeader from '@/pages/login/components/LoginHeader';
 import { containerStyle } from '@/pages/login/index.css';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
-import loginGif from '@/../public/gif/login.gif';
+import { LoginGif } from '@/assets/gif';
 
 const Login = () => {
   return (
@@ -12,7 +12,7 @@ const Login = () => {
 
       <Flex direction="column" gap="3.2rem" className={containerStyle}>
         <Flex width="100%" justify="center">
-          <img src={loginGif} width={300} />
+          <img src={LoginGif} width={300} />
         </Flex>
 
         <Flex direction="column" width="100%">
