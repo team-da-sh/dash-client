@@ -2,7 +2,7 @@ import { instance } from '@/apis/api';
 import { API_URL } from '@/apis/constants/apiURL';
 
 export const getAdvertisements = async () => {
-  const { data } = await instance.get(`/api/v1/advertisements`);
+  const { data } = await instance.get(API_URL.ADVERTISEMENTS);
 
   return data;
 };

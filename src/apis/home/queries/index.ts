@@ -10,7 +10,7 @@ interface AdvertisementResponse {
 
 export const useGetAdvertisements = () => {
   return useQuery<AdvertisementResponse>({
-    queryKey: ['advertisements'],
+    queryKey: [QUERY_KEYS.ADVERTISEMENTS],
     queryFn: getAdvertisements,
   });
 };
