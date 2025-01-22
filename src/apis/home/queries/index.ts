@@ -29,7 +29,7 @@ interface PopularGenreResponse {
 
 export const useGetPopularGenres = () => {
   return useQuery<PopularGenreResponse>({
-    queryKey: ['popularGenres'],
+    queryKey: [QUERY_KEYS.LESSONS_POPULAR_GENRES],
     queryFn: () => getPopularGenres(),
   });
 };

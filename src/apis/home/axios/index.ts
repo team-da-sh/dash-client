@@ -22,7 +22,7 @@ export const getMyPage = async () => {
 };
 
 export const getPopularGenres = async () => {
-  const { data } = await instance.get(`/api/v1/lessons/popular-genres`);
+  const { data } = await instance.get(API_URL.LESSONS_POPULAR_GENRES);
 
   return data;
 };
