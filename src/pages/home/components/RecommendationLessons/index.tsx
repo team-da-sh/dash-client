@@ -1,14 +1,14 @@
 import LessonItem from '@/pages/home/components/LessonItem';
-import { recommandClassWrapperStyle, containerStyle } from '@/pages/home/components/RecommendationLessons/index.css';
+import { recommandLessonWrapperStyle, containerStyle } from '@/pages/home/components/RecommendationLessons/index.css';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import { useGetRecommendationLessons } from '@/apis/home/queries';
 
 const RecommendationLessons = () => {
   const { data } = useGetRecommendationLessons();
-  
+
   return (
-    <div className={recommandClassWrapperStyle}>
+    <div className={recommandLessonWrapperStyle}>
       <Head level="h2" tag="h4">
         이 클래스는 꼭 들어야 해요!
       </Head>

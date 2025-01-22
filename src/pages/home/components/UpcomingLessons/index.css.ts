@@ -5,7 +5,7 @@ export const containerStyle = style({
   whiteSpace: 'nowrap',
 });
 
-export const deadlineClassWrapperStyle = style({
+export const deadlineLessonWrapperStyle = style({
   width: '100%',
 
   paddingLeft: '2rem',

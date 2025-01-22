@@ -1,16 +1,14 @@
 import LessonItem from '@/pages/home/components/LessonItem';
-import { deadlineClassWrapperStyle, containerStyle } from '@/pages/home/components/UpcomingClasses/index.css';
+import { deadlineLessonWrapperStyle, containerStyle } from '@/pages/home/components/UpcomingLessons/index.css';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import { useGetUpcomingLessons } from '@/apis/home/queries';
 
-interface UpcominglessonesProps {}
-
-const Upcominglessones = ({}: UpcominglessonesProps) => {
+const UpcomingLessones = () => {
   const { data } = useGetUpcomingLessons();
 
   return (
-    <div className={deadlineClassWrapperStyle}>
+    <div className={deadlineLessonWrapperStyle}>
       <Head level="h2" tag="h4">
         놓치면 아쉬울 마지막 기회
       </Head>
@@ -37,4 +35,4 @@ const Upcominglessones = ({}: UpcominglessonesProps) => {
   );
 };
 
-export default Upcominglessones;
+export default UpcomingLessones;
