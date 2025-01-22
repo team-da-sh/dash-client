@@ -12,7 +12,7 @@ interface ClassRegisterFunnelProps {
 }
 
 const ClassRegisterFunnel = ({ Funnel, Step }: ClassRegisterFunnelProps) => {
-  const [startDate, setStartDate] = useState<string>('');
+  const [startDate, setStartDate] = useState('');
 
   return (
     <div className={funnelContainerStyle}>
