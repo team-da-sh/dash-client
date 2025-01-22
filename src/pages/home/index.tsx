@@ -21,7 +21,7 @@ import { CLASS_LIST } from '@/pages/search/mocks';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import { useAdvertisements } from '@/apis/home/queries';
-import { getAccessToken } from '@/utils/handleToken';
+import { isLoggedIn } from '@/utils/authUtil';
 import { useIntersect } from '@/utils/useIntersect';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 
@@ -31,10 +31,8 @@ const Home = () => {
   const [targetRef, isVisible] = useIntersect(false);
   const [showMyPage, setShowMyPage] = useState(false);
 
-  const token = getAccessToken();
-
   const handleMyPageClick = () => {
-    if (!token) {
+    if (!isLoggedIn()) {
       navigate(ROUTES_CONFIG.login.path);
       return;
     }
