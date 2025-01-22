@@ -1,5 +1,6 @@
 import { instance } from '@/apis/api';
 import { API_URL } from '@/apis/constants/apiURL';
+import { getAccessToken } from '@/utils/handleToken';
 
 export const postImage = async (formData: FormData) => {
   const { data } = await instance.post(API_URL.IMAGES, formData, {
@@ -11,10 +12,7 @@ export const postImage = async (formData: FormData) => {
 };
 
 export const postRole = async () => {
-  // TODO. 토큰 추후 변경하기
-  // const token = localStorage.getItem('accessToken');
-
-  const token = import.meta.env.VITE_ACCESS_TOKEN;
+  const token = getAccessToken();
 
   const { data } = await instance.post(
     API_URL.AUTH_ROLE,

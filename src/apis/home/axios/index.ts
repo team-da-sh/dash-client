@@ -1,5 +1,6 @@
 import { instance } from '@/apis/api';
 import { API_URL } from '@/apis/constants/apiURL';
+import { getAccessToken } from '@/utils/handleToken';
 
 export const getAdvertisements = async () => {
   const response = await instance.get(`/api/v1/advertisements`);
@@ -8,9 +9,7 @@ export const getAdvertisements = async () => {
 };
 
 export const getMyPage = async () => {
-  // TODO. 토큰 추후 변경하기
-  // const token = localStorage.getItem('accessToken');
-  const token = import.meta.env.VITE_ACCESS_TOKEN;
+  const token = getAccessToken();
 
   const { data } = await instance.get(API_URL.MEMBERS_ME, {
     headers: {
