@@ -1,6 +1,5 @@
 import { instance } from '@/apis/api';
 import { API_URL } from '@/apis/constants/apiURL';
-import { getAccessToken } from '@/utils/handleToken';
 
 export const postImage = async (formData: FormData) => {
   const { data } = await instance.post(API_URL.IMAGES, formData, {
@@ -12,17 +11,7 @@ export const postImage = async (formData: FormData) => {
 };
 
 export const postRole = async () => {
-  const token = getAccessToken();
-
-  const { data } = await instance.post(
-    API_URL.AUTH_ROLE,
-    {},
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
+  const { data } = await instance.post(API_URL.AUTH_ROLE, {});
 
   return data;
 };
