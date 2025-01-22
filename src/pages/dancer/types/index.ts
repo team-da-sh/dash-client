@@ -1,19 +1,20 @@
+export interface Lesson {
+  id: number;
+  genre: string;
+  level: string;
+  name: string;
+  imageUrl: string;
+  remainingDays: number;
+}
 export interface DancerDetail {
   nickname: string;
-  instagram: string;
-  youtube: string;
-  educations: string[];
-  experiences: string[];
+  instagram?: string;
+  youtube?: string;
+  educations?: string[];
+  experiences?: string[];
   detail: string;
   imageUrls: string[];
   videoUrls: string[];
   genres: string[];
-  lessons: Array<{
-    id: number;
-    genre: string;
-    level: string;
-    name: string;
-    imageUrl: string;
-    remainingDays: number;
-  }>;
+  lessons: Lesson[];
 }

@@ -15,16 +15,20 @@ import {
   lastClassItemStyle,
   detailStyle,
   emptyStyle,
-} from './index.css';
+} from '@/pages/dancer/components/DancerInfo/index.css';
 
-const DancerInfo = ({ instagram, youtube, detail, nickname, lessons }: DancerDetail) => {
-  const instagramHandle = instagram.split('/').filter(Boolean).pop();
-  const youtubeHandle = youtube.split('/').filter(Boolean).pop();
+const DancerInfo = ({ dancerData }: { dancerData: DancerDetail }) => {
+  
+  const { instagram, youtube, detail, nickname, lessons } = dancerData;
+
+  const instagramHandle = instagram?.split('/').filter(Boolean).pop();
+  const youtubeHandle = youtube?.split('/').filter(Boolean).pop();
 
   const navigate = useNavigate();
 
   const handleClassClick = (lessonId: number) => {
-    navigate(`${ROUTES_CONFIG.class.path}${lessonId}`);
+    const path = ROUTES_CONFIG.class.path.replace(':id', lessonId.toString());
+    navigate(path);
   };
 
   return (

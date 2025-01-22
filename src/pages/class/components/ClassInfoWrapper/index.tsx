@@ -47,8 +47,9 @@ const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetail }) => {
 
   const navigate = useNavigate();
 
-  const handleTeacherClick = () => {
-    navigate(`${ROUTES_CONFIG.dancer.path}${teacherId}`);
+  const handleTeacherClick = (dancerId: number) => {
+    const path = ROUTES_CONFIG.dancer.path.replace(':id', dancerId.toString());
+    navigate(path);
   };
 
   return (
@@ -70,7 +71,7 @@ const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetail }) => {
         {name}
       </Head>
 
-      <Flex align="center" gap="0.8rem" onClick={handleTeacherClick}>
+      <Flex align="center" gap="0.8rem" onClick={() => handleTeacherClick(teacherId)}>
         <img src={teacherImageUrl} alt={`${teacherNickname} 프로필`} className={profileStyle} />
         <Text tag="b2" color="gray9">
           {teacherNickname}

@@ -22,7 +22,6 @@ const Dancer = () => {
   const { data, error } = useDancerDetail(id);
   const [targetRef, isVisible] = useIntersectCallback(false);
 
-  console.log(isVisible);
   if (error instanceof Error) {
     return <div>오류: {error.message}</div>;
   }
@@ -31,7 +30,7 @@ const Dancer = () => {
     return <div>댄서 정보가 없습니다.</div>;
   }
 
-  const { imageUrls, genres, nickname, instagram, youtube, detail, lessons } = data as DancerDetail;
+  const { imageUrls, genres, nickname } = data;
 
   // 장르 매핑
   const translatedGenres = (genres || []).map((genre) => genreMapping[genre] || genre);
@@ -64,19 +63,8 @@ const Dancer = () => {
         </div>
       </Flex>
       <ClassHeader isVisible={isVisible} />
-      <DancerInfo
-        instagram={instagram}
-        youtube={youtube}
-        detail={detail}
-        nickname={nickname}
-        lessons={lessons}
-        educations={[]}
-        experiences={[]}
-        imageUrls={[]}
-        videoUrls={[]}
-        genres={[]}
-      />
-      <TabWrapper colorScheme="primary" dancerData={data as DancerDetail} />
+      <DancerInfo dancerData={data} />
+      <TabWrapper colorScheme="primary" dancerData={data} />
     </>
   );
 };
