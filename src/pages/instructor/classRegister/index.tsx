@@ -5,7 +5,7 @@ import BoxButton from '@/components/BoxButton';
 import Header from '@/components/Header';
 import useBottomSheet from '@/hooks/useBottomSheet';
 import useImageUploader from '@/hooks/useImageUploader';
-import { useGetLocationList } from '@/apis/instructor/classRegister/queries';
+import { useGetLocationList, usePostClassRegisterInfo } from '@/apis/instructor/classRegister/queries';
 import ClassAmount from './ClassAmount';
 import ClassDescription from './ClassDescription';
 import ClassGenre from './ClassGenre';
@@ -19,6 +19,28 @@ import ClassSchedule from './ClassSchedule';
 import ClassRegisterBottomSheet from './ClassSchedule/ClassRegisterBottomSheet';
 import { useClassRegisterForm } from './hooks/useClassRegisterForm';
 
+interface ClassTimeTypes {
+  startTime: string;
+  endTime: string;
+}
+
+interface ClassRegisterInfoTypes {
+  imageUrls: string[];
+  name: string;
+  detail: string;
+  videoUrl: string[];
+  maxReservationCount: number;
+  genre: string;
+  level: string;
+  recommendation: string;
+  price: number;
+  location: string;
+  streetAddress: string;
+  oldStreetAddress: string;
+  detailedAddress: string;
+  times: ClassTimeTypes[];
+}
+
 export interface RepresentImageUrlsTypes {
   imageUrls: string;
 }
@@ -30,11 +52,7 @@ const ClassRegister = () => {
     streetAddress: '',
     oldStreetAddress: '',
   });
-
-  const handleImageUploadSuccess = (url: string) => {
-    setImageUrls({ imageUrls: url });
-  };
-
+  const { mutate: classRegisterMutate } = usePostClassRegisterInfo();
   const {
     explainTextAreaRef,
     recommendTextAreaRef,
@@ -62,6 +80,34 @@ const ClassRegister = () => {
     handleDetailPlace,
   } = useClassRegisterForm();
 
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (selectedGenre && selectedLevelTitle) {
+      const updatedInfo: ClassRegisterInfoTypes = {
+        imageUrls: [imageUrls.imageUrls],
+        name: className,
+        detail: explanation,
+        videoUrl: [],
+        maxReservationCount: Number(personnel),
+        genre: selectedGenre,
+        level: selectedLevelTitle,
+        recommendation: recommend,
+        price: Number(amount),
+        location: selectedLocation.location,
+        streetAddress: selectedLocation.streetAddress,
+        oldStreetAddress: selectedLocation.oldStreetAddress,
+        detailedAddress: detailPlace,
+        times: [{ startTime: '2025-01-13T12:34:56Z', endTime: '2025-01-13T12:34:56Z' }],
+      };
+      classRegisterMutate(updatedInfo);
+    }
+  };
+
+  const handleImageUploadSuccess = (url: string) => {
+    setImageUrls({ imageUrls: url });
+  };
+
   const { imgFile, previewImg, imgRef, handleUploaderClick, uploadImgFile, deleteImgFile } =
     useImageUploader<RepresentImageUrlsTypes>(handleImageUploadSuccess, setImageUrls);
 
@@ -74,46 +120,47 @@ const ClassRegister = () => {
         <Header.Title title="클래스 개설" />
       </Header.Root>
 
-      <div className={styles.containerStyle}>
-        <ClassName className={className} handleClassNameChange={handleClassNameChange} />
-        <ClassDescription
-          ref={explainTextAreaRef}
-          explanation={explanation}
-          handleExplainTextArea={handleExplainTextArea}
-        />
-        <ClassRepresentImage
-          imgFile={imgFile}
-          previewImg={previewImg}
-          imgRef={imgRef}
-          handleUploaderClick={handleUploaderClick}
-          uploadImgFile={uploadImgFile}
-          deleteImgFile={deleteImgFile}
-        />
-        <ClassGenre selectedGenre={selectedGenre} toggleCategory={toggleCategory} />
-        <ClassLevel selectedLevelTitle={selectedLevelTitle} handleLevelSelect={handleLevelSelect} />
-        <ClassRecommend
-          ref={recommendTextAreaRef}
-          recommend={recommend}
-          handleRecommendChange={handleRecommendChange}
-        />
-        <ClassSchedule openBottomSheet={openBottomSheet} />
-        <ClassPersonnel personnel={personnel} handlePersonnelChange={handlePersonnelChange} />
-        <ClassPlace
-          defaultPlace={defaultPlace}
-          detailPlace={detailPlace}
-          handleDefaultPlace={handleDefaultPlace}
-          handleDetailPlace={handleDetailPlace}
-          handleSubmitDefaultPlace={handleSubmitDefaultPlace}
-          setSelectedLocation={setSelectedLocation}
-          locationList={locationList}
-        />
-        <ClassAmount amount={amount} handleAmountChange={handleAmountChange} />
-      </div>
+      <form onSubmit={handleSubmit}>
+        <div className={styles.containerStyle}>
+          <ClassName className={className} handleClassNameChange={handleClassNameChange} />
+          <ClassDescription
+            ref={explainTextAreaRef}
+            explanation={explanation}
+            handleExplainTextArea={handleExplainTextArea}
+          />
+          <ClassRepresentImage
+            imgFile={imgFile}
+            previewImg={previewImg}
+            imgRef={imgRef}
+            handleUploaderClick={handleUploaderClick}
+            uploadImgFile={uploadImgFile}
+            deleteImgFile={deleteImgFile}
+          />
+          <ClassGenre selectedGenre={selectedGenre} toggleCategory={toggleCategory} />
+          <ClassLevel selectedLevelTitle={selectedLevelTitle} handleLevelSelect={handleLevelSelect} />
+          <ClassRecommend
+            ref={recommendTextAreaRef}
+            recommend={recommend}
+            handleRecommendChange={handleRecommendChange}
+          />
+          <ClassSchedule openBottomSheet={openBottomSheet} />
+          <ClassPersonnel personnel={personnel} handlePersonnelChange={handlePersonnelChange} />
+          <ClassPlace
+            defaultPlace={defaultPlace}
+            detailPlace={detailPlace}
+            handleDefaultPlace={handleDefaultPlace}
+            handleDetailPlace={handleDetailPlace}
+            handleSubmitDefaultPlace={handleSubmitDefaultPlace}
+            setSelectedLocation={setSelectedLocation}
+            locationList={locationList}
+          />
+          <ClassAmount amount={amount} handleAmountChange={handleAmountChange} />
+        </div>
 
-      <div className={buttonContainerStyle}>
-        <BoxButton>완료</BoxButton>
-      </div>
-
+        <div className={buttonContainerStyle}>
+          <BoxButton type="submit">완료</BoxButton>
+        </div>
+      </form>
       {isBottomSheetOpen && <ClassRegisterBottomSheet onClose={closeBottomSheet} />}
     </>
   );
