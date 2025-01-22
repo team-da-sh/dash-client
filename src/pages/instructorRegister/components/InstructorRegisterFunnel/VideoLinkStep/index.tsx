@@ -1,10 +1,10 @@
 import { useRef } from 'react';
-import Description from '@/pages/instructorRegister/Description';
+import Description from '@/pages/instructorRegister/components/Description';
 import {
   addInputBoxStyle,
   inputContainerStyle,
   inputIconStyle,
-} from '@/pages/instructorRegister/InstructorRegisterFunnel/VideoLinkStep/index.css';
+} from '@/pages/instructorRegister/components/InstructorRegisterFunnel/VideoLinkStep/index.css';
 import { INFO_KEY, VIDEO_INPUT_MAX } from '@/pages/instructorRegister/constants';
 import { InputItemTypes, InstructorRegisterInfoTypes } from '@/pages/instructorRegister/types';
 import Flex from '@/components/Flex';

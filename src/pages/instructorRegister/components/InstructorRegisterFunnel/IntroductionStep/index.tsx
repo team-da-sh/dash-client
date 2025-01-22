@@ -1,6 +1,6 @@
 import { useRef } from 'react';
-import Description from '@/pages/instructorRegister/Description';
-import { textAreaStyle } from '@/pages/instructorRegister/InstructorRegisterFunnel/IntroductionStep/index.css';
+import Description from '@/pages/instructorRegister/components/Description';
+import { textAreaStyle } from '@/pages/instructorRegister/components/InstructorRegisterFunnel/IntroductionStep/index.css';
 import { INFO_KEY } from '@/pages/instructorRegister/constants';
 import { InstructorRegisterInfoTypes } from '@/pages/instructorRegister/types';
 
