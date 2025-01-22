@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import CareerStep from '@/pages/instructorRegister/InstructorRegisterFunnel//CareerStep';
 import ImageUploadStep from '@/pages/instructorRegister/InstructorRegisterFunnel//ImageUploadStep';
 import IntroductionStep from '@/pages/instructorRegister/InstructorRegisterFunnel/IntroductionStep';
@@ -34,11 +34,7 @@ const InstructorRegisterFunnel = ({ currentStep, Funnel, Step, setStep }: Instru
   const [isInstaError, setIsInstaError] = useState(false);
   const [isYoutubeError, setIsYoutubeError] = useState(false);
 
-  const { mutate: submitInfo, data } = useInstructorMutation();
-
-  useEffect(() => {
-    console.log(info);
-  }, [info]);
+  const { mutate: instructorRegisterMutate, data } = useInstructorMutation();
 
   // 이미지 업로드 로직
   const handleImageUploadSuccess = (url: string) => {
@@ -92,7 +88,8 @@ const InstructorRegisterFunnel = ({ currentStep, Funnel, Step, setStep }: Instru
       imageUrls: [info.imageUrls],
     };
 
-    submitInfo(updatedInfo);
+    instructorRegisterMutate(updatedInfo);
+    setStep(1);
   };
 
   return (
@@ -141,25 +138,13 @@ const InstructorRegisterFunnel = ({ currentStep, Funnel, Step, setStep }: Instru
         </div>
 
         <div className={buttonContainerStyle}>
-          {currentStep < TOTAL_STEP ? (
-            <BoxButton
-              type="button"
-              variant="primary"
-              onClick={() => setStep(1)}
-              isDisabled={!buttonActive(currentStep)}>
-              다음
-            </BoxButton>
-          ) : (
-            <BoxButton
-              type="submit"
-              variant="primary"
-              onClick={(e) => {
-                setStep(1);
-                handleSubmit(e);
-              }}>
-              완료
-            </BoxButton>
-          )}
+          <BoxButton
+            variant="primary"
+            onClick={currentStep === TOTAL_STEP - 1 ? undefined : () => setStep(1)}
+            isDisabled={!buttonActive(currentStep)}
+            type={currentStep === TOTAL_STEP - 1 ? 'submit' : 'button'}>
+            {currentStep === TOTAL_STEP ? '완료' : '다음'}
+          </BoxButton>
         </div>
       </form>
     </>
