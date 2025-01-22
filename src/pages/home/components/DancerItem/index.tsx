@@ -1,21 +1,19 @@
 import { dancerImageStyle } from '@/pages/home/components/DancerItem/index.css';
+import { DancerTypes } from '@/pages/home/types/dancerTypes';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Text from '@/components/Text';
 
-interface DanceItemProps {
-  teacherImageUrl: string;
-  teacherGenre: string;
-  teacherNickName: string;
+interface DancerItemProps extends Omit<DancerTypes, 'genres' | 'id'> {
+  genre: string;
 }
-
-const DancerItem = ({ teacherImageUrl, teacherGenre, teacherNickName }: DanceItemProps) => {
+const DancerItem = ({ profileImage, genre, nickname }: DancerItemProps) => {
   return (
     <Flex tag="li" direction="column" gap="1.2rem" align="center">
-      <img src={teacherImageUrl} alt="댄서 프로필" className={dancerImageStyle} />
+      <img src={profileImage} alt="댄서 프로필" className={dancerImageStyle} />
       <Flex direction="column" gap="0.4rem" align="center">
-        <Head tag="h6">{teacherNickName}</Head>
-        <Text tag="b6">{teacherGenre}</Text>
+        <Head tag="h6">{nickname}</Head>
+        <Text tag="b6">{genre}</Text>
       </Flex>
     </Flex>
   );

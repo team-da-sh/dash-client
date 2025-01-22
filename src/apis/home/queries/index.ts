@@ -1,13 +1,16 @@
 import { useQuery, UseQueryOptions } from '@tanstack/react-query';
 import { AdvertisementsTypes } from '@/pages/home/types/advertisementsTypes';
 import { LessonTypes } from '@/pages/home/types/classTypes';
+import { DancerTypes } from '@/pages/home/types/dancerTypes';
 import { QUERY_KEYS } from '@/apis/constants/queryKey';
+import '@/apis/home/axios';
 import {
   getAdvertisements,
   getMyPage,
   getPopularGenres,
   getRecommendationLessons,
   getUpcommingLessons,
+  getPopularDancers,
 } from '@/apis/home/axios';
 import { MyPageProps } from '@/types/myPageTypes';
 
@@ -61,5 +64,16 @@ export const useGetRecommendationLessons = () => {
   return useQuery<RecommendationLessonsResponse>({
     queryKey: [QUERY_KEYS.LESSONS_RECOMMENDATIONS],
     queryFn: () => getRecommendationLessons(),
+  });
+};
+
+interface PopularDancersResponse {
+  teachers: DancerTypes[];
+}
+
+export const useGetPopularDancers = () => {
+  return useQuery<PopularDancersResponse>({
+    queryKey: [QUERY_KEYS.TEACHERS_POPULAR],
+    queryFn: () => getPopularDancers(),
   });
 };

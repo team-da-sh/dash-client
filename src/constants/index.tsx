@@ -6,6 +6,7 @@ import TabEducation from '@/pages/dancer/components/TabWrapper/TabEducation';
 import TabHistory from '@/pages/dancer/components/TabWrapper/TabExperience';
 import TabVideo from '@/pages/dancer/components/TabWrapper/TabVideo';
 import { IcLevelAdvanced, IcLevelBasic, IcLevelIntermediate, IcLevelStarter } from '@/assets/svg';
+import { LessonDetail } from "@/pages/class/types";
 import { DancerDetail } from "@/pages/dancer/types";
 
 export const LEVEL = [
@@ -48,14 +49,6 @@ export const GENRE_CATEGORY = [
   ],
 ];
 
-export type StatusType = 'OPEN' | 'EXPIRED' | 'OVER_BOOKED';
-
-export const BUTTON_CONFIG: Record<StatusType, { text: string; isDisabled: boolean }> = {
-  OPEN: { text: '신청하기', isDisabled: false },
-  EXPIRED: { text: '신청 완료', isDisabled: true },
-  OVER_BOOKED: { text: '클래스 마감', isDisabled: true },
-};
-
 export const DANCER_TABS = [
   { id: 1, label: '학력', component: (dancerData: DancerDetail) => <TabEducation dancerData={dancerData} /> },
   { id: 2, label: '경력', component: (dancerData: DancerDetail) => <TabHistory dancerData={dancerData} /> },
@@ -63,10 +56,10 @@ export const DANCER_TABS = [
 ];
 
 export const CLASS_TABS = [
-  { id: 1, label: '소개', component: <TabIntro /> },
-  { id: 2, label: '난이도', component: <TabLevel /> },
-  { id: 3, label: '기간', component: <TabPeriod /> },
-  { id: 4, label: '위치', component: <TabLocationInfo /> },
+  { id: 1, label: '소개', component: (lessonData: LessonDetail) => <TabIntro lessonData={lessonData} /> },
+  { id: 2, label: '난이도', component: (lessonData: LessonDetail) => <TabLevel lessonData={lessonData} /> },
+  { id: 3, label: '기간', component: (lessonData: LessonDetail) => <TabPeriod lessonData={lessonData} /> },
+  { id: 4, label: '위치', component: (lessonData: LessonDetail) => <TabLocationInfo lessonData={lessonData} /> },
 ];
 
 // 장르 영한 변환
@@ -141,3 +134,21 @@ export const TIME_RANGE = [
 ];
 
 export const CLASS_REGISTER_TOTAL_STEP = 2;
+
+export const BUTTON_TEXT = {
+  EXPIRED: '클래스 마감',
+  OVER_BOOKED: '클래스 마감',
+  OPEN: {
+    BOOKED: '신청 완료',
+    AVAILABLE: '신청하기'
+  }
+} as const;
+
+export const DISABLED_STATUS = {
+  EXPIRED: true,
+  OVER_BOOKED: true,
+  OPEN: {
+    BOOKED: true,
+    AVAILABLE: false
+  }
+} as const;

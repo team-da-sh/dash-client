@@ -8,7 +8,7 @@ import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Tag from '@/components/Tag';
 import Text from '@/components/Text';
-import { useDancerDetail } from '@/apis/dancer/axios';
+import { useDancerDetail } from '@/apis/dancer/queries';
 import { useIntersectCallback } from '@/utils/useIntersectCallback';
 import { genreMapping } from '@/constants/index';
 

@@ -1,10 +1,11 @@
-import { instance } from '@/apis/api';
-import { API_URL } from "@/apis/constants/apiURL";
-import { DancerDetail } from '@/pages/dancer/types';
+import { QUERY_KEYS } from '@/apis/constants/queryKey';
+import { useQuery } from '@tanstack/react-query';
+import { DancerDetail } from "@/pages/dancer/types";
+import { getDancerDetail } from "@/apis/dancer/axios";
 
-export const getDancerDetail = async (teacherId: string): Promise<DancerDetail> => {
-  const url = `${API_URL.TEACHER_DETAIL}/${teacherId}`;
-
-  const { data } = await instance.get(url);
-  return data;
+export const useDancerDetail = (teacherId: string) => {
+  return useQuery<DancerDetail, Error>({
+    queryKey: [QUERY_KEYS.TEACHER_DETAIL],
+    queryFn: () => getDancerDetail(teacherId),
+  });
 };
