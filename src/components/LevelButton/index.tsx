@@ -16,7 +16,8 @@ const LevelButton = ({ level, isSelected, onClick }: LevelButtonProps) => {
   return (
     <button
       className={isSelected === null ? onboardingLevelButtonStyle : levelButtonStyle({ selected: isSelected })}
-      onClick={onClick}>
+      onClick={onClick}
+      type="button">
       {level.icon}
       <Head tag="h6" level="h6" color={isSelected ? 'white' : 'gray9'}>
         {level.title}

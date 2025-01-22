@@ -3,6 +3,7 @@ import { AxiosError } from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { instance } from '@/apis/api';
 import { kakaoLogin, loginTypes } from '@/apis/auth/axios';
+import { setStorage } from '@/utils/handleToken';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 
 export const useLoginMutation = () => {
@@ -11,10 +12,15 @@ export const useLoginMutation = () => {
   return useMutation({
     mutationFn: ({ redirectUrl, code }: loginTypes) => kakaoLogin(redirectUrl, code),
 
-    onSuccess: ({ data: { accessToken } }) => {
+    onSuccess: ({ data: { accessToken, refreshToken, isOnboarded } }) => {
       instance.defaults.headers.Authorization = `Bearer ${accessToken}`;
+      if (!isOnboarded) {
+        navigate(ROUTES_CONFIG.onboarding.path, { state: { accessToken, refreshToken } });
+        return;
+      }
 
-      navigate(ROUTES_CONFIG.onboarding.path);
+      navigate(ROUTES_CONFIG.home.path);
+      setStorage(accessToken, refreshToken);
     },
 
     onError: (error: AxiosError) => {
