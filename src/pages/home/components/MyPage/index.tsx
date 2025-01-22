@@ -1,7 +1,6 @@
 import * as styles from '@/pages/home/components/MyPage/index.css';
 import TopSection from '@/pages/home/components/TopSection';
 import Divider from '@/components/Divider';
-import useOutsideClick from '@/hooks/useOutsideClick';
 import { useGetRole } from '@/apis/common/queries';
 import { useGetMyPage } from '@/apis/home/queries';
 import BottomSection from '../BottomSection';
@@ -23,10 +22,20 @@ const MyPage = ({ showMyPage, onClose }: MyPageProps) => {
 
   const isInstructor = role === 'TEACHER';
 
-  const ref = useOutsideClick(onClose);
+  const handleClickOutside = (e: React.MouseEvent) => {
+    if (e.target === e.currentTarget) {
+      onClose();
+    }
+  };
+
+  if (showMyPage) {
+    document.body.style.overflow = 'hidden';
+  } else {
+    document.body.style.overflow = '';
+  }
 
   return (
-    <div ref={ref} className={showMyPage ? styles.visibleStyle : styles.invisibleStyle}>
+    <div onClick={handleClickOutside} className={showMyPage ? styles.visibleStyle : styles.invisibleStyle}>
       <div className={styles.wrapperStyle}>
         <TopSection userData={userData} onClose={onClose} isInstructor={isInstructor} />
         <Divider length="100%" color="gray1" thickness={8} />
