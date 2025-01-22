@@ -20,7 +20,7 @@ export const API_URL = {
   LESSONS_POPULAR_GENRES: '/api/v1/lessons/popular-genres',
   LESSONS_UPCOMING: '/api/v1/lessons/upcoming?sortOption=:sortOption',
   LESSONS_FAVORITES: '/api/v1/lessons/favorites/{lessonId}',
-  LESSON_RESERVE_PROGRESS: '/api/v1/lessons/{lessonId}/reserve-progress',
+  LESSON_RESERVE_PROGRESS: '/api/v1/lessons',
   LESSON_RESERVATION: '/api/v1/lessons/{lessonId}/reservations',
 
   MY_PAGE_FAVORITES: '/api/v1/mypage/favorites',

@@ -1,18 +1,9 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import AgreeCheckBox from '@/pages/reservation/components/AgreeCheckBox';
 import ApplicantInfo from '@/pages/reservation/components/ApplicantInfo';
 import ClassInfo from '@/pages/reservation/components/ClassInfo';
 import TopInfoContent from '@/pages/reservation/components/TopInfoContent';
-import BoxButton from '@/components/BoxButton';
-import Divider from '@/components/Divider';
-import Flex from '@/components/Flex';
-import Head from '@/components/Head';
-import Header from '@/components/Header';
-import Text from '@/components/Text';
-import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import { IcCheckcircleGray0524, IcCheckcircleMain0324 } from '@/assets/svg';
-import { MY_RESERVATION_DATA } from '@/pages/reservation/mocks/mockMyReservationData';
 import {
   agreementBoxStyle,
   agreementCheckedStyle,
@@ -23,14 +14,47 @@ import {
   totalPriceContainerStyle,
   bottomButtonStyle,
   agreementTextStyle,
-} from './index.css';
+} from '@/pages/reservation/index.css';
+import BoxButton from '@/components/BoxButton';
+import Divider from '@/components/Divider';
+import Flex from '@/components/Flex';
+import Head from '@/components/Head';
+import Header from '@/components/Header';
+import Text from '@/components/Text';
+import { useGetReservaion } from '@/apis/reservation/queries';
+import { ROUTES_CONFIG } from '@/routes/routesConfig';
+import { IcCheckcircleGray0524, IcCheckcircleMain0324 } from '@/assets/svg';
+
+interface LessonRoundProps {
+  lessonStartDateTime: string;
+  lessonEndDateTime: string;
+}
 
 const Reservation = () => {
   const [isAllChecked, setIsAllChecked] = useState(false);
   const [agreements, setAgreements] = useState([false, false]);
 
-  const data = MY_RESERVATION_DATA;
+  const navigate = useNavigate();
 
+  const { id } = useParams<{ id: string }>();
+
+  if (!id) {
+    return <div>해당하는 예약이 없습니다.</div>;
+  }
+
+  const { data, error } = useGetReservaion(id);
+
+  if (error instanceof Error) {
+    return <div>오류: {error.message}</div>;
+  }
+
+  if (!data) {
+    return <div>예약 정보가 없습니다.</div>;
+  }
+
+  const handleButtonClick = () => {
+    navigate(ROUTES_CONFIG.home.path);
+  };
   // 전체 체크박스, 상태 동기화
   const handleToggleAll = () => {
     const newState = !isAllChecked;
@@ -46,13 +70,12 @@ const Reservation = () => {
     setIsAllChecked(newAgreements.every((isChecked) => isChecked));
   };
 
-  const { lessonRound, lessonIndividualPrice } = MY_RESERVATION_DATA;
-  const navigate = useNavigate();
-
-  const handleButtonClick = () => {
-    navigate(ROUTES_CONFIG.home.path);
-  };
-  const totalPrice = lessonRound.length * lessonIndividualPrice;
+  const totalPrice = data.lessonRound.lessonRounds.length * data.price;
+  
+  const lessonRounds: LessonRoundProps[] = data.lessonRound.lessonRounds.map(round => ({
+    lessonStartDateTime: round.startDateTime,
+    lessonEndDateTime: round.endDateTime
+  }));
 
   return (
     <Flex direction="column" width="100%" className={reservationStyle}>
@@ -76,18 +99,18 @@ const Reservation = () => {
             클래스 정보
           </Text>
           <ClassInfo
-            lessonName={data.lessonName}
-            lessonLocation={data.lessonLocation}
-            teacherName={data.teacherName}
-            lessonLevel={data.lessonLevel}
-            lessonRound={data.lessonRound}
+            lessonName={data.name}
+            lessonLocation={data.location}
+            teacherName={data.teacherNickname}
+            lessonLevel={data.level}
+            lessonRound={lessonRounds}
           />
         </Flex>
         <Flex direction="column" width="100%" gap="1.6rem">
           <Text tag="b4" color="gray9">
             신청자 정보
           </Text>
-          <ApplicantInfo bookerName={data.bookerName} bookerPhoneNumber={data.bookerPhoneNumber} />
+          <ApplicantInfo bookerName={data.studentName} bookerPhoneNumber={data.bookerPhoneNumber} />
         </Flex>
       </Flex>
 
