@@ -3,7 +3,7 @@ import { ForwardedRef, forwardRef, InputHTMLAttributes, useState } from 'react';
 import * as style from './index.css';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
-  isError?: boolean; // isError는 선택적 속성입니다.
+  isError?: boolean;
   isSearch?: boolean;
 }
 
