@@ -1,12 +1,17 @@
 import { useQuery } from '@tanstack/react-query';
+import { AdvertisementsTypes } from '@/pages/home/types/advertisementsTypes';
 import { QUERY_KEYS } from '@/apis/constants/queryKey';
 import { getAdvertisements, getMyPage } from '@/apis/home/axios';
 import { MyPageProps } from '@/types/myPageTypes';
 
-export const useAdvertisements = () => {
-  return useQuery({
-    queryKey: ['advertisements'],
-    queryFn: () => getAdvertisements(),
+interface AdvertisementResponse {
+  advertisements: AdvertisementsTypes[];
+}
+
+export const useGetAdvertisements = () => {
+  return useQuery<AdvertisementResponse>({
+    queryKey: [QUERY_KEYS.ADVERTISEMENTS],
+    queryFn: getAdvertisements,
   });
 };
 
