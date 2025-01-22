@@ -14,7 +14,7 @@ export const postOnboard = async ({
   genres,
   accessToken,
 }: onboardInfoTypes & tokenTypes) => {
-  const { data } = await instance.post(
+  const response = await instance.post(
     `/api/v1/members/onboard`,
     {
       name,
@@ -31,5 +31,5 @@ export const postOnboard = async ({
     }
   );
 
-  return data;
+  return { response };
 };

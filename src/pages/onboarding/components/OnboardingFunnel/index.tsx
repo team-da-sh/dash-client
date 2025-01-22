@@ -66,6 +66,8 @@ const OnboardingFunnel = ({ currentStep, Funnel, setStep, Step }: OnboardingFunn
       },
       {
         onSuccess: ({ response }) => {
+          console.log(response);
+          console.log(response.status);
           // 온보딩 성공시 로컬스토리지에 토큰 등록
           if (response.status === 200) {
             setStorage(tokenRef.current.accessToken, tokenRef.current.refreshToken);
