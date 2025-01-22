@@ -5,3 +5,9 @@ export const getAdvertisements = async () => {
 
   return response;
 };
+
+export const getPopularGenres = async () => {
+  const { data } = await instance.get(`/api/v1/lessons/popular-genres`);
+
+  return data;
+};
