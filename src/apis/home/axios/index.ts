@@ -8,7 +8,15 @@ export const getAdvertisements = async () => {
 };
 
 export const getMyPage = async () => {
-  const { data } = await instance.get(API_URL.MEMBERS_ME);
+  // TODO. 토큰 추후 변경하기
+  // const token = localStorage.getItem('accessToken');
+  const token = import.meta.env.VITE_ACCESS_TOKEN;
+
+  const { data } = await instance.get(API_URL.MEMBERS_ME, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
 
   return data;
 };
