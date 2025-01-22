@@ -1,12 +1,11 @@
 import { useState } from 'react';
 import ClassItem from '@/pages/home/components/ClassItem';
-import { genreWrapperStyle } from '@/pages/home/components/ClassItem/index.css';
 import DancerItem from '@/pages/home/components/DancerItem';
 import Footer from '@/pages/home/components/Footer';
-import GenreItem from '@/pages/home/components/GenreItem';
 import HomeCarousel from '@/pages/home/components/HomeCarousel';
 import HomeHeader from '@/pages/home/components/HomeHeader';
 import MyPage from '@/pages/home/components/MyPage';
+import PopularGenre from '@/pages/home/components/PopularGenre';
 import {
   myPageContainerStyle,
   overlayActiveStyle,
@@ -16,11 +15,10 @@ import {
   overlayStyle,
   recommandClassWrapperStyle,
 } from '@/pages/home/index.css';
-import { DANCERLIST, GENRELIST } from '@/pages/home/mocks';
+import { DANCERLIST } from '@/pages/home/mocks';
 import { CLASS_LIST } from '@/pages/search/mocks';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
-import { useAdvertisements } from '@/apis/home/queries';
 import { useIntersect } from '@/utils/useIntersect';
 
 const Home = () => {
@@ -34,10 +32,6 @@ const Home = () => {
   const handleCloseMyPageClick = () => {
     setShowMyPage(false);
   };
-
-  const { data } = useAdvertisements();
-
-  console.log(data);
 
   return (
     <div className={myPageContainerStyle}>
@@ -75,16 +69,7 @@ const Home = () => {
         </Flex>
       </div>
 
-      <div className={genreWrapperStyle}>
-        <Head level="h2" tag="h4">
-          지금 가장 인기있는 댄스 장르
-        </Head>
-        <Flex tag="ul" gap="0.7rem" marginTop="2rem">
-          {GENRELIST.map((data, index) => (
-            <GenreItem key={`${index}-${data.genre}`} medalIcon={data.medal} genre={data.genre} />
-          ))}
-        </Flex>
-      </div>
+      <PopularGenre />
 
       <div className={dancerListWrapperstyle}>
         <Head level="h2" tag="h4">
