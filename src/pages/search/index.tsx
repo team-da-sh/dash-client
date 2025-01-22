@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import SearchBar from '@/pages/search/components/SearchBar';
 import TabContainer from '@/pages/search/components/TabContainer';
-import { DEFAULT_SORT_TAGS } from '@/pages/search/constants/index';
+import { DEFAULT_SORT_TAGS, SORT_LABELS } from '@/pages/search/constants/index';
 import { formatDateStartTime, formatDateEndTime } from '@/pages/search/utils';
 import Flex from '@/components/Flex';
 import Header from '@/components/Header';
@@ -17,7 +17,7 @@ const Search = () => {
   const [level, setLevel] = useState<string | null>(null);
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
-  const [selectedLabel, setSelectedLabel] = useState<'최신 등록순' | '찜이 많은순' | '마감 임박순'>('최신 등록순');
+  const [selectedLabel, setSelectedLabel] = useState<keyof typeof labelToSortOptionMap>(SORT_LABELS.LATEST);
 
   const sortOption = labelToSortOptionMap[selectedLabel];
 
@@ -31,7 +31,7 @@ const Search = () => {
     level: level ? levelEngMapping[level] : undefined,
     startDate: formatDateStartTime(startDate),
     endDate: formatDateEndTime(endDate),
-    sortOption: sortOption,
+    sortOption,
   });
 
   const handleSearchChange = (value: string) => {
