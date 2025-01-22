@@ -1,6 +1,7 @@
 import axios, { InternalAxiosRequestConfig } from 'axios';
 import { getAccessToken } from '@/utils/handleToken';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
+import { HTTP_STATUS_CODE } from '@/constants/api';
 
 export const instance = axios.create({
   baseURL: import.meta.env.VITE_DEV_BASE_URL,
@@ -23,7 +24,6 @@ instance.interceptors.request.use(
     return config;
   },
   (error) => {
-    console.log(error);
     return Promise.reject(error);
   }
 );
@@ -36,9 +36,9 @@ instance.interceptors.response.use(
   (error) => {
     const statusCode = error.response?.status;
 
-    if (statusCode === 401) {
+    if (statusCode === HTTP_STATUS_CODE.UNAUTHORIZED) {
       error.response.statusText = 'Unauthorized';
-      error.response.status = 401;
+      error.response.status = HTTP_STATUS_CODE.UNAUTHORIZED;
 
       window.location.replace(ROUTES_CONFIG.login.path);
     }
