@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import * as styles from '@/pages/instructor/classRegister/index.css';
 import { buttonContainerStyle } from '@/pages/instructorRegister/index.css';
 import BoxButton from '@/components/BoxButton';
@@ -19,6 +20,15 @@ import { useClassRegisterForm } from './hooks/useClassRegisterForm';
 
 const ClassRegister = () => {
   const { isBottomSheetOpen, openBottomSheet, closeBottomSheet } = useBottomSheet();
+  const [selectedLocation, setSelectedLocation] = useState({
+    location: '',
+    streetAddress: '',
+    oldStreetAddress: '',
+  });
+
+  useEffect(() => {
+    console.log('선택된거', selectedLocation);
+  }, [selectedLocation]);
 
   const {
     explainTextAreaRef,
@@ -78,6 +88,7 @@ const ClassRegister = () => {
           handleDefaultPlace={handleDefaultPlace}
           handleDetailPlace={handleDetailPlace}
           handleSubmitDefaultPlace={handleSubmitDefaultPlace}
+          setSelectedLocation={setSelectedLocation}
           locationList={locationList}
         />
         <ClassAmount amount={amount} handleAmountChange={handleAmountChange} />

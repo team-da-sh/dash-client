@@ -6,7 +6,7 @@ import Input from '@/components/Input';
 import Text from '@/components/Text';
 
 interface Location {
-  name: string;
+  location: string;
   streetAddress: string;
   oldStreetAddress: string;
 }
@@ -22,6 +22,7 @@ interface ClassPlaceProps {
   handleDetailPlace: (e: ChangeEvent<HTMLInputElement>) => void;
   handleSubmitDefaultPlace: () => void;
   locationList: LocationsData;
+  setSelectedLocation: (location: Location) => void;
 }
 
 const ClassPlace = ({
@@ -31,6 +32,7 @@ const ClassPlace = ({
   handleDetailPlace,
   handleSubmitDefaultPlace,
   locationList,
+  setSelectedLocation,
 }: ClassPlaceProps) => {
   console.log(locationList);
   return (
@@ -42,23 +44,27 @@ const ClassPlace = ({
         {locationList && (
           <Flex direction="column" gap="1rem" className={locationListContainerStyle}>
             <Flex direction="column" gap="1rem" width="100%">
-              {locationList.locations.map((location, idx) => (
-                <>
+              {locationList.locations.map((item, idx) => (
+                <div key={idx} onClick={() => setSelectedLocation(item)} style={{ cursor: 'pointer' }}>
                   {idx !== 0 && <div className={dividerStyle} />}
                   <Flex direction="column" width="100%">
                     <Text tag="b5" color="gray10">
-                      {location.name}
+                      {item.location}
                     </Text>
                     <Text tag="b9" color="gray5">
-                      {location.streetAddress}
+                      {item.streetAddress}
                     </Text>
                   </Flex>
-                </>
+                </div>
               ))}
             </Flex>
           </Flex>
         )}
-        <Input value={detailPlace} onChange={handleDetailPlace} />
+        <Input
+          value={detailPlace}
+          onChange={handleDetailPlace}
+          placeholder="건물명, 층 수 등의 상세 주소를 입력해 주세요"
+        />
       </Flex>
     </Flex>
   );
