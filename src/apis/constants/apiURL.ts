@@ -10,7 +10,7 @@ export const API_URL = {
   MEMBERS_RESERVATION_DETAIL: '/api/v1/members/me/reservations/{reservationId}',
 
   TEACHERS: '/api/v1/teachers',
-  TEACHER_DETAIL: '/api/v1/teachers/{teacherId}',
+  TEACHER_DETAIL: '/api/v1/teachers',
   TEACHERS_POPULAR: '/api/v1/teachers/popular',
   TEACHERS_SEARCH: '/api/v1/teachers?keyword=:keyword',
 
