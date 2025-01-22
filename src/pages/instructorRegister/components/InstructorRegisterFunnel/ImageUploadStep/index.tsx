@@ -6,7 +6,7 @@ import {
 } from '@/pages/instructorRegister/components/InstructorRegisterFunnel/ImageUploadStep/index.css';
 import Flex from '@/components/Flex';
 import Text from '@/components/Text';
-import { IcPlusGray0524, IcXCircleGray0424 } from '@/assets/svg';
+import { IcPlusGray0524, IcXCircleMain0324 } from '@/assets/svg';
 
 interface ImageUploadStepProps {
   handleUploaderClick: () => void;
@@ -46,7 +46,7 @@ const ImageUploadStep = ({
 
         {imgFile && (
           <div className={closeIconStyle} onClick={deleteImgFile}>
-            <IcXCircleGray0424 width={'2.4rem'} />
+            <IcXCircleMain0324 width={'2.4rem'} />
           </div>
         )}
       </Flex>
