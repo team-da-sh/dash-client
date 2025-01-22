@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 import { useImageMutation } from '@/apis/common/queries';
 
-const useImageUploader = <T extends { imageUrl: string }>(
+const useImageUploader = <T extends { imageUrls: string }>(
   onSuccess: (url: string) => void,
   setInfo: React.Dispatch<React.SetStateAction<T>>
 ) => {
@@ -25,6 +25,7 @@ const useImageUploader = <T extends { imageUrl: string }>(
 
     uploadImage(formData, {
       onSuccess: (data) => {
+        // 이미지 업로드 api res는 imageUrl (string)
         if (data?.imageUrl) {
           onSuccess(data.imageUrl);
         }
@@ -48,7 +49,7 @@ const useImageUploader = <T extends { imageUrl: string }>(
     setImgFile(undefined);
     setPreviewImg('');
 
-    setInfo((prev) => ({ ...prev, imageUrl: '' }));
+    setInfo((prev) => ({ ...prev, imageUrls: '' }));
 
     if (imgRef.current) {
       imgRef.current.value = '';

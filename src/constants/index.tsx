@@ -83,7 +83,7 @@ export const genreMapping: { [key: string]: string } = {
   SOUL: '소울',
   CHOREOGRAPHY: '코레오그래피',
   KPOP: '케이팝',
-};
+} as const;
 
 // 레벨 영한 변환
 export const levelMapping: { [key: string]: string } = {
@@ -91,7 +91,7 @@ export const levelMapping: { [key: string]: string } = {
   NOVICE: '초급',
   INTERMEDIATE: '중급',
   ADVANCED: '고급',
-};
+} as const;
 
 // 장르 한영 변환
 export const genreEngMapping: { [key: string]: string } = {

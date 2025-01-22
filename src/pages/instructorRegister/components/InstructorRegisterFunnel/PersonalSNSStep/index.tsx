@@ -1,4 +1,4 @@
-import Description from '@/pages/instructorRegister/Description';
+import Description from '@/pages/instructorRegister/components/Description';
 import { INFO_KEY, INSTAGRAM_REGEX, YOUTUBE_REGEX } from '@/pages/instructorRegister/constants';
 import { InstructorRegisterInfoTypes } from '@/pages/instructorRegister/types';
 import Flex from '@/components/Flex';
