@@ -8,4 +8,15 @@ export const instance = axios.create({
   },
 });
 
-// 필요 시 interceptor 추가
+// 유틸리티 함수
+export const get = <T>(...args: Parameters<typeof instance.get>) => {
+  return instance.get<T>(...args);
+};
+
+export const post = <T>(...args: Parameters<typeof instance.post>) => {
+  return instance.post<T>(...args);
+};
+
+export const del = <T>(...args: Parameters<typeof instance.delete>) => {
+  return instance.delete<T>(...args);
+};
