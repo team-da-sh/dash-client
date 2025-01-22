@@ -1,4 +1,5 @@
-import { useQuery } from '@tanstack/react-query';
+
+import { useQuery, UseQueryOptions } from '@tanstack/react-query';
 import { AdvertisementsTypes } from '@/pages/home/types/advertisementsTypes';
 import { QUERY_KEYS } from '@/apis/constants/queryKey';
 import { getAdvertisements, getMyPage } from '@/apis/home/axios';
@@ -16,9 +17,10 @@ export const useGetAdvertisements = () => {
 };
 
 // 마이페이지 조회
-export const useGetMyPage = () => {
+export const useGetMyPage = (options?: Partial<UseQueryOptions<MyPageProps>>) => {
   return useQuery<MyPageProps>({
     queryKey: [QUERY_KEYS.MEMBERS_ME],
     queryFn: getMyPage,
+    ...options,
   });
 };
