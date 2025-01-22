@@ -56,7 +56,7 @@ const TopSection = ({ userData, onClose }: TopSectionProps) => {
         {/* 프로필 이미지, 닉네임 */}
         <img src={userData.profileImageUrl} alt="프로필 이미지" className={styles.profileImageStyle} />
         <Head level="h1" tag="h2">
-          BADALEE
+          {userData.nickname}
         </Head>
 
         {/* 권한 확인할 수 있는 태그 */}

@@ -1,7 +1,7 @@
 import * as styles from '@/pages/home/components/MyPage/index.css';
 import TopSection from '@/pages/home/components/TopSection';
 import Divider from '@/components/Divider';
-import { MYPAGE_DATA } from '@/mocks/mockMyPageData';
+import { useGetMyPage } from '@/apis/home/queries';
 import BottomSection from '../BottomSection';
 
 interface MyPageProps {
@@ -10,7 +10,9 @@ interface MyPageProps {
 }
 
 const MyPage = ({ showMyPage, onClose }: MyPageProps) => {
-  const userData = MYPAGE_DATA[0];
+  const { data: userData, isError } = useGetMyPage();
+
+  if (isError || !userData) return console.log(isError);
 
   // wrapper 영역 외부 클릭시 onClose 호출
   const handleClickOutside = (e: React.MouseEvent) => {

@@ -26,7 +26,7 @@ const BottomSection = ({ userData }: { userData: MyPageProps }) => {
                   {item.label}
                 </Text>
                 <ArrowIcon width={32} height={32} />
-              </li>{' '}
+              </li>
               {/* Divider가 필요한 항목에 추가 */}
               {item.hasDivider && (
                 <div className={styles.dividerStyle}>

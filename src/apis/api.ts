@@ -8,7 +8,6 @@ export const instance = axios.create({
   },
 });
 
-// 유틸리티 함수
 export const get = <T>(...args: Parameters<typeof instance.get>) => {
   return instance.get<T>(...args);
 };
