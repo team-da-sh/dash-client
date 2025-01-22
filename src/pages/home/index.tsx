@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import ClassItem from '@/pages/home/components/ClassItem';
 import DancerItem from '@/pages/home/components/DancerItem';
 import Footer from '@/pages/home/components/Footer';
@@ -19,13 +20,22 @@ import { DANCERLIST } from '@/pages/home/mocks';
 import { CLASS_LIST } from '@/pages/search/mocks';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
+import { useAdvertisements } from '@/apis/home/queries';
+import { isLoggedIn } from '@/utils/authUtil';
 import { useIntersect } from '@/utils/useIntersect';
+import { ROUTES_CONFIG } from '@/routes/routesConfig';
 
 const Home = () => {
+  const navigate = useNavigate();
+
   const [targetRef, isVisible] = useIntersect(false);
   const [showMyPage, setShowMyPage] = useState(false);
 
   const handleMyPageClick = () => {
+    if (!isLoggedIn()) {
+      navigate(ROUTES_CONFIG.login.path);
+      return;
+    }
     setShowMyPage(!showMyPage);
   };
 
