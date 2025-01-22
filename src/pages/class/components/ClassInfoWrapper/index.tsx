@@ -1,16 +1,20 @@
 import { useNavigate } from 'react-router-dom';
-import { profileStyle, lessonNameStyle, cardStyle, thunderIconStyle } from '@/pages/class/components/ClassInfoWrapper/index.css';
-//import { LESSON_DATA } from '@/pages/class/mocks/mockLessonData';
+import {
+  profileStyle,
+  lessonNameStyle,
+  cardStyle,
+  thunderIconStyle,
+} from '@/pages/class/components/ClassInfoWrapper/index.css';
+import { LessonDetail } from '@/pages/class/types/index';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Tag from '@/components/Tag';
 import Text from '@/components/Text';
 import { calculateDday } from '@/utils/dateCalculate';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
+import { genreMapping } from '@/constants/index';
 import { IcThunderMain0424 } from '@/assets/svg';
 import { vars } from '@/styles/theme.css';
-import { LessonDetail } from '@/pages/class/types/index';
-import { genreMapping } from '@/constants/index';
 
 const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetail }) => {
   const {
@@ -26,6 +30,7 @@ const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetail }) => {
     status,
   } = lessonData;
   const translatedGenre = genreMapping[genre] || genre;
+
   // 각 회차에 대해 D-Day 계산
   const dDay = status === 'EXPIRED' || status === 'OVER_BOOKED' ? '마감' : calculateDday(lessonRounds[0].startDateTime);
 

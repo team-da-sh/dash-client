@@ -1,7 +1,7 @@
 import { useState } from 'react';
+import { LessonDetail } from '@/pages/class/types/index';
 import Flex from '@/components/Flex';
 import { TabRoot, TabList, TabButton, TabPanel } from '@/components/Tab';
-import { LessonDetail } from '@/pages/class/types/index';
 import { vars } from '@/styles/theme.css';
 import { CLASS_TABS } from '@/constants';
 

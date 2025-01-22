@@ -6,15 +6,14 @@ import Text from '@/components/Text';
 import { calculatePeriod, formatDate } from '@/utils/dateCalculate';
 
 const TabPeriod = ({ lessonData }: { lessonData: LessonDetail }) => {
-  const { lessonRound } = lessonData; // lessonRound 객체 가져오기
-  const lessonRounds = lessonRound.lessonRounds; // lessonRounds 배열로 수정
- 
+  const { lessonRound } = lessonData;
+  const lessonRounds = lessonRound.lessonRounds;
+
   return (
     <Flex direction="column" justify="center" gap="1.2rem">
       {lessonRounds.map((item, id) => {
-        // lessonRounds 배열 순회
-        const { startDateTime, endDateTime } = item; // lessonRound의 startDateTime과 endDateTime 가져오기
-        const { startTime, formattedEndTime, durationString } = calculatePeriod(startDateTime, endDateTime); // 기간 계산
+        const { startDateTime, endDateTime } = item;
+        const { startTime, formattedEndTime, durationString } = calculatePeriod(startDateTime, endDateTime);
 
         return (
           <Card key={id}>
@@ -27,10 +26,10 @@ const TabPeriod = ({ lessonData }: { lessonData: LessonDetail }) => {
                 </div>
                 <div>
                   <Text tag="b4" color="black">
-                    {formatDate(startDateTime)} {/* 시작 날짜 형식 지정 */}
+                    {formatDate(startDateTime)}
                   </Text>
                   <Text tag="b7" color="gray7">
-                    {startTime} - {formattedEndTime} ({durationString}) {/* 시간 및 기간 표시 */}
+                    {startTime} - {formattedEndTime} ({durationString})
                   </Text>
                 </div>
               </Flex>

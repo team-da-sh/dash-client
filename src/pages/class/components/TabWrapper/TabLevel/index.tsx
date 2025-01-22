@@ -1,21 +1,18 @@
 import Card from '@/pages/class/components/Card';
 import { questionStyle, recommendClassStyle } from '@/pages/class/components/TabWrapper/TabLevel/index.css';
+import { LessonDetail } from '@/pages/class/types/index';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Text from '@/components/Text';
-import { IcLevelStarter, IcClose, IcQuesitonmark } from '@/assets/svg';
 import { levelMapping, LEVEL } from '@/constants/index';
-import { LessonDetail } from "@/pages/class/types/index";
-
-//type LessonLevelType = '입문' | '초급' | '중급' | '고급';
+import { IcLevelStarter, IcQuesitonmark, IcSparkleMain20 } from '@/assets/svg';
 
 const TabLevel = ({ lessonData }: { lessonData: LessonDetail }) => {
   const { level, recommendation } = lessonData;
 
-  // 영 -> 한한
+  // 영 -> 한
   const translatedLevel = levelMapping[level] || level;
 
-  // 레벨에 맞는 description
   const levelData = LEVEL.find((item) => item.title === translatedLevel);
 
   return (
@@ -42,8 +39,8 @@ const TabLevel = ({ lessonData }: { lessonData: LessonDetail }) => {
         </Flex>
       </Flex>
       <Flex direction="column" gap="1.2rem">
-        <Flex justify="flexStart" align="center" gap="0.8rem">
-          <IcClose width={'2.4rem'} />
+        <Flex justify="flexStart" align="center" gap="0.4rem">
+          <IcSparkleMain20 width={'2.4rem'} />
           <Head level="h5" tag="h6">
             이런 분들에게 해당 클래스를 추천해요!
           </Head>

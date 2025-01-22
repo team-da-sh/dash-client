@@ -1,6 +1,5 @@
 import { useNavigate } from 'react-router-dom';
 import { backIconStyle, classNameHeaderStyle } from '@/pages/class/components/ClassHeader/index.css';
-// import { LESSON_DATA } from '@/pages/class/mocks/mockLessonData';
 import { containerStyle } from '@/pages/home/components/HomeHeader/index.css';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
@@ -12,7 +11,6 @@ interface ClassHeaderProps {
 }
 
 const ClassHeader = ({ isVisible, lessonName }: ClassHeaderProps) => {
-  console.log(lessonName);
   const navigate = useNavigate();
 
   return (

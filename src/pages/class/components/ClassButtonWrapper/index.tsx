@@ -1,12 +1,11 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { buttonWrapperStyle } from '@/pages/class/components/ClassButtonWrapper/index.css';
+import { LessonDetail } from '@/pages/class/types/index';
 import BoxButton from '@/components/BoxButton';
 import Flex from '@/components/Flex';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import { BUTTON_CONFIG } from '@/constants/index.tsx';
 import { IcHeartOutlinedGray07, IcHeartFilledGray07 } from '@/assets/svg';
-import { LessonDetail } from "@/apis/class/axios";
 
 const ClassButtonWrapper = ({ lessonData }: { lessonData: LessonDetail }) => {
   const [isHeartFilled, setIsHeartFilled] = useState(false);
@@ -17,7 +16,7 @@ const ClassButtonWrapper = ({ lessonData }: { lessonData: LessonDetail }) => {
   let isDisabled = false;
 
   if (status === 'EXPIRED' || status === 'OVER_BOOKED') {
-    buttonText = BUTTON_CONFIG[status].text;
+    buttonText = '클래스 마감';
     isDisabled = true;
   } else if (status === 'OPEN') {
     if (bookStatus) {
