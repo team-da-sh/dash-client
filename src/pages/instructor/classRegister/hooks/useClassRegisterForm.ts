@@ -1,13 +1,17 @@
 import { ChangeEvent, useRef, useState } from 'react';
 import { ONLY_NUMERIC } from '@/constants/regex';
 
+export interface RepresentImageUrlsTypes {
+  imageUrls: string;
+}
+
 export const useClassRegisterForm = () => {
   const explainTextAreaRef = useRef<HTMLTextAreaElement>(null);
   const recommendTextAreaRef = useRef<HTMLTextAreaElement>(null);
 
   const [className, setClassName] = useState('');
   const [explanation, setExplanation] = useState('');
-  const [imageUrls, setImageUrls] = useState('');
+  const [imageUrls, setImageUrls] = useState<RepresentImageUrlsTypes>({ imageUrls: '' });
   const [selectedGenre, setSelectedGenre] = useState<string | null>(null);
   const [selectedLevelTitle, setSelectedLevelTitle] = useState<string | null>(null);
   const [recommend, setRecommend] = useState('');

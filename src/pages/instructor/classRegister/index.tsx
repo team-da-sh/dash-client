@@ -32,11 +32,8 @@ const ClassRegister = () => {
   });
 
   const handleImageUploadSuccess = (url: string) => {
-    setImageUrls(url)
-  }
-
-  // const { imgFile, previewImg, imgRef, handleUploaderClick, uploadImgFile, deleteImgFile } =
-  //   useImageUploader<RepresentImageUrlsTypes>(handleImageUploadSuccess, setInfo);
+    setImageUrls({ imageUrls: url });
+  };
 
   useEffect(() => {
     console.log('선택된거', selectedLocation);
@@ -69,8 +66,14 @@ const ClassRegister = () => {
     handleDetailPlace,
   } = useClassRegisterForm();
 
+  const { imgFile, previewImg, imgRef, handleUploaderClick, uploadImgFile, deleteImgFile } =
+    useImageUploader<RepresentImageUrlsTypes>(handleImageUploadSuccess, setImageUrls);
+
   const { data: locationList } = useGetLocationList(submitDefaultPlace);
-  console.log(locationList);
+
+  useEffect(() => {
+    console.log(imageUrls);
+  }, [imageUrls]);
 
   return (
     <>
@@ -86,7 +89,14 @@ const ClassRegister = () => {
           explanation={explanation}
           handleExplainTextArea={handleExplainTextArea}
         />
-        <ClassRepresentImage />
+        <ClassRepresentImage
+          imgFile={imgFile}
+          previewImg={previewImg}
+          imgRef={imgRef}
+          handleUploaderClick={handleUploaderClick}
+          uploadImgFile={uploadImgFile}
+          deleteImgFile={deleteImgFile}
+        />
         <ClassGenre selectedGenre={selectedGenre} toggleCategory={toggleCategory} />
         <ClassLevel selectedLevelTitle={selectedLevelTitle} handleLevelSelect={handleLevelSelect} />
         <ClassRecommend
