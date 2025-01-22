@@ -1,9 +1,9 @@
 import { useMutation } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 import { onboardInfoTypes } from '@/pages/onboarding/types';
-import { patchOnboard, tokenTypes } from '@/apis/onboarding/axios';
+import { postOnboard, tokenTypes } from '@/apis/onboarding/axios';
 
-export const useOnboardMutation = () => {
+export const usePostOnboard = () => {
   return useMutation({
     mutationFn: ({
       name,
@@ -14,7 +14,7 @@ export const useOnboardMutation = () => {
       genres,
       accessToken,
     }: onboardInfoTypes & tokenTypes) =>
-      patchOnboard({
+      postOnboard({
         name,
         phoneNumber,
         level,

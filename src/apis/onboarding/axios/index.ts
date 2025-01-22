@@ -5,7 +5,7 @@ export interface tokenTypes {
   accessToken: string;
 }
 
-export const patchOnboard = async ({
+export const postOnboard = async ({
   name,
   phoneNumber,
   level,
@@ -14,15 +14,15 @@ export const patchOnboard = async ({
   genres,
   accessToken,
 }: onboardInfoTypes & tokenTypes) => {
-  const response = await instance.post(
+  const { data } = await instance.post(
     `/api/v1/members/onboard`,
     {
-      name: name,
-      phoneNumber: phoneNumber,
-      level: level,
-      nickname: nickname,
-      profileImageUrl: profileImageUrl,
-      genres: genres,
+      name,
+      phoneNumber,
+      level,
+      nickname,
+      profileImageUrl,
+      genres,
     },
     {
       headers: {
@@ -31,5 +31,5 @@ export const patchOnboard = async ({
     }
   );
 
-  return { response };
+  return data;
 };

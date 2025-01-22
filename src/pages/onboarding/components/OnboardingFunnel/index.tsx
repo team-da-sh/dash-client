@@ -13,8 +13,8 @@ import { validateName, validatePhoneNumber } from '@/pages/onboarding/utils/vali
 import BoxButton from '@/components/BoxButton';
 import ProgressBar from '@/components/ProgressBar';
 import { FunnelProps, StepProps } from '@/hooks/useFunnel';
-import { useOnboardMutation } from '@/apis/onboarding/quries';
-import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from '@/constants/api';
+import { usePostOnboard } from '@/apis/onboarding/quries';
+import { saveTokensToLocalStorage } from '@/utils/saveTokensToLocalStorage';
 import defaultProfile from '@/assets/images/image_profile_basic.png';
 
 interface OnboardingFunnelProps {
@@ -36,7 +36,7 @@ const OnboardingFunnel = ({ currentStep, Funnel, setStep, Step }: OnboardingFunn
 
   const [isNicknameError, setIsNicknameError] = useState(false);
 
-  const { mutate: onboardMutate } = useOnboardMutation();
+  const { mutate: onboardMutate } = usePostOnboard();
 
   // 토큰 ref로 전역변수로 저장
   const location = useLocation();
@@ -68,8 +68,7 @@ const OnboardingFunnel = ({ currentStep, Funnel, setStep, Step }: OnboardingFunn
         onSuccess: ({ response }) => {
           // 온보딩 성공시 로컬스토리지에 토큰 등록
           if (response.status === 200) {
-            localStorage.setItem(ACCESS_TOKEN_KEY, tokenRef.current.accessToken);
-            localStorage.setItem(REFRESH_TOKEN_KEY, tokenRef.current.refreshToken);
+            saveTokensToLocalStorage(tokenRef.current.accessToken, tokenRef.current.refreshToken);
             setStep(1);
           }
         },
