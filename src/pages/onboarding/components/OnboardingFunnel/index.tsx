@@ -116,6 +116,7 @@ const OnboardingFunnel = ({ currentStep, Funnel, setStep, Step }: OnboardingFunn
           </Step>
           <Step name="4" key={4}>
             <ProfileStep
+              name={info.name}
               nickname={info.nickname}
               isNicknameError={isNicknameError}
               changeIsNicknameError={changeNicknameError}
