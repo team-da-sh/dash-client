@@ -15,6 +15,7 @@ import {
   deadlineClassWrapperStyle,
   overlayStyle,
   recommandClassWrapperStyle,
+  carouselContainerStyle,
 } from '@/pages/home/index.css';
 import { DANCERLIST, GENRELIST } from '@/pages/home/mocks';
 import { CLASS_LIST } from '@/pages/search/mocks';
@@ -43,10 +44,6 @@ const Home = () => {
     setShowMyPage(false);
   };
 
-  const { data } = useAdvertisements();
-
-  console.log(data);
-
   return (
     <>
       <div className={`${overlayStyle} ${showMyPage ? overlayActiveStyle : ''}`} />
@@ -54,7 +51,7 @@ const Home = () => {
 
       <HomeHeader isVisible={isVisible} onMyPageClick={handleMyPageClick} />
 
-      <div ref={targetRef}>
+      <div ref={targetRef} className={carouselContainerStyle}>
         <HomeCarousel />
       </div>
 

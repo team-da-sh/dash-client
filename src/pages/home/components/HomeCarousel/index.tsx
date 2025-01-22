@@ -2,11 +2,11 @@
 import { Pagination, Autoplay } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SliderItem from '@/pages/home/components/SliderItem';
-import { ADVERTISEMENTS } from '@/pages/home/mocks';
+import { useGetAdvertisements } from '@/apis/home/queries';
 
-interface HomeCarouselProps {}
+const HomeCarousel = () => {
+  const { data } = useGetAdvertisements();
 
-const HomeCarousel = ({}: HomeCarouselProps) => {
   return (
     <Swiper
       loop={true}
@@ -18,11 +18,13 @@ const HomeCarousel = ({}: HomeCarouselProps) => {
         delay: 4500,
         disableOnInteraction: false,
       }}>
-      {ADVERTISEMENTS.map((data, index) => (
-        <SwiperSlide key={`${index}-${data.description}`}>
-          <SliderItem imageUrl={data.imageUrl} description={data.description} />
-        </SwiperSlide>
-      ))}
+      {data?.advertisements?.map((data, index) => {
+        return (
+          <SwiperSlide key={`${index}-${data.description}`}>
+            <SliderItem imageUrl={data.imageUrl} description={data.description} />
+          </SwiperSlide>
+        );
+      })}
     </Swiper>
   );
 };
