@@ -13,6 +13,7 @@ import BoxButton from '@/components/BoxButton';
 import Completion from '@/components/Completion';
 import useImageUploader from '@/hooks/useImageUploader';
 import { useInstructorMutation } from '@/apis/instructorRegister/queries';
+import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from '@/constants/api';
 
 interface InstructorRegisterFunnelProps {
   currentStep: number;
@@ -89,8 +90,22 @@ const InstructorRegisterFunnel = ({ currentStep, Funnel, Step, setStep }: Instru
       imageUrls: [info.imageUrls],
     };
 
-    instructorRegisterMutate(updatedInfo);
-    setStep(1);
+    instructorRegisterMutate(updatedInfo, {
+      onSuccess: (response) => {
+        if (response.status === 201 && response.data) {
+          const { accessToken, refreshToken } = response.data;
+
+          localStorage.setItem(ACCESS_TOKEN_KEY, accessToken);
+          localStorage.setItem(REFRESH_TOKEN_KEY, refreshToken);
+
+          setStep(1);
+        }
+      },
+      onError: (error) => {
+        // TODO: 실패 시 에러 페이지 띄우기 -> 페이지 디자인 추가되면 변경 예정
+        console.error('강사 등록 중 오류가 발생했습니다:', error);
+      },
+    });
   };
 
   return (
