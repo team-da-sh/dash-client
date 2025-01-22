@@ -2,7 +2,7 @@ import { GenreTypes } from '@/pages/onboarding/types';
 
 export type DancerTypes = {
   id: number;
-  nickName: string;
+  nickname: string;
   profileImage: string;
   genres: GenreTypes[];
 };

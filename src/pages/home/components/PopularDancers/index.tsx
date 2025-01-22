@@ -17,9 +17,9 @@ const PopularDancers = () => {
         {data?.teachers.map((data) => (
           <DancerItem
             key={data.id}
-            teacherImageUrl={data.profileImage}
-            teacherGenre={genreMapping[data.genres[0] ?? 'BRAKING']}
-            teacherNickName={data.nickName}
+            profileImage={data.profileImage}
+            genre={genreMapping[data.genres[0] ?? 'BRAKING']}
+            nickname={data.nickname}
           />
         ))}
       </Flex>
