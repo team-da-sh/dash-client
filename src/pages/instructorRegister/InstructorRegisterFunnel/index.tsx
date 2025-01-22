@@ -11,6 +11,7 @@ import { InstructorRegisterInfoTypes } from '@/pages/instructorRegister/types';
 import { FunnelProps, StepProps } from '@/pages/search/types/funnel';
 import BoxButton from '@/components/BoxButton';
 import Completion from '@/components/Completion';
+import useImageUploader from '@/hooks/useImageUploader';
 
 interface InstructorRegisterFunnelProps {
   currentStep: number;
@@ -32,6 +33,15 @@ const InstructorRegisterFunnel = ({ currentStep, Funnel, Step, setStep }: Instru
   const [isInstaError, setIsInstaError] = useState(false);
   const [isYoutubeError, setIsYoutubeError] = useState(false);
 
+  // 이미지 업로드 로직
+  const handleImageUploadSuccess = (url: string) => {
+    setInfo((prev) => ({ ...prev, imageUrl: url }));
+  };
+
+  const { imgFile, previewImg, imgRef, handleUploaderClick, uploadImgFile, deleteImgFile } =
+    useImageUploader<InstructorRegisterInfoTypes>(handleImageUploadSuccess, setInfo);
+
+  // 이외 로직
   const handleInfoChange = <K extends keyof InstructorRegisterInfoTypes>(
     key: K,
     value: InstructorRegisterInfoTypes[K]
@@ -72,7 +82,14 @@ const InstructorRegisterFunnel = ({ currentStep, Funnel, Step, setStep }: Instru
       <div className={funnelContainerStyle}>
         <Funnel>
           <Step name="1">
-            <ImageUploadStep />
+            <ImageUploadStep
+              imgFile={imgFile}
+              imgRef={imgRef}
+              previewImg={previewImg}
+              deleteImgFile={deleteImgFile}
+              uploadImgFile={uploadImgFile}
+              handleUploaderClick={handleUploaderClick}
+            />
           </Step>
           <Step name="2">
             <PersonalSNSStep

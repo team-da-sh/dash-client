@@ -8,7 +8,6 @@ import HomeCarousel from '@/pages/home/components/HomeCarousel';
 import HomeHeader from '@/pages/home/components/HomeHeader';
 import MyPage from '@/pages/home/components/MyPage';
 import {
-  myPageContainerStyle,
   overlayActiveStyle,
   containerStyle,
   dancerListWrapperstyle,
@@ -36,7 +35,7 @@ const Home = () => {
   };
 
   return (
-    <div className={myPageContainerStyle}>
+    <>
       <div className={`${overlayStyle} ${showMyPage ? overlayActiveStyle : ''}`} />
       <MyPage showMyPage={showMyPage} onClose={handleCloseMyPageClick} />
 
@@ -124,7 +123,7 @@ const Home = () => {
       </div>
 
       <Footer />
-    </div>
+    </>
   );
 };
 

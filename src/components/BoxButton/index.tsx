@@ -4,11 +4,18 @@ import { buttonStyle } from '@/components/BoxButton/index.css';
 
 export interface BoxButtonProps extends HTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary' | 'outline' | 'temp' | 'heart';
-
+  type?: 'button' | 'reset' | 'submit' | undefined;
   isDisabled?: boolean;
 }
 
-const BoxButton = ({ variant = 'primary', isDisabled = false, children, className, ...props }: BoxButtonProps) => {
+const BoxButton = ({
+  variant = 'primary',
+  isDisabled = false,
+  children,
+  className,
+  type = 'button',
+  ...props
+}: BoxButtonProps) => {
   return (
     <button
       className={clsx(
@@ -18,6 +25,7 @@ const BoxButton = ({ variant = 'primary', isDisabled = false, children, classNam
         })
       )}
       disabled={isDisabled}
+      type={type}
       {...props}>
       {children}
     </button>

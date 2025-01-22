@@ -3,7 +3,7 @@ export interface RoleNameProps {
 }
 export interface MyPageProps {
   profileImageUrl: string;
-  role: RoleNameProps[];
+  nickname: string;
   reservationCount: number;
   favoriteCount: number;
   lessonCount: number | null;

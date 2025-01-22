@@ -1,44 +1,41 @@
 import { icCameraStyle, inputStyle, previewImgStyle } from '@/pages/onboarding/components/ProfileStep/index.css';
-import { excludeSpecialBlankChar, INFO_KEY, MAX_NICKNAME_LENGTH } from '@/pages/onboarding/constants';
+import { INFO_KEY, MAX_NICKNAME_LENGTH } from '@/pages/onboarding/constants';
 import { onboardInfoTypes } from '@/pages/onboarding/types';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Input from '@/components/Input';
 import Text from '@/components/Text';
 import { useUploadImg } from '@/hooks/useUploadImg';
+import { INCLUDE_BLANK, INCLUDE_SPECIAL } from '@/constants/regex';
+import defaultProfile from '@/assets/images/image_profile_basic.png';
 import { IcCameraMain0624 } from '@/assets/svg';
-import preview from '@/../public/svg/ic_profile_basic.svg';
 
 interface ProfileStepProps {
-  nickName: string;
+  nickname: string;
   profileImageUrl: string;
-  isNickNameError: boolean;
-  changeIsNickNameError: (isError: boolean) => void;
+  isNicknameError: boolean;
+  changeIsNicknameError: (isError: boolean) => void;
   onInfoChange: <K extends keyof onboardInfoTypes>(key: K, value: onboardInfoTypes[K]) => void;
 }
 
-const ProfileStep = ({ nickName, isNickNameError, changeIsNickNameError, onInfoChange }: ProfileStepProps) => {
+const ProfileStep = ({ nickname, isNicknameError, changeIsNicknameError, onInfoChange }: ProfileStepProps) => {
   const { imgRef, previewImg, handleUploaderClick, uploadImgFile } = useUploadImg();
 
-  const handleNickNameChange = (nickName: string) => {
-    if (nickName.length > MAX_NICKNAME_LENGTH) {
-      return;
-    }
-    if (nickName.length) {
-      if (excludeSpecialBlankChar.test(nickName)) {
-        changeIsNickNameError(false);
+  const handleNicknameChange = (nickname: string) => {
+    if (nickname.length > MAX_NICKNAME_LENGTH) return;
+
+    if (nickname.length) {
+      if (INCLUDE_SPECIAL.test(nickname) || INCLUDE_BLANK.test(nickname)) {
+        changeIsNicknameError(true);
       } else {
-        changeIsNickNameError(true);
+        changeIsNicknameError(false);
       }
+    } else {
+      changeIsNicknameError(false);
     }
 
-    onInfoChange(INFO_KEY.NICKNAME, nickName);
+    onInfoChange(INFO_KEY.NICKNAME, nickname);
   };
-
-  // 이미지 url 정상화 되면 사용할 예정
-  // const handleProfileImageUrlChange = (profileImageUrl: string) => {
-  //   onInfoChange(INFO_KEY.PROFILE_IMAGE_URL, profileImageUrl);
-  // };
 
   return (
     <Flex direction="column" width="100%">
@@ -56,7 +53,7 @@ const ProfileStep = ({ nickName, isNickNameError, changeIsNickNameError, onInfoC
           justify="center"
           width="100%"
           onClick={handleUploaderClick}
-          style={previewImg ? { backgroundImage: `url(${previewImg})` } : { backgroundImage: `url(${preview})` }}
+          style={previewImg ? { backgroundImage: `url(${previewImg})` } : { backgroundImage: `url(${defaultProfile})` }}
           className={previewImgStyle({ hasImage: !!previewImg })}>
           <IcCameraMain0624 width={24} height={24} className={icCameraStyle} />
           <input
@@ -73,16 +70,16 @@ const ProfileStep = ({ nickName, isNickNameError, changeIsNickNameError, onInfoC
       <Flex direction="column" gap="0.8rem" marginTop="2.8rem" width="100%">
         <Input
           placeholder="댄서네임을 입력하세요"
-          value={nickName}
-          onChange={(e) => handleNickNameChange(e.target.value)}
+          value={nickname}
+          onChange={(e) => handleNicknameChange(e.target.value)}
         />
         <Flex width="100%" justify="spaceBetween">
           <Text tag="b6" color="alert3">
-            {isNickNameError ? '특수기호, 띄어쓰기는 입력할 수 없어요' : ''}
+            {isNicknameError ? '특수기호, 띄어쓰기는 입력할 수 없어요' : ''}
           </Text>
 
-          <Text tag="c3" color={isNickNameError ? 'alert3' : 'main4'}>
-            {nickName && `${nickName.length}/${MAX_NICKNAME_LENGTH}`}
+          <Text tag="c3" color={isNicknameError ? 'alert3' : 'main4'}>
+            {nickname && `${nickname.length}/${MAX_NICKNAME_LENGTH}`}
           </Text>
         </Flex>
       </Flex>
