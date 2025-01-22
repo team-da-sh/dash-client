@@ -1,9 +1,9 @@
 import axios, { InternalAxiosRequestConfig } from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { getAccessToken } from '@/utils/handleToken';
+import { ROUTES_CONFIG } from '@/routes/routesConfig';
 
 export const instance = axios.create({
   baseURL: import.meta.env.VITE_DEV_BASE_URL,
-
   headers: {
     'Content-Type': 'application/json',
   },
@@ -12,7 +12,7 @@ export const instance = axios.create({
 //요청 전 header에 accesstoken 입력
 instance.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
-    const accessToken = localStorage.getItem('ACCESS_TOKEN');
+    const accessToken = getAccessToken();
 
     if (accessToken) {
       const newConfig = { ...config };
@@ -28,18 +28,19 @@ instance.interceptors.request.use(
   }
 );
 
-//
+// 401 권한 에러시 로그인 페이지로 이동
 instance.interceptors.response.use(
   (response) => {
     return response;
   },
   (error) => {
-    const navigate = useNavigate();
     const statusCode = error.response?.status;
+
     if (statusCode === 401) {
-      error.response.statuesText = 'Unauthorized';
+      error.response.statusText = 'Unauthorized';
       error.response.status = 401;
-      navigate('/login');
+
+      window.location.replace(ROUTES_CONFIG.login.path);
     }
     return Promise.reject(error);
   }
