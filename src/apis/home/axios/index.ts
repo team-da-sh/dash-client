@@ -8,7 +8,7 @@ export const getAdvertisements = async () => {
 };
 
 export const getMyPage = async () => {
-  const { data } = await instance.get(API_URL.MEMBERS_ME, {});
+  const { data } = await instance.get(API_URL.MEMBERS_ME);
 
   return data;
 };
