@@ -78,6 +78,7 @@ const ClassRegister = () => {
           handleDefaultPlace={handleDefaultPlace}
           handleDetailPlace={handleDetailPlace}
           handleSubmitDefaultPlace={handleSubmitDefaultPlace}
+          locationList={locationList}
         />
         <ClassAmount amount={amount} handleAmountChange={handleAmountChange} />
       </div>
