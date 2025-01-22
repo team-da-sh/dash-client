@@ -5,7 +5,7 @@ import {
   checkboxStyle,
   inputContainerStyle,
   inputIconStyle,
-} from '@/pages/instructorRegister/InstructorRegisterFunnel/CareerStep/index.css';
+} from '@/pages/instructorRegister/components/InstructorRegisterFunnel/CareerStep/index.css';
 import Flex from '@/components/Flex';
 import Input from '@/components/Input';
 import Text from '@/components/Text';

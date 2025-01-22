@@ -1,4 +1,4 @@
-import { flexCustomStyle } from '@/pages/instructorRegister/Description/index.css';
+import { flexCustomStyle } from '@/pages/instructorRegister/components/Description/index.css';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Text from '@/components/Text';
