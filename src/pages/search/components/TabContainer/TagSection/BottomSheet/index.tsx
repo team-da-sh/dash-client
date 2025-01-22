@@ -130,6 +130,7 @@ const BottomSheet = ({
           </TabPanel>
           <TabPanel isSelected={selectedTab === 2}>
             <CalendarCustom
+              isSearch={true}
               startDate={selectedStartDate}
               endDate={selectedEndDate}
               setStartDate={(date) => setSelectedStartDate(date)}

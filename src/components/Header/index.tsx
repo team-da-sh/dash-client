@@ -42,7 +42,7 @@ const BackIcon = ({ onFunnelBackClick }: BackIconProps): JSX.Element => {
     navigate(-1);
   };
   return (
-    <button className={backIconStyle} onClick={handleBackClick} aria-label="뒤로가기">
+    <button className={backIconStyle} type="button" onClick={handleBackClick} aria-label="뒤로가기">
       <IcBack width={24} height={24} />
     </button>
   );
@@ -58,7 +58,7 @@ const Title = ({ title }: TitleProps): JSX.Element => {
 
 const CloseIcon = ({ onClick }: CloseIconProps): JSX.Element => {
   return (
-    <button className={closeIconStyle} onClick={onClick} aria-label="닫기">
+    <button className={closeIconStyle} type="button" onClick={onClick} aria-label="닫기">
       <IcClose width={24} height={24} />
     </button>
   );

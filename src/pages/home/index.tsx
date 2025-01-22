@@ -7,13 +7,13 @@ import HomeHeader from '@/pages/home/components/HomeHeader';
 import MyPage from '@/pages/home/components/MyPage';
 import PopularGenre from '@/pages/home/components/PopularGenre';
 import {
-  myPageContainerStyle,
   overlayActiveStyle,
   containerStyle,
   dancerListWrapperstyle,
   deadlineClassWrapperStyle,
   overlayStyle,
   recommandClassWrapperStyle,
+  carouselContainerStyle,
 } from '@/pages/home/index.css';
 import { DANCERLIST } from '@/pages/home/mocks';
 import { CLASS_LIST } from '@/pages/search/mocks';
@@ -34,13 +34,13 @@ const Home = () => {
   };
 
   return (
-    <div className={myPageContainerStyle}>
+    <>
       <div className={`${overlayStyle} ${showMyPage ? overlayActiveStyle : ''}`} />
       <MyPage showMyPage={showMyPage} onClose={handleCloseMyPageClick} />
 
       <HomeHeader isVisible={isVisible} onMyPageClick={handleMyPageClick} />
 
-      <div ref={targetRef}>
+      <div ref={targetRef} className={carouselContainerStyle}>
         <HomeCarousel />
       </div>
 
@@ -113,7 +113,7 @@ const Home = () => {
       </div>
 
       <Footer />
-    </div>
+    </>
   );
 };
 
