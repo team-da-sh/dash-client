@@ -8,7 +8,7 @@ import Head from '@/components/Head';
 import Tag from '@/components/Tag';
 import Text from '@/components/Text';
 import { useDancerDetail } from '@/apis/dancer/axios';
-import { useIntersect } from '@/utils/useIntersect';
+import { useIntersectCallback } from '@/utils/useIntersectCallback';
 import { genreMapping } from '@/constants/index';
 import { DancerDetail } from './types';
 
@@ -22,7 +22,7 @@ const Dancer = () => {
   }
 
   const { data, error } = useDancerDetail(id);
-  const [targetRef, isVisible] = useIntersect(false);
+  const [targetRef, isVisible] = useIntersectCallback(false);
 
   console.log(isVisible);
   if (error instanceof Error) {
@@ -69,6 +69,6 @@ const Dancer = () => {
       <TabWrapper colorScheme="primary" />
     </>
   );
-};
+}; 
 
 export default Dancer;
