@@ -3,9 +3,42 @@ import Flex from '@/components/Flex';
 
 const ClassRepresentImage = () => {
   return (
-    <Flex tag="section" direction="column" gap="2rem" width="100%" marginBottom="4rem">
-      <Description title="클래스 대표 이미지" subTitle="대표 이미지는 최대 한 장까지 등록 가능해요" />
-    </Flex>
+    <></>
+    // <Flex tag="section" direction="column" gap="2rem" width="100%" marginBottom="4rem">
+    //   <Description title="클래스 대표 이미지" subTitle="대표 이미지는 최대 한 장까지 등록 가능해요" />
+    //   <Flex
+    //     justify="center"
+    //     align="center"
+    //     direction="column"
+    //     className={previewImgStyle({ hasImage: !!previewImg })}
+    //     style={previewImg ? { backgroundImage: `url(${previewImg})` } : {}}
+    //     onClick={handleUploaderClick}>
+    //     {!previewImg && (
+    //       <Flex direction="column" align="center">
+    //         <IcPlusGray0524 width={'2.4rem'} />
+    //         <Text tag="c1" color="gray5">
+    //           1/1
+    //         </Text>
+    //       </Flex>
+    //     )}
+
+    //     {imgFile && (
+    //       <div className={closeIconStyle} onClick={deleteImgFile}>
+    //         <IcXCircleGray0424 width={'2.4rem'} />
+    //       </div>
+    //     )}
+    //   </Flex>
+
+    //   <input
+    //     type="file"
+    //     accept="image/*"
+    //     id="profileImg"
+    //     className={inputStyle}
+    //     onChange={uploadImgFile}
+    //     ref={imgRef}
+    //   />
+    // </>
+    // </Flex>
   );
 };
 

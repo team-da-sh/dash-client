@@ -4,6 +4,7 @@ import { buttonContainerStyle } from '@/pages/instructorRegister/index.css';
 import BoxButton from '@/components/BoxButton';
 import Header from '@/components/Header';
 import useBottomSheet from '@/hooks/useBottomSheet';
+import useImageUploader from '@/hooks/useImageUploader';
 import { useGetLocationList } from '@/apis/instructor/classRegister/queries';
 import ClassAmount from './ClassAmount';
 import ClassDescription from './ClassDescription';
@@ -18,6 +19,10 @@ import ClassSchedule from './ClassSchedule';
 import ClassRegisterBottomSheet from './ClassSchedule/ClassRegisterBottomSheet';
 import { useClassRegisterForm } from './hooks/useClassRegisterForm';
 
+export interface RepresentImageUrlsTypes {
+  imageUrls: string;
+}
+
 const ClassRegister = () => {
   const { isBottomSheetOpen, openBottomSheet, closeBottomSheet } = useBottomSheet();
   const [selectedLocation, setSelectedLocation] = useState({
@@ -25,6 +30,13 @@ const ClassRegister = () => {
     streetAddress: '',
     oldStreetAddress: '',
   });
+
+  const handleImageUploadSuccess = (url: string) => {
+    setImageUrls(url)
+  }
+
+  // const { imgFile, previewImg, imgRef, handleUploaderClick, uploadImgFile, deleteImgFile } =
+  //   useImageUploader<RepresentImageUrlsTypes>(handleImageUploadSuccess, setInfo);
 
   useEffect(() => {
     console.log('선택된거', selectedLocation);
@@ -35,6 +47,7 @@ const ClassRegister = () => {
     recommendTextAreaRef,
     className,
     explanation,
+    imageUrls,
     selectedGenre,
     selectedLevelTitle,
     recommend,
@@ -46,6 +59,7 @@ const ClassRegister = () => {
     handleClassNameChange,
     handlePersonnelChange,
     handleAmountChange,
+    setImageUrls,
     toggleCategory,
     handleLevelSelect,
     handleExplainTextArea,

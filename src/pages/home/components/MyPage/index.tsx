@@ -14,7 +14,7 @@ const MyPage = ({ showMyPage, onClose }: MyPageProps) => {
   const { data: userData, isError } = useGetMyPage();
   const { data: role } = useGetRole();
 
-  console.log(role);
+  console.log('이게 role', role);
 
   if (isError || !userData) {
     return <div>에러 발생</div>;

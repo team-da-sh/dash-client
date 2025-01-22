@@ -7,6 +7,7 @@ export const useClassRegisterForm = () => {
 
   const [className, setClassName] = useState('');
   const [explanation, setExplanation] = useState('');
+  const [imageUrls, setImageUrls] = useState('');
   const [selectedGenre, setSelectedGenre] = useState<string | null>(null);
   const [selectedLevelTitle, setSelectedLevelTitle] = useState<string | null>(null);
   const [recommend, setRecommend] = useState('');
@@ -85,6 +86,7 @@ export const useClassRegisterForm = () => {
     submitDefaultPlace,
     detailPlace,
     amount,
+    imageUrls,
     handleClassNameChange,
     handlePersonnelChange,
     handleAmountChange,
@@ -95,5 +97,6 @@ export const useClassRegisterForm = () => {
     handleDefaultPlace,
     handleSubmitDefaultPlace,
     handleDetailPlace,
+    setImageUrls,
   };
 };

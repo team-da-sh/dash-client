@@ -39,7 +39,11 @@ const ClassPlace = ({
     <Flex tag="section" direction="column" gap="2rem" width="100%" marginBottom="4rem">
       <Description title="클래스 장소" subTitle="클래스가 진행될 장소를 알려주세요" />
       <Flex width="100%" direction="column" gap="0.8rem">
-        <Input value={defaultPlace} onChange={handleDefaultPlace} />
+        <Input
+          value={defaultPlace}
+          onChange={handleDefaultPlace}
+          placeholder="지번, 도로명, 건물명으로 검색해 주세요"
+        />
         <button onClick={() => handleSubmitDefaultPlace()}>버튼</button>
         {locationList && (
           <Flex direction="column" gap="1rem" className={locationListContainerStyle}>

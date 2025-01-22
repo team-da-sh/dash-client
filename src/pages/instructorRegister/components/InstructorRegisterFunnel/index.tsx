@@ -91,14 +91,12 @@ const InstructorRegisterFunnel = ({ currentStep, Funnel, Step, setStep }: Instru
 
     instructorRegisterMutate(updatedInfo, {
       onSuccess: (response) => {
-        if (response.status === 201 && response.data) {
-          const { accessToken, refreshToken } = response.data;
+        const { accessToken, refreshToken } = response.data;
 
-          localStorage.setItem(ACCESS_TOKEN_KEY, accessToken);
-          localStorage.setItem(REFRESH_TOKEN_KEY, refreshToken);
+        localStorage.setItem(ACCESS_TOKEN_KEY, accessToken);
+        localStorage.setItem(REFRESH_TOKEN_KEY, refreshToken);
 
-          setStep(1);
-        }
+        setStep(1);
       },
       onError: (error) => {
         // TODO: 실패 시 에러 페이지 띄우기 -> 페이지 디자인 추가되면 변경 예정
