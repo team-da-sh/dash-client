@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import CareerStep from '@/pages/instructorRegister/InstructorRegisterFunnel//CareerStep';
-import ImageUploadStep from '@/pages/instructorRegister/InstructorRegisterFunnel//ImageUploadStep';
-import IntroductionStep from '@/pages/instructorRegister/InstructorRegisterFunnel/IntroductionStep';
-import PersonalSNSStep from '@/pages/instructorRegister/InstructorRegisterFunnel/PersonalSNSStep';
-import VideoLinkStep from '@/pages/instructorRegister/InstructorRegisterFunnel/VideoLinkStep';
-import { funnelContainerStyle } from '@/pages/instructorRegister/InstructorRegisterFunnel/index.css';
+import CareerStep from '@/pages/instructorRegister/components/InstructorRegisterFunnel/CareerStep';
+import ImageUploadStep from '@/pages/instructorRegister/components/InstructorRegisterFunnel/ImageUploadStep';
+import IntroductionStep from '@/pages/instructorRegister/components/InstructorRegisterFunnel/IntroductionStep';
+import PersonalSNSStep from '@/pages/instructorRegister/components/InstructorRegisterFunnel/PersonalSNSStep';
+import VideoLinkStep from '@/pages/instructorRegister/components/InstructorRegisterFunnel/VideoLinkStep';
+import { funnelContainerStyle } from '@/pages/instructorRegister/components/InstructorRegisterFunnel/index.css';
 import { TOTAL_STEP } from '@/pages/instructorRegister/constants';
 import { buttonContainerStyle } from '@/pages/instructorRegister/index.css';
 import { InstructorRegisterInfoTypes } from '@/pages/instructorRegister/types';
@@ -35,6 +35,7 @@ const InstructorRegisterFunnel = ({ currentStep, Funnel, Step, setStep }: Instru
   const [isYoutubeError, setIsYoutubeError] = useState(false);
 
   const { mutate: instructorRegisterMutate, data } = useInstructorMutation();
+  console.log(data);
 
   // 이미지 업로드 로직
   const handleImageUploadSuccess = (url: string) => {

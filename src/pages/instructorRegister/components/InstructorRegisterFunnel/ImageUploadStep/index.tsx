@@ -1,9 +1,9 @@
-import Description from '@/pages/instructorRegister/Description';
+import Description from '@/pages/instructorRegister/components/Description';
 import {
   closeIconStyle,
   inputStyle,
   previewImgStyle,
-} from '@/pages/instructorRegister/InstructorRegisterFunnel/ImageUploadStep/index.css';
+} from '@/pages/instructorRegister/components/InstructorRegisterFunnel/ImageUploadStep/index.css';
 import Flex from '@/components/Flex';
 import Text from '@/components/Text';
 import { IcPlusGray0524, IcXCircleGray0424 } from '@/assets/svg';

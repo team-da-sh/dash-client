@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import Description from '@/pages/instructorRegister/Description';
-import InputSection from '@/pages/instructorRegister/InstructorRegisterFunnel/CareerStep/InputSection';
+import Description from '@/pages/instructorRegister/components/Description';
+import InputSection from '@/pages/instructorRegister/components/InstructorRegisterFunnel/CareerStep/InputSection';
 import { INFO_KEY } from '@/pages/instructorRegister/constants';
 import { InstructorRegisterInfoTypes } from '@/pages/instructorRegister/types';
 import { IcDocumentBlack20, IcGraduationBlack20 } from '@/assets/svg';

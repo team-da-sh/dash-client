@@ -1,4 +1,4 @@
-import InstructorRegisterFunnel from '@/pages/instructorRegister/InstructorRegisterFunnel';
+import InstructorRegisterFunnel from '@/pages/instructorRegister/components/InstructorRegisterFunnel';
 import { progressBarCustomStyle } from '@/pages/instructorRegister/index.css';
 import Header from '@/components/Header';
 import ProgressBar from '@/components/ProgressBar';
