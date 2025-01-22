@@ -20,7 +20,6 @@ import { DANCERLIST } from '@/pages/home/mocks';
 import { CLASS_LIST } from '@/pages/search/mocks';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
-import { useAdvertisements } from '@/apis/home/queries';
 import { isLoggedIn } from '@/utils/authUtil';
 import { useIntersect } from '@/utils/useIntersect';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
