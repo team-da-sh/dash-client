@@ -4,7 +4,7 @@ import { LessonDetail } from "@/pages/class/types";
 
 export const useLessonDetail = (lessonId: string) => {
   return useQuery<LessonDetail, Error>({
-    queryKey: ['lessonDetail', lessonId],
+    queryKey: ['LESSON_DETAIL'],
     queryFn: () => getLessonDetail(lessonId),
   });
 };

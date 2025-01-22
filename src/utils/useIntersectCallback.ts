@@ -11,6 +11,7 @@ export const useIntersectCallback = (initialVisible: boolean, options?: Intersec
 
   const ref = useCallback(
     (node: HTMLDivElement | null) => {
+      if (!node) return;
       if (node) {
         const threshold = 1 - (node.offsetHeight - 60) / node.offsetHeight;
         const observer = new IntersectionObserver(callback, { ...options, threshold });

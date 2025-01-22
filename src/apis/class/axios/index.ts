@@ -1,7 +1,10 @@
 import { instance } from '@/apis/api';
+import { API_URL } from "@/apis/constants/apiURL";
 import { LessonDetail } from '@/pages/class/types';
 
 export const getLessonDetail = async (lessonId: string): Promise<LessonDetail> => {
-  const response = await instance.get(`/api/v1/lessons/${lessonId}`);
-  return response.data;
+  const url = API_URL.LESSON_DETAIL.replace('{lessonId}', lessonId);
+
+  const { data } = await instance.get(url);
+  return data;
 };

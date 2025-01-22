@@ -133,3 +133,21 @@ export const TIME_RANGE = [
 ];
 
 export const CLASS_REGISTER_TOTAL_STEP = 2;
+
+export const BUTTON_TEXT = {
+  EXPIRED: '클래스 마감',
+  OVER_BOOKED: '클래스 마감',
+  OPEN: {
+    BOOKED: '신청 완료',
+    AVAILABLE: '신청하기'
+  }
+} as const;
+
+export const DISABLED_STATUS = {
+  EXPIRED: true,
+  OVER_BOOKED: true,
+  OPEN: {
+    BOOKED: true,
+    AVAILABLE: false
+  }
+} as const;

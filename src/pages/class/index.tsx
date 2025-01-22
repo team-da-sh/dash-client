@@ -18,7 +18,6 @@ const Class = () => {
   const { data, error } = useLessonDetail(id);
   const [targetRef, isVisible] = useIntersectCallback(false);
 
-  console.log(isVisible);
   if (error instanceof Error) {
     return <div>오류: {error.message}</div>;
   }

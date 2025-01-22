@@ -26,7 +26,7 @@ export interface LessonDetail {
   streetAddress: string;
   streetDetailAddress: string;
   oldStreetAddress: string;
-  favoriteCount: number;
+  favoriteCount?: number;
   bookStatus: boolean;
   status: StatusType;
 }

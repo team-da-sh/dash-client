@@ -6,6 +6,7 @@ import BoxButton from '@/components/BoxButton';
 import Flex from '@/components/Flex';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { IcHeartOutlinedGray07, IcHeartFilledGray07 } from '@/assets/svg';
+import { BUTTON_TEXT, DISABLED_STATUS } from "@/constants";
 
 const ClassButtonWrapper = ({ lessonData }: { lessonData: LessonDetail }) => {
   const [isHeartFilled, setIsHeartFilled] = useState(false);
@@ -14,20 +15,19 @@ const ClassButtonWrapper = ({ lessonData }: { lessonData: LessonDetail }) => {
   const { status, bookStatus } = lessonData;
   let buttonText = '';
   let isDisabled = false;
-
+  
   if (status === 'EXPIRED' || status === 'OVER_BOOKED') {
-    buttonText = '클래스 마감';
-    isDisabled = true;
+    buttonText = BUTTON_TEXT[status];
+    isDisabled = DISABLED_STATUS[status];
   } else if (status === 'OPEN') {
     if (bookStatus) {
-      buttonText = '신청 완료';
-      isDisabled = true;
+      buttonText = BUTTON_TEXT.OPEN.BOOKED;
+      isDisabled = DISABLED_STATUS.OPEN.BOOKED;
     } else {
-      buttonText = '신청하기';
-      isDisabled = false;
+      buttonText = BUTTON_TEXT.OPEN.AVAILABLE;
+      isDisabled = DISABLED_STATUS.OPEN.AVAILABLE;
     }
   }
-
   const toggleHeart = () => {
     setIsHeartFilled((prev) => !prev);
   };
