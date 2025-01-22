@@ -7,7 +7,7 @@ import HomeHeader from '@/pages/home/components/HomeHeader';
 import { genreWrapperStyle } from '@/pages/home/components/LessonItem/index.css';
 import MyPage from '@/pages/home/components/MyPage';
 import RecommendationLessons from '@/pages/home/components/RecommendationLessons';
-import UpcomingClasses from '@/pages/home/components/UpcomingClasses';
+import UpcomingLessons from '@/pages/home/components/UpcomingLessons';
 import {
   myPageContainerStyle,
   overlayActiveStyle,
@@ -72,7 +72,7 @@ const Home = () => {
         </Flex>
       </div>
 
-      <UpcomingClasses />
+      <UpcomingLessons />
 
       <Footer />
     </div>
