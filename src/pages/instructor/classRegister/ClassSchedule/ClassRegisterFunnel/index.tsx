@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import DateStep from '@/pages/instructor/classRegister/ClassSchedule/DateStep';
 import TimeStep from '@/pages/instructor/classRegister/ClassSchedule/TimeStep';
-import { funnelContainerStyle } from '@/pages/instructorRegister/InstructorRegisterFunnel/index.css';
+import { funnelContainerStyle } from '@/pages/instructorRegister/components/InstructorRegisterFunnel/index.css';
 import { FunnelProps, StepProps } from '@/pages/search/types/funnel';
 
 interface ClassRegisterFunnelProps {
