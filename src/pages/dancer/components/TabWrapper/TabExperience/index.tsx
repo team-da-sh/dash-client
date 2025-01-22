@@ -13,12 +13,12 @@ const TabExperience = ({ dancerData }: TabExperienceProps) => {
 
   return (
     <Flex direction="column" gap="0.8rem">
-      {experiences.length === 0 ? (
+      {experiences?.length === 0 ? (
         <Head level="h5" tag="h6" color="gray9" className={emptyStyle}>
           아직 등록된 경력이 없어요
         </Head>
       ) : (
-        experiences.map((exp, id) => (
+        experiences?.map((exp, id) => (
           <div key={id}>
             <Text tag="b2" color="gray7">
               {exp}
