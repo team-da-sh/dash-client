@@ -23,10 +23,10 @@ const Error = () => {
       align="center"
       justify="center">
       <Flex direction="column" gap="1.4rem" align="center" marginBottom="2.9rem">
-        <Head>서비스 이용에 불편을 드려 죄송합니다.</Head>
+        <Head tag="h4">서비스 이용에 불편을 드려 죄송합니다.</Head>
         <Flex direction="column" align="center">
-          <Text>요청하신 페이지를 처리하는 도중 예기치 못한 에러가 발생했습니다.</Text>
-          <Text>다시 한 번 시도하거나 홈으로 이동해 주세요.</Text>
+          <Text tag="b7">요청하신 페이지를 처리하는 도중 예기치 못한 에러가 발생했습니다.</Text>
+          <Text tag="b7">다시 한 번 시도하거나 홈으로 이동해 주세요.</Text>
         </Flex>
       </Flex>
       <IcError />
