@@ -13,7 +13,7 @@ export const getUpcommingLessons = async () => {
 };
 
 export const getRecommendationLessons = async () => {
-  const { data } = await instance.get(`/api/v1/lessons/upcoming`);
+  const { data } = await instance.get(`/api/v1/lessons/recommendations`);
 
   return data;
 };
