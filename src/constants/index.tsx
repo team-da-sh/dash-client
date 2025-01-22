@@ -6,6 +6,7 @@ import TabEducation from '@/pages/dancer/components/TabWrapper/TabEducation';
 import TabHistory from '@/pages/dancer/components/TabWrapper/TabExperience';
 import TabVideo from '@/pages/dancer/components/TabWrapper/TabVideo';
 import { IcLevelAdvanced, IcLevelBasic, IcLevelIntermediate, IcLevelStarter } from '@/assets/svg';
+import { DancerDetail } from "@/pages/dancer/types";
 
 export const LEVEL = [
   {
@@ -56,9 +57,9 @@ export const BUTTON_CONFIG: Record<StatusType, { text: string; isDisabled: boole
 };
 
 export const DANCER_TABS = [
-  { id: 1, label: '학력', component: <TabEducation /> },
-  { id: 2, label: '경력', component: <TabHistory /> },
-  { id: 3, label: '영상', component: <TabVideo /> },
+  { id: 1, label: '학력', component: (dancerData: DancerDetail) => <TabEducation dancerData={dancerData} /> },
+  { id: 2, label: '경력', component: (dancerData: DancerDetail) => <TabHistory dancerData={dancerData} /> },
+  { id: 3, label: '영상', component: (dancerData: DancerDetail) => <TabVideo dancerData={dancerData} /> },
 ];
 
 export const CLASS_TABS = [

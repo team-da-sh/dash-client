@@ -12,13 +12,11 @@ import { useIntersectCallback } from '@/utils/useIntersectCallback';
 import { genreMapping } from '@/constants/index';
 import { DancerDetail } from './types';
 
-// import { DANCER_DATA } from '@/pages/dancer/mocks/mockDancerData';
-
 const Dancer = () => {
   const { id } = useParams<{ id: string }>();
 
   if (!id) {
-    return <div>Error: lessonId is missing</div>;
+    return <div>해당하는 댄서가 없습니다.</div>;
   }
 
   const { data, error } = useDancerDetail(id);
@@ -26,12 +24,13 @@ const Dancer = () => {
 
   console.log(isVisible);
   if (error instanceof Error) {
-    return <div>Error: {error.message}</div>;
+    return <div>오류: {error.message}</div>;
   }
 
   if (!data) {
-    return <div>No lesson data available</div>;
+    return <div>댄서 정보가 없습니다.</div>;
   }
+
   const { imageUrls, genres, nickname, instagram, youtube, detail, lessons } = data as DancerDetail;
 
   // 장르 매핑
@@ -65,10 +64,21 @@ const Dancer = () => {
         </div>
       </Flex>
       <ClassHeader isVisible={isVisible} />
-      <DancerInfo instagram={instagram} youtube={youtube} detail={detail} nickname={nickname} lessons={lessons} educations={[]} experiences={[]} imageUrls={[]} videoUrls={[]} genres={[]}/>
-      <TabWrapper colorScheme="primary" />
+      <DancerInfo
+        instagram={instagram}
+        youtube={youtube}
+        detail={detail}
+        nickname={nickname}
+        lessons={lessons}
+        educations={[]}
+        experiences={[]}
+        imageUrls={[]}
+        videoUrls={[]}
+        genres={[]}
+      />
+      <TabWrapper colorScheme="primary" dancerData={data as DancerDetail} />
     </>
   );
-}; 
+};
 
 export default Dancer;

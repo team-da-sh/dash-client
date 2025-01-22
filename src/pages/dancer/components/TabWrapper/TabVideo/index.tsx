@@ -1,9 +1,13 @@
 import { videoWrapperStyle, videoItemStyle, iframeStyle } from '@/pages/dancer/components/TabWrapper/TabVideo/index.css';
 import Flex from '@/components/Flex';
-import { DANCER_DATA } from '@/pages/dancer/mocks/mockDancerData';
+import { DancerDetail } from "@/pages/dancer/types";
 
-const TabVideo = () => {
-  const { videoUrls } = DANCER_DATA;
+interface TabVideoProps {
+  dancerData: DancerDetail;
+}
+
+const TabVideo = ({ dancerData }: TabVideoProps) => {
+  const { videoUrls } = dancerData;
 
   const getYoutubeEmbedUrl = (url: string) => {
     const videoId = url.match(/(?:youtube\.com\/.*v=|youtu\.be\/)([^&]+)/)?.[1];

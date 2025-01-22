@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import DancerClassItem from '@/pages/dancer/components/DancerInfo/DancerClassItem';
+import { DancerDetail } from '@/pages/dancer/types';
 import Divider from '@/components/Divider';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
@@ -15,11 +16,8 @@ import {
   detailStyle,
   emptyStyle,
 } from './index.css';
-import { DancerDetail } from "@/pages/dancer/types";
 
 const DancerInfo = ({ instagram, youtube, detail, nickname, lessons }: DancerDetail) => {
-  console.log(youtube);
-  console.log(instagram);
   const instagramHandle = instagram.split('/').filter(Boolean).pop(); // undefined 체크 추가
   const youtubeHandle = youtube.split('/').filter(Boolean).pop(); // undefined 체크 추가
 
@@ -37,8 +35,7 @@ const DancerInfo = ({ instagram, youtube, detail, nickname, lessons }: DancerDet
         paddingRight="2rem"
         paddingLeft="2rem"
         paddingBottom="3.2rem"
-        gap="2rem"
-      >
+        gap="2rem">
         <Flex gap="2.8rem">
           {instagram && (
             <a href={instagram} target="_blank" rel="noopener noreferrer">
@@ -87,15 +84,10 @@ const DancerInfo = ({ instagram, youtube, detail, nickname, lessons }: DancerDet
               return (
                 <div
                   key={data.id}
-                  className={[
-                    classItemStyle,
-                    isFirst && firstClassItemStyle,
-                    isLast && lastClassItemStyle,
-                  ]
+                  className={[classItemStyle, isFirst && firstClassItemStyle, isLast && lastClassItemStyle]
                     .filter(Boolean)
                     .join(' ')}
-                  onClick={() => handleClassClick(data.id)}
-                >
+                  onClick={() => handleClassClick(data.id)}>
                   <DancerClassItem
                     lessonImageUrl={data.imageUrl}
                     lessonRemainingDays={data.remainingDays}

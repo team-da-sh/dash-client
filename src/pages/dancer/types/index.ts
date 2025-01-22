@@ -2,11 +2,11 @@ export interface DancerDetail {
   nickname: string;
   instagram: string;
   youtube: string;
-  educations: Array<{ education: string }>;
-  experiences: Array<{ experience: string }>;
+  educations: string[];
+  experiences: string[];
   detail: string;
-  imageUrls: Array<{ imageUrl: string }>;
-  videoUrls: Array<{ videoUrl: string }>;
+  imageUrls: string[];
+  videoUrls: string[];
   genres: string[];
   lessons: Array<{
     id: number;

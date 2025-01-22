@@ -3,12 +3,14 @@ import Flex from '@/components/Flex';
 import { TabButton, TabList, TabPanel, TabRoot } from '@/components/Tab';
 import { vars } from '@/styles/theme.css';
 import { DANCER_TABS } from '@/constants';
+import { DancerDetail } from "../../types";
 
 interface TabWrapperProps {
   colorScheme: 'primary' | 'secondary';
+  dancerData: DancerDetail;
 }
 
-const TabWrapper = ({ colorScheme,  }: TabWrapperProps) => {
+const TabWrapper = ({ colorScheme, dancerData }: TabWrapperProps) => {
   const [selectedTab, setSelectedTab] = useState(0);
 
   return (
@@ -35,8 +37,8 @@ const TabWrapper = ({ colorScheme,  }: TabWrapperProps) => {
         borderTop={`1px solid ${vars.colors.gray01}`}>
         {DANCER_TABS.map((tab) => (
           <TabPanel key={tab.id} isSelected={selectedTab === tab.id - 1}>
-            {tab.component}
-          </TabPanel>
+            {selectedTab === tab.id - 1 && tab.component(dancerData)}
+            </TabPanel>
         ))}
       </Flex>
     </TabRoot>

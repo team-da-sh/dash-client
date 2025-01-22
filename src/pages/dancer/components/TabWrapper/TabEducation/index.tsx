@@ -1,11 +1,15 @@
 import { emptyStyle } from '@/pages/dancer/components/TabWrapper/TabExperience/index.css';
+import { DancerDetail } from '@/pages/dancer/types';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Text from '@/components/Text';
-import { DANCER_DATA } from '@/pages/dancer/mocks/mockDancerData';
 
-const TabExperience = () => {
-  const { educations } = DANCER_DATA;
+interface TabEducationProps {
+  dancerData: DancerDetail;
+}
+
+const TabEducation = ({ dancerData }: TabEducationProps) => {
+  const { educations } = dancerData;
 
   return (
     <Flex direction="column" gap="0.8rem">
@@ -14,16 +18,18 @@ const TabExperience = () => {
           아직 등록된 학력이 없어요
         </Head>
       ) : (
-        educations.map((edu, id) => (
-          <div key={id}>
-            <Text tag="b2" color="gray7">
-              {edu.education}
-            </Text>
-          </div>
-        ))
+        educations.map((edu, id) => {
+          return (
+            <div key={id}>
+              <Text tag="b2" color="gray7">
+                {edu}
+              </Text>
+            </div>
+          );
+        })
       )}
     </Flex>
   );
 };
 
-export default TabExperience;
+export default TabEducation;

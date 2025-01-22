@@ -2,10 +2,14 @@ import { emptyStyle } from '@/pages/dancer/components/TabWrapper/TabExperience/i
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Text from '@/components/Text';
-import { DANCER_DATA } from '@/pages/dancer/mocks/mockDancerData';
+import { DancerDetail } from "@/pages/dancer/types";
 
-const TabExperience = () => {
-  const { experiences } = DANCER_DATA;
+interface TabExperienceProps {
+  dancerData: DancerDetail;
+}
+
+const TabExperience = ({ dancerData }: TabExperienceProps) => {
+  const { experiences } = dancerData;
 
   return (
     <Flex direction="column" gap="0.8rem">
@@ -17,7 +21,7 @@ const TabExperience = () => {
         experiences.map((exp, id) => (
           <div key={id}>
             <Text tag="b2" color="gray7">
-              {exp.experience}
+              {exp}
             </Text>
           </div>
         ))
