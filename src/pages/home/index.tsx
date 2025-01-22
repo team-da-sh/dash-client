@@ -1,26 +1,23 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import ClassItem from '@/pages/home/components/ClassItem';
 import DancerItem from '@/pages/home/components/DancerItem';
 import Footer from '@/pages/home/components/Footer';
 import HomeCarousel from '@/pages/home/components/HomeCarousel';
 import HomeHeader from '@/pages/home/components/HomeHeader';
 import MyPage from '@/pages/home/components/MyPage';
 import PopularGenre from '@/pages/home/components/PopularGenre';
+import RecommendationLessons from '@/pages/home/components/RecommendationLessons';
+import UpcomingLessones from '@/pages/home/components/UpcomingLessons';
 import {
   overlayActiveStyle,
   containerStyle,
   dancerListWrapperstyle,
-  deadlineClassWrapperStyle,
   overlayStyle,
-  recommandClassWrapperStyle,
   carouselContainerStyle,
 } from '@/pages/home/index.css';
 import { DANCERLIST } from '@/pages/home/mocks';
-import { CLASS_LIST } from '@/pages/search/mocks';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
-import { useAdvertisements } from '@/apis/home/queries';
 import { isLoggedIn } from '@/utils/authUtil';
 import { useIntersect } from '@/utils/useIntersect';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
@@ -54,30 +51,7 @@ const Home = () => {
         <HomeCarousel />
       </div>
 
-      <div className={recommandClassWrapperStyle}>
-        <Head level="h2" tag="h4">
-          이 클래스는 꼭 들어야 해요!
-        </Head>
-        <Flex tag="ul" gap="0.8rem" marginTop="2rem" className={containerStyle}>
-          {CLASS_LIST.map((data) => (
-            <ClassItem
-              key={data.id}
-              lessonId={data.id}
-              lessonImageUrl={data.teacherProfileImage}
-              lessonLevel={data.level}
-              lessonGenre={data.genre}
-              lessonName={data.name}
-              teacherNickname={data.teacherName}
-              teacherImageUrl={data.teacherProfileImage}
-              lessonStartDateTime={data.startDate}
-              lessonEndDateTime={data.endDate}
-              lessonStreetAddress={data.location}
-              lessonRemainingDays={data.remainingDays}
-              useNewStyles={false}
-            />
-          ))}
-        </Flex>
-      </div>
+      <RecommendationLessons />
 
       <PopularGenre />
 
@@ -97,30 +71,7 @@ const Home = () => {
         </Flex>
       </div>
 
-      <div className={deadlineClassWrapperStyle}>
-        <Head level="h2" tag="h4">
-          놓치면 아쉬울 마지막 기회
-        </Head>
-        <Flex tag="ul" marginTop="2rem" gap="0.8rem" className={containerStyle}>
-          {CLASS_LIST.map((data) => (
-            <ClassItem
-              key={data.id}
-              lessonId={data.id}
-              lessonImageUrl={data.teacherProfileImage}
-              lessonLevel={data.level}
-              lessonGenre={data.genre}
-              lessonName={data.name}
-              teacherNickname={data.teacherName}
-              teacherImageUrl={data.teacherProfileImage}
-              lessonStartDateTime={data.startDate}
-              lessonEndDateTime={data.endDate}
-              lessonStreetAddress={data.location}
-              lessonRemainingDays={data.remainingDays}
-              useNewStyles={false}
-            />
-          ))}
-        </Flex>
-      </div>
+      <UpcomingLessones />
 
       <Footer />
     </>

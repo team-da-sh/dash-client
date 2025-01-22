@@ -18,3 +18,15 @@ export const getPopularGenres = async () => {
 
   return data;
 };
+
+export const getUpcommingLessons = async () => {
+  const { data } = await instance.get(API_URL.LESSONS_UPCOMING);
+
+  return data;
+};
+
+export const getRecommendationLessons = async () => {
+  const { data } = await instance.get(API_URL.LESSONS_RECOMMENDATIONS);
+
+  return data;
+};
