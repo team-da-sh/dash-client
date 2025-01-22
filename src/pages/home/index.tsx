@@ -1,22 +1,21 @@
 import { useState } from 'react';
 import ClassItem from '@/pages/home/components/ClassItem';
 import { genreWrapperStyle } from '@/pages/home/components/ClassItem/index.css';
-import DancerItem from '@/pages/home/components/DancerItem';
 import Footer from '@/pages/home/components/Footer';
 import GenreItem from '@/pages/home/components/GenreItem';
 import HomeCarousel from '@/pages/home/components/HomeCarousel';
 import HomeHeader from '@/pages/home/components/HomeHeader';
 import MyPage from '@/pages/home/components/MyPage';
+import PopularDancers from '@/pages/home/components/PopularDancers';
 import {
   myPageContainerStyle,
   overlayActiveStyle,
   containerStyle,
-  dancerListWrapperstyle,
   deadlineClassWrapperStyle,
   overlayStyle,
   recommandClassWrapperStyle,
 } from '@/pages/home/index.css';
-import { DANCERLIST, GENRELIST } from '@/pages/home/mocks';
+import { GENRELIST } from '@/pages/home/mocks';
 import { CLASS_LIST } from '@/pages/search/mocks';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
@@ -86,21 +85,7 @@ const Home = () => {
         </Flex>
       </div>
 
-      <div className={dancerListWrapperstyle}>
-        <Head level="h2" tag="h4">
-          가장 핫한 댄서들만 모아봤어요
-        </Head>
-        <Flex tag="ul" gap="0.8rem" marginTop="2rem" className={containerStyle}>
-          {DANCERLIST.map((data) => (
-            <DancerItem
-              key={data.teacherId}
-              teacherImageUrl={data.teacherImageUrl}
-              teacherGenre={data.teacherGenre}
-              teacherNickName={data.teacherNickName}
-            />
-          ))}
-        </Flex>
-      </div>
+      <PopularDancers />
 
       <div className={deadlineClassWrapperStyle}>
         <Head level="h2" tag="h4">

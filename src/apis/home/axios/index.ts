@@ -5,3 +5,9 @@ export const getAdvertisements = async () => {
 
   return response;
 };
+
+export const getPopularDancers = async () => {
+  const { data } = await instance.get(`/api/v1/teachers/popular`);
+
+  return data;
+};

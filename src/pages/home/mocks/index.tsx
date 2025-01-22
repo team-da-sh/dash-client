@@ -81,57 +81,6 @@ export const GENRELIST = [
   { medal: <IcAssetTop3 width={44} height={44} />, genre: '코레오' },
 ];
 
-export const DANCERLIST = [
-  {
-    teacherId: 101,
-    teacherImageUrl: 'https://cdn.mindgil.com/news/photo/202404/81080_25295_423.png',
-    teacherGenre: '힙합',
-    teacherNickName: '댄서 네임',
-  },
-  {
-    teacherId: 101,
-    teacherImageUrl: 'https://cdn.mindgil.com/news/photo/202404/81080_25295_423.png',
-    teacherGenre: '힙합',
-    teacherNickName: '댄서 네임',
-  },
-  {
-    teacherId: 101,
-    teacherImageUrl: 'https://cdn.mindgil.com/news/photo/202404/81080_25295_423.png',
-    teacherGenre: '힙합',
-    teacherNickName: '댄서 네임',
-  },
-  {
-    teacherId: 101,
-    teacherImageUrl: 'https://cdn.mindgil.com/news/photo/202404/81080_25295_423.png',
-    teacherGenre: '힙합',
-    teacherNickName: '댄서 네임',
-  },
-  {
-    teacherId: 101,
-    teacherImageUrl: 'https://cdn.mindgil.com/news/photo/202404/81080_25295_423.png',
-    teacherGenre: '힙합',
-    teacherNickName: '댄서 네임',
-  },
-  {
-    teacherId: 101,
-    teacherImageUrl: 'https://cdn.mindgil.com/news/photo/202404/81080_25295_423.png',
-    teacherGenre: '힙합',
-    teacherNickName: '댄서 네임',
-  },
-  {
-    teacherId: 101,
-    teacherImageUrl: 'https://cdn.mindgil.com/news/photo/202404/81080_25295_423.png',
-    teacherGenre: '힙합',
-    teacherNickName: '댄서 네임',
-  },
-  {
-    teacherId: 101,
-    teacherImageUrl: 'https://cdn.mindgil.com/news/photo/202404/81080_25295_423.png',
-    teacherGenre: '힙합',
-    teacherNickName: '댄서 네임',
-  },
-];
-
 export const ADVERTISEMENTS = [
   {
     imageUrl: 'https://cdn.spotvnews.co.kr/news/photo/202405/681149_1047749_1528.jpg',
