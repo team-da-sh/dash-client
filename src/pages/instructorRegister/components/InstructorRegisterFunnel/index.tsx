@@ -12,7 +12,7 @@ import { FunnelProps, StepProps } from '@/pages/search/types/funnel';
 import BoxButton from '@/components/BoxButton';
 import Completion from '@/components/Completion';
 import useImageUploader from '@/hooks/useImageUploader';
-import { useInstructorMutation } from '@/apis/instructorRegister/queries';
+import { usePostInstructor } from '@/apis/instructorRegister/queries';
 import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from '@/constants/api';
 
 interface InstructorRegisterFunnelProps {
@@ -35,8 +35,7 @@ const InstructorRegisterFunnel = ({ currentStep, Funnel, Step, setStep }: Instru
   const [isInstaError, setIsInstaError] = useState(false);
   const [isYoutubeError, setIsYoutubeError] = useState(false);
 
-  const { mutate: instructorRegisterMutate, data } = useInstructorMutation();
-  console.log(data);
+  const { mutate: instructorRegisterMutate } = usePostInstructor();
 
   // 이미지 업로드 로직
   const handleImageUploadSuccess = (url: string) => {

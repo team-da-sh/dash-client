@@ -11,7 +11,7 @@ interface InstructorRegisterInfoTypes {
   videoUrls: string[];
 }
 
-export const useInstructorMutation = () => {
+export const usePostInstructor = () => {
   return useMutation({
     mutationFn: (infoData: InstructorRegisterInfoTypes) => postInstructorRegisterInfo(infoData),
   });
