@@ -3,6 +3,7 @@ import { buttonContainerStyle } from '@/pages/instructorRegister/index.css';
 import BoxButton from '@/components/BoxButton';
 import Header from '@/components/Header';
 import useBottomSheet from '@/hooks/useBottomSheet';
+import { useGetLocationList } from '@/apis/instructor/classRegister/queries';
 import ClassAmount from './ClassAmount';
 import ClassDescription from './ClassDescription';
 import ClassGenre from './ClassGenre';
@@ -29,6 +30,7 @@ const ClassRegister = () => {
     recommend,
     personnel,
     defaultPlace,
+    submitDefaultPlace,
     detailPlace,
     amount,
     handleClassNameChange,
@@ -39,8 +41,12 @@ const ClassRegister = () => {
     handleExplainTextArea,
     handleRecommendChange,
     handleDefaultPlace,
+    handleSubmitDefaultPlace,
     handleDetailPlace,
   } = useClassRegisterForm();
+
+  const { data: locationList } = useGetLocationList(submitDefaultPlace);
+  console.log(locationList);
 
   return (
     <>
@@ -71,6 +77,7 @@ const ClassRegister = () => {
           detailPlace={detailPlace}
           handleDefaultPlace={handleDefaultPlace}
           handleDetailPlace={handleDetailPlace}
+          handleSubmitDefaultPlace={handleSubmitDefaultPlace}
         />
         <ClassAmount amount={amount} handleAmountChange={handleAmountChange} />
       </div>

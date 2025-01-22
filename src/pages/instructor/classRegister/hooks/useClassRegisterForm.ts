@@ -12,6 +12,7 @@ export const useClassRegisterForm = () => {
   const [recommend, setRecommend] = useState('');
   const [personnel, setPersonnelChange] = useState('');
   const [defaultPlace, setDefaultPlace] = useState('');
+  const [submitDefaultPlace, setSubmitDefaultPlace] = useState('');
   const [detailPlace, setDetailPlace] = useState('');
   const [amount, setAmount] = useState('');
 
@@ -59,9 +60,12 @@ export const useClassRegisterForm = () => {
     }
   };
 
-  const handleDefaultPlace = () => {
-    // 받은 데이터로 state 설정
-    setDefaultPlace('이런 값으로~');
+  const handleDefaultPlace = (e: ChangeEvent<HTMLInputElement>) => {
+    setDefaultPlace(e.target.value);
+  };
+
+  const handleSubmitDefaultPlace = () => {
+    setSubmitDefaultPlace(defaultPlace);
   };
 
   const handleDetailPlace = (e: ChangeEvent<HTMLInputElement>) => {
@@ -78,6 +82,7 @@ export const useClassRegisterForm = () => {
     recommend,
     personnel,
     defaultPlace,
+    submitDefaultPlace,
     detailPlace,
     amount,
     handleClassNameChange,
@@ -88,6 +93,7 @@ export const useClassRegisterForm = () => {
     handleExplainTextArea,
     handleRecommendChange,
     handleDefaultPlace,
+    handleSubmitDefaultPlace,
     handleDetailPlace,
   };
 };
