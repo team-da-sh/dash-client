@@ -1,6 +1,6 @@
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
-import EmptyGif from '@/../public/gif/empty.gif';
+import { EmptyGif } from '@/assets/gif';
 
 const EmptyView = () => {
   return (
