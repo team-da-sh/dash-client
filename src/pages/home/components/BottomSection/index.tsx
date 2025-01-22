@@ -2,15 +2,9 @@ import * as styles from '@/pages/home/components/BottomSection/index.css';
 import { LIST_DATA } from '@/pages/mypage/constants/myPageList';
 import Divider from '@/components/Divider';
 import Flex from '@/components/Flex';
-import Text from '@/components/Text';
 import { IcArrowRightSmallGray0432, IcArrowRightSmallGray0732 } from '@/assets/svg';
-import { MyPageProps } from '@/types/myPageTypes';
 
-interface BottomSectionProps {
-  userData: MyPageProps;
-  isInstructor: boolean;
-}
-const BottomSection = ({ userData, isInstructor }: BottomSectionProps) => {
+const BottomSection = ({ isInstructor }: { isInstructor: boolean }) => {
   return (
     <Flex>
       <ul className={styles.ulStyle}>
@@ -22,10 +16,8 @@ const BottomSection = ({ userData, isInstructor }: BottomSectionProps) => {
 
           return (
             <>
-              <li key={item.id} className={styles.listStyle}>
-                <Text tag="b2" color={isDisabled ? 'gray4' : 'gray9'}>
-                  {item.label}
-                </Text>
+              <li key={item.id} className={`${styles.listStyle} ${isDisabled ? styles.disabledStyle : ''}`}>
+                <p>{item.label}</p>
                 <ArrowIcon width={32} height={32} />
               </li>
               {/* Divider가 필요한 항목에 추가 */}

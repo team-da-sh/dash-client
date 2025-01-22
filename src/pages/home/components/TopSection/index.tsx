@@ -83,7 +83,8 @@ const TopSection = ({ userData, onClose, isInstructor }: TopSectionProps) => {
 
         <Divider direction="vertical" color="gray2" length={32} thickness={1} />
 
-        <Flex direction="column" align="center" gap="0.5rem">
+        {/* 관심목록 우선 disabled 처리리 */}
+        <Flex direction="column" align="center" gap="0.5rem" className={styles.disabledStyle}>
           <Head tag="h4" color={getTextColor(userData.favoriteCount)}>
             {userData.favoriteCount}
           </Head>
@@ -98,7 +99,8 @@ const TopSection = ({ userData, onClose, isInstructor }: TopSectionProps) => {
           gap="0.5rem"
           direction="column"
           align="center"
-          onClick={() => handleNavigate(ROUTES_CONFIG.instructorClassList.path)}>
+          onClick={() => isInstructor && handleNavigate(ROUTES_CONFIG.instructorClassList.path)}
+          className={isInstructor ? '' : styles.disabledStyle}>
           <Head tag="h4" color={getTextColor(userData.lessonCount ?? 0)}>
             {userData.lessonCount ?? 0}
           </Head>

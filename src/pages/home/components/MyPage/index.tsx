@@ -31,7 +31,7 @@ const MyPage = ({ showMyPage, onClose }: MyPageProps) => {
       <div className={styles.wrapperStyle}>
         <TopSection userData={userData} onClose={onClose} isInstructor={isInstructor} />
         <Divider length="100%" color="gray1" thickness={8} />
-        <BottomSection userData={userData} isInstructor={isInstructor} />
+        <BottomSection isInstructor={isInstructor} />
       </div>
     </div>
   );
