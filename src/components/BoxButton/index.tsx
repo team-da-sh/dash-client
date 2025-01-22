@@ -4,7 +4,7 @@ import { buttonStyle } from '@/components/BoxButton/index.css';
 
 export interface BoxButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary' | 'outline' | 'temp' | 'heart';
-
+  type?: 'button' | 'reset' | 'submit' | undefined;
   isDisabled?: boolean;
 }
 
@@ -25,6 +25,7 @@ const BoxButton = ({
         })
       )}
       disabled={isDisabled}
+      type={type}
       {...props}>
       {children}
     </button>
