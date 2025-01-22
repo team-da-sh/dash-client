@@ -1,8 +1,14 @@
-
 import { useQuery, UseQueryOptions } from '@tanstack/react-query';
 import { AdvertisementsTypes } from '@/pages/home/types/advertisementsTypes';
+import { LessonTypes } from '@/pages/home/types/classTypes';
 import { QUERY_KEYS } from '@/apis/constants/queryKey';
-import { getAdvertisements, getMyPage, getPopularGenres } from '@/apis/home/axios';
+import {
+  getAdvertisements,
+  getMyPage,
+  getPopularGenres,
+  getRecommendationLessons,
+  getUpcommingLessons,
+} from '@/apis/home/axios';
 import { MyPageProps } from '@/types/myPageTypes';
 
 interface AdvertisementResponse {
@@ -33,5 +39,27 @@ export const useGetPopularGenres = () => {
   return useQuery<PopularGenreResponse>({
     queryKey: [QUERY_KEYS.LESSONS_POPULAR_GENRES],
     queryFn: () => getPopularGenres(),
+  });
+};
+
+interface UpcomingLessonsResponse {
+  lessons: LessonTypes[];
+}
+
+export const useGetUpcomingLessons = () => {
+  return useQuery<UpcomingLessonsResponse>({
+    queryKey: [QUERY_KEYS.LESSONS_UPCOMING],
+    queryFn: () => getUpcommingLessons(),
+  });
+};
+
+interface RecommendationLessonsResponse {
+  lessons: LessonTypes[];
+}
+
+export const useGetRecommendationLessons = () => {
+  return useQuery<RecommendationLessonsResponse>({
+    queryKey: [QUERY_KEYS.LESSONS_RECOMMENDATIONS],
+    queryFn: () => getRecommendationLessons(),
   });
 };

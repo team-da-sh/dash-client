@@ -1,13 +1,13 @@
-export type ClassTypes = {
-  lessonId: number;
-  lessonImageUrl: string;
-  lessonLevel: string;
-  lessonGenre: string;
-  lessonName: string;
-  teacherNickname: string;
-  teacherImageUrl: string;
-  lessonStartDateTime: string;
-  lessonEndDateTime: string;
-  lessonStreetAddress: string;
-  lessonRemainingDays: number;
+export type LessonTypes = {
+  id: number;
+  genre: string;
+  level: string;
+  name: string;
+  imageUrl: string;
+  teacherProfileImage: string;
+  teacherName: string;
+  startDate: string;
+  endDate: string;
+  location: string;
+  remainingDays: number;
 };
