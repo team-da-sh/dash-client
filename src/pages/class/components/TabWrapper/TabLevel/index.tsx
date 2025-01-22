@@ -1,5 +1,5 @@
 import Card from '@/pages/class/components/Card';
-import { questionStyle, recommendClassStyle } from '@/pages/class/components/TabWrapper/TabLevel/index.css';
+import { questionStyle, recommendClassStyle, levelStyle } from '@/pages/class/components/TabWrapper/TabLevel/index.css';
 import { LessonDetail } from '@/pages/class/types/index';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
@@ -21,7 +21,7 @@ const TabLevel = ({ lessonData }: { lessonData: LessonDetail }) => {
         <Card>
           <Flex gap="0.8rem" align="center">
             {levelData?.icon || <IcLevelStarter width={'3.6rem'} />}
-            <Head level="h6" tag="h6">
+            <Head level="h6" tag="h6" className={levelStyle}>
               {translatedLevel}
             </Head>
             <Text tag="b8" color="gray8">
