@@ -9,6 +9,7 @@ export const questionStyle = style({
 export const recommendClassStyle = style({
   whiteSpace: 'pre-line',
 });
+
 export const levelStyle = style({
   whiteSpace: 'nowrap',
 });
