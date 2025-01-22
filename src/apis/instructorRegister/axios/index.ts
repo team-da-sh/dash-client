@@ -1,6 +1,5 @@
 import { instance } from '@/apis/api';
-
-const INSTRUCTOR_REGISTER_URL = '/api/v1/teachers';
+import { API_URL } from '@/apis/constants/apiURL';
 
 interface InstructorRegisterInfoTypes {
   imageUrls: string[];
@@ -13,7 +12,7 @@ interface InstructorRegisterInfoTypes {
 }
 
 export const postInstructorRegisterInfo = async (infoData: InstructorRegisterInfoTypes) => {
-  const response = await instance.post(INSTRUCTOR_REGISTER_URL, infoData);
+  const response = await instance.post(API_URL.TEACHERS, infoData);
 
   return response;
 };

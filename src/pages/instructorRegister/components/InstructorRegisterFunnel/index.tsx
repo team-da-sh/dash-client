@@ -73,7 +73,7 @@ const InstructorRegisterFunnel = ({ currentStep, Funnel, Step, setStep }: Instru
       case 4:
         return info.videoUrls[0]?.trim() !== '';
       case 5:
-        return info.detail.trim() !== '' && info.detail.length <= 30;
+        return info.detail.trim() !== '' && info.detail.length >= 30;
       case 6:
         return true;
       default:
