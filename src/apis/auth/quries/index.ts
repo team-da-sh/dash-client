@@ -3,7 +3,7 @@ import { AxiosError } from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { instance } from '@/apis/api';
 import { kakaoLogin, loginTypes } from '@/apis/auth/axios';
-import { saveTokensToLocalStorage } from '@/utils/saveTokensToLocalStorage';
+import { setStorage } from '@/utils/handleToken';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 
 export const useLoginMutation = () => {
@@ -20,7 +20,7 @@ export const useLoginMutation = () => {
       }
 
       navigate(ROUTES_CONFIG.home.path);
-      saveTokensToLocalStorage(accessToken, refreshToken);
+      setStorage(accessToken, refreshToken);
     },
 
     onError: (error: AxiosError) => {

@@ -14,7 +14,7 @@ import BoxButton from '@/components/BoxButton';
 import ProgressBar from '@/components/ProgressBar';
 import { FunnelProps, StepProps } from '@/hooks/useFunnel';
 import { usePostOnboard } from '@/apis/onboarding/quries';
-import { saveTokensToLocalStorage } from '@/utils/saveTokensToLocalStorage';
+import { setStorage } from '@/utils/handleToken';
 import defaultProfile from '@/assets/images/image_profile_basic.png';
 
 interface OnboardingFunnelProps {
@@ -68,7 +68,7 @@ const OnboardingFunnel = ({ currentStep, Funnel, setStep, Step }: OnboardingFunn
         onSuccess: ({ response }) => {
           // 온보딩 성공시 로컬스토리지에 토큰 등록
           if (response.status === 200) {
-            saveTokensToLocalStorage(tokenRef.current.accessToken, tokenRef.current.refreshToken);
+            setStorage(tokenRef.current.accessToken, tokenRef.current.refreshToken);
             setStep(1);
           }
         },
