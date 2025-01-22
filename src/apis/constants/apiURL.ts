@@ -15,7 +15,7 @@ export const API_URL = {
   TEACHERS_SEARCH: '/api/v1/teachers?keyword=:keyword',
 
   LESSONS: '/api/v1/lessons',
-  LESSON_DETAIL: '/api/v1/lessons/{lessonId}',
+  LESSON_DETAIL: '/api/v1/lessons',
   LESSONS_RECOMMENDATIONS: '/api/v1/lessons/recommendations?sortOption=:sortOption',
   LESSONS_POPULAR_GENRES: '/api/v1/lessons/popular-genres',
   LESSONS_UPCOMING: '/api/v1/lessons/upcoming?sortOption=:sortOption',
