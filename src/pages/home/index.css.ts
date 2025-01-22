@@ -6,6 +6,10 @@ export const containerStyle = style({
   whiteSpace: 'nowrap',
 });
 
+export const carouselContainerStyle = style({
+  minHeight: '37.5rem',
+});
+
 export const rowScrollwrapperStyle = style({
   width: '100%',
 
@@ -19,6 +23,16 @@ export const recommandClassWrapperStyle = style({
   marginTop: '3.2rem',
 });
 
+export const dancerListWrapperstyle = style({
+  width: '100%',
+
+  paddingLeft: '2rem',
+  marginTop: '4.8rem',
+});
+
+export const myPageContainerStyle = style({
+  position: 'relative',
+});
 
 export const deadlineClassWrapperStyle = style({
   width: '100%',
@@ -27,12 +41,8 @@ export const deadlineClassWrapperStyle = style({
   marginTop: '6.1rem',
 });
 
-export const myPageContainerStyle = style({
-  position: 'relative',
-});
-
 export const overlayStyle = style({
-  position: 'absolute',
+  position: 'fixed',
   top: 0,
   left: 0,
 

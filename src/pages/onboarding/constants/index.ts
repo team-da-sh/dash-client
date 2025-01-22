@@ -3,13 +3,13 @@ export const INFO_KEY = {
   PHONE_NUMBER: 'phoneNumber',
   GENRES: 'genres',
   LEVEL: 'level',
-  NICKNAME: 'nickName',
+  NICKNAME: 'nickname',
   PROFILE_IMAGE_URL: 'profileImageUrl',
 } as const;
 
 export const GENRELIST = [
   'HIPHOP',
-  'FEMALEHIPHOP',
+  'FEMALE_HIPHOP',
   'POPPING',
   'BRAKING',
   'WAACKING',
@@ -29,8 +29,12 @@ export const LEVELS = {
   고급: 'ADVANCED',
 } as const;
 
-export const excludeSpecialBlankChar = /^[^!@#$%^&*(),.?":{}|<>_\[\]\\\-\/+=~`'\s]+$/;
+export const MIN_NAME_LENGTH = 2;
+
+export const MAX_NAME_LENGTH = 8;
 
 export const MAX_PHONENUMBER_LENGTH = 11;
 
 export const MAX_NICKNAME_LENGTH = 8;
+
+export const MAX_ONBOARDING_STEP = 5;
