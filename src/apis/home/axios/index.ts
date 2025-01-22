@@ -8,15 +8,13 @@ export const getAdvertisements = async () => {
 };
 
 export const getMyPage = async () => {
-  // TODO. 토큰 추후 변경하기
-  // const token = localStorage.getItem('accessToken');
-  const token = import.meta.env.VITE_ACCESS_TOKEN;
+  const { data } = await instance.get(API_URL.MEMBERS_ME);
 
-  const { data } = await instance.get(API_URL.MEMBERS_ME, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
+  return data;
+};
+
+export const getPopularGenres = async () => {
+  const { data } = await instance.get(API_URL.LESSONS_POPULAR_GENRES);
 
   return data;
 };
