@@ -3,12 +3,9 @@ import { getAccessToken } from '@/utils/handleToken';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { HTTP_STATUS_CODE } from '@/constants/api';
 
-const accessToken = import.meta.env.VITE_ACCESS_TOKEN;
-
 export const instance = axios.create({
   baseURL: import.meta.env.VITE_DEV_BASE_URL,
   headers: {
-    Authorization: `Bearer ${accessToken}`,
     'Content-Type': 'application/json',
   },
 });
