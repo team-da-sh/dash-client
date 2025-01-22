@@ -6,16 +6,24 @@ type Range<T> = [T, T];
 
 interface CalendarCustomProps {
   startDate: string;
-  endDate: string;
+  endDate?: string;
   setStartDate: (date: string) => void;
-  setEndDate: (date: string) => void;
+  setEndDate?: (date: string) => void;
+  isSearch: boolean;
 }
 
-const CalendarCustom = ({ startDate, endDate, setStartDate, setEndDate }: CalendarCustomProps) => {
+const CalendarCustom = ({ startDate, endDate, setStartDate, setEndDate, isSearch }: CalendarCustomProps) => {
   const dateChangeHandler = (value: Value | Range<Value>) => {
-    if (Array.isArray(value) && value[0] && value[1]) {
-      setStartDate(formatDay(value[0]));
-      setEndDate(formatDay(value[1]));
+    // 시작과 끝 날짜 모두 선택한 경우
+    if (Array.isArray(value)) {
+      const [start, end] = value;
+      setStartDate(start ? formatDay(start) : '');
+      if (setEndDate) setEndDate(end ? formatDay(end) : '');
+    }
+    // 단일 선택인 경우
+    else if (value) {
+      setStartDate(formatDay(value));
+      if (setEndDate) setEndDate('');
     }
   };
 
@@ -33,16 +41,34 @@ const CalendarCustom = ({ startDate, endDate, setStartDate, setEndDate }: Calend
     return date.getDate().toString();
   };
 
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const minDate = isSearch ? undefined : today;
+
+  const tileClassName = ({ date }: { date: Date }) => {
+    if (minDate && date < minDate) {
+      return 'disabled-date';
+    }
+    return '';
+  };
+
   return (
-    <Calendar
-      locale="ko"
-      selectRange={true}
-      onChange={dateChangeHandler}
-      formatDay={formatCalendarDay}
-      showNeighboringMonth={false}
-      minDetail="year"
-      defaultValue={startDate && endDate ? [new Date(startDate), new Date(endDate)] : undefined}
-    />
+    <div className={isSearch ? `search-calendar` : `class-register-calendar`}>
+      <Calendar
+        locale="ko"
+        selectRange={isSearch}
+        onChange={dateChangeHandler}
+        formatDay={formatCalendarDay}
+        showNeighboringMonth={false}
+        minDetail="year"
+        defaultValue={
+          startDate ? (endDate ? [new Date(startDate), new Date(endDate)] : new Date(startDate)) : undefined
+        }
+        minDate={isSearch ? undefined : today}
+        tileClassName={tileClassName}
+      />
+    </div>
   );
 };
 

@@ -8,7 +8,6 @@ import HomeCarousel from '@/pages/home/components/HomeCarousel';
 import HomeHeader from '@/pages/home/components/HomeHeader';
 import MyPage from '@/pages/home/components/MyPage';
 import {
-  myPageContainerStyle,
   overlayActiveStyle,
   containerStyle,
   dancerListWrapperstyle,
@@ -20,7 +19,7 @@ import { DANCERLIST, GENRELIST } from '@/pages/home/mocks';
 import { CLASS_LIST } from '@/pages/search/mocks';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
-import { useAdvertisements } from '@/apis/home/quries';
+import { useAdvertisements } from '@/apis/home/queries';
 import { useIntersect } from '@/utils/useIntersect';
 
 const Home = () => {
@@ -40,7 +39,7 @@ const Home = () => {
   console.log(data);
 
   return (
-    <div className={myPageContainerStyle}>
+    <>
       <div className={`${overlayStyle} ${showMyPage ? overlayActiveStyle : ''}`} />
       <MyPage showMyPage={showMyPage} onClose={handleCloseMyPageClick} />
 
@@ -128,7 +127,7 @@ const Home = () => {
       </div>
 
       <Footer />
-    </div>
+    </>
   );
 };
 

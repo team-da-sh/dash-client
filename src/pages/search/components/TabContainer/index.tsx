@@ -1,20 +1,35 @@
 import { useState } from 'react';
 import ClassItem from '@/pages/home/components/ClassItem';
-import DancerList from '@/pages/search/components/DancerList';
+import { defaultSortTagProps } from '@/pages/home/types/defaultSortTag';
+import DancerList from '@/pages/search/components/TabContainer/DancerList';
+import EmptyView from '@/pages/search/components/TabContainer/EmptyView';
 import TagSection from '@/pages/search/components/TabContainer/TagSection';
 import Dropdown from '@/pages/search/components/TabContainer/TagSection/Dropdown';
 import { divCustomStyle } from '@/pages/search/components/TabContainer/index.css';
-import { CLASS_LIST, DANCER_LIST } from '@/pages/search/mocks/index';
-import { defaultSortTagProps } from '@/pages/search/types/defaultSortTag';
 import Flex from '@/components/Flex';
 import { TabList, TabRoot, TabButton, TabPanel } from '@/components/Tab';
 import Text from '@/components/Text';
-import { IcArrowUnderGray, IcXMain04 } from '@/assets/svg';
+import { DancerListResponse, ClassListResponse } from '@/apis/search/queries';
+import { IcArrowUnderGray } from '@/assets/svg';
+import { IcXMain04 } from '@/assets/svg';
 
 interface TagItem {
   label: string;
   icon?: JSX.Element;
   type?: string;
+}
+
+interface ClassTypes {
+  id: number;
+  teacherProfileImage: string;
+  level: string;
+  genre: string;
+  name: string;
+  teacherName: string;
+  startDate: string;
+  endDate: string;
+  location: string;
+  remainingDays: number;
 }
 
 interface TabContainerProps {
@@ -27,6 +42,11 @@ interface TabContainerProps {
   setLevel: (level: string | null) => void;
   setStartDate: (date: string) => void;
   setEndDate: (date: string) => void;
+  classList: ClassListResponse | undefined;
+  dancerList: DancerListResponse | undefined;
+  error: Error | null;
+  selectedLabel: '최신 등록순' | '찜이 많은순' | '마감 임박순';
+  setSelectedLabel: (label: '최신 등록순' | '찜이 많은순' | '마감 임박순') => void;
 }
 
 const TabContainer = ({
@@ -39,9 +59,13 @@ const TabContainer = ({
   setLevel,
   setStartDate,
   setEndDate,
+  dancerList,
+  error,
+  classList,
+  selectedLabel,
+  setSelectedLabel,
 }: TabContainerProps) => {
   const [selectedTab, setSelectedTab] = useState(0);
-  const [selectedLabel, setSelectedLabel] = useState('최신 등록순');
 
   const activeTags: TagItem[] = [
     { condition: genre, label: genre, type: 'genre' },
@@ -111,27 +135,36 @@ const TabContainer = ({
               setEndDate={setEndDate}
             />
             <div className={divCustomStyle}>
-              {CLASS_LIST.map((data) => (
-                <ClassItem
-                  key={data.id}
-                  lessonId={data.id}
-                  lessonImageUrl={data.teacherProfileImage}
-                  lessonLevel={data.level}
-                  lessonGenre={data.genre}
-                  lessonName={data.name}
-                  teacherNickname={data.teacherName}
-                  teacherImageUrl={data.teacherProfileImage}
-                  lessonStartDateTime={data.startDate}
-                  lessonEndDateTime={data.endDate}
-                  lessonStreetAddress={data.location}
-                  lessonRemainingDays={data.remainingDays}
-                  useNewStyles={true}
-                />
-              ))}
+              {classList && classList.lessons && classList.lessons.length > 0 ? (
+                classList.lessons.map((data: ClassTypes) => (
+                  <ClassItem
+                    key={data.id}
+                    lessonId={data.id}
+                    lessonImageUrl={data.teacherProfileImage}
+                    lessonLevel={data.level}
+                    lessonGenre={data.genre}
+                    lessonName={data.name}
+                    teacherNickname={data.teacherName}
+                    teacherImageUrl={data.teacherProfileImage}
+                    lessonStartDateTime={data.startDate}
+                    lessonEndDateTime={data.endDate}
+                    lessonStreetAddress={data.location}
+                    lessonRemainingDays={data.remainingDays}
+                    useNewStyles={true}
+                  />
+                ))
+              ) : (
+                <EmptyView />
+              )}
             </div>
           </TabPanel>
           <TabPanel isSelected={selectedTab === 1}>
-            <DancerList dancers={DANCER_LIST} />
+            {error && <div>Error: {error.message}</div>}
+            {dancerList && dancerList.teachers && dancerList.teachers.length > 0 ? (
+              <DancerList dancers={dancerList.teachers} />
+            ) : (
+              <EmptyView />
+            )}
           </TabPanel>
         </TabRoot>
       </Flex>

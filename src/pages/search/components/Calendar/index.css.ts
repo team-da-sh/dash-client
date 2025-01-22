@@ -71,25 +71,12 @@ globalStyle('.react-calendar__month-view__days', {
   ...vars.fonts.h6,
 });
 
-// 기간 첫 날짜 스타일
-globalStyle(' .react-calendar__tile--rangeStart', {
-  position: 'relative',
-  color: 'white',
-  background: 'linear-gradient(to right, white 50%, #C3B9FF 50%) !important',
-});
-
-// 기간 끝 날짜 스타일
-globalStyle('.react-calendar__month-view__days .react-calendar__tile--rangeEnd', {
-  position: 'relative',
-  color: 'white',
-  background: 'linear-gradient(to right, #C3B9FF 50%, white 50%) ',
-});
-
 // 기간 첫 날짜 배경 원 스타일
 globalStyle(' .react-calendar__tile--rangeStart abbr', {
   content: "''",
   position: 'absolute',
   display: 'center',
+  textAlign: 'center',
   transform: 'translate(-50%, -50%)',
   width: '3.6rem',
   height: '3.6rem',
@@ -104,6 +91,7 @@ globalStyle(' .react-calendar__tile--rangeEnd abbr', {
   content: "''",
   position: 'absolute',
   display: 'center',
+  textAlign: 'center',
   transform: 'translate(-50%, -50%)',
   width: '3.6rem',
   height: '3.6rem',
@@ -113,7 +101,40 @@ globalStyle(' .react-calendar__tile--rangeEnd abbr', {
   alignContent: 'center',
 });
 
-globalStyle('.react-calendar__tile--range', {
+// 검색일 때 스타일
+globalStyle('.search-calendar .react-calendar__month-view__days .react-calendar__tile--rangeEnd', {
+  position: 'relative',
+  color: 'white',
+  background: 'linear-gradient(to right, #C3B9FF 50%, white 50%) ',
+});
+
+globalStyle('.search-calendar .react-calendar__tile--rangeStart', {
+  position: 'relative',
+  color: 'white',
+  background: 'linear-gradient(to right, white 50%, #C3B9FF 50%) !important',
+});
+
+globalStyle('.search-calendar .react-calendar__tile--range', {
   borderRadius: '0',
   background: vars.colors.main01,
+});
+
+// 강좌 등록일 때 스타일
+globalStyle('.class-register-calendar .react-calendar__month-view__days .react-calendar__tile--rangeEnd', {
+  position: 'relative',
+  color: 'white',
+});
+
+globalStyle('.class-register-calendar .react-calendar__tile--rangeStart', {
+  position: 'relative',
+  color: 'white',
+});
+
+globalStyle('.class-register-calendar .react-calendar__tile--range', {
+  borderRadius: '0',
+});
+
+globalStyle('.disabled-date', {
+  color: vars.colors.gray03,
+  pointerEvents: 'none',
 });

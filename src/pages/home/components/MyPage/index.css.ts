@@ -5,12 +5,12 @@ export const wrapperStyle = style({
   display: 'flex',
   flexDirection: 'column',
 
-  position: 'absolute',
+  position: 'fixed',
   top: '0',
   right: '0',
 
   width: '31.2rem',
-  height: '100vh',
+  height: '100%',
 
   overflow: 'auto',
 
@@ -18,7 +18,7 @@ export const wrapperStyle = style({
 });
 
 export const visibleStyle = style({
-  position: 'absolute',
+  position: 'fixed',
   top: '0',
   right: '0',
   zIndex: 6,
@@ -32,7 +32,7 @@ export const visibleStyle = style({
 });
 
 export const invisibleStyle = style({
-  position: 'absolute',
+  position: 'fixed',
   top: '0',
   right: '0',
 

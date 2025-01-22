@@ -1,19 +1,22 @@
-import ClassHeader from '@/pages/dancer/DancerHeader';
-import DancerInfo from '@/pages/dancer/DancerInfo';
+import ClassHeader from '@/pages/dancer/components/DancerHeader';
+import DancerInfo from '@/pages/dancer/components/DancerInfo';
+import TabWrapper from '@/pages/dancer/components/TabWrapper';
 import { gradientOverlayStyle, textWrapperStyle, topImgStyle } from '@/pages/dancer/index.css';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Tag from '@/components/Tag';
 import Text from '@/components/Text';
+import { genreMapping } from '@/constants/index';
 import { useIntersect } from '@/utils/useIntersect';
-import { DANCER_DATA } from '@/mocks/mockDancerData';
-
-import TabWrapper from '@/pages/dancer/TabWrapper';
+import { DANCER_DATA } from '@/pages/dancer/mocks/mockDancerData';
 
 const Dancer = () => {
   const [targetRef, isVisible] = useIntersect(false);
   const { nickname, imageUrls, genres } = DANCER_DATA;
 
+  // 장르 변환
+  const translatedGenres = genres.map((genre) => genreMapping[genre] || genre);
+  
   return (
     <>
       <Flex width="100%">
@@ -26,10 +29,10 @@ const Dancer = () => {
           <div className={gradientOverlayStyle} />
           <Flex direction="column" gap="0.8rem" paddingTop="28.9rem" paddingLeft="2rem" className={textWrapperStyle}>
             <Flex direction="row" gap="0.4rem">
-              {genres.map((g, id) => (
+              {translatedGenres.map((genre, id) => (
                 <Tag key={id} size="medium" type="genre">
                   <Text tag="b7" color="white">
-                    {g}
+                    {genre}
                   </Text>
                 </Tag>
               ))}
@@ -46,7 +49,6 @@ const Dancer = () => {
 
       <DancerInfo />
       <TabWrapper colorScheme="primary" />
-
     </>
   );
 };

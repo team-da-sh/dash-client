@@ -1,30 +1,46 @@
-import { useState } from 'react';
 import Description from '@/pages/instructorRegister/Description';
+import { INFO_KEY, INSTAGRAM_REGEX, YOUTUBE_REGEX } from '@/pages/instructorRegister/constants';
+import { InstructorRegisterInfoTypes } from '@/pages/instructorRegister/types';
 import Flex from '@/components/Flex';
 import Input from '@/components/Input';
 import Text from '@/components/Text';
 import { IcInstagram20, IcYoutube20 } from '@/assets/svg';
 
-const MIN_LENGTH = 9;
+interface PersonalSNSStepProps {
+  instagram: string;
+  youtube: string;
+  isInstaError: boolean;
+  isYoutubeError: boolean;
+  handleInstaError: (isError: boolean) => void;
+  handleYoutubeError: (isError: boolean) => void;
+  onInfoChange: <K extends keyof InstructorRegisterInfoTypes>(key: K, value: InstructorRegisterInfoTypes[K]) => void;
+}
 
-const PersonalSNSStep = () => {
-  const [instagramValue, setInstagramValue] = useState('');
-  const [youtubeValue, setYoutubeValue] = useState('');
-  const [instagramError, setInstagramError] = useState(false);
-  const [youtubeError, setYoutubeError] = useState(false);
-
-  const validateInput = (value: string) => value.length >= MIN_LENGTH;
-
-  const handleInstagramChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setInstagramValue(value);
-    setInstagramError(!validateInput(value));
+const PersonalSNSStep = ({
+  instagram,
+  youtube,
+  isInstaError,
+  isYoutubeError,
+  handleInstaError,
+  handleYoutubeError,
+  onInfoChange,
+}: PersonalSNSStepProps) => {
+  const handleInstagramChange = (value: string) => {
+    onInfoChange(INFO_KEY.INSTAGRAM, value);
+    if (value === '') {
+      handleInstaError(false);
+    } else {
+      handleInstaError(!INSTAGRAM_REGEX.test(value));
+    }
   };
 
-  const handleYoutubeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setYoutubeValue(value);
-    setYoutubeError(!validateInput(value));
+  const handleYoutubeChange = (value: string) => {
+    onInfoChange(INFO_KEY.YOUTUBE, value);
+    if (value === '') {
+      handleYoutubeError(false);
+    } else {
+      handleYoutubeError(!YOUTUBE_REGEX.test(value));
+    }
   };
 
   return (
@@ -39,13 +55,13 @@ const PersonalSNSStep = () => {
           </Flex>
           <Input
             placeholder="http://instagram.com/dashofficial"
-            value={instagramValue}
-            onChange={handleInstagramChange}
-            isError={instagramError}
+            value={instagram}
+            onChange={(e) => handleInstagramChange(e.target.value)}
+            isError={isInstaError}
           />
-          {instagramError && instagramValue && (
+          {isInstaError && (
             <Text tag="b6" color="alert3">
-              9글자 이상 입력해야 합니다.
+              올바른 인스타그램 링크를 입력해 주세요.
             </Text>
           )}
         </Flex>
@@ -57,13 +73,13 @@ const PersonalSNSStep = () => {
           </Flex>
           <Input
             placeholder="http://youtube.com/dashofficial"
-            value={youtubeValue}
-            onChange={handleYoutubeChange}
-            isError={youtubeError}
+            value={youtube}
+            onChange={(e) => handleYoutubeChange(e.target.value)}
+            isError={isYoutubeError}
           />
-          {youtubeError && youtubeValue && (
+          {isYoutubeError && (
             <Text tag="b6" color="alert3">
-              9글자 이상 입력해야 합니다.
+              올바른 유튜브 링크를 입력해 주세요.
             </Text>
           )}
         </Flex>
