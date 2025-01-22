@@ -12,17 +12,15 @@ import { MyPageProps } from '@/types/myPageTypes';
 interface TopSectionProps {
   userData: MyPageProps;
   onClose: () => void;
+  isInstructor: boolean;
 }
-const TopSection = ({ userData, onClose }: TopSectionProps) => {
+const TopSection = ({ userData, onClose, isInstructor }: TopSectionProps) => {
   const navigate = useNavigate();
 
   // 신청 내역, 내 클래스 클릭 시 이동
   const handleNavigate = (path: string) => {
     navigate(path);
   };
-
-  // 강사 권한을 가질 때는 null 이 아닌 number가 옴
-  const isInstructor = userData.lessonCount !== null;
 
   // 신청 내역, 관심목록, 내 클래스 값이 0 이상일 때 gray8 색상 적용
   const getTextColor = (value: number) => {

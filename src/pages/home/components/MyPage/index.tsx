@@ -1,6 +1,7 @@
 import * as styles from '@/pages/home/components/MyPage/index.css';
 import TopSection from '@/pages/home/components/TopSection';
 import Divider from '@/components/Divider';
+import { useGetRole } from '@/apis/common/queries';
 import { useGetMyPage } from '@/apis/home/queries';
 import BottomSection from '../BottomSection';
 
@@ -11,10 +12,14 @@ interface MyPageProps {
 
 const MyPage = ({ showMyPage, onClose }: MyPageProps) => {
   const { data: userData, isError } = useGetMyPage();
+  const { data: role } = useGetRole();
+
+  console.log(role);
 
   if (isError || !userData) return console.log(isError);
 
-  // wrapper 영역 외부 클릭시 onClose 호출
+  const isInstructor = role === 'TEACHER';
+
   const handleClickOutside = (e: React.MouseEvent) => {
     if (e.target === e.currentTarget) {
       onClose();
@@ -24,9 +29,9 @@ const MyPage = ({ showMyPage, onClose }: MyPageProps) => {
   return (
     <div onClick={handleClickOutside} className={showMyPage ? styles.visibleStyle : styles.invisibleStyle}>
       <div className={styles.wrapperStyle}>
-        <TopSection userData={userData} onClose={onClose} />
+        <TopSection userData={userData} onClose={onClose} isInstructor={isInstructor} />
         <Divider length="100%" color="gray1" thickness={8} />
-        <BottomSection userData={userData} />
+        <BottomSection userData={userData} isInstructor={isInstructor} />
       </div>
     </div>
   );

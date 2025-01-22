@@ -6,10 +6,11 @@ import Text from '@/components/Text';
 import { IcArrowRightSmallGray0432, IcArrowRightSmallGray0732 } from '@/assets/svg';
 import { MyPageProps } from '@/types/myPageTypes';
 
-const BottomSection = ({ userData }: { userData: MyPageProps }) => {
-  // 강사 권한을 가질 때는 null 이 아닌 number가 옴
-  const isInstructor = userData.lessonCount !== null;
-
+interface BottomSectionProps {
+  userData: MyPageProps;
+  isInstructor: boolean;
+}
+const BottomSection = ({ userData, isInstructor }: BottomSectionProps) => {
   return (
     <Flex>
       <ul className={styles.ulStyle}>
