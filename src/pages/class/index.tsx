@@ -5,30 +5,26 @@ import ClassInfoWrapper from '@/pages/class/components/ClassInfoWrapper';
 import TabWrapper from '@/pages/class/components/TabWrapper';
 import { headerStyle } from '@/pages/class/index.css';
 import Divider from '@/components/Divider';
-import { getLessonDetail } from '@/apis/class/axios';
 import { useLessonDetail } from '@/apis/class/queries';
-import { useIntersect } from '@/utils/useIntersect';
-import { LESSON_DATA } from './mocks/mockLessonData';
-
-// import { useEffect, useState } from "react";
+import { useIntersectCallback } from '@/utils/useIntersectCallback';
 
 const Class = () => {
   const { id } = useParams<{ id: string }>();
 
   if (!id) {
-    return <div>Error: lessonId is missing</div>;
+    return <div>해당하는 클래스가 없습니다.</div>;
   }
 
   const { data, error } = useLessonDetail(id);
-  const [targetRef, isVisible] = useIntersect(false);
+  const [targetRef, isVisible] = useIntersectCallback(false);
 
   console.log(isVisible);
   if (error instanceof Error) {
-    return <div>Error: {error.message}</div>;
+    return <div>오류: {error.message}</div>;
   }
 
   if (!data) {
-    return <div>No lesson data available</div>;
+    return <div>클래스 정보가 없습니다.</div>;
   }
 
   const imageUrl = data.imageUrl;
