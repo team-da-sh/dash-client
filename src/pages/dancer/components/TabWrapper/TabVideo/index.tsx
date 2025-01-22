@@ -1,6 +1,10 @@
-import { videoWrapperStyle, videoItemStyle, iframeStyle } from '@/pages/dancer/components/TabWrapper/TabVideo/index.css';
+import {
+  videoWrapperStyle,
+  videoItemStyle,
+  iframeStyle,
+} from '@/pages/dancer/components/TabWrapper/TabVideo/index.css';
+import { DancerDetail } from '@/pages/dancer/types';
 import Flex from '@/components/Flex';
-import { DancerDetail } from "@/pages/dancer/types";
 
 interface TabVideoProps {
   dancerData: DancerDetail;
@@ -26,7 +30,8 @@ const TabVideo = ({ dancerData }: TabVideoProps) => {
                 src={embedUrl || ''}
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
-                title={`video-${id}`}/>
+                title={`video-${id}`}
+              />
             </div>
           );
         })}

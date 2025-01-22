@@ -1,9 +1,9 @@
 import { useState } from 'react';
+import { DancerDetail } from '@/pages/dancer/types/index';
 import Flex from '@/components/Flex';
 import { TabButton, TabList, TabPanel, TabRoot } from '@/components/Tab';
 import { vars } from '@/styles/theme.css';
 import { DANCER_TABS } from '@/constants';
-import { DancerDetail } from "../../types";
 
 interface TabWrapperProps {
   colorScheme: 'primary' | 'secondary';
@@ -38,7 +38,7 @@ const TabWrapper = ({ colorScheme, dancerData }: TabWrapperProps) => {
         {DANCER_TABS.map((tab) => (
           <TabPanel key={tab.id} isSelected={selectedTab === tab.id - 1}>
             {selectedTab === tab.id - 1 && tab.component(dancerData)}
-            </TabPanel>
+          </TabPanel>
         ))}
       </Flex>
     </TabRoot>
