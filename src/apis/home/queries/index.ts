@@ -6,7 +6,7 @@ interface AdvertisementResponse {
   advertisements: AdvertisementsTypes[];
 }
 
-export const useAdvertisements = () => {
+export const useGetAdvertisements = () => {
   return useQuery<AdvertisementResponse>({
     queryKey: ['advertisements'],
     queryFn: getAdvertisements,

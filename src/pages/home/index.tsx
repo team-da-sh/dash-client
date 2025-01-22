@@ -15,6 +15,7 @@ import {
   deadlineClassWrapperStyle,
   overlayStyle,
   recommandClassWrapperStyle,
+  carouselContainerStyle,
 } from '@/pages/home/index.css';
 import { DANCERLIST, GENRELIST } from '@/pages/home/mocks';
 import { CLASS_LIST } from '@/pages/search/mocks';
@@ -41,7 +42,7 @@ const Home = () => {
 
       <HomeHeader isVisible={isVisible} onMyPageClick={handleMyPageClick} />
 
-      <div ref={targetRef} style={{ minHeight: '37.5rem' }}>
+      <div ref={targetRef} className={carouselContainerStyle}>
         <HomeCarousel />
       </div>
 

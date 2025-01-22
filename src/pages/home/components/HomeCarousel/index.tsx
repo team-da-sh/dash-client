@@ -2,12 +2,10 @@
 import { Pagination, Autoplay } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SliderItem from '@/pages/home/components/SliderItem';
-import { useAdvertisements } from '@/apis/home/queries';
+import { useGetAdvertisements } from '@/apis/home/queries';
 
-interface HomeCarouselProps {}
-
-const HomeCarousel = ({}: HomeCarouselProps) => {
-  const { data } = useAdvertisements();
+const HomeCarousel = () => {
+  const { data } = useGetAdvertisements();
 
   return (
     <Swiper
