@@ -35,21 +35,14 @@ const Home = () => {
     <>
       <div className={`${overlayStyle} ${showMyPage ? overlayActiveStyle : ''}`} />
       <MyPage showMyPage={showMyPage} onClose={handleCloseMyPageClick} />
-
       <HomeHeader isVisible={isVisible} onMyPageClick={handleMyPageClick} />
-
       <div ref={targetRef} className={carouselContainerStyle}>
         <HomeCarousel />
       </div>
-
       <RecommendationLessons />
-
       <PopularGenre />
-
       <PopularDancers />
-
       <UpcomingLessones />
-
       <Footer />
     </>
   );

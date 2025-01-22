@@ -32,7 +32,7 @@ export const getRecommendationLessons = async () => {
 };
 
 export const getPopularDancers = async () => {
-  const { data } = await instance.get(`/api/v1/teachers/popular`);
+  const { data } = await instance.get(API_URL.TEACHERS_POPULAR);
 
   return data;
 };

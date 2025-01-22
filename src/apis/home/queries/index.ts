@@ -73,7 +73,7 @@ interface PopularDancersResponse {
 
 export const useGetPopularDancers = () => {
   return useQuery<PopularDancersResponse>({
-    queryKey: ['popularTeachers'],
+    queryKey: [QUERY_KEYS.TEACHERS_POPULAR],
     queryFn: () => getPopularDancers(),
   });
 };
