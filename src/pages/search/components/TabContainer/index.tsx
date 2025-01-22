@@ -139,17 +139,17 @@ const TabContainer = ({
                 classList.lessons.map((data: ClassTypes) => (
                   <ClassItem
                     key={data.id}
-                    lessonId={data.id}
-                    lessonImageUrl={data.teacherProfileImage}
-                    lessonLevel={data.level}
-                    lessonGenre={data.genre}
-                    lessonName={data.name}
-                    teacherNickname={data.teacherName}
-                    teacherImageUrl={data.teacherProfileImage}
-                    lessonStartDateTime={data.startDate}
-                    lessonEndDateTime={data.endDate}
-                    lessonStreetAddress={data.location}
-                    lessonRemainingDays={data.remainingDays}
+                    id={data.id}
+                    imageUrl={data.teacherProfileImage}
+                    level={data.level}
+                    genre={data.genre}
+                    name={data.name}
+                    teacherName={data.teacherName}
+                    teacherProfileImage={data.teacherProfileImage}
+                    startDate={data.startDate}
+                    endDate={data.endDate}
+                    location={data.location}
+                    remainingDays={data.remainingDays}
                     useNewStyles={true}
                   />
                 ))
