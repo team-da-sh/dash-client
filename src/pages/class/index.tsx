@@ -5,7 +5,7 @@ import ClassInfoWrapper from '@/pages/class/components/ClassInfoWrapper';
 import TabWrapper from '@/pages/class/components/TabWrapper';
 import { headerStyle } from '@/pages/class/index.css';
 import Divider from '@/components/Divider';
-import { useLessonDetail } from '@/apis/class/queries';
+import { useGetLessonDetail } from '@/apis/class/queries';
 import { useIntersectCallback } from '@/utils/useIntersectCallback';
 
 const Class = () => {
@@ -15,7 +15,7 @@ const Class = () => {
     return <div>해당하는 클래스가 없습니다.</div>;
   }
 
-  const { data, error } = useLessonDetail(id);
+  const { data, error } = useGetLessonDetail(id);
   const [targetRef, isVisible] = useIntersectCallback(false);
 
   if (error instanceof Error) {

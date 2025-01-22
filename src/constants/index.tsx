@@ -140,8 +140,8 @@ export const BUTTON_TEXT = {
   OVER_BOOKED: '클래스 마감',
   OPEN: {
     BOOKED: '신청 완료',
-    AVAILABLE: '신청하기'
-  }
+    AVAILABLE: '신청하기',
+  },
 } as const;
 
 export const DISABLED_STATUS = {
@@ -149,6 +149,6 @@ export const DISABLED_STATUS = {
   OVER_BOOKED: true,
   OPEN: {
     BOOKED: true,
-    AVAILABLE: false
-  }
+    AVAILABLE: false,
+  },
 } as const;

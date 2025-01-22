@@ -38,7 +38,6 @@ interface TextProps extends HTMLAttributes<HTMLParagraphElement> {
     | 'gray10'
     | 'gray11'
     | 'black';
-    
 }
 
 const Text = ({ tag = 'b1', color = 'black', children, className, ...props }: TextProps) => {
