@@ -2,6 +2,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import { LoginCallback } from '@/pages/auth';
 import Class from '@/pages/class';
 import Dancer from '@/pages/dancer';
+import Error from '@/pages/error';
 import Home from '@/pages/home';
 import ClassDetail from '@/pages/instructor/classDetail';
 import ClassList from '@/pages/instructor/classList';
@@ -71,5 +72,9 @@ export const router = createBrowserRouter([
   {
     path: ROUTES_CONFIG.instructorClassList.path,
     element: <ClassList />,
+  },
+  {
+    path: ROUTES_CONFIG.error.path,
+    element: <Error />,
   },
 ]);
