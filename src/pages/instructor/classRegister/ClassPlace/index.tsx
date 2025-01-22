@@ -1,5 +1,9 @@
 import { ChangeEvent } from 'react';
-import { dividerStyle, locationListContainerStyle } from '@/pages/instructor/classRegister/ClassPlace/index.css';
+import {
+  dividerStyle,
+  locationItemContainerStyle,
+  locationListContainerStyle,
+} from '@/pages/instructor/classRegister/ClassPlace/index.css';
 import Description from '@/pages/instructor/classRegister/Description';
 import Flex from '@/components/Flex';
 import Input from '@/components/Input';
@@ -49,7 +53,7 @@ const ClassPlace = ({
           <Flex direction="column" gap="1rem" className={locationListContainerStyle}>
             <Flex direction="column" gap="1rem" width="100%">
               {locationList.locations.map((item, idx) => (
-                <div key={idx} onClick={() => setSelectedLocation(item)} style={{ cursor: 'pointer' }}>
+                <div key={idx} onClick={() => setSelectedLocation(item)} className={locationItemContainerStyle}>
                   {idx !== 0 && <div className={dividerStyle} />}
                   <Flex direction="column" width="100%">
                     <Text tag="b5" color="gray10">

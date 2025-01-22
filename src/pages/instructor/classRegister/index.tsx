@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import * as styles from '@/pages/instructor/classRegister/index.css';
 import { buttonContainerStyle } from '@/pages/instructorRegister/index.css';
 import BoxButton from '@/components/BoxButton';
@@ -35,10 +35,6 @@ const ClassRegister = () => {
     setImageUrls({ imageUrls: url });
   };
 
-  useEffect(() => {
-    console.log('선택된거', selectedLocation);
-  }, [selectedLocation]);
-
   const {
     explainTextAreaRef,
     recommendTextAreaRef,
@@ -70,10 +66,6 @@ const ClassRegister = () => {
     useImageUploader<RepresentImageUrlsTypes>(handleImageUploadSuccess, setImageUrls);
 
   const { data: locationList } = useGetLocationList(submitDefaultPlace);
-
-  useEffect(() => {
-    console.log(imageUrls);
-  }, [imageUrls]);
 
   return (
     <>

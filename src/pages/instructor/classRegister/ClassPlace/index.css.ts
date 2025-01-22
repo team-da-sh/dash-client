@@ -15,6 +15,15 @@ export const dividerStyle = style({
   backgroundColor: vars.colors.gray03,
 });
 
+export const locationItemContainerStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '1rem',
+
+  width: '100%',
+  cursor: 'pointer',
+});
+
 export const locationListContainerStyle = style({
   width: '100%',
   padding: '1rem 2rem',
