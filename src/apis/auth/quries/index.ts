@@ -19,6 +19,11 @@ export const useLoginMutation = () => {
         return;
       }
 
+      if (!isOnboarded) {
+        navigate(ROUTES_CONFIG.onboarding.path);
+        return;
+      }
+
       navigate(ROUTES_CONFIG.home.path);
       setStorage(accessToken, refreshToken);
     },
