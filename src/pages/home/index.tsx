@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import ClassItem from '@/pages/home/components/ClassItem';
 import { genreWrapperStyle } from '@/pages/home/components/ClassItem/index.css';
 import DancerItem from '@/pages/home/components/DancerItem';
@@ -20,13 +21,23 @@ import { CLASS_LIST } from '@/pages/search/mocks';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import { useAdvertisements } from '@/apis/home/queries';
+import { getAccessToken } from '@/utils/handleToken';
 import { useIntersect } from '@/utils/useIntersect';
+import { ROUTES_CONFIG } from '@/routes/routesConfig';
 
 const Home = () => {
+  const navigate = useNavigate();
+
   const [targetRef, isVisible] = useIntersect(false);
   const [showMyPage, setShowMyPage] = useState(false);
 
+  const token = getAccessToken();
+
   const handleMyPageClick = () => {
+    if (!token) {
+      navigate(ROUTES_CONFIG.login.path);
+      return;
+    }
     setShowMyPage(!showMyPage);
   };
 
