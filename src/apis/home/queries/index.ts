@@ -48,7 +48,7 @@ interface UpcomingLessonsResponse {
 
 export const useGetUpcomingLessons = () => {
   return useQuery<UpcomingLessonsResponse>({
-    queryKey: ['upcomingLessons'],
+    queryKey: [QUERY_KEYS.LESSONS_UPCOMING],
     queryFn: () => getUpcommingLessons(),
   });
 };
@@ -59,7 +59,7 @@ interface RecommendationLessonsResponse {
 
 export const useGetRecommendationLessons = () => {
   return useQuery<RecommendationLessonsResponse>({
-    queryKey: ['recommendationLessons'],
+    queryKey: [QUERY_KEYS.LESSONS_RECOMMENDATIONS],
     queryFn: () => getRecommendationLessons(),
   });
 };
