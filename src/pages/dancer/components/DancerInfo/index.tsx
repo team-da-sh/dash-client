@@ -18,8 +18,8 @@ import {
 } from './index.css';
 
 const DancerInfo = ({ instagram, youtube, detail, nickname, lessons }: DancerDetail) => {
-  const instagramHandle = instagram.split('/').filter(Boolean).pop(); // undefined 체크 추가
-  const youtubeHandle = youtube.split('/').filter(Boolean).pop(); // undefined 체크 추가
+  const instagramHandle = instagram.split('/').filter(Boolean).pop();
+  const youtubeHandle = youtube.split('/').filter(Boolean).pop();
 
   const navigate = useNavigate();
 

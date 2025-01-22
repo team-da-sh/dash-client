@@ -3,6 +3,7 @@ import ClassHeader from '@/pages/dancer/components/DancerHeader';
 import DancerInfo from '@/pages/dancer/components/DancerInfo';
 import TabWrapper from '@/pages/dancer/components/TabWrapper';
 import { gradientOverlayStyle, textWrapperStyle, topImgStyle } from '@/pages/dancer/index.css';
+import { DancerDetail } from '@/pages/dancer/types/index';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Tag from '@/components/Tag';
@@ -10,7 +11,6 @@ import Text from '@/components/Text';
 import { useDancerDetail } from '@/apis/dancer/axios';
 import { useIntersectCallback } from '@/utils/useIntersectCallback';
 import { genreMapping } from '@/constants/index';
-import { DancerDetail } from './types';
 
 const Dancer = () => {
   const { id } = useParams<{ id: string }>();
