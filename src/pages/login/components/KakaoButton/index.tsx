@@ -5,7 +5,6 @@ import { IcKakaoKakaobrown28 } from '@/assets/svg';
 
 const KakaoButton = () => {
   const redirect_uri = 'http://localhost:5173/auth'; //Redirect URI
-  console.log(import.meta.env.VITE_REST_API_KEY);
 
   // auth 요청 URL
   const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${import.meta.env.VITE_REST_API_KEY}&redirect_uri=${redirect_uri}&response_type=code`;
