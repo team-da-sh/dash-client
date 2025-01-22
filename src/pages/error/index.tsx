@@ -3,6 +3,7 @@ import BoxButton from '@/components/BoxButton';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Text from '@/components/Text';
+import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { IcError } from '@/assets/svg';
 import { boxButtonStyle } from './index.css';
 
@@ -10,7 +11,7 @@ const Error = () => {
   const navigate = useNavigate();
 
   const handleHomeNavigation = () => {
-    navigate('/');
+    navigate(ROUTES_CONFIG.home.path);
   };
 
   return (
