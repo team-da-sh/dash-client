@@ -2,11 +2,11 @@ import TabIntro from '@/pages/class/components/TabWrapper/TabIntro';
 import TabLevel from '@/pages/class/components/TabWrapper/TabLevel';
 import TabLocationInfo from '@/pages/class/components/TabWrapper/TabLocation';
 import TabPeriod from '@/pages/class/components/TabWrapper/TabPeriod';
+import { LessonDetail } from '@/pages/class/types/index';
 import TabEducation from '@/pages/dancer/components/TabWrapper/TabEducation';
 import TabHistory from '@/pages/dancer/components/TabWrapper/TabExperience';
 import TabVideo from '@/pages/dancer/components/TabWrapper/TabVideo';
 import { IcLevelAdvanced, IcLevelBasic, IcLevelIntermediate, IcLevelStarter } from '@/assets/svg';
-import { LessonDetail } from "@/pages/class/types/index";
 
 export const LEVEL = [
   {
@@ -88,7 +88,7 @@ export const levelMapping: { [key: string]: string } = {
 // 장르 한영 변환
 export const genreEngMapping: { [key: string]: string } = {
   힙합: 'HIPHOP',
-  피메일힙합: 'FEMALEHIPHOP',
+  '피메일 힙합': 'FEMALE_HIPHOP',
   팝핑: 'POPPING',
   브레이킹: 'BRAKING',
   왁킹: 'WAACKING',
@@ -98,7 +98,7 @@ export const genreEngMapping: { [key: string]: string } = {
   크럼프: 'KRUMP',
   소울: 'SOUL',
   코레오그래피: 'CHOREOGRAPHY',
-  케이팝: 'KPOP',
+  'K-POP': 'KPOP',
 };
 
 // 레벨 한영 변환
@@ -139,8 +139,8 @@ export const BUTTON_TEXT = {
   OVER_BOOKED: '클래스 마감',
   OPEN: {
     BOOKED: '신청 완료',
-    AVAILABLE: '신청하기'
-  }
+    AVAILABLE: '신청하기',
+  },
 } as const;
 
 export const DISABLED_STATUS = {
@@ -148,6 +148,6 @@ export const DISABLED_STATUS = {
   OVER_BOOKED: true,
   OPEN: {
     BOOKED: true,
-    AVAILABLE: false
-  }
+    AVAILABLE: false,
+  },
 } as const;

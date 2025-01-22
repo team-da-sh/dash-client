@@ -36,6 +36,8 @@ const Search = () => {
     sortOption,
   });
 
+  console.log(genre);
+
   const handleSearchChange = (value: string) => {
     setSearchValue(value);
   };
