@@ -1,5 +1,3 @@
-import { IcAssetTop1, IcAssetTop2, IcAssetTop3 } from '@/assets/svg';
-
 export const RECOMMAND_CLASSLIST = [
   {
     lessonId: 67890,
@@ -73,12 +71,6 @@ export const RECOMMAND_CLASSLIST = [
     lessonEndDateTime: '2023-12-01T12:00:00',
     lessonStreetAddress: '서울특별시 강남구 테헤란로 123',
   },
-];
-
-export const GENRELIST = [
-  { medal: <IcAssetTop1 width={44} height={44} />, genre: '힙합' },
-  { medal: <IcAssetTop2 width={44} height={44} />, genre: '팝핑' },
-  { medal: <IcAssetTop3 width={44} height={44} />, genre: '코레오' },
 ];
 
 export const DANCERLIST = [
