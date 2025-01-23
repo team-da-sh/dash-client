@@ -22,6 +22,7 @@ interface TagItem {
 interface ClassTypes {
   id: number;
   teacherProfileImage: string;
+  imageUrl: string;
   level: string;
   genre: string;
   name: string;
@@ -166,7 +167,7 @@ const TabContainer = ({
                   <ClassItem
                     key={data.id}
                     id={data.id}
-                    imageUrl={data.teacherProfileImage}
+                    imageUrl={data.imageUrl}
                     level={data.level}
                     genre={data.genre}
                     name={data.name}
