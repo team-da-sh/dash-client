@@ -5,6 +5,7 @@ export const classImageStyle = style({
   width: '16.4rem',
   height: '9.1rem',
 
+  objectFit: 'cover',
   borderRadius: '4px',
 });
 
