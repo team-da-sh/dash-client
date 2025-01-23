@@ -34,8 +34,6 @@ const OnboardingFunnel = ({ currentStep, Funnel, setStep, Step }: OnboardingFunn
     profileImageUrl: defaultProfile,
   });
 
-  console.log(info);
-
   const [isNicknameError, setIsNicknameError] = useState(false);
 
   const { mutate: onboardMutate } = usePostOnboard();
