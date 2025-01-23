@@ -150,13 +150,13 @@ const Reservation = () => {
                 text="취소 및 환불 약관  (필수)"
                 isChecked={agreements[0]}
                 onToggle={() => handleToggle(0)}
-                link="https://youtu.be/i9c_dsBzc3Y?feature=shared"
+                link="https://pastoral-can-e04.notion.site/17d27658a0c780f0b42edd22f42bbae8?pvs=4"
               />
               <AgreeCheckBox
                 text="전자결제 서비스 이용약관  (필수)"
                 isChecked={agreements[1]}
                 onToggle={() => handleToggle(1)}
-                link="https://youtu.be/i9c_dsBzc3Y?feature=sharedm"
+                link="https://pastoral-can-e04.notion.site/17d27658a0c780f0b42edd22f42bbae8?pvs=4"
               />
             </Flex>
           </div>

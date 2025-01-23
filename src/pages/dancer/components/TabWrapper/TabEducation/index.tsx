@@ -13,7 +13,7 @@ const TabEducation = ({ dancerData }: TabEducationProps) => {
 
   return (
     <Flex direction="column" gap="0.8rem">
-      {educations?.length === 0 ? (
+      {educations?.length === 0 || educations?.every((exp) => exp === '') ? (
         <Head level="h5" tag="h6" color="gray9" className={emptyStyle}>
           아직 등록된 학력이 없어요
         </Head>

@@ -41,7 +41,7 @@ const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetailApiResponse 
   const remainingSeats = maxReservationCount - reservationCount;
 
   const isSoldOut = remainingSeats <= 0;
-  const remainingText = isSoldOut ? '마감되었어요' : `${remainingSeats}`;
+  const remainingText = isSoldOut ? '신청 마감된 수업이에요' : `${remainingSeats}`;
   const iconColor = isSoldOut ? vars.colors.alert03 : vars.colors.main04;
   const textColor = isSoldOut ? 'alert3' : 'main4';
 
