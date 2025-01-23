@@ -86,7 +86,7 @@ const OnboardingFunnel = ({ currentStep, Funnel, setStep, Step }: OnboardingFunn
       case 3:
         return !info.level;
       case 4:
-        return !info.nickname;
+        return !info.nickname || isNicknameError;
       case 5:
         return false;
       default:
@@ -110,7 +110,7 @@ const OnboardingFunnel = ({ currentStep, Funnel, setStep, Step }: OnboardingFunn
             <GenreStep genres={info.genres} onInfoChange={handleInfoChange} />
           </Step>
           <Step name="3" key={3}>
-            <LevelStep level={info.level} onInfoChange={handleInfoChange} />
+            <LevelStep name={info.name} level={info.level} onInfoChange={handleInfoChange} />
           </Step>
           <Step name="4" key={4}>
             <ProfileStep
