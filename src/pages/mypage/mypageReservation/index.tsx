@@ -19,6 +19,8 @@ const MyPageReservation = () => {
     if (reservationId !== undefined) {
       const path = ROUTES_CONFIG.mypageReservationDetail.path(reservationId.toString());
       navigate(path);
+    } else {
+      navigate(ROUTES_CONFIG.error.path);
     }
   };
 
