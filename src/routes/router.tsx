@@ -41,11 +41,11 @@ export const router = createBrowserRouter([
     element: <Search />,
   },
   {
-    path: ROUTES_CONFIG.class.path,
+    path: ROUTES_CONFIG.class.path(':id'),
     element: <Class />,
   },
   {
-    path: ROUTES_CONFIG.dancer.path,
+    path: ROUTES_CONFIG.dancer.path(':id'),
     element: <Dancer />,
   },
   {

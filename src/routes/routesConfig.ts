@@ -21,11 +21,11 @@ export const ROUTES_CONFIG = {
   },
   class: {
     title: 'Class',
-    path: '/class/:id',
+    path: (id:string) => `/class/${id}`,
   },
   dancer: {
     title: 'Dancer',
-    path: '/dancer/:id',
+    path: (id:string) => `/dancer/${id}`,
   },
   reservation: {
     title: 'Reservation',
