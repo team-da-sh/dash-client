@@ -26,7 +26,7 @@ const ClassDetail = () => {
     <div className={styles.layoutStyle}>
       <Header.Root isColor={true}>
         <Header.BackIcon />
-        <Header.Title title="내 클래스 목록" />
+        <Header.Title title="내 클래스 관리" />
       </Header.Root>
 
       <div className={styles.containerStyle}>
