@@ -18,11 +18,11 @@ const ClassList = () => {
 
   // 로딩, 에러 페이지 처리
   if (isLoading) {
-    return <div>로딩중</div>;
+    return <div></div>;
   }
 
   if (isError) {
-    return <div>에러</div>;
+    return <div></div>;
   }
 
   console.log(lessonData);
