@@ -22,10 +22,10 @@ import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Header from '@/components/Header';
 import Text from '@/components/Text';
-import { useGetReservaion } from '@/apis/reservation/queries';
+import { useGetReservaion, usePostReservation } from '@/apis/reservation/queries';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { IcCheckcircleGray0524, IcCheckcircleMain0324 } from '@/assets/svg';
-import { LessonRoundProps } from "./types";
+import { LessonRoundProps } from './types';
 
 const Reservation = () => {
   const [isAllChecked, setIsAllChecked] = useState(false);
@@ -71,10 +71,17 @@ const Reservation = () => {
     endDateTime: round.endDateTime,
   }));
 
-  const handleButtonClick = () => {
-    navigate(ROUTES_CONFIG.payments.path);
+  const mutation = usePostReservation();
+
+  const handleButtonClick = async () => {
+    try {
+      await mutation.mutateAsync({ lessonId: id });
+      navigate(ROUTES_CONFIG.mypageReservation.path);
+    } catch (error: any) {
+      <Error/>
+    }
   };
-  
+
   return (
     <Flex direction="column" width="100%" className={reservationStyle}>
       <div className={headerStyle}>
