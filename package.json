@@ -4,26 +4,69 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "svgr": "npx @svgr/cli -d src/assets/svg --no-prettier --ignore-existing --typescript --no-dimensions public/svg"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.62.15",
+    "@tanstack/react-query-devtools": "^5.62.15",
+    "@tosspayments/tosspayments-sdk": "^2.3.4",
+    "@types/react-slick": "^0.23.13",
+    "@vanilla-extract/css": "^1.17.0",
+    "@vanilla-extract/recipes": "^0.5.5",
+    "@vanilla-extract/vite-plugin": "^4.0.19",
+    "@vitejs/plugin-react": "^4.3.4",
+    "axios": "^1.7.9",
+    "clsx": "^2.1.1",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-calendar": "^5.1.0",
+    "react-dom": "^18.3.1",
+    "react-hot-toast": "^2.5.1",
+    "react-router-dom": "^7.1.1",
+    "swiper": "^11.2.1",
+    "vite-tsconfig-paths": "^5.1.4"
   },
   "devDependencies": {
+    "@chromatic-com/storybook": "^3.2.3",
     "@eslint/js": "^9.17.0",
+    "@storybook/addon-essentials": "^8.4.7",
+    "@storybook/addon-interactions": "^8.4.7",
+    "@storybook/addon-onboarding": "^8.4.7",
+    "@storybook/blocks": "^8.4.7",
+    "@storybook/react": "^8.4.7",
+    "@storybook/react-vite": "^8.4.7",
+    "@storybook/test": "^8.4.7",
+    "@trivago/prettier-plugin-sort-imports": "^5.2.1",
     "@types/react": "^18.3.18",
     "@types/react-dom": "^18.3.5",
+    "@types/swiper": "^6.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.19.1",
+    "@typescript-eslint/parser": "^8.19.1",
     "@vitejs/plugin-react-swc": "^3.5.0",
     "eslint": "^9.17.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "eslint-plugin-react": "^7.37.3",
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-react-refresh": "^0.4.16",
+    "eslint-plugin-storybook": "^0.11.2",
     "globals": "^15.14.0",
+    "install": "^0.13.0",
+    "storybook": "^8.4.7",
     "typescript": "~5.6.2",
-    "typescript-eslint": "^8.18.2",
-    "vite": "^6.0.5"
-  }
+    "vite": "^6.0.5",
+    "vite-plugin-svgr": "^4.3.0",
+    "vite-tsconfig-paths": "^5.1.4"
+  },
+  "eslintConfig": {
+    "extends": [
+      "plugin:storybook/recommended"
+    ]
+  },
+  "packageManager": "pnpm@9.15.3"
 }
