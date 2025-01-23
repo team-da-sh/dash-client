@@ -5,6 +5,7 @@ import {
 } from '@/pages/dancer/components/TabWrapper/TabVideo/index.css';
 import { DancerDetail } from '@/pages/dancer/types';
 import Flex from '@/components/Flex';
+import { getYoutubeEmbedUrl } from '@/constants/regex';
 
 interface TabVideoProps {
   dancerData: DancerDetail;
@@ -12,11 +13,6 @@ interface TabVideoProps {
 
 const TabVideo = ({ dancerData }: TabVideoProps) => {
   const { videoUrls } = dancerData;
-
-  const getYoutubeEmbedUrl = (url: string) => {
-    const videoId = url.match(/(?:youtube\.com\/.*v=|youtu\.be\/)([^&]+)/)?.[1];
-    return videoId ? `https://www.youtube.com/embed/${videoId}` : null;
-  };
 
   return (
     <Flex justify="center">
