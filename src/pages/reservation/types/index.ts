@@ -36,7 +36,7 @@ export interface InfoRowProps {
 export interface ClassInfoProps {
   name: string;
   location: string;
-  locationDetail: string;
+  locationDetail?: string;
   teacherNickname: string;
   level: string;
   lessonRound?: LessonRoundProps[];

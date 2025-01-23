@@ -2,7 +2,6 @@ import TabIntro from '@/pages/class/components/TabWrapper/TabIntro';
 import TabLevel from '@/pages/class/components/TabWrapper/TabLevel';
 import TabLocationInfo from '@/pages/class/components/TabWrapper/TabLocation';
 import TabPeriod from '@/pages/class/components/TabWrapper/TabPeriod';
-import { LessonDetail } from '@/pages/class/types/index';
 import TabEducation from '@/pages/dancer/components/TabWrapper/TabEducation';
 import TabHistory from '@/pages/dancer/components/TabWrapper/TabExperience';
 import TabVideo from '@/pages/dancer/components/TabWrapper/TabVideo';

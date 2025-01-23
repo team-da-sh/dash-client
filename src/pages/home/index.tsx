@@ -6,19 +6,6 @@ import HomeHeader from '@/pages/home/components/HomeHeader';
 import MyPage from '@/pages/home/components/MyPage';
 import PopularDancers from '@/pages/home/components/PopularDancers';
 import PopularGenre from '@/pages/home/components/PopularGenre';
-import {
-  overlayActiveStyle,
-  containerStyle,
-  dancerListWrapperstyle,
-  deadlineClassWrapperStyle,
-  overlayStyle,
-  recommandClassWrapperStyle,
-  carouselContainerStyle,
-} from '@/pages/home/index.css';
-import { DANCERLIST } from '@/pages/home/mocks';
-import { CLASS_LIST } from '@/pages/search/mocks';
-import Flex from '@/components/Flex';
-import Head from '@/components/Head';
 import RecommendationLessons from '@/pages/home/components/RecommendationLessons';
 import UpcomingLessones from '@/pages/home/components/UpcomingLessons';
 import { overlayActiveStyle, overlayStyle, carouselContainerStyle } from '@/pages/home/index.css';
