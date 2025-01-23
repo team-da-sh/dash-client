@@ -19,7 +19,7 @@ export const API_URL = {
   LESSON_DETAIL: '/api/v1/lessons',
   LESSONS_RECOMMENDATIONS: '/api/v1/lessons/recommendations',
   LESSONS_POPULAR_GENRES: '/api/v1/lessons/popular-genres',
-  LESSONS_UPCOMING: '/api/v1/lessons/upcoming?sortOption=:sortOption',
+  LESSONS_UPCOMING: '/api/v1/lessons/upcoming',
   LESSONS_FAVORITES: '/api/v1/lessons/favorites/{lessonId}',
   LESSON_RESERVE_PROGRESS: '/api/v1/lessons',
   LESSON_RESERVATION: '/api/v1/lessons/{lessonId}/reservations',
