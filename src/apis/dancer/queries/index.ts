@@ -5,7 +5,7 @@ import { getDancerDetail } from "@/apis/dancer/axios";
 
 export const useGetDancerDetail = (teacherId: string) => {
   return useQuery<DancerDetailApiResponse, Error>({
-    queryKey: [QUERY_KEYS.TEACHER_DETAIL, teacherId],
+    queryKey: [QUERY_KEYS.TEACHER_DETAIL],
     queryFn: () => getDancerDetail(teacherId),
   });
 };
