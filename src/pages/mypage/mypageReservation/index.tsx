@@ -32,15 +32,13 @@ const MyPageReservation = () => {
       </Header.Root>
 
       <div className={containerStyle}>
-        {reservationData ? (
+        {reservationData && (
           <Text tag="b2" color="gray9">
             전체 {reservationData?.reservations.length}
           </Text>
-        ) : (
-          <></>
         )}
 
-        {reservationData?.reservations?.length ? (
+        {reservationData?.reservations?.length && (
           <Flex direction="column" gap="1.2rem" marginTop="1.6rem">
             {reservationData.reservations.map((reservation: Reservation) => (
               <ClassCard
@@ -63,8 +61,6 @@ const MyPageReservation = () => {
               </ClassCard>
             ))}
           </Flex>
-        ) : (
-          <></>
         )}
       </div>
     </div>
