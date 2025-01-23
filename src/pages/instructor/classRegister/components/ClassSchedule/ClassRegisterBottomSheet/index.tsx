@@ -77,6 +77,7 @@ const ClassRegisterBottomSheet = ({
             <BoxButton onClick={() => setStep(1)}>다음</BoxButton>
           ) : (
             <BoxButton
+              isDisabled={!selectedTime}
               onClick={() => {
                 setStep(1);
                 onClose();

@@ -60,6 +60,7 @@ const ClassRegister = () => {
     toggleCategory,
     handleLevelSelect,
     handleExplainTextArea,
+    handleImageUploadSuccess,
     handleRecommendChange,
     handleHasLocation,
     handleDefaultPlace,
@@ -96,10 +97,6 @@ const ClassRegister = () => {
 
       classRegisterMutate(updatedInfo);
     }
-  };
-
-  const handleImageUploadSuccess = (url: string) => {
-    setImageUrls({ imageUrls: url });
   };
 
   const { imgFile, previewImg, imgRef, handleUploaderClick, uploadImgFile, deleteImgFile } =

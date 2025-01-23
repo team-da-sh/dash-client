@@ -41,6 +41,10 @@ export const useClassRegisterForm = () => {
     }
   };
 
+  const handleImageUploadSuccess = (url: string) => {
+    setImageUrls({ imageUrls: url });
+  };
+
   const handleAmountChange = (e: ChangeEvent<HTMLInputElement>) => {
     // 숫자만 입력되도록
     if (!e.target.value.match(ONLY_NUMERIC)) {
@@ -165,6 +169,7 @@ export const useClassRegisterForm = () => {
     handleClassNameChange,
     handlePersonnelChange,
     handleAmountChange,
+    handleImageUploadSuccess,
     toggleCategory,
     handleLevelSelect,
     handleExplainTextArea,
