@@ -25,7 +25,7 @@ import Text from '@/components/Text';
 import { useGetReservaion, usePostReservation } from '@/apis/reservation/queries';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { IcCheckcircleGray0524, IcCheckcircleMain0324 } from '@/assets/svg';
-import { LessonRoundProps } from './types';
+import { LessonRoundProps } from '@/pages/reservation/types';
 
 const Reservation = () => {
   const [isAllChecked, setIsAllChecked] = useState(false);
