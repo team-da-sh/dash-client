@@ -3,36 +3,37 @@ import {
   deadlineTagStyle,
   teacherImageStyle,
   wrapperStyle,
-} from '@/pages/home/components/ClassItem/index.css';
+} from '@/pages/home/components/LessonItem/index.css';
 import {
   newClassImageStyle,
   newDeadlineTagStyle,
   newTeacherImageStyle,
   newWrapperStyle,
-} from '@/pages/home/components/ClassItem/newIndex.css';
+} from '@/pages/home/components/LessonItem/newIndex.css';
+import { LessonTypes } from '@/pages/home/types/classTypes';
 import Divider from '@/components/Divider';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Tag from '@/components/Tag';
 import Text from '@/components/Text';
 import { transformDateToDotFormat } from '@/utils/transformDateToDotFormat';
-import { ClassTypes } from '@/pages/home/types/classTypes';
+import { genreMapping, levelMapping } from '@/constants';
 
-const ClassItem = ({
-  lessonId,
-  lessonImageUrl,
-  lessonLevel,
-  lessonGenre,
-  lessonName,
-  teacherNickname,
-  teacherImageUrl,
-  lessonStartDateTime,
-  lessonEndDateTime,
-  lessonStreetAddress,
-  lessonRemainingDays,
+const LessonItem = ({
+  id,
+  genre,
+  level,
+  name,
+  imageUrl,
+  teacherProfileImage,
+  teacherName,
+  startDate,
+  endDate,
+  location,
+  remainingDays,
   useNewStyles = false,
-}: ClassTypes & { useNewStyles?: boolean }) => {
-  const lessonAddress = lessonStreetAddress.split(' ').slice(0, 2).join(' ');
+}: LessonTypes & { useNewStyles?: boolean }) => {
+  const address = location.split(' ').slice(0, 2).join(' ');
 
   const styles = useNewStyles
     ? {
@@ -49,40 +50,37 @@ const ClassItem = ({
       };
 
   return (
-    <Flex tag="li" direction="column" gap="0.8rem" key={lessonId} className={styles.wrapper}>
-      <img src={lessonImageUrl} alt="클래스 섬네일" className={styles.classImage} />
-      {lessonRemainingDays < 4 && (
-        <Tag
-          type="deadline"
-          size="thumbnail"
-          className={styles.deadlineTag}>{`마감 D-${lessonRemainingDays || 'Day'}`}</Tag>
+    <Flex tag="li" direction="column" gap="0.8rem" key={id} className={styles.wrapper}>
+      <img src={imageUrl} alt="클래스 섬네일" className={styles.classImage} />
+      {remainingDays < 4 && (
+        <Tag type="deadline" size="thumbnail" className={styles.deadlineTag}>{`마감 D-${remainingDays || 'Day'}`}</Tag>
       )}
 
       <Flex gap="0.4rem">
         <Tag type="genre" size="small">
-          {lessonGenre}
+          {genreMapping[genre]}
         </Tag>
         <Tag type="level" size="small">
-          {lessonLevel}
+          {levelMapping[level]}
         </Tag>
       </Flex>
 
       <Head level="h3" tag="h7">
-        {lessonName}
+        {name}
       </Head>
 
       <Flex direction="column" gap="0.4rem">
         <Flex gap="0.6rem" align="center">
-          <img src={teacherImageUrl} alt="강사" className={styles.teacherImage} />
-          <Text tag="b7">{teacherNickname}</Text>
+          <img src={teacherProfileImage} alt="강사" className={styles.teacherImage} />
+          <Text tag="b7">{teacherName}</Text>
         </Flex>
         <Flex gap="0.4rem" align="center">
           <Text tag="c2" color="gray5">
-            {transformDateToDotFormat(lessonStartDateTime)} - {transformDateToDotFormat(lessonEndDateTime)}
+            {transformDateToDotFormat(startDate)} - {transformDateToDotFormat(endDate)}
           </Text>
           <Divider direction="vertical" length={'0.7rem'} color="gray5" />
           <Text tag="c2" color="gray5">
-            {lessonAddress}
+            {address}
           </Text>
         </Flex>
       </Flex>
@@ -90,4 +88,4 @@ const ClassItem = ({
   );
 };
 
-export default ClassItem;
+export default LessonItem;

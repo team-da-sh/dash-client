@@ -1,5 +1,5 @@
-import { genreWrapperStyle } from '@/pages/home/components/ClassItem/index.css';
 import GenreItem from '@/pages/home/components/GenreItem';
+import { genreWrapperStyle } from '@/pages/home/components/LessonItem/index.css';
 import { GENRE_ICONS } from '@/pages/home/constants';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';

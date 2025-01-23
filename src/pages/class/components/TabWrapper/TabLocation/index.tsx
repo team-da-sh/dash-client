@@ -1,14 +1,14 @@
 import Card from '@/pages/class/components/Card';
 import { streetAddressStyle, addressTitleStyle } from '@/pages/class/components/TabWrapper/TabLocation/index.css';
 import { emptyStyle } from '@/pages/class/components/TabWrapper/TabLocation/index.css';
+import { LessonDetail } from '@/pages/class/types/index';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Text from '@/components/Text';
 import { IcLocation60 } from '@/assets/svg';
-import { LESSON_DATA } from '@/pages/class/mocks/mockLessonData';
 
-const TabLocation = () => {
-  const { location, streetAddress, streetDetailAddress, oldStreetAddress } = LESSON_DATA;
+const TabLocation = ({ lessonData }: { lessonData: LessonDetail }) => {
+  const { location, streetAddress, streetDetailAddress, oldStreetAddress } = lessonData;
 
   const isEmpty = !location || !streetAddress || !oldStreetAddress;
 
