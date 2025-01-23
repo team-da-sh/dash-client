@@ -6,8 +6,8 @@ import TabEducation from '@/pages/dancer/components/TabWrapper/TabEducation';
 import TabHistory from '@/pages/dancer/components/TabWrapper/TabExperience';
 import TabVideo from '@/pages/dancer/components/TabWrapper/TabVideo';
 import { IcLevelAdvanced, IcLevelBasic, IcLevelIntermediate, IcLevelStarter } from '@/assets/svg';
-import { LessonDetail } from "@/pages/class/types";
-import { DancerDetail } from "@/pages/dancer/types";
+import { LessonDetailApiResponse } from "@/pages/class/types";
+import { DancerDetailApiResponse } from "@/pages/dancer/types";
 
 export const LEVEL = [
   {
@@ -50,16 +50,16 @@ export const GENRE_CATEGORY = [
 ];
 
 export const DANCER_TABS = [
-  { id: 1, label: '학력', component: (dancerData: DancerDetail) => <TabEducation dancerData={dancerData} /> },
-  { id: 2, label: '경력', component: (dancerData: DancerDetail) => <TabHistory dancerData={dancerData} /> },
-  { id: 3, label: '영상', component: (dancerData: DancerDetail) => <TabVideo dancerData={dancerData} /> },
+  { id: 1, label: '학력', component: (dancerData: DancerDetailApiResponse) => <TabEducation dancerData={dancerData} /> },
+  { id: 2, label: '경력', component: (dancerData: DancerDetailApiResponse) => <TabHistory dancerData={dancerData} /> },
+  { id: 3, label: '영상', component: (dancerData: DancerDetailApiResponse) => <TabVideo dancerData={dancerData} /> },
 ];
 
 export const CLASS_TABS = [
-  { id: 1, label: '소개', component: (lessonData: LessonDetail) => <TabIntro lessonData={lessonData} /> },
-  { id: 2, label: '난이도', component: (lessonData: LessonDetail) => <TabLevel lessonData={lessonData} /> },
-  { id: 3, label: '기간', component: (lessonData: LessonDetail) => <TabPeriod lessonData={lessonData} /> },
-  { id: 4, label: '위치', component: (lessonData: LessonDetail) => <TabLocationInfo lessonData={lessonData} /> },
+  { id: 1, label: '소개', component: (lessonData: LessonDetailApiResponse) => <TabIntro lessonData={lessonData} /> },
+  { id: 2, label: '난이도', component: (lessonData: LessonDetailApiResponse) => <TabLevel lessonData={lessonData} /> },
+  { id: 3, label: '기간', component: (lessonData: LessonDetailApiResponse) => <TabPeriod lessonData={lessonData} /> },
+  { id: 4, label: '위치', component: (lessonData: LessonDetailApiResponse) => <TabLocationInfo lessonData={lessonData} /> },
 ];
 
 // 장르 영한 변환
