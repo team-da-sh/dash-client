@@ -1,6 +1,7 @@
 export interface student {
   name: string;
   phoneNumber: string;
+  createdAt: string;
 }
 
 export interface LessonDetailGetResponse {
@@ -15,4 +16,5 @@ export interface LessonDetailGetResponse {
   endDateTime: string;
   applyStatus: string;
   students: student[];
+  studentCount: number;
 }
