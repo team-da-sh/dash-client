@@ -51,7 +51,7 @@ const LessonItem = ({
       };
 
   const handleLessonClick = () => {
-    navigate(ROUTES_CONFIG.class.path(id.toString()));
+    navigate(ROUTES_CONFIG.class.path(`${id}`));
   };
 
   return (
