@@ -21,7 +21,7 @@ interface ClassInfoProps {
   lessonRound: LessonRoundProps[];
 }
 
-const ClassInfo = ({ name, location, locationDetail, teacherNickname, level, lessonRound }: ClassInfoProps) => {
+const ClassInfo = ({ name, location, locationDetail, teacherNickname, level, lessonRound = [] }: ClassInfoProps) => {
   return (
     <div className={infoContainerStyle}>
       <Flex direction="column" gap="2rem">
@@ -37,7 +37,7 @@ const ClassInfo = ({ name, location, locationDetail, teacherNickname, level, les
               일정
             </Text>
             <Flex direction="column" gap="1.2rem">
-              {lessonRound.map(({ startDateTime, endDateTime }, id) => (
+              {lessonRound?.map(({ startDateTime, endDateTime }, id) => (
                 <ScheduleItem key={id} index={id} startDateTime={startDateTime} endDateTime={endDateTime} />
               ))}
             </Flex>

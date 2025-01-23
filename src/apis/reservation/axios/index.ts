@@ -1,8 +1,8 @@
 import { instance } from '@/apis/api';
 import { API_URL } from "@/apis/constants/apiURL";
-import { ReservationDetail } from '@/pages/reservation/types';
+import { ReservationDetailApiResponse } from '@/pages/reservation/types';
 
-export const getReservation = async (lessonId: string): Promise<ReservationDetail> => {
+export const getReservation = async (lessonId: string): Promise<ReservationDetailApiResponse> => {
   const url = `${API_URL.LESSON_RESERVE_PROGRESS}/${lessonId}/reserve-progress`;
   const { data } = await instance.get(url);
   return data;

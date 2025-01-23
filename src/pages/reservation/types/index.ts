@@ -1,4 +1,4 @@
-export interface ReservationDetail {
+export interface ReservationDetailApiResponse {
   imageUrl:string;
   name: string;
   teacherNickname: string;
