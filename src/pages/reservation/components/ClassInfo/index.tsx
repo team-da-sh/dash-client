@@ -5,10 +5,11 @@ import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Text from '@/components/Text';
 import { vars } from '@/styles/theme.css';
+import { levelMapping } from '@/constants';
 
 interface LessonRoundProps {
-  lessonStartDateTime: string;
-  lessonEndDateTime: string;
+  startDateTime: string;
+  endDateTime: string;
 }
 
 interface ClassInfoProps {
@@ -35,15 +36,15 @@ const ClassInfo = ({ lessonName, lessonLocation, teacherName, lessonLevel, lesso
               일정
             </Text>
             <Flex direction="column" gap="1.2rem">
-              {lessonRound.map(({ lessonStartDateTime, lessonEndDateTime }, id) => (
-                <ScheduleItem key={id} index={id} startDateTime={lessonStartDateTime} endDateTime={lessonEndDateTime} />
+              {lessonRound.map(({ startDateTime, endDateTime }, id) => (
+                <ScheduleItem key={id} index={id} startDateTime={startDateTime} endDateTime={endDateTime} />
               ))}
             </Flex>
           </Flex>
 
           <InfoRow label="장소" value={lessonLocation} />
 
-          <InfoRow label="난이도" value={lessonLevel} />
+          <InfoRow label="난이도" value={levelMapping[lessonLevel]} />
         </Flex>
       </Flex>
     </div>
