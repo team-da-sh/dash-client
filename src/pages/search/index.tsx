@@ -1,15 +1,15 @@
 import { useState } from 'react';
 import SearchBar from '@/pages/search/components/SearchBar';
+import SearchIntro from '@/pages/search/components/SearchIntro';
 import TabContainer from '@/pages/search/components/TabContainer';
 import { DEFAULT_SORT_TAGS, SORT_LABELS } from '@/pages/search/constants/index';
+import { headerRootCutomStyle } from '@/pages/search/index.css';
 import { formatDateStartTime, formatDateEndTime } from '@/pages/search/utils';
 import Flex from '@/components/Flex';
 import Header from '@/components/Header';
 import { useGetClassList, useGetDancerList } from '@/apis/search/queries';
 import { genreEngMapping, levelEngMapping } from '@/constants';
 import { labelToSortOptionMap } from '@/constants';
-import SearchIntro from './components/SearchIntro';
-import { headerRootCutomStyle } from './index.css';
 
 const Search = () => {
   const [searchValue, setSearchValue] = useState('');
@@ -35,8 +35,6 @@ const Search = () => {
     endDate: formatDateEndTime(endDate),
     sortOption,
   });
-
-  console.log(genre);
 
   const handleSearchChange = (value: string) => {
     setSearchValue(value);
