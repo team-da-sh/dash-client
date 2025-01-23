@@ -1,4 +1,4 @@
 // 토큰 권한 확인
-export interface RoleApiResponse {
+export interface RoleType {
   role: string;
 }

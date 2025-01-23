@@ -62,6 +62,10 @@ const ClassCard = ({
     }
   };
 
+  const handleTextClick = () => {
+    window.open('https://forms.gle/JMYzQGxEdVHVogsE6', '_blank');
+  };
+
   return (
     <div className={styles.cardContainerStyle}>
       <Flex justify="spaceBetween" align="center">
@@ -80,7 +84,7 @@ const ClassCard = ({
 
         {isReservation && (
           <Flex align="center" gap="0.2rem">
-            <Text tag="b7" color="gray7">
+            <Text tag="b7" color="gray7" onClick={handleTextClick}>
               문의하기
             </Text>
             <IcArrowRightGray0614 width="1.4rem" height="1.4rem" />

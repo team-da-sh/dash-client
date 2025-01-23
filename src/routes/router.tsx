@@ -69,7 +69,7 @@ export const router = createBrowserRouter([
     element: <InstructorRegister />,
   },
   {
-    path: ROUTES_CONFIG.instructorClassDetail.path,
+    path: ROUTES_CONFIG.instructorClassDetail.path(':id'),
     element: <ClassDetail />,
   },
   {
