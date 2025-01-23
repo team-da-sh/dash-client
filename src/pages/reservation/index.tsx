@@ -40,7 +40,8 @@ const Reservation = () => {
   }
 
   const { data, isError, isLoading } = useGetReservaion(id);
-
+  const mutation = usePostReservation();
+  
   if (isLoading) {
     return <></>;
   }
@@ -71,7 +72,6 @@ const Reservation = () => {
     endDateTime: round.endDateTime,
   }));
 
-  const mutation = usePostReservation();
 
   const handleButtonClick = async () => {
     try {
