@@ -13,7 +13,7 @@ import { validateName, validatePhoneNumber } from '@/pages/onboarding/utils/vali
 import BoxButton from '@/components/BoxButton';
 import ProgressBar from '@/components/ProgressBar';
 import { FunnelProps, StepProps } from '@/hooks/useFunnel';
-import { usePostOnboard } from '@/apis/onboarding/quries';
+import { usePostOnboard } from '@/apis/onboarding/queries';
 import { setStorage } from '@/utils/handleToken';
 import defaultProfile from '@/assets/images/image_profile_basic.png';
 
@@ -116,6 +116,7 @@ const OnboardingFunnel = ({ currentStep, Funnel, setStep, Step }: OnboardingFunn
           </Step>
           <Step name="4" key={4}>
             <ProfileStep
+              name={info.name}
               nickname={info.nickname}
               isNicknameError={isNicknameError}
               changeIsNicknameError={changeNicknameError}

@@ -11,6 +11,7 @@ import defaultProfile from '@/assets/images/image_profile_basic.png';
 import { IcCameraMain0624 } from '@/assets/svg';
 
 interface ProfileStepProps {
+  name: string;
   nickname: string;
   profileImageUrl: string;
   isNicknameError: boolean;
@@ -19,7 +20,7 @@ interface ProfileStepProps {
   setInfo: React.Dispatch<React.SetStateAction<onboardInfoTypes>>;
 }
 
-const ProfileStep = ({ nickname, isNicknameError, changeIsNicknameError, onInfoChange }: ProfileStepProps) => {
+const ProfileStep = ({ name, nickname, isNicknameError, changeIsNicknameError, onInfoChange }: ProfileStepProps) => {
   const handleImageUploadSuccess = (url: string) => {
     onInfoChange(INFO_KEY.PROFILE_IMAGE_URL, url);
   };
@@ -55,7 +56,7 @@ const ProfileStep = ({ nickname, isNicknameError, changeIsNicknameError, onInfoC
           프로필 완성
         </Head>
         <Text tag="b2" color="gray7">
-          이유지님의 댄서네임을 알려주세요
+          {name}님의 댄서네임을 알려주세요
         </Text>
       </Flex>
 

@@ -21,15 +21,27 @@ export const ROUTES_CONFIG = {
   },
   class: {
     title: 'Class',
-    path: '/class/:id',
+    path: (id:string) => `/class/${id}`,
   },
   dancer: {
     title: 'Dancer',
-    path: '/dancer/:id',
+    path: (id:string) => `/dancer/${id}`,
   },
   reservation: {
     title: 'Reservation',
-    path: '/reservation',
+    path: (id:string) => `/reservation/${id}`,
+  },
+  payments: {
+    title: 'payments',
+    path: '/reservation/payments',
+  },
+  paymentsSuccess: {
+    title: 'paymentsSuccess',
+    path: '/reservation/payments/success',
+  },
+  paymentsFail: {
+    title: 'paymentsFail',
+    path: '/reservation/payments/fail',
   },
   mypageReservation: {
     title: 'MypageReservation',
@@ -37,7 +49,7 @@ export const ROUTES_CONFIG = {
   },
   mypageReservationDetail: {
     title: 'MypageReservationDetail',
-    path: '/mypage/reservation/:id',
+    path: (id: string) => `/mypage/reservation/${id}`,
   },
   classRegister: {
     title: 'ClassRegister',
@@ -53,7 +65,7 @@ export const ROUTES_CONFIG = {
   },
   instructorClassDetail: {
     title: 'instructorClassDetail',
-    path: '/mypage/instructor/class-list/:id',
+    path: (id: string) => `/mypage/instructor/class-list/${id}`,
   },
   error: {
     title: 'Error',
