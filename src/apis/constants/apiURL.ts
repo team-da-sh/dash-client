@@ -6,6 +6,7 @@ export const API_URL = {
   MEMBERS_WITHDRAW: '/api/v1/members/withdraw',
   MEMBERS_ONBOARD: '/api/v1/members/onboard',
   MEMBERS_ME: '/api/v1/members/me',
+  MEMBERS_LESSONS_DETAIL: '/api/v1/members/me/lessons',
   MEMBERS_RESERVATIONS: '/api/v1/members/me/reservations',
   MEMBERS_RESERVATION_DETAIL: '/api/v1/members/me/reservations/',
 
@@ -16,7 +17,7 @@ export const API_URL = {
 
   LESSONS: '/api/v1/lessons',
   LESSON_DETAIL: '/api/v1/lessons',
-  LESSONS_RECOMMENDATIONS: '/api/v1/lessons/recommendations?sortOption=:sortOption',
+  LESSONS_RECOMMENDATIONS: '/api/v1/lessons/recommendations',
   LESSONS_POPULAR_GENRES: '/api/v1/lessons/popular-genres',
   LESSONS_UPCOMING: '/api/v1/lessons/upcoming?sortOption=:sortOption',
   LESSONS_FAVORITES: '/api/v1/lessons/favorites/{lessonId}',

@@ -1,5 +1,9 @@
 import LessonItem from '@/pages/home/components/LessonItem';
-import { recommandLessonWrapperStyle, containerStyle } from '@/pages/home/components/RecommendationLessons/index.css';
+import {
+  recommandLessonWrapperStyle,
+  containerStyle,
+  titleStyle,
+} from '@/pages/home/components/RecommendationLessons/index.css';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import { useGetRecommendationLessons } from '@/apis/home/queries';
@@ -9,7 +13,7 @@ const RecommendationLessons = () => {
 
   return (
     <div className={recommandLessonWrapperStyle}>
-      <Head level="h2" tag="h4">
+      <Head level="h2" tag="h4" className={titleStyle}>
         이 클래스는 꼭 들어야 해요!
       </Head>
       <Flex tag="ul" gap="0.8rem" marginTop="2rem" className={containerStyle}>
@@ -25,7 +29,6 @@ const RecommendationLessons = () => {
             teacherProfileImage={lesson.teacherProfileImage}
             startDate={lesson.startDate}
             endDate={lesson.endDate}
-            location={lesson.location}
             remainingDays={lesson.remainingDays}
             useNewStyles={false}
           />

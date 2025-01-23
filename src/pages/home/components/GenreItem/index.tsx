@@ -7,7 +7,6 @@ interface GenreItemProps {
 }
 
 const GenreItem = ({ medalIcon, genre }: GenreItemProps) => {
-  console.log(genre);
   return (
     <li className={containerStyle}>
       <div className={medalStyle}>{medalIcon}</div>

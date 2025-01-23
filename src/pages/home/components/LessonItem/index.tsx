@@ -2,6 +2,7 @@ import {
   classImageStyle,
   deadlineTagStyle,
   teacherImageStyle,
+  titleStyle,
   wrapperStyle,
 } from '@/pages/home/components/LessonItem/index.css';
 import {
@@ -11,7 +12,6 @@ import {
   newWrapperStyle,
 } from '@/pages/home/components/LessonItem/newIndex.css';
 import { LessonTypes } from '@/pages/home/types/classTypes';
-import Divider from '@/components/Divider';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Tag from '@/components/Tag';
@@ -29,12 +29,9 @@ const LessonItem = ({
   teacherName,
   startDate,
   endDate,
-  location,
   remainingDays,
   useNewStyles = false,
-}: LessonTypes & { useNewStyles?: boolean }) => {
-  const address = location.split(' ').slice(0, 2).join(' ');
-
+}: Omit<LessonTypes, 'location'> & { useNewStyles?: boolean }) => {
   const styles = useNewStyles
     ? {
         classImage: newClassImageStyle,
@@ -65,7 +62,7 @@ const LessonItem = ({
         </Tag>
       </Flex>
 
-      <Head level="h3" tag="h7">
+      <Head level="h3" tag="h7" className={titleStyle}>
         {name}
       </Head>
 
@@ -77,10 +74,6 @@ const LessonItem = ({
         <Flex gap="0.4rem" align="center">
           <Text tag="c2" color="gray5">
             {transformDateToDotFormat(startDate)} - {transformDateToDotFormat(endDate)}
-          </Text>
-          <Divider direction="vertical" length={'0.7rem'} color="gray5" />
-          <Text tag="c2" color="gray5">
-            {address}
           </Text>
         </Flex>
       </Flex>
