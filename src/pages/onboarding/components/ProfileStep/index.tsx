@@ -1,3 +1,4 @@
+import { InstructorRegisterInfoTypes } from '@/pages/instructorRegister/types';
 import { icCameraStyle, inputStyle, previewImgStyle } from '@/pages/onboarding/components/ProfileStep/index.css';
 import { INFO_KEY, MAX_NICKNAME_LENGTH } from '@/pages/onboarding/constants';
 import { onboardInfoTypes } from '@/pages/onboarding/types';
@@ -5,6 +6,7 @@ import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Input from '@/components/Input';
 import Text from '@/components/Text';
+import useImageUploader from '@/hooks/useImageUploader';
 import { useUploadImg } from '@/hooks/useUploadImg';
 import { INCLUDE_BLANK, INCLUDE_SPECIAL } from '@/constants/regex';
 import defaultProfile from '@/assets/images/image_profile_basic.png';
@@ -16,10 +18,27 @@ interface ProfileStepProps {
   isNicknameError: boolean;
   changeIsNicknameError: (isError: boolean) => void;
   onInfoChange: <K extends keyof onboardInfoTypes>(key: K, value: onboardInfoTypes[K]) => void;
+  setInfo: React.Dispatch<React.SetStateAction<onboardInfoTypes>>;
 }
 
-const ProfileStep = ({ nickname, isNicknameError, changeIsNicknameError, onInfoChange }: ProfileStepProps) => {
-  const { imgRef, previewImg, handleUploaderClick, uploadImgFile } = useUploadImg();
+const ProfileStep = ({
+  nickname,
+  isNicknameError,
+  profileImageUrl,
+  changeIsNicknameError,
+  onInfoChange,
+}: ProfileStepProps) => {
+  const handleImageUploadSuccess = (url: string) => {
+    onInfoChange(INFO_KEY.PROFILE_IMAGE_URL, url);
+  };
+  const handleDeleteUrl = () => {
+    onInfoChange(INFO_KEY.PROFILE_IMAGE_URL, '');
+  };
+
+  const { previewImg, imgRef, handleUploaderClick, uploadImgFile } = useImageUploader<onboardInfoTypes>(
+    handleImageUploadSuccess,
+    handleDeleteUrl
+  );
 
   const handleNicknameChange = (nickname: string) => {
     if (nickname.length > MAX_NICKNAME_LENGTH) return;
