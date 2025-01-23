@@ -34,8 +34,6 @@ const MyPage = ({ showMyPage, onClose }: MyPageProps) => {
     }
   };
 
-  document.body.style.overflow = showMyPage ? 'hidden' : '';
-
   return (
     <div onClick={handleClickOutside} className={showMyPage ? styles.visibleStyle : styles.invisibleStyle}>
       <div className={styles.wrapperStyle}>
