@@ -1,6 +1,6 @@
 export type StatusType = 'OPEN' | 'EXPIRED' | 'OVER_BOOKED';
 
-export interface LessonDetail {
+export interface LessonDetailApiResponse {
   imageUrl: string;
   genre: string;
 
@@ -24,7 +24,7 @@ export interface LessonDetail {
   };
   location: string;
   streetAddress: string;
-  streetDetailAddress: string;
+  streetDetailAddress?: string;
   oldStreetAddress: string;
   favoriteCount?: number;
   bookStatus: boolean;
