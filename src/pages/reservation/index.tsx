@@ -16,6 +16,7 @@ import {
   bottomButtonStyle,
   agreementTextStyle,
 } from '@/pages/reservation/index.css';
+import { LessonRoundProps } from '@/pages/reservation/types';
 import BoxButton from '@/components/BoxButton';
 import Divider from '@/components/Divider';
 import Flex from '@/components/Flex';
@@ -25,11 +26,6 @@ import Text from '@/components/Text';
 import { useGetReservaion } from '@/apis/reservation/queries';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { IcCheckcircleGray0524, IcCheckcircleMain0324 } from '@/assets/svg';
-
-interface LessonRoundProps {
-  startDateTime: string;
-  endDateTime: string;
-}
 
 const Reservation = () => {
   const [isAllChecked, setIsAllChecked] = useState(false);
@@ -50,7 +46,7 @@ const Reservation = () => {
   }
 
   if (isError || !data) {
-    return navigate(ROUTES_CONFIG.error.path);
+    return <Error />;
   }
 
   const handleButtonClick = () => {

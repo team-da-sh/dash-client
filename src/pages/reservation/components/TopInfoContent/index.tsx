@@ -3,16 +3,11 @@ import {
   gradientOverlayStyle,
   textWrapperStyle,
 } from '@/pages/reservation/components/TopInfoContent/index.css';
+import { TopInfoContentProps } from '@/pages/reservation/types';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 
-interface TopInfoProps {
-  name: string;
-  teacherNickname: string;
-  imageUrl: string;
-}
-const TopInfoContent = ({ name, teacherNickname, imageUrl }: TopInfoProps) => {
-
+const TopInfoContent = ({ name, teacherNickname, imageUrl }: TopInfoContentProps) => {
   return (
     <Flex width="100%" paddingTop="6rem">
       <div

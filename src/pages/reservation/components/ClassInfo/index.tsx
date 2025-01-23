@@ -1,25 +1,12 @@
 import ScheduleItem from '@/pages/reservation/components/ClassInfo/ScheduleItem';
 import { infoContainerStyle, textLabelStyle } from '@/pages/reservation/components/ClassInfo/index.css';
 import InfoRow from '@/pages/reservation/components/InfoRow';
+import { ClassInfoProps } from '@/pages/reservation/types';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Text from '@/components/Text';
 import { vars } from '@/styles/theme.css';
 import { levelMapping } from '@/constants';
-
-interface LessonRoundProps {
-  startDateTime: string;
-  endDateTime: string;
-}
-
-interface ClassInfoProps {
-  name: string;
-  location: string;
-  locationDetail: string;
-  teacherNickname: string;
-  level: string;
-  lessonRound?: LessonRoundProps[];
-}
 
 const ClassInfo = ({ name, location, locationDetail, teacherNickname, level, lessonRound = [] }: ClassInfoProps) => {
   return (
