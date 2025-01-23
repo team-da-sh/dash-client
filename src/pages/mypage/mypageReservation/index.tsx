@@ -7,6 +7,7 @@ import Header from '@/components/Header';
 import Text from '@/components/Text';
 import { notify } from '@/components/Toast';
 import { useGetReservations } from '@/apis/myPageReservation/queries';
+import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { MyPageReservationCardProps } from '@/types/reservationTypes';
 
 const MyPageReservation = () => {
@@ -16,7 +17,8 @@ const MyPageReservation = () => {
 
   const handleDetailClick = (reservationId: number | undefined) => {
     if (reservationId !== undefined) {
-      navigate(`/mypage/reservation/${reservationId}`);
+      const path = ROUTES_CONFIG.mypageReservationDetail.path(reservationId.toString());
+      navigate(path);
     }
   };
 
