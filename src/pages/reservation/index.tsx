@@ -50,7 +50,7 @@ const Reservation = () => {
   const navigate = useNavigate();
 
   const handleButtonClick = () => {
-    navigate(ROUTES_CONFIG.home.path);
+    navigate(ROUTES_CONFIG.payments.path);
   };
   const totalPrice = lessonRound.length * lessonIndividualPrice;
 
