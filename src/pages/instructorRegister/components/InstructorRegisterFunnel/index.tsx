@@ -42,8 +42,14 @@ const InstructorRegisterFunnel = ({ currentStep, Funnel, Step, setStep }: Instru
     setInfo((prev) => ({ ...prev, imageUrls: url }));
   };
 
-  const { imgFile, previewImg, imgRef, handleUploaderClick, uploadImgFile, deleteImgFile } =
-    useImageUploader<InstructorRegisterInfoTypes>(handleImageUploadSuccess, setInfo);
+  const handleDeleteUrl = () => {
+    handleInfoChange('imageUrls', '');
+  };
+
+  const { imgFile, previewImg, imgRef, handleUploaderClick, uploadImgFile, deleteImgFile } = useImageUploader(
+    handleImageUploadSuccess,
+    handleDeleteUrl
+  );
 
   // 이외 로직
   const handleInfoChange = <K extends keyof InstructorRegisterInfoTypes>(
