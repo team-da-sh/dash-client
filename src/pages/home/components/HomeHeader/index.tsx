@@ -21,11 +21,16 @@ const HomeHeader = ({ isVisible, onMyPageClick }: HomeHeaderProps) => {
   const handleSearchClick = () => {
     navigate(ROUTES_CONFIG.search.path);
   };
+
+  const handleLogoClick = () => {
+    location.href = location.href;
+  };
+
   return (
     <Flex tag="header" className={containerStyle({ isVisible })}>
       {isVisible ? (
         <>
-          <IcLogoSmallBlack width={54} height={18} />
+          <IcLogoSmallBlack width={54} height={18} onClick={handleLogoClick} />
           <Flex gap="2rem">
             <IcSearchBlack24 width={24} height={24} onClick={handleSearchClick} />
             <IcMypageBlack24 width={24} height={24} onClick={onMyPageClick} />
@@ -33,9 +38,9 @@ const HomeHeader = ({ isVisible, onMyPageClick }: HomeHeaderProps) => {
         </>
       ) : (
         <>
-          <IcLogoSmallWhite width={54} height={18} />
+          <IcLogoSmallWhite width={54} height={18} onClick={handleLogoClick} />
           <Flex gap="2rem">
-            <IcSearchWhite24 width={24} height={24} />
+            <IcSearchWhite24 width={24} height={24} onClick={handleSearchClick} />
             <IcMypageWhite24 width={24} height={24} onClick={onMyPageClick} />
           </Flex>
         </>
