@@ -14,7 +14,7 @@ import { labelToSortOptionMap } from '@/constants';
 const Search = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const [genre, setGenre] = useState<string | null>(location.state?.genre ? location.state.genre : null);
+  const [genre, setGenre] = useState<string | null>(location.state?.genre || null);
 
   if (location.state?.genre) {
     navigate(location.pathname, { replace: true });
