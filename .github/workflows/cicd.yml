@@ -14,7 +14,7 @@ on:
       - 'chore/**'
       - 'setting/**'
 
-  permissions:
+permissions:
   contents: write
   pull-requests: write
 
@@ -36,12 +36,11 @@ jobs:
           sh ./build.sh
 
       - name: Add bot comment to PR
-        if: success()
+        if: success() && github.event_name == 'pull_request'
         uses: actions/github-script@v6
         with:
           script: |
             const prNumber = context.payload.pull_request.number;
-
             await github.rest.issues.createComment({
               issue_number: prNumber,
               owner: context.repo.owner,
@@ -50,12 +49,11 @@ jobs:
             });
 
       - name: Add failure comment to PR
-        if: failure()
+        if: failure() && github.event_name == 'pull_request'
         uses: actions/github-script@v6
         with:
           script: |
             const prNumber = context.payload.pull_request.number;
-
             await github.rest.issues.createComment({
               issue_number: prNumber,
               owner: context.repo.owner,
