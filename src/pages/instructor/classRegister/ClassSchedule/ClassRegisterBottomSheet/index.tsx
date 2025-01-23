@@ -7,7 +7,11 @@ import { CLASS_REGISTER_TOTAL_STEP } from '@/constants';
 import * as styles from './index.css';
 
 const ClassRegisterBottomSheet = ({ onClose }: { onClose: () => void }) => {
-  const { Funnel, Step, currentStep, setStep } = useFunnel(CLASS_REGISTER_TOTAL_STEP, `${ROUTES_CONFIG.classRegister}`);
+  const { Funnel, Step, currentStep, setStep } = useFunnel(
+    CLASS_REGISTER_TOTAL_STEP,
+    `${ROUTES_CONFIG.classRegister}`,
+    false // 완료 페이지 없음 (false)
+  );
 
   const handleBackClick = () => {
     if (currentStep === 1) {
