@@ -5,6 +5,10 @@ on:
     branches:
       - develop
 
+  permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -13,7 +17,9 @@ jobs:
 
       - name: Install dependencies
         run: |
-          apk add ruby && gem install mustache
+          sudo apt-get update
+          sudo apt-get install -y ruby
+          gem install mustache
 
       - name: Run build/test
         run: |
