@@ -8,7 +8,6 @@ import Text from '@/components/Text';
 import { notify } from '@/components/Toast';
 import { useGetMyLessons } from '@/apis/classList/queries';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import { genreMapping, levelMapping } from '@/constants';
 import { Lesson } from '@/types/lessonTypes';
 
 const ClassList = () => {
@@ -43,11 +42,12 @@ const ClassList = () => {
         <Flex direction="column" gap="1.2rem" marginTop="1.6rem">
           {lessonData?.lessons.map((lesson: Lesson) => (
             <ClassCard
+              isReservation={false}
               key={lesson.id}
               lessonName={lesson.name}
               lessonImageUrl={lesson.imageUrl}
-              lessonGenre={genreMapping[lesson.genre]}
-              lessonLevel={levelMapping[lesson.level]}
+              lessonGenre={lesson.genre}
+              lessonLevel={lesson.level}
               lessonLocation={lesson.location}
               lessonStartDateTime={lesson.startDateTime}
               lessonEndDateTime={lesson.endDateTime}>

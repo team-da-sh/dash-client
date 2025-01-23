@@ -1,5 +1,10 @@
 import { ChangeEvent, useRef, useState } from 'react';
+import { formatToISOString } from '@/utils/timeUtils';
 import { ONLY_NUMERIC } from '@/constants/regex';
+
+export interface RepresentImageUrlsTypes {
+  imageUrls: string;
+}
 
 export const useClassRegisterForm = () => {
   const explainTextAreaRef = useRef<HTMLTextAreaElement>(null);
@@ -7,13 +12,23 @@ export const useClassRegisterForm = () => {
 
   const [className, setClassName] = useState('');
   const [explanation, setExplanation] = useState('');
+  const [imageUrls, setImageUrls] = useState<RepresentImageUrlsTypes>({ imageUrls: '' });
   const [selectedGenre, setSelectedGenre] = useState<string | null>(null);
   const [selectedLevelTitle, setSelectedLevelTitle] = useState<string | null>(null);
   const [recommend, setRecommend] = useState('');
   const [personnel, setPersonnelChange] = useState('');
+  const [hasLocation, setHasLocation] = useState(true);
   const [defaultPlace, setDefaultPlace] = useState('');
+  const [submitDefaultPlace, setSubmitDefaultPlace] = useState('');
   const [detailPlace, setDetailPlace] = useState('');
   const [amount, setAmount] = useState('');
+
+  const [times, setTimes] = useState<{ startTime: string; endTime: string; date: string; duration: number }[]>([]);
+  const [startDate, setStartDate] = useState('');
+  const [hour, setHour] = useState(12);
+  const [minute, setMinute] = useState(0);
+  const [ampm, setAmpm] = useState('AM');
+  const [selectedTime, setSelectedTime] = useState<number | null>(null);
 
   const handleClassNameChange = (e: ChangeEvent<HTMLInputElement>) => {
     setClassName(e.target.value);
@@ -24,6 +39,10 @@ export const useClassRegisterForm = () => {
     if (!e.target.value.match(ONLY_NUMERIC)) {
       setPersonnelChange(e.target.value);
     }
+  };
+
+  const handleImageUploadSuccess = (url: string) => {
+    setImageUrls({ imageUrls: url });
   };
 
   const handleAmountChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -59,13 +78,65 @@ export const useClassRegisterForm = () => {
     }
   };
 
-  const handleDefaultPlace = () => {
-    // 받은 데이터로 state 설정
-    setDefaultPlace('이런 값으로~');
+  const handleHasLocation = () => {
+    setHasLocation((prev) => !prev);
+  };
+
+  const handleDefaultPlace = (e: ChangeEvent<HTMLInputElement>) => {
+    setDefaultPlace(e.target.value);
+  };
+
+  const handleSubmitDefaultPlace = () => {
+    setSubmitDefaultPlace(defaultPlace);
+  };
+
+  const handleAddTime = () => {
+    if (startDate && selectedTime !== null) {
+      const { startTime, endTime } = formatToISOString(startDate, hour, minute, ampm, selectedTime);
+
+      const newTime = {
+        startTime,
+        endTime,
+        date: startDate,
+        duration: selectedTime,
+      };
+      setTimes([...times, newTime]);
+    }
+  };
+
+  const handleRemoveTime = (index: number) => {
+    const updatedTimes = times.filter((_, idx) => idx !== index);
+    setTimes(updatedTimes);
   };
 
   const handleDetailPlace = (e: ChangeEvent<HTMLInputElement>) => {
     setDetailPlace(e.target.value);
+  };
+  const isFormValid = () => {
+    if (!hasLocation) {
+      return (
+        className &&
+        explanation &&
+        imageUrls.imageUrls.length > 0 &&
+        selectedGenre &&
+        selectedLevelTitle &&
+        selectedTime &&
+        personnel &&
+        amount &&
+        times.length > 0
+      );
+    }
+
+    return (
+      className &&
+      explanation &&
+      imageUrls.imageUrls.length > 0 &&
+      selectedGenre &&
+      selectedLevelTitle &&
+      selectedTime &&
+      personnel &&
+      amount
+    );
   };
 
   return {
@@ -77,17 +148,38 @@ export const useClassRegisterForm = () => {
     selectedLevelTitle,
     recommend,
     personnel,
+    hasLocation,
     defaultPlace,
+    submitDefaultPlace,
     detailPlace,
     amount,
+    imageUrls,
+    times,
+    hour,
+    minute,
+    ampm,
+    startDate,
+    setStartDate,
+    setHour,
+    setMinute,
+    setAmpm,
+    setSelectedTime,
+    selectedTime,
+    handleAddTime,
     handleClassNameChange,
     handlePersonnelChange,
     handleAmountChange,
+    handleImageUploadSuccess,
     toggleCategory,
     handleLevelSelect,
     handleExplainTextArea,
     handleRecommendChange,
+    handleHasLocation,
     handleDefaultPlace,
+    handleSubmitDefaultPlace,
     handleDetailPlace,
+    handleRemoveTime,
+    setImageUrls,
+    isFormValid,
   };
 };

@@ -1,0 +1,62 @@
+name: build Test
+
+on:
+  pull_request:
+    branches:
+      - develop
+  push:
+    branches:
+      - 'feat/**'
+      - 'api/**'
+      - 'fix/**'
+      - 'design/**'
+      - 'style/**'
+      - 'chore/**'
+      - 'setting/**'
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ruby
+          gem install mustache --user-install
+
+      - name: Run build/test
+        run: |
+          echo "🔨 빌드 실행 중..."
+          sh ./build.sh
+
+      - name: Add bot comment to PR
+        if: success() && github.event_name == 'pull_request'
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const prNumber = context.payload.pull_request.number;
+            await github.rest.issues.createComment({
+              issue_number: prNumber,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `✅ 빌드 성공적으로 완료되었지롱롱 🛠️`
+            });
+
+      - name: Add failure comment to PR
+        if: failure() && github.event_name == 'pull_request'
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const prNumber = context.payload.pull_request.number;
+            await github.rest.issues.createComment({
+              issue_number: prNumber,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `❌ 빌드에 실패했습니다. 다시 고치고 오셔 ㅋㅋ🚨`
+            });

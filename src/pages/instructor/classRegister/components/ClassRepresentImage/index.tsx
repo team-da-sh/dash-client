@@ -1,14 +1,14 @@
-import Description from '@/pages/instructorRegister/components/Description';
 import {
   closeIconStyle,
   inputStyle,
   previewImgStyle,
-} from '@/pages/instructorRegister/components/InstructorRegisterFunnel/ImageUploadStep/index.css';
+} from '@/pages/instructor/classRegister/components/ClassRepresentImage/index.css';
+import Description from '@/pages/instructor/classRegister/components/Description';
 import Flex from '@/components/Flex';
 import Text from '@/components/Text';
 import { IcPlusGray0524, IcXCircleMain0324 } from '@/assets/svg';
 
-interface ImageUploadStepProps {
+interface ClassRepresentImageProps {
   handleUploaderClick: () => void;
   uploadImgFile: () => void;
   deleteImgFile: (e: React.MouseEvent) => void;
@@ -17,17 +17,17 @@ interface ImageUploadStepProps {
   imgRef: React.MutableRefObject<HTMLInputElement | null>;
 }
 
-const ImageUploadStep = ({
-  imgFile,
+const ClassRepresentImage = ({
   imgRef,
+  imgFile,
   previewImg,
-  deleteImgFile,
-  uploadImgFile,
   handleUploaderClick,
-}: ImageUploadStepProps) => {
+  uploadImgFile,
+  deleteImgFile,
+}: ClassRepresentImageProps) => {
   return (
-    <>
-      <Description title="강사 이미지 업로드" subTitle="대표 이미지는 최대 한 장까지 등록 가능해요" />
+    <Flex tag="section" direction="column" gap="2rem" width="100%" marginBottom="4rem">
+      <Description title="클래스 대표 이미지" subTitle="대표 이미지는 최대 한 장까지 등록 가능해요" />
       <Flex
         justify="center"
         align="center"
@@ -59,8 +59,8 @@ const ImageUploadStep = ({
         onChange={uploadImgFile}
         ref={imgRef}
       />
-    </>
+    </Flex>
   );
 };
 
-export default ImageUploadStep;
+export default ClassRepresentImage;

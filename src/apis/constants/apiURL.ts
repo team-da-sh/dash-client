@@ -33,7 +33,7 @@ export const API_URL = {
   SEARCH_LESSONS:
     '/api/v1/lessons?genre=:genre&level=:level&startDate=:startDate&endDate=:endDate&sortOption=:sortOption&keyword=:keyword',
 
-  LOCATIONS: '/api/v1/locations?query=:query',
+  LOCATIONS: '/api/v1/locations',
 
   AUTH_ROLE: '/api/v1/auth/role',
   IMAGES: '/api/v1/images',
