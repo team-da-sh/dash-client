@@ -38,3 +38,9 @@ export const emptyStyle = style({
   padding: '5.2rem 0 7.2rem 0',
   
 });
+
+export const linkStyle = style({
+  overflow: 'hidden',
+  textOverflow:'ellipsis',
+  maxWidth:'15ch',
+});

@@ -22,7 +22,7 @@ export const API_URL = {
   LESSONS_UPCOMING: '/api/v1/lessons/upcoming',
   LESSONS_FAVORITES: '/api/v1/lessons/favorites/{lessonId}',
   LESSON_RESERVE_PROGRESS: '/api/v1/lessons',
-  LESSON_RESERVATION: '/api/v1/lessons/{lessonId}/reservations',
+  LESSON_RESERVATION: '/api/v1/lessons',
 
   MY_PAGE_FAVORITES: '/api/v1/mypage/favorites',
   MY_PAGE_LESSONS: '/api/v1/mypage/lessons',

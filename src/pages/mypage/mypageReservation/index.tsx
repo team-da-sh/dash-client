@@ -23,7 +23,6 @@ const MyPageReservation = () => {
       navigate(ROUTES_CONFIG.error.path);
     }
   };
-
   return (
     <div className={layoutStyle}>
       <Header.Root isColor={true}>

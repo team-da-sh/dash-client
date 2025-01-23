@@ -15,6 +15,7 @@ import {
   lastClassItemStyle,
   detailStyle,
   emptyStyle,
+  linkStyle,
 } from '@/pages/dancer/components/DancerInfo/index.css';
 
 const DancerInfo = ({ dancerData }: { dancerData: DancerDetailApiResponse }) => {
@@ -45,7 +46,7 @@ const DancerInfo = ({ dancerData }: { dancerData: DancerDetailApiResponse }) => 
             <a href={instagram} target="_blank" rel="noopener noreferrer">
               <Flex direction="row" gap="0.9rem" justify="center" align="center">
                 <IcInstagram20 width="2rem" />
-                <Text tag="b2" color="gray5">
+                <Text tag="b2" color="gray5" className={linkStyle}>
                   {instagramHandle}
                 </Text>
               </Flex>
@@ -56,7 +57,7 @@ const DancerInfo = ({ dancerData }: { dancerData: DancerDetailApiResponse }) => 
             <a href={youtube} target="_blank" rel="noopener noreferrer">
               <Flex direction="row" gap="0.9rem" justify="center" align="center">
                 <IcYoutube20 width="2rem" height="2rem" />
-                <Text tag="b2" color="gray5">
+                <Text tag="b2" color="gray5" className={linkStyle}>
                   {youtubeHandle}
                 </Text>
               </Flex>

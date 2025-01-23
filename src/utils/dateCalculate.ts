@@ -42,22 +42,30 @@ export const calculateDday = (startDateTime: string): string => {
   const now = new Date();
   const startDate = new Date(startDateTime);
 
-  // 시간 차이
-  const difference = startDate.getTime() - now.getTime();
+  // 현재 날짜와 시작 날짜의 날짜 부분만 비교
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const startOfDay = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate());
 
-  // 하루
-  const oneDayInMs = 1000 * 60 * 60 * 24;
-
-  if (difference > 0 && difference < oneDayInMs) {
-    return 'D-Day';
+  // 1. 시작 날짜가 오늘인 경우
+  if (today.getTime() === startOfDay.getTime()) {
+    const differenceInMs = startDate.getTime() - now.getTime();
+    if (differenceInMs > 0) {
+      return 'D-Day';
+    } else {
+      return '마감';
+    }
   }
 
-  // 남은 일수 계산 (양수일 때만)
-  const remainingDays = Math.ceil(difference / oneDayInMs);
+  // 2. 시작 날짜가 오늘이 아닌 경우 (D-1, D-2 계산)
+  const differenceInMs = startOfDay.getTime() - today.getTime();
+  const oneDayInMs = 1000 * 60 * 60 * 24; // 하루를 밀리초로 계산
+
+  const remainingDays = Math.floor(differenceInMs / oneDayInMs); // 내림 처리로 정확한 남은 일 계산
+
   if (remainingDays > 0) {
-    return `D-${remainingDays}`;
+    return `D-${remainingDays}`; 
   }
 
-  // 이미 지난 경우
+  // 3. 이미 지난 경우
   return '마감';
 };
