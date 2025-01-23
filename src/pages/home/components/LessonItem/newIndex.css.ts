@@ -5,12 +5,15 @@ export const newClassImageStyle = style({
   width: '100%',
   height: '9.1rem',
   borderRadius: '4px',
+
+  objectFit: 'cover',
 });
 
 export const newTeacherImageStyle = style({
   width: '2.4rem',
   height: '2.4rem',
 
+  objectFit: 'cover',
   borderRadius: '10px',
 });
 
