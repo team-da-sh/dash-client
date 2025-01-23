@@ -34,14 +34,14 @@ const Reservation = () => {
   const navigate = useNavigate();
 
   const { id } = useParams<{ id: string }>();
-
   if (!id) {
     return <Error />;
   }
 
   const { data, isError, isLoading } = useGetReservaion(id);
-  const mutation = usePostReservation();
-  
+  const { mutate: classReservation } = usePostReservation();
+  const [hasError, setHasError] = useState(false);
+
   if (isLoading) {
     return <></>;
   }
@@ -72,15 +72,23 @@ const Reservation = () => {
     endDateTime: round.endDateTime,
   }));
 
-
   const handleButtonClick = async () => {
-    try {
-      await mutation.mutateAsync({ lessonId: id });
-      navigate(ROUTES_CONFIG.mypageReservation.path);
-    } catch (error: any) {
-      <Error/>
-    }
+    classReservation(
+      { lessonId: id },
+      {
+        onSuccess: () => {
+          navigate(ROUTES_CONFIG.mypageReservation.path);
+        },
+        onError: () => {
+          setHasError(true);
+        },
+      }
+    );
   };
+
+  if (hasError) {
+    return <Error />;
+  }
 
   return (
     <Flex direction="column" width="100%" className={reservationStyle}>

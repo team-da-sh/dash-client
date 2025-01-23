@@ -6,7 +6,7 @@ import { AxiosError } from "axios";
 
 export const useGetReservaion = (lessonId: string) => {
   return useQuery<ReservationDetailApiResponse, AxiosError>({
-    queryKey: [QUERY_KEYS.LESSON_RESERVE_PROGRESS],
+    queryKey: [QUERY_KEYS.LESSON_RESERVE_PROGRESS, lessonId],
     queryFn: () => getReservation(lessonId),
   });
 };
