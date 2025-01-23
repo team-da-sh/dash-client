@@ -10,3 +10,7 @@ export const kakaoButtonStyle = style({
 
   cursor: 'pointer',
 });
+
+export const buttonStyle = style({
+  whiteSpace: 'nowrap',
+});

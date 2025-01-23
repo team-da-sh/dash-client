@@ -8,10 +8,11 @@ import { LEVEL } from '@/constants';
 
 interface LevelStepProps {
   level: string | null;
+  name: string;
   onInfoChange: <K extends keyof onboardInfoTypes>(key: K, value: onboardInfoTypes[K]) => void;
 }
 
-const LevelStep = ({ level, onInfoChange }: LevelStepProps) => {
+const LevelStep = ({ name, level, onInfoChange }: LevelStepProps) => {
   const handleLevelSelect = (title: KO_LEVELS) => {
     onInfoChange(INFO_KEY.LEVEL, level === LEVELS[title] ? null : LEVELS[title]);
   };
@@ -23,7 +24,7 @@ const LevelStep = ({ level, onInfoChange }: LevelStepProps) => {
           원하는 클래스의 난이도
         </Head>
         <Text tag="b2" color="gray7">
-          이유지님께 딱 맞는 클래스를 추천해 드릴게요
+          {name}께 딱 맞는 클래스를 추천해 드릴게요
         </Text>
       </Flex>
 

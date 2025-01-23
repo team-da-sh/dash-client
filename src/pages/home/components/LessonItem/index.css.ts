@@ -18,6 +18,7 @@ export const teacherImageStyle = style({
   width: '2.4rem',
   height: '2.4rem',
 
+  objectFit: 'cover',
   borderRadius: '10px',
 });
 

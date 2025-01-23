@@ -81,6 +81,7 @@ const ProfileStep = ({ name, nickname, isNicknameError, changeIsNicknameError, o
 
       <Flex direction="column" gap="0.8rem" marginTop="2.8rem" width="100%">
         <Input
+          isError={isNicknameError}
           placeholder="댄서네임을 입력하세요"
           value={nickname}
           onChange={(e) => handleNicknameChange(e.target.value)}
