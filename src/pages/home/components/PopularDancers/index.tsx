@@ -1,5 +1,5 @@
 import DancerItem from '@/pages/home/components/DancerItem';
-import { dancerListWrapperstyle, containerStyle } from '@/pages/home/components/PopularDancers/index.css';
+import { dancerListWrapperstyle, containerStyle, titleStyle } from '@/pages/home/components/PopularDancers/index.css';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import { useGetPopularDancers } from '@/apis/home/queries';
@@ -10,7 +10,7 @@ const PopularDancers = () => {
 
   return (
     <div className={dancerListWrapperstyle}>
-      <Head level="h2" tag="h4">
+      <Head level="h2" tag="h4" className={titleStyle}>
         가장 핫한 댄서들만 모아봤어요
       </Head>
       <Flex tag="ul" gap="0.8rem" marginTop="2rem" className={containerStyle}>
