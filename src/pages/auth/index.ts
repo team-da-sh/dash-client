@@ -12,7 +12,7 @@ export const LoginCallback = () => {
   const { mutate: login } = useLoginMutation();
 
   useEffect(() => {
-    if (code) login({ redirectUrl: 'http://localhost:5173/auth', code });
+    if (code) login({ redirectUrl: 'https://www.da-sh.kr/auth', code });
   }, [code]);
 
   // 잠시 인가 코드만 추출해서 api를 보내는 페이지이기 때문에 null 값 반환

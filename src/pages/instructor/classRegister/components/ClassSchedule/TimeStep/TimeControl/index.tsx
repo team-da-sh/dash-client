@@ -10,7 +10,7 @@ interface TimeControlProps {
   onDecrease: () => void;
 }
 const TimeControl = ({ label, value, onIncrease, onDecrease }: TimeControlProps) => (
-  <Flex direction="column" align="center" gap="0.4rem">
+  <Flex direction="column" width="100%" align="center" gap="0.4rem">
     <button onClick={onIncrease} className={styles.buttonStyle}>
       <IcArrowUpGray1032 width={'3.2rem'} />
     </button>
