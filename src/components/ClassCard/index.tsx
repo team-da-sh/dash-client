@@ -114,9 +114,9 @@ const ClassCard = ({
               </Text>
               <Text tag="c1" color="gray9">
                 <Text tag="c1" color="gray9">
-                  {lessonStartDateTime && lessonEndDateTime
-                    ? formatLessonDateRange(lessonStartDateTime, lessonEndDateTime)
-                    : ''}
+                  {lessonStartDateTime &&
+                    lessonEndDateTime &&
+                    formatLessonDateRange(lessonStartDateTime, lessonEndDateTime)}
                 </Text>
               </Text>
             </Flex>

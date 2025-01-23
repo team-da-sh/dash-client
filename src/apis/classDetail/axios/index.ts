@@ -1,13 +1,9 @@
-import { useQuery } from '@tanstack/react-query';
-import { QUERY_KEYS } from '@/apis/constants/queryKey';
-import { LessonDetailGetResponse } from '@/types/myPageLessonDetailTypes';
-import { getLessonDetail } from '../queries';
+import { instance } from '@/apis/api';
+import { API_URL } from '@/apis/constants/apiURL';
 
-export const useGetLessonDetail = (lessonId: number) => {
-  return useQuery<LessonDetailGetResponse>({
-    queryKey: [QUERY_KEYS.MY_PAGE_LESSON_DETAIL, lessonId],
-    queryFn: () => getLessonDetail(lessonId),
+export const getLessonDetail = async (lessonId: number) => {
+  const url = `${API_URL.MEMBERS_LESSONS_DETAIL}/${lessonId}`;
 
-    enabled: lessonId !== undefined,
-  });
+  const { data } = await instance.get(url);
+  return data;
 };

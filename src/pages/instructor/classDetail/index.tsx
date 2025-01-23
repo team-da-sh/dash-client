@@ -5,7 +5,7 @@ import ClassCard from '@/components/ClassCard';
 import Flex from '@/components/Flex';
 import Header from '@/components/Header';
 import Text from '@/components/Text';
-import { useGetLessonDetail } from '@/apis/classDetail/axios';
+import { useGetLessonDetail } from '@/apis/classDetail/queries';
 
 const ClassDetail = () => {
   const { id } = useParams<{ id: string }>();
@@ -13,8 +13,6 @@ const ClassDetail = () => {
   const lessonId = Number(id);
 
   const { data: lessonDetailData, isLoading, isError } = useGetLessonDetail(lessonId);
-
-  console.log(lessonDetailData);
 
   if (isLoading) {
     return <></>;
