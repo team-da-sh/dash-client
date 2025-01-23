@@ -4,6 +4,7 @@ import AgreeCheckBox from '@/pages/reservation/components/AgreeCheckBox';
 import ApplicantInfo from '@/pages/reservation/components/ApplicantInfo';
 import ClassInfo from '@/pages/reservation/components/ClassInfo';
 import TopInfoContent from '@/pages/reservation/components/TopInfoContent';
+import { MY_RESERVATION_DATA } from '@/pages/reservation/mocks/mockMyReservationData';
 import BoxButton from '@/components/BoxButton';
 import Divider from '@/components/Divider';
 import Flex from '@/components/Flex';
@@ -12,7 +13,6 @@ import Header from '@/components/Header';
 import Text from '@/components/Text';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { IcCheckcircleGray0524, IcCheckcircleMain0324 } from '@/assets/svg';
-import { MY_RESERVATION_DATA } from '@/pages/reservation/mocks/mockMyReservationData';
 import {
   agreementBoxStyle,
   agreementCheckedStyle,
@@ -50,7 +50,7 @@ const Reservation = () => {
   const navigate = useNavigate();
 
   const handleButtonClick = () => {
-    navigate(ROUTES_CONFIG.home.path);
+    navigate(ROUTES_CONFIG.payments.path);
   };
   const totalPrice = lessonRound.length * lessonIndividualPrice;
 
