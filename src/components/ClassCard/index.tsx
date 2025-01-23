@@ -16,6 +16,7 @@ const ClassCard = ({
   lessonLevel,
   lessonLocation,
   lessonStartDateTime,
+  lessonDetailedAddress,
   lessonEndDateTime,
   isReservation = true,
   children,
@@ -97,10 +98,10 @@ const ClassCard = ({
         <Flex direction="column" gap="0.8rem">
           <Flex gap="0.3rem">
             <Tag type="genre" size="small">
-              {genreMapping[lessonGenre]}
+              {lessonGenre && genreMapping[lessonGenre]}
             </Tag>
             <Tag type="level" size="small">
-              {levelMapping[lessonLevel]}
+              {lessonLevel && levelMapping[lessonLevel]}
             </Tag>
           </Flex>
           <Head level="h2" tag="h6">
@@ -113,7 +114,9 @@ const ClassCard = ({
               </Text>
               <Text tag="c1" color="gray9">
                 <Text tag="c1" color="gray9">
-                  {formatLessonDateRange(lessonStartDateTime, lessonEndDateTime)}
+                  {lessonStartDateTime &&
+                    lessonEndDateTime &&
+                    formatLessonDateRange(lessonStartDateTime, lessonEndDateTime)}
                 </Text>
               </Text>
             </Flex>
@@ -122,7 +125,8 @@ const ClassCard = ({
                 장소
               </Text>
               <Text tag="c1" color="gray9">
-                {lessonLocation}
+                {lessonLocation}&nbsp;
+                {lessonDetailedAddress}
               </Text>
             </Flex>
           </Flex>
