@@ -6,16 +6,20 @@ import Flex from '@/components/Flex';
 import Header from '@/components/Header';
 import Text from '@/components/Text';
 import { notify } from '@/components/Toast';
-import { MOCK_MYLESSON_DATA } from '@/mocks/mockMyLessonData';
-import { LessonCardProps } from '@/types/lessonTypes';
+import { useGetMyLessons } from '@/apis/classList/queries';
+import { ROUTES_CONFIG } from '@/routes/routesConfig';
+import { Lesson } from '@/types/lessonTypes';
 
 const ClassList = () => {
   const navigate = useNavigate();
 
-  const totalLessons = MOCK_MYLESSON_DATA.lessons.length;
+  const { data: lessonData } = useGetMyLessons();
+
+  const totalLessons = lessonData?.lessons.length;
 
   const handleDetailClick = (lessonId: number) => {
-    navigate(`/mypage/instructor/class-list/${lessonId}`);
+    const path = ROUTES_CONFIG.instructorClassDetail.path(lessonId.toString());
+    navigate(path);
   };
 
   return (
@@ -29,10 +33,10 @@ const ClassList = () => {
           전체 {totalLessons}
         </Text>
         <Flex direction="column" gap="1.2rem" marginTop="1.6rem">
-          {MOCK_MYLESSON_DATA.lessons.map((lesson: LessonCardProps) => (
+          {lessonData?.lessons.map((lesson: Lesson) => (
             <ClassCard isReservation={false} key={lesson.lessonId} {...lesson}>
               <BoxButton variant="temp" onClick={notify}>
-                취소하기
+                수정하기
               </BoxButton>
               <BoxButton variant="outline" onClick={() => handleDetailClick(lesson.lessonId)}>
                 상세보기

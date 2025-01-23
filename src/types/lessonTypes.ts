@@ -1,4 +1,4 @@
-export interface LessonCardProps {
+export interface Lesson {
   lessonId: number;
   lessonName: string;
   lessonImageUrl: string;
@@ -7,4 +7,8 @@ export interface LessonCardProps {
   lessonLocation: string;
   lessonStartDateTime: string;
   lessonEndDateTime: string;
+}
+
+export interface LessonApiResponse {
+  lessons: Lesson[];
 }
