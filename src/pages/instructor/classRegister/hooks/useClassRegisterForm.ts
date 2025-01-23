@@ -1,4 +1,5 @@
 import { ChangeEvent, useRef, useState } from 'react';
+import { formatToISOString } from '@/utils/timeUtils';
 import { ONLY_NUMERIC } from '@/constants/regex';
 
 export interface RepresentImageUrlsTypes {
@@ -21,6 +22,13 @@ export const useClassRegisterForm = () => {
   const [submitDefaultPlace, setSubmitDefaultPlace] = useState('');
   const [detailPlace, setDetailPlace] = useState('');
   const [amount, setAmount] = useState('');
+
+  const [times, setTimes] = useState<{ startTime: string; endTime: string; date: string; duration: number }[]>([]);
+  const [startDate, setStartDate] = useState('');
+  const [hour, setHour] = useState(12);
+  const [minute, setMinute] = useState(0);
+  const [ampm, setAmpm] = useState('AM');
+  const [selectedTime, setSelectedTime] = useState<number | null>(null);
 
   const handleClassNameChange = (e: ChangeEvent<HTMLInputElement>) => {
     setClassName(e.target.value);
@@ -78,8 +86,53 @@ export const useClassRegisterForm = () => {
     setSubmitDefaultPlace(defaultPlace);
   };
 
+  const handleAddTime = () => {
+    if (startDate && selectedTime !== null) {
+      const { startTime, endTime } = formatToISOString(startDate, hour, minute, ampm, selectedTime);
+
+      const newTime = {
+        startTime,
+        endTime,
+        date: startDate,
+        duration: selectedTime,
+      };
+      setTimes([newTime, ...times]);
+    }
+  };
+
+  const handleRemoveTime = (index: number) => {
+    const updatedTimes = times.filter((_, idx) => idx !== index);
+    setTimes(updatedTimes);
+  };
+
   const handleDetailPlace = (e: ChangeEvent<HTMLInputElement>) => {
     setDetailPlace(e.target.value);
+  };
+  const isFormValid = () => {
+    if (!hasLocation) {
+      return (
+        className &&
+        explanation &&
+        imageUrls.imageUrls.length > 0 &&
+        selectedGenre &&
+        selectedLevelTitle &&
+        selectedTime &&
+        personnel &&
+        amount &&
+        times.length > 0
+      );
+    }
+
+    return (
+      className &&
+      explanation &&
+      imageUrls.imageUrls.length > 0 &&
+      selectedGenre &&
+      selectedLevelTitle &&
+      selectedTime &&
+      personnel &&
+      amount
+    );
   };
 
   return {
@@ -97,6 +150,18 @@ export const useClassRegisterForm = () => {
     detailPlace,
     amount,
     imageUrls,
+    times,
+    hour,
+    minute,
+    ampm,
+    startDate,
+    setStartDate,
+    setHour,
+    setMinute,
+    setAmpm,
+    setSelectedTime,
+    selectedTime,
+    handleAddTime,
     handleClassNameChange,
     handlePersonnelChange,
     handleAmountChange,
@@ -108,6 +173,8 @@ export const useClassRegisterForm = () => {
     handleDefaultPlace,
     handleSubmitDefaultPlace,
     handleDetailPlace,
+    handleRemoveTime,
     setImageUrls,
+    isFormValid,
   };
 };
