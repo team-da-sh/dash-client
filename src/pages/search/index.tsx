@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import SearchBar from '@/pages/search/components/SearchBar';
-import SearchIntro from '@/pages/search/components/SearchIntro';
 import TabContainer from '@/pages/search/components/TabContainer';
 import { DEFAULT_SORT_TAGS, SORT_LABELS } from '@/pages/search/constants/index';
 import { headerRootCutomStyle } from '@/pages/search/index.css';
@@ -12,14 +12,22 @@ import { genreEngMapping, levelEngMapping } from '@/constants';
 import { labelToSortOptionMap } from '@/constants';
 
 const Search = () => {
+  const [searchParams] = useSearchParams();
+  const genreFromParams = useMemo(() => searchParams.get('genre'), [searchParams]);
+
   const [searchValue, setSearchValue] = useState('');
   const [submittedSearchValue, setSubmittedSearchValue] = useState('');
-  const [genre, setGenre] = useState<string | null>(null);
+  const [genre, setGenre] = useState<string | null>(genreFromParams || null);
   const [level, setLevel] = useState<string | null>(null);
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const [selectedLabel, setSelectedLabel] = useState<keyof typeof labelToSortOptionMap>(SORT_LABELS.LATEST);
-  const [hasSearched, setHasSearched] = useState(false);
+
+  useMemo(() => {
+    if (genreFromParams) {
+      setGenre(genreFromParams);
+    }
+  }, [genreFromParams]);
 
   const sortOption = labelToSortOptionMap[selectedLabel];
 
@@ -42,7 +50,6 @@ const Search = () => {
 
   const handleSearchIconClick = () => {
     setSubmittedSearchValue(searchValue);
-    setHasSearched(true);
   };
 
   return (
@@ -55,28 +62,23 @@ const Search = () => {
           handleSearchIconClick={handleSearchIconClick}
         />
       </Header.Root>
-      {!hasSearched ? (
-        <Flex paddingTop="7.9rem" paddingLeft="2rem">
-          <SearchIntro />
-        </Flex>
-      ) : (
-        <TabContainer
-          defaultSortTags={DEFAULT_SORT_TAGS}
-          genre={genre}
-          level={level}
-          startDate={startDate}
-          endDate={endDate}
-          setGenre={setGenre}
-          setLevel={setLevel}
-          setStartDate={setStartDate}
-          setEndDate={setEndDate}
-          dancerList={dancerList}
-          classList={classList}
-          error={error}
-          selectedLabel={selectedLabel}
-          setSelectedLabel={setSelectedLabel}
-        />
-      )}
+
+      <TabContainer
+        defaultSortTags={DEFAULT_SORT_TAGS}
+        genre={genre}
+        level={level}
+        startDate={startDate}
+        endDate={endDate}
+        setGenre={setGenre}
+        setLevel={setLevel}
+        setStartDate={setStartDate}
+        setEndDate={setEndDate}
+        dancerList={dancerList}
+        classList={classList}
+        error={error}
+        selectedLabel={selectedLabel}
+        setSelectedLabel={setSelectedLabel}
+      />
     </Flex>
   );
 };
