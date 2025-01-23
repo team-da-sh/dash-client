@@ -5,21 +5,33 @@ import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Input from '@/components/Input';
 import Text from '@/components/Text';
-import { useUploadImg } from '@/hooks/useUploadImg';
+import useImageUploader from '@/hooks/useImageUploader';
 import { INCLUDE_BLANK, INCLUDE_SPECIAL } from '@/constants/regex';
 import defaultProfile from '@/assets/images/image_profile_basic.png';
 import { IcCameraMain0624 } from '@/assets/svg';
 
 interface ProfileStepProps {
+  name: string;
   nickname: string;
   profileImageUrl: string;
   isNicknameError: boolean;
   changeIsNicknameError: (isError: boolean) => void;
   onInfoChange: <K extends keyof onboardInfoTypes>(key: K, value: onboardInfoTypes[K]) => void;
+  setInfo: React.Dispatch<React.SetStateAction<onboardInfoTypes>>;
 }
 
-const ProfileStep = ({ nickname, isNicknameError, changeIsNicknameError, onInfoChange }: ProfileStepProps) => {
-  const { imgRef, previewImg, handleUploaderClick, uploadImgFile } = useUploadImg();
+const ProfileStep = ({ name, nickname, isNicknameError, changeIsNicknameError, onInfoChange }: ProfileStepProps) => {
+  const handleImageUploadSuccess = (url: string) => {
+    onInfoChange(INFO_KEY.PROFILE_IMAGE_URL, url);
+  };
+  const handleDeleteUrl = () => {
+    onInfoChange(INFO_KEY.PROFILE_IMAGE_URL, '');
+  };
+
+  const { previewImg, imgRef, handleUploaderClick, uploadImgFile } = useImageUploader(
+    handleImageUploadSuccess,
+    handleDeleteUrl
+  );
 
   const handleNicknameChange = (nickname: string) => {
     if (nickname.length > MAX_NICKNAME_LENGTH) return;
@@ -44,7 +56,7 @@ const ProfileStep = ({ nickname, isNicknameError, changeIsNicknameError, onInfoC
           프로필 완성
         </Head>
         <Text tag="b2" color="gray7">
-          이유지님의 댄서네임을 알려주세요
+          {name}님의 댄서네임을 알려주세요
         </Text>
       </Flex>
 

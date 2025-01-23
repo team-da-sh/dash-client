@@ -1,10 +1,7 @@
 import { useRef, useState } from 'react';
 import { useImageMutation } from '@/apis/common/queries';
 
-const useImageUploader = <T extends { imageUrls: string }>(
-  onSuccess: (url: string) => void,
-  setInfo: React.Dispatch<React.SetStateAction<T>>
-) => {
+const useImageUploader = (onSuccess: (url: string) => void, handleDeleteUrl: () => void) => {
   const [previewImg, setPreviewImg] = useState<string>('');
   const [imgFile, setImgFile] = useState<File | undefined>();
   const imgRef = useRef<HTMLInputElement | null>(null);
@@ -49,7 +46,7 @@ const useImageUploader = <T extends { imageUrls: string }>(
     setImgFile(undefined);
     setPreviewImg('');
 
-    setInfo((prev) => ({ ...prev, imageUrls: '' }));
+    handleDeleteUrl();
 
     if (imgRef.current) {
       imgRef.current.value = '';

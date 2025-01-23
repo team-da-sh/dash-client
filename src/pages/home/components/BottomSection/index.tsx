@@ -2,9 +2,16 @@ import * as styles from '@/pages/home/components/BottomSection/index.css';
 import { LIST_DATA } from '@/pages/mypage/constants/myPageList';
 import Divider from '@/components/Divider';
 import Flex from '@/components/Flex';
+import { usePostLogout } from '@/apis/auth/quries';
 import { IcArrowRightSmallGray0432, IcArrowRightSmallGray0732 } from '@/assets/svg';
 
 const BottomSection = ({ isInstructor }: { isInstructor: boolean }) => {
+  const { mutate: logout } = usePostLogout();
+
+  const handleLogout = () => {
+    logout();
+  };
+
   return (
     <Flex>
       <ul className={styles.ulStyle}>
@@ -16,7 +23,10 @@ const BottomSection = ({ isInstructor }: { isInstructor: boolean }) => {
 
           return (
             <>
-              <li key={item.id} className={`${styles.listStyle} ${isDisabled ? styles.disabledStyle : ''}`}>
+              <li
+                key={item.id}
+                className={`${styles.listStyle} ${isDisabled ? styles.disabledStyle : ''}`}
+                onClick={item.label === '로그아웃' ? handleLogout : undefined}>
                 <p>{item.label}</p>
                 <ArrowIcon width={32} height={32} />
               </li>

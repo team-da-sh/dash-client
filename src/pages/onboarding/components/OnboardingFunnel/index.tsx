@@ -13,7 +13,7 @@ import { validateName, validatePhoneNumber } from '@/pages/onboarding/utils/vali
 import BoxButton from '@/components/BoxButton';
 import ProgressBar from '@/components/ProgressBar';
 import { FunnelProps, StepProps } from '@/hooks/useFunnel';
-import { usePostOnboard } from '@/apis/onboarding/quries';
+import { usePostOnboard } from '@/apis/onboarding/queries';
 import { setStorage } from '@/utils/handleToken';
 import defaultProfile from '@/assets/images/image_profile_basic.png';
 
@@ -33,6 +33,8 @@ const OnboardingFunnel = ({ currentStep, Funnel, setStep, Step }: OnboardingFunn
     level: null,
     profileImageUrl: defaultProfile,
   });
+
+  console.log(info);
 
   const [isNicknameError, setIsNicknameError] = useState(false);
 
@@ -66,8 +68,6 @@ const OnboardingFunnel = ({ currentStep, Funnel, setStep, Step }: OnboardingFunn
       },
       {
         onSuccess: ({ response }) => {
-          console.log(response);
-          console.log(response.status);
           // 온보딩 성공시 로컬스토리지에 토큰 등록
           if (response.status === 200) {
             setStorage(tokenRef.current.accessToken, tokenRef.current.refreshToken);
@@ -116,11 +116,13 @@ const OnboardingFunnel = ({ currentStep, Funnel, setStep, Step }: OnboardingFunn
           </Step>
           <Step name="4" key={4}>
             <ProfileStep
+              name={info.name}
               nickname={info.nickname}
               isNicknameError={isNicknameError}
               changeIsNicknameError={changeNicknameError}
               profileImageUrl={info.profileImageUrl}
               onInfoChange={handleInfoChange}
+              setInfo={setInfo}
             />
           </Step>
           <Step name="5" key={5}>

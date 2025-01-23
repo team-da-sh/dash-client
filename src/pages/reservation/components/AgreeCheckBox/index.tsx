@@ -1,3 +1,4 @@
+import { AgreeCheckBoxProps } from '@/pages/reservation/types';
 import Flex from '@/components/Flex';
 import Text from '@/components/Text';
 import {
@@ -7,14 +8,7 @@ import {
   IcCheckMain0324,
 } from '@/assets/svg';
 
-interface AgreeComponentProps {
-  text: string;
-  isChecked: boolean;
-  onToggle: () => void;
-  link?: string;
-}
-
-const AgreeCheckBox = ({ text, isChecked, onToggle, link = '' }: AgreeComponentProps) => {
+const AgreeCheckBox = ({ text, isChecked, onToggle, link = '' }: AgreeCheckBoxProps) => {
   const handleArrowClick = (e: React.MouseEvent) => {
     e.stopPropagation();
     if (link) {

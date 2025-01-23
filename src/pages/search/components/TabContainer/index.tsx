@@ -67,6 +67,23 @@ const TabContainer = ({
 }: TabContainerProps) => {
   const [selectedTab, setSelectedTab] = useState(0);
 
+  const handleTagReset = (type: string) => {
+    switch (type) {
+      case 'genre':
+        setGenre(null);
+        break;
+      case 'level':
+        setLevel(null);
+        break;
+      case 'dateRange':
+        setStartDate('');
+        setEndDate('');
+        break;
+      default:
+        break;
+    }
+  };
+
   const activeTags: TagItem[] = [
     { condition: genre, label: genre, type: 'genre' },
     { condition: level, label: level || '', type: 'level' },
@@ -80,7 +97,16 @@ const TabContainer = ({
     .map((tag) => ({
       label: tag.label as string,
       type: tag.type,
-      icon: <IcXMain04 width={18} height={18} />,
+      icon: (
+        <IcXMain04
+          width={18}
+          height={18}
+          onClick={(e) => {
+            e.stopPropagation();
+            handleTagReset(tag.type!);
+          }}
+        />
+      ),
     }));
 
   const displayTags: TagItem[] =
@@ -148,7 +174,6 @@ const TabContainer = ({
                     teacherProfileImage={data.teacherProfileImage}
                     startDate={data.startDate}
                     endDate={data.endDate}
-                    location={data.location}
                     remainingDays={data.remainingDays}
                     useNewStyles={true}
                   />
