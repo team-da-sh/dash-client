@@ -3,6 +3,7 @@ import { LoginCallback } from '@/pages/auth';
 import Class from '@/pages/class';
 import Dancer from '@/pages/dancer';
 import Home from '@/pages/home';
+import ClassRegisterCompletion from '@/pages/instructor/ClassRegisterCompletion';
 import ClassDetail from '@/pages/instructor/classDetail';
 import ClassList from '@/pages/instructor/classList';
 import ClassRegister from '@/pages/instructor/classRegister';
@@ -59,6 +60,10 @@ export const router = createBrowserRouter([
   {
     path: ROUTES_CONFIG.classRegister.path,
     element: <ClassRegister />,
+  },
+  {
+    path: ROUTES_CONFIG.classRegisterCompletion.path,
+    element: <ClassRegisterCompletion />,
   },
   {
     path: ROUTES_CONFIG.instructorRegister.path,
