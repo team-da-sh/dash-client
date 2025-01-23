@@ -11,7 +11,7 @@ export const postImage = async (formData: FormData) => {
 };
 
 export const postRole = async () => {
-  const { data } = await instance.post(API_URL.AUTH_ROLE, {});
+  const { data } = await instance.post(API_URL.AUTH_ROLE);
 
   return data;
 };
