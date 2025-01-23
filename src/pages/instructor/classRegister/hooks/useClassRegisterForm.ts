@@ -16,6 +16,7 @@ export const useClassRegisterForm = () => {
   const [selectedLevelTitle, setSelectedLevelTitle] = useState<string | null>(null);
   const [recommend, setRecommend] = useState('');
   const [personnel, setPersonnelChange] = useState('');
+  const [hasLocation, setHasLocation] = useState(true);
   const [defaultPlace, setDefaultPlace] = useState('');
   const [submitDefaultPlace, setSubmitDefaultPlace] = useState('');
   const [detailPlace, setDetailPlace] = useState('');
@@ -65,6 +66,10 @@ export const useClassRegisterForm = () => {
     }
   };
 
+  const handleHasLocation = () => {
+    setHasLocation((prev) => !prev);
+  };
+
   const handleDefaultPlace = (e: ChangeEvent<HTMLInputElement>) => {
     setDefaultPlace(e.target.value);
   };
@@ -86,6 +91,7 @@ export const useClassRegisterForm = () => {
     selectedLevelTitle,
     recommend,
     personnel,
+    hasLocation,
     defaultPlace,
     submitDefaultPlace,
     detailPlace,
@@ -98,6 +104,7 @@ export const useClassRegisterForm = () => {
     handleLevelSelect,
     handleExplainTextArea,
     handleRecommendChange,
+    handleHasLocation,
     handleDefaultPlace,
     handleSubmitDefaultPlace,
     handleDetailPlace,

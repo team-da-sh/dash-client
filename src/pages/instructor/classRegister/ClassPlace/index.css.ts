@@ -30,3 +30,27 @@ export const locationListContainerStyle = style({
   backgroundColor: vars.colors.gray01,
   borderRadius: '4px',
 });
+
+export const checkboxContainerStyle = style({
+  alignSelf: 'flex-end',
+});
+
+export const checkboxStyle = style({
+  width: '2rem',
+  height: '2rem',
+  outline: `1px solid ${vars.colors.gray07}`,
+  borderRadius: '0.2rem',
+  cursor: 'pointer',
+});
+
+export const searchInputContainerStyle = style({
+  width: '100%',
+  position: 'relative',
+});
+
+export const searchInputIconStyle = style({
+  position: 'absolute',
+  right: '1.8rem',
+  top: '50%',
+  transform: 'translateY(-50%)',
+});

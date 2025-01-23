@@ -19,6 +19,7 @@ const ClassDescription = forwardRef<HTMLTextAreaElement, ClassDescriptionProps>(
           onInput={handleExplainTextArea}
           placeholder="EX) 노래 제목, 회차별 커리큘럼, 진행 방식, 목표 등"
           className={textareaStyle}
+          maxLength={300}
         />
       </Flex>
     );

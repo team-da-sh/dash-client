@@ -19,6 +19,7 @@ const ClassRecommend = forwardRef<HTMLTextAreaElement, ClassRecommendProps>(
           onInput={handleRecommendChange}
           placeholder="EX) 프리스타일에 자신감을 가지고 싶은 분, 힙합 기본기를 탄탄하게 다지고 싶은 분 등"
           className={textareaStyle}
+          maxLength={200}
         />
       </Flex>
     );

@@ -6,6 +6,7 @@ import Header from '@/components/Header';
 import useBottomSheet from '@/hooks/useBottomSheet';
 import useImageUploader from '@/hooks/useImageUploader';
 import { useGetLocationList, usePostClassRegisterInfo } from '@/apis/instructor/classRegister/queries';
+import { genreEngMapping, levelEngMapping } from '@/constants';
 import ClassAmount from './ClassAmount';
 import ClassDescription from './ClassDescription';
 import ClassGenre from './ClassGenre';
@@ -28,16 +29,16 @@ interface ClassRegisterInfoTypes {
   imageUrls: string[];
   name: string;
   detail: string;
-  videoUrl: string[];
+  videoUrls: string[];
   maxReservationCount: number;
   genre: string;
   level: string;
   recommendation: string;
   price: number;
-  location: string;
-  streetAddress: string;
-  oldStreetAddress: string;
-  detailedAddress: string;
+  location: string | null;
+  streetAddress: string | null;
+  oldStreetAddress: string | null;
+  detailedAddress: string | null;
   times: ClassTimeTypes[];
 }
 
@@ -63,6 +64,7 @@ const ClassRegister = () => {
     selectedLevelTitle,
     recommend,
     personnel,
+    hasLocation,
     defaultPlace,
     submitDefaultPlace,
     detailPlace,
@@ -75,6 +77,7 @@ const ClassRegister = () => {
     handleLevelSelect,
     handleExplainTextArea,
     handleRecommendChange,
+    handleHasLocation,
     handleDefaultPlace,
     handleSubmitDefaultPlace,
     handleDetailPlace,
@@ -88,13 +91,13 @@ const ClassRegister = () => {
         imageUrls: [imageUrls.imageUrls],
         name: className,
         detail: explanation,
-        videoUrl: [],
+        videoUrls: [],
         maxReservationCount: Number(personnel),
-        genre: selectedGenre,
-        level: selectedLevelTitle,
+        genre: genreEngMapping[selectedGenre],
+        level: levelEngMapping[selectedLevelTitle],
         recommendation: recommend,
         price: Number(amount),
-        location: selectedLocation.location,
+        location: hasLocation ? selectedLocation.location : null,
         streetAddress: selectedLocation.streetAddress,
         oldStreetAddress: selectedLocation.oldStreetAddress,
         detailedAddress: detailPlace,
@@ -146,6 +149,8 @@ const ClassRegister = () => {
           <ClassSchedule openBottomSheet={openBottomSheet} />
           <ClassPersonnel personnel={personnel} handlePersonnelChange={handlePersonnelChange} />
           <ClassPlace
+            hasLocation={hasLocation}
+            handleHasLocation={handleHasLocation}
             defaultPlace={defaultPlace}
             detailPlace={detailPlace}
             handleDefaultPlace={handleDefaultPlace}
