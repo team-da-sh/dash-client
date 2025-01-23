@@ -18,6 +18,7 @@ interface ClassRegisterBottomSheetProps {
   setAmpm: (value: string) => void;
   setSelectedTime: (value: number | null) => void;
   selectedTime: number | null;
+  handleAddTime: () => void;
 }
 
 const ClassRegisterBottomSheet = ({
@@ -32,6 +33,7 @@ const ClassRegisterBottomSheet = ({
   setAmpm,
   setSelectedTime,
   selectedTime,
+  handleAddTime,
 }: ClassRegisterBottomSheetProps) => {
   const { Funnel, Step, currentStep, setStep } = useFunnel(
     CLASS_REGISTER_TOTAL_STEP,
@@ -58,8 +60,6 @@ const ClassRegisterBottomSheet = ({
         <ClassRegisterFunnel
           Funnel={Funnel}
           Step={Step}
-          // currentStep={currentStep}
-          // setStep={setStep}
           startDate={startDate}
           hour={hour}
           minute={minute}
@@ -80,6 +80,7 @@ const ClassRegisterBottomSheet = ({
               onClick={() => {
                 setStep(1);
                 onClose();
+                handleAddTime();
               }}>
               완료
             </BoxButton>

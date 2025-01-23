@@ -25,6 +25,8 @@ import { useClassRegisterForm } from './hooks/useClassRegisterForm';
 const ClassRegister = () => {
   const { isBottomSheetOpen, openBottomSheet, closeBottomSheet } = useBottomSheet();
   const [selectedLocation, setSelectedLocation] = useState<LocationTypes | null>(null);
+
+  const [times, setTimes] = useState<{ startTime: string; endTime: string; date: string; duration: number }[]>([]);
   const [startDate, setStartDate] = useState('');
   const [hour, setHour] = useState(12);
   const [minute, setMinute] = useState(0);
@@ -65,8 +67,6 @@ const ClassRegister = () => {
     e.preventDefault();
 
     if (selectedGenre && selectedLevelTitle && selectedTime) {
-      const { startTime, endTime } = formatToISOString(startDate, hour, minute, ampm, selectedTime);
-
       const updatedInfo: ClassRegisterInfoTypes = {
         imageUrls: [imageUrls.imageUrls],
         name: className,
@@ -82,10 +82,33 @@ const ClassRegister = () => {
         oldStreetAddress: hasLocation ? (selectedLocation?.oldStreetAddress ?? null) : null,
         detailedAddress: hasLocation ? detailPlace : null,
 
-        times: [{ startTime, endTime }],
+        times: times.map((time) => ({
+          startTime: time.startTime,
+          endTime: time.endTime,
+        })),
       };
+
       classRegisterMutate(updatedInfo);
     }
+  };
+
+  const handleAddTime = () => {
+    if (startDate && selectedTime !== null) {
+      const { startTime, endTime } = formatToISOString(startDate, hour, minute, ampm, selectedTime);
+
+      const newTime = {
+        startTime,
+        endTime,
+        date: startDate,
+        duration: selectedTime,
+      };
+      setTimes([newTime, ...times]);
+    }
+  };
+
+  const handleRemoveTime = (index: number) => {
+    const updatedTimes = times.filter((_, idx) => idx !== index);
+    setTimes(updatedTimes);
   };
 
   const handleImageUploadSuccess = (url: string) => {
@@ -127,7 +150,7 @@ const ClassRegister = () => {
             recommend={recommend}
             handleRecommendChange={handleRecommendChange}
           />
-          <ClassSchedule openBottomSheet={openBottomSheet} />
+          <ClassSchedule openBottomSheet={openBottomSheet} times={times} handleRemoveTime={handleRemoveTime} />
           <ClassPersonnel personnel={personnel} handlePersonnelChange={handlePersonnelChange} />
           <ClassPlace
             hasLocation={hasLocation}
@@ -161,6 +184,7 @@ const ClassRegister = () => {
           setAmpm={setAmpm}
           setSelectedTime={setSelectedTime}
           selectedTime={selectedTime}
+          handleAddTime={handleAddTime}
         />
       )}
     </>
