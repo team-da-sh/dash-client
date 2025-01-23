@@ -6,6 +6,7 @@ export const API_URL = {
   MEMBERS_WITHDRAW: '/api/v1/members/withdraw',
   MEMBERS_ONBOARD: '/api/v1/members/onboard',
   MEMBERS_ME: '/api/v1/members/me',
+  MEMBERS_LESSONS_DETAIL: '/api/v1/members/me/lessons',
   MEMBERS_RESERVATIONS: '/api/v1/members/me/reservations',
   MEMBERS_RESERVATION_DETAIL: '/api/v1/members/me/reservations/',
 

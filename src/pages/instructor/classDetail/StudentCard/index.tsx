@@ -4,19 +4,18 @@ import Head from '@/components/Head';
 import Text from '@/components/Text';
 import { formatDateTime } from '@/utils/timeCalculate';
 
-interface ParticipantsProps {
-  reservationId: number;
-  bookerName: string;
-  bookerPhoneNumber: string;
-  reservationDateTime: string;
+interface studentsProps {
+  name: string;
+  phoneNumber: string;
+  createdAt: string;
 }
 
 interface StudentCardProps {
-  participants: ParticipantsProps;
+  students: studentsProps;
   index: number;
 }
 
-const StudentCard = ({ participants, index }: StudentCardProps) => {
+const StudentCard = ({ students, index }: StudentCardProps) => {
   return (
     <div className={styles.cardContainerStyle}>
       <div className={styles.cardNumberStyle}>
@@ -25,13 +24,13 @@ const StudentCard = ({ participants, index }: StudentCardProps) => {
         </Head>
       </div>
       <Flex direction="column" gap="0.2rem" width="100%">
-        <Text tag="b9">{participants.bookerName}</Text>
+        <Text tag="b9">{students.name}</Text>
         <Flex gap="3.5rem" align="center" width="100%" justify="spaceBetween">
           <Text tag="b7" color="gray9">
-            {participants.bookerPhoneNumber}
+            {students.phoneNumber}
           </Text>
           <Text tag="c1" color="gray9">
-            {formatDateTime(participants.reservationDateTime)}
+            {formatDateTime(students.createdAt)}
           </Text>
         </Flex>
       </Flex>
