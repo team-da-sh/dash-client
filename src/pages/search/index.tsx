@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import SearchBar from '@/pages/search/components/SearchBar';
 import TabContainer from '@/pages/search/components/TabContainer';
@@ -13,21 +13,16 @@ import { labelToSortOptionMap } from '@/constants';
 
 const Search = () => {
   const [searchParams] = useSearchParams();
-  const genreFromParams = useMemo(() => searchParams.get('genre'), [searchParams]);
+  const initialGenre = searchParams.get('genre');
+
+  const [genre, setGenre] = useState<string | null>(() => initialGenre || null);
 
   const [searchValue, setSearchValue] = useState('');
   const [submittedSearchValue, setSubmittedSearchValue] = useState('');
-  const [genre, setGenre] = useState<string | null>(genreFromParams || null);
   const [level, setLevel] = useState<string | null>(null);
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const [selectedLabel, setSelectedLabel] = useState<keyof typeof labelToSortOptionMap>(SORT_LABELS.LATEST);
-
-  useMemo(() => {
-    if (genreFromParams) {
-      setGenre(genreFromParams);
-    }
-  }, [genreFromParams]);
 
   const sortOption = labelToSortOptionMap[selectedLabel];
 
