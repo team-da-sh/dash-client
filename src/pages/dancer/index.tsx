@@ -1,5 +1,4 @@
 import { useParams } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
 import ClassHeader from '@/pages/dancer/components/DancerHeader';
 import DancerInfo from '@/pages/dancer/components/DancerInfo';
 import TabWrapper from '@/pages/dancer/components/TabWrapper';
@@ -11,12 +10,10 @@ import Tag from '@/components/Tag';
 import Text from '@/components/Text';
 import { useGetDancerDetail } from '@/apis/dancer/queries';
 import { useIntersectCallback } from '@/utils/useIntersectCallback';
-import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { genreMapping } from '@/constants/index';
 
 const Dancer = () => {
   const { id } = useParams<{ id: string }>();
-  const navigate = useNavigate();
   const [targetRef, isVisible] = useIntersectCallback(false);
 
   if (!id) {
@@ -30,7 +27,7 @@ const Dancer = () => {
   }
 
   if (isError || !data) {
-    return navigate(ROUTES_CONFIG.error.path);
+    return <Error />;
   }
   const { imageUrls, genres, nickname } = data;
 

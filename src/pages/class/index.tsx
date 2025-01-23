@@ -1,5 +1,4 @@
 import { useParams } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
 import ClassButtonWrapper from '@/pages/class/components/ClassButtonWrapper';
 import ClassHeader from '@/pages/class/components/ClassHeader';
 import ClassInfoWrapper from '@/pages/class/components/ClassInfoWrapper';
@@ -9,11 +8,9 @@ import Error from '@/pages/error';
 import Divider from '@/components/Divider';
 import { useGetLessonDetail } from '@/apis/class/queries';
 import { useIntersectCallback } from '@/utils/useIntersectCallback';
-import { ROUTES_CONFIG } from '@/routes/routesConfig';
 
 const Class = () => {
   const { id } = useParams<{ id: string }>();
-  const navigate = useNavigate();
   const [targetRef, isVisible] = useIntersectCallback(false);
 
   if (!id) {
@@ -27,8 +24,9 @@ const Class = () => {
   }
 
   if (isError || !data) {
-    return navigate(ROUTES_CONFIG.error.path);
+    return <Error />;
   }
+
 
   const imageUrl = data.imageUrl;
 
