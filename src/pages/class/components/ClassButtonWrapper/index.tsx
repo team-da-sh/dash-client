@@ -35,8 +35,9 @@ const ClassButtonWrapper = ({ lessonData }: { lessonData: LessonDetail }) => {
   const { id } = useParams<{ id: string }>();
 
   const handleApplyClick = () => {
-    if (!isDisabled) {
-      navigate(`${ROUTES_CONFIG.reservation.path.replace(':id', String(id))}`);
+    if (!isDisabled && id) {
+      const path = ROUTES_CONFIG.reservation.path(id); // id 사용
+      navigate(path);
     }
   };
 
