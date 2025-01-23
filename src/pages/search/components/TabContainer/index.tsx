@@ -174,7 +174,6 @@ const TabContainer = ({
                     teacherProfileImage={data.teacherProfileImage}
                     startDate={data.startDate}
                     endDate={data.endDate}
-                    location={data.location}
                     remainingDays={data.remainingDays}
                     useNewStyles={true}
                   />

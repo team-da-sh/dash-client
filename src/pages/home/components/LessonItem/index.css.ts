@@ -5,7 +5,13 @@ export const classImageStyle = style({
   width: '16.4rem',
   height: '9.1rem',
 
+  objectFit: 'cover',
   borderRadius: '4px',
+});
+
+export const titleStyle = style({
+  width: '16.4rem',
+  overflow: 'auto',
 });
 
 export const teacherImageStyle = style({

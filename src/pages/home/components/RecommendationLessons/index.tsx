@@ -29,7 +29,6 @@ const RecommendationLessons = () => {
             teacherProfileImage={lesson.teacherProfileImage}
             startDate={lesson.startDate}
             endDate={lesson.endDate}
-            location={lesson.location}
             remainingDays={lesson.remainingDays}
             useNewStyles={false}
           />
