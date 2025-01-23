@@ -1,4 +1,5 @@
 import { style } from '@vanilla-extract/css';
+import { vars } from '@/styles/theme.css';
 
 export const ulStyle = style({
   display: 'flex',
@@ -13,11 +14,20 @@ export const ulStyle = style({
 export const listStyle = style({
   display: 'flex',
   alignItems: 'center',
-
   justifyContent: 'space-between',
+
+  color: vars.colors.gray09,
+
+  ...vars.fonts.b2,
 });
 
 export const dividerStyle = style({
   marginTop: '0.8rem',
   marginBottom: '0.8rem',
+});
+
+export const disabledStyle = style({
+  cursor: 'not-allowed',
+
+  color: vars.colors.gray04,
 });

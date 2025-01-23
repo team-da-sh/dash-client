@@ -1,7 +1,8 @@
 import * as styles from '@/pages/home/components/MyPage/index.css';
 import TopSection from '@/pages/home/components/TopSection';
 import Divider from '@/components/Divider';
-import { MYPAGE_DATA } from '@/mocks/mockMyPageData';
+import { useGetRole } from '@/apis/common/queries';
+import { useGetMyPage } from '@/apis/home/queries';
 import BottomSection from '../BottomSection';
 
 interface MyPageProps {
@@ -10,21 +11,37 @@ interface MyPageProps {
 }
 
 const MyPage = ({ showMyPage, onClose }: MyPageProps) => {
-  const userData = MYPAGE_DATA[0];
+  const { data: userData } = useGetMyPage({
+    enabled: showMyPage,
+  });
+  const { data: role } = useGetRole({
+    enabled: showMyPage,
+  });
 
-  // wrapper 영역 외부 클릭시 onClose 호출
+  const defaultData = {
+    profileImageUrl: '',
+    nickname: '',
+    reservationCount: 0,
+    favoriteCount: 0,
+    lessonCount: null,
+  };
+
+  const isInstructor = role === 'TEACHER';
+
   const handleClickOutside = (e: React.MouseEvent) => {
     if (e.target === e.currentTarget) {
       onClose();
     }
   };
 
+  document.body.style.overflow = showMyPage ? 'hidden' : '';
+
   return (
     <div onClick={handleClickOutside} className={showMyPage ? styles.visibleStyle : styles.invisibleStyle}>
       <div className={styles.wrapperStyle}>
-        <TopSection userData={userData} onClose={onClose} />
+        <TopSection userData={userData || defaultData} onClose={onClose} isInstructor={isInstructor} />
         <Divider length="100%" color="gray1" thickness={8} />
-        <BottomSection userData={userData} />
+        <BottomSection isInstructor={isInstructor} />
       </div>
     </div>
   );

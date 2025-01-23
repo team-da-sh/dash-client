@@ -6,6 +6,7 @@ import TabEducation from '@/pages/dancer/components/TabWrapper/TabEducation';
 import TabHistory from '@/pages/dancer/components/TabWrapper/TabExperience';
 import TabVideo from '@/pages/dancer/components/TabWrapper/TabVideo';
 import { IcLevelAdvanced, IcLevelBasic, IcLevelIntermediate, IcLevelStarter } from '@/assets/svg';
+import { LessonDetail } from "@/pages/class/types/index";
 
 export const LEVEL = [
   {
@@ -47,14 +48,6 @@ export const GENRE_CATEGORY = [
   ],
 ];
 
-export type StatusType = 'OPEN' | 'EXPIRED' | 'OVER_BOOKED';
-
-export const BUTTON_CONFIG: Record<StatusType, { text: string; isDisabled: boolean }> = {
-  OPEN: { text: '신청하기', isDisabled: false },
-  EXPIRED: { text: '신청 완료', isDisabled: true },
-  OVER_BOOKED: { text: '클래스 마감', isDisabled: true },
-};
-
 export const DANCER_TABS = [
   { id: 1, label: '학력', component: <TabEducation /> },
   { id: 2, label: '경력', component: <TabHistory /> },
@@ -62,10 +55,10 @@ export const DANCER_TABS = [
 ];
 
 export const CLASS_TABS = [
-  { id: 1, label: '소개', component: <TabIntro /> },
-  { id: 2, label: '난이도', component: <TabLevel /> },
-  { id: 3, label: '기간', component: <TabPeriod /> },
-  { id: 4, label: '위치', component: <TabLocationInfo /> },
+  { id: 1, label: '소개', component: (lessonData: LessonDetail) => <TabIntro lessonData={lessonData} /> },
+  { id: 2, label: '난이도', component: (lessonData: LessonDetail) => <TabLevel lessonData={lessonData} /> },
+  { id: 3, label: '기간', component: (lessonData: LessonDetail) => <TabPeriod lessonData={lessonData} /> },
+  { id: 4, label: '위치', component: (lessonData: LessonDetail) => <TabLocationInfo lessonData={lessonData} /> },
 ];
 
 // 장르 영한 변환
@@ -82,7 +75,7 @@ export const genreMapping: { [key: string]: string } = {
   SOUL: '소울',
   CHOREOGRAPHY: '코레오그래피',
   KPOP: '케이팝',
-};
+} as const;
 
 // 레벨 영한 변환
 export const levelMapping: { [key: string]: string } = {
@@ -90,4 +83,71 @@ export const levelMapping: { [key: string]: string } = {
   NOVICE: '초급',
   INTERMEDIATE: '중급',
   ADVANCED: '고급',
+} as const;
+
+// 장르 한영 변환
+export const genreEngMapping: { [key: string]: string } = {
+  힙합: 'HIPHOP',
+  피메일힙합: 'FEMALEHIPHOP',
+  팝핑: 'POPPING',
+  브레이킹: 'BRAKING',
+  왁킹: 'WAACKING',
+  락킹: 'LOCKING',
+  하우스: 'HOUSE',
+  보깅: 'VOGUING',
+  크럼프: 'KRUMP',
+  소울: 'SOUL',
+  코레오그래피: 'CHOREOGRAPHY',
+  케이팝: 'KPOP',
 };
+
+// 레벨 한영 변환
+export const levelEngMapping: { [key: string]: string } = {
+  입문: 'BEGINNER',
+  초급: 'NOVICE',
+  중급: 'INTERMEDIATE',
+  고급: 'ADVANCED',
+};
+
+export const labelToSortOptionMap: Record<
+  '최신 등록순' | '찜이 많은순' | '마감 임박순',
+  'LATEST' | 'MOST_FAVORITE' | 'UPCOMING'
+> = {
+  '최신 등록순': 'LATEST',
+  '찜이 많은순': 'MOST_FAVORITE',
+  '마감 임박순': 'UPCOMING',
+};
+
+export const TIME_RANGE = [
+  { id: 1, label: '1시간' },
+  { id: 1.5, label: '1시간 30분' },
+  { id: 2, label: '2시간' },
+  { id: 2.5, label: '2시간 30분' },
+  { id: 3, label: '3시간' },
+  { id: 3.5, label: '3시간 30분' },
+  { id: 4, label: '4시간' },
+  { id: 4.5, label: '4시간 30분' },
+  { id: 5, label: '5시간' },
+  { id: 5.5, label: '5시간 30분' },
+  { id: 6, label: '6시간' },
+];
+
+export const CLASS_REGISTER_TOTAL_STEP = 2;
+
+export const BUTTON_TEXT = {
+  EXPIRED: '클래스 마감',
+  OVER_BOOKED: '클래스 마감',
+  OPEN: {
+    BOOKED: '신청 완료',
+    AVAILABLE: '신청하기'
+  }
+} as const;
+
+export const DISABLED_STATUS = {
+  EXPIRED: true,
+  OVER_BOOKED: true,
+  OPEN: {
+    BOOKED: true,
+    AVAILABLE: false
+  }
+} as const;

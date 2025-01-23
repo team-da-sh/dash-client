@@ -1,9 +1,9 @@
 export const INFO_KEY = {
-  IMAGE_URL: 'imageUrl',
+  IMAGE_URLS: 'imageUrls',
   INSTAGRAM: 'instagram',
   YOUTUBE: 'youtube',
-  EDUCATION: 'education',
-  EXPERIENCE: 'experience',
+  EDUCATIONS: 'educations',
+  EXPERIENCES: 'experiences',
   DETAIL: 'detail',
   VIDEO_URLS: 'videoUrls',
 } as const;

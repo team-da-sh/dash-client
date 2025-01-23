@@ -67,4 +67,8 @@ export const ROUTES_CONFIG = {
     title: 'instructorClassDetail',
     path: '/mypage/instructor/class-list/:id',
   },
+  error: {
+    title: 'Error',
+    path: '/error',
+  },
 };

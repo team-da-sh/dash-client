@@ -12,17 +12,15 @@ import { MyPageProps } from '@/types/myPageTypes';
 interface TopSectionProps {
   userData: MyPageProps;
   onClose: () => void;
+  isInstructor: boolean;
 }
-const TopSection = ({ userData, onClose }: TopSectionProps) => {
+const TopSection = ({ userData, onClose, isInstructor }: TopSectionProps) => {
   const navigate = useNavigate();
 
   // 신청 내역, 내 클래스 클릭 시 이동
   const handleNavigate = (path: string) => {
     navigate(path);
   };
-
-  // 강사 권한을 가질 때는 null 이 아닌 number가 옴
-  const isInstructor = userData.lessonCount !== null;
 
   // 신청 내역, 관심목록, 내 클래스 값이 0 이상일 때 gray8 색상 적용
   const getTextColor = (value: number) => {
@@ -56,7 +54,7 @@ const TopSection = ({ userData, onClose }: TopSectionProps) => {
         {/* 프로필 이미지, 닉네임 */}
         <img src={userData.profileImageUrl} alt="프로필 이미지" className={styles.profileImageStyle} />
         <Head level="h1" tag="h2">
-          BADALEE
+          {userData.nickname}
         </Head>
 
         {/* 권한 확인할 수 있는 태그 */}
@@ -85,7 +83,8 @@ const TopSection = ({ userData, onClose }: TopSectionProps) => {
 
         <Divider direction="vertical" color="gray2" length={32} thickness={1} />
 
-        <Flex direction="column" align="center" gap="0.5rem">
+        {/* 관심목록 우선 disabled 처리리 */}
+        <Flex direction="column" align="center" gap="0.5rem" className={styles.disabledStyle}>
           <Head tag="h4" color={getTextColor(userData.favoriteCount)}>
             {userData.favoriteCount}
           </Head>
@@ -100,7 +99,8 @@ const TopSection = ({ userData, onClose }: TopSectionProps) => {
           gap="0.5rem"
           direction="column"
           align="center"
-          onClick={() => handleNavigate(ROUTES_CONFIG.instructorClassList.path)}>
+          onClick={() => isInstructor && handleNavigate(ROUTES_CONFIG.instructorClassList.path)}
+          className={isInstructor ? '' : styles.disabledStyle}>
           <Head tag="h4" color={getTextColor(userData.lessonCount ?? 0)}>
             {userData.lessonCount ?? 0}
           </Head>
