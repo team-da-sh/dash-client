@@ -9,6 +9,7 @@ export const useGetLocationList = (query: string) => {
     queryFn: async () => {
       return await getLocationList(query);
     },
+    enabled: query.trim().length > 0,
   });
 };
 

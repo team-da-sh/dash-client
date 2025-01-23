@@ -50,7 +50,6 @@ const ClassRegisterBottomSheet = ({
 
   const handleDateAndTimeReset = () => {
     setStartDate('');
-    setSelectedTime(null);
     setHour(12);
     setMinute(0);
     setAmpm('AM');
