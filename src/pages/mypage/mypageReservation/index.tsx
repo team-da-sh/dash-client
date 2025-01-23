@@ -8,7 +8,7 @@ import Text from '@/components/Text';
 import { notify } from '@/components/Toast';
 import { useGetReservations } from '@/apis/myPageReservation/queries';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import { MyPageReservationCardProps } from '@/types/reservationTypes';
+import { Reservation } from '@/types/reservationTypes';
 
 const MyPageReservation = () => {
   const navigate = useNavigate();
@@ -42,7 +42,7 @@ const MyPageReservation = () => {
 
         {reservationData?.reservations?.length ? (
           <Flex direction="column" gap="1.2rem" marginTop="1.6rem">
-            {reservationData.reservations.map((reservation: MyPageReservationCardProps) => (
+            {reservationData.reservations.map((reservation: Reservation) => (
               <ClassCard
                 key={reservation.reservationId}
                 lessonName={reservation.name}

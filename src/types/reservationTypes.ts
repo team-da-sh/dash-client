@@ -1,15 +1,4 @@
-// export interface ReservationCardProps {
-//   reservationId: number;
-//   lessonName: string;
-//   lessonImageUrl: string;
-//   lessonGenre: string;
-//   lessonLevel: string;
-//   lessonLocation: string;
-//   lessonStartDateTime: string;
-//   lessonEndDateTime: string;
-// }
-
-export interface MyPageReservationCardProps {
+export interface Reservation {
   lessonId?: number;
   reservationId?: number;
   name: string;
@@ -23,6 +12,6 @@ export interface MyPageReservationCardProps {
   attendStatus: string;
 }
 
-export interface ReservationData {
-  reservations: MyPageReservationCardProps[];
+export interface ReservationApiResponse {
+  reservations: Reservation[];
 }
