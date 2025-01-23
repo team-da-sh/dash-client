@@ -24,7 +24,7 @@ export interface LessonDetailApiResponse {
   };
   location: string;
   streetAddress: string;
-  streetDetailAddress: string;
+  streetDetailAddress?: string;
   oldStreetAddress: string;
   favoriteCount?: number;
   bookStatus: boolean;

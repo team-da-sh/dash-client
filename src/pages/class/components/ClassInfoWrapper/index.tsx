@@ -48,7 +48,7 @@ const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetailApiResponse 
   const navigate = useNavigate();
 
   const handleTeacherClick = (dancerId: number) => {
-    const path = ROUTES_CONFIG.dancer.path.replace(':id', dancerId.toString());
+    const path = ROUTES_CONFIG.dancer.path(dancerId.toString());
     navigate(path);
   };
 

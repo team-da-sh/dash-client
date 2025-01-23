@@ -27,7 +27,7 @@ const Dancer = () => {
   }
 
   if (!data) {
-    return <Error />;
+    return <></>;
   }
 
   const { imageUrls, genres, nickname } = data;

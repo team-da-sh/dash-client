@@ -27,7 +27,7 @@ const DancerInfo = ({ dancerData }: { dancerData: DancerDetailApiResponse }) => 
   const navigate = useNavigate();
 
   const handleClassClick = (lessonId: number) => {
-    const path = ROUTES_CONFIG.class.path.replace(':id', lessonId.toString());
+    const path = ROUTES_CONFIG.class.path(lessonId.toString());
     navigate(path);
   };
 

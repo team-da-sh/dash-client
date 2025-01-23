@@ -24,7 +24,7 @@ const Class = () => {
   }
 
   if (!data) {
-    return <Error/>;
+    return <></>;
   }
 
   const imageUrl = data.imageUrl;
