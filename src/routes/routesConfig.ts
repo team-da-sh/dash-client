@@ -29,7 +29,7 @@ export const ROUTES_CONFIG = {
   },
   reservation: {
     title: 'Reservation',
-    path: '/reservation',
+    path: (id:string) => `/reservation/${id}`,
   },
   payments: {
     title: 'payments',

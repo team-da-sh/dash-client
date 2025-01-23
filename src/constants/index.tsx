@@ -2,7 +2,6 @@ import TabIntro from '@/pages/class/components/TabWrapper/TabIntro';
 import TabLevel from '@/pages/class/components/TabWrapper/TabLevel';
 import TabLocationInfo from '@/pages/class/components/TabWrapper/TabLocation';
 import TabPeriod from '@/pages/class/components/TabWrapper/TabPeriod';
-import { LessonDetail } from '@/pages/class/types/index';
 import TabEducation from '@/pages/dancer/components/TabWrapper/TabEducation';
 import TabHistory from '@/pages/dancer/components/TabWrapper/TabExperience';
 import TabVideo from '@/pages/dancer/components/TabWrapper/TabVideo';
@@ -77,7 +76,7 @@ export const genreMapping: { [key: string]: string } = {
   SOUL: '소울',
   CHOREOGRAPHY: '코레오그래피',
   KPOP: '케이팝',
-} as const;
+};
 
 // 레벨 영한 변환
 export const levelMapping: { [key: string]: string } = {
@@ -85,7 +84,7 @@ export const levelMapping: { [key: string]: string } = {
   NOVICE: '초급',
   INTERMEDIATE: '중급',
   ADVANCED: '고급',
-} as const;
+};
 
 // 장르 한영 변환
 export const genreEngMapping: { [key: string]: string } = {

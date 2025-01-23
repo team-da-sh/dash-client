@@ -49,7 +49,7 @@ export const router = createBrowserRouter([
     element: <Dancer />,
   },
   {
-    path: ROUTES_CONFIG.reservation.path,
+    path: ROUTES_CONFIG.reservation.path(':id'),
     element: <Reservation />,
   },
   {

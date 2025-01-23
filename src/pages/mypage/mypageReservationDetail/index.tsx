@@ -15,11 +15,15 @@ const ClassReservationDetail = () => {
 
   const lessonId = Number(id);
 
-  const { data: detailData } = useGetReservationsDetail(lessonId);
+  const { data } = useGetReservationsDetail(lessonId);
+
+  if (!data) {
+    return <div>오류 data 없음 </div>; // Handle the error state
+  }
 
   // 클래스 상태 계산
-  const lessonStartDateTime = detailData?.rounds[0].startDateTime;
-  const lessonEndDateTime = detailData?.rounds[0].endDateTime;
+  const lessonStartDateTime = data.rounds[0]?.startDateTime;
+  const lessonEndDateTime = data.rounds[0]?.endDateTime;
 
   const { status } = getClassStatus(lessonStartDateTime, lessonEndDateTime);
 
@@ -33,7 +37,7 @@ const ClassReservationDetail = () => {
       <div className={styles.containerStyle}>
         <Flex width="100%" justify="center">
           <Head tag="h5" color={status === 'completed' ? 'gray8' : 'black'}>
-            {getStatusMessage(status, detailData?.dDay)}
+            {getStatusMessage(status, data?.dDay)}
           </Head>
         </Flex>
         <div className={styles.classHeaderStyle}>
@@ -42,12 +46,12 @@ const ClassReservationDetail = () => {
           </Text>
         </div>
         <ClassInfo
-          name={detailData?.lessonName}
-          location={detailData?.location}
-          locationDetail={detailData?.detailedAddress}
-          teacherNickname={detailData?.nickname}
-          level={detailData?.level}
-          lessonRound={detailData?.rounds}
+          name={data?.lessonName}
+          location={data?.location}
+          locationDetail={data?.detailedAddress}
+          teacherNickname={data?.nickname}
+          level={data?.level}
+          lessonRound={data?.rounds}
         />
         <div className={styles.applicantHeaderStyle}>
           <Text tag="b4" color="gray9">
@@ -55,11 +59,11 @@ const ClassReservationDetail = () => {
           </Text>
         </div>
 
-        <ApplicantInfo bookerName={detailData?.name} bookerPhoneNumber={detailData?.phoneNumber} />
+        <ApplicantInfo studentName={data?.name} studentPhoneNumber={data?.phoneNumber} />
 
         <Flex marginTop="1.2rem" justify="flexEnd">
           <Text tag="c1" color="gray9">
-            {formatDateTime(detailData?.reservationDateTime || '')} 신청 완료
+            {formatDateTime(data?.reservationDateTime || '')} 신청 완료
           </Text>
         </Flex>
       </div>
