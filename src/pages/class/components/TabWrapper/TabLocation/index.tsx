@@ -44,7 +44,7 @@ const TabLocation = ({ lessonData }: { lessonData: LessonDetailApiResponse }) =>
 
                 <Flex justify="spaceBetween">
                   <Flex marginRight="0.4rem">
-                    <Text tag="b7" color="gray6">
+                    <Text tag="b7" color="gray6" className={addressTitleStyle}>
                       지번
                     </Text>
                   </Flex>

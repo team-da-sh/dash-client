@@ -27,6 +27,13 @@ const DancerClassItem = ({
         </Tag>
       );
     }
+    if (lessonRemainingDays == 0) {
+      return (
+        <Tag type="deadline" size="thumbnail" className={deadlineTagStyle}>
+          D-DAY
+        </Tag>
+      );
+    }
     if (lessonRemainingDays <= 4) {
       return (
         <Tag type="deadline" size="thumbnail" className={deadlineTagStyle}>

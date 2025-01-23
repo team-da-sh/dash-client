@@ -29,6 +29,7 @@ export const lastClassItemStyle = style({
 
 export const detailStyle = style({
   whiteSpace: 'pre-line',
+  wordBreak: 'break-word',
 });
 
 export const emptyStyle = style({
