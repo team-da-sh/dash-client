@@ -40,3 +40,28 @@ export const decreaseMinute = ({
 
 // AM/PM 토글
 export const toggleAmpm = (currentAmpm: string): string => (currentAmpm === 'AM' ? 'PM' : 'AM');
+
+export const formatToISOString = (date: string, hour: number, minute: number, ampm: string, selectedTime: number) => {
+  let adjustedHour = hour;
+  if (ampm === 'PM' && hour !== 12) {
+    adjustedHour += 12; 
+  } else if (ampm === 'AM' && hour === 12) {
+    adjustedHour = 0; 
+  }
+
+  const startDate = new Date(date);
+  startDate.setHours(adjustedHour, minute, 0, 0); // 시작 시간을 로컬 시간대로 설정
+
+  const durationInMinutes = selectedTime * 60; // selectedTime이 시간 단위이므로 60분을 곱해서 분 단위로 계산
+
+  const endDate = new Date(startDate);
+  endDate.setMinutes(startDate.getMinutes() + durationInMinutes);
+
+  startDate.setHours(startDate.getHours() + 9);
+  endDate.setHours(endDate.getHours() + 9);
+
+  return {
+    startTime: startDate.toISOString(),
+    endTime: endDate.toISOString(),
+  };
+};
