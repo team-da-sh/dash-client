@@ -49,7 +49,7 @@ export const ROUTES_CONFIG = {
   },
   mypageReservationDetail: {
     title: 'MypageReservationDetail',
-    path: '/mypage/reservation/:id',
+    path: (id: string) => `/mypage/reservation/${id}`,
   },
   classRegister: {
     title: 'ClassRegister',

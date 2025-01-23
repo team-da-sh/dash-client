@@ -57,7 +57,7 @@ export const router = createBrowserRouter([
     element: <MyPageReservation />,
   },
   {
-    path: ROUTES_CONFIG.mypageReservationDetail.path,
+    path: ROUTES_CONFIG.mypageReservationDetail.path(':id'),
     element: <MyPageReservationDetail />,
   },
   {
