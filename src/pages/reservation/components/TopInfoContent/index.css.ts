@@ -24,6 +24,13 @@ export const gradientOverlayStyle = style({
 });
 
 export const textWrapperStyle = style({
-  position: 'relative',
+  display: 'flex',
+  position: 'absolute',
+  bottom: '3rem',
+  gap: '0.8rem',
+
+  paddingLeft: '2rem',
+  paddingRight:'2rem',
+  flexDirection: 'column',
   zIndex: vars.zIndex.two,
 });
