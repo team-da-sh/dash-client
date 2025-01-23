@@ -1,4 +1,5 @@
 import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import ClassHeader from '@/pages/dancer/components/DancerHeader';
 import DancerInfo from '@/pages/dancer/components/DancerInfo';
 import TabWrapper from '@/pages/dancer/components/TabWrapper';
@@ -10,26 +11,27 @@ import Tag from '@/components/Tag';
 import Text from '@/components/Text';
 import { useGetDancerDetail } from '@/apis/dancer/queries';
 import { useIntersectCallback } from '@/utils/useIntersectCallback';
+import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { genreMapping } from '@/constants/index';
 
 const Dancer = () => {
   const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
+  const [targetRef, isVisible] = useIntersectCallback(false);
 
   if (!id) {
     return <Error />;
   }
 
-  const { data, error } = useGetDancerDetail(id);
-  const [targetRef, isVisible] = useIntersectCallback(false);
+  const { data, isError, isLoading } = useGetDancerDetail(id);
 
-  if (error instanceof Error) {
-    return <Error />;
-  }
-
-  if (!data) {
+  if (isLoading) {
     return <></>;
   }
 
+  if (isError || !data) {
+    return navigate(ROUTES_CONFIG.error.path);
+  }
   const { imageUrls, genres, nickname } = data;
 
   // 장르 매핑
