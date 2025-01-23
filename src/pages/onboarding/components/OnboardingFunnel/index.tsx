@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import FinishStep from '@/pages/onboarding/components/FinishStep';
 import GenreStep from '@/pages/onboarding/components/GenreStep';
 import InfoStep from '@/pages/onboarding/components/InfoStep';
@@ -15,6 +15,7 @@ import ProgressBar from '@/components/ProgressBar';
 import { FunnelProps, StepProps } from '@/hooks/useFunnel';
 import { usePostOnboard } from '@/apis/onboarding/queries';
 import { setStorage } from '@/utils/handleToken';
+import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import defaultProfile from '@/assets/images/image_profile_basic.png';
 
 interface OnboardingFunnelProps {
@@ -36,6 +37,8 @@ const OnboardingFunnel = ({ currentStep, Funnel, setStep, Step }: OnboardingFunn
 
   const [isNicknameError, setIsNicknameError] = useState(false);
 
+  const navigate = useNavigate();
+
   const { mutate: onboardMutate } = usePostOnboard();
 
   // 토큰 ref로 전역변수로 저장
@@ -53,6 +56,10 @@ const OnboardingFunnel = ({ currentStep, Funnel, setStep, Step }: OnboardingFunn
     setStep(1);
   };
   const handlePrevButtonClick = () => {
+    if (currentStep === 1) {
+      navigate(ROUTES_CONFIG.login.path);
+      return;
+    }
     setStep(-1);
   };
 
