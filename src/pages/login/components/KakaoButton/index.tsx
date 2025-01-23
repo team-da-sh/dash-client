@@ -1,4 +1,4 @@
-import { kakaoButtonStyle } from '@/pages/login/components/KakaoButton/index.css';
+import { buttonStyle, kakaoButtonStyle } from '@/pages/login/components/KakaoButton/index.css';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import { IcKakaoKakaobrown28 } from '@/assets/svg';
@@ -16,7 +16,7 @@ const KakaoButton = () => {
     <button className={kakaoButtonStyle} onClick={handleLogin}>
       <Flex gap="0.8rem" align="center" justify="center">
         <IcKakaoKakaobrown28 width={28} height={28} />
-        <Head tag="h6" color="kakao2">
+        <Head tag="h6" color="kakao2" className={buttonStyle}>
           카카오로 계속하기
         </Head>
       </Flex>
