@@ -6,7 +6,33 @@ import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { CLASS_REGISTER_TOTAL_STEP } from '@/constants';
 import * as styles from './index.css';
 
-const ClassRegisterBottomSheet = ({ onClose }: { onClose: () => void }) => {
+interface ClassRegisterBottomSheetProps {
+  onClose: () => void;
+  startDate: string;
+  hour: number;
+  minute: number;
+  ampm: string;
+  setStartDate: (value: string) => void;
+  setHour: React.Dispatch<React.SetStateAction<number>>;
+  setMinute: React.Dispatch<React.SetStateAction<number>>;
+  setAmpm: (value: string) => void;
+  setSelectedTime: (value: number | null) => void;
+  selectedTime: number | null;
+}
+
+const ClassRegisterBottomSheet = ({
+  onClose,
+  startDate,
+  hour,
+  minute,
+  ampm,
+  setStartDate,
+  setHour,
+  setMinute,
+  setAmpm,
+  setSelectedTime,
+  selectedTime,
+}: ClassRegisterBottomSheetProps) => {
   const { Funnel, Step, currentStep, setStep } = useFunnel(
     CLASS_REGISTER_TOTAL_STEP,
     `${ROUTES_CONFIG.classRegister}`,
@@ -29,7 +55,22 @@ const ClassRegisterBottomSheet = ({ onClose }: { onClose: () => void }) => {
           <Header.Title title={currentStep === 1 ? '날짜 선택' : '시간 선택'} />
         </Header.Root>
 
-        <ClassRegisterFunnel Funnel={Funnel} Step={Step} currentStep={currentStep} setStep={setStep} />
+        <ClassRegisterFunnel
+          Funnel={Funnel}
+          Step={Step}
+          // currentStep={currentStep}
+          // setStep={setStep}
+          startDate={startDate}
+          hour={hour}
+          minute={minute}
+          ampm={ampm}
+          setStartDate={setStartDate}
+          setHour={setHour}
+          setMinute={setMinute}
+          setAmpm={setAmpm}
+          setSelectedTime={setSelectedTime}
+          selectedTime={selectedTime}
+        />
 
         <div className={styles.buttonWrapperStyle}>
           {currentStep < CLASS_REGISTER_TOTAL_STEP ? (

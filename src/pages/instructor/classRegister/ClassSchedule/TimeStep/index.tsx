@@ -1,19 +1,33 @@
-import { useState } from 'react';
 import TimeControl from '@/pages/instructor/classRegister/ClassSchedule/TimeStep/TimeControl';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Tag from '@/components/Tag';
-import { increaseHour, decreaseHour, increaseMinute, decreaseMinute, toggleAmpm } from '@/utils/timeUtils';
+import { decreaseHour, decreaseMinute, increaseHour, increaseMinute, toggleAmpm } from '@/utils/timeUtils';
 import { TIME_RANGE } from '@/constants';
 
-const TimeStep = () => {
-  const [hour, setHour] = useState(12);
-  const [minute, setMinute] = useState(0);
-  const [ampm, setAmpm] = useState('AM');
-  const [selectedTime, setSelectedTime] = useState<number | null>(null); // 타입 정의 추가
+interface TimeStepProps {
+  hour: number;
+  minute: number;
+  ampm: string;
+  setHour: React.Dispatch<React.SetStateAction<number>>;
+  setMinute: React.Dispatch<React.SetStateAction<number>>;
+  setAmpm: (value: string) => void;
+  setSelectedTime: (value: number | null) => void;
+  selectedTime: number | null;
+}
 
+const TimeStep = ({
+  hour,
+  minute,
+  ampm,
+  setHour,
+  setMinute,
+  setAmpm,
+  setSelectedTime,
+  selectedTime,
+}: TimeStepProps) => {
   const handleTagClick = (id: number) => {
-    setSelectedTime((prev) => (prev === id ? null : id));
+    setSelectedTime(selectedTime === id ? null : id);
   };
 
   return (

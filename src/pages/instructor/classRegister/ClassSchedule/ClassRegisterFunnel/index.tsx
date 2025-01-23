@@ -1,19 +1,40 @@
-import { useState } from 'react';
 import DateStep from '@/pages/instructor/classRegister/ClassSchedule/DateStep';
 import TimeStep from '@/pages/instructor/classRegister/ClassSchedule/TimeStep';
 import { funnelContainerStyle } from '@/pages/instructorRegister/components/InstructorRegisterFunnel/index.css';
 import { FunnelProps, StepProps } from '@/pages/search/types/funnel';
 
-interface ClassRegisterFunnelProps {
-  currentStep: number;
+interface ClassRegisterBottomSheetProps {
+  // currentStep: number;
   Funnel: ({ children }: FunnelProps) => JSX.Element;
-  setStep: (step: number) => void;
+  // setStep: (step: number) => void;
   Step: ({ children }: StepProps) => JSX.Element;
+  // onClose: () => void;
+  startDate: string;
+  hour: number;
+  minute: number;
+  ampm: string;
+  setStartDate: (value: string) => void;
+  setHour: React.Dispatch<React.SetStateAction<number>>;
+  setMinute: React.Dispatch<React.SetStateAction<number>>;
+  setAmpm: (value: string) => void;
+  setSelectedTime: (value: number | null) => void;
+  selectedTime: number | null;
 }
 
-const ClassRegisterFunnel = ({ Funnel, Step }: ClassRegisterFunnelProps) => {
-  const [startDate, setStartDate] = useState('');
-
+const ClassRegisterFunnel = ({
+  Funnel,
+  Step,
+  startDate,
+  hour,
+  minute,
+  ampm,
+  setStartDate,
+  setHour,
+  setMinute,
+  setAmpm,
+  setSelectedTime,
+  selectedTime,
+}: ClassRegisterBottomSheetProps) => {
   return (
     <div className={funnelContainerStyle}>
       <Funnel>
@@ -21,7 +42,16 @@ const ClassRegisterFunnel = ({ Funnel, Step }: ClassRegisterFunnelProps) => {
           <DateStep startDate={startDate} setStartDate={setStartDate} />
         </Step>
         <Step name="2">
-          <TimeStep />
+          <TimeStep
+            hour={hour}
+            minute={minute}
+            ampm={ampm}
+            setHour={setHour}
+            setMinute={setMinute}
+            setAmpm={setAmpm}
+            setSelectedTime={setSelectedTime}
+            selectedTime={selectedTime}
+          />
         </Step>
       </Funnel>
     </div>

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import * as styles from '@/pages/instructor/classRegister/index.css';
 import { buttonContainerStyle } from '@/pages/instructorRegister/index.css';
 import BoxButton from '@/components/BoxButton';
@@ -6,6 +6,7 @@ import Header from '@/components/Header';
 import useBottomSheet from '@/hooks/useBottomSheet';
 import useImageUploader from '@/hooks/useImageUploader';
 import { useGetLocationList, usePostClassRegisterInfo } from '@/apis/instructor/classRegister/queries';
+import { formatToISOString } from '@/utils/timeUtils';
 import { genreEngMapping, levelEngMapping } from '@/constants';
 import ClassAmount from './ClassAmount';
 import ClassDescription from './ClassDescription';
@@ -55,6 +56,21 @@ export interface RepresentImageUrlsTypes {
 const ClassRegister = () => {
   const { isBottomSheetOpen, openBottomSheet, closeBottomSheet } = useBottomSheet();
   const [selectedLocation, setSelectedLocation] = useState<LocationTypes | null>(null);
+  const [startDate, setStartDate] = useState('');
+  const [hour, setHour] = useState(12);
+  const [minute, setMinute] = useState(0);
+  const [ampm, setAmpm] = useState('AM');
+  const [selectedTime, setSelectedTime] = useState<number | null>(null);
+
+  // useEffect(() => {
+  //   console.log('startDate', startDate);
+  //   console.log('hour', hour);
+  //   console.log('minute', minute);
+  //   console.log('ampm', ampm);
+  //   console.log('selectedTime', selectedTime);
+  //   console.log('----------------------------');
+  // });
+
   const { mutate: classRegisterMutate } = usePostClassRegisterInfo();
   const {
     explainTextAreaRef,
@@ -88,7 +104,11 @@ const ClassRegister = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (selectedGenre && selectedLevelTitle) {
+    if (selectedGenre && selectedLevelTitle && selectedTime) {
+      const { startTime, endTime } = formatToISOString(startDate, hour, minute, ampm, selectedTime);
+      console.log('start', startTime);
+      console.log('end', endTime);
+
       const updatedInfo: ClassRegisterInfoTypes = {
         imageUrls: [imageUrls.imageUrls],
         name: className,
@@ -103,8 +123,11 @@ const ClassRegister = () => {
         streetAddress: hasLocation ? (selectedLocation?.streetAddress ?? null) : null,
         oldStreetAddress: hasLocation ? (selectedLocation?.oldStreetAddress ?? null) : null,
         detailedAddress: hasLocation ? detailPlace : null,
-        times: [{ startTime: '2025-01-13T12:34:56Z', endTime: '2025-01-13T12:34:56Z' }],
+        // times: [{ startTime: '2025-01-13T12:34:56Z', endTime: '2025-01-13T12:34:56Z' }],
+
+        times: [{ startTime, endTime }],
       };
+      console.log('여긴데');
       classRegisterMutate(updatedInfo);
     }
   };
@@ -169,7 +192,21 @@ const ClassRegister = () => {
           <BoxButton type="submit">완료</BoxButton>
         </div>
       </form>
-      {isBottomSheetOpen && <ClassRegisterBottomSheet onClose={closeBottomSheet} />}
+      {isBottomSheetOpen && (
+        <ClassRegisterBottomSheet
+          onClose={closeBottomSheet}
+          startDate={startDate}
+          hour={hour}
+          minute={minute}
+          ampm={ampm}
+          setStartDate={setStartDate}
+          setHour={setHour}
+          setMinute={setMinute}
+          setAmpm={setAmpm}
+          setSelectedTime={setSelectedTime}
+          selectedTime={selectedTime}
+        />
+      )}
     </>
   );
 };
