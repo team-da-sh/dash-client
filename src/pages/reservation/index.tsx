@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import Error from '@/pages/error';
 import AgreeCheckBox from '@/pages/reservation/components/AgreeCheckBox';
 import ApplicantInfo from '@/pages/reservation/components/ApplicantInfo';
 import ClassInfo from '@/pages/reservation/components/ClassInfo';
@@ -39,17 +40,17 @@ const Reservation = () => {
   const { id } = useParams<{ id: string }>();
 
   if (!id) {
-    return <div>해당하는 예약이 없습니다.</div>;
+    return <Error />;
   }
 
-  const { data, error } = useGetReservaion(id);
+  const { data, isError, isLoading } = useGetReservaion(id);
 
-  if (error instanceof Error) {
-    return <div>오류: {error.message}</div>;
+  if (isLoading) {
+    return <></>;
   }
 
-  if (!data) {
-    return <div>예약 정보가 없습니다.</div>;
+  if (isError || !data) {
+    return navigate(ROUTES_CONFIG.error.path);
   }
 
   const handleButtonClick = () => {

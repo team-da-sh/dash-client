@@ -18,7 +18,7 @@ interface ClassInfoProps {
   locationDetail: string;
   teacherNickname: string;
   level: string;
-  lessonRound: LessonRoundProps[];
+  lessonRound?: LessonRoundProps[];
 }
 
 const ClassInfo = ({ name, location, locationDetail, teacherNickname, level, lessonRound = [] }: ClassInfoProps) => {
