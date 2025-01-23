@@ -25,8 +25,6 @@ const ClassList = () => {
     return <div></div>;
   }
 
-  console.log(lessonData);
-
   const handleDetailClick = (lessonId: number) => {
     const path = ROUTES_CONFIG.instructorClassDetail.path(lessonId.toString());
     navigate(path);
