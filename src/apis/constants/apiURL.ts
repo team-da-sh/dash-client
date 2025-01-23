@@ -7,6 +7,7 @@ export const API_URL = {
   MEMBERS_ONBOARD: '/api/v1/members/onboard',
   MEMBERS_ME: '/api/v1/members/me',
   MEMBERS_RESERVATIONS: '/api/v1/members/me/reservations',
+  MEMBERS_ME_LESSONS: '/api/v1/members/me/lessons',
   MEMBERS_RESERVATION_DETAIL: '/api/v1/members/me/reservations/{reservationId}',
 
   TEACHERS: '/api/v1/teachers',

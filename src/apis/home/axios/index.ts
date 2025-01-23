@@ -13,6 +13,12 @@ export const getMyPage = async () => {
   return data;
 };
 
+export const postLogout = async () => {
+  const { data } = await instance.post(API_URL.AUTH_LOGOUT);
+
+  return data;
+};
+
 export const getPopularGenres = async () => {
   const { data } = await instance.get(API_URL.LESSONS_POPULAR_GENRES);
 

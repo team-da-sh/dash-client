@@ -1,14 +1,17 @@
 export interface Lesson {
-  lessonId: number;
-  lessonName: string;
-  lessonImageUrl: string;
-  lessonGenre: string;
-  lessonLevel: string;
-  lessonLocation: string;
-  lessonStartDateTime: string;
-  lessonEndDateTime: string;
+  id: number;
+  name: string;
+  imageUrl: string;
+  genre: string;
+  level: string;
+  location: string;
+  detailedAddress: string;
+  startDateTime: string;
+  endDateTime: string;
+  applyStatus: [];
 }
 
 export interface LessonApiResponse {
+  count: number;
   lessons: Lesson[];
 }

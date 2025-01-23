@@ -8,14 +8,24 @@ import Text from '@/components/Text';
 import { notify } from '@/components/Toast';
 import { useGetMyLessons } from '@/apis/classList/queries';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
+import { genreMapping, levelMapping } from '@/constants';
 import { Lesson } from '@/types/lessonTypes';
 
 const ClassList = () => {
   const navigate = useNavigate();
 
-  const { data: lessonData } = useGetMyLessons();
+  const { data: lessonData, isError, isLoading } = useGetMyLessons();
 
-  const totalLessons = lessonData?.lessons.length;
+  // 로딩, 에러 페이지 처리
+  if (isLoading) {
+    return <div>로딩중</div>;
+  }
+
+  if (isError) {
+    return <div>에러</div>;
+  }
+
+  console.log(lessonData);
 
   const handleDetailClick = (lessonId: number) => {
     const path = ROUTES_CONFIG.instructorClassDetail.path(lessonId.toString());
@@ -30,15 +40,23 @@ const ClassList = () => {
       </Header.Root>
       <div className={containerStyle}>
         <Text tag="b2" color="gray9">
-          전체 {totalLessons}
+          전체 {lessonData?.count}
         </Text>
         <Flex direction="column" gap="1.2rem" marginTop="1.6rem">
           {lessonData?.lessons.map((lesson: Lesson) => (
-            <ClassCard isReservation={false} key={lesson.lessonId} {...lesson}>
-              <BoxButton variant="temp" onClick={notify}>
+            <ClassCard
+              key={lesson.id}
+              lessonName={lesson.name}
+              lessonImageUrl={lesson.imageUrl}
+              lessonGenre={genreMapping[lesson.genre]}
+              lessonLevel={levelMapping[lesson.level]}
+              lessonLocation={lesson.location}
+              lessonStartDateTime={lesson.startDateTime}
+              lessonEndDateTime={lesson.endDateTime}>
+              <BoxButton variant="temp" onClick={() => notify()}>
                 수정하기
               </BoxButton>
-              <BoxButton variant="outline" onClick={() => handleDetailClick(lesson.lessonId)}>
+              <BoxButton variant="outline" onClick={() => handleDetailClick(lesson.id)}>
                 상세보기
               </BoxButton>
             </ClassCard>
