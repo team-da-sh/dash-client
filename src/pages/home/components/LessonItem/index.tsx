@@ -2,6 +2,7 @@ import {
   classImageStyle,
   deadlineTagStyle,
   teacherImageStyle,
+  titleStyle,
   wrapperStyle,
 } from '@/pages/home/components/LessonItem/index.css';
 import {
@@ -61,11 +62,11 @@ const LessonItem = ({
         </Tag>
       </Flex>
 
-      <Head level="h3" tag="h7">
+      <Head level="h3" tag="h7" className={titleStyle}>
         {name}
       </Head>
 
-      <Flex direction="column" gap="0.4rem" width="16.4rem">
+      <Flex direction="column" gap="0.4rem">
         <Flex gap="0.6rem" align="center">
           <img src={teacherProfileImage} alt="강사" className={styles.teacherImage} />
           <Text tag="b7">{teacherName}</Text>

@@ -9,6 +9,11 @@ export const classImageStyle = style({
   borderRadius: '4px',
 });
 
+export const titleStyle = style({
+  width: '16.4rem',
+  overflow: 'auto',
+});
+
 export const teacherImageStyle = style({
   width: '2.4rem',
   height: '2.4rem',
