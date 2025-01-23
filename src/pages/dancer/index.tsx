@@ -1,22 +1,39 @@
+import { useParams } from 'react-router-dom';
 import ClassHeader from '@/pages/dancer/components/DancerHeader';
 import DancerInfo from '@/pages/dancer/components/DancerInfo';
 import TabWrapper from '@/pages/dancer/components/TabWrapper';
 import { gradientOverlayStyle, textWrapperStyle, topImgStyle } from '@/pages/dancer/index.css';
+import Error from '@/pages/error/index';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Tag from '@/components/Tag';
 import Text from '@/components/Text';
+import { useGetDancerDetail } from '@/apis/dancer/queries';
+import { useIntersectCallback } from '@/utils/useIntersectCallback';
 import { genreMapping } from '@/constants/index';
-import { useIntersect } from '@/utils/useIntersect';
-import { DANCER_DATA } from '@/pages/dancer/mocks/mockDancerData';
 
 const Dancer = () => {
-  const [targetRef, isVisible] = useIntersect(false);
-  const { nickname, imageUrls, genres } = DANCER_DATA;
+  const { id } = useParams<{ id: string }>();
+  const [targetRef, isVisible] = useIntersectCallback(false);
 
-  // 장르 변환
-  const translatedGenres = genres.map((genre) => genreMapping[genre] || genre);
-  
+  if (!id) {
+    return <Error />;
+  }
+
+  const { data, isError, isLoading } = useGetDancerDetail(id);
+
+  if (isLoading) {
+    return <></>;
+  }
+
+  if (isError || !data) {
+    return <Error />;
+  }
+  const { imageUrls, genres, nickname } = data;
+
+  // 장르 매핑
+  const translatedGenres = (genres || []).map((genre) => genreMapping[genre] || genre);
+
   return (
     <>
       <Flex width="100%">
@@ -44,11 +61,9 @@ const Dancer = () => {
           </Flex>
         </div>
       </Flex>
-
       <ClassHeader isVisible={isVisible} />
-
-      <DancerInfo />
-      <TabWrapper colorScheme="primary" />
+      <DancerInfo dancerData={data} />
+      <TabWrapper colorScheme="primary" dancerData={data} />
     </>
   );
 };

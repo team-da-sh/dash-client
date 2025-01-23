@@ -26,7 +26,7 @@ const MyPage = ({ showMyPage, onClose }: MyPageProps) => {
     lessonCount: null,
   };
 
-  const isInstructor = role === 'TEACHER';
+  const isInstructor = role?.role === 'TEACHER';
 
   const handleClickOutside = (e: React.MouseEvent) => {
     if (e.target === e.currentTarget) {

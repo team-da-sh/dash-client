@@ -1,18 +1,10 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import Error from '@/pages/error';
 import AgreeCheckBox from '@/pages/reservation/components/AgreeCheckBox';
 import ApplicantInfo from '@/pages/reservation/components/ApplicantInfo';
 import ClassInfo from '@/pages/reservation/components/ClassInfo';
 import TopInfoContent from '@/pages/reservation/components/TopInfoContent';
-import BoxButton from '@/components/BoxButton';
-import Divider from '@/components/Divider';
-import Flex from '@/components/Flex';
-import Head from '@/components/Head';
-import Header from '@/components/Header';
-import Text from '@/components/Text';
-import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import { IcCheckcircleGray0524, IcCheckcircleMain0324 } from '@/assets/svg';
-import { MY_RESERVATION_DATA } from '@/pages/reservation/mocks/mockMyReservationData';
 import {
   agreementBoxStyle,
   agreementCheckedStyle,
@@ -23,13 +15,39 @@ import {
   totalPriceContainerStyle,
   bottomButtonStyle,
   agreementTextStyle,
-} from './index.css';
+} from '@/pages/reservation/index.css';
+import BoxButton from '@/components/BoxButton';
+import Divider from '@/components/Divider';
+import Flex from '@/components/Flex';
+import Head from '@/components/Head';
+import Header from '@/components/Header';
+import Text from '@/components/Text';
+import { useGetReservaion } from '@/apis/reservation/queries';
+import { ROUTES_CONFIG } from '@/routes/routesConfig';
+import { IcCheckcircleGray0524, IcCheckcircleMain0324 } from '@/assets/svg';
+import { LessonRoundProps } from "./types";
 
 const Reservation = () => {
   const [isAllChecked, setIsAllChecked] = useState(false);
   const [agreements, setAgreements] = useState([false, false]);
 
-  const data = MY_RESERVATION_DATA;
+  const navigate = useNavigate();
+
+  const { id } = useParams<{ id: string }>();
+
+  if (!id) {
+    return <Error />;
+  }
+
+  const { data, isError, isLoading } = useGetReservaion(id);
+
+  if (isLoading) {
+    return <></>;
+  }
+
+  if (isError || !data) {
+    return <Error />;
+  }
 
   // 전체 체크박스, 상태 동기화
   const handleToggleAll = () => {
@@ -46,14 +64,17 @@ const Reservation = () => {
     setIsAllChecked(newAgreements.every((isChecked) => isChecked));
   };
 
-  const { lessonRound, lessonIndividualPrice } = MY_RESERVATION_DATA;
-  const navigate = useNavigate();
+  const totalPrice = data.lessonRound.lessonRounds.length * data.price;
+
+  const lessonRounds: LessonRoundProps[] = data.lessonRound.lessonRounds.map((round) => ({
+    startDateTime: round.startDateTime,
+    endDateTime: round.endDateTime,
+  }));
 
   const handleButtonClick = () => {
-    navigate(ROUTES_CONFIG.home.path);
+    navigate(ROUTES_CONFIG.payments.path);
   };
-  const totalPrice = lessonRound.length * lessonIndividualPrice;
-
+  
   return (
     <Flex direction="column" width="100%" className={reservationStyle}>
       <div className={headerStyle}>
@@ -62,7 +83,7 @@ const Reservation = () => {
           <Header.Title title="클래스 신청" />
         </Header.Root>
       </div>
-      <TopInfoContent />
+      <TopInfoContent name={data.name} teacherNickname={data.teacherNickname} imageUrl={data.imageUrl} />
       <Flex
         width="100%"
         direction="column"
@@ -76,18 +97,19 @@ const Reservation = () => {
             클래스 정보
           </Text>
           <ClassInfo
-            lessonName={data.lessonName}
-            lessonLocation={data.lessonLocation}
-            teacherName={data.teacherName}
-            lessonLevel={data.lessonLevel}
-            lessonRound={data.lessonRound}
+            name={data.name}
+            location={data.location}
+            locationDetail={data.locationDetail}
+            teacherNickname={data.teacherNickname}
+            level={data.level}
+            lessonRound={lessonRounds}
           />
         </Flex>
         <Flex direction="column" width="100%" gap="1.6rem">
           <Text tag="b4" color="gray9">
             신청자 정보
           </Text>
-          <ApplicantInfo bookerName={data.bookerName} bookerPhoneNumber={data.bookerPhoneNumber} />
+          <ApplicantInfo studentName={data.studentName} studentPhoneNumber={data.studentPhoneNumber} />
         </Flex>
       </Flex>
 

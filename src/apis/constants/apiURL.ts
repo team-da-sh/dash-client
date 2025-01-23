@@ -8,10 +8,10 @@ export const API_URL = {
   MEMBERS_ME: '/api/v1/members/me',
   MEMBERS_LESSONS_DETAIL: '/api/v1/members/me/lessons',
   MEMBERS_RESERVATIONS: '/api/v1/members/me/reservations',
-  MEMBERS_RESERVATION_DETAIL: '/api/v1/members/me/reservations/{reservationId}',
+  MEMBERS_RESERVATION_DETAIL: '/api/v1/members/me/reservations/',
 
   TEACHERS: '/api/v1/teachers',
-  TEACHER_DETAIL: '/api/v1/teachers/{teacherId}',
+  TEACHER_DETAIL: '/api/v1/teachers',
   TEACHERS_POPULAR: '/api/v1/teachers/popular',
   TEACHERS_SEARCH: '/api/v1/teachers?keyword=:keyword',
 
@@ -21,7 +21,7 @@ export const API_URL = {
   LESSONS_POPULAR_GENRES: '/api/v1/lessons/popular-genres',
   LESSONS_UPCOMING: '/api/v1/lessons/upcoming?sortOption=:sortOption',
   LESSONS_FAVORITES: '/api/v1/lessons/favorites/{lessonId}',
-  LESSON_RESERVE_PROGRESS: '/api/v1/lessons/{lessonId}/reserve-progress',
+  LESSON_RESERVE_PROGRESS: '/api/v1/lessons',
   LESSON_RESERVATION: '/api/v1/lessons/{lessonId}/reservations',
 
   MY_PAGE_FAVORITES: '/api/v1/mypage/favorites',

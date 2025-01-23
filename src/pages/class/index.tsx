@@ -4,27 +4,29 @@ import ClassHeader from '@/pages/class/components/ClassHeader';
 import ClassInfoWrapper from '@/pages/class/components/ClassInfoWrapper';
 import TabWrapper from '@/pages/class/components/TabWrapper';
 import { headerStyle } from '@/pages/class/index.css';
+import Error from '@/pages/error';
 import Divider from '@/components/Divider';
-import { useLessonDetail } from '@/apis/class/queries';
+import { useGetLessonDetail } from '@/apis/class/queries';
 import { useIntersectCallback } from '@/utils/useIntersectCallback';
 
 const Class = () => {
   const { id } = useParams<{ id: string }>();
-
-  if (!id) {
-    return <div>해당하는 클래스가 없습니다.</div>;
-  }
-
-  const { data, error } = useLessonDetail(id);
   const [targetRef, isVisible] = useIntersectCallback(false);
 
-  if (error instanceof Error) {
-    return <div>오류: {error.message}</div>;
+  if (!id) {
+    return <Error />;
   }
 
-  if (!data) {
-    return <div>클래스 정보가 없습니다.</div>;
+  const { data, isError, isLoading } = useGetLessonDetail(id);
+
+  if (isLoading) {
+    return <></>;
   }
+
+  if (isError || !data) {
+    return <Error />;
+  }
+
 
   const imageUrl = data.imageUrl;
 
