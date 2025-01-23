@@ -1,25 +1,44 @@
+import { useParams } from 'react-router-dom';
 import * as styles from '@/pages/mypage/mypageReservationDetail/index.css';
-import { RESERVATION_DETAIL } from '@/pages/mypage/mypageReservationDetail/mocks/reservationDetail';
 import ApplicantInfo from '@/pages/reservation/components/ApplicantInfo';
 import ClassInfo from '@/pages/reservation/components/ClassInfo';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Header from '@/components/Header';
 import Text from '@/components/Text';
+import { useGetReservationsDetail } from '@/apis/myPageReservationDetail/queries';
 import { getStatusMessage } from '@/utils/getStatusMessage';
 import { formatDateTime, getClassStatus } from '@/utils/timeCalculate';
 
 const ClassReservationDetail = () => {
+  const { id } = useParams<{ id: string }>();
+
+  const lessonId = Number(id);
+
+  const { data: detailData } = useGetReservationsDetail(lessonId);
+
   // 클래스 상태 계산
-  const lessonStartDateTime = RESERVATION_DETAIL[0].lessonRound[0].lessonStartDateTime;
-  const lessonEndDateTime = RESERVATION_DETAIL[0].lessonRound[0].lessonEndDateTime;
+  const lessonStartDateTime = detailData?.rounds[0].startDateTime;
+  const lessonEndDateTime = detailData?.rounds[0].endDateTime;
 
-  const { status, remainingDays } = getClassStatus(lessonStartDateTime, lessonEndDateTime);
+  const { status } = getClassStatus(lessonStartDateTime, lessonEndDateTime);
 
-  // 클래스 정보, 예약자 정보를 위함 data
-  const data = RESERVATION_DETAIL[0];
-
-  const reservationTime = data.reservationDateTime;
+  const defaultData = {
+    detailAddress: '',
+    lessonName: '',
+    level: '',
+    location: '',
+    name: '',
+    nickname: '',
+    phoneNumber: '',
+    reservationDateTime: '',
+    rounds: [
+      {
+        startDateTime: '',
+        endDateTime: '',
+      },
+    ],
+  };
 
   return (
     <div className={styles.layoutStyle}>
@@ -31,7 +50,7 @@ const ClassReservationDetail = () => {
       <div className={styles.containerStyle}>
         <Flex width="100%" justify="center">
           <Head tag="h5" color={status === 'completed' ? 'gray8' : 'black'}>
-            {getStatusMessage(status, remainingDays)}
+            {getStatusMessage(status, detailData?.dDay)}
           </Head>
         </Flex>
         <div className={styles.classHeaderStyle}>
@@ -40,11 +59,11 @@ const ClassReservationDetail = () => {
           </Text>
         </div>
         <ClassInfo
-          lessonName={data.lessonName}
-          lessonLocation={data.lessonLocation}
-          teacherName={data.teacherNickname}
-          lessonLevel={data.lessonLevel}
-          lessonRound={data.lessonRound}
+          lessonName={detailData?.lessonName || defaultData.lessonName}
+          lessonLocation={detailData?.location || defaultData.location}
+          teacherName={detailData?.nickname || defaultData.nickname}
+          lessonLevel={detailData?.level || defaultData.level}
+          lessonRound={detailData?.rounds || defaultData.rounds}
         />
         <div className={styles.applicantHeaderStyle}>
           <Text tag="b4" color="gray9">
@@ -52,11 +71,14 @@ const ClassReservationDetail = () => {
           </Text>
         </div>
 
-        <ApplicantInfo bookerName={data.bookerName} bookerPhoneNumber={data.bookerPhoneNumber} />
+        <ApplicantInfo
+          bookerName={detailData?.name || defaultData.name}
+          bookerPhoneNumber={detailData?.phoneNumber || defaultData.phoneNumber}
+        />
 
         <Flex marginTop="1.2rem" justify="flexEnd">
           <Text tag="c1" color="gray9">
-            {formatDateTime(reservationTime)} 신청 완료
+            {formatDateTime(detailData?.reservationDateTime || defaultData.reservationDateTime)} 신청 완료
           </Text>
         </Flex>
       </div>
