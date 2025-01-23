@@ -1,12 +1,12 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { buttonWrapperStyle } from '@/pages/class/components/ClassButtonWrapper/index.css';
 import { LessonDetail } from '@/pages/class/types/index';
 import BoxButton from '@/components/BoxButton';
 import Flex from '@/components/Flex';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { IcHeartOutlinedGray07, IcHeartFilledGray07 } from '@/assets/svg';
-import { BUTTON_TEXT, DISABLED_STATUS } from "@/constants";
+import { BUTTON_TEXT, DISABLED_STATUS } from '@/constants';
 
 const ClassButtonWrapper = ({ lessonData }: { lessonData: LessonDetail }) => {
   const [isHeartFilled, setIsHeartFilled] = useState(false);
@@ -15,7 +15,7 @@ const ClassButtonWrapper = ({ lessonData }: { lessonData: LessonDetail }) => {
   const { status, bookStatus } = lessonData;
   let buttonText = '';
   let isDisabled = false;
-  
+
   if (status === 'EXPIRED' || status === 'OVER_BOOKED') {
     buttonText = BUTTON_TEXT[status];
     isDisabled = DISABLED_STATUS[status];
@@ -32,11 +32,14 @@ const ClassButtonWrapper = ({ lessonData }: { lessonData: LessonDetail }) => {
     setIsHeartFilled((prev) => !prev);
   };
 
+  const { id } = useParams<{ id: string }>();
+
   const handleApplyClick = () => {
     if (!isDisabled) {
-      navigate(ROUTES_CONFIG.reservation.path);
+      navigate(`${ROUTES_CONFIG.reservation.path.replace(':id', String(id))}`);
     }
   };
+
   return (
     <Flex height="10.2rem" width="100%" className={buttonWrapperStyle}>
       <BoxButton variant="heart" isDisabled={false} onClick={toggleHeart}>
