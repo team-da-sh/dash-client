@@ -152,3 +152,5 @@ export const DISABLED_STATUS = {
     AVAILABLE: false,
   },
 } as const;
+
+export const YOUTUBE_URL_REGEX = /(?:youtube\.com\/.*v=|youtu\.be\/)([^&]+)/;
