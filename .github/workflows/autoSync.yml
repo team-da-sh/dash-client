@@ -3,9 +3,6 @@ name: git push into another repo to deploy to vercel
 on:
   push:
     branches: [main]
-    pull_request:
-      branches:
-        - develop
 
 jobs:
   build:
@@ -33,16 +30,3 @@ jobs:
 
       - name: Test get variable exported by push-to-another-repository
         run: echo $DESTINATION_CLONED_DIRECTORY
-
-      - name: Add bot comment to PR
-        uses: actions/github-script@v6
-        with:
-          script: |
-            const prNumber = context.payload.pull_request.number;
-
-            await github.rest.issues.createComment({
-              issue_number: prNumber,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: `✅ 빌드 성공적으로 완료되었지롱~ 🛠️`
-            });
