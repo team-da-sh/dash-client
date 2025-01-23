@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react';
-import { textareaStyle } from '@/pages/instructor/classRegister/ClassRecommend/index.css';
-import Description from '@/pages/instructor/classRegister/Description';
+import { textareaStyle } from '@/pages/instructor/classRegister/components/ClassRecommend/index.css';
+import Description from '@/pages/instructor/classRegister/components/Description';
 import Flex from '@/components/Flex';
 
 interface ClassRecommendProps {

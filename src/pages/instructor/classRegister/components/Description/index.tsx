@@ -1,4 +1,4 @@
-import { essentialTextStyle } from '@/pages/instructor/classRegister/Description/index.css';
+import { essentialTextStyle } from '@/pages/instructor/classRegister/components/Description/index.css';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Text from '@/components/Text';

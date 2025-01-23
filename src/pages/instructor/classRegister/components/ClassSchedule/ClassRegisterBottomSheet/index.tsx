@@ -1,4 +1,4 @@
-import ClassRegisterFunnel from '@/pages/instructor/classRegister/ClassSchedule/ClassRegisterFunnel';
+import ClassRegisterFunnel from '@/pages/instructor/classRegister/components/ClassSchedule/ClassRegisterFunnel';
 import BoxButton from '@/components/BoxButton';
 import Header from '@/components/Header';
 import { useFunnel } from '@/hooks/useFunnel';

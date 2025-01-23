@@ -1,4 +1,13 @@
 import { useState } from 'react';
+import ClassAmount from '@/pages/instructor/classRegister/components/ClassAmount';
+import ClassDescription from '@/pages/instructor/classRegister/components/ClassDescription';
+import ClassGenre from '@/pages/instructor/classRegister/components/ClassGenre';
+import ClassLevel from '@/pages/instructor/classRegister/components/ClassLevel';
+import ClassName from '@/pages/instructor/classRegister/components/ClassName';
+import ClassPersonnel from '@/pages/instructor/classRegister/components/ClassPersonnel';
+import ClassPlace from '@/pages/instructor/classRegister/components/ClassPlace';
+import ClassRecommend from '@/pages/instructor/classRegister/components/ClassRecommend';
+import ClassRepresentImage from '@/pages/instructor/classRegister/components/ClassRepresentImage';
 import * as styles from '@/pages/instructor/classRegister/index.css';
 import { ClassRegisterInfoTypes, LocationTypes, RepresentImageUrlsTypes } from '@/pages/instructor/classRegister/types';
 import { buttonContainerStyle } from '@/pages/instructorRegister/index.css';
@@ -8,17 +17,8 @@ import useBottomSheet from '@/hooks/useBottomSheet';
 import useImageUploader from '@/hooks/useImageUploader';
 import { useGetLocationList, usePostClassRegisterInfo } from '@/apis/instructor/classRegister/queries';
 import { genreEngMapping, levelEngMapping } from '@/constants';
-import ClassAmount from './ClassAmount';
-import ClassDescription from './ClassDescription';
-import ClassGenre from './ClassGenre';
-import ClassLevel from './ClassLevel';
-import ClassName from './ClassName';
-import ClassPersonnel from './ClassPersonnel';
-import ClassPlace from './ClassPlace';
-import ClassRecommend from './ClassRecommend';
-import ClassRepresentImage from './ClassRepresentImage';
-import ClassSchedule from './ClassSchedule';
-import ClassRegisterBottomSheet from './ClassSchedule/ClassRegisterBottomSheet';
+import ClassSchedule from './components/ClassSchedule';
+import ClassRegisterBottomSheet from './components/ClassSchedule/ClassRegisterBottomSheet';
 import { useClassRegisterForm } from './hooks/useClassRegisterForm';
 
 const ClassRegister = () => {

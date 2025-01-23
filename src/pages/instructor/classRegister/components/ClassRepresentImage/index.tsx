@@ -2,8 +2,8 @@ import {
   closeIconStyle,
   inputStyle,
   previewImgStyle,
-} from '@/pages/instructor/classRegister/ClassRepresentImage/index.css';
-import Description from '@/pages/instructor/classRegister/Description';
+} from '@/pages/instructor/classRegister/components/ClassRepresentImage/index.css';
+import Description from '@/pages/instructor/classRegister/components/Description';
 import Flex from '@/components/Flex';
 import Text from '@/components/Text';
 import { IcPlusGray0524, IcXCircleMain0324 } from '@/assets/svg';

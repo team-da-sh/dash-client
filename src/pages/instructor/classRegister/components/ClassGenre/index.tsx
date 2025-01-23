@@ -1,5 +1,5 @@
-import { genreButtonContainerStyle } from '@/pages/instructor/classRegister/ClassGenre/index.css';
-import Description from '@/pages/instructor/classRegister/Description';
+import { genreButtonContainerStyle } from '@/pages/instructor/classRegister/components/ClassGenre/index.css';
+import Description from '@/pages/instructor/classRegister/components/Description';
 import GenreButton from '@/pages/search/components/TabContainer/TagSection/BottomSheet/GenreButton';
 import Flex from '@/components/Flex';
 import { GENRE_CATEGORY } from '@/constants';

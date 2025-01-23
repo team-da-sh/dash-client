@@ -8,14 +8,13 @@ import {
   searchInputContainerStyle,
   searchInputIconStyle,
   selectedLocationContainerStyle,
-} from '@/pages/instructor/classRegister/ClassPlace/index.css';
-import Description from '@/pages/instructor/classRegister/Description';
+} from '@/pages/instructor/classRegister/components/ClassPlace/index.css';
+import Description from '@/pages/instructor/classRegister/components/Description';
 import Flex from '@/components/Flex';
 import Input from '@/components/Input';
 import Text from '@/components/Text';
 import { BtnCheck, IcSearchGray, IcXCircleGray0424 } from '@/assets/svg';
-import { LocationsData, LocationTypes } from '../types';
-
+import { LocationsData, LocationTypes } from '../../types';
 
 interface ClassPlaceProps {
   hasLocation: boolean;

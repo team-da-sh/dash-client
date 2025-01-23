@@ -1,6 +1,6 @@
 import { ChangeEvent } from 'react';
-import { nameLengthStyle } from '@/pages/instructor/classRegister/ClassName/index.css';
-import Description from '@/pages/instructor/classRegister/Description';
+import { nameLengthStyle } from '@/pages/instructor/classRegister/components/ClassName/index.css';
+import Description from '@/pages/instructor/classRegister/components/Description';
 import Flex from '@/components/Flex';
 import Input from '@/components/Input';
 import Text from '@/components/Text';

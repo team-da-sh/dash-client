@@ -1,5 +1,5 @@
-import DateStep from '@/pages/instructor/classRegister/ClassSchedule/DateStep';
-import TimeStep from '@/pages/instructor/classRegister/ClassSchedule/TimeStep';
+import DateStep from '@/pages/instructor/classRegister/components/ClassSchedule/DateStep';
+import TimeStep from '@/pages/instructor/classRegister/components/ClassSchedule/TimeStep';
 import { funnelContainerStyle } from '@/pages/instructorRegister/components/InstructorRegisterFunnel/index.css';
 import { FunnelProps, StepProps } from '@/pages/search/types/funnel';
 

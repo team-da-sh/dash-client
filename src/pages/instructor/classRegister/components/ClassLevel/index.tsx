@@ -1,4 +1,4 @@
-import Description from '@/pages/instructor/classRegister/Description';
+import Description from '@/pages/instructor/classRegister/components/Description';
 import Flex from '@/components/Flex';
 import LevelButton from '@/components/LevelButton';
 import { LEVEL } from '@/constants';

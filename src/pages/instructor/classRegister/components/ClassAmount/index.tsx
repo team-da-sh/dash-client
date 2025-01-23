@@ -1,6 +1,9 @@
 import { ChangeEvent } from 'react';
-import { amountContainerStyle, amountTextStyle } from '@/pages/instructor/classRegister/ClassAmount/index.css';
-import Description from '@/pages/instructor/classRegister/Description';
+import {
+  amountContainerStyle,
+  amountTextStyle,
+} from '@/pages/instructor/classRegister/components/ClassAmount/index.css';
+import Description from '@/pages/instructor/classRegister/components/Description';
 import Flex from '@/components/Flex';
 import Input from '@/components/Input';
 import Text from '@/components/Text';

@@ -2,8 +2,8 @@ import {
   addInputBoxStyle,
   scheduleItemContainerStyle,
   tagStyle,
-} from '@/pages/instructor/classRegister/ClassSchedule/index.css';
-import Description from '@/pages/instructor/classRegister/Description';
+} from '@/pages/instructor/classRegister/components/ClassSchedule/index.css';
+import Description from '@/pages/instructor/classRegister/components/Description';
 import Flex from '@/components/Flex';
 import Text from '@/components/Text';
 import { formatDate } from '@/utils/dateCalculate';

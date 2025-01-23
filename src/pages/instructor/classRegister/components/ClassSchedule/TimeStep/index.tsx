@@ -1,4 +1,4 @@
-import TimeControl from '@/pages/instructor/classRegister/ClassSchedule/TimeStep/TimeControl';
+import TimeControl from '@/pages/instructor/classRegister/components/ClassSchedule/TimeStep/TimeControl';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Tag from '@/components/Tag';
