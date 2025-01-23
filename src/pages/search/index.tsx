@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import SearchBar from '@/pages/search/components/SearchBar';
 import TabContainer from '@/pages/search/components/TabContainer';
@@ -14,15 +14,11 @@ import { labelToSortOptionMap } from '@/constants';
 const Search = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const initialGenre = location.state?.genre || null;
+  const [genre, setGenre] = useState<string | null>(location.state?.genre ? location.state.genre : null);
 
-  const [genre, setGenre] = useState<string | null>(initialGenre);
-
-  useEffect(() => {
-    if (location.state?.genre) {
-      navigate(location.pathname, { replace: true });
-    }
-  }, []);
+  if (location.state?.genre) {
+    navigate(location.pathname, { replace: true });
+  }
 
   const [searchValue, setSearchValue] = useState('');
   const [submittedSearchValue, setSubmittedSearchValue] = useState('');
