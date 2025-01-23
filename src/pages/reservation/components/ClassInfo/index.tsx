@@ -13,38 +13,50 @@ interface LessonRoundProps {
 }
 
 interface ClassInfoProps {
-  lessonName: string;
-  lessonLocation: string;
-  teacherName: string;
-  lessonLevel: string;
+  name: string;
+  location: string;
+  locationDetail: string;
+  teacherNickname: string;
+  level: string;
   lessonRound: LessonRoundProps[];
 }
 
-const ClassInfo = ({ lessonName, lessonLocation, teacherName, lessonLevel, lessonRound }: ClassInfoProps) => {
+const ClassInfo = ({ name, location, locationDetail, teacherNickname, level, lessonRound = [] }: ClassInfoProps) => {
   return (
     <div className={infoContainerStyle}>
       <Flex direction="column" gap="2rem">
         <Head level="h5" tag="h6">
-          {lessonName}
+          {name}
         </Head>
 
         <Flex direction="column" gap="1rem">
-          <InfoRow label="강사" value={teacherName} />
+          <InfoRow label="강사" value={teacherNickname} />
 
           <Flex gap="1.2rem" color={vars.colors.gray08}>
             <Text tag="b10" color="gray7" className={textLabelStyle}>
               일정
             </Text>
             <Flex direction="column" gap="1.2rem">
-              {lessonRound.map(({ startDateTime, endDateTime }, id) => (
+              {lessonRound?.map(({ startDateTime, endDateTime }, id) => (
                 <ScheduleItem key={id} index={id} startDateTime={startDateTime} endDateTime={endDateTime} />
               ))}
             </Flex>
           </Flex>
 
-          <InfoRow label="장소" value={lessonLocation} />
-
-          <InfoRow label="난이도" value={levelMapping[lessonLevel]} />
+          <Flex gap="1.2rem" color={vars.colors.gray08}>
+            <Text tag="b10" color="gray7" className={textLabelStyle}>
+              일정
+            </Text>
+            <Flex direction="column" gap="0.4rem">
+              <Text tag="b7" color="gray10">
+                {location}
+              </Text>
+              <Text tag="b7" color="gray6">
+                {locationDetail}
+              </Text>
+            </Flex>
+          </Flex>
+          <InfoRow label="난이도" value={levelMapping[level]} />
         </Flex>
       </Flex>
     </div>

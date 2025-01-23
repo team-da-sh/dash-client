@@ -24,7 +24,7 @@ const ClassReservationDetail = () => {
   const { status } = getClassStatus(lessonStartDateTime, lessonEndDateTime);
 
   const defaultData = {
-    detailAddress: '',
+    detailedAddress: '',
     lessonName: '',
     level: '',
     location: '',
@@ -59,10 +59,11 @@ const ClassReservationDetail = () => {
           </Text>
         </div>
         <ClassInfo
-          lessonName={detailData?.lessonName || defaultData.lessonName}
-          lessonLocation={detailData?.location || defaultData.location}
-          teacherName={detailData?.nickname || defaultData.nickname}
-          lessonLevel={detailData?.level || defaultData.level}
+          name={detailData?.lessonName || defaultData.lessonName}
+          location={detailData?.location || defaultData.location}
+          locationDetail={detailData?.detailedAddress || defaultData.detailedAddress}
+          teacherNickname={detailData?.nickname || defaultData.nickname}
+          level={detailData?.level || defaultData.level}
           lessonRound={detailData?.rounds || defaultData.rounds}
         />
         <div className={styles.applicantHeaderStyle}>
