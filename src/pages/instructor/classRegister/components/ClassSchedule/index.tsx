@@ -6,7 +6,7 @@ import {
 import Description from '@/pages/instructor/classRegister/components/Description';
 import Flex from '@/components/Flex';
 import Text from '@/components/Text';
-import { formatDate } from '@/utils/dateCalculate';
+import { calculatePeriod, formatDate } from '@/utils/dateCalculate';
 import { IcPlusGray0524, IcXCircleGray0424 } from '@/assets/svg';
 
 interface TimesTypes {
@@ -34,10 +34,10 @@ const ClassSchedule = ({ openBottomSheet, times, handleRemoveTime }: ClassSchedu
               <Flex direction="column" gap="0.4rem">
                 <Text tag="b4"> {formatDate(time.date)}</Text>
                 <Text tag="b7" color="gray7">
-                  {/* {time.date} */}
-                  {/* {time.startTime}
-                  {time.endTime} */}
-                  총 {time.duration} 시간
+                  {`${calculatePeriod(time.startTime, time.endTime).startTime} ~ ${
+                    calculatePeriod(time.startTime, time.endTime).formattedEndTime
+                  }`}{' '}
+                  (총 {time.duration} 시간)
                 </Text>
               </Flex>
             </Flex>

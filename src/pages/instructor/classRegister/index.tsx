@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import ClassAmount from '@/pages/instructor/classRegister/components/ClassAmount';
 import ClassDescription from '@/pages/instructor/classRegister/components/ClassDescription';
 import ClassGenre from '@/pages/instructor/classRegister/components/ClassGenre';
@@ -16,6 +17,7 @@ import Header from '@/components/Header';
 import useBottomSheet from '@/hooks/useBottomSheet';
 import useImageUploader from '@/hooks/useImageUploader';
 import { useGetLocationList, usePostClassRegisterInfo } from '@/apis/instructor/classRegister/queries';
+import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { genreEngMapping, levelEngMapping } from '@/constants';
 import ClassSchedule from './components/ClassSchedule';
 import ClassRegisterBottomSheet from './components/ClassSchedule/ClassRegisterBottomSheet';
@@ -24,6 +26,7 @@ import { useClassRegisterForm } from './hooks/useClassRegisterForm';
 const ClassRegister = () => {
   const { isBottomSheetOpen, openBottomSheet, closeBottomSheet } = useBottomSheet();
   const [selectedLocation, setSelectedLocation] = useState<LocationTypes | null>(null);
+  const navigate = useNavigate();
 
   const { mutate: classRegisterMutate } = usePostClassRegisterInfo();
   const {
@@ -95,7 +98,14 @@ const ClassRegister = () => {
         })),
       };
 
-      classRegisterMutate(updatedInfo);
+      classRegisterMutate(updatedInfo, {
+        onSuccess: () => {
+          navigate(ROUTES_CONFIG.classRegisterCompletion.path);
+        },
+        onError: () => {
+          // 에러 페이지로 navigate
+        },
+      });
     }
   };
 
