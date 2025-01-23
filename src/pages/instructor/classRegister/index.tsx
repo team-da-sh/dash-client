@@ -9,6 +9,9 @@ import ClassPersonnel from '@/pages/instructor/classRegister/components/ClassPer
 import ClassPlace from '@/pages/instructor/classRegister/components/ClassPlace';
 import ClassRecommend from '@/pages/instructor/classRegister/components/ClassRecommend';
 import ClassRepresentImage from '@/pages/instructor/classRegister/components/ClassRepresentImage';
+import ClassSchedule from '@/pages/instructor/classRegister/components/ClassSchedule';
+import ClassRegisterBottomSheet from '@/pages/instructor/classRegister/components/ClassSchedule/ClassRegisterBottomSheet';
+import { useClassRegisterForm } from '@/pages/instructor/classRegister/hooks/useClassRegisterForm';
 import * as styles from '@/pages/instructor/classRegister/index.css';
 import { ClassRegisterInfoTypes, LocationTypes } from '@/pages/instructor/classRegister/types';
 import { buttonContainerStyle } from '@/pages/instructorRegister/index.css';
@@ -19,9 +22,6 @@ import useImageUploader from '@/hooks/useImageUploader';
 import { useGetLocationList, usePostClassRegisterInfo } from '@/apis/instructor/classRegister/queries';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { genreEngMapping, levelEngMapping } from '@/constants';
-import ClassSchedule from './components/ClassSchedule';
-import ClassRegisterBottomSheet from './components/ClassSchedule/ClassRegisterBottomSheet';
-import { useClassRegisterForm } from './hooks/useClassRegisterForm';
 
 const ClassRegister = () => {
   const { isBottomSheetOpen, openBottomSheet, closeBottomSheet } = useBottomSheet();

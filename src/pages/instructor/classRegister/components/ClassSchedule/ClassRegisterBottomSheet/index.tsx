@@ -41,6 +41,21 @@ const ClassRegisterBottomSheet = ({
     false // 완료 페이지 없음 (false)
   );
 
+  const handleSheetComplete = () => {
+    setStep(1);
+    onClose();
+    handleAddTime();
+    handleDateAndTimeReset();
+  };
+
+  const handleDateAndTimeReset = () => {
+    setStartDate('');
+    setSelectedTime(null);
+    setHour(12);
+    setMinute(0);
+    setAmpm('AM');
+  };
+
   const handleBackClick = () => {
     if (currentStep === 1) {
       onClose();
@@ -81,9 +96,7 @@ const ClassRegisterBottomSheet = ({
             <BoxButton
               isDisabled={!selectedTime}
               onClick={() => {
-                setStep(1);
-                onClose();
-                handleAddTime();
+                handleSheetComplete();
               }}>
               완료
             </BoxButton>

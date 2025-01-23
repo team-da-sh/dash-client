@@ -13,7 +13,7 @@ import BoxButton from '@/components/BoxButton';
 import Completion from '@/components/Completion';
 import useImageUploader from '@/hooks/useImageUploader';
 import { usePostInstructor } from '@/apis/instructorRegister/queries';
-import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from '@/constants/api';
+import { setAccessToken, setRefreshToken } from '@/utils/handleToken';
 
 interface InstructorRegisterFunnelProps {
   currentStep: number;
@@ -99,14 +99,14 @@ const InstructorRegisterFunnel = ({ currentStep, Funnel, Step, setStep }: Instru
       onSuccess: (response) => {
         const { accessToken, refreshToken } = response.data;
 
-        localStorage.setItem(ACCESS_TOKEN_KEY, accessToken);
-        localStorage.setItem(REFRESH_TOKEN_KEY, refreshToken);
+        setAccessToken(accessToken);
+        setRefreshToken(refreshToken);
 
         setStep(1);
       },
       onError: (error) => {
         // TODO: 실패 시 에러 페이지 띄우기 -> 페이지 디자인 추가되면 변경 예정
-        console.error('강사 등록 중 오류가 발생했습니다:', error);
+        console.error(error);
       },
     });
   };
