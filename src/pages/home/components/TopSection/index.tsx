@@ -17,9 +17,14 @@ interface TopSectionProps {
 const TopSection = ({ userData, onClose, isInstructor }: TopSectionProps) => {
   const navigate = useNavigate();
 
-  // 신청 내역, 내 클래스 클릭 시 이동
   const handleNavigate = (path: string) => {
     navigate(path);
+  };
+
+  const isMyLessonsZero = () => {
+    if (userData.reservationCount > 0) return handleNavigate(ROUTES_CONFIG.mypageReservation.path);
+
+    return;
   };
 
   // 신청 내역, 관심목록, 내 클래스 값이 0 이상일 때 gray8 색상 적용
@@ -70,12 +75,12 @@ const TopSection = ({ userData, onClose, isInstructor }: TopSectionProps) => {
       </Flex>
 
       <Flex paddingTop="2.4rem" paddingLeft="3.2rem" paddingRight="3.2rem" gap="2.1rem">
-        <Flex align="center" onClick={() => handleNavigate(ROUTES_CONFIG.mypageReservation.path)}>
+        <Flex align="center" onClick={isMyLessonsZero}>
           <Flex direction="column" align="center" gap="0.5rem">
             <Head
               tag="h4"
               color={getTextColor(userData.reservationCount)}
-              className={userData.lessonCount === 0 ? styles.disabledStyle : ''}>
+              className={userData.reservationCount === 0 ? styles.disabledStyle : ''}>
               {userData.reservationCount}
             </Head>
             <Text tag="b6" color={getTextColor(userData.reservationCount)}>
