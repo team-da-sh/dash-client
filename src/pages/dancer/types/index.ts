@@ -6,7 +6,7 @@ export interface Lesson {
   imageUrl: string;
   remainingDays: number;
 }
-export interface DancerDetail {
+export interface DancerDetailApiResponse {
   nickname: string;
   instagram?: string;
   youtube?: string;

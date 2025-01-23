@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import DancerClassItem from '@/pages/dancer/components/DancerInfo/DancerClassItem';
-import { DancerDetail } from '@/pages/dancer/types';
+import { DancerDetailApiResponse } from '@/pages/dancer/types';
 import Divider from '@/components/Divider';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
@@ -17,7 +17,7 @@ import {
   emptyStyle,
 } from '@/pages/dancer/components/DancerInfo/index.css';
 
-const DancerInfo = ({ dancerData }: { dancerData: DancerDetail }) => {
+const DancerInfo = ({ dancerData }: { dancerData: DancerDetailApiResponse }) => {
   
   const { instagram, youtube, detail, nickname, lessons } = dancerData;
 

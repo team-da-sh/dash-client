@@ -3,6 +3,7 @@ import ClassHeader from '@/pages/dancer/components/DancerHeader';
 import DancerInfo from '@/pages/dancer/components/DancerInfo';
 import TabWrapper from '@/pages/dancer/components/TabWrapper';
 import { gradientOverlayStyle, textWrapperStyle, topImgStyle } from '@/pages/dancer/index.css';
+import Error from '@/pages/error/index';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Tag from '@/components/Tag';
@@ -15,18 +16,18 @@ const Dancer = () => {
   const { id } = useParams<{ id: string }>();
 
   if (!id) {
-    return <div>해당하는 댄서가 없습니다.</div>;
+    return <Error />;
   }
 
   const { data, error } = useGetDancerDetail(id);
   const [targetRef, isVisible] = useIntersectCallback(false);
 
   if (error instanceof Error) {
-    return <div>오류: {error.message}</div>;
+    return <Error />;
   }
 
   if (!data) {
-    return <div>댄서 정보가 없습니다.</div>;
+    return <Error />;
   }
 
   const { imageUrls, genres, nickname } = data;

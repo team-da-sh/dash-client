@@ -1,13 +1,13 @@
 import Card from '@/pages/class/components/Card';
 import { questionStyle, recommendClassStyle, levelStyle } from '@/pages/class/components/TabWrapper/TabLevel/index.css';
-import { LessonDetail } from '@/pages/class/types/index';
+import { LessonDetailApiResponse } from '@/pages/class/types/index';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Text from '@/components/Text';
 import { levelMapping, LEVEL } from '@/constants/index';
 import { IcLevelStarter, IcQuesitonmark, IcSparkleMain20 } from '@/assets/svg';
 
-const TabLevel = ({ lessonData }: { lessonData: LessonDetail }) => {
+const TabLevel = ({ lessonData }: { lessonData: LessonDetailApiResponse }) => {
   const { level, recommendation } = lessonData;
 
   // 영 -> 한
