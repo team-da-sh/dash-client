@@ -14,7 +14,7 @@ const PopularGenre = () => {
   const navigate = useNavigate();
 
   const handleGenreClick = (genre: string) => {
-    navigate(`${ROUTES_CONFIG.search.path}?genre=${genre}`);
+    navigate(ROUTES_CONFIG.search.path, { state: { genre } });
   };
 
   return (

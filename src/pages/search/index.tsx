@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import SearchBar from '@/pages/search/components/SearchBar';
 import TabContainer from '@/pages/search/components/TabContainer';
 import { DEFAULT_SORT_TAGS, SORT_LABELS } from '@/pages/search/constants/index';
@@ -12,10 +12,17 @@ import { genreEngMapping, levelEngMapping } from '@/constants';
 import { labelToSortOptionMap } from '@/constants';
 
 const Search = () => {
-  const [searchParams] = useSearchParams();
-  const initialGenre = searchParams.get('genre');
+  const location = useLocation();
+  const navigate = useNavigate();
+  const initialGenre = location.state?.genre || null;
 
-  const [genre, setGenre] = useState<string | null>(() => initialGenre || null);
+  const [genre, setGenre] = useState<string | null>(initialGenre);
+
+  useEffect(() => {
+    if (location.state?.genre) {
+      navigate(location.pathname, { replace: true });
+    }
+  }, []);
 
   const [searchValue, setSearchValue] = useState('');
   const [submittedSearchValue, setSubmittedSearchValue] = useState('');
