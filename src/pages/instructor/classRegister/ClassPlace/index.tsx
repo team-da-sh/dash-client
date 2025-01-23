@@ -14,16 +14,8 @@ import Flex from '@/components/Flex';
 import Input from '@/components/Input';
 import Text from '@/components/Text';
 import { BtnCheck, IcSearchGray, IcXCircleGray0424 } from '@/assets/svg';
+import { LocationsData, LocationTypes } from '../types';
 
-interface Location {
-  location: string;
-  streetAddress: string;
-  oldStreetAddress: string;
-}
-
-interface LocationsData {
-  locations: Location[];
-}
 
 interface ClassPlaceProps {
   hasLocation: boolean;
@@ -33,9 +25,9 @@ interface ClassPlaceProps {
   handleDefaultPlace: (e: ChangeEvent<HTMLInputElement>) => void;
   handleDetailPlace: (e: ChangeEvent<HTMLInputElement>) => void;
   handleSubmitDefaultPlace: () => void;
-  selectedLocation: Location | null;
+  selectedLocation: LocationTypes | null;
   locationList: LocationsData;
-  setSelectedLocation: (location: Location | null) => void;
+  setSelectedLocation: (location: LocationTypes | null) => void;
 }
 
 const ClassPlace = ({

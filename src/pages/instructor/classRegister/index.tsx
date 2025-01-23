@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import * as styles from '@/pages/instructor/classRegister/index.css';
+import { ClassRegisterInfoTypes, LocationTypes, RepresentImageUrlsTypes } from '@/pages/instructor/classRegister/types';
 import { buttonContainerStyle } from '@/pages/instructorRegister/index.css';
 import BoxButton from '@/components/BoxButton';
 import Header from '@/components/Header';
@@ -21,38 +22,6 @@ import ClassSchedule from './ClassSchedule';
 import ClassRegisterBottomSheet from './ClassSchedule/ClassRegisterBottomSheet';
 import { useClassRegisterForm } from './hooks/useClassRegisterForm';
 
-interface ClassTimeTypes {
-  startTime: string;
-  endTime: string;
-}
-
-interface ClassRegisterInfoTypes {
-  imageUrls: string[];
-  name: string;
-  detail: string;
-  videoUrls: string[];
-  maxReservationCount: number;
-  genre: string;
-  level: string;
-  recommendation: string;
-  price: number;
-  location: string | null;
-  streetAddress: string | null;
-  oldStreetAddress: string | null;
-  detailedAddress: string | null;
-  times: ClassTimeTypes[];
-}
-
-interface LocationTypes {
-  location: string;
-  streetAddress: string;
-  oldStreetAddress: string;
-}
-
-export interface RepresentImageUrlsTypes {
-  imageUrls: string;
-}
-
 const ClassRegister = () => {
   const { isBottomSheetOpen, openBottomSheet, closeBottomSheet } = useBottomSheet();
   const [selectedLocation, setSelectedLocation] = useState<LocationTypes | null>(null);
@@ -61,15 +30,6 @@ const ClassRegister = () => {
   const [minute, setMinute] = useState(0);
   const [ampm, setAmpm] = useState('AM');
   const [selectedTime, setSelectedTime] = useState<number | null>(null);
-
-  // useEffect(() => {
-  //   console.log('startDate', startDate);
-  //   console.log('hour', hour);
-  //   console.log('minute', minute);
-  //   console.log('ampm', ampm);
-  //   console.log('selectedTime', selectedTime);
-  //   console.log('----------------------------');
-  // });
 
   const { mutate: classRegisterMutate } = usePostClassRegisterInfo();
   const {
@@ -106,8 +66,6 @@ const ClassRegister = () => {
 
     if (selectedGenre && selectedLevelTitle && selectedTime) {
       const { startTime, endTime } = formatToISOString(startDate, hour, minute, ampm, selectedTime);
-      console.log('start', startTime);
-      console.log('end', endTime);
 
       const updatedInfo: ClassRegisterInfoTypes = {
         imageUrls: [imageUrls.imageUrls],
@@ -123,11 +81,9 @@ const ClassRegister = () => {
         streetAddress: hasLocation ? (selectedLocation?.streetAddress ?? null) : null,
         oldStreetAddress: hasLocation ? (selectedLocation?.oldStreetAddress ?? null) : null,
         detailedAddress: hasLocation ? detailPlace : null,
-        // times: [{ startTime: '2025-01-13T12:34:56Z', endTime: '2025-01-13T12:34:56Z' }],
 
         times: [{ startTime, endTime }],
       };
-      console.log('여긴데');
       classRegisterMutate(updatedInfo);
     }
   };
