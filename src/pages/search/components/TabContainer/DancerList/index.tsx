@@ -1,8 +1,10 @@
+import { useNavigate } from 'react-router-dom';
 import { dancerImageStyle } from '@/pages/search/components/TabContainer/DancerList/index.css';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Tag from '@/components/Tag';
 import { Dancer } from '@/apis/search/queries';
+import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { genreMapping } from '@/constants/index';
 import { vars } from '@/styles/theme.css';
 
@@ -11,6 +13,11 @@ interface DancerListProps {
 }
 
 const DancerList = ({ dancers }: DancerListProps) => {
+  const navigate = useNavigate();
+
+  const handleDancerClick = (id: number) => {
+    navigate(ROUTES_CONFIG.dancer.path(`${id}`));
+  };
   return (
     <Flex tag="ul" width="100%" direction="column">
       {dancers.map((dancer) => (
@@ -22,7 +29,8 @@ const DancerList = ({ dancers }: DancerListProps) => {
           tag="li"
           borderBottom={`1px solid ${vars.colors.gray01}`}
           width="100%"
-          key={dancer.id}>
+          key={dancer.id}
+          onClick={() => handleDancerClick(dancer.id)}>
           <img src={dancer.profileImage} alt={dancer.nickname} className={dancerImageStyle} />
           <Flex direction="column" gap="0.8rem">
             <Head level="h6" tag="h6">
