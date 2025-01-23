@@ -1,7 +1,7 @@
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Text from '@/components/Text';
-import finishGif from '@/assets/gif/clear.gif';
+import { ClearGif } from '@/assets/gif';
 
 interface FinishStepProps {
   nickname: string;
@@ -20,7 +20,7 @@ const FinishStep = ({ nickname }: FinishStepProps) => {
       </Flex>
 
       <Flex width="100%" justify="center" marginTop="6.7rem">
-        <img src={finishGif} width={244} />
+        <img src={ClearGif} width={244} />
       </Flex>
     </Flex>
   );

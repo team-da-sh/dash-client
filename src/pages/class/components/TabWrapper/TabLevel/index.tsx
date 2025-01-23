@@ -1,23 +1,19 @@
 import Card from '@/pages/class/components/Card';
-import { questionStyle, recommendClassStyle } from '@/pages/class/components/TabWrapper/TabLevel/index.css';
+import { questionStyle, recommendClassStyle, levelStyle } from '@/pages/class/components/TabWrapper/TabLevel/index.css';
+import { LessonDetailApiResponse } from '@/pages/class/types/index';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Text from '@/components/Text';
-import { IcLevelStarter, IcClose, IcQuesitonmark } from '@/assets/svg';
-import { LESSON_DATA } from '@/pages/class/mocks/mockLessonData';
-import { LEVEL } from '@/constants/index';
+import { levelMapping, LEVEL } from '@/constants/index';
+import { IcLevelStarter, IcQuesitonmark, IcSparkleMain20 } from '@/assets/svg';
 
-type LessonLevelType = '입문' | '초급' | '중급' | '고급';
+const TabLevel = ({ lessonData }: { lessonData: LessonDetailApiResponse }) => {
+  const { level, recommendation } = lessonData;
 
-const TabLevel = () => {
-  const { level, levelDetail, recommendation } = LESSON_DATA as {
-    level: LessonLevelType;
-    levelDetail: string;
-    recommendation: string;
-  };
+  // 영 -> 한
+  const translatedLevel = levelMapping[level] || level;
 
-  // lessonLevel에 해당하는 인덱스를 찾기
-  const levelData = LEVEL.find((item) => item.title === level);
+  const levelData = LEVEL.find((item) => item.title === translatedLevel);
 
   return (
     <Flex direction="column" gap="3.6rem">
@@ -25,11 +21,11 @@ const TabLevel = () => {
         <Card>
           <Flex gap="0.8rem" align="center">
             {levelData?.icon || <IcLevelStarter width={'3.6rem'} />}
-            <Head level="h6" tag="h6">
-              {level}
+            <Head level="h6" tag="h6" className={levelStyle}>
+              {translatedLevel}
             </Head>
             <Text tag="b8" color="gray8">
-              {levelDetail}
+              {levelData?.description}
             </Text>
           </Flex>
         </Card>
@@ -43,8 +39,8 @@ const TabLevel = () => {
         </Flex>
       </Flex>
       <Flex direction="column" gap="1.2rem">
-        <Flex justify="flexStart" align="center" gap="0.8rem">
-          <IcClose width={'2.4rem'} />
+        <Flex justify="flexStart" align="center" gap="0.4rem">
+          <IcSparkleMain20 width={'2.4rem'} />
           <Head level="h5" tag="h6">
             이런 분들에게 해당 클래스를 추천해요!
           </Head>

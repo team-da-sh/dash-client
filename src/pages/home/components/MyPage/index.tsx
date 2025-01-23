@@ -11,16 +11,22 @@ interface MyPageProps {
 }
 
 const MyPage = ({ showMyPage, onClose }: MyPageProps) => {
-  const { data: userData, isError } = useGetMyPage();
-  const { data: role } = useGetRole();
+  const { data: userData } = useGetMyPage({
+    enabled: showMyPage,
+  });
+  const { data: role } = useGetRole({
+    enabled: showMyPage,
+  });
 
-  console.log('이게 role', role);
+  const defaultData = {
+    profileImageUrl: '',
+    nickname: '',
+    reservationCount: 0,
+    favoriteCount: 0,
+    lessonCount: null,
+  };
 
-  if (isError || !userData) {
-    return <div>에러 발생</div>;
-  }
-
-  const isInstructor = role === 'TEACHER';
+  const isInstructor = role?.role === 'TEACHER';
 
   const handleClickOutside = (e: React.MouseEvent) => {
     if (e.target === e.currentTarget) {
@@ -28,16 +34,12 @@ const MyPage = ({ showMyPage, onClose }: MyPageProps) => {
     }
   };
 
-  if (showMyPage) {
-    document.body.style.overflow = 'hidden';
-  } else {
-    document.body.style.overflow = '';
-  }
+  document.body.style.overflow = showMyPage ? 'hidden' : '';
 
   return (
     <div onClick={handleClickOutside} className={showMyPage ? styles.visibleStyle : styles.invisibleStyle}>
       <div className={styles.wrapperStyle}>
-        <TopSection userData={userData} onClose={onClose} isInstructor={isInstructor} />
+        <TopSection userData={userData || defaultData} onClose={onClose} isInstructor={isInstructor} />
         <Divider length="100%" color="gray1" thickness={8} />
         <BottomSection isInstructor={isInstructor} />
       </div>

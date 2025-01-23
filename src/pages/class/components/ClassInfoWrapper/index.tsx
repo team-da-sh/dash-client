@@ -1,16 +1,22 @@
 import { useNavigate } from 'react-router-dom';
-import { profileStyle, lessonNameStyle, cardStyle, thunderIconStyle } from '@/pages/class/components/ClassInfoWrapper/index.css';
-import { LESSON_DATA } from '@/pages/class/mocks/mockLessonData';
+import {
+  profileStyle,
+  lessonNameStyle,
+  cardStyle,
+  thunderIconStyle,
+} from '@/pages/class/components/ClassInfoWrapper/index.css';
+import { LessonDetailApiResponse } from '@/pages/class/types/index';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Tag from '@/components/Tag';
 import Text from '@/components/Text';
 import { calculateDday } from '@/utils/dateCalculate';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
+import { genreMapping } from '@/constants/index';
 import { IcThunderMain0424 } from '@/assets/svg';
 import { vars } from '@/styles/theme.css';
 
-const ClassInfoWrapper = () => {
+const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetailApiResponse }) => {
   const {
     genre,
     name,
@@ -22,7 +28,8 @@ const ClassInfoWrapper = () => {
     maxReservationCount,
     reservationCount,
     status,
-  } = LESSON_DATA;
+  } = lessonData;
+  const translatedGenre = genreMapping[genre] || genre;
 
   // 각 회차에 대해 D-Day 계산
   const dDay = status === 'EXPIRED' || status === 'OVER_BOOKED' ? '마감' : calculateDday(lessonRounds[0].startDateTime);
@@ -40,8 +47,9 @@ const ClassInfoWrapper = () => {
 
   const navigate = useNavigate();
 
-  const handleTeacherClick = () => {
-    navigate(`${ROUTES_CONFIG.dancer.path}${teacherId}`);
+  const handleTeacherClick = (dancerId: number) => {
+    const path = ROUTES_CONFIG.dancer.path(dancerId.toString());
+    navigate(path);
   };
 
   return (
@@ -49,7 +57,7 @@ const ClassInfoWrapper = () => {
       <Flex gap="0.4rem" marginBottom="1.2rem">
         <Tag type="genre" size="medium">
           <Text tag="b7" color="white">
-            {genre}
+            {translatedGenre}
           </Text>
         </Tag>
         <Tag type="deadline" size="medium">
@@ -63,7 +71,7 @@ const ClassInfoWrapper = () => {
         {name}
       </Head>
 
-      <Flex align="center" gap="0.8rem" onClick={handleTeacherClick}>
+      <Flex align="center" gap="0.8rem" onClick={() => handleTeacherClick(teacherId)}>
         <img src={teacherImageUrl} alt={`${teacherNickname} 프로필`} className={profileStyle} />
         <Text tag="b2" color="gray9">
           {teacherNickname}

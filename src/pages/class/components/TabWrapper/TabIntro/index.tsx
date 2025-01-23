@@ -1,10 +1,10 @@
 import { introTextStyle } from '@/pages/class/components/TabWrapper/TabIntro/index.css';
+import { LessonDetailApiResponse } from '@/pages/class/types/index';
 import Flex from '@/components/Flex';
 import Text from '@/components/Text';
-import { LESSON_DATA } from '@/pages/class/mocks/mockLessonData';
 
-const TabIntro = () => {
-  const { detail } = LESSON_DATA;
+const TabIntro = ({ lessonData }: { lessonData: LessonDetailApiResponse }) => {
+  const { detail } = lessonData;
 
   return (
     <Flex paddingTop="0.8rem">

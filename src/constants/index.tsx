@@ -6,6 +6,8 @@ import TabEducation from '@/pages/dancer/components/TabWrapper/TabEducation';
 import TabHistory from '@/pages/dancer/components/TabWrapper/TabExperience';
 import TabVideo from '@/pages/dancer/components/TabWrapper/TabVideo';
 import { IcLevelAdvanced, IcLevelBasic, IcLevelIntermediate, IcLevelStarter } from '@/assets/svg';
+import { LessonDetailApiResponse } from "@/pages/class/types";
+import { DancerDetailApiResponse } from "@/pages/dancer/types";
 
 export const LEVEL = [
   {
@@ -47,25 +49,17 @@ export const GENRE_CATEGORY = [
   ],
 ];
 
-export type StatusType = 'OPEN' | 'EXPIRED' | 'OVER_BOOKED';
-
-export const BUTTON_CONFIG: Record<StatusType, { text: string; isDisabled: boolean }> = {
-  OPEN: { text: '신청하기', isDisabled: false },
-  EXPIRED: { text: '신청 완료', isDisabled: true },
-  OVER_BOOKED: { text: '클래스 마감', isDisabled: true },
-};
-
 export const DANCER_TABS = [
-  { id: 1, label: '학력', component: <TabEducation /> },
-  { id: 2, label: '경력', component: <TabHistory /> },
-  { id: 3, label: '영상', component: <TabVideo /> },
+  { id: 1, label: '학력', component: (dancerData: DancerDetailApiResponse) => <TabEducation dancerData={dancerData} /> },
+  { id: 2, label: '경력', component: (dancerData: DancerDetailApiResponse) => <TabHistory dancerData={dancerData} /> },
+  { id: 3, label: '영상', component: (dancerData: DancerDetailApiResponse) => <TabVideo dancerData={dancerData} /> },
 ];
 
 export const CLASS_TABS = [
-  { id: 1, label: '소개', component: <TabIntro /> },
-  { id: 2, label: '난이도', component: <TabLevel /> },
-  { id: 3, label: '기간', component: <TabPeriod /> },
-  { id: 4, label: '위치', component: <TabLocationInfo /> },
+  { id: 1, label: '소개', component: (lessonData: LessonDetailApiResponse) => <TabIntro lessonData={lessonData} /> },
+  { id: 2, label: '난이도', component: (lessonData: LessonDetailApiResponse) => <TabLevel lessonData={lessonData} /> },
+  { id: 3, label: '기간', component: (lessonData: LessonDetailApiResponse) => <TabPeriod lessonData={lessonData} /> },
+  { id: 4, label: '위치', component: (lessonData: LessonDetailApiResponse) => <TabLocationInfo lessonData={lessonData} /> },
 ];
 
 // 장르 영한 변환
@@ -95,7 +89,7 @@ export const levelMapping: { [key: string]: string } = {
 // 장르 한영 변환
 export const genreEngMapping: { [key: string]: string } = {
   힙합: 'HIPHOP',
-  피메일힙합: 'FEMALE_HIPHOP',
+  '피메일 힙합': 'FEMALE_HIPHOP',
   팝핑: 'POPPING',
   브레이킹: 'BRAKING',
   왁킹: 'WAACKING',
@@ -105,7 +99,7 @@ export const genreEngMapping: { [key: string]: string } = {
   크럼프: 'KRUMP',
   소울: 'SOUL',
   코레오그래피: 'CHOREOGRAPHY',
-  케이팝: 'KPOP',
+  'K-POP': 'KPOP',
 };
 
 // 레벨 한영 변환
@@ -140,3 +134,23 @@ export const TIME_RANGE = [
 ];
 
 export const CLASS_REGISTER_TOTAL_STEP = 2;
+
+export const BUTTON_TEXT = {
+  EXPIRED: '클래스 마감',
+  OVER_BOOKED: '클래스 마감',
+  OPEN: {
+    BOOKED: '신청 완료',
+    AVAILABLE: '신청하기',
+  },
+} as const;
+
+export const DISABLED_STATUS = {
+  EXPIRED: true,
+  OVER_BOOKED: true,
+  OPEN: {
+    BOOKED: true,
+    AVAILABLE: false,
+  },
+} as const;
+
+export const YOUTUBE_URL_REGEX = /(?:youtube\.com\/.*v=|youtu\.be\/)([^&]+)/;

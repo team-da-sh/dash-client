@@ -7,6 +7,7 @@ import Text from '@/components/Text';
 import { formatLessonDateRange } from '@/utils/timeCalculate';
 import { getClassStatus } from '@/utils/timeCalculate';
 import { IcArrowRightGray0614, IcClassEndMain0324, IcClassIngMain0324, IcClassSoonMain0324 } from '@/assets/svg';
+import { genreMapping, levelMapping } from '@/constants';
 
 const ClassCard = ({
   lessonName,
@@ -15,6 +16,7 @@ const ClassCard = ({
   lessonLevel,
   lessonLocation,
   lessonStartDateTime,
+  lessonDetailedAddress,
   lessonEndDateTime,
   isReservation = true,
   children,
@@ -61,6 +63,10 @@ const ClassCard = ({
     }
   };
 
+  const handleTextClick = () => {
+    window.open('https://forms.gle/JMYzQGxEdVHVogsE6', '_blank');
+  };
+
   return (
     <div className={styles.cardContainerStyle}>
       <Flex justify="spaceBetween" align="center">
@@ -79,7 +85,7 @@ const ClassCard = ({
 
         {isReservation && (
           <Flex align="center" gap="0.2rem">
-            <Text tag="b7" color="gray7">
+            <Text tag="b7" color="gray7" onClick={handleTextClick}>
               문의하기
             </Text>
             <IcArrowRightGray0614 width="1.4rem" height="1.4rem" />
@@ -92,10 +98,10 @@ const ClassCard = ({
         <Flex direction="column" gap="0.8rem">
           <Flex gap="0.3rem">
             <Tag type="genre" size="small">
-              {lessonGenre}
+              {lessonGenre && genreMapping[lessonGenre]}
             </Tag>
             <Tag type="level" size="small">
-              {lessonLevel}
+              {lessonLevel && levelMapping[lessonLevel]}
             </Tag>
           </Flex>
           <Head level="h2" tag="h6">
@@ -108,7 +114,9 @@ const ClassCard = ({
               </Text>
               <Text tag="c1" color="gray9">
                 <Text tag="c1" color="gray9">
-                  {formatLessonDateRange(lessonStartDateTime, lessonEndDateTime)}
+                  {lessonStartDateTime &&
+                    lessonEndDateTime &&
+                    formatLessonDateRange(lessonStartDateTime, lessonEndDateTime)}
                 </Text>
               </Text>
             </Flex>
@@ -117,7 +125,8 @@ const ClassCard = ({
                 장소
               </Text>
               <Text tag="c1" color="gray9">
-                {lessonLocation}
+                {lessonLocation}&nbsp;
+                {lessonDetailedAddress}
               </Text>
             </Flex>
           </Flex>

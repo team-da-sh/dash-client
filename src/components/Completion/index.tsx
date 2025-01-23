@@ -2,7 +2,7 @@ import { clearStyle, flexCustomStyle } from '@/components/Completion/index.css';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Text from '@/components/Text';
-import clear from '@/assets/images/clear.gif';
+import { ClearGif } from '@/assets/gif';
 
 interface CompletionProps {
   title: string;
@@ -24,7 +24,7 @@ const Completion = ({ title, subTitle, description }: CompletionProps) => {
       <Text tag="b2" color="gray7">
         {description}
       </Text>
-      <img src={clear} alt="완료 페이지 캐릭터" className={clearStyle} />
+      <img src={ClearGif} alt="완료 페이지 캐릭터" className={clearStyle} />
     </Flex>
   );
 };

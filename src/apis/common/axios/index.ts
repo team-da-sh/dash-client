@@ -11,20 +11,7 @@ export const postImage = async (formData: FormData) => {
 };
 
 export const postRole = async () => {
-  // TODO. 토큰 추후 변경하기
-  // const token = localStorage.getItem('accessToken');
-
-  const token = import.meta.env.VITE_ACCESS_TOKEN;
-
-  const { data } = await instance.post(
-    API_URL.AUTH_ROLE,
-    {},
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
+  const { data } = await instance.post(API_URL.AUTH_ROLE);
 
   return data;
 };

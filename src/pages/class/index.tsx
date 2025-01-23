@@ -1,15 +1,35 @@
+import { useParams } from 'react-router-dom';
 import ClassButtonWrapper from '@/pages/class/components/ClassButtonWrapper';
 import ClassHeader from '@/pages/class/components/ClassHeader';
 import ClassInfoWrapper from '@/pages/class/components/ClassInfoWrapper';
 import TabWrapper from '@/pages/class/components/TabWrapper';
 import { headerStyle } from '@/pages/class/index.css';
+import Error from '@/pages/error';
 import Divider from '@/components/Divider';
-import { useIntersect } from '@/utils/useIntersect';
-import { LESSON_DATA } from '@/pages/class/mocks/mockLessonData';
+import { useGetLessonDetail } from '@/apis/class/queries';
+import { useIntersectCallback } from '@/utils/useIntersectCallback';
 
 const Class = () => {
-  const [targetRef, isVisible] = useIntersect(false);
-  const { imageUrl } = LESSON_DATA;
+  const { id } = useParams<{ id: string }>();
+  const [targetRef, isVisible] = useIntersectCallback(false);
+
+  if (!id) {
+    return <Error />;
+  }
+
+  const { data, isError, isLoading } = useGetLessonDetail(id);
+
+  if (isLoading) {
+    return <></>;
+  }
+
+  if (isError || !data) {
+    return <Error />;
+  }
+
+
+  const imageUrl = data.imageUrl;
+
   return (
     <>
       <div
@@ -17,14 +37,14 @@ const Class = () => {
         className={headerStyle}
         style={{
           backgroundImage: `url(${imageUrl})`,
-        }}
-      />
-      <ClassHeader isVisible={isVisible} />
+        }}>
+        <ClassHeader isVisible={isVisible} lessonName={data.name} />
+      </div>
 
-      <ClassInfoWrapper />
+      <ClassInfoWrapper lessonData={data} />
       <Divider direction="horizontal" color="gray1" length="100%" thickness="1.2rem" />
-      <TabWrapper colorScheme="primary" />
-      <ClassButtonWrapper />
+      <TabWrapper colorScheme="primary" lessonData={data} />
+      <ClassButtonWrapper lessonData={data} />
     </>
   );
 };
