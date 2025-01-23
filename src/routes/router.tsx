@@ -13,8 +13,8 @@ import MyPageReservationDetail from '@/pages/mypage/mypageReservationDetail';
 import Onboarding from '@/pages/onboarding';
 import Reservation from '@/pages/reservation';
 import { CheckoutPage } from '@/pages/reservation/components/TossPayments/CheckOut/CheckOut';
-import { FailPage } from '@/pages/reservation/components/TossPayments/Fail';
-import { SuccessPage } from '@/pages/reservation/components/TossPayments/Success';
+import { FailPage } from '@/pages/reservation/components/TossPayments/Fail/Fail';
+import { SuccessPage } from '@/pages/reservation/components/TossPayments/Success/Success';
 import Search from '@/pages/search';
 import { ROUTES_CONFIG } from './routesConfig';
 
