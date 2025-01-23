@@ -80,7 +80,7 @@ const Reservation = () => {
             lessonLocation={data.lessonLocation}
             teacherName={data.teacherName}
             lessonLevel={data.lessonLevel}
-            lessonRound={data.lessonRound}
+            lessonRound={data?.lessonRound}
           />
         </Flex>
         <Flex direction="column" width="100%" gap="1.6rem">
