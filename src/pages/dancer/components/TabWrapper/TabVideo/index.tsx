@@ -1,14 +1,18 @@
-import { videoWrapperStyle, videoItemStyle, iframeStyle } from '@/pages/dancer/components/TabWrapper/TabVideo/index.css';
+import {
+  videoWrapperStyle,
+  videoItemStyle,
+  iframeStyle,
+} from '@/pages/dancer/components/TabWrapper/TabVideo/index.css';
+import { DancerDetailApiResponse } from '@/pages/dancer/types';
 import Flex from '@/components/Flex';
-import { DANCER_DATA } from '@/pages/dancer/mocks/mockDancerData';
+import { getYoutubeEmbedUrl } from '@/constants/regex';
 
-const TabVideo = () => {
-  const { videoUrls } = DANCER_DATA;
+interface TabVideoProps {
+  dancerData: DancerDetailApiResponse;
+}
 
-  const getYoutubeEmbedUrl = (url: string) => {
-    const videoId = url.match(/(?:youtube\.com\/.*v=|youtu\.be\/)([^&]+)/)?.[1];
-    return videoId ? `https://www.youtube.com/embed/${videoId}` : null;
-  };
+const TabVideo = ({ dancerData }: TabVideoProps) => {
+  const { videoUrls } = dancerData;
 
   return (
     <Flex justify="center">
@@ -22,7 +26,8 @@ const TabVideo = () => {
                 src={embedUrl || ''}
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
-                title={`video-${id}`}/>
+                title={`video-${id}`}
+              />
             </div>
           );
         })}

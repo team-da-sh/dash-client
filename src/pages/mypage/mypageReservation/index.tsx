@@ -6,29 +6,23 @@ import Flex from '@/components/Flex';
 import Header from '@/components/Header';
 import Text from '@/components/Text';
 import { notify } from '@/components/Toast';
-import { MOCK_RESERVATION_DATA } from '@/mocks/mockReservationData';
-import { ReservationCardProps } from '@/types/reservationTypes';
+import { useGetReservations } from '@/apis/myPageReservation/queries';
+import { ROUTES_CONFIG } from '@/routes/routesConfig';
+import { Reservation } from '@/types/reservationTypes';
 
 const MyPageReservation = () => {
   const navigate = useNavigate();
 
-  /* API 연결 작업 필요! 추후 수정.
-    const { data, isLoading, isError } = 쿼리리
+  const { data: reservationData } = useGetReservations();
 
-  if (isLoading) {
-    return <div>로딩 중...</div>;
-  }
-
-  if (isError) {
-    return <div>예약 내역 데이터를 불러오는 중 오류가 발생했습니다.</div>;
-  }
-  */
-
-  const handleDetailClick = (reservationId: number) => {
-    navigate(`/mypage/reservation/${reservationId}`);
+  const handleDetailClick = (reservationId: number | undefined) => {
+    if (reservationId !== undefined) {
+      const path = ROUTES_CONFIG.mypageReservationDetail.path(reservationId.toString());
+      navigate(path);
+    } else {
+      navigate(ROUTES_CONFIG.error.path);
+    }
   };
-
-  const totalReservation = MOCK_RESERVATION_DATA.reservations.length;
 
   return (
     <div className={layoutStyle}>
@@ -38,22 +32,36 @@ const MyPageReservation = () => {
       </Header.Root>
 
       <div className={containerStyle}>
-        <Text tag="b2" color="gray9">
-          전체 {totalReservation}
-        </Text>
-        <Flex direction="column" gap="1.2rem" marginTop="1.6rem">
-          {MOCK_RESERVATION_DATA.reservations.map((reservation: ReservationCardProps) => (
-            <ClassCard key={reservation.reservationId} {...reservation}>
-              <BoxButton onClick={notify} variant="temp">
-                취소하기
-              </BoxButton>
+        {reservationData && (
+          <Text tag="b2" color="gray9">
+            전체 {reservationData?.reservations.length}
+          </Text>
+        )}
 
-              <BoxButton variant="outline" onClick={() => handleDetailClick(reservation.reservationId)}>
-                상세보기
-              </BoxButton>
-            </ClassCard>
-          ))}
-        </Flex>
+        {reservationData?.reservations?.length && (
+          <Flex direction="column" gap="1.2rem" marginTop="1.6rem">
+            {reservationData.reservations.map((reservation: Reservation) => (
+              <ClassCard
+                key={reservation.reservationId}
+                lessonName={reservation.name}
+                lessonImageUrl={reservation.imageUrl}
+                lessonGenre={reservation.genre}
+                lessonLevel={reservation.level}
+                lessonLocation={reservation.location}
+                lessonStartDateTime={reservation.startDateTime}
+                lessonEndDateTime={reservation.endDateTime}
+                isReservation={true}>
+                <BoxButton onClick={notify} variant="temp">
+                  취소하기
+                </BoxButton>
+
+                <BoxButton variant="outline" onClick={() => handleDetailClick(reservation.reservationId)}>
+                  상세보기
+                </BoxButton>
+              </ClassCard>
+            ))}
+          </Flex>
+        )}
       </div>
     </div>
   );

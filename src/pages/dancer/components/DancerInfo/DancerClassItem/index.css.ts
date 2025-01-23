@@ -1,3 +1,4 @@
+import { vars } from "@/styles/theme.css";
 import { style } from '@vanilla-extract/css';
 
 export const wrapperStyle = style({
@@ -9,6 +10,7 @@ export const classImageStyle = style({
   height: '9.1rem',
 
   borderRadius: '4px',
+  backgroundColor: vars.colors.gray02
 });
 
 export const deadlineTagStyle = style({

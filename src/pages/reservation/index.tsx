@@ -16,7 +16,6 @@ import {
   bottomButtonStyle,
   agreementTextStyle,
 } from '@/pages/reservation/index.css';
-import { LessonRoundProps } from '@/pages/reservation/types';
 import BoxButton from '@/components/BoxButton';
 import Divider from '@/components/Divider';
 import Flex from '@/components/Flex';
@@ -26,6 +25,7 @@ import Text from '@/components/Text';
 import { useGetReservaion } from '@/apis/reservation/queries';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { IcCheckcircleGray0524, IcCheckcircleMain0324 } from '@/assets/svg';
+import { LessonRoundProps } from "./types";
 
 const Reservation = () => {
   const [isAllChecked, setIsAllChecked] = useState(false);
@@ -49,9 +49,6 @@ const Reservation = () => {
     return <Error />;
   }
 
-  const handleButtonClick = () => {
-    navigate(ROUTES_CONFIG.home.path);
-  };
   // 전체 체크박스, 상태 동기화
   const handleToggleAll = () => {
     const newState = !isAllChecked;
@@ -74,6 +71,10 @@ const Reservation = () => {
     endDateTime: round.endDateTime,
   }));
 
+  const handleButtonClick = () => {
+    navigate(ROUTES_CONFIG.payments.path);
+  };
+  
   return (
     <Flex direction="column" width="100%" className={reservationStyle}>
       <div className={headerStyle}>
