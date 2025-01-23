@@ -7,12 +7,13 @@ import {
   locationListContainerStyle,
   searchInputContainerStyle,
   searchInputIconStyle,
+  selectedLocationContainerStyle,
 } from '@/pages/instructor/classRegister/ClassPlace/index.css';
 import Description from '@/pages/instructor/classRegister/Description';
 import Flex from '@/components/Flex';
 import Input from '@/components/Input';
 import Text from '@/components/Text';
-import { BtnCheck, IcSearchGray } from '@/assets/svg';
+import { BtnCheck, IcSearchGray, IcXCircleGray0424 } from '@/assets/svg';
 
 interface Location {
   location: string;
@@ -32,8 +33,9 @@ interface ClassPlaceProps {
   handleDefaultPlace: (e: ChangeEvent<HTMLInputElement>) => void;
   handleDetailPlace: (e: ChangeEvent<HTMLInputElement>) => void;
   handleSubmitDefaultPlace: () => void;
+  selectedLocation: Location | null;
   locationList: LocationsData;
-  setSelectedLocation: (location: Location) => void;
+  setSelectedLocation: (location: Location | null) => void;
 }
 
 const ClassPlace = ({
@@ -44,6 +46,7 @@ const ClassPlace = ({
   handleDefaultPlace,
   handleDetailPlace,
   handleSubmitDefaultPlace,
+  selectedLocation,
   locationList,
   setSelectedLocation,
 }: ClassPlaceProps) => {
@@ -62,45 +65,51 @@ const ClassPlace = ({
           )}
         </Flex>
       </Flex>
+
       {hasLocation && (
         <Flex width="100%" direction="column" gap="0.8rem">
-          <div className={searchInputContainerStyle}>
-            <Input
-              value={defaultPlace}
-              onChange={handleDefaultPlace}
-              placeholder="지번, 도로명, 건물명으로 검색해 주세요"
-            />
-            {/* {defaultPlace ? (
-            <IcXCircleGray0424 width={'2.4rem'} className={searchInputIconStyle} />
-          ) : ( */}
-            <IcSearchGray
-              width={'2.4rem'}
-              className={searchInputIconStyle}
-              onClick={() => handleSubmitDefaultPlace()}
-            />
-            {/* )} */}
-          </div>
-
-          {/* <button onClick={() => handleSubmitDefaultPlace()}>버튼</button> */}
-          {locationList && (
-            <Flex direction="column" gap="1rem" className={locationListContainerStyle}>
-              <Flex direction="column" gap="1rem" width="100%">
-                {locationList.locations.map((item, idx) => (
-                  <div key={idx} onClick={() => setSelectedLocation(item)} className={locationItemContainerStyle}>
-                    {idx !== 0 && <div className={dividerStyle} />}
-                    <Flex direction="column" width="100%">
-                      <Text tag="b5" color="gray10">
-                        {item.location}
-                      </Text>
-                      <Text tag="b9" color="gray5">
-                        {item.streetAddress}
-                      </Text>
-                    </Flex>
-                  </div>
-                ))}
-              </Flex>
+          {selectedLocation ? (
+            <Flex justify="spaceBetween" align="center" width="100%" className={selectedLocationContainerStyle}>
+              <Text>{selectedLocation.location}</Text>
+              <IcXCircleGray0424 width={'2.4rem'} onClick={() => setSelectedLocation(null)} />
             </Flex>
+          ) : (
+            <>
+              <div className={searchInputContainerStyle}>
+                <Input
+                  value={defaultPlace}
+                  onChange={handleDefaultPlace}
+                  placeholder="지번, 도로명, 건물명으로 검색해 주세요"
+                />
+                <IcSearchGray
+                  width={'2.4rem'}
+                  className={searchInputIconStyle}
+                  onClick={() => handleSubmitDefaultPlace()}
+                />
+              </div>
+
+              {locationList && (
+                <Flex direction="column" gap="1rem" className={locationListContainerStyle}>
+                  <Flex direction="column" gap="1rem" width="100%">
+                    {locationList.locations.map((item, idx) => (
+                      <div key={idx} onClick={() => setSelectedLocation(item)} className={locationItemContainerStyle}>
+                        {idx !== 0 && <div className={dividerStyle} />}
+                        <Flex direction="column" width="100%">
+                          <Text tag="b5" color="gray10">
+                            {item.location}
+                          </Text>
+                          <Text tag="b9" color="gray5">
+                            {item.streetAddress}
+                          </Text>
+                        </Flex>
+                      </div>
+                    ))}
+                  </Flex>
+                </Flex>
+              )}
+            </>
           )}
+
           <Input
             value={detailPlace}
             onChange={handleDetailPlace}

@@ -43,6 +43,12 @@ export const checkboxStyle = style({
   cursor: 'pointer',
 });
 
+export const selectedLocationContainerStyle = style({
+  backgroundColor: vars.colors.gray01,
+  borderRadius: '4px',
+  padding: '1.4rem 2rem',
+});
+
 export const searchInputContainerStyle = style({
   width: '100%',
   position: 'relative',

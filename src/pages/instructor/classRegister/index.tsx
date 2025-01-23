@@ -42,17 +42,19 @@ interface ClassRegisterInfoTypes {
   times: ClassTimeTypes[];
 }
 
+interface LocationTypes {
+  location: string;
+  streetAddress: string;
+  oldStreetAddress: string;
+}
+
 export interface RepresentImageUrlsTypes {
   imageUrls: string;
 }
 
 const ClassRegister = () => {
   const { isBottomSheetOpen, openBottomSheet, closeBottomSheet } = useBottomSheet();
-  const [selectedLocation, setSelectedLocation] = useState({
-    location: '',
-    streetAddress: '',
-    oldStreetAddress: '',
-  });
+  const [selectedLocation, setSelectedLocation] = useState<LocationTypes | null>(null);
   const { mutate: classRegisterMutate } = usePostClassRegisterInfo();
   const {
     explainTextAreaRef,
@@ -97,10 +99,10 @@ const ClassRegister = () => {
         level: levelEngMapping[selectedLevelTitle],
         recommendation: recommend,
         price: Number(amount),
-        location: hasLocation ? selectedLocation.location : null,
-        streetAddress: selectedLocation.streetAddress,
-        oldStreetAddress: selectedLocation.oldStreetAddress,
-        detailedAddress: detailPlace,
+        location: hasLocation ? (selectedLocation?.location ?? null) : null,
+        streetAddress: hasLocation ? (selectedLocation?.streetAddress ?? null) : null,
+        oldStreetAddress: hasLocation ? (selectedLocation?.oldStreetAddress ?? null) : null,
+        detailedAddress: hasLocation ? detailPlace : null,
         times: [{ startTime: '2025-01-13T12:34:56Z', endTime: '2025-01-13T12:34:56Z' }],
       };
       classRegisterMutate(updatedInfo);
@@ -156,6 +158,7 @@ const ClassRegister = () => {
             handleDefaultPlace={handleDefaultPlace}
             handleDetailPlace={handleDetailPlace}
             handleSubmitDefaultPlace={handleSubmitDefaultPlace}
+            selectedLocation={selectedLocation}
             setSelectedLocation={setSelectedLocation}
             locationList={locationList}
           />
