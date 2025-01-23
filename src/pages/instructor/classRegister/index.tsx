@@ -9,7 +9,7 @@ import ClassPlace from '@/pages/instructor/classRegister/components/ClassPlace';
 import ClassRecommend from '@/pages/instructor/classRegister/components/ClassRecommend';
 import ClassRepresentImage from '@/pages/instructor/classRegister/components/ClassRepresentImage';
 import * as styles from '@/pages/instructor/classRegister/index.css';
-import { ClassRegisterInfoTypes, LocationTypes, RepresentImageUrlsTypes } from '@/pages/instructor/classRegister/types';
+import { ClassRegisterInfoTypes, LocationTypes } from '@/pages/instructor/classRegister/types';
 import { buttonContainerStyle } from '@/pages/instructorRegister/index.css';
 import BoxButton from '@/components/BoxButton';
 import Header from '@/components/Header';
@@ -99,8 +99,13 @@ const ClassRegister = () => {
     }
   };
 
-  const { imgFile, previewImg, imgRef, handleUploaderClick, uploadImgFile, deleteImgFile } =
-    useImageUploader<RepresentImageUrlsTypes>(handleImageUploadSuccess, setImageUrls);
+  const handleDeleteUrl = () => {
+    setImageUrls({ imageUrls: '' });
+  };
+  const { imgFile, previewImg, imgRef, handleUploaderClick, uploadImgFile, deleteImgFile } = useImageUploader(
+    handleImageUploadSuccess,
+    handleDeleteUrl
+  );
 
   const { data: locationList } = useGetLocationList(submitDefaultPlace);
 
