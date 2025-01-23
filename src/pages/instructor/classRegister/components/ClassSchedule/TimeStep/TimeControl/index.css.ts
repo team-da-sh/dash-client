@@ -7,7 +7,7 @@ export const buttonStyle = style({
   justifyContent: 'center',
   alignItems: 'center',
 
-  width: '10.5rem',
+  width: '100%',
   height: '3.2rem',
   padding: '0rem 1rem',
 
@@ -21,7 +21,7 @@ export const timeValueWrapperStyle = style({
   justifyContent: 'center',
   alignItems: 'center',
 
-  width: '10.5rem',
+  width: '100%',
   padding: '1.2rem 1rem',
 
   borderRadius: '4px',

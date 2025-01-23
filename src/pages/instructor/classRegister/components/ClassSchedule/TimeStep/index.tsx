@@ -31,12 +31,12 @@ const TimeStep = ({
   };
 
   return (
-    <Flex direction="column" paddingLeft="2rem" paddingRight="2rem">
+    <Flex direction="column">
       <Head level="h2" tag="h6">
         클래스 시작 시간
       </Head>
 
-      <Flex justify="center" gap="1rem" paddingTop="1.6rem" paddingBottom="2.4rem">
+      <Flex justify="center" gap="1rem" paddingTop="1.6rem" paddingBottom="2.4rem" width="100%">
         <TimeControl
           label="hour"
           value={hour}
