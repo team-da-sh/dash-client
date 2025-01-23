@@ -13,6 +13,9 @@ import MyPageReservation from '@/pages/mypage/mypageReservation';
 import MyPageReservationDetail from '@/pages/mypage/mypageReservationDetail';
 import Onboarding from '@/pages/onboarding';
 import Reservation from '@/pages/reservation';
+import { CheckoutPage } from '@/pages/reservation/components/TossPayments/CheckOut/CheckOut';
+import { FailPage } from '@/pages/reservation/components/TossPayments/Fail/Fail';
+import { SuccessPage } from '@/pages/reservation/components/TossPayments/Success/Success';
 import Search from '@/pages/search';
 import { ROUTES_CONFIG } from './routesConfig';
 
@@ -38,15 +41,15 @@ export const router = createBrowserRouter([
     element: <Search />,
   },
   {
-    path: ROUTES_CONFIG.class.path,
+    path: ROUTES_CONFIG.class.path(':id'),
     element: <Class />,
   },
   {
-    path: ROUTES_CONFIG.dancer.path,
+    path: ROUTES_CONFIG.dancer.path(':id'),
     element: <Dancer />,
   },
   {
-    path: ROUTES_CONFIG.reservation.path,
+    path: ROUTES_CONFIG.reservation.path(':id'),
     element: <Reservation />,
   },
   {
@@ -54,7 +57,7 @@ export const router = createBrowserRouter([
     element: <MyPageReservation />,
   },
   {
-    path: ROUTES_CONFIG.mypageReservationDetail.path,
+    path: ROUTES_CONFIG.mypageReservationDetail.path(':id'),
     element: <MyPageReservationDetail />,
   },
   {
@@ -72,6 +75,18 @@ export const router = createBrowserRouter([
   {
     path: ROUTES_CONFIG.instructorClassList.path,
     element: <ClassList />,
+  },
+  {
+    path: ROUTES_CONFIG.payments.path,
+    element: <CheckoutPage />,
+  },
+  {
+    path: ROUTES_CONFIG.paymentsSuccess.path,
+    element: <SuccessPage />,
+  },
+  {
+    path: ROUTES_CONFIG.paymentsFail.path,
+    element: <FailPage />,
   },
   {
     path: ROUTES_CONFIG.error.path,

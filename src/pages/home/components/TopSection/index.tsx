@@ -72,7 +72,10 @@ const TopSection = ({ userData, onClose, isInstructor }: TopSectionProps) => {
       <Flex paddingTop="2.4rem" paddingLeft="3.2rem" paddingRight="3.2rem" gap="2.1rem">
         <Flex align="center" onClick={() => handleNavigate(ROUTES_CONFIG.mypageReservation.path)}>
           <Flex direction="column" align="center" gap="0.5rem">
-            <Head tag="h4" color={getTextColor(userData.reservationCount)}>
+            <Head
+              tag="h4"
+              color={getTextColor(userData.reservationCount)}
+              className={userData.lessonCount === 0 ? styles.disabledStyle : ''}>
               {userData.reservationCount}
             </Head>
             <Text tag="b6" color={getTextColor(userData.reservationCount)}>
@@ -83,7 +86,7 @@ const TopSection = ({ userData, onClose, isInstructor }: TopSectionProps) => {
 
         <Divider direction="vertical" color="gray2" length={32} thickness={1} />
 
-        {/* 관심목록 우선 disabled 처리리 */}
+        {/* 관심목록 우선 disabled 처리 */}
         <Flex direction="column" align="center" gap="0.5rem" className={styles.disabledStyle}>
           <Head tag="h4" color={getTextColor(userData.favoriteCount)}>
             {userData.favoriteCount}

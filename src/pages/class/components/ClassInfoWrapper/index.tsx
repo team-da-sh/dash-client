@@ -5,7 +5,7 @@ import {
   cardStyle,
   thunderIconStyle,
 } from '@/pages/class/components/ClassInfoWrapper/index.css';
-import { LessonDetail } from '@/pages/class/types/index';
+import { LessonDetailApiResponse } from '@/pages/class/types/index';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Tag from '@/components/Tag';
@@ -16,7 +16,7 @@ import { genreMapping } from '@/constants/index';
 import { IcThunderMain0424 } from '@/assets/svg';
 import { vars } from '@/styles/theme.css';
 
-const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetail }) => {
+const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetailApiResponse }) => {
   const {
     genre,
     name,
@@ -47,8 +47,9 @@ const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetail }) => {
 
   const navigate = useNavigate();
 
-  const handleTeacherClick = () => {
-    navigate(`${ROUTES_CONFIG.dancer.path}${teacherId}`);
+  const handleTeacherClick = (dancerId: number) => {
+    const path = ROUTES_CONFIG.dancer.path(dancerId.toString());
+    navigate(path);
   };
 
   return (
@@ -70,7 +71,7 @@ const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetail }) => {
         {name}
       </Head>
 
-      <Flex align="center" gap="0.8rem" onClick={handleTeacherClick}>
+      <Flex align="center" gap="0.8rem" onClick={() => handleTeacherClick(teacherId)}>
         <img src={teacherImageUrl} alt={`${teacherNickname} 프로필`} className={profileStyle} />
         <Text tag="b2" color="gray9">
           {teacherNickname}

@@ -5,11 +5,11 @@ import { IcSpeaker3D } from '@/assets/svg';
 
 const SearchIntro = () => {
   return (
-    <Flex align="center">
+    <Flex align="center" gap="0.8rem">
       <IcSpeaker3D width={52} />
-      <Flex direction="column">
+      <Flex direction="column" gap="0.4rem">
         <Text tag="b7" color="gray7">
-          원하는 수업뿐만 아니라 원하는 댄서 정보를 얻고 싶다면?
+          어떤 클래스를 들어야 할지 모르겠다면?
         </Text>
         <Flex>
           <Head tag="h6" color="main4">

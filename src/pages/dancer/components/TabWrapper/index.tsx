@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { DancerDetailApiResponse } from '@/pages/dancer/types/index';
 import Flex from '@/components/Flex';
 import { TabButton, TabList, TabPanel, TabRoot } from '@/components/Tab';
 import { vars } from '@/styles/theme.css';
@@ -6,9 +7,10 @@ import { DANCER_TABS } from '@/constants';
 
 interface TabWrapperProps {
   colorScheme: 'primary' | 'secondary';
+  dancerData: DancerDetailApiResponse;
 }
 
-const TabWrapper = ({ colorScheme }: TabWrapperProps) => {
+const TabWrapper = ({ colorScheme, dancerData }: TabWrapperProps) => {
   const [selectedTab, setSelectedTab] = useState(0);
 
   return (
@@ -35,7 +37,7 @@ const TabWrapper = ({ colorScheme }: TabWrapperProps) => {
         borderTop={`1px solid ${vars.colors.gray01}`}>
         {DANCER_TABS.map((tab) => (
           <TabPanel key={tab.id} isSelected={selectedTab === tab.id - 1}>
-            {tab.component}
+            {selectedTab === tab.id - 1 && tab.component(dancerData)}
           </TabPanel>
         ))}
       </Flex>

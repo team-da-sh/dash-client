@@ -7,6 +7,7 @@ import Text from '@/components/Text';
 import { formatLessonDateRange } from '@/utils/timeCalculate';
 import { getClassStatus } from '@/utils/timeCalculate';
 import { IcArrowRightGray0614, IcClassEndMain0324, IcClassIngMain0324, IcClassSoonMain0324 } from '@/assets/svg';
+import { genreMapping, levelMapping } from '@/constants';
 
 const ClassCard = ({
   lessonName,
@@ -96,10 +97,10 @@ const ClassCard = ({
         <Flex direction="column" gap="0.8rem">
           <Flex gap="0.3rem">
             <Tag type="genre" size="small">
-              {lessonGenre}
+              {genreMapping[lessonGenre]}
             </Tag>
             <Tag type="level" size="small">
-              {lessonLevel}
+              {levelMapping[lessonLevel]}
             </Tag>
           </Flex>
           <Head level="h2" tag="h6">
