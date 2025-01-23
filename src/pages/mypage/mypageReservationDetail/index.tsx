@@ -23,23 +23,6 @@ const ClassReservationDetail = () => {
 
   const { status } = getClassStatus(lessonStartDateTime, lessonEndDateTime);
 
-  const defaultData = {
-    detailedAddress: '',
-    lessonName: '',
-    level: '',
-    location: '',
-    name: '',
-    nickname: '',
-    phoneNumber: '',
-    reservationDateTime: '',
-    rounds: [
-      {
-        startDateTime: '',
-        endDateTime: '',
-      },
-    ],
-  };
-
   return (
     <div className={styles.layoutStyle}>
       <Header.Root isColor={true}>
@@ -59,12 +42,12 @@ const ClassReservationDetail = () => {
           </Text>
         </div>
         <ClassInfo
-          name={detailData?.lessonName || defaultData.lessonName}
-          location={detailData?.location || defaultData.location}
-          locationDetail={detailData?.detailedAddress || defaultData.detailedAddress}
-          teacherNickname={detailData?.nickname || defaultData.nickname}
-          level={detailData?.level || defaultData.level}
-          lessonRound={detailData?.rounds || defaultData.rounds}
+          name={detailData?.lessonName}
+          location={detailData?.location}
+          locationDetail={detailData?.detailedAddress}
+          teacherNickname={detailData?.nickname}
+          level={detailData?.level}
+          lessonRound={detailData?.rounds}
         />
         <div className={styles.applicantHeaderStyle}>
           <Text tag="b4" color="gray9">
@@ -72,14 +55,11 @@ const ClassReservationDetail = () => {
           </Text>
         </div>
 
-        <ApplicantInfo
-          bookerName={detailData?.name || defaultData.name}
-          bookerPhoneNumber={detailData?.phoneNumber || defaultData.phoneNumber}
-        />
+        <ApplicantInfo bookerName={detailData?.name} bookerPhoneNumber={detailData?.phoneNumber} />
 
         <Flex marginTop="1.2rem" justify="flexEnd">
           <Text tag="c1" color="gray9">
-            {formatDateTime(detailData?.reservationDateTime || defaultData.reservationDateTime)} 신청 완료
+            {formatDateTime(detailData?.reservationDateTime || '')} 신청 완료
           </Text>
         </Flex>
       </div>

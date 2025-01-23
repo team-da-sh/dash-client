@@ -11,17 +11,23 @@ interface LessonRoundProps {
   startDateTime: string;
   endDateTime: string;
 }
-
 interface ClassInfoProps {
-  name: string;
-  location: string;
-  locationDetail: string;
-  teacherNickname: string;
-  level: string;
-  lessonRound: LessonRoundProps[];
+  name?: string;
+  location?: string;
+  locationDetail?: string;
+  teacherNickname?: string;
+  level?: string;
+  lessonRound?: LessonRoundProps[];
 }
 
-const ClassInfo = ({ name, location, locationDetail, teacherNickname, level, lessonRound = [] }: ClassInfoProps) => {
+const ClassInfo: React.FC<ClassInfoProps> = ({
+  name = '',
+  location = '',
+  locationDetail = '',
+  teacherNickname = '',
+  level = '',
+  lessonRound = [],
+}) => {
   return (
     <div className={infoContainerStyle}>
       <Flex direction="column" gap="2rem">

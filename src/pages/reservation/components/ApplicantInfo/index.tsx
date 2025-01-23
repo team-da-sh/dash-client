@@ -2,10 +2,10 @@ import { bookerComponentStyle } from '@/pages/reservation/components/ApplicantIn
 import InfoRow from '@/pages/reservation/components/InfoRow';
 
 interface ApplicantInfoProps {
-  bookerName: string;
-  bookerPhoneNumber: string;
+  bookerName?: string;
+  bookerPhoneNumber?: string;
 }
-const ApplicantInfo = ({ bookerName, bookerPhoneNumber }: ApplicantInfoProps) => {
+const ApplicantInfo = ({ bookerName = '', bookerPhoneNumber = '' }: ApplicantInfoProps) => {
   return (
     <div className={bookerComponentStyle}>
       <InfoRow label="이름" value={bookerName} />
