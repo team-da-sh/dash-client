@@ -4,6 +4,15 @@ on:
   pull_request:
     branches:
       - develop
+  push:
+    branches:
+      - 'feat/**'
+      - 'api/**'
+      - 'fix/**'
+      - 'design/**'
+      - 'style/**'
+      - 'chore/**'
+      - 'setting/**'
 
   permissions:
   contents: write
