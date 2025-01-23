@@ -74,7 +74,9 @@ const ClassRegisterBottomSheet = ({
 
         <div className={styles.buttonWrapperStyle}>
           {currentStep < CLASS_REGISTER_TOTAL_STEP ? (
-            <BoxButton onClick={() => setStep(1)}>다음</BoxButton>
+            <BoxButton onClick={() => setStep(1)} isDisabled={!startDate}>
+              다음
+            </BoxButton>
           ) : (
             <BoxButton
               isDisabled={!selectedTime}

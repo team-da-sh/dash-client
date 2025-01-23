@@ -41,7 +41,6 @@ const ClassSchedule = ({ openBottomSheet, times, handleRemoveTime }: ClassSchedu
                 </Text>
               </Flex>
             </Flex>
-            {/* 임시 아이콘 */}
             <IcXCircleGray0424 width={'2.4rem'} onClick={() => handleRemoveTime(idx)} />
           </Flex>
         ))}
