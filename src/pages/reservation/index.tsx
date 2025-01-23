@@ -26,8 +26,8 @@ import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { IcCheckcircleGray0524, IcCheckcircleMain0324 } from '@/assets/svg';
 
 interface LessonRoundProps {
-  lessonStartDateTime: string;
-  lessonEndDateTime: string;
+  startDateTime: string;
+  endDateTime: string;
 }
 
 const Reservation = () => {
@@ -71,10 +71,10 @@ const Reservation = () => {
   };
 
   const totalPrice = data.lessonRound.lessonRounds.length * data.price;
-  
-  const lessonRounds: LessonRoundProps[] = data.lessonRound.lessonRounds.map(round => ({
-    lessonStartDateTime: round.startDateTime,
-    lessonEndDateTime: round.endDateTime
+
+  const lessonRounds: LessonRoundProps[] = data.lessonRound.lessonRounds.map((round) => ({
+    startDateTime: round.startDateTime,
+    endDateTime: round.endDateTime,
   }));
 
   return (
@@ -85,7 +85,7 @@ const Reservation = () => {
           <Header.Title title="클래스 신청" />
         </Header.Root>
       </div>
-      <TopInfoContent />
+      <TopInfoContent name={data.name} teacherNickname={data.teacherNickname} imageUrl={data.imageUrl} />
       <Flex
         width="100%"
         direction="column"
@@ -99,10 +99,11 @@ const Reservation = () => {
             클래스 정보
           </Text>
           <ClassInfo
-            lessonName={data.name}
-            lessonLocation={data.location}
-            teacherName={data.teacherNickname}
-            lessonLevel={data.level}
+            name={data.name}
+            location={data.location}
+            locationDetail={data.locationDetail}
+            teacherNickname={data.teacherNickname}
+            level={data.level}
             lessonRound={lessonRounds}
           />
         </Flex>
@@ -110,7 +111,7 @@ const Reservation = () => {
           <Text tag="b4" color="gray9">
             신청자 정보
           </Text>
-          <ApplicantInfo bookerName={data.studentName} bookerPhoneNumber={data.bookerPhoneNumber} />
+          <ApplicantInfo studentName={data.studentName} studentPhoneNumber={data.studentPhoneNumber} />
         </Flex>
       </Flex>
 

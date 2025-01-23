@@ -14,5 +14,5 @@ export interface ReservationDetail {
     }[];
   };
   studentName: string;
-  bookerPhoneNumber: string;
+  studentPhoneNumber: string;
 }

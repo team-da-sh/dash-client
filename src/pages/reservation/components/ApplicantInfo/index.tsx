@@ -2,15 +2,16 @@ import { bookerComponentStyle } from '@/pages/reservation/components/ApplicantIn
 import InfoRow from '@/pages/reservation/components/InfoRow';
 
 interface ApplicantInfoProps {
-  bookerName: string;
-  bookerPhoneNumber: string;
+  studentName: string;
+  studentPhoneNumber: string;
 }
-const ApplicantInfo = ({ bookerName, bookerPhoneNumber }: ApplicantInfoProps) => {
+
+const ApplicantInfo = ({ studentName, studentPhoneNumber }: ApplicantInfoProps) => {
   return (
     <div className={bookerComponentStyle}>
-      <InfoRow label="이름" value={bookerName} />
+      <InfoRow label="이름" value={studentName} />
 
-      <InfoRow label="전화번호" value={bookerPhoneNumber} />
+      <InfoRow label="전화번호" value={studentPhoneNumber} />
     </div>
   );
 };
