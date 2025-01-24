@@ -43,6 +43,15 @@ const TopSection = ({ userData, onClose, isInstructor }: TopSectionProps) => {
     );
   };
 
+  const handleMyClassesClick = () => {
+    if (isInstructor && userData.lessonCount === 0) {
+      return;
+    }
+    if (isInstructor) {
+      handleNavigate(ROUTES_CONFIG.instructorClassList.path);
+    }
+  };
+
   return (
     <section className={styles.sectionStyle}>
       <Flex direction="column" align="center">
@@ -91,7 +100,6 @@ const TopSection = ({ userData, onClose, isInstructor }: TopSectionProps) => {
 
         <Divider direction="vertical" color="gray2" length={32} thickness={1} />
 
-        {/* 관심목록 우선 disabled 처리 */}
         <Flex direction="column" align="center" gap="0.5rem" className={styles.disabledStyle}>
           <Head tag="h4" color={getTextColor(userData.favoriteCount)}>
             {userData.favoriteCount}
@@ -107,7 +115,7 @@ const TopSection = ({ userData, onClose, isInstructor }: TopSectionProps) => {
           gap="0.5rem"
           direction="column"
           align="center"
-          onClick={() => isInstructor && handleNavigate(ROUTES_CONFIG.instructorClassList.path)}
+          onClick={handleMyClassesClick}
           className={isInstructor ? '' : styles.disabledStyle}>
           <Head tag="h4" color={getTextColor(userData.lessonCount ?? 0)}>
             {userData.lessonCount ?? 0}
