@@ -29,12 +29,11 @@
 
 <br />
 
-
 ## 🎈 팀원
 
    <div align="center">
      
-| <img src="https://github.com/user-attachments/assets/c5f7d866-fac2-4568-9cb5-3e248f878937" width="150" alt="프로필사진"> | <img src="https://github.com/user-attachments/assets/4b9b882d-1666-4dc2-9676-c63b8e1b9798" width="150" alt="프로필사진">  | <img src="https://github.com/user-attachments/assets/e50bac12-0396-4f48-861b-f217e89f87ea" width="150" alt="프로필사진"> |  <img src="https://github.com/user-attachments/assets/1d0b96f7-dcf5-42c9-a1be-839b5338bba4" width="150" alt="프로필사진">  |  <img src="https://github.com/user-attachments/assets/152fdf02-4e58-488e-9e8a-8b82716d1ade" width="150" alt="프로필사진">  |
+| <img src="https://github.com/user-attachments/assets/f315094a-0de0-4eca-bc4c-7e48cb2a7b6f" width="150" alt="프로필사진"> | <img src="https://github.com/user-attachments/assets/067c37c2-f544-4238-8358-eb5f051fef4a" width="150" alt="프로필사진">  | <img src="https://github.com/user-attachments/assets/a97c1d70-6107-44c3-8de8-d0fa708090ca" width="150" alt="프로필사진"> |  <img src="https://github.com/user-attachments/assets/713158dd-64a7-40c4-b177-ed85896a6cf1" width="150" alt="프로필사진">  |  <img src="https://github.com/user-attachments/assets/372ad506-b2d2-41fc-ae4e-adbb2466f292" width="150" alt="프로필사진">  |
 | :-------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------:
 |                            <div align = "center"><b>이진혁</b></div>                            |                            <div align = "center"><b>김규홍</b></div>                            |                            <div align = "center"><b>박희선</b></div>                            |                             <div align = "center"><b>한수정</b></div>                            |                             <div align = "center"><b>김건휘</b></div>
 |                           [@constantly-dev](https://github.com/constantly-dev)                            |                [@rtttr1](https://github.com/rtttr1)                                 |                       [@heesunee](https://github.com/heesunee)                        |                        [@hansoojeongsj](https://github.com/hansoojeongsj)   |                        [@KIMGEONHWI](https://github.com/KIMGEONHWI)   |
