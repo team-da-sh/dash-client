@@ -13,5 +13,5 @@ export const LIST_DATA = [
   },
   { label: '자주 묻는 질문', id: 5, inActive: true },
   { label: '고객 센터', id: 6, hasDivider: true, inActive: true },
-  { label: '로그아웃', id: 7, inActive: true },
+  { label: '로그아웃', id: 7 },
 ];
