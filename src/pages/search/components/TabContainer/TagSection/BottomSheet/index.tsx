@@ -9,6 +9,7 @@ import {
   bottomSheetContainerStyle,
   overlayHidden,
   overlayVisible,
+  tabListCustomStyle,
 } from '@/pages/search/components/TabContainer/TagSection/BottomSheet/index.css';
 import BoxButton from '@/components/BoxButton';
 import Flex from '@/components/Flex';
@@ -93,17 +94,19 @@ const BottomSheet = ({
       <div className={`${overlayStyle} ${isClosing ? overlayHidden : overlayVisible}`} onClick={handleClose} />
       <Flex direction="column" className={`${bottomSheetStyle} ${isClosing ? bottomSheetHidden : bottomSheetVisible}`}>
         <TabRoot>
-          <TabList>
-            <TabButton isSelected={selectedTab === 0} onClick={() => setSelectedTab(0)} colorScheme="secondary">
-              장르
-            </TabButton>
-            <TabButton isSelected={selectedTab === 1} onClick={() => setSelectedTab(1)} colorScheme="secondary">
-              난이도
-            </TabButton>
-            <TabButton isSelected={selectedTab === 2} onClick={() => setSelectedTab(2)} colorScheme="secondary">
-              기간
-            </TabButton>
-          </TabList>
+          <Flex paddingBottom="1rem" paddingLeft="2rem">
+            <TabList className={tabListCustomStyle}>
+              <TabButton isSelected={selectedTab === 0} onClick={() => setSelectedTab(0)} colorScheme="secondary">
+                장르
+              </TabButton>
+              <TabButton isSelected={selectedTab === 1} onClick={() => setSelectedTab(1)} colorScheme="secondary">
+                난이도
+              </TabButton>
+              <TabButton isSelected={selectedTab === 2} onClick={() => setSelectedTab(2)} colorScheme="secondary">
+                기간
+              </TabButton>
+            </TabList>
+          </Flex>
           <TabPanel isSelected={selectedTab === 0}>
             <div className={genreButtonContainerStyle}>
               {GENRE_CATEGORY.flat().map((category, index) => (
@@ -117,7 +120,13 @@ const BottomSheet = ({
             </div>
           </TabPanel>
           <TabPanel isSelected={selectedTab === 1}>
-            <Flex direction="column" gap="0.8rem" paddingTop="0.8rem" paddingBottom="4.6rem">
+            <Flex
+              direction="column"
+              gap="0.8rem"
+              paddingBottom="4.6rem"
+              paddingTop="0.8rem"
+              paddingLeft="2rem"
+              paddingRight="2rem">
               {LEVEL.map((level) => (
                 <LevelButton
                   key={level.title}
@@ -138,7 +147,7 @@ const BottomSheet = ({
             />
           </TabPanel>
         </TabRoot>
-        <Flex width="100%" gap="0.8rem">
+        <Flex width="100%" gap="0.8rem" paddingLeft="2rem" paddingRight="2rem">
           <BoxButton variant="secondary" onClick={handleReset}>
             초기화
           </BoxButton>

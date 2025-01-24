@@ -77,7 +77,7 @@ export const bottomSheetStyle = style({
   left: '50%',
   transform: 'translateX(-50%)',
   background: vars.colors.white,
-  padding: '3.4rem 2rem 2.4rem 2rem',
+  padding: '3.6rem 0 2rem 0',
   zIndex: vars.zIndex.three,
   borderRadius: '16px 16px 0 0',
 });
@@ -86,6 +86,10 @@ export const genreButtonContainerStyle = style({
   display: 'flex',
   gap: '1.2rem',
   flexWrap: 'wrap',
-  paddingTop: '1.2rem',
-  paddingBottom: '18.44rem',
+  padding: '1.2rem 2rem 18.4rem 2rem',
+});
+
+export const tabListCustomStyle = style({
+  display: 'flex',
+  gap: '3.3rem',
 });
