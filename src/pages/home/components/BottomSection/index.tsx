@@ -20,11 +20,12 @@ const BottomSection = ({ isInstructor }: { isInstructor: boolean }) => {
     <Flex>
       <ul className={styles.ulStyle}>
         {LIST_DATA.map((item) => {
-          const isDisabled = item.isInstructorRequired && !isInstructor;
+          const isDisabled =
+            (item.isInstructorRequired && !isInstructor) || (item.label === '강사 등록' && isInstructor);
           const ArrowIcon = isDisabled ? IcArrowRightSmallGray0432 : IcArrowRightSmallGray0732;
 
           const handleClick = () => {
-            if (isDisabled) return; // 비활성화된 상태일 경우 클릭 막기
+            if (isDisabled) return;
             if (item.label === '로그아웃') {
               handleLogout();
             } else if (item.path) {
