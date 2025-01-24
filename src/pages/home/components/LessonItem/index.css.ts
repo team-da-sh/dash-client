@@ -14,6 +14,7 @@ export const titleStyle = style({
   maxHeight: '4rem',
 
   whiteSpace: 'normal',
+  wordBreak: 'break-all',
 });
 
 export const teacherImageStyle = style({
