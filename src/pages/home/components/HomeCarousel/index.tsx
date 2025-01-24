@@ -2,11 +2,18 @@
 import { Pagination, Autoplay } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SliderItem from '@/pages/home/components/SliderItem';
-import { useGetAdvertisements } from '@/apis/home/queries';
+import { description } from '@/pages/reservation/components/TossPayments/index.css';
+import { BannerImg, ChoreohongImg, KkukgirlImg } from '@/assets/images';
 
+const ADVERTISEMENTS = [
+  {
+    imageUrl: KkukgirlImg,
+    description: '5주 집중 커리큘럼, 스걸파 출연 댄서의 피메일 힙합 기본기 튼튼하게 다지기',
+  },
+  { imageUrl: ChoreohongImg, description: '코레홍과 함께하는 NMIXX-DASH 코레오그래피' },
+  { imageUrl: BannerImg, description: '' },
+];
 const HomeCarousel = () => {
-  const { data } = useGetAdvertisements();
-
   return (
     <Swiper
       loop={true}
@@ -18,7 +25,7 @@ const HomeCarousel = () => {
         delay: 4500,
         disableOnInteraction: false,
       }}>
-      {data?.advertisements?.map((data, index) => {
+      {ADVERTISEMENTS.map((data, index) => {
         return (
           <SwiperSlide key={`${index}-${data.description}`}>
             <SliderItem imageUrl={data.imageUrl} description={data.description} />
