@@ -10,7 +10,6 @@ import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Tag from '@/components/Tag';
 import Text from '@/components/Text';
-import { calculateDday } from '@/utils/dateCalculate';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { genreMapping } from '@/constants/index';
 import { IcThunderMain0424 } from '@/assets/svg';
@@ -27,12 +26,17 @@ const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetailApiResponse 
     price,
     maxReservationCount,
     reservationCount,
-    status,
+    remainingDays,
   } = lessonData;
   const translatedGenre = genreMapping[genre] || genre;
 
-  // 각 회차에 대해 D-Day 계산
-  const dDay = status === 'EXPIRED' || status === 'OVER_BOOKED' ? '마감' : calculateDday(lessonRounds[0].startDateTime);
+  // D-DAY remaingDays로 통일
+  const dDay =
+  remainingDays > 0
+    ? `D-${remainingDays}`
+    : remainingDays === 0
+    ? 'D-DAY'
+    : '마감';
 
   // 남은 예약 가능 인원 계산
   const remainingSeats = maxReservationCount - reservationCount;

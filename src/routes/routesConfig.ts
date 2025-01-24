@@ -31,10 +31,6 @@ export const ROUTES_CONFIG = {
     title: 'Reservation',
     path: (id: string) => `/reservation/${id}`,
   },
-  reservationCompletion: {
-    title: 'reservationCompletion',
-    path: '/reservation/completion',
-  },
   payments: {
     title: 'payments',
     path: '/reservation/payments',

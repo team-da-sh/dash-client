@@ -14,7 +14,6 @@ import MyPageReservation from '@/pages/mypage/mypageReservation';
 import MyPageReservationDetail from '@/pages/mypage/mypageReservationDetail';
 import Onboarding from '@/pages/onboarding';
 import Reservation from '@/pages/reservation';
-import ReservationCompletion from '@/pages/reservation/components/ReservationCompletion';
 import { CheckoutPage } from '@/pages/reservation/components/TossPayments/CheckOut/CheckOut';
 import { FailPage } from '@/pages/reservation/components/TossPayments/Fail/Fail';
 import { SuccessPage } from '@/pages/reservation/components/TossPayments/Success/Success';
@@ -53,10 +52,6 @@ export const router = createBrowserRouter([
   {
     path: ROUTES_CONFIG.reservation.path(':id'),
     element: <Reservation />,
-  },
-  {
-    path: ROUTES_CONFIG.reservationCompletion.path,
-    element: <ReservationCompletion />,
   },
   {
     path: ROUTES_CONFIG.mypageReservation.path,
