@@ -12,7 +12,7 @@ interface PersonalSNSStepProps {
   onInfoChange: <K extends keyof InstructorRegisterInfoTypes>(key: K, value: InstructorRegisterInfoTypes[K]) => void;
 }
 
-const PersonalSNSStep = ({ instagram, youtube, onInfoChange }: PersonalSNSStepProps) => {
+const PersonalSNSStep = ({ onInfoChange }: PersonalSNSStepProps) => {
   const handleInstagramChange = (value: string) => {
     onInfoChange(INFO_KEY.INSTAGRAM, value);
   };
@@ -31,7 +31,7 @@ const PersonalSNSStep = ({ instagram, youtube, onInfoChange }: PersonalSNSStepPr
             <IcInstagram20 width={'2rem'} />
             <Text tag="b6">인스타그램</Text>
           </Flex>
-          <Input placeholder="@dashdash.kr" value={instagram} onChange={(e) => handleInstagramChange(e.target.value)} />
+          <Input placeholder="dashdash.kr" onChange={(e) => handleInstagramChange(e.target.value)} />
         </Flex>
 
         <Flex direction="column" gap="1.2rem" width="100%">
@@ -39,7 +39,7 @@ const PersonalSNSStep = ({ instagram, youtube, onInfoChange }: PersonalSNSStepPr
             <IcYoutube20 width={'2rem'} />
             <Text tag="b6">유튜브 채널</Text>
           </Flex>
-          <Input placeholder="@dashofficial" value={youtube} onChange={(e) => handleYoutubeChange(e.target.value)} />
+          <Input placeholder="dashofficial" onChange={(e) => handleYoutubeChange(e.target.value)} />
         </Flex>
       </Flex>
     </>
