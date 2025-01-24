@@ -1,11 +1,4 @@
-import { createGlobalTheme, fontFace } from '@vanilla-extract/css';
-
-const pretendard = fontFace({
-  src: `
-    url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff2') format('woff2'),
-    url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
-  `,
-});
+import { createGlobalTheme } from '@vanilla-extract/css';
 
 export const vars = createGlobalTheme(':root', {
   colors: {
@@ -58,49 +51,42 @@ export const vars = createGlobalTheme(':root', {
   fonts: {
     // head
     h1: {
-      fontFamily: pretendard,
       fontWeight: '600',
       fontSize: '2.8rem',
       lineHeight: '4rem',
       letterSpacing: '-0.14rem',
     },
     h2: {
-      fontFamily: pretendard,
       fontWeight: '600',
       fontSize: '2.4rem',
       lineHeight: '3.6rem',
       letterSpacing: '-0.12rem',
     },
     h3: {
-      fontFamily: pretendard,
       fontWeight: '500',
       fontSize: '2rem',
       lineHeight: '2.8rem',
       letterSpacing: '-0.1rem',
     },
     h4: {
-      fontFamily: pretendard,
       fontWeight: '600',
       fontSize: '2rem',
       lineHeight: '2.4rem',
       letterSpacing: '-0.1rem',
     },
     h5: {
-      fontFamily: pretendard,
       fontWeight: '600',
       fontSize: '1.8rem',
       lineHeight: '2.6rem',
       letterSpacing: '-0.09rem',
     },
     h6: {
-      fontFamily: pretendard,
       fontWeight: '600',
       fontSize: '1.6rem',
       lineHeight: '1.8rem',
       letterSpacing: '-0.08rem',
     },
     h7: {
-      fontFamily: pretendard,
       fontWeight: '600',
       fontSize: '1.6rem',
       lineHeight: '2rem',
@@ -109,70 +95,60 @@ export const vars = createGlobalTheme(':root', {
 
     // body
     b1: {
-      fontFamily: pretendard,
       fontWeight: '400',
       fontSize: '1.4rem',
       lineHeight: '1.8rem',
       letterSpacing: '-0.1rem',
     },
     b2: {
-      fontFamily: pretendard,
       fontWeight: '500',
       fontSize: '1.4rem',
       lineHeight: '1.8rem',
       letterSpacing: '-0.07rem',
     },
     b3: {
-      fontFamily: pretendard,
       fontWeight: '500',
       fontSize: '1.4rem',
       lineHeight: '2rem',
       letterSpacing: '-0.07rem',
     },
     b4: {
-      fontFamily: pretendard,
       fontWeight: '600',
       fontSize: '1.4rem',
       lineHeight: '1.8rem',
       letterSpacing: '-0.07rem',
     },
     b5: {
-      fontFamily: pretendard,
       fontWeight: '600',
       fontSize: '1.4rem',
       lineHeight: '2.2rem',
       letterSpacing: '-0.07rem',
     },
     b6: {
-      fontFamily: pretendard,
       fontWeight: '400',
       fontSize: '1.2rem',
       lineHeight: '1.6rem',
       letterSpacing: '-0.06rem',
     },
     b7: {
-      fontFamily: pretendard,
       fontWeight: '500',
       fontSize: '1.2rem',
       lineHeight: '1.6rem',
       letterSpacing: '-0.06rem',
     },
     b8: {
-      fontFamily: pretendard,
       fontWeight: '500',
       fontSize: '1.2rem',
       lineHeight: '1.6rem',
       letterSpacing: '-0.096rem',
     },
     b9: {
-      fontFamily: pretendard,
       fontWeight: '600',
       fontSize: '1.2rem',
       lineHeight: '1.6rem',
       letterSpacing: '-0.06rem',
     },
     b10: {
-      fontFamily: pretendard,
       fontWeight: '600',
       fontSize: '1.2rem',
       lineHeight: '1.6rem',
@@ -181,28 +157,24 @@ export const vars = createGlobalTheme(':root', {
 
     // caption
     c1: {
-      fontFamily: pretendard,
       fontWeight: '400',
       fontSize: '1rem',
       lineHeight: '1.4rem',
       letterSpacing: '-0.05rem',
     },
     c2: {
-      fontFamily: pretendard,
       fontWeight: '400',
       fontSize: '1rem',
       lineHeight: '1.4rem',
       letterSpacing: '-0.08rem',
     },
     c3: {
-      fontFamily: pretendard,
       fontWeight: '500',
       fontSize: '1rem',
       lineHeight: '1.8rem',
       letterSpacing: '-0.05rem',
     },
     c4: {
-      fontFamily: pretendard,
       fontWeight: '600',
       fontSize: '1rem',
       lineHeight: '1.4rem',
