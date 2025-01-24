@@ -135,7 +135,9 @@ export const useClassRegisterForm = () => {
       selectedLevelTitle &&
       selectedTime &&
       personnel &&
-      amount
+      amount &&
+      times.length > 0
+
     );
   };
 
