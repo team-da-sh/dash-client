@@ -3,7 +3,6 @@ import { style, globalStyle } from '@vanilla-extract/css';
 export const wrapper = style({
   display: 'flex',
   alignItems: 'center',
-  padding: '2.4rem',
   overflow: 'auto',
 });
 
