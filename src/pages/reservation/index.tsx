@@ -16,16 +16,16 @@ import {
   bottomButtonStyle,
   agreementTextStyle,
 } from '@/pages/reservation/index.css';
+import { LessonRoundProps } from '@/pages/reservation/types';
 import BoxButton from '@/components/BoxButton';
 import Divider from '@/components/Divider';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Header from '@/components/Header';
 import Text from '@/components/Text';
-import { useGetReservaion, usePostReservation } from '@/apis/reservation/queries';
+import { useGetReservaion } from '@/apis/reservation/queries';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { IcCheckcircleGray0524, IcCheckcircleMain0324 } from '@/assets/svg';
-import { LessonRoundProps } from '@/pages/reservation/types';
 
 const Reservation = () => {
   const [isAllChecked, setIsAllChecked] = useState(false);
@@ -39,8 +39,6 @@ const Reservation = () => {
   }
 
   const { data, isError, isLoading } = useGetReservaion(id);
-  const { mutate: classReservation } = usePostReservation();
-  const [hasError, setHasError] = useState(false);
 
   if (isLoading) {
     return <></>;
@@ -65,7 +63,11 @@ const Reservation = () => {
     setIsAllChecked(newAgreements.every((isChecked) => isChecked));
   };
 
-  const totalPrice = data.lessonRound.lessonRounds.length * data.price;
+  const totalPrice = data.price;
+
+  const className = data.name;
+
+  const studentName = data.studentName;
 
   const lessonRounds: LessonRoundProps[] = data.lessonRound.lessonRounds.map((round) => ({
     startDateTime: round.startDateTime,
@@ -73,22 +75,10 @@ const Reservation = () => {
   }));
 
   const handleButtonClick = async () => {
-    classReservation(
-      { lessonId: id },
-      {
-        onSuccess: () => {
-          navigate(ROUTES_CONFIG.mypageReservation.path);
-        },
-        onError: () => {
-          setHasError(true);
-        },
-      }
-    );
+    {
+      navigate(ROUTES_CONFIG.payments.path, { state: { lessonId: id, totalPrice, className, studentName } });
+    }
   };
-
-  if (hasError) {
-    return <Error />;
-  }
 
   return (
     <Flex direction="column" width="100%" className={reservationStyle}>
@@ -174,7 +164,7 @@ const Reservation = () => {
           총 결제 금액
         </Head>
         <Head level="h2" tag="h2" color="main4">
-          {Number(totalPrice).toLocaleString()}원
+          {data.price.toLocaleString()}원
         </Head>
       </div>
       <Flex width="100%" className={bottomButtonStyle}>

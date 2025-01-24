@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import ClassHeader from '@/pages/dancer/components/DancerHeader';
+import DancerHeader from '@/pages/dancer/components/DancerHeader';
 import DancerInfo from '@/pages/dancer/components/DancerInfo';
 import TabWrapper from '@/pages/dancer/components/TabWrapper';
 import { gradientOverlayStyle, textWrapperStyle, topImgStyle } from '@/pages/dancer/index.css';
@@ -61,7 +61,7 @@ const Dancer = () => {
           </Flex>
         </div>
       </Flex>
-      <ClassHeader isVisible={isVisible} />
+      <DancerHeader isVisible={isVisible} />
       <DancerInfo dancerData={data} />
       <TabWrapper colorScheme="primary" dancerData={data} />
     </>

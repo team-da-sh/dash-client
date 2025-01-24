@@ -18,6 +18,7 @@ interface InputItemTypes {
 
 interface InputSectionProps {
   title: string;
+  placeholder: string;
   icon: React.ReactNode;
   isActive: boolean;
   onToggleActive: () => void;
@@ -25,7 +26,15 @@ interface InputSectionProps {
   onItemsChange: (updatedItems: InputItemTypes[]) => void;
 }
 
-const InputSection = ({ title, icon, isActive, onToggleActive, inputItems, onItemsChange }: InputSectionProps) => {
+const InputSection = ({
+  title,
+  placeholder,
+  icon,
+  isActive,
+  onToggleActive,
+  inputItems,
+  onItemsChange,
+}: InputSectionProps) => {
   const nextID = useRef<number>(inputItems.length + 1);
 
   const addItem = () => {
@@ -76,7 +85,8 @@ const InputSection = ({ title, icon, isActive, onToggleActive, inputItems, onIte
           {inputItems.map(({ id, value }) => (
             <div key={id} className={inputContainerStyle}>
               <Input
-                value={value}
+                // value={value}
+                placeholder={placeholder}
                 onChange={(e) => {
                   const updatedItems = inputItems.map((item) =>
                     item.id === id ? { ...item, value: e.target.value } : item

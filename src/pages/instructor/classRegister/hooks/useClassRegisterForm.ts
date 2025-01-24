@@ -1,6 +1,7 @@
 import { ChangeEvent, useRef, useState } from 'react';
 import { formatToISOString } from '@/utils/timeUtils';
 import { ONLY_NUMERIC } from '@/constants/regex';
+import { LocationTypes } from '../types';
 
 export interface RepresentImageUrlsTypes {
   imageUrls: string;
@@ -29,6 +30,8 @@ export const useClassRegisterForm = () => {
   const [minute, setMinute] = useState(0);
   const [ampm, setAmpm] = useState('AM');
   const [selectedTime, setSelectedTime] = useState<number | null>(null);
+
+  const [selectedLocation, setSelectedLocation] = useState<LocationTypes | null>(null);
 
   const handleClassNameChange = (e: ChangeEvent<HTMLInputElement>) => {
     setClassName(e.target.value);
@@ -100,6 +103,7 @@ export const useClassRegisterForm = () => {
         date: startDate,
         duration: selectedTime,
       };
+
       setTimes([...times, newTime]);
     }
   };
@@ -121,8 +125,10 @@ export const useClassRegisterForm = () => {
         selectedGenre &&
         selectedLevelTitle &&
         selectedTime &&
+        recommend &&
         personnel &&
         amount &&
+        selectedLocation &&
         times.length > 0
       );
     }
@@ -134,8 +140,11 @@ export const useClassRegisterForm = () => {
       selectedGenre &&
       selectedLevelTitle &&
       selectedTime &&
+      recommend &&
       personnel &&
-      amount
+      amount &&
+      selectedLocation &&
+      times.length > 0
     );
   };
 
@@ -159,6 +168,7 @@ export const useClassRegisterForm = () => {
     minute,
     ampm,
     startDate,
+    selectedLocation,
     setStartDate,
     setHour,
     setMinute,
@@ -181,5 +191,6 @@ export const useClassRegisterForm = () => {
     handleRemoveTime,
     setImageUrls,
     isFormValid,
+    setSelectedLocation,
   };
 };

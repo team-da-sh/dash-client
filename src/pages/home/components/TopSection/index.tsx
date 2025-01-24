@@ -5,6 +5,7 @@ import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Tag from '@/components/Tag';
 import Text from '@/components/Text';
+import { notify } from '@/components/Toast';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { IcClose, IcArrowRightGray0614, IcCalendarcheckColor3D24, IcCalendarcheckMono3D24 } from '@/assets/svg';
 import { MyPageProps } from '@/types/myPageTypes';
@@ -43,13 +44,22 @@ const TopSection = ({ userData, onClose, isInstructor }: TopSectionProps) => {
     );
   };
 
+  const handleMyClassesClick = () => {
+    if (isInstructor && userData.lessonCount === 0) {
+      return;
+    }
+    if (isInstructor) {
+      handleNavigate(ROUTES_CONFIG.instructorClassList.path);
+    }
+  };
+
   return (
     <section className={styles.sectionStyle}>
       <Flex direction="column" align="center">
         <Flex align="center" width="100%" justify="spaceBetween">
           <IcClose width={24} height={24} onClick={onClose} />
           <Flex align="center" gap="0.2rem">
-            <Text tag="b7" color="gray7">
+            <Text tag="b7" color="gray7" onClick={notify}>
               프로필 수정
             </Text>
             <IcArrowRightGray0614 width={14} height={14} onClick={onClose} />
@@ -74,7 +84,7 @@ const TopSection = ({ userData, onClose, isInstructor }: TopSectionProps) => {
         </Flex>
       </Flex>
 
-      <Flex paddingTop="2.4rem" paddingLeft="3.2rem" paddingRight="3.2rem" gap="2.1rem">
+      <Flex paddingTop="2.4rem" paddingLeft="3.2rem" paddingRight="3.2rem" gap="2.1rem" onClick={notify}>
         <Flex align="center" onClick={isMyLessonsZero}>
           <Flex direction="column" align="center" gap="0.5rem">
             <Head
@@ -91,7 +101,6 @@ const TopSection = ({ userData, onClose, isInstructor }: TopSectionProps) => {
 
         <Divider direction="vertical" color="gray2" length={32} thickness={1} />
 
-        {/* 관심목록 우선 disabled 처리 */}
         <Flex direction="column" align="center" gap="0.5rem" className={styles.disabledStyle}>
           <Head tag="h4" color={getTextColor(userData.favoriteCount)}>
             {userData.favoriteCount}
@@ -107,7 +116,7 @@ const TopSection = ({ userData, onClose, isInstructor }: TopSectionProps) => {
           gap="0.5rem"
           direction="column"
           align="center"
-          onClick={() => isInstructor && handleNavigate(ROUTES_CONFIG.instructorClassList.path)}
+          onClick={handleMyClassesClick}
           className={isInstructor ? '' : styles.disabledStyle}>
           <Head tag="h4" color={getTextColor(userData.lessonCount ?? 0)}>
             {userData.lessonCount ?? 0}

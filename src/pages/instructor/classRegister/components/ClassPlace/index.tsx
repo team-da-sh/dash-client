@@ -71,6 +71,11 @@ const ClassPlace = ({
                   value={defaultPlace}
                   onChange={handleDefaultPlace}
                   placeholder="지번, 도로명, 건물명으로 검색해 주세요"
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                      e.preventDefault();
+                    }
+                  }}
                 />
                 <IcSearchGray
                   width={'2.4rem'}

@@ -22,8 +22,18 @@ const DancerInfo = ({ dancerData }: { dancerData: DancerDetailApiResponse }) => 
   
   const { instagram, youtube, detail, nickname, lessons } = dancerData;
 
-  const instagramHandle = instagram?.split('/').filter(Boolean).pop();
-  const youtubeHandle = youtube?.split('/').filter(Boolean).pop();
+  // 쿼리 파라미터를 제거하고 사용자 이름만 추출하는 함수
+  const extractUsername = (url: string | undefined) => {
+    if (!url) return '';
+    
+    // 쿼리 파라미터를 제거
+    const cleanedUrl = url.split('?')[0];
+    
+    // 마지막 '/' 이후의 부분이 사용자 이름
+    return cleanedUrl.split('/').filter(Boolean).pop() || '';
+  };
+  const instagramHandle = extractUsername(instagram);
+  const youtubeHandle = extractUsername(youtube);
 
   const navigate = useNavigate();
 

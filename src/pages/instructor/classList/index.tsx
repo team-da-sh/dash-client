@@ -1,13 +1,12 @@
 import { useNavigate } from 'react-router-dom';
 import { layoutStyle, containerStyle } from '@/pages/instructor/classList/index.css';
+import { handleClassCardClick, handleBoxButtonClick, handleCancelClick } from '@/pages/mypage/utils/clickUtils';
 import BoxButton from '@/components/BoxButton';
 import ClassCard from '@/components/ClassCard';
 import Flex from '@/components/Flex';
 import Header from '@/components/Header';
 import Text from '@/components/Text';
-import { notify } from '@/components/Toast';
 import { useGetMyLessons } from '@/apis/classList/queries';
-import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { Lesson } from '@/types/lessonTypes';
 
 const ClassList = () => {
@@ -24,11 +23,6 @@ const ClassList = () => {
     return <div></div>;
   }
 
-  const handleDetailClick = (lessonId: number) => {
-    const path = ROUTES_CONFIG.instructorClassDetail.path(lessonId.toString());
-    navigate(path);
-  };
-
   return (
     <div className={layoutStyle}>
       <Header.Root isColor={true}>
@@ -42,6 +36,7 @@ const ClassList = () => {
         <Flex direction="column" gap="1.2rem" marginTop="1.6rem">
           {lessonData?.lessons.map((lesson: Lesson) => (
             <ClassCard
+              onClick={() => handleClassCardClick(navigate, lesson.id)}
               isReservation={false}
               key={lesson.id}
               lessonName={lesson.name}
@@ -51,10 +46,10 @@ const ClassList = () => {
               lessonLocation={lesson.location}
               lessonStartDateTime={lesson.startDateTime}
               lessonEndDateTime={lesson.endDateTime}>
-              <BoxButton variant="temp" onClick={() => notify()}>
+              <BoxButton onClick={handleCancelClick} variant="temp">
                 수정하기
               </BoxButton>
-              <BoxButton variant="outline" onClick={() => handleDetailClick(lesson.id)}>
+              <BoxButton variant="outline" onClick={(e) => handleBoxButtonClick(e, navigate, lesson.id, false)}>
                 상세보기
               </BoxButton>
             </ClassCard>

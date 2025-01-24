@@ -24,14 +24,14 @@ const TabPeriod = ({ lessonData }: { lessonData: LessonDetailApiResponse }) => {
                     {id + 1}회차
                   </Text>
                 </div>
-                <div>
+                <Flex gap="0.4rem" direction="column">
                   <Text tag="b4" color="black">
                     {formatDate(startDateTime)}
                   </Text>
                   <Text tag="b7" color="gray7">
                     {startTime} - {formattedEndTime} ({durationString})
                   </Text>
-                </div>
+                </Flex>
               </Flex>
             </div>
           </Card>

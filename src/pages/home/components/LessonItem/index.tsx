@@ -61,18 +61,20 @@ const LessonItem = ({
         <Tag type="deadline" size="thumbnail" className={styles.deadlineTag}>{`마감 D-${remainingDays || 'Day'}`}</Tag>
       )}
 
-      <Flex gap="0.4rem">
-        <Tag type="genre" size="small">
-          {genreMapping[genre]}
-        </Tag>
-        <Tag type="level" size="small">
-          {levelMapping[level]}
-        </Tag>
-      </Flex>
+      <Flex direction="column" gap="0.6rem">
+        <Flex gap="0.4rem">
+          <Tag type="genre" size="small">
+            {genreMapping[genre]}
+          </Tag>
+          <Tag type="level" size="small">
+            {levelMapping[level]}
+          </Tag>
+        </Flex>
 
-      <Head level="h3" tag="h7" className={titleStyle}>
-        {name}
-      </Head>
+        <Head level="h3" tag="h7" className={titleStyle}>
+          {name}
+        </Head>
+      </Flex>
 
       <Flex direction="column" gap="0.4rem">
         <Flex gap="0.6rem" align="center">
@@ -80,7 +82,7 @@ const LessonItem = ({
           <Text tag="b7">{teacherName}</Text>
         </Flex>
         <Flex gap="0.4rem" align="center">
-          <Text tag="c2" color="gray5">
+          <Text tag="c1" color="gray5">
             {transformDateToDotFormat(startDate)} - {transformDateToDotFormat(endDate)}
           </Text>
         </Flex>

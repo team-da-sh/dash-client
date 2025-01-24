@@ -18,6 +18,7 @@ export const tagStyle = recipe({
       },
       deadline: {
         backgroundColor: vars.colors.gray10,
+        color: vars.colors.gray01,
       },
       search: {
         color: vars.colors.main04,
@@ -87,7 +88,7 @@ export const tagStyle = recipe({
       },
       sort: {
         borderRadius: '14px',
-        border: `1px solid ${vars.colors.gray07}`,
+        border: `1px solid ${vars.colors.gray04}`,
         padding: '0.5rem 0.8rem 0.5rem 1.2rem',
         ...vars.fonts.b9,
       },
