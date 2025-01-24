@@ -80,7 +80,7 @@ const LessonItem = ({
           <Text tag="b7">{teacherName}</Text>
         </Flex>
         <Flex gap="0.4rem" align="center">
-          <Text tag="c2" color="gray5">
+          <Text tag="c1" color="gray5">
             {transformDateToDotFormat(startDate)} - {transformDateToDotFormat(endDate)}
           </Text>
         </Flex>
