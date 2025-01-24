@@ -2,7 +2,6 @@
 import { Pagination, Autoplay } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SliderItem from '@/pages/home/components/SliderItem';
-import { description } from '@/pages/reservation/components/TossPayments/index.css';
 import { BannerImg, ChoreohongImg, KkukgirlImg } from '@/assets/images';
 
 const ADVERTISEMENTS = [
