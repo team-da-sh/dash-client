@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { containerStyle } from '@/pages/home/components/HomeHeader/index.css';
 import Flex from '@/components/Flex';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
+import { HomeBlack, HomeWhite } from '@/assets/gif';
 import {
   IcLogoSmallBlack,
   IcLogoSmallWhite,
@@ -30,7 +31,7 @@ const HomeHeader = ({ isVisible, onMyPageClick }: HomeHeaderProps) => {
     <Flex tag="header" className={containerStyle({ isVisible })}>
       {isVisible ? (
         <>
-          <IcLogoSmallBlack width={54} height={18} onClick={handleLogoClick} />
+          <img src={HomeBlack} width={106} height={45} onClick={handleLogoClick} />
           <Flex gap="2rem">
             <IcSearchBlack24 width={24} height={24} onClick={handleSearchClick} />
             <IcMypageBlack24 width={24} height={24} onClick={onMyPageClick} />
@@ -38,7 +39,7 @@ const HomeHeader = ({ isVisible, onMyPageClick }: HomeHeaderProps) => {
         </>
       ) : (
         <>
-          <IcLogoSmallWhite width={54} height={18} onClick={handleLogoClick} />
+          <img src={HomeWhite} width={106} height={45} onClick={handleLogoClick} />
           <Flex gap="2rem">
             <IcSearchWhite24 width={24} height={24} onClick={handleSearchClick} />
             <IcMypageWhite24 width={24} height={24} onClick={onMyPageClick} />
