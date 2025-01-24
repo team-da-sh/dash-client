@@ -10,6 +10,11 @@ export const w100 = style({
   width: '100%',
 });
 
+export const buttonCustomStyle = style({
+  width: '100%',
+  padding: '0 3rem',
+});
+
 export const h100 = style({
   height: '100%',
 });
@@ -67,6 +72,14 @@ export const confirmLoading = style({
   marginTop: '7.2rem',
   height: '40rem',
   justifyContent: 'space-between',
+});
+
+export const flexCustomStyle = style({
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  width: '100%',
+  height: '100vh',
 });
 
 export const confirmSuccess = style({
