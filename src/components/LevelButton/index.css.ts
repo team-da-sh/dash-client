@@ -43,3 +43,7 @@ export const onboardingLevelButtonStyle = style({
   transition: 'background-color 0.3s ease',
   cursor: 'pointer',
 });
+
+export const headCustomStyle = style({
+  whiteSpace: 'nowrap',
+});
