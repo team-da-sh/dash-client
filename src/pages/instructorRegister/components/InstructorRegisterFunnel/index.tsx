@@ -32,8 +32,6 @@ const InstructorRegisterFunnel = ({ currentStep, Funnel, Step, setStep }: Instru
     detail: '',
     videoUrls: [''],
   });
-  const [isInstaError, setIsInstaError] = useState(false);
-  const [isYoutubeError, setIsYoutubeError] = useState(false);
 
   const { mutate: instructorRegisterMutate } = usePostInstructor();
 
@@ -59,20 +57,12 @@ const InstructorRegisterFunnel = ({ currentStep, Funnel, Step, setStep }: Instru
     setInfo((prev) => ({ ...prev, [key]: value }));
   };
 
-  const handleInstaError = (isError: boolean) => {
-    setIsInstaError(isError);
-  };
-
-  const handleYoutubeError = (isError: boolean) => {
-    setIsYoutubeError(isError);
-  };
-
   const buttonActive = (currentStep: number) => {
     switch (currentStep) {
       case 1:
         return !!info.imageUrls;
       case 2:
-        return !isInstaError && !isYoutubeError && (info.instagram.length > 0 || info.youtube.length > 0);
+        return info.instagram.length > 0 || info.youtube.length > 0;
       case 3:
         // 더 고민해볼게요...
         return true;
@@ -93,6 +83,8 @@ const InstructorRegisterFunnel = ({ currentStep, Funnel, Step, setStep }: Instru
     const updatedInfo = {
       ...info,
       imageUrls: [info.imageUrls],
+      instagram: info.instagram.trim() === '' ? null : info.instagram,
+      youtube: info.youtube.trim() === '' ? null : info.youtube,
     };
 
     instructorRegisterMutate(updatedInfo, {
@@ -127,15 +119,7 @@ const InstructorRegisterFunnel = ({ currentStep, Funnel, Step, setStep }: Instru
               />
             </Step>
             <Step name="2">
-              <PersonalSNSStep
-                instagram={info.instagram}
-                youtube={info.youtube}
-                isInstaError={isInstaError}
-                isYoutubeError={isYoutubeError}
-                handleInstaError={handleInstaError}
-                handleYoutubeError={handleYoutubeError}
-                onInfoChange={handleInfoChange}
-              />
+              <PersonalSNSStep instagram={info.instagram} youtube={info.youtube} onInfoChange={handleInfoChange} />
             </Step>
             <Step name="3">
               <CareerStep educations={info.educations} experiences={info.experiences} onInfoChange={handleInfoChange} />
