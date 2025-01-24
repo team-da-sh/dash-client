@@ -52,8 +52,6 @@ const ClassCard = ({
     }
   };
 
-  console.log(status);
-
   // 상태 아이콘 반환
   const statusIcon = () => {
     switch (status) {
