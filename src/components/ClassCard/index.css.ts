@@ -16,6 +16,8 @@ export const cardImageStyle = style({
   height: '8.4rem',
   flexShrink: 0,
 
+  objectFit: 'cover',
+
   borderRadius: 3.4,
 
   backgroundColor: vars.colors.gray04,
