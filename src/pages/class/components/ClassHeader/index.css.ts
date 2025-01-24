@@ -39,3 +39,11 @@ export const classNameHeaderStyle = style({
   left: '50%',
   transform: 'translateX(-50%)',
 });
+
+export const headerTextStyle = style({
+  whiteSpace: 'nowrap',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+  width:'25rem',
+  textAlign:'center'
+});
