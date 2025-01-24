@@ -85,7 +85,7 @@ const InputSection = ({
           {inputItems.map(({ id, value }) => (
             <div key={id} className={inputContainerStyle}>
               <Input
-                // value={value}
+                value={value}
                 placeholder={placeholder}
                 onChange={(e) => {
                   const updatedItems = inputItems.map((item) =>
