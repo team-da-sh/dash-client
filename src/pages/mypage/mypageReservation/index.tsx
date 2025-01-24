@@ -13,16 +13,6 @@ const MyPageReservation = () => {
   const navigate = useNavigate();
   const { data: reservationData } = useGetReservations();
 
-
-  const handleDetailClick = (reservationId: number | undefined) => {
-    if (reservationId !== undefined) {
-      const path = ROUTES_CONFIG.mypageReservationDetail.path(reservationId.toString());
-      navigate(path);
-    } else {
-      navigate(ROUTES_CONFIG.error.path);
-    }
-  };
-
   const handleNavigateHome = () => {
     navigate('/');
   };
@@ -54,8 +44,7 @@ const MyPageReservation = () => {
                 lessonStartDateTime={reservation.startDateTime}
                 lessonEndDateTime={reservation.endDateTime}
                 isReservation={true}
-                onClick={() => handleClassCardClick(navigate, reservation.reservationId)} 
-              >
+                onClick={() => handleClassCardClick(navigate, reservation.reservationId)}>
                 <BoxButton onClick={handleCancelClick} variant="temp">
                   취소하기
                 </BoxButton>
