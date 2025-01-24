@@ -53,12 +53,16 @@ export const SuccessPage = () => {
     navigate(ROUTES_CONFIG.mypageReservation.path);
   };
 
+  const handleHomeNavigate = () => {
+    navigate(ROUTES_CONFIG.home.path);
+  };
+
   return (
-    <div className={`${styles.wrapper}`}>
+    <div className={`${styles.flexCustomStyle}`}>
       {isConfirmed ? (
         <Flex direction="column" width="100%">
           <Header.Root>
-            <Header.CloseIcon />
+            <Header.CloseIcon onClick={handleHomeNavigate} />
           </Header.Root>
           <Flex direction="column" paddingTop="5.2rem" paddingLeft="2rem" paddingRight="2rem" width="100%" gap="2.8rem">
             <Completion
@@ -77,7 +81,7 @@ export const SuccessPage = () => {
             <h2 className={`${styles.title} ${styles.textCenter}`}>결제 요청까지 성공했어요.</h2>
             <h4 className={`${styles.textCenter} ${styles.description}`}>결제 승인하고 완료해보세요.</h4>
           </Flex>
-          <div className={styles.w100}>
+          <div className={styles.buttonCustomStyle}>
             <button className={`${styles.btn} ${styles.btnPrimary} ${styles.w100}`} onClick={confirmPayment}>
               결제 승인하기
             </button>
