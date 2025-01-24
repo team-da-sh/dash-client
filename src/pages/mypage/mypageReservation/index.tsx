@@ -1,19 +1,18 @@
 import { useNavigate } from 'react-router-dom';
 import { layoutStyle, containerStyle } from '@/pages/mypage/mypageReservation/index.css';
+import { handleClassCardClick, handleBoxButtonClick, handleCancelClick } from '@/pages/mypage/utils/clickUtils';
 import BoxButton from '@/components/BoxButton';
 import ClassCard from '@/components/ClassCard';
 import Flex from '@/components/Flex';
 import Header from '@/components/Header';
 import Text from '@/components/Text';
-import { notify } from '@/components/Toast';
 import { useGetReservations } from '@/apis/myPageReservation/queries';
-import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { Reservation } from '@/types/reservationTypes';
 
 const MyPageReservation = () => {
   const navigate = useNavigate();
-
   const { data: reservationData } = useGetReservations();
+
 
   const handleDetailClick = (reservationId: number | undefined) => {
     if (reservationId !== undefined) {
@@ -27,6 +26,7 @@ const MyPageReservation = () => {
   const handleNavigateHome = () => {
     navigate('/');
   };
+
   return (
     <div className={layoutStyle}>
       <Header.Root isColor={true}>
@@ -53,12 +53,16 @@ const MyPageReservation = () => {
                 lessonLocation={reservation.location}
                 lessonStartDateTime={reservation.startDateTime}
                 lessonEndDateTime={reservation.endDateTime}
-                isReservation={true}>
-                <BoxButton onClick={notify} variant="temp">
+                isReservation={true}
+                onClick={() => handleClassCardClick(navigate, reservation.reservationId)} 
+              >
+                <BoxButton onClick={handleCancelClick} variant="temp">
                   취소하기
                 </BoxButton>
 
-                <BoxButton variant="outline" onClick={() => handleDetailClick(reservation.reservationId)}>
+                <BoxButton
+                  variant="outline"
+                  onClick={(e) => handleBoxButtonClick(e, navigate, reservation.reservationId, true)}>
                   상세보기
                 </BoxButton>
               </ClassCard>
