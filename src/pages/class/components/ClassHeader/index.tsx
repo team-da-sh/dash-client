@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { backIconStyle, classNameHeaderStyle } from '@/pages/class/components/ClassHeader/index.css';
+import { backIconStyle, classNameHeaderStyle,headerTextStyle } from '@/pages/class/components/ClassHeader/index.css';
 import { containerStyle } from '@/pages/home/components/HomeHeader/index.css';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
@@ -21,7 +21,7 @@ const ClassHeader = ({ isVisible, lessonName }: ClassHeaderProps) => {
 
       <Flex align="center" justify="center" className={classNameHeaderStyle}>
         {isVisible && (
-          <Head level="h5" tag="h6">
+          <Head level="h5" tag="h6" className={headerTextStyle}>
             {lessonName}
           </Head>
         )}

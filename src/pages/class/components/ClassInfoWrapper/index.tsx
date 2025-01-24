@@ -10,7 +10,6 @@ import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Tag from '@/components/Tag';
 import Text from '@/components/Text';
-import { calculateDday } from '@/utils/dateCalculate';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { genreMapping } from '@/constants/index';
 import { IcThunderMain0424 } from '@/assets/svg';
@@ -27,15 +26,17 @@ const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetailApiResponse 
     price,
     maxReservationCount,
     reservationCount,
-    status,
+    remainingDays,
   } = lessonData;
   const translatedGenre = genreMapping[genre] || genre;
 
-  // 각 회차에 대해 D-Day 계산
-  const dDay = status === 'EXPIRED' || status === 'OVER_BOOKED' ? '마감' : calculateDday(lessonRounds[0].startDateTime);
-
-  // 총 가격 계산
-  const totalPrice = lessonRounds.length * price;
+  // D-DAY remaingDays로 통일
+  const dDay =
+  remainingDays > 0
+    ? `D-${remainingDays}`
+    : remainingDays === 0
+    ? 'D-DAY'
+    : '마감';
 
   // 남은 예약 가능 인원 계산
   const remainingSeats = maxReservationCount - reservationCount;
@@ -84,7 +85,7 @@ const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetailApiResponse 
         </Head>
         <Flex align="center" gap="0.2rem">
           <Head level="h5" tag="h2">
-            {totalPrice.toLocaleString()}
+            {price.toLocaleString()}
           </Head>
           <Head level="h5" tag="h2">
             원

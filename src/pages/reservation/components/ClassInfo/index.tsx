@@ -38,7 +38,7 @@ const ClassInfo = ({ name, location, locationDetail, teacherNickname, level, les
               <Text tag="b7" color="gray10">
                 {location ? location : '미정'}
               </Text>
-              {locationDetail && ( 
+              {locationDetail && (
                 <Text tag="b7" color="gray6">
                   {locationDetail}
                 </Text>

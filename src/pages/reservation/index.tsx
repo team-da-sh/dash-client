@@ -63,7 +63,7 @@ const Reservation = () => {
     setIsAllChecked(newAgreements.every((isChecked) => isChecked));
   };
 
-  const totalPrice = data.lessonRound.lessonRounds.length * data.price;
+  const totalPrice = data.price;
 
   const className = data.name;
 
@@ -164,7 +164,7 @@ const Reservation = () => {
           총 결제 금액
         </Head>
         <Head level="h2" tag="h2" color="main4">
-          {Number(totalPrice).toLocaleString()}원
+          {data.price.toLocaleString()}원
         </Head>
       </div>
       <Flex width="100%" className={bottomButtonStyle}>
