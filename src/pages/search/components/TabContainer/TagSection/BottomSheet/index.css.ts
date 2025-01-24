@@ -86,10 +86,7 @@ export const genreButtonContainerStyle = style({
   display: 'flex',
   gap: '1.2rem',
   flexWrap: 'wrap',
-  paddingTop: '1.2rem',
-  paddingBottom: '18.4rem',
-  paddingRight: '2rem',
-  paddingLeft: '2rem',
+  padding: '1.2rem 2rem 18.4rem 2rem',
 });
 
 export const tabListCustomStyle = style({
