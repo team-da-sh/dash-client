@@ -85,8 +85,9 @@ const InstructorRegisterFunnel = ({ currentStep, Funnel, Step, setStep }: Instru
     const updatedInfo = {
       ...info,
       imageUrls: [info.imageUrls],
-      instagram: info.instagram.trim() === '' ? null : info.instagram,
-      youtube: info.youtube.trim() === '' ? null : info.youtube,
+      instagram: info.instagram.trim() === '' ? null : `https://www.instagram.com/${info.instagram.trim()}`,
+      youtube: info.youtube.trim() === '' ? null : `https://www.youtube.com/@${info.youtube.trim()}`,
+
       educations: info.educations.every((education) => education.trim() === '') ? [] : info.educations,
       experiences: info.experiences.every((experience) => experience.trim() === '') ? [] : info.experiences,
     };
