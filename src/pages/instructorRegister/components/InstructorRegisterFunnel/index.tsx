@@ -64,8 +64,10 @@ const InstructorRegisterFunnel = ({ currentStep, Funnel, Step, setStep }: Instru
       case 2:
         return info.instagram.length > 0 || info.youtube.length > 0;
       case 3:
-        // 더 고민해볼게요...
-        return true;
+        return (
+          info.educations.some((education) => education.trim().length > 0) ||
+          info.experiences.some((experience) => experience.trim().length > 0)
+        );
       case 4:
         return info.videoUrls[0]?.trim() !== '';
       case 5:
@@ -85,6 +87,8 @@ const InstructorRegisterFunnel = ({ currentStep, Funnel, Step, setStep }: Instru
       imageUrls: [info.imageUrls],
       instagram: info.instagram.trim() === '' ? null : info.instagram,
       youtube: info.youtube.trim() === '' ? null : info.youtube,
+      educations: info.educations.every((education) => education.trim() === '') ? [] : info.educations,
+      experiences: info.experiences.every((experience) => experience.trim() === '') ? [] : info.experiences,
     };
 
     instructorRegisterMutate(updatedInfo, {
