@@ -21,7 +21,7 @@ export const teacherImageStyle = style({
   height: '2.4rem',
 
   objectFit: 'cover',
-  borderRadius: '10px',
+  borderRadius: '100%',
 });
 
 export const wrapperStyle = style({
