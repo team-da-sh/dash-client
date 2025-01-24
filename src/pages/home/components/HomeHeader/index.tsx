@@ -3,14 +3,7 @@ import { containerStyle } from '@/pages/home/components/HomeHeader/index.css';
 import Flex from '@/components/Flex';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { HomeBlack, HomeWhite } from '@/assets/gif';
-import {
-  IcLogoSmallBlack,
-  IcLogoSmallWhite,
-  IcMypageBlack24,
-  IcMypageWhite24,
-  IcSearchBlack24,
-  IcSearchWhite24,
-} from '@/assets/svg';
+import { IcMypageBlack24, IcMypageWhite24, IcSearchBlack24, IcSearchWhite24 } from '@/assets/svg';
 
 interface HomeHeaderProps {
   isVisible: boolean;
