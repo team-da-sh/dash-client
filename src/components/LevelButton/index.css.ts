@@ -35,11 +35,15 @@ export const onboardingLevelButtonStyle = style({
   gap: '0.8rem',
 
   width: '100%',
-  padding: '1.5rem 1.9rem',
+  padding: '1.6rem 2rem',
 
   borderRadius: '4px',
-  border: `1px solid ${vars.colors.gray03}`,
+  outline: `1px solid ${vars.colors.gray03}`,
 
   transition: 'background-color 0.3s ease',
   cursor: 'pointer',
+});
+
+export const headCustomStyle = style({
+  whiteSpace: 'nowrap',
 });

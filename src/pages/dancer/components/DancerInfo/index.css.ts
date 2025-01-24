@@ -29,6 +29,7 @@ export const lastClassItemStyle = style({
 
 export const detailStyle = style({
   whiteSpace: 'pre-line',
+  wordBreak: 'break-word',
 });
 
 export const emptyStyle = style({
@@ -37,4 +38,10 @@ export const emptyStyle = style({
   margin: '0 auto',
   padding: '5.2rem 0 7.2rem 0',
   
+});
+
+export const linkStyle = style({
+  overflow: 'hidden',
+  textOverflow:'ellipsis',
+  maxWidth:'15ch',
 });

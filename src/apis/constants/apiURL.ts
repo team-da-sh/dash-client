@@ -19,10 +19,10 @@ export const API_URL = {
   LESSON_DETAIL: '/api/v1/lessons',
   LESSONS_RECOMMENDATIONS: '/api/v1/lessons/recommendations',
   LESSONS_POPULAR_GENRES: '/api/v1/lessons/popular-genres',
-  LESSONS_UPCOMING: '/api/v1/lessons/upcoming?sortOption=:sortOption',
+  LESSONS_UPCOMING: '/api/v1/lessons/upcoming',
   LESSONS_FAVORITES: '/api/v1/lessons/favorites/{lessonId}',
   LESSON_RESERVE_PROGRESS: '/api/v1/lessons',
-  LESSON_RESERVATION: '/api/v1/lessons/{lessonId}/reservations',
+  LESSON_RESERVATION: '/api/v1/lessons',
 
   MY_PAGE_FAVORITES: '/api/v1/mypage/favorites',
   MY_PAGE_LESSONS: '/api/v1/mypage/lessons',
@@ -33,7 +33,7 @@ export const API_URL = {
   SEARCH_LESSONS:
     '/api/v1/lessons?genre=:genre&level=:level&startDate=:startDate&endDate=:endDate&sortOption=:sortOption&keyword=:keyword',
 
-  LOCATIONS: '/api/v1/locations?query=:query',
+  LOCATIONS: '/api/v1/locations',
 
   AUTH_ROLE: '/api/v1/auth/role',
   IMAGES: '/api/v1/images',

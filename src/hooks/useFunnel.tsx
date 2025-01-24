@@ -12,7 +12,7 @@ export interface FunnelProps {
 
 // totalSteps는 Funnel 구조에서 마지막 완료 페이지도 포함한 step 개수이다.
 // completePath는 완료 페이지 이후 리다이렉션하는 페이지 path이다. ex) '/dancer'
-export const useFunnel = (totalSteps: number, completePath: string) => {
+export const useFunnel = (totalSteps: number, completePath: string, hasCompletePath = true) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [currentStep, setCurrentStep] = useState(Number(searchParams.get('step') || 1));
 
@@ -30,7 +30,14 @@ export const useFunnel = (totalSteps: number, completePath: string) => {
       navigate(-1);
     } else if (newStep > totalSteps) {
       // 마지막 step
-      navigate(completePath);
+      if (hasCompletePath) {
+        navigate(completePath);
+        return;
+      } else {
+        searchParams.set('step', '1');
+        setSearchParams(searchParams, { replace: true });
+        setCurrentStep(1);
+      }
     } else {
       // 일반적인 step
       searchParams.set('step', String(newStep));

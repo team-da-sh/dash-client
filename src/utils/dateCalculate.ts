@@ -36,28 +36,3 @@ export const formatSimpleDate = (dateString: string) => {
   const days = ['일', '월', '화', '수', '목', '금', '토'];
   return `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일 (${days[date.getDay()]})`;
 };
-
-// D-day 계산
-export const calculateDday = (startDateTime: string): string => {
-  const now = new Date();
-  const startDate = new Date(startDateTime);
-
-  // 시간 차이
-  const difference = startDate.getTime() - now.getTime();
-
-  // 하루
-  const oneDayInMs = 1000 * 60 * 60 * 24;
-
-  if (difference > 0 && difference < oneDayInMs) {
-    return 'D-Day';
-  }
-
-  // 남은 일수 계산 (양수일 때만)
-  const remainingDays = Math.ceil(difference / oneDayInMs);
-  if (remainingDays > 0) {
-    return `D-${remainingDays}`;
-  }
-
-  // 이미 지난 경우
-  return '마감';
-};

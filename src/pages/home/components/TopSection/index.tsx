@@ -5,6 +5,7 @@ import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Tag from '@/components/Tag';
 import Text from '@/components/Text';
+import { notify } from '@/components/Toast';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { IcClose, IcArrowRightGray0614, IcCalendarcheckColor3D24, IcCalendarcheckMono3D24 } from '@/assets/svg';
 import { MyPageProps } from '@/types/myPageTypes';
@@ -17,9 +18,13 @@ interface TopSectionProps {
 const TopSection = ({ userData, onClose, isInstructor }: TopSectionProps) => {
   const navigate = useNavigate();
 
-  // 신청 내역, 내 클래스 클릭 시 이동
   const handleNavigate = (path: string) => {
     navigate(path);
+  };
+
+  const isMyLessonsZero = () => {
+    if (userData.reservationCount > 0) return handleNavigate(ROUTES_CONFIG.mypageReservation.path);
+    return;
   };
 
   // 신청 내역, 관심목록, 내 클래스 값이 0 이상일 때 gray8 색상 적용
@@ -38,13 +43,22 @@ const TopSection = ({ userData, onClose, isInstructor }: TopSectionProps) => {
     );
   };
 
+  const handleMyClassesClick = () => {
+    if (isInstructor && userData.lessonCount === 0) {
+      return;
+    }
+    if (isInstructor) {
+      handleNavigate(ROUTES_CONFIG.instructorClassList.path);
+    }
+  };
+
   return (
     <section className={styles.sectionStyle}>
       <Flex direction="column" align="center">
         <Flex align="center" width="100%" justify="spaceBetween">
           <IcClose width={24} height={24} onClick={onClose} />
           <Flex align="center" gap="0.2rem">
-            <Text tag="b7" color="gray7">
+            <Text tag="b7" color="gray7" onClick={notify}>
               프로필 수정
             </Text>
             <IcArrowRightGray0614 width={14} height={14} onClick={onClose} />
@@ -70,12 +84,12 @@ const TopSection = ({ userData, onClose, isInstructor }: TopSectionProps) => {
       </Flex>
 
       <Flex paddingTop="2.4rem" paddingLeft="3.2rem" paddingRight="3.2rem" gap="2.1rem">
-        <Flex align="center" onClick={() => handleNavigate(ROUTES_CONFIG.mypageReservation.path)}>
+        <Flex align="center" onClick={isMyLessonsZero}>
           <Flex direction="column" align="center" gap="0.5rem">
             <Head
               tag="h4"
               color={getTextColor(userData.reservationCount)}
-              className={userData.lessonCount === 0 ? styles.disabledStyle : ''}>
+              className={userData.reservationCount === 0 ? styles.disabledStyle : ''}>
               {userData.reservationCount}
             </Head>
             <Text tag="b6" color={getTextColor(userData.reservationCount)}>
@@ -86,8 +100,7 @@ const TopSection = ({ userData, onClose, isInstructor }: TopSectionProps) => {
 
         <Divider direction="vertical" color="gray2" length={32} thickness={1} />
 
-        {/* 관심목록 우선 disabled 처리 */}
-        <Flex direction="column" align="center" gap="0.5rem" className={styles.disabledStyle}>
+        <Flex direction="column" align="center" gap="0.5rem" className={styles.disabledStyle} onClick={notify}>
           <Head tag="h4" color={getTextColor(userData.favoriteCount)}>
             {userData.favoriteCount}
           </Head>
@@ -102,7 +115,7 @@ const TopSection = ({ userData, onClose, isInstructor }: TopSectionProps) => {
           gap="0.5rem"
           direction="column"
           align="center"
-          onClick={() => isInstructor && handleNavigate(ROUTES_CONFIG.instructorClassList.path)}
+          onClick={handleMyClassesClick}
           className={isInstructor ? '' : styles.disabledStyle}>
           <Head tag="h4" color={getTextColor(userData.lessonCount ?? 0)}>
             {userData.lessonCount ?? 0}

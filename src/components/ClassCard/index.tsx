@@ -20,6 +20,7 @@ const ClassCard = ({
   lessonEndDateTime,
   isReservation = true,
   children,
+  onClick,
 }: ClassCardProps) => {
   // 클래스 상태 계산
   const { status, remainingDays } = getClassStatus(lessonStartDateTime, lessonEndDateTime);
@@ -42,6 +43,8 @@ const ClassCard = ({
         case 'upcoming':
           return '모집중';
         case 'completed':
+          return '모집완료';
+        case 'ongoing':
           return '모집완료';
         default:
           return '';
@@ -68,7 +71,7 @@ const ClassCard = ({
   };
 
   return (
-    <div className={styles.cardContainerStyle}>
+    <div className={styles.cardContainerStyle} onClick={onClick}>
       <Flex justify="spaceBetween" align="center">
         <Flex align="center" gap="0.3rem" marginBottom="1.2rem">
           <Flex marginRight="0.5rem">{statusIcon()}</Flex>
@@ -95,7 +98,7 @@ const ClassCard = ({
 
       <Flex gap="1.2rem" marginBottom="1.6rem">
         <img src={lessonImageUrl} className={styles.cardImageStyle} alt={`${lessonName} 이미지`} />
-        <Flex direction="column" gap="0.8rem">
+        <Flex direction="column" gap="0.8rem" className={styles.cardContentStyle}>
           <Flex gap="0.3rem">
             <Tag type="genre" size="small">
               {lessonGenre && genreMapping[lessonGenre]}
@@ -104,7 +107,7 @@ const ClassCard = ({
               {lessonLevel && levelMapping[lessonLevel]}
             </Tag>
           </Flex>
-          <Head level="h2" tag="h6">
+          <Head level="h2" tag="h6" className={styles.lessonNameStyle}>
             {lessonName}
           </Head>
           <Flex direction="column" gap="0.4rem">
@@ -125,8 +128,14 @@ const ClassCard = ({
                 장소
               </Text>
               <Text tag="c1" color="gray9">
-                {lessonLocation}&nbsp;
-                {lessonDetailedAddress}
+                {lessonLocation || lessonDetailedAddress ? (
+                  <>
+                    {lessonLocation}&nbsp;
+                    {lessonDetailedAddress}
+                  </>
+                ) : (
+                  '미정'
+                )}
               </Text>
             </Flex>
           </Flex>

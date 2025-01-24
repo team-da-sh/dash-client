@@ -8,23 +8,27 @@ globalStyle('.react-calendar', {
   flexDirection: 'column',
   alignItems: 'center',
   marginBottom: '0.9rem',
+  padding: '0 2rem',
 });
 
 globalStyle('.react-calendar__navigation', {
   display: 'flex',
   height: '3.2rem',
-  width: '20rem',
+  width: '23rem',
   marginBottom: '0.8rem',
+  gap: '1.2rem',
+  alignContent: 'center',
+  justifyContent: 'center',
 });
 
 globalStyle('.react-calendar__navigation__arrow.react-calendar__navigation__prev-button', {
   color: vars.colors.gray07,
-  fontSize: '2rem',
+  fontSize: '2.5rem',
 });
 
 globalStyle('.react-calendar__navigation__arrow.react-calendar__navigation__next-button', {
   color: vars.colors.gray07,
-  fontSize: '2rem',
+  fontSize: '2.5rem',
 });
 
 globalStyle('.react-calendar__navigation__label', {

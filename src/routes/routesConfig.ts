@@ -21,15 +21,15 @@ export const ROUTES_CONFIG = {
   },
   class: {
     title: 'Class',
-    path: (id:string) => `/class/${id}`,
+    path: (id: string) => `/class/${id}`,
   },
   dancer: {
     title: 'Dancer',
-    path: (id:string) => `/dancer/${id}`,
+    path: (id: string) => `/dancer/${id}`,
   },
   reservation: {
     title: 'Reservation',
-    path: (id:string) => `/reservation/${id}`,
+    path: (id: string) => `/reservation/${id}`,
   },
   payments: {
     title: 'payments',
@@ -54,6 +54,10 @@ export const ROUTES_CONFIG = {
   classRegister: {
     title: 'ClassRegister',
     path: '/mypage/class-register',
+  },
+  classRegisterCompletion: {
+    title: 'ClassRegisterCompletion',
+    path: '/mypage/class-register/completion'
   },
   instructorRegister: {
     title: 'InstructorRegister',

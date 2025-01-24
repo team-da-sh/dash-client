@@ -6,5 +6,6 @@ export const dancerImageStyle = style({
   maxWidth: 'none',
   maxHeight: 'none',
 
+  objectFit: 'cover',
   borderRadius: '50%',
 });

@@ -32,15 +32,17 @@ const ClassInfo = ({ name, location, locationDetail, teacherNickname, level, les
 
           <Flex gap="1.2rem" color={vars.colors.gray08}>
             <Text tag="b10" color="gray7" className={textLabelStyle}>
-              일정
+              장소
             </Text>
             <Flex direction="column" gap="0.4rem">
               <Text tag="b7" color="gray10">
-                {location}
+                {location ? location : '미정'}
               </Text>
-              <Text tag="b7" color="gray6">
-                {locationDetail}
-              </Text>
+              {locationDetail && (
+                <Text tag="b7" color="gray6">
+                  {locationDetail}
+                </Text>
+              )}
             </Flex>
           </Flex>
           <InfoRow label="난이도" value={levelMapping[level]} />

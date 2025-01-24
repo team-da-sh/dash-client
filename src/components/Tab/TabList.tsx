@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import { ReactNode } from 'react';
 import { tabListStyle } from '@/components/Tab/index.css';
 
@@ -6,8 +7,8 @@ interface TabListProps {
   className?: string;
 }
 
-const TabList = ({ children }: TabListProps) => {
-  return <div className={tabListStyle}>{children}</div>;
+const TabList = ({ children, className }: TabListProps) => {
+  return <div className={clsx(tabListStyle, className)}>{children}</div>;
 };
 
 export default TabList;

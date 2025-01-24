@@ -65,7 +65,7 @@ export const CLASS_TABS = [
 // 장르 영한 변환
 export const genreMapping: { [key: string]: string } = {
   HIPHOP: '힙합',
-  FEMALEHIPHOP: '피메일힙합',
+  FEMALE_HIPHOP: '피메일힙합',
   POPPING: '팝핑',
   BRAKING: '브레이킹',
   WAACKING: '왁킹',

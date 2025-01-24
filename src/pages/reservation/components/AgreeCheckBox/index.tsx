@@ -25,7 +25,7 @@ const AgreeCheckBox = ({ text, isChecked, onToggle, link = '' }: AgreeCheckBoxPr
       justify="spaceBetween"
       align="center"
       onClick={onToggle}>
-      <Flex gap="1.2rem">
+      <Flex gap="1.2rem" align="center">
         {isChecked ? (
           <IcCheckMain0324 width={'2.4rem'} height={'2.4rem'} />
         ) : (

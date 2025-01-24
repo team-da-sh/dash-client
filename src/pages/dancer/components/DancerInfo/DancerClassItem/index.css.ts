@@ -10,7 +10,8 @@ export const classImageStyle = style({
   height: '9.1rem',
 
   borderRadius: '4px',
-  backgroundColor: vars.colors.gray02
+  backgroundColor: vars.colors.gray02,
+  objectFit: 'cover',
 });
 
 export const deadlineTagStyle = style({

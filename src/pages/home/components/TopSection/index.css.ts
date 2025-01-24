@@ -16,6 +16,7 @@ export const profileImageStyle = style({
   marginBottom: '0.9rem',
   borderRadius: '50%',
   backgroundColor: vars.colors.gray04,
+  objectFit: 'cover',
 });
 
 export const disabledStyle = style({

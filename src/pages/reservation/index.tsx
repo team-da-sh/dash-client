@@ -16,6 +16,7 @@ import {
   bottomButtonStyle,
   agreementTextStyle,
 } from '@/pages/reservation/index.css';
+import { LessonRoundProps } from '@/pages/reservation/types';
 import BoxButton from '@/components/BoxButton';
 import Divider from '@/components/Divider';
 import Flex from '@/components/Flex';
@@ -25,7 +26,6 @@ import Text from '@/components/Text';
 import { useGetReservaion } from '@/apis/reservation/queries';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { IcCheckcircleGray0524, IcCheckcircleMain0324 } from '@/assets/svg';
-import { LessonRoundProps } from "./types";
 
 const Reservation = () => {
   const [isAllChecked, setIsAllChecked] = useState(false);
@@ -34,7 +34,6 @@ const Reservation = () => {
   const navigate = useNavigate();
 
   const { id } = useParams<{ id: string }>();
-
   if (!id) {
     return <Error />;
   }
@@ -64,17 +63,23 @@ const Reservation = () => {
     setIsAllChecked(newAgreements.every((isChecked) => isChecked));
   };
 
-  const totalPrice = data.lessonRound.lessonRounds.length * data.price;
+  const totalPrice = data.price;
+
+  const className = data.name;
+
+  const studentName = data.studentName;
 
   const lessonRounds: LessonRoundProps[] = data.lessonRound.lessonRounds.map((round) => ({
     startDateTime: round.startDateTime,
     endDateTime: round.endDateTime,
   }));
 
-  const handleButtonClick = () => {
-    navigate(ROUTES_CONFIG.payments.path);
+  const handleButtonClick = async () => {
+    {
+      navigate(ROUTES_CONFIG.payments.path, { state: { lessonId: id, totalPrice, className, studentName } });
+    }
   };
-  
+
   return (
     <Flex direction="column" width="100%" className={reservationStyle}>
       <div className={headerStyle}>
@@ -135,13 +140,13 @@ const Reservation = () => {
                 text="취소 및 환불 약관  (필수)"
                 isChecked={agreements[0]}
                 onToggle={() => handleToggle(0)}
-                link="https://youtu.be/i9c_dsBzc3Y?feature=shared"
+                link="https://pastoral-can-e04.notion.site/17d27658a0c780f0b42edd22f42bbae8?pvs=4"
               />
               <AgreeCheckBox
                 text="전자결제 서비스 이용약관  (필수)"
                 isChecked={agreements[1]}
                 onToggle={() => handleToggle(1)}
-                link="https://youtu.be/i9c_dsBzc3Y?feature=sharedm"
+                link="https://pastoral-can-e04.notion.site/17d27658a0c780f0b42edd22f42bbae8?pvs=4"
               />
             </Flex>
           </div>
@@ -159,7 +164,7 @@ const Reservation = () => {
           총 결제 금액
         </Head>
         <Head level="h2" tag="h2" color="main4">
-          {Number(totalPrice).toLocaleString()}원
+          {data.price.toLocaleString()}원
         </Head>
       </div>
       <Flex width="100%" className={bottomButtonStyle}>

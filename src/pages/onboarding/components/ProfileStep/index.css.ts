@@ -22,6 +22,8 @@ export const previewImgStyle = recipe({
     backgroundColor: vars.colors.gray01,
     borderRadius: '100%',
 
+    objectFit: 'cover',
+
     cursor: 'pointer',
     backgroundSize: 'cover',
   },

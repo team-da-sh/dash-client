@@ -10,15 +10,21 @@ export const classImageStyle = style({
 });
 
 export const titleStyle = style({
-  width: '16.4rem',
-  overflow: 'auto',
+  minWidth: '16.4rem',
+  maxHeight: '4rem',
+
+  whiteSpace: 'normal',
+  overflow: 'hidden',
+  wordBreak: 'break-all',
+
 });
 
 export const teacherImageStyle = style({
   width: '2.4rem',
   height: '2.4rem',
 
-  borderRadius: '10px',
+  objectFit: 'cover',
+  borderRadius: '100%',
 });
 
 export const wrapperStyle = style({

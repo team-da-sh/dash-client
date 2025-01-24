@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import {
   classImageStyle,
   deadlineTagStyle,
@@ -17,6 +18,7 @@ import Head from '@/components/Head';
 import Tag from '@/components/Tag';
 import Text from '@/components/Text';
 import { transformDateToDotFormat } from '@/utils/transformDateToDotFormat';
+import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { genreMapping, levelMapping } from '@/constants';
 
 const LessonItem = ({
@@ -32,6 +34,8 @@ const LessonItem = ({
   remainingDays,
   useNewStyles = false,
 }: Omit<LessonTypes, 'location'> & { useNewStyles?: boolean }) => {
+  const navigate = useNavigate();
+
   const styles = useNewStyles
     ? {
         classImage: newClassImageStyle,
@@ -46,25 +50,31 @@ const LessonItem = ({
         deadlineTag: deadlineTagStyle,
       };
 
+  const handleLessonClick = () => {
+    navigate(ROUTES_CONFIG.class.path(`${id}`));
+  };
+
   return (
-    <Flex tag="li" direction="column" gap="0.8rem" key={id} className={styles.wrapper}>
+    <Flex tag="li" direction="column" gap="0.8rem" key={id} className={styles.wrapper} onClick={handleLessonClick}>
       <img src={imageUrl} alt="클래스 섬네일" className={styles.classImage} />
       {remainingDays < 4 && (
         <Tag type="deadline" size="thumbnail" className={styles.deadlineTag}>{`마감 D-${remainingDays || 'Day'}`}</Tag>
       )}
 
-      <Flex gap="0.4rem">
-        <Tag type="genre" size="small">
-          {genreMapping[genre]}
-        </Tag>
-        <Tag type="level" size="small">
-          {levelMapping[level]}
-        </Tag>
-      </Flex>
+      <Flex direction="column" gap="0.6rem">
+        <Flex gap="0.4rem">
+          <Tag type="genre" size="small">
+            {genreMapping[genre]}
+          </Tag>
+          <Tag type="level" size="small">
+            {levelMapping[level]}
+          </Tag>
+        </Flex>
 
-      <Head level="h3" tag="h7" className={titleStyle}>
-        {name}
-      </Head>
+        <Head level="h3" tag="h7" className={titleStyle}>
+          {name}
+        </Head>
+      </Flex>
 
       <Flex direction="column" gap="0.4rem">
         <Flex gap="0.6rem" align="center">
@@ -72,7 +82,7 @@ const LessonItem = ({
           <Text tag="b7">{teacherName}</Text>
         </Flex>
         <Flex gap="0.4rem" align="center">
-          <Text tag="c2" color="gray5">
+          <Text tag="c1" color="gray5">
             {transformDateToDotFormat(startDate)} - {transformDateToDotFormat(endDate)}
           </Text>
         </Flex>

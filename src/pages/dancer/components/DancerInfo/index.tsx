@@ -15,14 +15,25 @@ import {
   lastClassItemStyle,
   detailStyle,
   emptyStyle,
+  linkStyle,
 } from '@/pages/dancer/components/DancerInfo/index.css';
 
 const DancerInfo = ({ dancerData }: { dancerData: DancerDetailApiResponse }) => {
   
   const { instagram, youtube, detail, nickname, lessons } = dancerData;
 
-  const instagramHandle = instagram?.split('/').filter(Boolean).pop();
-  const youtubeHandle = youtube?.split('/').filter(Boolean).pop();
+  // 쿼리 파라미터를 제거하고 사용자 이름만 추출하는 함수
+  const extractUsername = (url: string | undefined) => {
+    if (!url) return '';
+    
+    // 쿼리 파라미터를 제거
+    const cleanedUrl = url.split('?')[0];
+    
+    // 마지막 '/' 이후의 부분이 사용자 이름
+    return cleanedUrl.split('/').filter(Boolean).pop() || '';
+  };
+  const instagramHandle = extractUsername(instagram);
+  const youtubeHandle = extractUsername(youtube);
 
   const navigate = useNavigate();
 
@@ -45,7 +56,7 @@ const DancerInfo = ({ dancerData }: { dancerData: DancerDetailApiResponse }) => 
             <a href={instagram} target="_blank" rel="noopener noreferrer">
               <Flex direction="row" gap="0.9rem" justify="center" align="center">
                 <IcInstagram20 width="2rem" />
-                <Text tag="b2" color="gray5">
+                <Text tag="b2" color="gray5" className={linkStyle}>
                   {instagramHandle}
                 </Text>
               </Flex>
@@ -56,7 +67,7 @@ const DancerInfo = ({ dancerData }: { dancerData: DancerDetailApiResponse }) => 
             <a href={youtube} target="_blank" rel="noopener noreferrer">
               <Flex direction="row" gap="0.9rem" justify="center" align="center">
                 <IcYoutube20 width="2rem" height="2rem" />
-                <Text tag="b2" color="gray5">
+                <Text tag="b2" color="gray5" className={linkStyle}>
                   {youtubeHandle}
                 </Text>
               </Flex>

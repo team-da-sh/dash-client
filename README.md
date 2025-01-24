@@ -1,12 +1,31 @@
 # DASH
 
-## 📢 서비스 소개
+## 💃 서비스 소개
 
-### “댄스 클래스와 댄서에 대한 정보를 한눈에 확인하고, 원하는 클래스를 간편하게 신청할 수 있는 서비스.”
+![image](https://github.com/user-attachments/assets/25a0cb52-00f1-4ce9-8564-1070cb191231)
 
-춤을 사랑하는 사람들이 모여 성장할 수 있는 공간을 제공하고, 수강생과 댄서를 연결하는 다리가 되어준다.
 
-<br />
+### 💃 “당신에게 춤을 더 가까이, 세상의 모든 댄서와 클래스를 모은 서비스"
+
+
+> Da/sh’는 서비스의 핵심 키워드인 Dance(춤)와 Share(공유)를 결합한 이름으로,
+> 댄스 클래스와 강사댄서에 대한 정보를 자유롭게 탐색하고 원하는 클래스를 간편하게 신청할 수 있는 플랫폼입니다.
+> 이 서비스는 수강생과 강사를 연결하는 다리 역할을 함과 동시에 세상의 모든 댄서들이 함께 소통하고 성장할 수 있는 공간을 제공합니다.
+
+
+<br/>
+<br/>
+
+### 💃서비스 플로우
+
+![image](https://github.com/user-attachments/assets/2bb85425-a7ca-46c3-b4e7-addb522a2629)
+
+<br/>
+
+#### DASH의 웨비들을 소개합니다!
+
+![Image](https://github.com/user-attachments/assets/c475ac1a-1f4d-4ef8-94ab-fa29307849fe)
+
 
 <br />
 
@@ -14,10 +33,10 @@
 
    <div align="center">
      
-| <img src="https://avatars.githubusercontent.com/u/66071954?v=4" width="200" alt="프로필사진"> | <img src="https://avatars.githubusercontent.com/u/94050324?v=4" width="200" alt="프로필사진">  | <img src="https://avatars.githubusercontent.com/u/91944542?v=4" width="200" alt="프로필사진"> |  <img src="https://avatars.githubusercontent.com/u/90364839?v=4" width="200" alt="프로필사진">  |  <img src="https://avatars.githubusercontent.com/u/117571282?s=96&v=4" width="200" alt="프로필사진">  |
+| <img src="https://github.com/user-attachments/assets/f315094a-0de0-4eca-bc4c-7e48cb2a7b6f" width="150" alt="프로필사진"> | <img src="https://github.com/user-attachments/assets/067c37c2-f544-4238-8358-eb5f051fef4a" width="150" alt="프로필사진">  | <img src="https://github.com/user-attachments/assets/a97c1d70-6107-44c3-8de8-d0fa708090ca" width="150" alt="프로필사진"> |  <img src="https://github.com/user-attachments/assets/713158dd-64a7-40c4-b177-ed85896a6cf1" width="150" alt="프로필사진">  |  <img src="https://github.com/user-attachments/assets/372ad506-b2d2-41fc-ae4e-adbb2466f292" width="150" alt="프로필사진">  |
 | :-------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------:
-|                            <div align = "center"><b>김건휘</b></div>                            |                            <div align = "center"><b>김규홍</b></div>                            |                            <div align = "center"><b>박희선</b></div>                            |                             <div align = "center"><b>한수정</b></div>                            |                             <div align = "center"><b>이진혁</b></div>
-|                            [@KIMGEONHWI](https://github.com/KIMGEONHWI)                            |                [@rtttr1](https://github.com/rtttr1)                                 |                       [@heesunee](https://github.com/heesunee)                        |                        [@hansoojeongsj](https://github.com/hansoojeongsj)   |                        [@constantly-dev](https://github.com/constantly-dev)   |
+|                            <div align = "center"><b>이진혁</b></div>                            |                            <div align = "center"><b>김규홍</b></div>                            |                            <div align = "center"><b>박희선</b></div>                            |                             <div align = "center"><b>한수정</b></div>                            |                             <div align = "center"><b>김건휘</b></div>
+|                           [@constantly-dev](https://github.com/constantly-dev)                            |                [@rtttr1](https://github.com/rtttr1)                                 |                       [@heesunee](https://github.com/heesunee)                        |                        [@hansoojeongsj](https://github.com/hansoojeongsj)   |                        [@KIMGEONHWI](https://github.com/KIMGEONHWI)   |
 
 </div>
 
@@ -119,7 +138,9 @@
 
 ## 📢 네이밍 컨벤션
 
-### 1. 기본 (Default)
+ <details> 
+	 
+ ### 1. 기본 (Default)
 
 1. 컴포넌트 / class `PascalCase`
 2. 폴더명 `carmelCase`
@@ -220,8 +241,13 @@
 <br/>
 <br/>
 
+ </details>
+
+
 ## 📢 코딩 (개발) 컨벤션
 
+ <details> 
+	 
 ### 변수
 
 - var 금지.
@@ -296,6 +322,8 @@ const InfoText = () => {
   ```
 - 불필요한 반복문 지양 : filter, array.include() 등
   - 조건부로 데이터를 확인하거나 뽑아야하는 로직을 사용할 때에는 `Map` 이나 `Object`처럼 `key`값을 이용해서 원소를 찾는 자료형을 이용하는것을 고려해보거나, 배열을 순회하지 않고 index로 바로 접근할 수 있는 방법이 없는지 고려.
+ 
+
 
 ### Style → X
 
@@ -308,3 +336,5 @@ const InfoText = () => {
 - button 태그에 **`type`**은 명시적으로 작성
 - 비교 연산자는 **`===`**와 **`!==`**만을 사용
 - axios 안에서 **`then/catch`** 대신 **`async/await`** 지향
+
+    </details>

@@ -1,5 +1,5 @@
 import Head from '@/components/Head/index';
-import { levelButtonStyle, onboardingLevelButtonStyle } from '@/components/LevelButton/index.css';
+import { headCustomStyle, levelButtonStyle, onboardingLevelButtonStyle } from '@/components/LevelButton/index.css';
 import Text from '@/components/Text';
 
 interface LevelButtonProps {
@@ -19,7 +19,7 @@ const LevelButton = ({ level, isSelected, onClick }: LevelButtonProps) => {
       onClick={onClick}
       type="button">
       {level.icon}
-      <Head tag="h6" level="h6" color={isSelected ? 'white' : 'gray9'}>
+      <Head className={headCustomStyle} tag="h6" level="h6" color={isSelected ? 'white' : 'gray9'}>
         {level.title}
       </Head>
       <Text tag="b8" color={isSelected ? 'gray2' : 'gray9'}>
