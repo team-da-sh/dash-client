@@ -24,7 +24,6 @@ const TopSection = ({ userData, onClose, isInstructor }: TopSectionProps) => {
 
   const isMyLessonsZero = () => {
     if (userData.reservationCount > 0) return handleNavigate(ROUTES_CONFIG.mypageReservation.path);
-
     return;
   };
 
@@ -84,7 +83,7 @@ const TopSection = ({ userData, onClose, isInstructor }: TopSectionProps) => {
         </Flex>
       </Flex>
 
-      <Flex paddingTop="2.4rem" paddingLeft="3.2rem" paddingRight="3.2rem" gap="2.1rem" onClick={notify}>
+      <Flex paddingTop="2.4rem" paddingLeft="3.2rem" paddingRight="3.2rem" gap="2.1rem">
         <Flex align="center" onClick={isMyLessonsZero}>
           <Flex direction="column" align="center" gap="0.5rem">
             <Head
@@ -101,7 +100,7 @@ const TopSection = ({ userData, onClose, isInstructor }: TopSectionProps) => {
 
         <Divider direction="vertical" color="gray2" length={32} thickness={1} />
 
-        <Flex direction="column" align="center" gap="0.5rem" className={styles.disabledStyle}>
+        <Flex direction="column" align="center" gap="0.5rem" className={styles.disabledStyle} onClick={notify}>
           <Head tag="h4" color={getTextColor(userData.favoriteCount)}>
             {userData.favoriteCount}
           </Head>

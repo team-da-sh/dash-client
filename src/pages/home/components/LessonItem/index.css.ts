@@ -15,6 +15,8 @@ export const titleStyle = style({
 
   whiteSpace: 'normal',
   overflow: 'hidden',
+  wordBreak: 'break-all',
+
 });
 
 export const teacherImageStyle = style({

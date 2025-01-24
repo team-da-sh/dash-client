@@ -8,6 +8,7 @@ globalStyle('.react-calendar', {
   flexDirection: 'column',
   alignItems: 'center',
   marginBottom: '0.9rem',
+  padding: '0 2rem',
 });
 
 globalStyle('.react-calendar__navigation', {
