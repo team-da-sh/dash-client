@@ -24,8 +24,6 @@ export const CheckoutPage = () => {
   console.log(ready); // 빌드 에러 잡는 용 추후 사용 예정
   console.log(setAmount); // 빌드 에러 잡는 용 추후 사용 예정
 
-  console.log(totalPrice);
-
   useEffect(() => {
     const fetchPaymentWidgets = async () => {
       const tossPayments = await loadTossPayments(clientKey);
