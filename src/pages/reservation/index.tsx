@@ -77,7 +77,7 @@ const Reservation = () => {
       { lessonId: id },
       {
         onSuccess: () => {
-          navigate(ROUTES_CONFIG.mypageReservation.path);
+          navigate(ROUTES_CONFIG.reservationCompletion.path);
         },
         onError: () => {
           setHasError(true);
