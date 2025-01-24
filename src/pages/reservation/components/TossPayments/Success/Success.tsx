@@ -1,78 +1,74 @@
 import { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import * as styles from '@/pages/reservation/components/TossPayments/index.css';
+import BoxButton from '@/components/BoxButton';
+import Completion from '@/components/Completion';
 import Flex from '@/components/Flex';
+import Header from '@/components/Header';
+import { usePostReservation } from '@/apis/reservation/queries';
+import { ROUTES_CONFIG } from '@/routes/routesConfig';
 
 export const SuccessPage = () => {
   const [isConfirmed, setIsConfirmed] = useState(false);
   const [searchParams] = useSearchParams();
-  const paymentKey = searchParams.get('paymentKey');
-  const orderId = searchParams.get('orderId');
-  const amount = searchParams.get('amount');
+  const navigate = useNavigate();
+
+  const paymentKey = searchParams.get('paymentKey') ?? '';
+  const orderId = searchParams.get('orderId') ?? '';
+  const amount = Number(searchParams.get('amount')) || 0;
+
+  const lessonId = searchParams.get('lessonId') ?? '';
+
+  const { mutate: classReservation } = usePostReservation();
+
+  console.log(lessonId);
 
   const confirmPayment = async () => {
-    try {
-      const response = await fetch('/sandbox-dev/api/v1/payments/confirm', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          paymentKey,
-          orderId,
-          amount,
-        }),
-      });
+    if (!lessonId) {
+      alert('수업 ID가 존재하지 않습니다.');
+      return;
+    }
 
-      if (response.ok) {
-        setIsConfirmed(true);
-      }
+    try {
+      classReservation(
+        { lessonId, paymentKey, orderId, amount },
+        {
+          onSuccess: () => {
+            setIsConfirmed(true);
+          },
+          onError: (error) => {
+            console.error('결제 승인 중 오류 발생:', error);
+            alert('결제 승인이 실패했습니다. 다시 시도해주세요.');
+          },
+        }
+      );
     } catch (error) {
-      console.error('Error confirming payment:', error);
+      console.error('결제 처리 중 예기치 못한 오류 발생:', error);
+      alert('결제 처리 중 문제가 발생했습니다.');
     }
   };
 
-  return (
-    <div className={`${styles.wrapper} ${styles.w100}`}>
-      {isConfirmed ? (
-        <Flex direction="column" align="center" width="100%" className={styles.maxW540}>
-          <img src="https://static.toss.im/illusts/check-blue-spot-ending-frame.png" width="120" height="120" />
-          <h2 className={styles.title}>결제를 완료했어요</h2>
-          <div className={`${styles.responseSection} ${styles.w100}`}>
-            <Flex justify="spaceBetween">
-              <span className={styles.responseLabel}>결제 금액</span>
-              <span id="amount" className={styles.responseText}>
-                {amount}
-              </span>
-            </Flex>
-            <Flex justify="spaceBetween">
-              <span className={styles.responseLabel}>주문번호</span>
-              <span id="orderId" className={styles.responseText}>
-                {orderId}
-              </span>
-            </Flex>
-            <Flex justify="spaceBetween">
-              <span className={styles.responseLabel}>paymentKey</span>
-              <span id="paymentKey" className={styles.responseText}>
-                {paymentKey}
-              </span>
-            </Flex>
-          </div>
+  const handleNavigate = () => {
+    navigate(ROUTES_CONFIG.mypageReservation.path);
+  };
 
-          <div className={`${styles.buttonGroup} ${styles.w100}`}>
-            <Flex gap="1.5rem">
-              <a className={`${styles.btn} ${styles.w100}`} href="https://developers.tosspayments.com/sandbox">
-                다시 테스트하기
-              </a>
-              <a
-                className={`${styles.btn} ${styles.w100}`}
-                href="https://docs.tosspayments.com/guides/v2/payment-widget/integration"
-                target="_blank"
-                rel="noopner noreferrer">
-                결제 연동 문서가기
-              </a>
-            </Flex>
-          </div>
+  return (
+    <div className={`${styles.wrapper}`}>
+      {isConfirmed ? (
+        <Flex direction="column" width="100%">
+          <Header.Root>
+            <Header.CloseIcon />
+          </Header.Root>
+          <Flex direction="column" paddingTop="5.2rem" paddingLeft="2rem" paddingRight="2rem" width="100%" gap="2.8rem">
+            <Completion
+              title="클래스 신청 완료!"
+              subTitle="함께 리듬 탈 준비 됐나요?"
+              description="신청 내역은 마이페이지의클래스 신청 내역에서 확인할 수 있어요"
+            />
+
+            <BoxButton onClick={handleNavigate}>신청 내역으로 이동</BoxButton>
+          </Flex>
         </Flex>
       ) : (
         <Flex direction="column" align="center" className={`${styles.confirmLoading} ${styles.w100} ${styles.maxW540}`}>
