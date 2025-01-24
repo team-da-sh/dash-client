@@ -32,8 +32,6 @@ const InstructorRegisterFunnel = ({ currentStep, Funnel, Step, setStep }: Instru
     detail: '',
     videoUrls: [''],
   });
-  const [isInstaError, setIsInstaError] = useState(false);
-  const [isYoutubeError, setIsYoutubeError] = useState(false);
 
   const { mutate: instructorRegisterMutate } = usePostInstructor();
 
@@ -59,23 +57,17 @@ const InstructorRegisterFunnel = ({ currentStep, Funnel, Step, setStep }: Instru
     setInfo((prev) => ({ ...prev, [key]: value }));
   };
 
-  const handleInstaError = (isError: boolean) => {
-    setIsInstaError(isError);
-  };
-
-  const handleYoutubeError = (isError: boolean) => {
-    setIsYoutubeError(isError);
-  };
-
   const buttonActive = (currentStep: number) => {
     switch (currentStep) {
       case 1:
         return !!info.imageUrls;
       case 2:
-        return !isInstaError && !isYoutubeError && (info.instagram.length > 0 || info.youtube.length > 0);
+        return info.instagram.length > 0 || info.youtube.length > 0;
       case 3:
-        // 더 고민해볼게요...
-        return true;
+        return (
+          info.educations.some((education) => education.trim().length > 0) ||
+          info.experiences.some((experience) => experience.trim().length > 0)
+        );
       case 4:
         return info.videoUrls[0]?.trim() !== '';
       case 5:
@@ -93,6 +85,11 @@ const InstructorRegisterFunnel = ({ currentStep, Funnel, Step, setStep }: Instru
     const updatedInfo = {
       ...info,
       imageUrls: [info.imageUrls],
+      instagram: info.instagram.trim() === '' ? null : `https://www.instagram.com/${info.instagram.trim()}`,
+      youtube: info.youtube.trim() === '' ? null : `https://www.youtube.com/@${info.youtube.trim()}`,
+
+      educations: info.educations.every((education) => education.trim() === '') ? [] : info.educations,
+      experiences: info.experiences.every((experience) => experience.trim() === '') ? [] : info.experiences,
     };
 
     instructorRegisterMutate(updatedInfo, {
@@ -127,15 +124,7 @@ const InstructorRegisterFunnel = ({ currentStep, Funnel, Step, setStep }: Instru
               />
             </Step>
             <Step name="2">
-              <PersonalSNSStep
-                instagram={info.instagram}
-                youtube={info.youtube}
-                isInstaError={isInstaError}
-                isYoutubeError={isYoutubeError}
-                handleInstaError={handleInstaError}
-                handleYoutubeError={handleYoutubeError}
-                onInfoChange={handleInfoChange}
-              />
+              <PersonalSNSStep instagram={info.instagram} youtube={info.youtube} onInfoChange={handleInfoChange} />
             </Step>
             <Step name="3">
               <CareerStep educations={info.educations} experiences={info.experiences} onInfoChange={handleInfoChange} />

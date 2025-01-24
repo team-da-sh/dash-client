@@ -3,8 +3,8 @@ import { API_URL } from '@/apis/constants/apiURL';
 
 interface InstructorRegisterInfoTypes {
   imageUrls: string[];
-  instagram: string;
-  youtube: string;
+  instagram: string | null;
+  youtube: string | null;
   educations: string[];
   experiences: string[];
   detail: string;

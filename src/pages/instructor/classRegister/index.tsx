@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ClassAmount from '@/pages/instructor/classRegister/components/ClassAmount';
 import ClassDescription from '@/pages/instructor/classRegister/components/ClassDescription';
@@ -13,7 +12,7 @@ import ClassSchedule from '@/pages/instructor/classRegister/components/ClassSche
 import ClassRegisterBottomSheet from '@/pages/instructor/classRegister/components/ClassSchedule/ClassRegisterBottomSheet';
 import { useClassRegisterForm } from '@/pages/instructor/classRegister/hooks/useClassRegisterForm';
 import * as styles from '@/pages/instructor/classRegister/index.css';
-import { ClassRegisterInfoTypes, LocationTypes } from '@/pages/instructor/classRegister/types';
+import { ClassRegisterInfoTypes } from '@/pages/instructor/classRegister/types';
 import { buttonContainerStyle } from '@/pages/instructorRegister/index.css';
 import BoxButton from '@/components/BoxButton';
 import Header from '@/components/Header';
@@ -25,7 +24,7 @@ import { genreEngMapping, levelEngMapping } from '@/constants';
 
 const ClassRegister = () => {
   const { isBottomSheetOpen, openBottomSheet, closeBottomSheet } = useBottomSheet();
-  const [selectedLocation, setSelectedLocation] = useState<LocationTypes | null>(null);
+  // const [selectedLocation, setSelectedLocation] = useState<LocationTypes | null>(null);
   const navigate = useNavigate();
 
   const { mutate: classRegisterMutate } = usePostClassRegisterInfo();
@@ -50,6 +49,7 @@ const ClassRegister = () => {
     minute,
     ampm,
     startDate,
+    selectedLocation,
     setStartDate,
     handleClassNameChange,
     handlePersonnelChange,
@@ -71,6 +71,7 @@ const ClassRegister = () => {
     handleDetailPlace,
     handleRemoveTime,
     isFormValid,
+    setSelectedLocation,
   } = useClassRegisterForm();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
