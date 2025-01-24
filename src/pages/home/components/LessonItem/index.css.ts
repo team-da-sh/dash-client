@@ -11,7 +11,9 @@ export const classImageStyle = style({
 
 export const titleStyle = style({
   width: '16.4rem',
-  overflow: 'auto',
+  maxHeight: '4rem',
+
+  whiteSpace: 'normal',
 });
 
 export const teacherImageStyle = style({

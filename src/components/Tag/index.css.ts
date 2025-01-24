@@ -18,6 +18,7 @@ export const tagStyle = recipe({
       },
       deadline: {
         backgroundColor: vars.colors.gray10,
+        color: vars.colors.gray01,
       },
       search: {
         color: vars.colors.main04,
