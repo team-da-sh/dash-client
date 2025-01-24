@@ -10,5 +10,6 @@ export interface ClassCardProps {
   lessonStartDateTime: string | undefined;
   lessonEndDateTime: string | undefined;
   isReservation?: boolean;
+  onClick?: () => void;
   children?: React.ReactNode;
 }
