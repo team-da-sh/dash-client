@@ -44,7 +44,7 @@ const Footer = () => {
           </Text>
           <Divider direction="vertical" length={'0.6rem'} color="gray3" />
           <Text tag="c1" color="gray5">
-            010-4080-8364
+            010-5739-0233
           </Text>
         </Flex>
         <Text tag="c1" color="gray5">
