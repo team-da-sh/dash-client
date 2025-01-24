@@ -10,13 +10,18 @@ const Footer = () => {
       <IcLogoSmallBlack width={53.3} height={18} />
 
       <Flex gap="1.2rem" align="center" marginTop="1.4rem" marginBottom="1.2rem">
-        <Text tag="b9" color="gray8">
-          개인정보처리방침
-        </Text>
+        <a href="https://pastoral-can-e04.notion.site/ed5a3a0e3cc74fce908030819a98dc89">
+          <Text tag="b9" color="gray8">
+            개인정보처리방침
+          </Text>
+        </a>
+
         <Divider direction="vertical" length={'0.6rem'} color="gray5" />
-        <Text tag="b9" color="gray8">
-          이용약관
-        </Text>
+        <a href="https://pastoral-can-e04.notion.site/DASH-d53c54ca35424312a49a371ba39ee1a2">
+          <Text tag="b9" color="gray8">
+            이용약관
+          </Text>
+        </a>
       </Flex>
 
       <Flex gap="0.4rem" direction="column">
@@ -44,7 +49,7 @@ const Footer = () => {
           </Text>
           <Divider direction="vertical" length={'0.6rem'} color="gray3" />
           <Text tag="c1" color="gray5">
-            010-4080-8364
+            010-5739-0233
           </Text>
         </Flex>
         <Text tag="c1" color="gray5">

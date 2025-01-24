@@ -14,11 +14,20 @@ export const imageStyle = style({
   objectFit: 'cover',
 });
 
-export const descriptionStyle = style({
+export const description2Style = style({
   position: 'absolute',
   left: '2rem',
   bottom: '5.6rem',
-  maxWidth: '28rem',
+  maxWidth: '34rem',
+  wordBreak: 'keep-all',
+});
+
+export const descriptionStyle = style({
+  position: 'absolute',
+  left: '2rem',
+  bottom: '9rem',
+  maxWidth: '34rem',
+  wordBreak: 'keep-all',
 });
 
 export const moreWrapperStyle = style({
