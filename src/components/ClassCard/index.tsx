@@ -20,6 +20,7 @@ const ClassCard = ({
   lessonEndDateTime,
   isReservation = true,
   children,
+  onClick,
 }: ClassCardProps) => {
   // 클래스 상태 계산
   const { status, remainingDays } = getClassStatus(lessonStartDateTime, lessonEndDateTime);
@@ -68,7 +69,7 @@ const ClassCard = ({
   };
 
   return (
-    <div className={styles.cardContainerStyle}>
+    <div className={styles.cardContainerStyle} onClick={onClick}>
       <Flex justify="spaceBetween" align="center">
         <Flex align="center" gap="0.3rem" marginBottom="1.2rem">
           <Flex marginRight="0.5rem">{statusIcon()}</Flex>
