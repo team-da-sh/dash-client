@@ -1,5 +1,6 @@
 import { loadTossPayments, ANONYMOUS } from '@tosspayments/tosspayments-sdk';
 import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import * as styles from '@/pages/reservation/components/TossPayments/index.css';
 
 const generateRandomString = () => window.btoa(String(Math.random())).slice(0, 20);
@@ -7,11 +8,17 @@ const generateRandomString = () => window.btoa(String(Math.random())).slice(0, 2
 const clientKey = 'test_gck_docs_Ovk5rk1EwkEbP0W43n07xlzm';
 
 export const CheckoutPage = () => {
+  const location = useLocation();
+  const lessonId = location.state?.lessonId;
+  const totalPrice = location.state?.totalPrice;
+  const className = location.state?.className;
+  const stundentName = location.state?.studentName;
+
   const [ready, setReady] = useState(false);
   const [widgets, setWidgets] = useState<any>(null);
   const [amount, setAmount] = useState({
     currency: 'KRW',
-    value: 45_000,
+    value: totalPrice,
   });
 
   console.log(ready); // 빌드 에러 잡는 용 추후 사용 예정
@@ -54,14 +61,13 @@ export const CheckoutPage = () => {
     try {
       await widgets?.requestPayment({
         orderId: generateRandomString(),
-        orderName: '토스 티셔츠 외 2건',
-        customerName: '김토스',
+        orderName: className,
+        customerName: stundentName,
         customerEmail: 'customer123@gmail.com',
-        successUrl: window.location.origin + '/reservation/payments/success' + window.location.search,
-        failUrl: window.location.origin + '/reservation/payments/fail' + window.location.search,
+        successUrl: `${window.location.origin}/reservation/payments/success?lessonId=${lessonId}${window.location.search}`,
+        failUrl: `${window.location.origin}/reservation/payments/fail${window.location.search}`,
       });
     } catch (error) {
-      // TODO: 에러 처리
       console.error('결제 요청 중 오류 발생:', error);
     }
   };

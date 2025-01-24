@@ -13,10 +13,24 @@ const MyPageReservation = () => {
   const navigate = useNavigate();
   const { data: reservationData } = useGetReservations();
 
+
+  const handleDetailClick = (reservationId: number | undefined) => {
+    if (reservationId !== undefined) {
+      const path = ROUTES_CONFIG.mypageReservationDetail.path(reservationId.toString());
+      navigate(path);
+    } else {
+      navigate(ROUTES_CONFIG.error.path);
+    }
+  };
+
+  const handleNavigateHome = () => {
+    navigate('/');
+  };
+
   return (
     <div className={layoutStyle}>
       <Header.Root isColor={true}>
-        <Header.BackIcon />
+        <Header.BackIcon onHomeBackClick={handleNavigateHome} />
         <Header.Title title="클래스 예약 내역" />
       </Header.Root>
 
@@ -40,7 +54,7 @@ const MyPageReservation = () => {
                 lessonStartDateTime={reservation.startDateTime}
                 lessonEndDateTime={reservation.endDateTime}
                 isReservation={true}
-                onClick={() => handleClassCardClick(navigate, reservation.reservationId)} // 클래스 카드 클릭 시 reservation 경로로 이동
+                onClick={() => handleClassCardClick(navigate, reservation.reservationId)} 
               >
                 <BoxButton onClick={handleCancelClick} variant="temp">
                   취소하기

@@ -21,6 +21,7 @@ const CareerStep = ({ educations, experiences, onInfoChange }: CareerStepProps) 
 
       <InputSection
         title="학력"
+        placeholder="대쉬대학교 실용무용학과 졸업"
         icon={<IcGraduationBlack20 width={'2rem'} />}
         isActive={isEducationActive}
         onToggleActive={() => setIsEducationActive((prev) => !prev)}
@@ -35,6 +36,7 @@ const CareerStep = ({ educations, experiences, onInfoChange }: CareerStepProps) 
 
       <InputSection
         title="경력"
+        placeholder="2018 BATTLE LIINEUP 1등"
         icon={<IcDocumentBlack20 width={'2rem'} />}
         isActive={isCareerActive}
         onToggleActive={() => setIsCareerActive((prev) => !prev)}
