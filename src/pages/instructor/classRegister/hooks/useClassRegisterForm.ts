@@ -100,6 +100,7 @@ export const useClassRegisterForm = () => {
         date: startDate,
         duration: selectedTime,
       };
+
       setTimes([...times, newTime]);
     }
   };

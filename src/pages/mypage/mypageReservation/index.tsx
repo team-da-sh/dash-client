@@ -23,10 +23,14 @@ const MyPageReservation = () => {
       navigate(ROUTES_CONFIG.error.path);
     }
   };
+
+  const handleNavigateHome = () => {
+    navigate('/');
+  };
   return (
     <div className={layoutStyle}>
       <Header.Root isColor={true}>
-        <Header.BackIcon />
+        <Header.BackIcon onHomeBackClick={handleNavigateHome} />
         <Header.Title title="클래스 예약 내역" />
       </Header.Root>
 
