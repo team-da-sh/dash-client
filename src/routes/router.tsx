@@ -1,6 +1,7 @@
 import { lazy } from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 import { LoginCallback } from '@/pages/auth';
+import ClassRegisterCompletion from '@/pages/instructor/ClassRegisterCompletion';
 import { CheckoutPage } from '@/pages/reservation/components/TossPayments/CheckOut/CheckOut';
 import { FailPage } from '@/pages/reservation/components/TossPayments/Fail/Fail';
 import { SuccessPage } from '@/pages/reservation/components/TossPayments/Success/Success';
@@ -65,6 +66,10 @@ export const router = createBrowserRouter([
   {
     path: ROUTES_CONFIG.classRegister.path,
     element: <ClassRegister />,
+  },
+  {
+    path: ROUTES_CONFIG.classRegisterCompletion.path,
+    element: <ClassRegisterCompletion />,
   },
   {
     path: ROUTES_CONFIG.instructorRegister.path,
