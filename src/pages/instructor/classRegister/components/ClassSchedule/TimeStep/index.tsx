@@ -3,7 +3,7 @@ import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Tag from '@/components/Tag';
 import { decreaseHour, decreaseMinute, increaseHour, increaseMinute, toggleAmpm } from '@/utils/timeUtils';
-import { TIME_RANGE } from '@/constants';
+import { TIME_RANGE } from '@/shared/constants';
 
 interface TimeStepProps {
   hour: number;

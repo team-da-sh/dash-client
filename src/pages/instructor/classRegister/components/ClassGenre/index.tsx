@@ -2,7 +2,7 @@ import { genreButtonContainerStyle } from '@/pages/instructor/classRegister/comp
 import Description from '@/pages/instructor/classRegister/components/Description';
 import GenreButton from '@/pages/search/components/TabContainer/TagSection/BottomSheet/GenreButton';
 import Flex from '@/components/Flex';
-import { GENRE_CATEGORY } from '@/constants';
+import { GENRE_CATEGORY } from '@/shared/constants';
 
 interface ClassGenreProps {
   selectedGenre: string | null;

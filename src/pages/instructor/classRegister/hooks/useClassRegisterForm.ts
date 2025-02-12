@@ -1,6 +1,6 @@
 import { ChangeEvent, useRef, useState } from 'react';
 import { formatToISOString } from '@/utils/timeUtils';
-import { ONLY_NUMERIC } from '@/constants/regex';
+import { ONLY_NUMERIC } from '@/shared/constants/regex';
 import { LocationTypes } from '../types';
 
 export interface RepresentImageUrlsTypes {

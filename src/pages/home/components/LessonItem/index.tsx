@@ -19,7 +19,7 @@ import Tag from '@/components/Tag';
 import Text from '@/components/Text';
 import { transformDateToDotFormat } from '@/utils/transformDateToDotFormat';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import { genreMapping, levelMapping } from '@/constants';
+import { genreMapping, levelMapping } from '@/shared/constants';
 
 const LessonItem = ({
   id,

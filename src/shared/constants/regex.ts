@@ -1,4 +1,4 @@
-import { YOUTUBE_URL_REGEX } from "@/constants";
+import { YOUTUBE_URL_REGEX } from '@/shared/constants';
 
 export const ONLY_NUMERIC = /\D/g;
 

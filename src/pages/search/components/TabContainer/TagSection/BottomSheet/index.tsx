@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import CalendarCustom from '@/pages/search/components/Calendar';
 import {
-  bottomSheetStyle,
-  genreButtonContainerStyle,
-  overlayStyle,
-  bottomSheetHidden,
-  bottomSheetVisible,
   bottomSheetContainerStyle,
+  bottomSheetHidden,
+  bottomSheetStyle,
+  bottomSheetVisible,
+  genreButtonContainerStyle,
   overlayHidden,
+  overlayStyle,
   overlayVisible,
   tabListCustomStyle,
 } from '@/pages/search/components/TabContainer/TagSection/BottomSheet/index.css';
@@ -15,8 +15,8 @@ import BoxButton from '@/components/BoxButton';
 import Flex from '@/components/Flex';
 import LevelButton from '@/components/LevelButton';
 import { TabButton, TabList, TabPanel, TabRoot } from '@/components/Tab';
-import { GENRE_CATEGORY } from '@/constants/index';
-import { LEVEL } from '@/constants';
+import { LEVEL } from '@/shared/constants';
+import { GENRE_CATEGORY } from '@/shared/constants/index';
 import GenreButton from './GenreButton';
 
 interface BottomSheetProps {

@@ -6,7 +6,7 @@ import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Text from '@/components/Text';
 import { vars } from '@/styles/theme.css';
-import { levelMapping } from '@/constants';
+import { levelMapping } from '@/shared/constants';
 
 const ClassInfo = ({ name, location, locationDetail, teacherNickname, level, lessonRound = [] }: ClassInfoProps) => {
   return (

@@ -5,9 +5,9 @@ import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Input from '@/components/Input';
 import Text from '@/components/Text';
-import { INCLUDE_BLANK, INCLUDE_SPECIAL } from '@/constants/regex';
 import defaultProfile from '@/assets/images/image_profile_basic.png';
 import { IcCameraMain0624 } from '@/assets/svg';
+import { INCLUDE_BLANK, INCLUDE_SPECIAL } from '@/shared/constants/regex';
 import useImageUploader from '@/shared/hooks/useImageUploader';
 
 interface ProfileStepProps {

@@ -1,11 +1,11 @@
 import {
-  videoWrapperStyle,
-  videoItemStyle,
   iframeStyle,
+  videoItemStyle,
+  videoWrapperStyle,
 } from '@/pages/dancer/components/TabWrapper/TabVideo/index.css';
 import { DancerDetailApiResponse } from '@/pages/dancer/types';
 import Flex from '@/components/Flex';
-import { getYoutubeEmbedUrl } from '@/constants/regex';
+import { getYoutubeEmbedUrl } from '@/shared/constants/regex';
 
 interface TabVideoProps {
   dancerData: DancerDetailApiResponse;

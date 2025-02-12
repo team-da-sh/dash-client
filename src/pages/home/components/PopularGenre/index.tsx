@@ -6,7 +6,7 @@ import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import { useGetPopularGenres } from '@/apis/home/queries';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import { genreMapping } from '@/constants';
+import { genreMapping } from '@/shared/constants';
 
 const PopularGenre = () => {
   const { data } = useGetPopularGenres();

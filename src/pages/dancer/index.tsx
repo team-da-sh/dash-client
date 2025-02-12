@@ -10,7 +10,7 @@ import Tag from '@/components/Tag';
 import Text from '@/components/Text';
 import { useGetDancerDetail } from '@/apis/dancer/queries';
 import { useIntersectCallback } from '@/utils/useIntersectCallback';
-import { genreMapping } from '@/constants/index';
+import { genreMapping } from '@/shared/constants/index';
 
 const Dancer = () => {
   const { id } = useParams<{ id: string }>();

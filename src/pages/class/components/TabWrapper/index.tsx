@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { LessonDetailApiResponse } from '@/pages/class/types/index';
 import Flex from '@/components/Flex';
-import { TabRoot, TabList, TabButton, TabPanel } from '@/components/Tab';
+import { TabButton, TabList, TabPanel, TabRoot } from '@/components/Tab';
 import { vars } from '@/styles/theme.css';
-import { CLASS_TABS } from '@/constants';
+import { CLASS_TABS } from '@/shared/constants';
 
 interface TabWrapperProps {
   colorScheme: 'primary' | 'secondary';

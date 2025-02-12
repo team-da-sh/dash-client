@@ -1,8 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 import {
-  profileStyle,
-  lessonNameStyle,
   cardStyle,
+  lessonNameStyle,
+  profileStyle,
   thunderIconStyle,
 } from '@/pages/class/components/ClassInfoWrapper/index.css';
 import { LessonDetailApiResponse } from '@/pages/class/types/index';
@@ -11,9 +11,9 @@ import Head from '@/components/Head';
 import Tag from '@/components/Tag';
 import Text from '@/components/Text';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import { genreMapping } from '@/constants/index';
 import { IcThunderMain0424 } from '@/assets/svg';
 import { vars } from '@/styles/theme.css';
+import { genreMapping } from '@/shared/constants/index';
 
 const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetailApiResponse }) => {
   const {
@@ -31,12 +31,7 @@ const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetailApiResponse 
   const translatedGenre = genreMapping[genre] || genre;
 
   // D-DAY remaingDays로 통일
-  const dDay =
-  remainingDays > 0
-    ? `D-${remainingDays}`
-    : remainingDays === 0
-    ? 'D-DAY'
-    : '마감';
+  const dDay = remainingDays > 0 ? `D-${remainingDays}` : remainingDays === 0 ? 'D-DAY' : '마감';
 
   // 남은 예약 가능 인원 계산
   const remainingSeats = maxReservationCount - reservationCount;

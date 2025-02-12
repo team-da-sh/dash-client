@@ -1,9 +1,9 @@
 import DancerItem from '@/pages/home/components/DancerItem';
-import { dancerListWrapperstyle, containerStyle, titleStyle } from '@/pages/home/components/PopularDancers/index.css';
+import { containerStyle, dancerListWrapperstyle, titleStyle } from '@/pages/home/components/PopularDancers/index.css';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import { useGetPopularDancers } from '@/apis/home/queries';
-import { genreMapping } from '@/constants';
+import { genreMapping } from '@/shared/constants';
 
 const PopularDancers = () => {
   const { data } = useGetPopularDancers();

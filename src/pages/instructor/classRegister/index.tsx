@@ -18,7 +18,7 @@ import BoxButton from '@/components/BoxButton';
 import Header from '@/components/Header';
 import { useGetLocationList, usePostClassRegisterInfo } from '@/apis/instructor/classRegister/queries';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import { genreEngMapping, levelEngMapping } from '@/constants';
+import { genreEngMapping, levelEngMapping } from '@/shared/constants';
 import useBottomSheet from '@/shared/hooks/useBottomSheet';
 import useImageUploader from '@/shared/hooks/useImageUploader';
 

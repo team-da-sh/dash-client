@@ -3,7 +3,7 @@ import { DancerDetailApiResponse } from '@/pages/dancer/types/index';
 import Flex from '@/components/Flex';
 import { TabButton, TabList, TabPanel, TabRoot } from '@/components/Tab';
 import { vars } from '@/styles/theme.css';
-import { DANCER_TABS } from '@/constants';
+import { DANCER_TABS } from '@/shared/constants';
 
 interface TabWrapperProps {
   colorScheme: 'primary' | 'secondary';

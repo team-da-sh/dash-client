@@ -4,7 +4,7 @@ import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import LevelButton from '@/components/LevelButton';
 import Text from '@/components/Text';
-import { LEVEL } from '@/constants';
+import { LEVEL } from '@/shared/constants';
 
 interface LevelStepProps {
   level: string | null;

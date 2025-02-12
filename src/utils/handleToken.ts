@@ -1,4 +1,4 @@
-import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from '@/constants/api';
+import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from '@/shared/constants/api';
 
 export const getAccessToken = () => {
   return localStorage.getItem(ACCESS_TOKEN_KEY);

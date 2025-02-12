@@ -1,8 +1,12 @@
-import { classImageStyle, wrapperStyle, deadlineTagStyle } from '@/pages/dancer/components/DancerInfo/DancerClassItem/index.css';
+import {
+  classImageStyle,
+  deadlineTagStyle,
+  wrapperStyle,
+} from '@/pages/dancer/components/DancerInfo/DancerClassItem/index.css';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Tag from '@/components/Tag';
-import { genreMapping, levelMapping } from '@/constants/index';
+import { genreMapping, levelMapping } from '@/shared/constants/index';
 
 interface DancerClassItemProps {
   lessonImageUrl: string;

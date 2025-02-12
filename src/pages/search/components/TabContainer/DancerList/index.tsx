@@ -5,8 +5,8 @@ import Head from '@/components/Head';
 import Tag from '@/components/Tag';
 import { Dancer } from '@/apis/search/queries';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import { genreMapping } from '@/constants/index';
 import { vars } from '@/styles/theme.css';
+import { genreMapping } from '@/shared/constants/index';
 
 interface DancerListProps {
   dancers: Dancer[];
