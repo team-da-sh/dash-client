@@ -3,8 +3,8 @@ import InstructorRegisterFunnel from '@/pages/instructorRegister/components/Inst
 import { progressBarCustomStyle } from '@/pages/instructorRegister/index.css';
 import Header from '@/components/Header';
 import ProgressBar from '@/components/ProgressBar';
-import { useFunnel } from '@/hooks/useFunnel';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
+import { useFunnel } from '@/shared/hooks/useFunnel';
 
 const InstructorRegister = () => {
   const TOTAL_STEP = 6;

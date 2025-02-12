@@ -1,6 +1,6 @@
 import OnboardingFunnel from '@/pages/onboarding/components/OnboardingFunnel';
-import { useFunnel } from '@/hooks/useFunnel';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
+import { useFunnel } from '@/shared/hooks/useFunnel';
 
 const Onboarding = () => {
   const { Funnel, Step, setStep, currentStep } = useFunnel(5, ROUTES_CONFIG.home.path);

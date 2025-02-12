@@ -1,9 +1,9 @@
 import ClassRegisterFunnel from '@/pages/instructor/classRegister/components/ClassSchedule/ClassRegisterFunnel';
 import BoxButton from '@/components/BoxButton';
 import Header from '@/components/Header';
-import { useFunnel } from '@/hooks/useFunnel';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { CLASS_REGISTER_TOTAL_STEP } from '@/constants';
+import { useFunnel } from '@/shared/hooks/useFunnel';
 import * as styles from './index.css';
 
 interface ClassRegisterBottomSheetProps {

@@ -16,11 +16,11 @@ import { ClassRegisterInfoTypes } from '@/pages/instructor/classRegister/types';
 import { buttonContainerStyle } from '@/pages/instructorRegister/index.css';
 import BoxButton from '@/components/BoxButton';
 import Header from '@/components/Header';
-import useBottomSheet from '@/hooks/useBottomSheet';
-import useImageUploader from '@/hooks/useImageUploader';
 import { useGetLocationList, usePostClassRegisterInfo } from '@/apis/instructor/classRegister/queries';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { genreEngMapping, levelEngMapping } from '@/constants';
+import useBottomSheet from '@/shared/hooks/useBottomSheet';
+import useImageUploader from '@/shared/hooks/useImageUploader';
 
 const ClassRegister = () => {
   const { isBottomSheetOpen, openBottomSheet, closeBottomSheet } = useBottomSheet();
