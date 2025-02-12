@@ -1,5 +1,5 @@
 import { style } from '@vanilla-extract/css';
-import { vars } from '@/styles/theme.css';
+import { vars } from '@/shared/styles/theme.css';
 
 export const topImgStyle = style({
   position: 'relative',
@@ -30,7 +30,7 @@ export const textWrapperStyle = style({
   gap: '0.8rem',
 
   paddingLeft: '2rem',
-  paddingRight:'2rem',
+  paddingRight: '2rem',
   flexDirection: 'column',
   zIndex: vars.zIndex.two,
 });

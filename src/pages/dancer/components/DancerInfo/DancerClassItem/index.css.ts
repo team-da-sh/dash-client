@@ -1,5 +1,5 @@
-import { vars } from "@/styles/theme.css";
 import { style } from '@vanilla-extract/css';
+import { vars } from '@/shared/styles/theme.css';
 
 export const wrapperStyle = style({
   position: 'relative',
@@ -19,4 +19,3 @@ export const deadlineTagStyle = style({
 
   top: '0.8rem',
 });
-

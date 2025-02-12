@@ -7,13 +7,13 @@ import {
 } from '@/pages/class/components/ClassInfoWrapper/index.css';
 import { LessonDetailApiResponse } from '@/pages/class/types/index';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import { vars } from '@/styles/theme.css';
 import { IcThunderMain0424 } from '@/shared/assets/svg';
 import Flex from '@/shared/components/Flex';
 import Head from '@/shared/components/Head';
 import Tag from '@/shared/components/Tag';
 import Text from '@/shared/components/Text';
 import { genreMapping } from '@/shared/constants/index';
+import { vars } from '@/shared/styles/theme.css';
 
 const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetailApiResponse }) => {
   const {

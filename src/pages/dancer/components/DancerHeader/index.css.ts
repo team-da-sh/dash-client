@@ -1,5 +1,5 @@
 import { recipe } from '@vanilla-extract/recipes';
-import { vars } from '@/styles/theme.css';
+import { vars } from '@/shared/styles/theme.css';
 
 export const containerStyle = recipe({
   base: {
@@ -7,7 +7,7 @@ export const containerStyle = recipe({
     position: 'fixed',
     top: 0,
     alignItems: 'center',
-    
+
     justifyContent: 'space-between',
     width: '100%',
     height: '6rem',

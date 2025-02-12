@@ -1,5 +1,5 @@
 import toast from 'react-hot-toast';
-import { vars } from '@/styles/theme.css';
+import { vars } from '@/shared/styles/theme.css';
 
 export const notify = () => {
   toast.dismiss();

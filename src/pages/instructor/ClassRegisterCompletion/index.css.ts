@@ -1,5 +1,5 @@
 import { style } from '@vanilla-extract/css';
-import { vars } from '@/styles/theme.css';
+import { vars } from '@/shared/styles/theme.css';
 
 export const flexCustomStyle = style({
   margin: '4.8rem 0 2.8rem 0',

@@ -1,5 +1,5 @@
 import { style } from '@vanilla-extract/css';
-import { vars } from '@/styles/theme.css';
+import { vars } from '@/shared/styles/theme.css';
 
 export const classImageStyle = style({
   width: '16.4rem',
@@ -16,7 +16,6 @@ export const titleStyle = style({
   whiteSpace: 'normal',
   overflow: 'hidden',
   wordBreak: 'break-all',
-
 });
 
 export const teacherImageStyle = style({

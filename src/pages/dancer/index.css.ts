@@ -1,11 +1,11 @@
 import { style } from '@vanilla-extract/css';
-import { vars } from '@/styles/theme.css';
+import { vars } from '@/shared/styles/theme.css';
 
 export const topImgStyle = style({
   position: 'relative',
   width: '100%',
   height: '37.5rem',
-  
+
   background: vars.colors.gray10,
   overflow: 'hidden',
   backgroundSize: 'cover',

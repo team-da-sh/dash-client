@@ -1,6 +1,6 @@
 import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
-import { vars } from '@/styles/theme.css';
+import { vars } from '@/shared/styles/theme.css';
 
 export const containerStyle = recipe({
   base: {
@@ -44,6 +44,6 @@ export const headerTextStyle = style({
   whiteSpace: 'nowrap',
   overflow: 'hidden',
   textOverflow: 'ellipsis',
-  width:'25rem',
-  textAlign:'center'
+  width: '25rem',
+  textAlign: 'center',
 });

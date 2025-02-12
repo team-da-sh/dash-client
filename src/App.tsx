@@ -8,7 +8,7 @@ import Error from '@/pages/error';
 import { router } from '@/routes/router.tsx';
 import Loading from './pages/loading';
 import queryClient from './queryClient';
-import './styles/index.css';
+import './shared/styles/index.css';
 
 const App = () => {
   const setScreenSize = () => {
