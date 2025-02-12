@@ -9,7 +9,7 @@ import {
 import Flex from '@/components/Flex';
 import Input from '@/components/Input';
 import Text from '@/components/Text';
-import { BtnCheck, IcPlusGray0524, IcXCircleGray } from '@/assets/svg';
+import { BtnCheck, IcPlusGray0524, IcXCircleGray } from '@/shared/assets/svg';
 
 interface InputItemTypes {
   id: number;

@@ -8,7 +8,7 @@ import {
 import { GenreTypes } from '@/pages/onboarding/types';
 import Flex from '@/components/Flex';
 import Text from '@/components/Text';
-import IcCheckMain0424 from '@/assets/svg/IcCheckMain0424';
+import IcCheckMain0424 from '@/shared/assets/svg/IcCheckMain0424';
 
 interface GenreChipProps {
   genre: string;

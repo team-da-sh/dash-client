@@ -1,34 +1,33 @@
 import { useNavigate } from 'react-router-dom';
 import DancerClassItem from '@/pages/dancer/components/DancerInfo/DancerClassItem';
+import {
+  classItemStyle,
+  classTitleStyle,
+  detailStyle,
+  emptyStyle,
+  firstClassItemStyle,
+  lastClassItemStyle,
+  linkStyle,
+  rowScrollStyle,
+} from '@/pages/dancer/components/DancerInfo/index.css';
 import { DancerDetailApiResponse } from '@/pages/dancer/types';
 import Divider from '@/components/Divider';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Text from '@/components/Text';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import { IcInstagram20, IcYoutube20 } from '@/assets/svg';
-import {
-  classTitleStyle,
-  rowScrollStyle,
-  classItemStyle,
-  firstClassItemStyle,
-  lastClassItemStyle,
-  detailStyle,
-  emptyStyle,
-  linkStyle,
-} from '@/pages/dancer/components/DancerInfo/index.css';
+import { IcInstagram20, IcYoutube20 } from '@/shared/assets/svg';
 
 const DancerInfo = ({ dancerData }: { dancerData: DancerDetailApiResponse }) => {
-  
   const { instagram, youtube, detail, nickname, lessons } = dancerData;
 
   // 쿼리 파라미터를 제거하고 사용자 이름만 추출하는 함수
   const extractUsername = (url: string | undefined) => {
     if (!url) return '';
-    
+
     // 쿼리 파라미터를 제거
     const cleanedUrl = url.split('?')[0];
-    
+
     // 마지막 '/' 이후의 부분이 사용자 이름
     return cleanedUrl.split('/').filter(Boolean).pop() || '';
   };

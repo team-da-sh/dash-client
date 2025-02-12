@@ -9,8 +9,8 @@ import { divCustomStyle } from '@/pages/search/components/TabContainer/index.css
 import Flex from '@/components/Flex';
 import { TabButton, TabList, TabPanel, TabRoot } from '@/components/Tab';
 import Text from '@/components/Text';
-import { IcArrowUnderGray, IcXMain04 } from '@/assets/svg';
 import { ClassListResponse, DancerListResponse } from '@/shared/apis/search/queries';
+import { IcArrowUnderGray, IcXMain04 } from '@/shared/assets/svg';
 
 interface TagItem {
   label: string;

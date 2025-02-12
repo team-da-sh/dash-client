@@ -1,9 +1,9 @@
 import { useNavigate } from 'react-router-dom';
-import { backIconStyle, classNameHeaderStyle,headerTextStyle } from '@/pages/class/components/ClassHeader/index.css';
+import { backIconStyle, classNameHeaderStyle, headerTextStyle } from '@/pages/class/components/ClassHeader/index.css';
 import { containerStyle } from '@/pages/home/components/HomeHeader/index.css';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
-import { IcBack, IcBackWhite24 } from '@/assets/svg';
+import { IcBack, IcBackWhite24 } from '@/shared/assets/svg';
 
 interface ClassHeaderProps {
   isVisible: boolean;

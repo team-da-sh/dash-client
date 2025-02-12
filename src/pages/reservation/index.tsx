@@ -24,8 +24,8 @@ import Head from '@/components/Head';
 import Header from '@/components/Header';
 import Text from '@/components/Text';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import { IcCheckcircleGray0524, IcCheckcircleMain0324 } from '@/assets/svg';
 import { useGetReservaion } from '@/shared/apis/reservation/queries';
+import { IcCheckcircleGray0524, IcCheckcircleMain0324 } from '@/shared/assets/svg';
 
 const Reservation = () => {
   const [isAllChecked, setIsAllChecked] = useState(false);

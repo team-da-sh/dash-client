@@ -1,16 +1,16 @@
 import { useNavigate } from 'react-router-dom';
 import {
+  containerStyle,
+  description2Style,
   descriptionStyle,
+  imageStyle,
   moreButtonStyle,
   moreWrapperStyle,
-  containerStyle,
-  imageStyle,
-  description2Style,
 } from '@/pages/home/components/SliderItem/index.css';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import { IcArrowRightWhite14 } from '@/assets/svg';
+import { IcArrowRightWhite14 } from '@/shared/assets/svg';
 
 interface SliderItemProps {
   imageUrl: string;

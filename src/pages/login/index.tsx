@@ -3,7 +3,7 @@ import LoginHeader from '@/pages/login/components/LoginHeader';
 import { containerStyle } from '@/pages/login/index.css';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
-import { LoginGif } from '@/assets/gif';
+import { LoginGif } from '@/shared/assets/gif';
 
 const Login = () => {
   return (

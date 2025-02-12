@@ -11,7 +11,7 @@ import {
   SoulImg,
   VoggingImg,
   WaackingImg,
-} from '@/assets/images';
+} from '@/shared/assets/images';
 
 export const GENRE_INFO = [
   { genre: '힙합', url: HiphopImg },

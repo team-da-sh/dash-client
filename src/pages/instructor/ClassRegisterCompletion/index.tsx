@@ -4,7 +4,7 @@ import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Text from '@/components/Text';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import { ClearGif } from '@/assets/gif';
+import { ClearGif } from '@/shared/assets/gif';
 import { buttonContainerStyle, clearStyle, flexCustomStyle, funnelContainerStyle } from './index.css';
 
 const ClassRegisterCompletion = () => {

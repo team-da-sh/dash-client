@@ -7,7 +7,7 @@ import Tag from '@/components/Tag';
 import Text from '@/components/Text';
 import { notify } from '@/components/Toast';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import { IcArrowRightGray0614, IcCalendarcheckColor3D24, IcCalendarcheckMono3D24, IcClose } from '@/assets/svg';
+import { IcArrowRightGray0614, IcCalendarcheckColor3D24, IcCalendarcheckMono3D24, IcClose } from '@/shared/assets/svg';
 import { MyPageProps } from '@/shared/types/myPageTypes';
 
 interface TopSectionProps {

@@ -9,7 +9,7 @@ import { INFO_KEY, VIDEO_INPUT_MAX } from '@/pages/instructorRegister/constants'
 import { InputItemTypes, InstructorRegisterInfoTypes } from '@/pages/instructorRegister/types';
 import Flex from '@/components/Flex';
 import Input from '@/components/Input';
-import { IcPlusGray0524, IcXCircleGray } from '@/assets/svg';
+import { IcPlusGray0524, IcXCircleGray } from '@/shared/assets/svg';
 
 interface VideoLinkStepProps {
   videoUrls: string[];

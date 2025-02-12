@@ -4,7 +4,7 @@ import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Tag from '@/components/Tag';
 import Text from '@/components/Text';
-import { IcArrowRightGray0614, IcClassEndMain0324, IcClassIngMain0324, IcClassSoonMain0324 } from '@/assets/svg';
+import { IcArrowRightGray0614, IcClassEndMain0324, IcClassIngMain0324, IcClassSoonMain0324 } from '@/shared/assets/svg';
 import { genreMapping, levelMapping } from '@/shared/constants';
 import { formatLessonDateRange, getClassStatus } from '@/shared/utils/timeCalculate';
 

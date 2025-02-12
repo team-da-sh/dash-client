@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { IcCalendarcheckColor3D24, IcCalendarcheckMono3D24 } from '@/assets/svg';
+import { IcCalendarcheckColor3D24, IcCalendarcheckMono3D24 } from '@/shared/assets/svg';
 import Tag from '../components/Tag/index';
 
 const meta = {

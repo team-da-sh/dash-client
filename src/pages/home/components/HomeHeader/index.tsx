@@ -2,8 +2,8 @@ import { useNavigate } from 'react-router-dom';
 import { containerStyle } from '@/pages/home/components/HomeHeader/index.css';
 import Flex from '@/components/Flex';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import { HomeBlack, HomeWhite } from '@/assets/gif';
-import { IcMypageBlack24, IcMypageWhite24, IcSearchBlack24, IcSearchWhite24 } from '@/assets/svg';
+import { HomeBlack, HomeWhite } from '@/shared/assets/gif';
+import { IcMypageBlack24, IcMypageWhite24, IcSearchBlack24, IcSearchWhite24 } from '@/shared/assets/svg';
 
 interface HomeHeaderProps {
   isVisible: boolean;

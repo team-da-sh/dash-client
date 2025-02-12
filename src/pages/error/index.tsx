@@ -4,7 +4,7 @@ import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Text from '@/components/Text';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import { IcError } from '@/assets/svg';
+import { IcError } from '@/shared/assets/svg';
 import { boxButtonStyle } from './index.css';
 
 const Error = () => {

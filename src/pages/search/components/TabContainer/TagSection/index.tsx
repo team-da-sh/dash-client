@@ -3,7 +3,7 @@ import BottomSheet from '@/pages/search/components/TabContainer/TagSection/Botto
 import { tagCustomStyle } from '@/pages/search/components/TabContainer/TagSection/index.css';
 import Flex from '@/components/Flex';
 import Tag from '@/components/Tag';
-import { IcFilterGray } from '@/assets/svg';
+import { IcFilterGray } from '@/shared/assets/svg';
 
 interface TagItem {
   label: string;

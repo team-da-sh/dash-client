@@ -1,8 +1,8 @@
 // Import Swiper styles
-import { Pagination, Autoplay } from 'swiper/modules';
+import { Autoplay, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SliderItem from '@/pages/home/components/SliderItem';
-import { BannerImg, ChoreohongImg, KkukgirlImg } from '@/assets/images';
+import { BannerImg, ChoreohongImg, KkukgirlImg } from '@/shared/assets/images';
 
 const ADVERTISEMENTS = [
   {

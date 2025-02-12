@@ -6,7 +6,7 @@ import {
   IcArrowRightSmallMain0332New,
   IcCheckGray0724,
   IcCheckMain0324,
-} from '@/assets/svg';
+} from '@/shared/assets/svg';
 
 const AgreeCheckBox = ({ text, isChecked, onToggle, link = '' }: AgreeCheckBoxProps) => {
   const handleArrowClick = (e: React.MouseEvent) => {

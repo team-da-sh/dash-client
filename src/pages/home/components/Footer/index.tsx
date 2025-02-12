@@ -2,7 +2,7 @@ import { containerStyle } from '@/pages/home/components/Footer/index.css';
 import Divider from '@/components/Divider';
 import Flex from '@/components/Flex';
 import Text from '@/components/Text';
-import { IcLogoSmallBlack } from '@/assets/svg';
+import { IcLogoSmallBlack } from '@/shared/assets/svg';
 
 const Footer = () => {
   return (

@@ -1,7 +1,7 @@
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Text from '@/components/Text';
-import { IcSpeaker3D } from '@/assets/svg';
+import { IcSpeaker3D } from '@/shared/assets/svg';
 
 const SearchIntro = () => {
   return (

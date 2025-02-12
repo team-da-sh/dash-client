@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Head from '@/components/Head';
 import { backIconStyle, closeIconStyle, headerRootStyle, titleStyle } from '@/components/Header/index.css';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import { IcBack, IcClose } from '@/assets/svg';
+import { IcBack, IcClose } from '@/shared/assets/svg';
 
 interface HeaderRootProps extends ComponentPropsWithoutRef<'div'> {
   children: React.ReactNode;

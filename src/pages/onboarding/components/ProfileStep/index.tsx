@@ -5,8 +5,8 @@ import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Input from '@/components/Input';
 import Text from '@/components/Text';
-import defaultProfile from '@/assets/images/image_profile_basic.png';
-import { IcCameraMain0624 } from '@/assets/svg';
+import defaultProfile from '@/shared/assets/images/image_profile_basic.png';
+import { IcCameraMain0624 } from '@/shared/assets/svg';
 import { INCLUDE_BLANK, INCLUDE_SPECIAL } from '@/shared/constants/regex';
 import useImageUploader from '@/shared/hooks/useImageUploader';
 

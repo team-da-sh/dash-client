@@ -1,6 +1,6 @@
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
-import { IcArrowUpGray1032, IcArrowDownGray1032 } from '@/assets/svg';
+import { IcArrowDownGray1032, IcArrowUpGray1032 } from '@/shared/assets/svg';
 import * as styles from './index.css';
 
 interface TimeControlProps {

@@ -11,8 +11,8 @@ import Head from '@/components/Head';
 import Tag from '@/components/Tag';
 import Text from '@/components/Text';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import { IcThunderMain0424 } from '@/assets/svg';
 import { vars } from '@/styles/theme.css';
+import { IcThunderMain0424 } from '@/shared/assets/svg';
 import { genreMapping } from '@/shared/constants/index';
 
 const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetailApiResponse }) => {

@@ -13,7 +13,7 @@ import Description from '@/pages/instructor/classRegister/components/Description
 import Flex from '@/components/Flex';
 import Input from '@/components/Input';
 import Text from '@/components/Text';
-import { BtnCheck, IcSearchGray, IcXCircleGray0424 } from '@/assets/svg';
+import { BtnCheck, IcSearchGray, IcXCircleGray0424 } from '@/shared/assets/svg';
 import { LocationsData, LocationTypes } from '../../types';
 
 interface ClassPlaceProps {

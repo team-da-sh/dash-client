@@ -4,7 +4,7 @@ import { LessonDetailApiResponse } from '@/pages/class/types/index';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Text from '@/components/Text';
-import { IcLevelStarter, IcQuesitonmark, IcSparkleMain20 } from '@/assets/svg';
+import { IcLevelStarter, IcQuesitonmark, IcSparkleMain20 } from '@/shared/assets/svg';
 import { LEVEL, levelMapping } from '@/shared/constants/index';
 
 const TabLevel = ({ lessonData }: { lessonData: LessonDetailApiResponse }) => {

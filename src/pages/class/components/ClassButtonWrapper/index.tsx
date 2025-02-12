@@ -5,7 +5,7 @@ import { LessonDetailApiResponse } from '@/pages/class/types/index';
 import BoxButton from '@/components/BoxButton';
 import Flex from '@/components/Flex';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import { IcHeartFilledGray07, IcHeartOutlinedGray07 } from '@/assets/svg';
+import { IcHeartFilledGray07, IcHeartOutlinedGray07 } from '@/shared/assets/svg';
 import { BUTTON_TEXT, DISABLED_STATUS } from '@/shared/constants';
 
 const ClassButtonWrapper = ({ lessonData }: { lessonData: LessonDetailApiResponse }) => {

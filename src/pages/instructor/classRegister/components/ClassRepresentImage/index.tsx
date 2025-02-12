@@ -6,7 +6,7 @@ import {
 import Description from '@/pages/instructor/classRegister/components/Description';
 import Flex from '@/components/Flex';
 import Text from '@/components/Text';
-import { IcPlusGray0524, IcXCircleMain0324 } from '@/assets/svg';
+import { IcPlusGray0524, IcXCircleMain0324 } from '@/shared/assets/svg';
 
 interface ClassRepresentImageProps {
   handleUploaderClick: () => void;
