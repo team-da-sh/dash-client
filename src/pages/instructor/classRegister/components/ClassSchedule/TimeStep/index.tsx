@@ -2,8 +2,8 @@ import TimeControl from '@/pages/instructor/classRegister/components/ClassSchedu
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Tag from '@/components/Tag';
-import { decreaseHour, decreaseMinute, increaseHour, increaseMinute, toggleAmpm } from '@/utils/timeUtils';
 import { TIME_RANGE } from '@/shared/constants';
+import { decreaseHour, decreaseMinute, increaseHour, increaseMinute, toggleAmpm } from '@/shared/utils/timeUtils';
 
 interface TimeStepProps {
   hour: number;

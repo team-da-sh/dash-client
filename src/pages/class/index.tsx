@@ -7,7 +7,7 @@ import { headerStyle } from '@/pages/class/index.css';
 import Error from '@/pages/error';
 import Divider from '@/components/Divider';
 import { useGetLessonDetail } from '@/apis/class/queries';
-import { useIntersectCallback } from '@/utils/useIntersectCallback';
+import { useIntersectCallback } from '@/shared/utils/useIntersectCallback';
 
 const Class = () => {
   const { id } = useParams<{ id: string }>();
@@ -26,7 +26,6 @@ const Class = () => {
   if (isError || !data) {
     return <Error />;
   }
-
 
   const imageUrl = data.imageUrl;
 

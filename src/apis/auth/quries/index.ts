@@ -3,8 +3,8 @@ import { AxiosError } from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { instance } from '@/apis/api';
 import { kakaoLogin, loginTypes, postLogout } from '@/apis/auth/axios';
-import { clearStorage, setStorage } from '@/utils/handleToken';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
+import { clearStorage, setStorage } from '@/shared/utils/handleToken';
 
 export const useLoginMutation = () => {
   const navigate = useNavigate();

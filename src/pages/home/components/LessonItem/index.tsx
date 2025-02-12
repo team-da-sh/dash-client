@@ -17,9 +17,9 @@ import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Tag from '@/components/Tag';
 import Text from '@/components/Text';
-import { transformDateToDotFormat } from '@/utils/transformDateToDotFormat';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { genreMapping, levelMapping } from '@/shared/constants';
+import { transformDateToDotFormat } from '@/shared/utils/transformDateToDotFormat';
 
 const LessonItem = ({
   id,

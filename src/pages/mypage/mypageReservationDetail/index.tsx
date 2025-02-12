@@ -7,8 +7,8 @@ import Head from '@/components/Head';
 import Header from '@/components/Header';
 import Text from '@/components/Text';
 import { useGetReservationsDetail } from '@/apis/myPageReservationDetail/queries';
-import { getStatusMessage } from '@/utils/getStatusMessage';
-import { formatDateTime, getClassStatus } from '@/utils/timeCalculate';
+import { getStatusMessage } from '@/shared/utils/getStatusMessage';
+import { formatDateTime, getClassStatus } from '@/shared/utils/timeCalculate';
 
 const ClassReservationDetail = () => {
   const { id } = useParams<{ id: string }>();

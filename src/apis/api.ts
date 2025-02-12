@@ -1,7 +1,7 @@
 import axios, { InternalAxiosRequestConfig } from 'axios';
-import { getAccessToken } from '@/utils/handleToken';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { HTTP_STATUS_CODE } from '@/shared/constants/api';
+import { getAccessToken } from '@/shared/utils/handleToken';
 
 export const instance = axios.create({
   baseURL: import.meta.env.VITE_DEV_BASE_URL,

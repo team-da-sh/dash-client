@@ -6,8 +6,8 @@ import {
 import Description from '@/pages/instructor/classRegister/components/Description';
 import Flex from '@/components/Flex';
 import Text from '@/components/Text';
-import { calculatePeriod, formatDate } from '@/utils/dateCalculate';
 import { IcPlusGray0524, IcXCircleGray0424 } from '@/assets/svg';
+import { calculatePeriod, formatDate } from '@/shared/utils/dateCalculate';
 
 interface TimesTypes {
   startTime: string;

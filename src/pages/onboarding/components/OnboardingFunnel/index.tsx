@@ -13,10 +13,10 @@ import { validateName, validatePhoneNumber } from '@/pages/onboarding/utils/vali
 import BoxButton from '@/components/BoxButton';
 import ProgressBar from '@/components/ProgressBar';
 import { usePostOnboard } from '@/apis/onboarding/queries';
-import { setStorage } from '@/utils/handleToken';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import defaultProfile from '@/assets/images/image_profile_basic.png';
 import { FunnelProps, StepProps } from '@/shared/hooks/useFunnel';
+import { setStorage } from '@/shared/utils/handleToken';
 
 interface OnboardingFunnelProps {
   currentStep: number;

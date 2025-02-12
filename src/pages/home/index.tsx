@@ -8,10 +8,10 @@ import PopularDancers from '@/pages/home/components/PopularDancers';
 import PopularGenre from '@/pages/home/components/PopularGenre';
 import RecommendationLessons from '@/pages/home/components/RecommendationLessons';
 import UpcomingLessones from '@/pages/home/components/UpcomingLessons';
-import { overlayActiveStyle, overlayStyle, carouselContainerStyle } from '@/pages/home/index.css';
-import { isLoggedIn } from '@/utils/authUtil';
-import { useIntersect } from '@/utils/useIntersect';
+import { carouselContainerStyle, overlayActiveStyle, overlayStyle } from '@/pages/home/index.css';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
+import { isLoggedIn } from '@/shared/utils/authUtil';
+import { useIntersect } from '@/shared/utils/useIntersect';
 
 const Home = () => {
   const navigate = useNavigate();

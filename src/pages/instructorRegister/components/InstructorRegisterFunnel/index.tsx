@@ -12,8 +12,8 @@ import { FunnelProps, StepProps } from '@/pages/search/types/funnel';
 import BoxButton from '@/components/BoxButton';
 import Completion from '@/components/Completion';
 import { usePostInstructor } from '@/apis/instructorRegister/queries';
-import { setAccessToken, setRefreshToken } from '@/utils/handleToken';
 import useImageUploader from '@/shared/hooks/useImageUploader';
+import { setAccessToken, setRefreshToken } from '@/shared/utils/handleToken';
 
 interface InstructorRegisterFunnelProps {
   currentStep: number;
