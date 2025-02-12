@@ -5,8 +5,8 @@ import { LIST_DATA } from '@/pages/mypage/constants/myPageList';
 import Divider from '@/components/Divider';
 import Flex from '@/components/Flex';
 import { notify } from '@/components/Toast';
-import { usePostLogout } from '@/apis/auth/quries';
 import { IcArrowRightSmallGray0432, IcArrowRightSmallGray0732 } from '@/assets/svg';
+import { usePostLogout } from '@/shared/apis/auth/quries';
 
 const BottomSection = ({ isInstructor }: { isInstructor: boolean }) => {
   const { mutate: logout } = usePostLogout();

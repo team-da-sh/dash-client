@@ -1,13 +1,12 @@
 import { useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import * as styles from '@/pages/reservation/components/TossPayments/index.css';
 import BoxButton from '@/components/BoxButton';
 import Completion from '@/components/Completion';
 import Flex from '@/components/Flex';
 import Header from '@/components/Header';
-import { usePostReservation } from '@/apis/reservation/queries';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
+import { usePostReservation } from '@/shared/apis/reservation/queries';
 
 export const SuccessPage = () => {
   const [isConfirmed, setIsConfirmed] = useState(false);

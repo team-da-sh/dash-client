@@ -11,7 +11,7 @@ import { InstructorRegisterInfoTypes } from '@/pages/instructorRegister/types';
 import { FunnelProps, StepProps } from '@/pages/search/types/funnel';
 import BoxButton from '@/components/BoxButton';
 import Completion from '@/components/Completion';
-import { usePostInstructor } from '@/apis/instructorRegister/queries';
+import { usePostInstructor } from '@/shared/apis/instructorRegister/queries';
 import useImageUploader from '@/shared/hooks/useImageUploader';
 import { setAccessToken, setRefreshToken } from '@/shared/utils/handleToken';
 

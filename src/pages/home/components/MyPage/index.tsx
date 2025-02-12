@@ -1,8 +1,8 @@
 import * as styles from '@/pages/home/components/MyPage/index.css';
 import TopSection from '@/pages/home/components/TopSection';
 import Divider from '@/components/Divider';
-import { useGetRole } from '@/apis/common/queries';
-import { useGetMyPage } from '@/apis/home/queries';
+import { useGetRole } from '@/shared/apis/common/queries';
+import { useGetMyPage } from '@/shared/apis/home/queries';
 import BottomSection from '../BottomSection';
 
 interface MyPageProps {

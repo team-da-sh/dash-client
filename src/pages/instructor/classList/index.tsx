@@ -6,7 +6,7 @@ import ClassCard from '@/components/ClassCard';
 import Flex from '@/components/Flex';
 import Header from '@/components/Header';
 import Text from '@/components/Text';
-import { useGetMyLessons } from '@/apis/classList/queries';
+import { useGetMyLessons } from '@/shared/apis/classList/queries';
 import { Lesson } from '@/shared/types/lessonTypes';
 
 const ClassList = () => {

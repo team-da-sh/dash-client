@@ -5,7 +5,7 @@ import ClassCard from '@/components/ClassCard';
 import Flex from '@/components/Flex';
 import Header from '@/components/Header';
 import Text from '@/components/Text';
-import { useGetLessonDetail } from '@/apis/classDetail/queries';
+import { useGetLessonDetail } from '@/shared/apis/classDetail/queries';
 
 const ClassDetail = () => {
   const { id } = useParams<{ id: string }>();

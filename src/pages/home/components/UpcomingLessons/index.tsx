@@ -1,12 +1,12 @@
 import LessonItem from '@/pages/home/components/LessonItem';
 import {
-  deadlineLessonWrapperStyle,
   containerStyle,
+  deadlineLessonWrapperStyle,
   titleStyle,
 } from '@/pages/home/components/UpcomingLessons/index.css';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
-import { useGetUpcomingLessons } from '@/apis/home/queries';
+import { useGetUpcomingLessons } from '@/shared/apis/home/queries';
 
 const UpcomingLessones = () => {
   const { data } = useGetUpcomingLessons();

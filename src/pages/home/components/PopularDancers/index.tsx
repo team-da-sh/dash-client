@@ -2,7 +2,7 @@ import DancerItem from '@/pages/home/components/DancerItem';
 import { containerStyle, dancerListWrapperstyle, titleStyle } from '@/pages/home/components/PopularDancers/index.css';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
-import { useGetPopularDancers } from '@/apis/home/queries';
+import { useGetPopularDancers } from '@/shared/apis/home/queries';
 import { genreMapping } from '@/shared/constants';
 
 const PopularDancers = () => {

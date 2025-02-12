@@ -6,7 +6,7 @@ import ClassCard from '@/components/ClassCard';
 import Flex from '@/components/Flex';
 import Header from '@/components/Header';
 import Text from '@/components/Text';
-import { useGetReservations } from '@/apis/myPageReservation/queries';
+import { useGetReservations } from '@/shared/apis/myPageReservation/queries';
 import { Reservation } from '@/shared/types/reservationTypes';
 
 const MyPageReservation = () => {

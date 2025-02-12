@@ -4,8 +4,8 @@ import { genreWrapperStyle } from '@/pages/home/components/LessonItem/index.css'
 import { GENRE_ICONS } from '@/pages/home/constants';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
-import { useGetPopularGenres } from '@/apis/home/queries';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
+import { useGetPopularGenres } from '@/shared/apis/home/queries';
 import { genreMapping } from '@/shared/constants';
 
 const PopularGenre = () => {

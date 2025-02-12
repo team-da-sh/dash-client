@@ -9,12 +9,12 @@ import {
   agreementBoxStyle,
   agreementCheckedStyle,
   agreementContainerStyle,
+  agreementTextStyle,
   agreementUncheckedStyle,
+  bottomButtonStyle,
   headerStyle,
   reservationStyle,
   totalPriceContainerStyle,
-  bottomButtonStyle,
-  agreementTextStyle,
 } from '@/pages/reservation/index.css';
 import { LessonRoundProps } from '@/pages/reservation/types';
 import BoxButton from '@/components/BoxButton';
@@ -23,9 +23,9 @@ import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Header from '@/components/Header';
 import Text from '@/components/Text';
-import { useGetReservaion } from '@/apis/reservation/queries';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { IcCheckcircleGray0524, IcCheckcircleMain0324 } from '@/assets/svg';
+import { useGetReservaion } from '@/shared/apis/reservation/queries';
 
 const Reservation = () => {
   const [isAllChecked, setIsAllChecked] = useState(false);

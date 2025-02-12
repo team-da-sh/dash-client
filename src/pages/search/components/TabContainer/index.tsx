@@ -7,11 +7,10 @@ import TagSection from '@/pages/search/components/TabContainer/TagSection';
 import Dropdown from '@/pages/search/components/TabContainer/TagSection/Dropdown';
 import { divCustomStyle } from '@/pages/search/components/TabContainer/index.css';
 import Flex from '@/components/Flex';
-import { TabList, TabRoot, TabButton, TabPanel } from '@/components/Tab';
+import { TabButton, TabList, TabPanel, TabRoot } from '@/components/Tab';
 import Text from '@/components/Text';
-import { DancerListResponse, ClassListResponse } from '@/apis/search/queries';
-import { IcArrowUnderGray } from '@/assets/svg';
-import { IcXMain04 } from '@/assets/svg';
+import { IcArrowUnderGray, IcXMain04 } from '@/assets/svg';
+import { ClassListResponse, DancerListResponse } from '@/shared/apis/search/queries';
 
 interface TagItem {
   label: string;

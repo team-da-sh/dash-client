@@ -6,7 +6,7 @@ import Flex from '@/components/Flex';
 import Head from '@/components/Head';
 import Header from '@/components/Header';
 import Text from '@/components/Text';
-import { useGetReservationsDetail } from '@/apis/myPageReservationDetail/queries';
+import { useGetReservationsDetail } from '@/shared/apis/myPageReservationDetail/queries';
 import { getStatusMessage } from '@/shared/utils/getStatusMessage';
 import { formatDateTime, getClassStatus } from '@/shared/utils/timeCalculate';
 

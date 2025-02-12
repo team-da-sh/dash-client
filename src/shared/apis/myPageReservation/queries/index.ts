@@ -1,0 +1,11 @@
+import { useQuery } from '@tanstack/react-query';
+import { QUERY_KEYS } from '@/shared/apis/constants/queryKey';
+import { getReservations } from '@/shared/apis/myPageReservation/axios';
+import { ReservationApiResponse } from '@/shared/types/reservationTypes';
+
+export const useGetReservations = () => {
+  return useQuery<ReservationApiResponse>({
+    queryKey: [QUERY_KEYS.MEMBERS_RESERVATIONS],
+    queryFn: getReservations,
+  });
+};

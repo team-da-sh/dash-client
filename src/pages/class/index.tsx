@@ -6,7 +6,7 @@ import TabWrapper from '@/pages/class/components/TabWrapper';
 import { headerStyle } from '@/pages/class/index.css';
 import Error from '@/pages/error';
 import Divider from '@/components/Divider';
-import { useGetLessonDetail } from '@/apis/class/queries';
+import { useGetLessonDetail } from '@/shared/apis/class/queries';
 import { useIntersectCallback } from '@/shared/utils/useIntersectCallback';
 
 const Class = () => {

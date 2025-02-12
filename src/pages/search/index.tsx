@@ -7,7 +7,7 @@ import { headerRootCutomStyle } from '@/pages/search/index.css';
 import { formatDateEndTime, formatDateStartTime } from '@/pages/search/utils';
 import Flex from '@/components/Flex';
 import Header from '@/components/Header';
-import { useGetClassList, useGetDancerList } from '@/apis/search/queries';
+import { useGetClassList, useGetDancerList } from '@/shared/apis/search/queries';
 import { genreEngMapping, labelToSortOptionMap, levelEngMapping } from '@/shared/constants';
 
 const Search = () => {

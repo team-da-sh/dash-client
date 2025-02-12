@@ -12,9 +12,9 @@ import { GenreTypes, onboardInfoTypes } from '@/pages/onboarding/types';
 import { validateName, validatePhoneNumber } from '@/pages/onboarding/utils/validate';
 import BoxButton from '@/components/BoxButton';
 import ProgressBar from '@/components/ProgressBar';
-import { usePostOnboard } from '@/apis/onboarding/queries';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import defaultProfile from '@/assets/images/image_profile_basic.png';
+import { usePostOnboard } from '@/shared/apis/onboarding/queries';
 import { FunnelProps, StepProps } from '@/shared/hooks/useFunnel';
 import { setStorage } from '@/shared/utils/handleToken';
 

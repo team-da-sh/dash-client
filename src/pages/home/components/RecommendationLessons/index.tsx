@@ -1,12 +1,12 @@
 import LessonItem from '@/pages/home/components/LessonItem';
 import {
-  recommandLessonWrapperStyle,
   containerStyle,
+  recommandLessonWrapperStyle,
   titleStyle,
 } from '@/pages/home/components/RecommendationLessons/index.css';
 import Flex from '@/components/Flex';
 import Head from '@/components/Head';
-import { useGetRecommendationLessons } from '@/apis/home/queries';
+import { useGetRecommendationLessons } from '@/shared/apis/home/queries';
 
 const RecommendationLessons = () => {
   const { data } = useGetRecommendationLessons();
