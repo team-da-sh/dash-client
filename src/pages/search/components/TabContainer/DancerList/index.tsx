@@ -1,11 +1,11 @@
 import { useNavigate } from 'react-router-dom';
 import { dancerImageStyle } from '@/pages/search/components/TabContainer/DancerList/index.css';
-import Flex from '@/components/Flex';
-import Head from '@/components/Head';
-import Tag from '@/components/Tag';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { vars } from '@/styles/theme.css';
 import { Dancer } from '@/shared/apis/search/queries';
+import Flex from '@/shared/components/Flex';
+import Head from '@/shared/components/Head';
+import Tag from '@/shared/components/Tag';
 import { genreMapping } from '@/shared/constants/index';
 
 interface DancerListProps {

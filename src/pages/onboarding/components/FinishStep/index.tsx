@@ -1,7 +1,7 @@
-import Flex from '@/components/Flex';
-import Head from '@/components/Head';
-import Text from '@/components/Text';
 import { ClearGif } from '@/shared/assets/gif';
+import Flex from '@/shared/components/Flex';
+import Head from '@/shared/components/Head';
+import Text from '@/shared/components/Text';
 
 interface FinishStepProps {
   nickname: string;

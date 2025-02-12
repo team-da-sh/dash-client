@@ -1,11 +1,11 @@
 import {
-  topImgStyle,
   gradientOverlayStyle,
   textWrapperStyle,
+  topImgStyle,
 } from '@/pages/reservation/components/TopInfoContent/index.css';
 import { TopInfoContentProps } from '@/pages/reservation/types';
-import Flex from '@/components/Flex';
-import Head from '@/components/Head';
+import Flex from '@/shared/components/Flex';
+import Head from '@/shared/components/Head';
 
 const TopInfoContent = ({ name, teacherNickname, imageUrl }: TopInfoContentProps) => {
   return (

@@ -6,11 +6,11 @@ import EmptyView from '@/pages/search/components/TabContainer/EmptyView';
 import TagSection from '@/pages/search/components/TabContainer/TagSection';
 import Dropdown from '@/pages/search/components/TabContainer/TagSection/Dropdown';
 import { divCustomStyle } from '@/pages/search/components/TabContainer/index.css';
-import Flex from '@/components/Flex';
-import { TabButton, TabList, TabPanel, TabRoot } from '@/components/Tab';
-import Text from '@/components/Text';
 import { ClassListResponse, DancerListResponse } from '@/shared/apis/search/queries';
 import { IcArrowUnderGray, IcXMain04 } from '@/shared/assets/svg';
+import Flex from '@/shared/components/Flex';
+import { TabButton, TabList, TabPanel, TabRoot } from '@/shared/components/Tab';
+import Text from '@/shared/components/Text';
 
 interface TagItem {
   label: string;

@@ -17,15 +17,15 @@ import {
   totalPriceContainerStyle,
 } from '@/pages/reservation/index.css';
 import { LessonRoundProps } from '@/pages/reservation/types';
-import BoxButton from '@/components/BoxButton';
-import Divider from '@/components/Divider';
-import Flex from '@/components/Flex';
-import Head from '@/components/Head';
-import Header from '@/components/Header';
-import Text from '@/components/Text';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { useGetReservaion } from '@/shared/apis/reservation/queries';
 import { IcCheckcircleGray0524, IcCheckcircleMain0324 } from '@/shared/assets/svg';
+import BoxButton from '@/shared/components/BoxButton';
+import Divider from '@/shared/components/Divider';
+import Flex from '@/shared/components/Flex';
+import Head from '@/shared/components/Head';
+import Header from '@/shared/components/Header';
+import Text from '@/shared/components/Text';
 
 const Reservation = () => {
   const [isAllChecked, setIsAllChecked] = useState(false);

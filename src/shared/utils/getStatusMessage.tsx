@@ -1,5 +1,5 @@
-import Flex from '@/components/Flex';
-import Head from '@/components/Head';
+import Flex from '@/shared/components/Flex';
+import Head from '@/shared/components/Head';
 
 type Status = 'upcoming' | 'ongoing' | 'completed';
 

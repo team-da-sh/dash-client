@@ -9,9 +9,9 @@ import { TOTAL_STEP } from '@/pages/instructorRegister/constants';
 import { buttonContainerStyle } from '@/pages/instructorRegister/index.css';
 import { InstructorRegisterInfoTypes } from '@/pages/instructorRegister/types';
 import { FunnelProps, StepProps } from '@/pages/search/types/funnel';
-import BoxButton from '@/components/BoxButton';
-import Completion from '@/components/Completion';
 import { usePostInstructor } from '@/shared/apis/instructorRegister/queries';
+import BoxButton from '@/shared/components/BoxButton';
+import Completion from '@/shared/components/Completion';
 import useImageUploader from '@/shared/hooks/useImageUploader';
 import { setAccessToken, setRefreshToken } from '@/shared/utils/handleToken';
 

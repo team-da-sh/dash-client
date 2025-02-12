@@ -6,9 +6,9 @@ import {
   imageWrapperStyle,
 } from '@/pages/onboarding/components/GenreChip/index.css';
 import { GenreTypes } from '@/pages/onboarding/types';
-import Flex from '@/components/Flex';
-import Text from '@/components/Text';
 import IcCheckMain0424 from '@/shared/assets/svg/IcCheckMain0424';
+import Flex from '@/shared/components/Flex';
+import Text from '@/shared/components/Text';
 
 interface GenreChipProps {
   genre: string;

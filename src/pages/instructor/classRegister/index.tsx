@@ -14,10 +14,10 @@ import { useClassRegisterForm } from '@/pages/instructor/classRegister/hooks/use
 import * as styles from '@/pages/instructor/classRegister/index.css';
 import { ClassRegisterInfoTypes } from '@/pages/instructor/classRegister/types';
 import { buttonContainerStyle } from '@/pages/instructorRegister/index.css';
-import BoxButton from '@/components/BoxButton';
-import Header from '@/components/Header';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { useGetLocationList, usePostClassRegisterInfo } from '@/shared/apis/instructor/classRegister/queries';
+import BoxButton from '@/shared/components/BoxButton';
+import Header from '@/shared/components/Header';
 import { genreEngMapping, levelEngMapping } from '@/shared/constants';
 import useBottomSheet from '@/shared/hooks/useBottomSheet';
 import useImageUploader from '@/shared/hooks/useImageUploader';

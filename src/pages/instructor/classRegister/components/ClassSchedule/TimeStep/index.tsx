@@ -1,7 +1,7 @@
 import TimeControl from '@/pages/instructor/classRegister/components/ClassSchedule/TimeStep/TimeControl';
-import Flex from '@/components/Flex';
-import Head from '@/components/Head';
-import Tag from '@/components/Tag';
+import Flex from '@/shared/components/Flex';
+import Head from '@/shared/components/Head';
+import Tag from '@/shared/components/Tag';
 import { TIME_RANGE } from '@/shared/constants';
 import { decreaseHour, decreaseMinute, increaseHour, increaseMinute, toggleAmpm } from '@/shared/utils/timeUtils';
 

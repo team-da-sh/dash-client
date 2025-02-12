@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
 import { textareaStyle } from '@/pages/instructor/classRegister/components/ClassDescription/index.css';
 import Description from '@/pages/instructor/classRegister/components/Description';
-import Flex from '@/components/Flex';
+import Flex from '@/shared/components/Flex';
 
 interface ClassDescriptionProps {
   explanation: string;

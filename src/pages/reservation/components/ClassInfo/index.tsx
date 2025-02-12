@@ -2,10 +2,10 @@ import ScheduleItem from '@/pages/reservation/components/ClassInfo/ScheduleItem'
 import { infoContainerStyle, textLabelStyle } from '@/pages/reservation/components/ClassInfo/index.css';
 import InfoRow from '@/pages/reservation/components/InfoRow';
 import { ClassInfoProps } from '@/pages/reservation/types';
-import Flex from '@/components/Flex';
-import Head from '@/components/Head';
-import Text from '@/components/Text';
 import { vars } from '@/styles/theme.css';
+import Flex from '@/shared/components/Flex';
+import Head from '@/shared/components/Head';
+import Text from '@/shared/components/Text';
 import { levelMapping } from '@/shared/constants';
 
 const ClassInfo = ({ name, location, locationDetail, teacherNickname, level, lessonRound = [] }: ClassInfoProps) => {

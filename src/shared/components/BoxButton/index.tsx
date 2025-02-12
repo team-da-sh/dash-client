@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import { ButtonHTMLAttributes } from 'react';
-import { buttonStyle } from '@/components/BoxButton/index.css';
+import { buttonStyle } from '@/shared/components/BoxButton/index.css';
 
 export interface BoxButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary' | 'outline' | 'temp' | 'heart';

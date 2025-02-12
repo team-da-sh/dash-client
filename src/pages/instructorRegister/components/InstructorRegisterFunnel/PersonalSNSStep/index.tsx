@@ -1,10 +1,10 @@
 import Description from '@/pages/instructorRegister/components/Description';
 import { INFO_KEY } from '@/pages/instructorRegister/constants';
 import { InstructorRegisterInfoTypes } from '@/pages/instructorRegister/types';
-import Flex from '@/components/Flex';
-import Input from '@/components/Input';
-import Text from '@/components/Text';
 import { IcInstagram20, IcYoutube20 } from '@/shared/assets/svg';
+import Flex from '@/shared/components/Flex';
+import Input from '@/shared/components/Input';
+import Text from '@/shared/components/Text';
 
 interface PersonalSNSStepProps {
   instagram: string;

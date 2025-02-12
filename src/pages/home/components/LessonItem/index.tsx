@@ -13,11 +13,11 @@ import {
   newWrapperStyle,
 } from '@/pages/home/components/LessonItem/newIndex.css';
 import { LessonTypes } from '@/pages/home/types/classTypes';
-import Flex from '@/components/Flex';
-import Head from '@/components/Head';
-import Tag from '@/components/Tag';
-import Text from '@/components/Text';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
+import Flex from '@/shared/components/Flex';
+import Head from '@/shared/components/Head';
+import Tag from '@/shared/components/Tag';
+import Text from '@/shared/components/Text';
 import { genreMapping, levelMapping } from '@/shared/constants';
 import { transformDateToDotFormat } from '@/shared/utils/transformDateToDotFormat';
 

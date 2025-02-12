@@ -1,10 +1,10 @@
 import { useNavigate } from 'react-router-dom';
 import { dancerImageStyle } from '@/pages/home/components/DancerItem/index.css';
 import { DancerTypes } from '@/pages/home/types/dancerTypes';
-import Flex from '@/components/Flex';
-import Head from '@/components/Head';
-import Text from '@/components/Text';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
+import Flex from '@/shared/components/Flex';
+import Head from '@/shared/components/Head';
+import Text from '@/shared/components/Text';
 
 interface DancerItemProps extends Omit<DancerTypes, 'genres'> {
   genre: string;

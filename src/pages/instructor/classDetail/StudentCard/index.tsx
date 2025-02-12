@@ -1,7 +1,7 @@
 import * as styles from '@/pages/instructor/classDetail/StudentCard/index.css';
-import Flex from '@/components/Flex';
-import Head from '@/components/Head';
-import Text from '@/components/Text';
+import Flex from '@/shared/components/Flex';
+import Head from '@/shared/components/Head';
+import Text from '@/shared/components/Text';
 import { formatDateTime } from '@/shared/utils/timeCalculate';
 
 interface studentsProps {

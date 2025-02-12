@@ -4,9 +4,9 @@ import {
   amountTextStyle,
 } from '@/pages/instructor/classRegister/components/ClassAmount/index.css';
 import Description from '@/pages/instructor/classRegister/components/Description';
-import Flex from '@/components/Flex';
-import Input from '@/components/Input';
-import Text from '@/components/Text';
+import Flex from '@/shared/components/Flex';
+import Input from '@/shared/components/Input';
+import Text from '@/shared/components/Text';
 
 interface ClassAmountProps {
   amount: string;

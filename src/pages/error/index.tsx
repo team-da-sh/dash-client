@@ -1,10 +1,10 @@
 import { useNavigate } from 'react-router-dom';
-import BoxButton from '@/components/BoxButton';
-import Flex from '@/components/Flex';
-import Head from '@/components/Head';
-import Text from '@/components/Text';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { IcError } from '@/shared/assets/svg';
+import BoxButton from '@/shared/components/BoxButton';
+import Flex from '@/shared/components/Flex';
+import Head from '@/shared/components/Head';
+import Text from '@/shared/components/Text';
 import { boxButtonStyle } from './index.css';
 
 const Error = () => {

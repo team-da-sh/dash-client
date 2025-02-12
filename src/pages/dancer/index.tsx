@@ -4,11 +4,11 @@ import DancerInfo from '@/pages/dancer/components/DancerInfo';
 import TabWrapper from '@/pages/dancer/components/TabWrapper';
 import { gradientOverlayStyle, textWrapperStyle, topImgStyle } from '@/pages/dancer/index.css';
 import Error from '@/pages/error/index';
-import Flex from '@/components/Flex';
-import Head from '@/components/Head';
-import Tag from '@/components/Tag';
-import Text from '@/components/Text';
 import { useGetDancerDetail } from '@/shared/apis/dancer/queries';
+import Flex from '@/shared/components/Flex';
+import Head from '@/shared/components/Head';
+import Tag from '@/shared/components/Tag';
+import Text from '@/shared/components/Text';
 import { genreMapping } from '@/shared/constants/index';
 import { useIntersectCallback } from '@/shared/utils/useIntersectCallback';
 

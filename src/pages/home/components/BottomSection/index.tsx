@@ -2,11 +2,11 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as styles from '@/pages/home/components/BottomSection/index.css';
 import { LIST_DATA } from '@/pages/mypage/constants/myPageList';
-import Divider from '@/components/Divider';
-import Flex from '@/components/Flex';
-import { notify } from '@/components/Toast';
 import { usePostLogout } from '@/shared/apis/auth/quries';
 import { IcArrowRightSmallGray0432, IcArrowRightSmallGray0732 } from '@/shared/assets/svg';
+import Divider from '@/shared/components/Divider';
+import Flex from '@/shared/components/Flex';
+import { notify } from '@/shared/components/Toast';
 
 const BottomSection = ({ isInstructor }: { isInstructor: boolean }) => {
   const { mutate: logout } = usePostLogout();

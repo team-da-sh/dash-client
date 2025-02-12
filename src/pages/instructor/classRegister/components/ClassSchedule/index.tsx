@@ -4,9 +4,9 @@ import {
   tagStyle,
 } from '@/pages/instructor/classRegister/components/ClassSchedule/index.css';
 import Description from '@/pages/instructor/classRegister/components/Description';
-import Flex from '@/components/Flex';
-import Text from '@/components/Text';
 import { IcPlusGray0524, IcXCircleGray0424 } from '@/shared/assets/svg';
+import Flex from '@/shared/components/Flex';
+import Text from '@/shared/components/Text';
 import { calculatePeriod, formatDate } from '@/shared/utils/dateCalculate';
 
 interface TimesTypes {

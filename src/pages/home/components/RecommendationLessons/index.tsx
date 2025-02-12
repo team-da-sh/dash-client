@@ -4,9 +4,9 @@ import {
   recommandLessonWrapperStyle,
   titleStyle,
 } from '@/pages/home/components/RecommendationLessons/index.css';
-import Flex from '@/components/Flex';
-import Head from '@/components/Head';
 import { useGetRecommendationLessons } from '@/shared/apis/home/queries';
+import Flex from '@/shared/components/Flex';
+import Head from '@/shared/components/Head';
 
 const RecommendationLessons = () => {
   const { data } = useGetRecommendationLessons();

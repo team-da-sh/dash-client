@@ -3,9 +3,9 @@ import { genreListStyle } from '@/pages/onboarding/components/GenreStep/index.cs
 import { GENRELIST, INFO_KEY } from '@/pages/onboarding/constants';
 import { GENRE_INFO } from '@/pages/onboarding/mocks';
 import { GenreTypes, onboardInfoTypes } from '@/pages/onboarding/types';
-import Flex from '@/components/Flex';
-import Head from '@/components/Head';
-import Text from '@/components/Text';
+import Flex from '@/shared/components/Flex';
+import Head from '@/shared/components/Head';
+import Text from '@/shared/components/Text';
 
 const MAX_GENRE_COUNT = 3;
 

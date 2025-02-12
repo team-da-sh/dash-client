@@ -4,9 +4,9 @@ import {
   deadlineLessonWrapperStyle,
   titleStyle,
 } from '@/pages/home/components/UpcomingLessons/index.css';
-import Flex from '@/components/Flex';
-import Head from '@/components/Head';
 import { useGetUpcomingLessons } from '@/shared/apis/home/queries';
+import Flex from '@/shared/components/Flex';
+import Head from '@/shared/components/Head';
 
 const UpcomingLessones = () => {
   const { data } = useGetUpcomingLessons();

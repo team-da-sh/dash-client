@@ -1,12 +1,12 @@
 import { icCameraStyle, inputStyle, previewImgStyle } from '@/pages/onboarding/components/ProfileStep/index.css';
 import { INFO_KEY, MAX_NICKNAME_LENGTH } from '@/pages/onboarding/constants';
 import { onboardInfoTypes } from '@/pages/onboarding/types';
-import Flex from '@/components/Flex';
-import Head from '@/components/Head';
-import Input from '@/components/Input';
-import Text from '@/components/Text';
 import defaultProfile from '@/shared/assets/images/image_profile_basic.png';
 import { IcCameraMain0624 } from '@/shared/assets/svg';
+import Flex from '@/shared/components/Flex';
+import Head from '@/shared/components/Head';
+import Input from '@/shared/components/Input';
+import Text from '@/shared/components/Text';
 import { INCLUDE_BLANK, INCLUDE_SPECIAL } from '@/shared/constants/regex';
 import useImageUploader from '@/shared/hooks/useImageUploader';
 

@@ -11,12 +11,12 @@ import {
   rowScrollStyle,
 } from '@/pages/dancer/components/DancerInfo/index.css';
 import { DancerDetailApiResponse } from '@/pages/dancer/types';
-import Divider from '@/components/Divider';
-import Flex from '@/components/Flex';
-import Head from '@/components/Head';
-import Text from '@/components/Text';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { IcInstagram20, IcYoutube20 } from '@/shared/assets/svg';
+import Divider from '@/shared/components/Divider';
+import Flex from '@/shared/components/Flex';
+import Head from '@/shared/components/Head';
+import Text from '@/shared/components/Text';
 
 const DancerInfo = ({ dancerData }: { dancerData: DancerDetailApiResponse }) => {
   const { instagram, youtube, detail, nickname, lessons } = dancerData;

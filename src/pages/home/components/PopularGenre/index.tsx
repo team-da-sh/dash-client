@@ -2,10 +2,10 @@ import { useNavigate } from 'react-router-dom';
 import GenreItem from '@/pages/home/components/GenreItem';
 import { genreWrapperStyle } from '@/pages/home/components/LessonItem/index.css';
 import { GENRE_ICONS } from '@/pages/home/constants';
-import Flex from '@/components/Flex';
-import Head from '@/components/Head';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { useGetPopularGenres } from '@/shared/apis/home/queries';
+import Flex from '@/shared/components/Flex';
+import Head from '@/shared/components/Head';
 import { genreMapping } from '@/shared/constants';
 
 const PopularGenre = () => {

@@ -2,10 +2,10 @@ import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { buttonWrapperStyle } from '@/pages/class/components/ClassButtonWrapper/index.css';
 import { LessonDetailApiResponse } from '@/pages/class/types/index';
-import BoxButton from '@/components/BoxButton';
-import Flex from '@/components/Flex';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { IcHeartFilledGray07, IcHeartOutlinedGray07 } from '@/shared/assets/svg';
+import BoxButton from '@/shared/components/BoxButton';
+import Flex from '@/shared/components/Flex';
 import { BUTTON_TEXT, DISABLED_STATUS } from '@/shared/constants';
 
 const ClassButtonWrapper = ({ lessonData }: { lessonData: LessonDetailApiResponse }) => {

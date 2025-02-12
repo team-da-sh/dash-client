@@ -10,10 +10,10 @@ import {
   selectedLocationContainerStyle,
 } from '@/pages/instructor/classRegister/components/ClassPlace/index.css';
 import Description from '@/pages/instructor/classRegister/components/Description';
-import Flex from '@/components/Flex';
-import Input from '@/components/Input';
-import Text from '@/components/Text';
 import { BtnCheck, IcSearchGray, IcXCircleGray0424 } from '@/shared/assets/svg';
+import Flex from '@/shared/components/Flex';
+import Input from '@/shared/components/Input';
+import Text from '@/shared/components/Text';
 import { LocationsData, LocationTypes } from '../../types';
 
 interface ClassPlaceProps {

@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { containerStyle } from '@/pages/home/components/HomeHeader/index.css';
-import Flex from '@/components/Flex';
 import { IcBack, IcBackWhite24 } from '@/shared/assets/svg';
+import Flex from '@/shared/components/Flex';
 
 interface DancerHeaderProps {
   isVisible: boolean;

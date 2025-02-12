@@ -1,9 +1,9 @@
 import { INFO_KEY, LEVELS } from '@/pages/onboarding/constants';
 import { KO_LEVELS, onboardInfoTypes } from '@/pages/onboarding/types';
-import Flex from '@/components/Flex';
-import Head from '@/components/Head';
-import LevelButton from '@/components/LevelButton';
-import Text from '@/components/Text';
+import Flex from '@/shared/components/Flex';
+import Head from '@/shared/components/Head';
+import LevelButton from '@/shared/components/LevelButton';
+import Text from '@/shared/components/Text';
 import { LEVEL } from '@/shared/constants';
 
 interface LevelStepProps {

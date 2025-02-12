@@ -4,7 +4,7 @@ import {
   videoWrapperStyle,
 } from '@/pages/dancer/components/TabWrapper/TabVideo/index.css';
 import { DancerDetailApiResponse } from '@/pages/dancer/types';
-import Flex from '@/components/Flex';
+import Flex from '@/shared/components/Flex';
 import { getYoutubeEmbedUrl } from '@/shared/constants/regex';
 
 interface TabVideoProps {

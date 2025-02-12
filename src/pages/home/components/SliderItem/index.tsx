@@ -7,10 +7,10 @@ import {
   moreButtonStyle,
   moreWrapperStyle,
 } from '@/pages/home/components/SliderItem/index.css';
-import Flex from '@/components/Flex';
-import Head from '@/components/Head';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { IcArrowRightWhite14 } from '@/shared/assets/svg';
+import Flex from '@/shared/components/Flex';
+import Head from '@/shared/components/Head';
 
 interface SliderItemProps {
   imageUrl: string;

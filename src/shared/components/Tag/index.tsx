@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import { ComponentPropsWithoutRef } from 'react';
-import { tagStyle } from '@/components/Tag/index.css';
+import { tagStyle } from '@/shared/components/Tag/index.css';
 
 interface TagProps extends ComponentPropsWithoutRef<'div'> {
   size?: 'small' | 'medium' | 'large' | 'thumbnail' | 'mypage' | 'search' | 'sort' | 'timeSelector';

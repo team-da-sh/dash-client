@@ -1,8 +1,8 @@
 import { emptyStyle } from '@/pages/dancer/components/TabWrapper/TabExperience/index.css';
 import { DancerDetailApiResponse } from '@/pages/dancer/types';
-import Flex from '@/components/Flex';
-import Head from '@/components/Head';
-import Text from '@/components/Text';
+import Flex from '@/shared/components/Flex';
+import Head from '@/shared/components/Head';
+import Text from '@/shared/components/Text';
 
 interface TabEducationProps {
   dancerData: DancerDetailApiResponse;

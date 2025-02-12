@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { DancerDetailApiResponse } from '@/pages/dancer/types/index';
-import Flex from '@/components/Flex';
-import { TabButton, TabList, TabPanel, TabRoot } from '@/components/Tab';
 import { vars } from '@/styles/theme.css';
+import Flex from '@/shared/components/Flex';
+import { TabButton, TabList, TabPanel, TabRoot } from '@/shared/components/Tab';
 import { DANCER_TABS } from '@/shared/constants';
 
 interface TabWrapperProps {

@@ -1,6 +1,6 @@
-import Flex from '@/components/Flex';
-import Head from '@/components/Head';
 import { LoadingGif } from '@/shared/assets/gif';
+import Flex from '@/shared/components/Flex';
+import Head from '@/shared/components/Head';
 
 const Loading = () => {
   return (

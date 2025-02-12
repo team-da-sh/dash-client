@@ -1,5 +1,5 @@
 import { containerStyle, genreStyle, medalStyle } from '@/pages/home/components/GenreItem/index.css';
-import Text from '@/components/Text';
+import Text from '@/shared/components/Text';
 
 interface GenreItemProps {
   medalIcon: JSX.Element;

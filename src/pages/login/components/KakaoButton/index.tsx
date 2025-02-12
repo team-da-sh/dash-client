@@ -1,7 +1,7 @@
 import { buttonStyle, kakaoButtonStyle } from '@/pages/login/components/KakaoButton/index.css';
-import Flex from '@/components/Flex';
-import Head from '@/components/Head';
 import { IcKakaoKakaobrown28 } from '@/shared/assets/svg';
+import Flex from '@/shared/components/Flex';
+import Head from '@/shared/components/Head';
 
 const KakaoButton = () => {
   const redirect_uri = 'https://da-sh.kr/auth'; //Redirect URI

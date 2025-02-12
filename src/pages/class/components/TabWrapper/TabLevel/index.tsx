@@ -1,10 +1,10 @@
 import Card from '@/pages/class/components/Card';
 import { levelStyle, questionStyle, recommendClassStyle } from '@/pages/class/components/TabWrapper/TabLevel/index.css';
 import { LessonDetailApiResponse } from '@/pages/class/types/index';
-import Flex from '@/components/Flex';
-import Head from '@/components/Head';
-import Text from '@/components/Text';
 import { IcLevelStarter, IcQuesitonmark, IcSparkleMain20 } from '@/shared/assets/svg';
+import Flex from '@/shared/components/Flex';
+import Head from '@/shared/components/Head';
+import Text from '@/shared/components/Text';
 import { LEVEL, levelMapping } from '@/shared/constants/index';
 
 const TabLevel = ({ lessonData }: { lessonData: LessonDetailApiResponse }) => {

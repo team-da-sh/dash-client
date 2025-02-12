@@ -6,10 +6,10 @@ import {
   inputContainerStyle,
   inputIconStyle,
 } from '@/pages/instructorRegister/components/InstructorRegisterFunnel/CareerStep/index.css';
-import Flex from '@/components/Flex';
-import Input from '@/components/Input';
-import Text from '@/components/Text';
 import { BtnCheck, IcPlusGray0524, IcXCircleGray } from '@/shared/assets/svg';
+import Flex from '@/shared/components/Flex';
+import Input from '@/shared/components/Input';
+import Text from '@/shared/components/Text';
 
 interface InputItemTypes {
   id: number;

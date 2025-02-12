@@ -10,11 +10,11 @@ import { MAX_ONBOARDING_STEP } from '@/pages/onboarding/constants';
 import { bodyWrapperStyle, containerStyle, footerWrapperStyle, progressBarStyle } from '@/pages/onboarding/index.css';
 import { GenreTypes, onboardInfoTypes } from '@/pages/onboarding/types';
 import { validateName, validatePhoneNumber } from '@/pages/onboarding/utils/validate';
-import BoxButton from '@/components/BoxButton';
-import ProgressBar from '@/components/ProgressBar';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { usePostOnboard } from '@/shared/apis/onboarding/queries';
 import defaultProfile from '@/shared/assets/images/image_profile_basic.png';
+import BoxButton from '@/shared/components/BoxButton';
+import ProgressBar from '@/shared/components/ProgressBar';
 import { FunnelProps, StepProps } from '@/shared/hooks/useFunnel';
 import { setStorage } from '@/shared/utils/handleToken';
 

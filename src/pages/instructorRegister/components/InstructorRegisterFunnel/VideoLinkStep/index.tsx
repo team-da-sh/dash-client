@@ -7,9 +7,9 @@ import {
 } from '@/pages/instructorRegister/components/InstructorRegisterFunnel/VideoLinkStep/index.css';
 import { INFO_KEY, VIDEO_INPUT_MAX } from '@/pages/instructorRegister/constants';
 import { InputItemTypes, InstructorRegisterInfoTypes } from '@/pages/instructorRegister/types';
-import Flex from '@/components/Flex';
-import Input from '@/components/Input';
 import { IcPlusGray0524, IcXCircleGray } from '@/shared/assets/svg';
+import Flex from '@/shared/components/Flex';
+import Input from '@/shared/components/Input';
 
 interface VideoLinkStepProps {
   videoUrls: string[];

@@ -1,7 +1,7 @@
 import ClassRegisterFunnel from '@/pages/instructor/classRegister/components/ClassSchedule/ClassRegisterFunnel';
-import BoxButton from '@/components/BoxButton';
-import Header from '@/components/Header';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
+import BoxButton from '@/shared/components/BoxButton';
+import Header from '@/shared/components/Header';
 import { CLASS_REGISTER_TOTAL_STEP } from '@/shared/constants';
 import { useFunnel } from '@/shared/hooks/useFunnel';
 import * as styles from './index.css';

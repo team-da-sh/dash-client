@@ -11,10 +11,10 @@ import {
   overlayVisible,
   tabListCustomStyle,
 } from '@/pages/search/components/TabContainer/TagSection/BottomSheet/index.css';
-import BoxButton from '@/components/BoxButton';
-import Flex from '@/components/Flex';
-import LevelButton from '@/components/LevelButton';
-import { TabButton, TabList, TabPanel, TabRoot } from '@/components/Tab';
+import BoxButton from '@/shared/components/BoxButton';
+import Flex from '@/shared/components/Flex';
+import LevelButton from '@/shared/components/LevelButton';
+import { TabButton, TabList, TabPanel, TabRoot } from '@/shared/components/Tab';
 import { LEVEL } from '@/shared/constants';
 import { GENRE_CATEGORY } from '@/shared/constants/index';
 import GenreButton from './GenreButton';

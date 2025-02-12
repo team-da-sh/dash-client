@@ -5,8 +5,8 @@ import ClassInfoWrapper from '@/pages/class/components/ClassInfoWrapper';
 import TabWrapper from '@/pages/class/components/TabWrapper';
 import { headerStyle } from '@/pages/class/index.css';
 import Error from '@/pages/error';
-import Divider from '@/components/Divider';
 import { useGetLessonDetail } from '@/shared/apis/class/queries';
+import Divider from '@/shared/components/Divider';
 import { useIntersectCallback } from '@/shared/utils/useIntersectCallback';
 
 const Class = () => {

@@ -5,10 +5,10 @@ import {
   streetAddressStyle,
 } from '@/pages/class/components/TabWrapper/TabLocation/index.css';
 import { LessonDetailApiResponse } from '@/pages/class/types/index';
-import Flex from '@/components/Flex';
-import Head from '@/components/Head';
-import Text from '@/components/Text';
 import { IcLocation60 } from '@/shared/assets/svg';
+import Flex from '@/shared/components/Flex';
+import Head from '@/shared/components/Head';
+import Text from '@/shared/components/Text';
 
 const TabLocation = ({ lessonData }: { lessonData: LessonDetailApiResponse }) => {
   const { location, streetAddress, streetDetailAddress, oldStreetAddress } = lessonData;
