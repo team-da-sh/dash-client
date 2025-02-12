@@ -7,12 +7,12 @@ import '@/apis/home/axios';
 import {
   getAdvertisements,
   getMyPage,
+  getPopularDancers,
   getPopularGenres,
   getRecommendationLessons,
   getUpcommingLessons,
-  getPopularDancers,
 } from '@/apis/home/axios';
-import { MyPageProps } from '@/types/myPageTypes';
+import { MyPageProps } from '@/shared/types/myPageTypes';
 
 interface AdvertisementResponse {
   advertisements: AdvertisementsTypes[];

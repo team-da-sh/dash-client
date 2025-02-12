@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { QUERY_KEYS } from '@/apis/constants/queryKey';
 import { getReservationsDetail } from '@/apis/myPageReservationDetail/axios';
-import { ReservationDetailType } from '@/types/reservationDetailTypes';
+import { ReservationDetailType } from '@/shared/types/reservationDetailTypes';
 
 export const useGetReservationsDetail = (lessonId: number) => {
   return useQuery<ReservationDetailType>({

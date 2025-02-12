@@ -2,7 +2,7 @@ import { useMutation, useQuery, UseQueryOptions } from '@tanstack/react-query';
 import { postImage, postRole } from '@/apis/common/axios';
 import { QUERY_KEYS } from '@/apis/constants/queryKey';
 import queryClient from '@/queryClient';
-import { RoleApiResponse } from '@/types/roleTypes';
+import { RoleApiResponse } from '@/shared/types/roleTypes';
 
 export const useImageMutation = () => {
   return useMutation({

@@ -1,13 +1,13 @@
 import { useNavigate } from 'react-router-dom';
-import { layoutStyle, containerStyle } from '@/pages/instructor/classList/index.css';
-import { handleClassCardClick, handleBoxButtonClick, handleCancelClick } from '@/pages/mypage/utils/clickUtils';
+import { containerStyle, layoutStyle } from '@/pages/instructor/classList/index.css';
+import { handleBoxButtonClick, handleCancelClick, handleClassCardClick } from '@/pages/mypage/utils/clickUtils';
 import BoxButton from '@/components/BoxButton';
 import ClassCard from '@/components/ClassCard';
 import Flex from '@/components/Flex';
 import Header from '@/components/Header';
 import Text from '@/components/Text';
 import { useGetMyLessons } from '@/apis/classList/queries';
-import { Lesson } from '@/types/lessonTypes';
+import { Lesson } from '@/shared/types/lessonTypes';
 
 const ClassList = () => {
   const navigate = useNavigate();

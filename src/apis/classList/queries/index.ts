@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { QUERY_KEYS } from '@/apis/constants/queryKey';
-import { LessonApiResponse } from '@/types/lessonTypes';
+import { LessonApiResponse } from '@/shared/types/lessonTypes';
 import { getMyLessons } from '../axios';
 
 export const useGetMyLessons = () => {

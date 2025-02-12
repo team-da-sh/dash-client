@@ -1,13 +1,13 @@
 import { useNavigate } from 'react-router-dom';
-import { layoutStyle, containerStyle } from '@/pages/mypage/mypageReservation/index.css';
-import { handleClassCardClick, handleBoxButtonClick, handleCancelClick } from '@/pages/mypage/utils/clickUtils';
+import { containerStyle, layoutStyle } from '@/pages/mypage/mypageReservation/index.css';
+import { handleBoxButtonClick, handleCancelClick, handleClassCardClick } from '@/pages/mypage/utils/clickUtils';
 import BoxButton from '@/components/BoxButton';
 import ClassCard from '@/components/ClassCard';
 import Flex from '@/components/Flex';
 import Header from '@/components/Header';
 import Text from '@/components/Text';
 import { useGetReservations } from '@/apis/myPageReservation/queries';
-import { Reservation } from '@/types/reservationTypes';
+import { Reservation } from '@/shared/types/reservationTypes';
 
 const MyPageReservation = () => {
   const navigate = useNavigate();
