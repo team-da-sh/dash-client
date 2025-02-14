@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { usePostOnboard } from '@/pages/onboarding/apis/queries';
 import FinishStep from '@/pages/onboarding/components/FinishStep';
 import GenreStep from '@/pages/onboarding/components/GenreStep';
 import InfoStep from '@/pages/onboarding/components/InfoStep';
@@ -11,7 +12,6 @@ import { bodyWrapperStyle, containerStyle, footerWrapperStyle, progressBarStyle 
 import { GenreTypes, onboardInfoTypes } from '@/pages/onboarding/types';
 import { validateName, validatePhoneNumber } from '@/pages/onboarding/utils/validate';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import { usePostOnboard } from '@/shared/apis/onboarding/queries';
 import defaultProfile from '@/shared/assets/images/image_profile_basic.png';
 import BoxButton from '@/shared/components/BoxButton';
 import ProgressBar from '@/shared/components/ProgressBar';

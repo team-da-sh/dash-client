@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useLoginMutation } from '@/shared/apis/auth/quries';
+import { useLoginMutation } from '@/pages/auth/apis/queries';
 
 export const LoginCallback = () => {
   // 현재 url 주소의 쿼리스트링 가져와서 URLSearchParams 객체 생성

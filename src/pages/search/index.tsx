@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useGetClassList, useGetDancerList } from '@/pages/search/apis/queries';
 import SearchBar from '@/pages/search/components/SearchBar';
 import TabContainer from '@/pages/search/components/TabContainer';
 import { DEFAULT_SORT_TAGS, SORT_LABELS } from '@/pages/search/constants/index';
 import { headerRootCutomStyle } from '@/pages/search/index.css';
 import { formatDateEndTime, formatDateStartTime } from '@/pages/search/utils';
-import { useGetClassList, useGetDancerList } from '@/shared/apis/search/queries';
 import Flex from '@/shared/components/Flex';
 import Header from '@/shared/components/Header';
 import { genreEngMapping, labelToSortOptionMap, levelEngMapping } from '@/shared/constants';

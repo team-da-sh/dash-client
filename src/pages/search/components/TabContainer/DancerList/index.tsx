@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
+import { Dancer } from '@/pages/search/apis/queries';
 import { dancerImageStyle } from '@/pages/search/components/TabContainer/DancerList/index.css';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import { Dancer } from '@/shared/apis/search/queries';
 import Flex from '@/shared/components/Flex';
 import Head from '@/shared/components/Head';
 import Tag from '@/shared/components/Tag';

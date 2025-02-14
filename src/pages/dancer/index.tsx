@@ -1,10 +1,10 @@
 import { useParams } from 'react-router-dom';
+import { useGetDancerDetail } from '@/pages/dancer/apis/queries';
 import DancerHeader from '@/pages/dancer/components/DancerHeader';
 import DancerInfo from '@/pages/dancer/components/DancerInfo';
 import TabWrapper from '@/pages/dancer/components/TabWrapper';
 import { gradientOverlayStyle, textWrapperStyle, topImgStyle } from '@/pages/dancer/index.css';
 import Error from '@/pages/error/index';
-import { useGetDancerDetail } from '@/shared/apis/dancer/queries';
 import Flex from '@/shared/components/Flex';
 import Head from '@/shared/components/Head';
 import Tag from '@/shared/components/Tag';

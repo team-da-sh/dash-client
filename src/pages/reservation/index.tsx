@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Error from '@/pages/error';
+import { useGetReservaion } from '@/pages/reservation/apis/queries';
 import AgreeCheckBox from '@/pages/reservation/components/AgreeCheckBox';
 import ApplicantInfo from '@/pages/reservation/components/ApplicantInfo';
 import ClassInfo from '@/pages/reservation/components/ClassInfo';
@@ -18,7 +19,6 @@ import {
 } from '@/pages/reservation/index.css';
 import { LessonRoundProps } from '@/pages/reservation/types';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import { useGetReservaion } from '@/shared/apis/reservation/queries';
 import { IcCheckcircleGray0524, IcCheckcircleMain0324 } from '@/shared/assets/svg';
 import BoxButton from '@/shared/components/BoxButton';
 import Divider from '@/shared/components/Divider';

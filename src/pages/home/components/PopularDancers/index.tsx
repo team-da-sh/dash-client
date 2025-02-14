@@ -1,6 +1,6 @@
+import { useGetPopularDancers } from '@/pages/home/apis/queries';
 import DancerItem from '@/pages/home/components/DancerItem';
 import { containerStyle, dancerListWrapperstyle, titleStyle } from '@/pages/home/components/PopularDancers/index.css';
-import { useGetPopularDancers } from '@/shared/apis/home/queries';
 import Flex from '@/shared/components/Flex';
 import Head from '@/shared/components/Head';
 import { genreMapping } from '@/shared/constants';

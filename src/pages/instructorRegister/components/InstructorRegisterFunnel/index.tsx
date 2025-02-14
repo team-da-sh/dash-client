@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { usePostInstructor } from '@/pages/instructorRegister/apis/queries';
 import CareerStep from '@/pages/instructorRegister/components/InstructorRegisterFunnel/CareerStep';
 import ImageUploadStep from '@/pages/instructorRegister/components/InstructorRegisterFunnel/ImageUploadStep';
 import IntroductionStep from '@/pages/instructorRegister/components/InstructorRegisterFunnel/IntroductionStep';
@@ -9,7 +10,6 @@ import { TOTAL_STEP } from '@/pages/instructorRegister/constants';
 import { buttonContainerStyle } from '@/pages/instructorRegister/index.css';
 import { InstructorRegisterInfoTypes } from '@/pages/instructorRegister/types';
 import { FunnelProps, StepProps } from '@/pages/search/types/funnel';
-import { usePostInstructor } from '@/shared/apis/instructorRegister/queries';
 import BoxButton from '@/shared/components/BoxButton';
 import Completion from '@/shared/components/Completion';
 import useImageUploader from '@/shared/hooks/useImageUploader';

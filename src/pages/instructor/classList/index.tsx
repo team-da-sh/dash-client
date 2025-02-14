@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
+import { useGetMyLessons } from '@/pages/instructor/classList/apis/queries';
 import { containerStyle, layoutStyle } from '@/pages/instructor/classList/index.css';
 import { handleBoxButtonClick, handleCancelClick, handleClassCardClick } from '@/pages/mypage/utils/clickUtils';
-import { useGetMyLessons } from '@/shared/apis/classList/queries';
 import BoxButton from '@/shared/components/BoxButton';
 import ClassCard from '@/shared/components/ClassCard';
 import Flex from '@/shared/components/Flex';

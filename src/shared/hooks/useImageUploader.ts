@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import { useImageMutation } from '@/shared/apis/common/queries';
+import { useImageMutation } from '@/shared/apis/queries';
 
 const useImageUploader = (onSuccess: (url: string) => void, handleDeleteUrl: () => void) => {
   const [previewImg, setPreviewImg] = useState<string>('');

@@ -1,10 +1,10 @@
+import { useGetUpcomingLessons } from '@/pages/home/apis/queries';
 import LessonItem from '@/pages/home/components/LessonItem';
 import {
   containerStyle,
   deadlineLessonWrapperStyle,
   titleStyle,
 } from '@/pages/home/components/UpcomingLessons/index.css';
-import { useGetUpcomingLessons } from '@/shared/apis/home/queries';
 import Flex from '@/shared/components/Flex';
 import Head from '@/shared/components/Head';
 

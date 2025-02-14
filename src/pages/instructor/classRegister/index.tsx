@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import { useGetLocationList, usePostClassRegisterInfo } from '@/pages/instructor/classRegister/apis/queries';
 import ClassAmount from '@/pages/instructor/classRegister/components/ClassAmount';
 import ClassDescription from '@/pages/instructor/classRegister/components/ClassDescription';
 import ClassGenre from '@/pages/instructor/classRegister/components/ClassGenre';
@@ -15,7 +16,6 @@ import * as styles from '@/pages/instructor/classRegister/index.css';
 import { ClassRegisterInfoTypes } from '@/pages/instructor/classRegister/types';
 import { buttonContainerStyle } from '@/pages/instructorRegister/index.css';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import { useGetLocationList, usePostClassRegisterInfo } from '@/shared/apis/instructor/classRegister/queries';
 import BoxButton from '@/shared/components/BoxButton';
 import Header from '@/shared/components/Header';
 import { genreEngMapping, levelEngMapping } from '@/shared/constants';

@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
+import { usePostReservation } from '@/pages/reservation/apis/queries';
 import * as styles from '@/pages/reservation/components/TossPayments/index.css';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import { usePostReservation } from '@/shared/apis/reservation/queries';
 import BoxButton from '@/shared/components/BoxButton';
 import Completion from '@/shared/components/Completion';
 import Flex from '@/shared/components/Flex';

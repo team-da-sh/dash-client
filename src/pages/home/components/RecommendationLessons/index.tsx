@@ -1,10 +1,10 @@
+import { useGetRecommendationLessons } from '@/pages/home/apis/queries';
 import LessonItem from '@/pages/home/components/LessonItem';
 import {
   containerStyle,
   recommandLessonWrapperStyle,
   titleStyle,
 } from '@/pages/home/components/RecommendationLessons/index.css';
-import { useGetRecommendationLessons } from '@/shared/apis/home/queries';
 import Flex from '@/shared/components/Flex';
 import Head from '@/shared/components/Head';
 
