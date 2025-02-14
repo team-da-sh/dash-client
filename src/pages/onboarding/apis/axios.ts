@@ -1,5 +1,5 @@
 import { onboardInfoTypes } from '@/pages/onboarding/types';
-import { instance } from '@/shared/apis/api';
+import { instance } from '@/shared/apis/instance';
 
 export interface tokenTypes {
   accessToken: string;

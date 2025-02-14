@@ -1,4 +1,4 @@
-import { instance } from '@/shared/apis/api';
+import { instance } from '@/shared/apis/instance';
 
 const SEARCH_URL = {
   GET_DANCERLIST: 'api/v1/teachers',

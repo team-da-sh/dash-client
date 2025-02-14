@@ -1,5 +1,5 @@
 import { DancerDetailApiResponse } from '@/pages/dancer/types';
-import { instance } from '@/shared/apis/api';
+import { instance } from '@/shared/apis/instance';
 import { API_URL } from '@/shared/constants/apiURL';
 
 export const getDancerDetail = async (teacherId: string): Promise<DancerDetailApiResponse> => {

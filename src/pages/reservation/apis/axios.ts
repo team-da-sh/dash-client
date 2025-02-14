@@ -1,5 +1,5 @@
 import { ReservationDetailApiResponse } from '@/pages/reservation/types';
-import { instance } from '@/shared/apis/api';
+import { instance } from '@/shared/apis/instance';
 import { API_URL } from '@/shared/constants/apiURL';
 
 export const getReservation = async (lessonId: string): Promise<ReservationDetailApiResponse> => {
