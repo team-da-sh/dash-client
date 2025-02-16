@@ -1,11 +1,11 @@
 import { useParams } from 'react-router-dom';
-import StudentCard from '@/pages/instructor/classDetail/components/StudentCard/StudentCard';
 import { useGetLessonDetail } from '@/pages/instructor/classDetail/apis/queries';
 import * as styles from '@/pages/instructor/classDetail/classDetail.css';
-import ClassCard from '@/shared/components/ClassCard';
-import Flex from '@/shared/components/Flex';
-import Header from '@/shared/components/Header';
-import Text from '@/shared/components/Text';
+import StudentCard from '@/pages/instructor/classDetail/components/StudentCard/StudentCard';
+import ClassCard from '@/shared/components/ClassCard/ClassCard';
+import Flex from '@/shared/components/Flex/Flex';
+import Header from '@/shared/components/Header/Header';
+import Text from '@/shared/components/Text/Text';
 
 const ClassDetail = () => {
   const { id } = useParams<{ id: string }>();

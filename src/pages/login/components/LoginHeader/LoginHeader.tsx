@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import Header from '@/shared/components/Header';
+import Header from '@/shared/components/Header/Header';
 
 const LoginHeader = () => {
   const navigate = useNavigate();

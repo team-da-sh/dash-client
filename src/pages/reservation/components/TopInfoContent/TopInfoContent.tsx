@@ -3,8 +3,8 @@ import {
   textWrapperStyle,
   topImgStyle,
 } from '@/pages/reservation/components/TopInfoContent/topInfoContent.css';
-import Flex from '@/shared/components/Flex';
-import Head from '@/shared/components/Head';
+import Flex from '@/shared/components/Flex/Flex';
+import Head from '@/shared/components/Head/Head';
 
 interface TopInfoContentProps {
   name: string;

@@ -1,7 +1,7 @@
 import * as styles from '@/pages/instructor/classRegister/components/ClassSchedule/TimeStep/TimeControl/timeControl.css';
 import { IcArrowDownGray1032, IcArrowUpGray1032 } from '@/shared/assets/svg';
-import Flex from '@/shared/components/Flex';
-import Head from '@/shared/components/Head';
+import Flex from '@/shared/components/Flex/Flex';
+import Head from '@/shared/components/Head/Head';
 
 interface TimeControlProps {
   label: string;

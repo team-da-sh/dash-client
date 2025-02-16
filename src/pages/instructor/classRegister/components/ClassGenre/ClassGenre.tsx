@@ -1,7 +1,7 @@
 import { genreButtonContainerStyle } from '@/pages/instructor/classRegister/components/ClassGenre/classGenre.css';
 import Description from '@/pages/instructor/classRegister/components/Description';
 import GenreButton from '@/pages/search/components/TabContainer/TagSection/BottomSheet/GenreButton/GenreButton';
-import Flex from '@/shared/components/Flex';
+import Flex from '@/shared/components/Flex/Flex';
 import { GENRE_CATEGORY } from '@/shared/constants';
 
 interface ClassGenreProps {

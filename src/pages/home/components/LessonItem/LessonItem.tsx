@@ -14,10 +14,10 @@ import {
 } from '@/pages/home/components/LessonItem/newLessonItem.css';
 import { LessonTypes } from '@/pages/home/types/classTypes';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import Flex from '@/shared/components/Flex';
-import Head from '@/shared/components/Head';
-import Tag from '@/shared/components/Tag';
-import Text from '@/shared/components/Text';
+import Flex from '@/shared/components/Flex/Flex';
+import Head from '@/shared/components/Head/Head';
+import Tag from '@/shared/components/Tag/Tag';
+import Text from '@/shared/components/Text/Text';
 import { genreMapping, levelMapping } from '@/shared/constants';
 import { transformDateToDotFormat } from '@/shared/utils/transformDateToDotFormat';
 

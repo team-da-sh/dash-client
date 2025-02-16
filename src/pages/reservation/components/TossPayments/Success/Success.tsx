@@ -3,10 +3,10 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { usePostReservation } from '@/pages/reservation/apis/queries';
 import * as styles from '@/pages/reservation/components/TossPayments/tossPayments.css';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import BoxButton from '@/shared/components/BoxButton';
-import Completion from '@/shared/components/Completion';
-import Flex from '@/shared/components/Flex';
-import Header from '@/shared/components/Header';
+import BoxButton from '@/shared/components/BoxButton/BoxButton';
+import Completion from '@/shared/components/Completion/Completion';
+import Flex from '@/shared/components/Flex/Flex';
+import Header from '@/shared/components/Header/Header';
 
 export const SuccessPage = () => {
   const [isConfirmed, setIsConfirmed] = useState(false);

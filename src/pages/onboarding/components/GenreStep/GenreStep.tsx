@@ -4,9 +4,9 @@ import { GENRELIST, INFO_KEY } from '@/pages/onboarding/constants';
 import { GENRE_INFO } from '@/pages/onboarding/mocks';
 import { GenreTypes } from '@/pages/onboarding/types/genreTypes';
 import { onboardInfoTypes } from '@/pages/onboarding/types/onboardInfoTypes';
-import Flex from '@/shared/components/Flex';
-import Head from '@/shared/components/Head';
-import Text from '@/shared/components/Text';
+import Flex from '@/shared/components/Flex/Flex';
+import Head from '@/shared/components/Head/Head';
+import Text from '@/shared/components/Text/Text';
 
 const MAX_GENRE_COUNT = 3;
 

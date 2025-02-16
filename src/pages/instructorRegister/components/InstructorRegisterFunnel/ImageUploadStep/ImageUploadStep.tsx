@@ -5,8 +5,8 @@ import {
   previewImgStyle,
 } from '@/pages/instructorRegister/components/InstructorRegisterFunnel/ImageUploadStep/imageUploadStep.css';
 import { IcPlusGray0524, IcXCircleMain0324 } from '@/shared/assets/svg';
-import Flex from '@/shared/components/Flex';
-import Text from '@/shared/components/Text';
+import Flex from '@/shared/components/Flex/Flex';
+import Text from '@/shared/components/Text/Text';
 
 interface ImageUploadStepProps {
   handleUploaderClick: () => void;

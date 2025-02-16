@@ -6,8 +6,8 @@ import {
 } from '@/pages/class/components/ClassHeader/classHeader.css';
 import { containerStyle } from '@/pages/home/components/HomeHeader/homeHeader.css';
 import { IcBack, IcBackWhite24 } from '@/shared/assets/svg';
-import Flex from '@/shared/components/Flex';
-import Head from '@/shared/components/Head';
+import Flex from '@/shared/components/Flex/Flex';
+import Head from '@/shared/components/Head/Head';
 
 interface ClassHeaderProps {
   isVisible: boolean;

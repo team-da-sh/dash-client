@@ -2,10 +2,10 @@ import { labelStyle } from '@/pages/onboarding/components/InfoStep/infoStep.css'
 import { INFO_KEY } from '@/pages/onboarding/constants';
 import { onboardInfoTypes } from '@/pages/onboarding/types/onboardInfoTypes';
 import { validateTypingName, validateTypingPhoneNumber } from '@/pages/onboarding/utils/validate';
-import Flex from '@/shared/components/Flex';
-import Head from '@/shared/components/Head';
-import Input from '@/shared/components/Input';
-import Text from '@/shared/components/Text';
+import Flex from '@/shared/components/Flex/Flex';
+import Head from '@/shared/components/Head/Head';
+import Input from '@/shared/components/Input/Input';
+import Text from '@/shared/components/Text/Text';
 
 interface InfoStepProps {
   name: string;

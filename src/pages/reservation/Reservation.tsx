@@ -20,12 +20,12 @@ import {
 import { LessonRoundTypes } from '@/pages/reservation/types/lessonRoundTypes';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { IcCheckcircleGray0524, IcCheckcircleMain0324 } from '@/shared/assets/svg';
-import BoxButton from '@/shared/components/BoxButton';
-import Divider from '@/shared/components/Divider';
-import Flex from '@/shared/components/Flex';
-import Head from '@/shared/components/Head';
-import Header from '@/shared/components/Header';
-import Text from '@/shared/components/Text';
+import BoxButton from '@/shared/components/BoxButton/BoxButton';
+import Divider from '@/shared/components/Divider/Divider';
+import Flex from '@/shared/components/Flex/Flex';
+import Head from '@/shared/components/Head/Head';
+import Header from '@/shared/components/Header/Header';
+import Text from '@/shared/components/Text/Text';
 
 const Reservation = () => {
   const [isAllChecked, setIsAllChecked] = useState(false);

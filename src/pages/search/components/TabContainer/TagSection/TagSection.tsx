@@ -2,8 +2,8 @@ import { useState } from 'react';
 import BottomSheet from '@/pages/search/components/TabContainer/TagSection/BottomSheet/BottomSheet';
 import { tagCustomStyle } from '@/pages/search/components/TabContainer/TagSection/tagSection.css';
 import { IcFilterGray } from '@/shared/assets/svg';
-import Flex from '@/shared/components/Flex';
-import Tag from '@/shared/components/Tag';
+import Flex from '@/shared/components/Flex/Flex';
+import Tag from '@/shared/components/Tag/Tag';
 
 interface TagItem {
   label: string;

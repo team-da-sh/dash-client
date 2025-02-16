@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { IcCalendarcheckColor3D24, IcCalendarcheckMono3D24 } from '@/shared/assets/svg';
-import Tag from '@/shared/components/Tag';
+import Tag from '@/shared/components/Tag/Tag';
 
 const meta = {
   title: 'Common/Tag',

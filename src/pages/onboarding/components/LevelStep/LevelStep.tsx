@@ -1,10 +1,10 @@
 import { INFO_KEY, LEVELS } from '@/pages/onboarding/constants';
 import { KO_LEVELS } from '@/pages/onboarding/types/koLevelTypes';
 import { onboardInfoTypes } from '@/pages/onboarding/types/onboardInfoTypes';
-import Flex from '@/shared/components/Flex';
-import Head from '@/shared/components/Head';
-import LevelButton from '@/shared/components/LevelButton';
-import Text from '@/shared/components/Text';
+import Flex from '@/shared/components/Flex/Flex';
+import Head from '@/shared/components/Head/Head';
+import LevelButton from '@/shared/components/LevelButton/LevelButton';
+import Text from '@/shared/components/Text/Text';
 import { LEVEL } from '@/shared/constants';
 
 interface LevelStepProps {

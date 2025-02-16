@@ -1,8 +1,8 @@
 import { ClearGif } from '@/shared/assets/gif';
-import { clearStyle, flexCustomStyle } from '@/shared/components/Completion/index.css';
-import Flex from '@/shared/components/Flex';
-import Head from '@/shared/components/Head';
-import Text from '@/shared/components/Text';
+import { clearStyle, flexCustomStyle } from '@/shared/components/Completion/completion.css';
+import Flex from '@/shared/components/Flex/Flex';
+import Head from '@/shared/components/Head/Head';
+import Text from '@/shared/components/Text/Text';
 
 interface CompletionProps {
   title: string;

@@ -4,8 +4,8 @@ import {
   IcCheckGray0724,
   IcCheckMain0324,
 } from '@/shared/assets/svg';
-import Flex from '@/shared/components/Flex';
-import Text from '@/shared/components/Text';
+import Flex from '@/shared/components/Flex/Flex';
+import Text from '@/shared/components/Text/Text';
 
 interface AgreeCheckBoxProps {
   text: string;

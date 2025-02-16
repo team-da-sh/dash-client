@@ -1,10 +1,10 @@
-import Head from '@/shared/components/Head/index';
+import Head from '@/shared/components/Head/Head';
 import {
   headCustomStyle,
   levelButtonStyle,
   onboardingLevelButtonStyle,
-} from '@/shared/components/LevelButton/index.css';
-import Text from '@/shared/components/Text';
+} from '@/shared/components/LevelButton/levelButton.css';
+import Text from '@/shared/components/Text/Text';
 
 interface LevelButtonProps {
   level: {

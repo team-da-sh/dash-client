@@ -2,7 +2,7 @@ import { useGetMyPage } from '@/pages/home/apis/queries';
 import * as styles from '@/pages/home/components/MyPage/myPage.css';
 import TopSection from '@/pages/home/components/TopSection/TopSection';
 import { useGetRole } from '@/shared/apis/queries';
-import Divider from '@/shared/components/Divider';
+import Divider from '@/shared/components/Divider/Divider';
 import BottomSection from '../BottomSection/BottomSection';
 
 interface MyPageProps {

@@ -2,11 +2,11 @@ import { useNavigate } from 'react-router-dom';
 import { useGetMyLessons } from '@/pages/instructor/classList/apis/queries';
 import { containerStyle, layoutStyle } from '@/pages/instructor/classList/classList.css';
 import { handleBoxButtonClick, handleCancelClick, handleClassCardClick } from '@/pages/mypage/utils/clickUtils';
-import BoxButton from '@/shared/components/BoxButton';
-import ClassCard from '@/shared/components/ClassCard';
-import Flex from '@/shared/components/Flex';
-import Header from '@/shared/components/Header';
-import Text from '@/shared/components/Text';
+import BoxButton from '@/shared/components/BoxButton/BoxButton';
+import ClassCard from '@/shared/components/ClassCard/ClassCard';
+import Flex from '@/shared/components/Flex/Flex';
+import Header from '@/shared/components/Header/Header';
+import Text from '@/shared/components/Text/Text';
 import { Lesson } from '@/shared/types/lessonTypes';
 
 const ClassList = () => {

@@ -5,8 +5,8 @@ import {
   dancerListWrapperstyle,
   titleStyle,
 } from '@/pages/home/components/PopularDancers/popularDancers.css';
-import Flex from '@/shared/components/Flex';
-import Head from '@/shared/components/Head';
+import Flex from '@/shared/components/Flex/Flex';
+import Head from '@/shared/components/Head/Head';
 import { genreMapping } from '@/shared/constants';
 
 const PopularDancers = () => {

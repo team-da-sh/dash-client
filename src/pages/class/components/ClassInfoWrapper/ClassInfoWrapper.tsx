@@ -8,10 +8,10 @@ import {
 import { LessonDetailResponse } from '@/pages/class/types/api';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { IcThunderMain0424 } from '@/shared/assets/svg';
-import Flex from '@/shared/components/Flex';
-import Head from '@/shared/components/Head';
-import Tag from '@/shared/components/Tag';
-import Text from '@/shared/components/Text';
+import Flex from '@/shared/components/Flex/Flex';
+import Head from '@/shared/components/Head/Head';
+import Tag from '@/shared/components/Tag/Tag';
+import Text from '@/shared/components/Text/Text';
 import { genreMapping } from '@/shared/constants/index';
 import { vars } from '@/shared/styles/theme.css';
 

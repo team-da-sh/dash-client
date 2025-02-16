@@ -1,6 +1,6 @@
 import { textLabelStyle } from '@/pages/reservation/components/InfoRow/infoRow.css';
-import Flex from '@/shared/components/Flex';
-import Text from '@/shared/components/Text';
+import Flex from '@/shared/components/Flex/Flex';
+import Text from '@/shared/components/Text/Text';
 
 interface InfoRowProps {
   label: string;

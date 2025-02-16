@@ -4,9 +4,9 @@ import { usePostLogout } from '@/pages/auth/apis/queries';
 import * as styles from '@/pages/home/components/BottomSection/bottomSection.css';
 import { LIST_DATA } from '@/pages/mypage/constants/myPageList';
 import { IcArrowRightSmallGray0432, IcArrowRightSmallGray0732 } from '@/shared/assets/svg';
-import Divider from '@/shared/components/Divider';
-import Flex from '@/shared/components/Flex';
-import { notify } from '@/shared/components/Toast';
+import Divider from '@/shared/components/Divider/Divider';
+import Flex from '@/shared/components/Flex/Flex';
+import { notify } from '@/shared/components/Toast/Toast';
 
 const BottomSection = ({ isInstructor }: { isInstructor: boolean }) => {
   const { mutate: logout } = usePostLogout();

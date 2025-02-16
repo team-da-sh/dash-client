@@ -1,8 +1,8 @@
 import { forwardRef } from 'react';
 import { searchGrayStyle, xCircleGrayStyle } from '@/pages/search/components/SearchBar/searchBar.css';
 import { IcSearchGray, IcXCircleGray } from '@/shared/assets/svg';
-import Flex from '@/shared/components/Flex';
-import Input from '@/shared/components/Input';
+import Flex from '@/shared/components/Flex/Flex';
+import Input from '@/shared/components/Input/Input';
 
 interface SearchBarProps {
   searchValue: string;

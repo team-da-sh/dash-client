@@ -13,10 +13,10 @@ import {
 import { DancerDetailResponse } from '@/pages/dancer/types/api';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { IcInstagram20, IcYoutube20 } from '@/shared/assets/svg';
-import Divider from '@/shared/components/Divider';
-import Flex from '@/shared/components/Flex';
-import Head from '@/shared/components/Head';
-import Text from '@/shared/components/Text';
+import Divider from '@/shared/components/Divider/Divider';
+import Flex from '@/shared/components/Flex/Flex';
+import Head from '@/shared/components/Head/Head';
+import Text from '@/shared/components/Text/Text';
 
 const DancerInfo = ({ dancerData }: { dancerData: DancerDetailResponse }) => {
   const { instagram, youtube, detail, nickname, lessons } = dancerData;

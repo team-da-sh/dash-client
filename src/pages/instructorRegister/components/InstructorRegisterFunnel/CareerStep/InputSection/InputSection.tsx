@@ -7,9 +7,9 @@ import {
   inputIconStyle,
 } from '@/pages/instructorRegister/components/InstructorRegisterFunnel/CareerStep/careerStep.css';
 import { BtnCheck, IcPlusGray0524, IcXCircleGray } from '@/shared/assets/svg';
-import Flex from '@/shared/components/Flex';
-import Input from '@/shared/components/Input';
-import Text from '@/shared/components/Text';
+import Flex from '@/shared/components/Flex/Flex';
+import Input from '@/shared/components/Input/Input';
+import Text from '@/shared/components/Text/Text';
 
 interface InputItemTypes {
   id: number;

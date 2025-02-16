@@ -2,10 +2,10 @@ import { useNavigate } from 'react-router-dom';
 import { boxButtonStyle } from '@/pages/error/error.css';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { IcError } from '@/shared/assets/svg';
-import BoxButton from '@/shared/components/BoxButton';
-import Flex from '@/shared/components/Flex';
-import Head from '@/shared/components/Head';
-import Text from '@/shared/components/Text';
+import BoxButton from '@/shared/components/BoxButton/BoxButton';
+import Flex from '@/shared/components/Flex/Flex';
+import Head from '@/shared/components/Head/Head';
+import Text from '@/shared/components/Text/Text';
 
 const Error = () => {
   const navigate = useNavigate();

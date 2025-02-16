@@ -2,8 +2,8 @@ import KakaoButton from '@/pages/login/components/KakaoButton/KakaoButton';
 import LoginHeader from '@/pages/login/components/LoginHeader/LoginHeader';
 import { containerStyle } from '@/pages/login/login.css';
 import { LoginGif } from '@/shared/assets/gif';
-import Flex from '@/shared/components/Flex';
-import Head from '@/shared/components/Head';
+import Flex from '@/shared/components/Flex/Flex';
+import Head from '@/shared/components/Head/Head';
 
 const Login = () => {
   return (

@@ -5,10 +5,10 @@ import DancerInfo from '@/pages/dancer/components/DancerInfo/DancerInfo';
 import TabWrapper from '@/pages/dancer/components/TabWrapper/TabWrapper';
 import { gradientOverlayStyle, textWrapperStyle, topImgStyle } from '@/pages/dancer/dancer.css';
 import Error from '@/pages/error/Error';
-import Flex from '@/shared/components/Flex';
-import Head from '@/shared/components/Head';
-import Tag from '@/shared/components/Tag';
-import Text from '@/shared/components/Text';
+import Flex from '@/shared/components/Flex/Flex';
+import Head from '@/shared/components/Head/Head';
+import Tag from '@/shared/components/Tag/Tag';
+import Text from '@/shared/components/Text/Text';
 import { genreMapping } from '@/shared/constants/index';
 import { useIntersectCallback } from '@/shared/utils/useIntersectCallback';
 

@@ -3,10 +3,10 @@ import { INFO_KEY, MAX_NICKNAME_LENGTH } from '@/pages/onboarding/constants';
 import { onboardInfoTypes } from '@/pages/onboarding/types/onboardInfoTypes';
 import defaultProfile from '@/shared/assets/images/image_profile_basic.png';
 import { IcCameraMain0624 } from '@/shared/assets/svg';
-import Flex from '@/shared/components/Flex';
-import Head from '@/shared/components/Head';
-import Input from '@/shared/components/Input';
-import Text from '@/shared/components/Text';
+import Flex from '@/shared/components/Flex/Flex';
+import Head from '@/shared/components/Head/Head';
+import Input from '@/shared/components/Input/Input';
+import Text from '@/shared/components/Text/Text';
 import { INCLUDE_BLANK, INCLUDE_SPECIAL } from '@/shared/constants/regex';
 import useImageUploader from '@/shared/hooks/useImageUploader';
 

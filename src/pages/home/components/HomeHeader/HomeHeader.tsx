@@ -3,7 +3,7 @@ import { containerStyle } from '@/pages/home/components/HomeHeader/homeHeader.cs
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { HomeBlack, HomeWhite } from '@/shared/assets/gif';
 import { IcMypageBlack24, IcMypageWhite24, IcSearchBlack24, IcSearchWhite24 } from '@/shared/assets/svg';
-import Flex from '@/shared/components/Flex';
+import Flex from '@/shared/components/Flex/Flex';
 
 interface HomeHeaderProps {
   isVisible: boolean;

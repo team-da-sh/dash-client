@@ -6,9 +6,9 @@ import {
 } from '@/pages/class/components/TabWrapper/TabLevel/tabLevel.css';
 import { LessonDetailResponse } from '@/pages/class/types/api';
 import { IcLevelStarter, IcQuesitonmark, IcSparkleMain20 } from '@/shared/assets/svg';
-import Flex from '@/shared/components/Flex';
-import Head from '@/shared/components/Head';
-import Text from '@/shared/components/Text';
+import Flex from '@/shared/components/Flex/Flex';
+import Head from '@/shared/components/Head/Head';
+import Text from '@/shared/components/Text/Text';
 import { LEVEL, levelMapping } from '@/shared/constants/index';
 
 const TabLevel = ({ lessonData }: { lessonData: LessonDetailResponse }) => {

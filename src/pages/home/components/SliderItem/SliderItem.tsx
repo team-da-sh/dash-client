@@ -9,8 +9,8 @@ import {
 } from '@/pages/home/components/SliderItem/sliderItem.css';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { IcArrowRightWhite14 } from '@/shared/assets/svg';
-import Flex from '@/shared/components/Flex';
-import Head from '@/shared/components/Head';
+import Flex from '@/shared/components/Flex/Flex';
+import Head from '@/shared/components/Head/Head';
 
 interface SliderItemProps {
   imageUrl: string;

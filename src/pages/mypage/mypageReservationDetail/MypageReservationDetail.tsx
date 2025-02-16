@@ -3,10 +3,10 @@ import { useGetReservationsDetail } from '@/pages/mypage/mypageReservationDetail
 import * as styles from '@/pages/mypage/mypageReservationDetail/mypageReservationDetail.css';
 import ApplicantInfo from '@/pages/reservation/components/ApplicantInfo/ApplicantInfo';
 import ClassInfo from '@/pages/reservation/components/ClassInfo/ClassInfo';
-import Flex from '@/shared/components/Flex';
-import Head from '@/shared/components/Head';
-import Header from '@/shared/components/Header';
-import Text from '@/shared/components/Text';
+import Flex from '@/shared/components/Flex/Flex';
+import Head from '@/shared/components/Head/Head';
+import Header from '@/shared/components/Header/Header';
+import Text from '@/shared/components/Text/Text';
 import { getStatusMessage } from '@/shared/utils/getStatusMessage';
 import { formatDateTime, getClassStatus } from '@/shared/utils/timeCalculate';
 

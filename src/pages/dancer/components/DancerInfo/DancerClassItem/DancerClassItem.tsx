@@ -3,9 +3,9 @@ import {
   deadlineTagStyle,
   wrapperStyle,
 } from '@/pages/dancer/components/DancerInfo/DancerClassItem/dancerClassItem.css';
-import Flex from '@/shared/components/Flex';
-import Head from '@/shared/components/Head';
-import Tag from '@/shared/components/Tag';
+import Flex from '@/shared/components/Flex/Flex';
+import Head from '@/shared/components/Head/Head';
+import Tag from '@/shared/components/Tag/Tag';
 import { genreMapping, levelMapping } from '@/shared/constants/index';
 
 interface DancerClassItemProps {

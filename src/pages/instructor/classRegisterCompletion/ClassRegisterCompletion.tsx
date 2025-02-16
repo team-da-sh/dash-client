@@ -7,10 +7,10 @@ import {
 } from '@/pages/instructor/classRegisterCompletion/classRegisterCompletion.css';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { ClearGif } from '@/shared/assets/gif';
-import BoxButton from '@/shared/components/BoxButton';
-import Flex from '@/shared/components/Flex';
-import Head from '@/shared/components/Head';
-import Text from '@/shared/components/Text';
+import BoxButton from '@/shared/components/BoxButton/BoxButton';
+import Flex from '@/shared/components/Flex/Flex';
+import Head from '@/shared/components/Head/Head';
+import Text from '@/shared/components/Text/Text';
 
 const ClassRegisterCompletion = () => {
   const navigate = useNavigate();

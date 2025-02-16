@@ -2,8 +2,8 @@ import { useNavigate } from 'react-router-dom';
 import InstructorRegisterFunnel from '@/pages/instructorRegister/components/InstructorRegisterFunnel/InstructorRegisterFunnel';
 import { progressBarCustomStyle } from '@/pages/instructorRegister/instructorRegister.css';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import Header from '@/shared/components/Header';
-import ProgressBar from '@/shared/components/ProgressBar';
+import Header from '@/shared/components/Header/Header';
+import ProgressBar from '@/shared/components/ProgressBar/ProgressBar';
 import { useFunnel } from '@/shared/hooks/useFunnel';
 
 const InstructorRegister = () => {

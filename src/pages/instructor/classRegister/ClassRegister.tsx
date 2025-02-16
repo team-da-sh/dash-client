@@ -10,14 +10,14 @@ import ClassPersonnel from '@/pages/instructor/classRegister/components/ClassPer
 import ClassPlace from '@/pages/instructor/classRegister/components/ClassPlace/ClassPlace';
 import ClassRecommend from '@/pages/instructor/classRegister/components/ClassRecommend/ClassRecommend';
 import ClassRepresentImage from '@/pages/instructor/classRegister/components/ClassRepresentImage/ClassRepresentImage';
-import ClassSchedule from '@/pages/instructor/classRegister/components/ClassSchedule/ClassSchedule';
 import ClassRegisterBottomSheet from '@/pages/instructor/classRegister/components/ClassSchedule/ClassRegisterBottomSheet/ClassRegisterBottomSheet';
+import ClassSchedule from '@/pages/instructor/classRegister/components/ClassSchedule/ClassSchedule';
 import { useClassRegisterForm } from '@/pages/instructor/classRegister/hooks/useClassRegisterForm';
 import { ClassRegisterInfoTypes } from '@/pages/instructor/classRegister/types/api';
 import { buttonContainerStyle } from '@/pages/instructorRegister/instructorRegister.css';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import BoxButton from '@/shared/components/BoxButton';
-import Header from '@/shared/components/Header';
+import BoxButton from '@/shared/components/BoxButton/BoxButton';
+import Header from '@/shared/components/Header/Header';
 import { genreEngMapping, levelEngMapping } from '@/shared/constants';
 import useBottomSheet from '@/shared/hooks/useBottomSheet';
 import useImageUploader from '@/shared/hooks/useImageUploader';

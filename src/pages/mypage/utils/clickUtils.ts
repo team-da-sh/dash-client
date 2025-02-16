@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import { notify } from '@/shared/components/Toast';
+import { notify } from '@/shared/components/Toast/Toast';
 
 export const handleClassCardClick = (navigate: ReturnType<typeof useNavigate>, reservationId: number | undefined) => {
   if (reservationId !== undefined) {

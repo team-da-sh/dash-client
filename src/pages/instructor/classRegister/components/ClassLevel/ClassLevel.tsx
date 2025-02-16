@@ -1,6 +1,6 @@
 import Description from '@/pages/instructor/classRegister/components/Description';
-import Flex from '@/shared/components/Flex';
-import LevelButton from '@/shared/components/LevelButton';
+import Flex from '@/shared/components/Flex/Flex';
+import LevelButton from '@/shared/components/LevelButton/LevelButton';
 import { LEVEL } from '@/shared/constants';
 
 interface ClassLevelProps {

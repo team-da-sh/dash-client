@@ -1,8 +1,8 @@
 import * as styles from '@/pages/instructor/classRegister/components/ClassSchedule/ClassRegisterBottomSheet/classRegisterBottomSheet.css';
 import ClassRegisterFunnel from '@/pages/instructor/classRegister/components/ClassSchedule/ClassRegisterFunnel/ClassRegisterFunnel';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import BoxButton from '@/shared/components/BoxButton';
-import Header from '@/shared/components/Header';
+import BoxButton from '@/shared/components/BoxButton/BoxButton';
+import Header from '@/shared/components/Header/Header';
 import { CLASS_REGISTER_TOTAL_STEP } from '@/shared/constants';
 import { useFunnel } from '@/shared/hooks/useFunnel';
 

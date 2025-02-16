@@ -2,9 +2,9 @@ import { useNavigate } from 'react-router-dom';
 import { dancerImageStyle } from '@/pages/search/components/TabContainer/DancerList/dancerList.css';
 import { Dancer } from '@/pages/search/types/dancer';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import Flex from '@/shared/components/Flex';
-import Head from '@/shared/components/Head';
-import Tag from '@/shared/components/Tag';
+import Flex from '@/shared/components/Flex/Flex';
+import Head from '@/shared/components/Head/Head';
+import Tag from '@/shared/components/Tag/Tag';
 import { genreMapping } from '@/shared/constants/index';
 import { vars } from '@/shared/styles/theme.css';
 

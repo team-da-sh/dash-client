@@ -4,9 +4,9 @@ import {
   personnelTextStyle,
 } from '@/pages/instructor/classRegister/components/ClassPersonnel/classPersonnel.css';
 import Description from '@/pages/instructor/classRegister/components/Description';
-import Flex from '@/shared/components/Flex';
-import Input from '@/shared/components/Input';
-import Text from '@/shared/components/Text';
+import Flex from '@/shared/components/Flex/Flex';
+import Input from '@/shared/components/Input/Input';
+import Text from '@/shared/components/Text/Text';
 
 interface ClassPersonnelProps {
   personnel: string;

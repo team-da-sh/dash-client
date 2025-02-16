@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import { ForwardedRef, forwardRef, InputHTMLAttributes, useState } from 'react';
-import * as style from './index.css';
+import * as style from '@/shared/components/Input/input.css';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   isError?: boolean;

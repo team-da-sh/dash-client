@@ -6,8 +6,8 @@ import TabContainer from '@/pages/search/components/TabContainer/TabContainer';
 import { DEFAULT_SORT_TAGS, SORT_LABELS } from '@/pages/search/constants/index';
 import { headerRootCutomStyle } from '@/pages/search/search.css';
 import { formatDateEndTime, formatDateStartTime } from '@/pages/search/utils';
-import Flex from '@/shared/components/Flex';
-import Header from '@/shared/components/Header';
+import Flex from '@/shared/components/Flex/Flex';
+import Header from '@/shared/components/Header/Header';
 import { genreEngMapping, labelToSortOptionMap, levelEngMapping } from '@/shared/constants';
 
 const Search = () => {

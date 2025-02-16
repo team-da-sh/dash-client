@@ -1,5 +1,5 @@
-import Flex from '@/shared/components/Flex';
-import Text from '@/shared/components/Text';
+import Flex from '@/shared/components/Flex/Flex';
+import Text from '@/shared/components/Text/Text';
 import { calculatePeriod, formatSimpleDate } from '@/shared/utils/dateCalculate';
 
 interface ScheduleItemProps {

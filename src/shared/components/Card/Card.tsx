@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import type { ComponentProps } from 'react';
-import { cardStyle } from './index.css';
+import { cardStyle } from '@/shared/components/Card/card.css';
 
 type CardProps = ComponentProps<'div'>;
 

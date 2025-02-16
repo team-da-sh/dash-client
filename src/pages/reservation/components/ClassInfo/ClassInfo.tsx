@@ -2,9 +2,9 @@ import ScheduleItem from '@/pages/reservation/components/ClassInfo/ScheduleItem/
 import { infoContainerStyle, textLabelStyle } from '@/pages/reservation/components/ClassInfo/classInfo.css';
 import InfoRow from '@/pages/reservation/components/InfoRow/InfoRow';
 import { LessonRoundTypes } from '@/pages/reservation/types/lessonRoundTypes';
-import Flex from '@/shared/components/Flex';
-import Head from '@/shared/components/Head';
-import Text from '@/shared/components/Text';
+import Flex from '@/shared/components/Flex/Flex';
+import Head from '@/shared/components/Head/Head';
+import Text from '@/shared/components/Text/Text';
 import { levelMapping } from '@/shared/constants';
 import { vars } from '@/shared/styles/theme.css';
 

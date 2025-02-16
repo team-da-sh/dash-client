@@ -1,9 +1,9 @@
 import { IcArrowRightGray0614, IcClassEndMain0324, IcClassIngMain0324, IcClassSoonMain0324 } from '@/shared/assets/svg';
-import * as styles from '@/shared/components/ClassCard/index.css';
-import Flex from '@/shared/components/Flex';
-import Head from '@/shared/components/Head';
-import Tag from '@/shared/components/Tag';
-import Text from '@/shared/components/Text';
+import * as styles from '@/shared/components/ClassCard/classCard.css';
+import Flex from '@/shared/components/Flex/Flex';
+import Head from '@/shared/components/Head/Head';
+import Tag from '@/shared/components/Tag/Tag';
+import Text from '@/shared/components/Text/Text';
 import { genreMapping, levelMapping } from '@/shared/constants';
 import { formatLessonDateRange, getClassStatus } from '@/shared/utils/timeCalculate';
 

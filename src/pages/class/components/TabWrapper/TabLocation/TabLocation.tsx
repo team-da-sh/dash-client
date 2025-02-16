@@ -6,9 +6,9 @@ import {
 } from '@/pages/class/components/TabWrapper/TabLocation/tabLocation.css';
 import { LessonDetailResponse } from '@/pages/class/types/api';
 import { IcLocation60 } from '@/shared/assets/svg';
-import Flex from '@/shared/components/Flex';
-import Head from '@/shared/components/Head';
-import Text from '@/shared/components/Text';
+import Flex from '@/shared/components/Flex/Flex';
+import Head from '@/shared/components/Head/Head';
+import Text from '@/shared/components/Text/Text';
 
 const TabLocation = ({ lessonData }: { lessonData: LessonDetailResponse }) => {
   const { location, streetAddress, streetDetailAddress, oldStreetAddress } = lessonData;

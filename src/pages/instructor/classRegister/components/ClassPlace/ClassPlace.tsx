@@ -11,9 +11,9 @@ import {
 } from '@/pages/instructor/classRegister/components/ClassPlace/classPlace.css';
 import Description from '@/pages/instructor/classRegister/components/Description';
 import { BtnCheck, IcSearchGray, IcXCircleGray0424 } from '@/shared/assets/svg';
-import Flex from '@/shared/components/Flex';
-import Input from '@/shared/components/Input';
-import Text from '@/shared/components/Text';
+import Flex from '@/shared/components/Flex/Flex';
+import Input from '@/shared/components/Input/Input';
+import Text from '@/shared/components/Text/Text';
 import { LocationsData, LocationTypes } from '../../types';
 
 interface ClassPlaceProps {

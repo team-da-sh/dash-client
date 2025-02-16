@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { onboardingHeaderStyle } from '@/pages/onboarding/components/OnboardingHeader/onboardingHeader.css';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import Header from '@/shared/components/Header';
+import Header from '@/shared/components/Header/Header';
 
 interface OnboardingHeaderProps {
   currentStep: number;

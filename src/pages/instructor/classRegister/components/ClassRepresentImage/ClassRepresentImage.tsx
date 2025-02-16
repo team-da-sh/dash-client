@@ -5,8 +5,8 @@ import {
 } from '@/pages/instructor/classRegister/components/ClassRepresentImage/classRepresentImage.css';
 import Description from '@/pages/instructor/classRegister/components/Description';
 import { IcPlusGray0524, IcXCircleMain0324 } from '@/shared/assets/svg';
-import Flex from '@/shared/components/Flex';
-import Text from '@/shared/components/Text';
+import Flex from '@/shared/components/Flex/Flex';
+import Text from '@/shared/components/Text/Text';
 
 interface ClassRepresentImageProps {
   handleUploaderClick: () => void;

@@ -1,7 +1,7 @@
 import { flexCustomStyle } from '@/pages/instructorRegister/components/Description/description.css';
-import Flex from '@/shared/components/Flex';
-import Head from '@/shared/components/Head';
-import Text from '@/shared/components/Text';
+import Flex from '@/shared/components/Flex/Flex';
+import Head from '@/shared/components/Head/Head';
+import Text from '@/shared/components/Text/Text';
 
 interface DescriptionProps {
   title: string;

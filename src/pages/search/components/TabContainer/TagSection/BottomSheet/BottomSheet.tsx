@@ -11,9 +11,9 @@ import {
   overlayVisible,
   tabListCustomStyle,
 } from '@/pages/search/components/TabContainer/TagSection/BottomSheet/bottomSheet.css';
-import BoxButton from '@/shared/components/BoxButton';
-import Flex from '@/shared/components/Flex';
-import LevelButton from '@/shared/components/LevelButton';
+import BoxButton from '@/shared/components/BoxButton/BoxButton';
+import Flex from '@/shared/components/Flex/Flex';
+import LevelButton from '@/shared/components/LevelButton/LevelButton';
 import { TabButton, TabList, TabPanel, TabRoot } from '@/shared/components/Tab';
 import { LEVEL } from '@/shared/constants';
 import { GENRE_CATEGORY } from '@/shared/constants/index';

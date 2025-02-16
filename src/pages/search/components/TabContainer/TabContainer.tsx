@@ -8,9 +8,9 @@ import TagSection from '@/pages/search/components/TabContainer/TagSection/TagSec
 import { divCustomStyle } from '@/pages/search/components/TabContainer/tabContainer.css';
 import { ClassListResponse, DancerListResponse } from '@/pages/search/types/api';
 import { IcArrowUnderGray, IcXMain04 } from '@/shared/assets/svg';
-import Flex from '@/shared/components/Flex';
+import Flex from '@/shared/components/Flex/Flex';
 import { TabButton, TabList, TabPanel, TabRoot } from '@/shared/components/Tab';
-import Text from '@/shared/components/Text';
+import Text from '@/shared/components/Text/Text';
 
 interface TagItem {
   label: string;

@@ -2,12 +2,12 @@ import { useNavigate } from 'react-router-dom';
 import * as styles from '@/pages/home/components/TopSection/topSection.css';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { IcArrowRightGray0614, IcCalendarcheckColor3D24, IcCalendarcheckMono3D24, IcClose } from '@/shared/assets/svg';
-import Divider from '@/shared/components/Divider';
-import Flex from '@/shared/components/Flex';
-import Head from '@/shared/components/Head';
-import Tag from '@/shared/components/Tag';
-import Text from '@/shared/components/Text';
-import { notify } from '@/shared/components/Toast';
+import Divider from '@/shared/components/Divider/Divider';
+import Flex from '@/shared/components/Flex/Flex';
+import Head from '@/shared/components/Head/Head';
+import Tag from '@/shared/components/Tag/Tag';
+import Text from '@/shared/components/Text/Text';
+import { notify } from '@/shared/components/Toast/Toast';
 import { MyPageProps } from '@/shared/types/myPageTypes';
 
 interface TopSectionProps {

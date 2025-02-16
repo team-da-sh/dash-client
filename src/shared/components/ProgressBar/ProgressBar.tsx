@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import { ComponentPropsWithoutRef } from 'react';
-import * as styles from '@/shared/components/ProgressBar/index.css';
+import * as styles from '@/shared/components/ProgressBar/progressBar.css';
 
 interface ProgressBarProps extends ComponentPropsWithoutRef<'div'> {
   totalStep: number;

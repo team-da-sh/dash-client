@@ -4,8 +4,8 @@ import { buttonWrapperStyle } from '@/pages/class/components/ClassButtonWrapper/
 import { LessonDetailResponse } from '@/pages/class/types/api';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { IcHeartFilledGray07, IcHeartOutlinedGray07 } from '@/shared/assets/svg';
-import BoxButton from '@/shared/components/BoxButton';
-import Flex from '@/shared/components/Flex';
+import BoxButton from '@/shared/components/BoxButton/BoxButton';
+import Flex from '@/shared/components/Flex/Flex';
 import { BUTTON_TEXT, DISABLED_STATUS } from '@/shared/constants';
 
 const ClassButtonWrapper = ({ lessonData }: { lessonData: LessonDetailResponse }) => {
