@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useGetClassList, useGetDancerList } from '@/pages/search/apis/queries';
-import SearchBar from '@/pages/search/components/SearchBar';
-import TabContainer from '@/pages/search/components/TabContainer';
+import SearchBar from '@/pages/search/components/SearchBar/SearchBar';
+import TabContainer from '@/pages/search/components/TabContainer/TabContainer';
 import { DEFAULT_SORT_TAGS, SORT_LABELS } from '@/pages/search/constants/index';
 import { headerRootCutomStyle } from '@/pages/search/search.css';
 import { formatDateEndTime, formatDateStartTime } from '@/pages/search/utils';

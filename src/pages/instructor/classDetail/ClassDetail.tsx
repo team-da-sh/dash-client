@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import StudentCard from '@/pages/instructor/classDetail/StudentCard';
+import StudentCard from '@/pages/instructor/classDetail/components/StudentCard/StudentCard';
 import { useGetLessonDetail } from '@/pages/instructor/classDetail/apis/queries';
 import * as styles from '@/pages/instructor/classDetail/classDetail.css';
 import ClassCard from '@/shared/components/ClassCard';

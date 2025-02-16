@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { usePostReservation } from '@/pages/reservation/apis/queries';
-import * as styles from '@/pages/reservation/components/TossPayments/index.css';
+import * as styles from '@/pages/reservation/components/TossPayments/tossPayments.css';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import BoxButton from '@/shared/components/BoxButton';
 import Completion from '@/shared/components/Completion';

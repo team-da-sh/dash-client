@@ -1,10 +1,10 @@
 import { useParams } from 'react-router-dom';
 import { useGetLessonDetail } from '@/pages/class/apis/queries';
 import { headerStyle } from '@/pages/class/class.css';
-import ClassButtonWrapper from '@/pages/class/components/ClassButtonWrapper';
-import ClassHeader from '@/pages/class/components/ClassHeader';
-import ClassInfoWrapper from '@/pages/class/components/ClassInfoWrapper';
-import TabWrapper from '@/pages/class/components/TabWrapper';
+import ClassButtonWrapper from '@/pages/class/components/ClassButtonWrapper/ClassButtonWrapper';
+import ClassHeader from '@/pages/class/components/ClassHeader/ClassHeader';
+import ClassInfoWrapper from '@/pages/class/components/ClassInfoWrapper/ClassInfoWrapper';
+import TabWrapper from '@/pages/class/components/TabWrapper/TabWrapper';
 import Error from '@/pages/error/Error';
 import Divider from '@/shared/components/Divider';
 import { useIntersectCallback } from '@/shared/utils/useIntersectCallback';

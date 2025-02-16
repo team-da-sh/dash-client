@@ -1,11 +1,11 @@
-import TabIntro from '@/pages/class/components/TabWrapper/TabIntro';
-import TabLevel from '@/pages/class/components/TabWrapper/TabLevel';
-import TabLocationInfo from '@/pages/class/components/TabWrapper/TabLocation';
-import TabPeriod from '@/pages/class/components/TabWrapper/TabPeriod';
+import TabIntro from '@/pages/class/components/TabWrapper/TabIntro/TabIntro';
+import TabLevel from '@/pages/class/components/TabWrapper/TabLevel/TabLevel';
+import TabLocationInfo from '@/pages/class/components/TabWrapper/TabLocation/TabLocation';
+import TabPeriod from '@/pages/class/components/TabWrapper/TabPeriod/TabPeriod';
 import { LessonDetailResponse } from '@/pages/class/types/api';
-import TabEducation from '@/pages/dancer/components/TabWrapper/TabEducation';
-import TabHistory from '@/pages/dancer/components/TabWrapper/TabExperience';
-import TabVideo from '@/pages/dancer/components/TabWrapper/TabVideo';
+import TabEducation from '@/pages/dancer/components/TabWrapper/TabEducation/TabEducation';
+import TabHistory from '@/pages/dancer/components/TabWrapper/TabExperience/TabExperience';
+import TabVideo from '@/pages/dancer/components/TabWrapper/TabVideo/TabVideo';
 import { DancerDetailResponse } from '@/pages/dancer/types/api';
 import { IcLevelAdvanced, IcLevelBasic, IcLevelIntermediate, IcLevelStarter } from '@/shared/assets/svg';
 

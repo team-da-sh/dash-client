@@ -1,4 +1,4 @@
-import OnboardingFunnel from '@/pages/onboarding/components/OnboardingFunnel';
+import OnboardingFunnel from '@/pages/onboarding/components/OnboardingFunnel/OnboardingFunnel';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { useFunnel } from '@/shared/hooks/useFunnel';
 

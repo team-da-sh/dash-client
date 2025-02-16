@@ -1,5 +1,5 @@
 import { useSearchParams } from 'react-router-dom';
-import * as styles from '@/pages/reservation/components/TossPayments/index.css';
+import * as styles from '@/pages/reservation/components/TossPayments/tossPayments.css';
 import Flex from '@/shared/components/Flex';
 
 export const FailPage = () => {

@@ -1,5 +1,5 @@
-import KakaoButton from '@/pages/login/components/KakaoButton';
-import LoginHeader from '@/pages/login/components/LoginHeader';
+import KakaoButton from '@/pages/login/components/KakaoButton/KakaoButton';
+import LoginHeader from '@/pages/login/components/LoginHeader/LoginHeader';
 import { containerStyle } from '@/pages/login/login.css';
 import { LoginGif } from '@/shared/assets/gif';
 import Flex from '@/shared/components/Flex';
