@@ -1,11 +1,16 @@
 import { useNavigate } from 'react-router-dom';
+import {
+  buttonContainerStyle,
+  clearStyle,
+  flexCustomStyle,
+  funnelContainerStyle,
+} from '@/pages/instructor/classRegisterCompletion/classRegisterCompletion.css';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { ClearGif } from '@/shared/assets/gif';
 import BoxButton from '@/shared/components/BoxButton';
 import Flex from '@/shared/components/Flex';
 import Head from '@/shared/components/Head';
 import Text from '@/shared/components/Text';
-import { buttonContainerStyle, clearStyle, flexCustomStyle, funnelContainerStyle } from './index.css';
 
 const ClassRegisterCompletion = () => {
   const navigate = useNavigate();

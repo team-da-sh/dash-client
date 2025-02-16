@@ -7,7 +7,7 @@ import PersonalSNSStep from '@/pages/instructorRegister/components/InstructorReg
 import VideoLinkStep from '@/pages/instructorRegister/components/InstructorRegisterFunnel/VideoLinkStep';
 import { funnelContainerStyle } from '@/pages/instructorRegister/components/InstructorRegisterFunnel/index.css';
 import { TOTAL_STEP } from '@/pages/instructorRegister/constants';
-import { buttonContainerStyle } from '@/pages/instructorRegister/index.css';
+import { buttonContainerStyle } from '@/pages/instructorRegister/instructorRegister.css';
 import { InstructorRegisterInfoTypes } from '@/pages/instructorRegister/types/InstructorRegisterInfoTypes';
 import { FunnelProps, StepProps } from '@/pages/search/types/funnel';
 import BoxButton from '@/shared/components/BoxButton';

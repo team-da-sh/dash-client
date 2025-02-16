@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useGetLocationList, usePostClassRegisterInfo } from '@/pages/instructor/classRegister/apis/queries';
+import * as styles from '@/pages/instructor/classRegister/classRegister.css';
 import ClassAmount from '@/pages/instructor/classRegister/components/ClassAmount';
 import ClassDescription from '@/pages/instructor/classRegister/components/ClassDescription';
 import ClassGenre from '@/pages/instructor/classRegister/components/ClassGenre';
@@ -12,9 +13,8 @@ import ClassRepresentImage from '@/pages/instructor/classRegister/components/Cla
 import ClassSchedule from '@/pages/instructor/classRegister/components/ClassSchedule';
 import ClassRegisterBottomSheet from '@/pages/instructor/classRegister/components/ClassSchedule/ClassRegisterBottomSheet';
 import { useClassRegisterForm } from '@/pages/instructor/classRegister/hooks/useClassRegisterForm';
-import * as styles from '@/pages/instructor/classRegister/index.css';
 import { ClassRegisterInfoTypes } from '@/pages/instructor/classRegister/types/api';
-import { buttonContainerStyle } from '@/pages/instructorRegister/index.css';
+import { buttonContainerStyle } from '@/pages/instructorRegister/instructorRegister.css';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import BoxButton from '@/shared/components/BoxButton';
 import Header from '@/shared/components/Header';

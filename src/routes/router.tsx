@@ -1,26 +1,26 @@
 import { lazy } from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 import { LoginCallback } from '@/pages/auth';
-import ClassRegisterCompletion from '@/pages/instructor/ClassRegisterCompletion';
+import ClassRegisterCompletion from '@/pages/instructor/classRegisterCompletion/ClassRegisterCompletion';
 import { CheckoutPage } from '@/pages/reservation/components/TossPayments/CheckOut/CheckOut';
 import { FailPage } from '@/pages/reservation/components/TossPayments/Fail/Fail';
 import { SuccessPage } from '@/pages/reservation/components/TossPayments/Success/Success';
 import { ROUTES_CONFIG } from './routesConfig';
 
-const Home = lazy(() => import('@/pages/home'));
-const Login = lazy(() => import('@/pages/login'));
-const Onboarding = lazy(() => import('@/pages/onboarding'));
-const Search = lazy(() => import('@/pages/search'));
-const Class = lazy(() => import('@/pages/class'));
-const Dancer = lazy(() => import('@/pages/dancer'));
-const Reservation = lazy(() => import('@/pages/reservation'));
-const MyPageReservation = lazy(() => import('@/pages/mypage/mypageReservation'));
-const MyPageReservationDetail = lazy(() => import('@/pages/mypage/mypageReservationDetail'));
-const ClassRegister = lazy(() => import('@/pages/instructor/classRegister'));
-const InstructorRegister = lazy(() => import('@/pages/instructorRegister'));
-const ClassDetail = lazy(() => import('@/pages/instructor/classDetail'));
-const ClassList = lazy(() => import('@/pages/instructor/classList'));
-const Error = lazy(() => import('@/pages/error'));
+const Home = lazy(() => import('@/pages/home/Home'));
+const Login = lazy(() => import('@/pages/login/Login'));
+const Onboarding = lazy(() => import('@/pages/onboarding/Onboarding'));
+const Search = lazy(() => import('@/pages/search/Search'));
+const Class = lazy(() => import('@/pages/class/Class'));
+const Dancer = lazy(() => import('@/pages/dancer/Dancer'));
+const Reservation = lazy(() => import('@/pages/reservation/Reservation'));
+const MyPageReservation = lazy(() => import('@/pages/mypage/mypageReservation/MypageReservation'));
+const MyPageReservationDetail = lazy(() => import('@/pages/mypage/mypageReservationDetail/MypageReservationDetail'));
+const ClassRegister = lazy(() => import('@/pages/instructor/classRegister/ClassRegister'));
+const InstructorRegister = lazy(() => import('@/pages/instructorRegister/InstructorRegister'));
+const ClassDetail = lazy(() => import('@/pages/instructor/classDetail/ClassDetail'));
+const ClassList = lazy(() => import('@/pages/instructor/classList/ClassList'));
+const Error = lazy(() => import('@/pages/error/Error'));
 
 export const router = createBrowserRouter([
   {

@@ -8,7 +8,12 @@ import LevelStep from '@/pages/onboarding/components/LevelStep';
 import OnboardingHeader from '@/pages/onboarding/components/OnboardingHeader';
 import ProfileStep from '@/pages/onboarding/components/ProfileStep';
 import { MAX_ONBOARDING_STEP } from '@/pages/onboarding/constants';
-import { bodyWrapperStyle, containerStyle, footerWrapperStyle, progressBarStyle } from '@/pages/onboarding/index.css';
+import {
+  bodyWrapperStyle,
+  containerStyle,
+  footerWrapperStyle,
+  progressBarStyle,
+} from '@/pages/onboarding/onboarding.css';
 import { GenreTypes } from '@/pages/onboarding/types/genreTypes';
 import { onboardInfoTypes } from '@/pages/onboarding/types/onboardInfoTypes';
 import { validateName, validatePhoneNumber } from '@/pages/onboarding/utils/validate';

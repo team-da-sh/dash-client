@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import StudentCard from '@/pages/instructor/classDetail/StudentCard';
 import { useGetLessonDetail } from '@/pages/instructor/classDetail/apis/queries';
-import * as styles from '@/pages/instructor/classDetail/index.css';
+import * as styles from '@/pages/instructor/classDetail/classDetail.css';
 import ClassCard from '@/shared/components/ClassCard';
 import Flex from '@/shared/components/Flex';
 import Header from '@/shared/components/Header';

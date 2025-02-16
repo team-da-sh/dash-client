@@ -8,7 +8,7 @@ import PopularDancers from '@/pages/home/components/PopularDancers';
 import PopularGenre from '@/pages/home/components/PopularGenre';
 import RecommendationLessons from '@/pages/home/components/RecommendationLessons';
 import UpcomingLessones from '@/pages/home/components/UpcomingLessons';
-import { carouselContainerStyle, overlayActiveStyle, overlayStyle } from '@/pages/home/index.css';
+import { carouselContainerStyle, overlayActiveStyle, overlayStyle } from '@/pages/home/home.css';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { isLoggedIn } from '@/shared/utils/authUtil';
 import { useIntersect } from '@/shared/utils/useIntersect';

@@ -1,11 +1,11 @@
 import { useParams } from 'react-router-dom';
+import { useGetLessonDetail } from '@/pages/class/apis/queries';
+import { headerStyle } from '@/pages/class/class.css';
 import ClassButtonWrapper from '@/pages/class/components/ClassButtonWrapper';
 import ClassHeader from '@/pages/class/components/ClassHeader';
 import ClassInfoWrapper from '@/pages/class/components/ClassInfoWrapper';
 import TabWrapper from '@/pages/class/components/TabWrapper';
-import { headerStyle } from '@/pages/class/index.css';
-import Error from '@/pages/error';
-import { useGetLessonDetail } from '@/pages/class/apis/queries';
+import Error from '@/pages/error/Error';
 import Divider from '@/shared/components/Divider';
 import { useIntersectCallback } from '@/shared/utils/useIntersectCallback';
 

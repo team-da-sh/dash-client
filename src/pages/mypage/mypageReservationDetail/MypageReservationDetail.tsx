@@ -1,8 +1,8 @@
 import { useParams } from 'react-router-dom';
-import * as styles from '@/pages/mypage/mypageReservationDetail/index.css';
+import { useGetReservationsDetail } from '@/pages/mypage/mypageReservationDetail/apis/queries';
+import * as styles from '@/pages/mypage/mypageReservationDetail/mypageReservationDetail.css';
 import ApplicantInfo from '@/pages/reservation/components/ApplicantInfo';
 import ClassInfo from '@/pages/reservation/components/ClassInfo';
-import { useGetReservationsDetail } from '@/pages/mypage/mypageReservationDetail/apis/queries';
 import Flex from '@/shared/components/Flex';
 import Head from '@/shared/components/Head';
 import Header from '@/shared/components/Header';

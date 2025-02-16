@@ -4,7 +4,7 @@ import { useGetClassList, useGetDancerList } from '@/pages/search/apis/queries';
 import SearchBar from '@/pages/search/components/SearchBar';
 import TabContainer from '@/pages/search/components/TabContainer';
 import { DEFAULT_SORT_TAGS, SORT_LABELS } from '@/pages/search/constants/index';
-import { headerRootCutomStyle } from '@/pages/search/index.css';
+import { headerRootCutomStyle } from '@/pages/search/search.css';
 import { formatDateEndTime, formatDateStartTime } from '@/pages/search/utils';
 import Flex from '@/shared/components/Flex';
 import Header from '@/shared/components/Header';
