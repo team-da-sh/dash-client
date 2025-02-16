@@ -1,6 +1,6 @@
 import { lazy } from 'react';
 import { createBrowserRouter } from 'react-router-dom';
-import { LoginCallback } from '@/pages/auth';
+import { LoginCallback } from '@/pages/auth/auth';
 import ClassRegisterCompletion from '@/pages/instructor/classRegisterCompletion/ClassRegisterCompletion';
 import { CheckoutPage } from '@/pages/reservation/components/TossPayments/CheckOut/CheckOut';
 import { FailPage } from '@/pages/reservation/components/TossPayments/Fail/Fail';
