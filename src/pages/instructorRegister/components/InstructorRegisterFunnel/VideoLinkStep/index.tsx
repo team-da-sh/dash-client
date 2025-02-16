@@ -6,7 +6,8 @@ import {
   inputIconStyle,
 } from '@/pages/instructorRegister/components/InstructorRegisterFunnel/VideoLinkStep/index.css';
 import { INFO_KEY, VIDEO_INPUT_MAX } from '@/pages/instructorRegister/constants';
-import { InputItemTypes, InstructorRegisterInfoTypes } from '@/pages/instructorRegister/types';
+import { InstructorRegisterInfoTypes } from '@/pages/instructorRegister/types/InstructorRegisterInfoTypes';
+import { InputItemTypes } from '@/pages/instructorRegister/types/inputItemTypes';
 import { IcPlusGray0524, IcXCircleGray } from '@/shared/assets/svg';
 import Flex from '@/shared/components/Flex';
 import Input from '@/shared/components/Input';

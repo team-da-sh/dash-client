@@ -1,11 +1,11 @@
 import { emptyStyle } from '@/pages/dancer/components/TabWrapper/TabExperience/index.css';
-import { DancerDetailApiResponse } from '@/pages/dancer/types';
+import { DancerDetailResponse } from '@/pages/dancer/types/api';
 import Flex from '@/shared/components/Flex';
 import Head from '@/shared/components/Head';
 import Text from '@/shared/components/Text';
 
 interface TabExperienceProps {
-  dancerData: DancerDetailApiResponse;
+  dancerData: DancerDetailResponse;
 }
 
 const TabExperience = ({ dancerData }: TabExperienceProps) => {

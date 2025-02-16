@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import Description from '@/pages/instructorRegister/components/Description';
 import { textAreaStyle } from '@/pages/instructorRegister/components/InstructorRegisterFunnel/IntroductionStep/index.css';
 import { INFO_KEY } from '@/pages/instructorRegister/constants';
-import { InstructorRegisterInfoTypes } from '@/pages/instructorRegister/types';
+import { InstructorRegisterInfoTypes } from '@/pages/instructorRegister/types/InstructorRegisterInfoTypes';
 
 interface IntroductionStepProps {
   detail: string;

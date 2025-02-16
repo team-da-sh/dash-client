@@ -4,13 +4,13 @@ import {
   emptyStyle,
   streetAddressStyle,
 } from '@/pages/class/components/TabWrapper/TabLocation/index.css';
-import { LessonDetailApiResponse } from '@/pages/class/types/index';
+import { LessonDetailResponse } from '@/pages/class/types/api';
 import { IcLocation60 } from '@/shared/assets/svg';
 import Flex from '@/shared/components/Flex';
 import Head from '@/shared/components/Head';
 import Text from '@/shared/components/Text';
 
-const TabLocation = ({ lessonData }: { lessonData: LessonDetailApiResponse }) => {
+const TabLocation = ({ lessonData }: { lessonData: LessonDetailResponse }) => {
   const { location, streetAddress, streetDetailAddress, oldStreetAddress } = lessonData;
 
   const isEmpty = !location || !streetAddress || !oldStreetAddress;

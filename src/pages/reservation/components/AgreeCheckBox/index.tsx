@@ -1,4 +1,3 @@
-import { AgreeCheckBoxProps } from '@/pages/reservation/types';
 import {
   IcArrowRightSmallGray0732,
   IcArrowRightSmallMain0332New,
@@ -7,6 +6,13 @@ import {
 } from '@/shared/assets/svg';
 import Flex from '@/shared/components/Flex';
 import Text from '@/shared/components/Text';
+
+interface AgreeCheckBoxProps {
+  text: string;
+  isChecked: boolean;
+  onToggle: () => void;
+  link?: string;
+}
 
 const AgreeCheckBox = ({ text, isChecked, onToggle, link = '' }: AgreeCheckBoxProps) => {
   const handleArrowClick = (e: React.MouseEvent) => {

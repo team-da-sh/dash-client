@@ -10,7 +10,7 @@ import {
   linkStyle,
   rowScrollStyle,
 } from '@/pages/dancer/components/DancerInfo/index.css';
-import { DancerDetailApiResponse } from '@/pages/dancer/types';
+import { DancerDetailResponse } from '@/pages/dancer/types/api';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { IcInstagram20, IcYoutube20 } from '@/shared/assets/svg';
 import Divider from '@/shared/components/Divider';
@@ -18,7 +18,7 @@ import Flex from '@/shared/components/Flex';
 import Head from '@/shared/components/Head';
 import Text from '@/shared/components/Text';
 
-const DancerInfo = ({ dancerData }: { dancerData: DancerDetailApiResponse }) => {
+const DancerInfo = ({ dancerData }: { dancerData: DancerDetailResponse }) => {
   const { instagram, youtube, detail, nickname, lessons } = dancerData;
 
   // 쿼리 파라미터를 제거하고 사용자 이름만 추출하는 함수

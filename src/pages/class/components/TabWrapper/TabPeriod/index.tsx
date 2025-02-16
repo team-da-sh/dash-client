@@ -1,11 +1,11 @@
 import Card from '@/pages/class/components/Card';
 import { roundBoxStyle } from '@/pages/class/components/TabWrapper/TabPeriod/index.css';
-import { LessonDetailApiResponse } from '@/pages/class/types/index';
+import { LessonDetailResponse } from '@/pages/class/types/api';
 import Flex from '@/shared/components/Flex';
 import Text from '@/shared/components/Text';
 import { calculatePeriod, formatDate } from '@/shared/utils/dateCalculate';
 
-const TabPeriod = ({ lessonData }: { lessonData: LessonDetailApiResponse }) => {
+const TabPeriod = ({ lessonData }: { lessonData: LessonDetailResponse }) => {
   const { lessonRound } = lessonData;
   const lessonRounds = lessonRound.lessonRounds;
 

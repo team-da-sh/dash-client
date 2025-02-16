@@ -1,18 +1,9 @@
 import { useMutation } from '@tanstack/react-query';
-import { postInstructorRegisterInfo } from './axios';
-
-interface InstructorRegisterInfoTypes {
-  imageUrls: string[];
-  instagram: string | null;
-  youtube: string | null;
-  educations: string[];
-  experiences: string[];
-  detail: string;
-  videoUrls: string[];
-}
+import { postInstructorRegisterInfo } from '@/pages/instructorRegister/apis/axios';
+import {  InstructorRegisterRequestTypes } from '@/pages/instructorRegister/types/api';
 
 export const usePostInstructor = () => {
   return useMutation({
-    mutationFn: (infoData: InstructorRegisterInfoTypes) => postInstructorRegisterInfo(infoData),
+    mutationFn: (infoData: InstructorRegisterRequestTypes) => postInstructorRegisterInfo(infoData),
   });
 };

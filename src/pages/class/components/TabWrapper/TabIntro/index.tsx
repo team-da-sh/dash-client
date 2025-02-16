@@ -1,9 +1,9 @@
 import { introTextStyle } from '@/pages/class/components/TabWrapper/TabIntro/index.css';
-import { LessonDetailApiResponse } from '@/pages/class/types/index';
+import { LessonDetailResponse } from '@/pages/class/types/api';
 import Flex from '@/shared/components/Flex';
 import Text from '@/shared/components/Text';
 
-const TabIntro = ({ lessonData }: { lessonData: LessonDetailApiResponse }) => {
+const TabIntro = ({ lessonData }: { lessonData: LessonDetailResponse }) => {
   const { detail } = lessonData;
 
   return (

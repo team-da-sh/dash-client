@@ -17,7 +17,7 @@ import {
   reservationStyle,
   totalPriceContainerStyle,
 } from '@/pages/reservation/index.css';
-import { LessonRoundProps } from '@/pages/reservation/types';
+import { LessonRoundTypes } from '@/pages/reservation/types/lessonRoundTypes';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { IcCheckcircleGray0524, IcCheckcircleMain0324 } from '@/shared/assets/svg';
 import BoxButton from '@/shared/components/BoxButton';
@@ -69,7 +69,7 @@ const Reservation = () => {
 
   const studentName = data.studentName;
 
-  const lessonRounds: LessonRoundProps[] = data.lessonRound.lessonRounds.map((round) => ({
+  const lessonRounds: LessonRoundTypes[] = data.lessonRound.lessonRounds.map((round) => ({
     startDateTime: round.startDateTime,
     endDateTime: round.endDateTime,
   }));

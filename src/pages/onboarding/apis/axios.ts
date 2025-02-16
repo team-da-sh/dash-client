@@ -1,9 +1,6 @@
-import { onboardInfoTypes } from '@/pages/onboarding/types';
+import { tokenTypes } from '@/pages/onboarding/types/api';
+import { onboardInfoTypes } from '@/pages/onboarding/types/onboardInfoTypes';
 import { instance } from '@/shared/apis/instance';
-
-export interface tokenTypes {
-  accessToken: string;
-}
 
 export const postOnboard = async ({
   name,

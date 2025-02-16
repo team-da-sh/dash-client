@@ -1,7 +1,12 @@
-import { ScheduleItemProps } from '@/pages/reservation/types';
 import Flex from '@/shared/components/Flex';
 import Text from '@/shared/components/Text';
 import { calculatePeriod, formatSimpleDate } from '@/shared/utils/dateCalculate';
+
+interface ScheduleItemProps {
+  index: number;
+  startDateTime: string;
+  endDateTime: string;
+}
 
 const ScheduleItem = ({ index, startDateTime, endDateTime }: ScheduleItemProps) => {
   const { startTime, formattedEndTime, durationString } = calculatePeriod(startDateTime, endDateTime);

@@ -1,10 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
+import { LessonResponse } from '@/pages/instructor/classList/types/api';
 import { QUERY_KEYS } from '@/shared/constants/queryKey';
-import { LessonApiResponse } from '@/shared/types/lessonTypes';
 import { getMyLessons } from './axios';
 
 export const useGetMyLessons = () => {
-  return useQuery<LessonApiResponse>({
+  return useQuery<LessonResponse>({
     queryKey: [QUERY_KEYS.MY_PAGE_LESSONS],
     queryFn: getMyLessons,
   });

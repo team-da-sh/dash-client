@@ -2,11 +2,11 @@ import TabIntro from '@/pages/class/components/TabWrapper/TabIntro';
 import TabLevel from '@/pages/class/components/TabWrapper/TabLevel';
 import TabLocationInfo from '@/pages/class/components/TabWrapper/TabLocation';
 import TabPeriod from '@/pages/class/components/TabWrapper/TabPeriod';
-import { LessonDetailApiResponse } from '@/pages/class/types';
+import { LessonDetailResponse } from '@/pages/class/types/api';
 import TabEducation from '@/pages/dancer/components/TabWrapper/TabEducation';
 import TabHistory from '@/pages/dancer/components/TabWrapper/TabExperience';
 import TabVideo from '@/pages/dancer/components/TabWrapper/TabVideo';
-import { DancerDetailApiResponse } from '@/pages/dancer/types';
+import { DancerDetailResponse } from '@/pages/dancer/types/api';
 import { IcLevelAdvanced, IcLevelBasic, IcLevelIntermediate, IcLevelStarter } from '@/shared/assets/svg';
 
 export const LEVEL = [
@@ -53,20 +53,20 @@ export const DANCER_TABS = [
   {
     id: 1,
     label: '학력',
-    component: (dancerData: DancerDetailApiResponse) => <TabEducation dancerData={dancerData} />,
+    component: (dancerData: DancerDetailResponse) => <TabEducation dancerData={dancerData} />,
   },
-  { id: 2, label: '경력', component: (dancerData: DancerDetailApiResponse) => <TabHistory dancerData={dancerData} /> },
-  { id: 3, label: '영상', component: (dancerData: DancerDetailApiResponse) => <TabVideo dancerData={dancerData} /> },
+  { id: 2, label: '경력', component: (dancerData: DancerDetailResponse) => <TabHistory dancerData={dancerData} /> },
+  { id: 3, label: '영상', component: (dancerData: DancerDetailResponse) => <TabVideo dancerData={dancerData} /> },
 ];
 
 export const CLASS_TABS = [
-  { id: 1, label: '소개', component: (lessonData: LessonDetailApiResponse) => <TabIntro lessonData={lessonData} /> },
-  { id: 2, label: '난이도', component: (lessonData: LessonDetailApiResponse) => <TabLevel lessonData={lessonData} /> },
-  { id: 3, label: '기간', component: (lessonData: LessonDetailApiResponse) => <TabPeriod lessonData={lessonData} /> },
+  { id: 1, label: '소개', component: (lessonData: LessonDetailResponse) => <TabIntro lessonData={lessonData} /> },
+  { id: 2, label: '난이도', component: (lessonData: LessonDetailResponse) => <TabLevel lessonData={lessonData} /> },
+  { id: 3, label: '기간', component: (lessonData: LessonDetailResponse) => <TabPeriod lessonData={lessonData} /> },
   {
     id: 4,
     label: '위치',
-    component: (lessonData: LessonDetailApiResponse) => <TabLocationInfo lessonData={lessonData} />,
+    component: (lessonData: LessonDetailResponse) => <TabLocationInfo lessonData={lessonData} />,
   },
 ];
 

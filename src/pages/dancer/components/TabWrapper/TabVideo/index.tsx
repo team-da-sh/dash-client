@@ -3,12 +3,12 @@ import {
   videoItemStyle,
   videoWrapperStyle,
 } from '@/pages/dancer/components/TabWrapper/TabVideo/index.css';
-import { DancerDetailApiResponse } from '@/pages/dancer/types';
+import { DancerDetailResponse } from '@/pages/dancer/types/api';
 import Flex from '@/shared/components/Flex';
 import { getYoutubeEmbedUrl } from '@/shared/constants/regex';
 
 interface TabVideoProps {
-  dancerData: DancerDetailApiResponse;
+  dancerData: DancerDetailResponse;
 }
 
 const TabVideo = ({ dancerData }: TabVideoProps) => {

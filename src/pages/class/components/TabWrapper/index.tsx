@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { LessonDetailApiResponse } from '@/pages/class/types/index';
+import { LessonDetailResponse } from '@/pages/class/types/api';
 import Flex from '@/shared/components/Flex';
 import { TabButton, TabList, TabPanel, TabRoot } from '@/shared/components/Tab';
 import { CLASS_TABS } from '@/shared/constants';
@@ -7,7 +7,7 @@ import { vars } from '@/shared/styles/theme.css';
 
 interface TabWrapperProps {
   colorScheme: 'primary' | 'secondary';
-  lessonData: LessonDetailApiResponse;
+  lessonData: LessonDetailResponse;
 }
 
 const TabWrapper = ({ colorScheme, lessonData }: TabWrapperProps) => {

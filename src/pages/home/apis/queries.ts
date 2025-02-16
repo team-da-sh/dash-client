@@ -8,15 +8,15 @@ import {
   getRecommendationLessons,
   getUpcommingLessons,
 } from '@/pages/home/apis/axios';
-import { AdvertisementsTypes } from '@/pages/home/types/advertisementsTypes';
-import { LessonTypes } from '@/pages/home/types/classTypes';
-import { DancerTypes } from '@/pages/home/types/dancerTypes';
+import {
+  AdvertisementResponse,
+  PopularDancersResponse,
+  PopularGenreResponse,
+  RecommendationLessonsResponse,
+  UpcomingLessonsResponse,
+} from '@/pages/home/types/api';
 import { QUERY_KEYS } from '@/shared/constants/queryKey';
 import { MyPageProps } from '@/shared/types/myPageTypes';
-
-interface AdvertisementResponse {
-  advertisements: AdvertisementsTypes[];
-}
 
 export const useGetAdvertisements = () => {
   return useQuery<AdvertisementResponse>({
@@ -34,20 +34,12 @@ export const useGetMyPage = (options?: Partial<UseQueryOptions<MyPageProps>>) =>
   });
 };
 
-interface PopularGenreResponse {
-  genres: string[];
-}
-
 export const useGetPopularGenres = () => {
   return useQuery<PopularGenreResponse>({
     queryKey: [QUERY_KEYS.LESSONS_POPULAR_GENRES],
     queryFn: () => getPopularGenres(),
   });
 };
-
-interface UpcomingLessonsResponse {
-  lessons: LessonTypes[];
-}
 
 export const useGetUpcomingLessons = () => {
   return useQuery<UpcomingLessonsResponse>({
@@ -56,20 +48,12 @@ export const useGetUpcomingLessons = () => {
   });
 };
 
-interface RecommendationLessonsResponse {
-  lessons: LessonTypes[];
-}
-
 export const useGetRecommendationLessons = () => {
   return useQuery<RecommendationLessonsResponse>({
     queryKey: [QUERY_KEYS.LESSONS_RECOMMENDATIONS],
     queryFn: () => getRecommendationLessons(),
   });
 };
-
-interface PopularDancersResponse {
-  teachers: DancerTypes[];
-}
 
 export const useGetPopularDancers = () => {
   return useQuery<PopularDancersResponse>({

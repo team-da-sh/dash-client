@@ -1,5 +1,6 @@
 import { instance } from '@/shared/apis/instance';
 import { API_URL } from '@/shared/constants/apiURL';
+import { ClassRegisterInfoTypes } from '../types/api';
 
 export const getLocationList = async (query: string) => {
   const { data } = await instance.get(API_URL.LOCATIONS, {
@@ -10,28 +11,6 @@ export const getLocationList = async (query: string) => {
 
   return data;
 };
-
-interface ClassTimeTypes {
-  startTime: string;
-  endTime: string;
-}
-
-interface ClassRegisterInfoTypes {
-  imageUrls: string[];
-  name: string;
-  detail: string;
-  videoUrls: string[];
-  maxReservationCount: number;
-  genre: string;
-  level: string;
-  recommendation: string;
-  price: number;
-  location: string | null;
-  streetAddress: string | null;
-  oldStreetAddress: string | null;
-  detailedAddress: string | null;
-  times: ClassTimeTypes[];
-}
 
 export const postClassRegisterInfo = async (infoData: ClassRegisterInfoTypes) => {
   const { data } = await instance.post(API_URL.LESSONS, infoData);

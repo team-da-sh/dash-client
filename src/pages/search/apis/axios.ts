@@ -1,22 +1,10 @@
+import { ClassListParams, DancerListParams } from '@/pages/search/types/api';
 import { instance } from '@/shared/apis/instance';
 
 const SEARCH_URL = {
   GET_DANCERLIST: 'api/v1/teachers',
   GET_CLASSLIST: '/api/v1/lessons',
 };
-
-export interface DancerListParams {
-  keyword?: string;
-}
-
-export interface ClassListParams {
-  genre?: string;
-  level?: string;
-  startDate?: string;
-  endDate?: string;
-  sortOption?: string;
-  keyword?: string;
-}
 
 export const getDancerList = async ({ keyword }: DancerListParams) => {
   const { data } = await instance.get(SEARCH_URL.GET_DANCERLIST, {

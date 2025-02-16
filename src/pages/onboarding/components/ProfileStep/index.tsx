@@ -1,6 +1,6 @@
 import { icCameraStyle, inputStyle, previewImgStyle } from '@/pages/onboarding/components/ProfileStep/index.css';
 import { INFO_KEY, MAX_NICKNAME_LENGTH } from '@/pages/onboarding/constants';
-import { onboardInfoTypes } from '@/pages/onboarding/types';
+import { onboardInfoTypes } from '@/pages/onboarding/types/onboardInfoTypes';
 import defaultProfile from '@/shared/assets/images/image_profile_basic.png';
 import { IcCameraMain0624 } from '@/shared/assets/svg';
 import Flex from '@/shared/components/Flex';

@@ -1,7 +1,8 @@
 import { useMutation } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { kakaoLogin, loginTypes, postLogout } from '@/pages/auth/apis/axios';
+import { kakaoLogin, postLogout } from '@/pages/auth/apis/axios';
+import { loginTypes } from '@/pages/auth/types/api';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { instance } from '@/shared/apis/instance';
 import { clearStorage, setStorage } from '@/shared/utils/handleToken';

@@ -10,8 +10,3 @@ export interface Lesson {
   endDateTime: string;
   applyStatus: [];
 }
-
-export interface LessonApiResponse {
-  count: number;
-  lessons: Lesson[];
-}

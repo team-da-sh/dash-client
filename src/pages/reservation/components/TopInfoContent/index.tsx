@@ -3,9 +3,14 @@ import {
   textWrapperStyle,
   topImgStyle,
 } from '@/pages/reservation/components/TopInfoContent/index.css';
-import { TopInfoContentProps } from '@/pages/reservation/types';
 import Flex from '@/shared/components/Flex';
 import Head from '@/shared/components/Head';
+
+interface TopInfoContentProps {
+  name: string;
+  teacherNickname: string;
+  imageUrl: string;
+}
 
 const TopInfoContent = ({ name, teacherNickname, imageUrl }: TopInfoContentProps) => {
   return (

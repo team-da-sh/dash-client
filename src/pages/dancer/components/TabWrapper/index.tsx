@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { DancerDetailApiResponse } from '@/pages/dancer/types/index';
+import { DancerDetailResponse } from '@/pages/dancer/types/api';
 import Flex from '@/shared/components/Flex';
 import { TabButton, TabList, TabPanel, TabRoot } from '@/shared/components/Tab';
 import { DANCER_TABS } from '@/shared/constants';
@@ -7,7 +7,7 @@ import { vars } from '@/shared/styles/theme.css';
 
 interface TabWrapperProps {
   colorScheme: 'primary' | 'secondary';
-  dancerData: DancerDetailApiResponse;
+  dancerData: DancerDetailResponse;
 }
 
 const TabWrapper = ({ colorScheme, dancerData }: TabWrapperProps) => {

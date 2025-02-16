@@ -1,7 +1,11 @@
 import { textLabelStyle } from '@/pages/reservation/components/InfoRow/index.css';
-import { InfoRowProps } from '@/pages/reservation/types';
 import Flex from '@/shared/components/Flex';
 import Text from '@/shared/components/Text';
+
+interface InfoRowProps {
+  label: string;
+  value: string;
+}
 
 const InfoRow = ({ label, value }: InfoRowProps) => {
   return (

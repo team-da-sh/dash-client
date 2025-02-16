@@ -12,6 +12,3 @@ export interface Reservation {
   attendStatus: string;
 }
 
-export interface ReservationApiResponse {
-  reservations: Reservation[];
-}

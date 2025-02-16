@@ -5,7 +5,7 @@ import {
   profileStyle,
   thunderIconStyle,
 } from '@/pages/class/components/ClassInfoWrapper/index.css';
-import { LessonDetailApiResponse } from '@/pages/class/types/index';
+import { LessonDetailResponse } from '@/pages/class/types/api';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { IcThunderMain0424 } from '@/shared/assets/svg';
 import Flex from '@/shared/components/Flex';
@@ -15,7 +15,7 @@ import Text from '@/shared/components/Text';
 import { genreMapping } from '@/shared/constants/index';
 import { vars } from '@/shared/styles/theme.css';
 
-const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetailApiResponse }) => {
+const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetailResponse }) => {
   const {
     genre,
     name,

@@ -1,6 +1,10 @@
 import { bookerComponentStyle } from '@/pages/reservation/components/ApplicantInfo/index.css';
 import InfoRow from '@/pages/reservation/components/InfoRow';
-import { ApplicantInfoProps } from '@/pages/reservation/types';
+
+interface ApplicantInfoProps {
+  studentName: string;
+  studentPhoneNumber: string;
+}
 
 const ApplicantInfo = ({ studentName, studentPhoneNumber }: ApplicantInfoProps) => {
   return (

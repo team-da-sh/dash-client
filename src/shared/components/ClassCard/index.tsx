@@ -1,4 +1,3 @@
-import { ClassCardProps } from '@/pages/home/types/classCardTypes';
 import { IcArrowRightGray0614, IcClassEndMain0324, IcClassIngMain0324, IcClassSoonMain0324 } from '@/shared/assets/svg';
 import * as styles from '@/shared/components/ClassCard/index.css';
 import Flex from '@/shared/components/Flex';
@@ -7,6 +6,22 @@ import Tag from '@/shared/components/Tag';
 import Text from '@/shared/components/Text';
 import { genreMapping, levelMapping } from '@/shared/constants';
 import { formatLessonDateRange, getClassStatus } from '@/shared/utils/timeCalculate';
+
+interface ClassCardPropTypes {
+  lessonId?: number;
+  reservationId?: number;
+  lessonName: string | undefined;
+  lessonImageUrl: string | undefined;
+  lessonGenre: string | undefined;
+  lessonLevel: string | undefined;
+  lessonLocation: string | undefined;
+  lessonDetailedAddress?: string | undefined;
+  lessonStartDateTime: string | undefined;
+  lessonEndDateTime: string | undefined;
+  isReservation?: boolean;
+  onClick?: () => void;
+  children?: React.ReactNode;
+}
 
 const ClassCard = ({
   lessonName,
@@ -20,7 +35,7 @@ const ClassCard = ({
   isReservation = true,
   children,
   onClick,
-}: ClassCardProps) => {
+}: ClassCardPropTypes) => {
   // 클래스 상태 계산
   const { status, remainingDays } = getClassStatus(lessonStartDateTime, lessonEndDateTime);
 

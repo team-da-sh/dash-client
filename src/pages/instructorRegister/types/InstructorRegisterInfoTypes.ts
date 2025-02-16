@@ -7,8 +7,3 @@ export interface InstructorRegisterInfoTypes {
   detail: string;
   videoUrls: string[];
 }
-
-export interface InputItemTypes {
-  id: number;
-  value: string;
-}
