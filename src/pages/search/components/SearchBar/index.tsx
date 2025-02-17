@@ -16,6 +16,12 @@ const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(
       handleSearchChange(event.target.value);
     };
 
+    const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+      if (event.key === 'Enter') {
+        handleSearchIconClick();
+      }
+    };
+
     return (
       <Flex align="center" width="29.9rem" height="4.4rem" position="relative" margin="0 0 0 1.2rem">
         <IcSearchGray className={searchGrayStyle} width={24} onClick={handleSearchIconClick} />
@@ -25,6 +31,7 @@ const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(
           value={searchValue}
           placeholder="장르나 댄서 네임을 검색해 보세요"
           onChange={handleInputChange}
+          onKeyDown={handleKeyDown}
         />
         <IcXCircleGray className={xCircleGrayStyle} width={24} onClick={() => handleSearchChange('')} />
       </Flex>

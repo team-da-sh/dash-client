@@ -30,7 +30,7 @@ const IntroductionStep = ({ detail, onInfoChange }: IntroductionStepProps) => {
 
   return (
     <>
-      <Description title="소개글 작성" subTitle="댄서 메인테인 님에 대해 30자 이상 작성해 주세요" />
+      <Description title="소개글 작성" subTitle="댄서님에 대해 30자 이상 작성해 주세요" />
       <textarea
         ref={textAreaRef}
         onInput={handleInput}
