@@ -12,6 +12,7 @@ const Error = () => {
 
   const handleHomeNavigation = () => {
     navigate(ROUTES_CONFIG.home.path);
+    window.location.reload();
   };
 
   return (

@@ -31,28 +31,6 @@ const BottomSection = ({ isInstructor }: { isInstructor: boolean }) => {
     }
   };
 
-  // 리스트 아이템 렌더링
-  const renderListItem = (item: (typeof LIST_DATA)[number]) => {
-    const isDisabled = !!item.isInstructorRequired && !isInstructor;
-    const ArrowIcon = isDisabled ? IcArrowRightSmallGray0432 : IcArrowRightSmallGray0732;
-
-    return (
-      <React.Fragment key={item.id}>
-        <li
-          className={`${styles.listStyle} ${isDisabled ? styles.disabledStyle : ''}`}
-          onClick={() => handleItemClick(item, isDisabled)}>
-          <p>{item.label}</p>
-          <ArrowIcon width={32} height={32} />
-        </li>
-        {item.hasDivider && (
-          <div className={styles.dividerStyle}>
-            <Divider color="gray1" thickness={1} />
-          </div>
-        )}
-      </React.Fragment>
-    );
-  };
-
   return (
     <Flex>
       <ul className={styles.ulStyle}>
@@ -61,18 +39,11 @@ const BottomSection = ({ isInstructor }: { isInstructor: boolean }) => {
             (item.isInstructorRequired && !isInstructor) || (item.label === '강사 등록' && isInstructor);
           const ArrowIcon = isDisabled ? IcArrowRightSmallGray0432 : IcArrowRightSmallGray0732;
 
-          const handleClick = () => {
-            if (isDisabled) return;
-            if (item.label === '로그아웃') {
-              handleLogout();
-            } else if (item.path) {
-              navigate(item.path);
-            }
-          };
-
           return (
             <React.Fragment key={item.id}>
-              <li className={`${styles.listStyle} ${isDisabled ? styles.disabledStyle : ''}`} onClick={handleClick}>
+              <li
+                className={`${styles.listStyle} ${isDisabled ? styles.disabledStyle : ''}`}
+                onClick={() => handleItemClick(item, isDisabled)}>
                 <p>{item.label}</p>
                 <ArrowIcon width={32} height={32} />
               </li>
