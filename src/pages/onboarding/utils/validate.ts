@@ -1,5 +1,5 @@
 import { MAX_NAME_LENGTH, MAX_PHONENUMBER_LENGTH, MIN_NAME_LENGTH } from '@/pages/onboarding/constants';
-import { INCLUDE_BLANK, INCLUDE_SPECIAL, ONLY_NUMBER } from '@/constants/regex';
+import { INCLUDE_BLANK, INCLUDE_SPECIAL, ONLY_NUMBER } from '@/shared/constants/regex';
 
 export const validateTypingName = (name: string) => {
   if (INCLUDE_SPECIAL.test(name)) return false;

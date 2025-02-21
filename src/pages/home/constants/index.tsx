@@ -1,4 +1,4 @@
-import { IcAssetTop1, IcAssetTop2, IcAssetTop3 } from '@/assets/svg';
+import { IcAssetTop1, IcAssetTop2, IcAssetTop3 } from '@/shared/assets/svg';
 
 export const GENRE_ICONS = [
   <IcAssetTop1 width={44} height={44} />,

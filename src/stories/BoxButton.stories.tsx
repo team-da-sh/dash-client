@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import BoxButton, { BoxButtonProps } from '@/components/BoxButton';
+import BoxButton, { BoxButtonProps } from '@/shared/components/BoxButton/BoxButton';
 
 const meta = {
   title: 'Common/BoxButton',
