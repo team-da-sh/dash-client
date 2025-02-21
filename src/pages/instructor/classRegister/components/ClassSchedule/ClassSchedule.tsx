@@ -4,7 +4,8 @@ import {
   tagStyle,
 } from '@/pages/instructor/classRegister/components/ClassSchedule/classSchedule.css';
 import Description from '@/pages/instructor/classRegister/components/Description';
-import { IcPlusGray0524, IcXCircleGray0424 } from '@/shared/assets/svg';
+import IcPlusGray0524 from '@/shared/assets/svg/IcPlusGray0524';
+import IcXCircleGray0424 from '@/shared/assets/svg/IcXCircleGray0424';
 import Flex from '@/shared/components/Flex/Flex';
 import Text from '@/shared/components/Text/Text';
 import { calculatePeriod, formatDate } from '@/shared/utils/dateCalculate';

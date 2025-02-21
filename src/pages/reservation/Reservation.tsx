@@ -19,7 +19,8 @@ import {
 } from '@/pages/reservation/reservation.css';
 import { LessonRoundTypes } from '@/pages/reservation/types/lessonRoundTypes';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import { IcCheckcircleGray0524, IcCheckcircleMain0324 } from '@/shared/assets/svg';
+import IcCheckcircleGray0524 from '@/shared/assets/svg/IcCheckcircleGray0524';
+import IcCheckcircleMain0324 from '@/shared/assets/svg/IcCheckcircleMain0324';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import Divider from '@/shared/components/Divider/Divider';
 import Flex from '@/shared/components/Flex/Flex';

@@ -1,5 +1,5 @@
 import { containerStyle } from '@/pages/home/components/Footer/footer.css';
-import { IcLogoSmallBlack } from '@/shared/assets/svg';
+import IcLogoSmallBlack from '@/shared/assets/svg/IcLogoSmallBlack';
 import Divider from '@/shared/components/Divider/Divider';
 import Flex from '@/shared/components/Flex/Flex';
 import Text from '@/shared/components/Text/Text';

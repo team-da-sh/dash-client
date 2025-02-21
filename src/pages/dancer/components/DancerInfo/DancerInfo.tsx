@@ -12,7 +12,8 @@ import {
 } from '@/pages/dancer/components/DancerInfo/dancerInfo.css';
 import { DancerDetailResponse } from '@/pages/dancer/types/api';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import { IcInstagram20, IcYoutube20 } from '@/shared/assets/svg';
+import IcInstagram20 from '@/shared/assets/svg/IcInstagram20';
+import IcYoutube20 from '@/shared/assets/svg/IcYoutube20';
 import Divider from '@/shared/components/Divider/Divider';
 import Flex from '@/shared/components/Flex/Flex';
 import Head from '@/shared/components/Head/Head';

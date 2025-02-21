@@ -1,4 +1,7 @@
-import { IcArrowRightGray0614, IcClassEndMain0324, IcClassIngMain0324, IcClassSoonMain0324 } from '@/shared/assets/svg';
+import IcArrowRightGray0614 from '@/shared/assets/svg/IcArrowRightGray0614';
+import IcClassEndMain0324 from '@/shared/assets/svg/IcClassEndMain0324';
+import IcClassIngMain0324 from '@/shared/assets/svg/IcClassIngMain0324';
+import IcClassSoonMain0324 from '@/shared/assets/svg/IcClassSoonMain0324';
 import * as styles from '@/shared/components/ClassCard/classCard.css';
 import Flex from '@/shared/components/Flex/Flex';
 import Head from '@/shared/components/Head/Head';

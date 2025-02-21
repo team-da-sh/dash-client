@@ -1,5 +1,6 @@
 import * as styles from '@/pages/instructor/classRegister/components/ClassSchedule/TimeStep/TimeControl/timeControl.css';
-import { IcArrowDownGray1032, IcArrowUpGray1032 } from '@/shared/assets/svg';
+import IcArrowDownGray1032 from '@/shared/assets/svg/IcArrowDownGray1032';
+import IcArrowUpGray1032 from '@/shared/assets/svg/IcArrowUpGray1032';
 import Flex from '@/shared/components/Flex/Flex';
 import Head from '@/shared/components/Head/Head';
 

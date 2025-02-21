@@ -5,7 +5,9 @@ import {
   recommendClassStyle,
 } from '@/pages/class/components/TabWrapper/TabLevel/tabLevel.css';
 import { LessonDetailResponse } from '@/pages/class/types/api';
-import { IcLevelStarter, IcQuesitonmark, IcSparkleMain20 } from '@/shared/assets/svg';
+import IcLevelStarter from '@/shared/assets/svg/IcLevelStarter';
+import IcQuesitonmark from '@/shared/assets/svg/IcQuesitonmark';
+import IcSparkleMain20 from '@/shared/assets/svg/IcSparkleMain20';
 import Flex from '@/shared/components/Flex/Flex';
 import Head from '@/shared/components/Head/Head';
 import Text from '@/shared/components/Text/Text';

@@ -8,7 +8,7 @@ import {
   moreWrapperStyle,
 } from '@/pages/home/components/SliderItem/sliderItem.css';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import { IcArrowRightWhite14 } from '@/shared/assets/svg';
+import IcArrowRightWhite14 from '@/shared/assets/svg/IcArrowRightWhite14';
 import Flex from '@/shared/components/Flex/Flex';
 import Head from '@/shared/components/Head/Head';
 

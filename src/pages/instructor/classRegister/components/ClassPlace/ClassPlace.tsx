@@ -10,7 +10,9 @@ import {
   selectedLocationContainerStyle,
 } from '@/pages/instructor/classRegister/components/ClassPlace/classPlace.css';
 import Description from '@/pages/instructor/classRegister/components/Description';
-import { BtnCheck, IcSearchGray, IcXCircleGray0424 } from '@/shared/assets/svg';
+import BtnCheck from '@/shared/assets/svg/BtnCheck';
+import IcSearchGray from '@/shared/assets/svg/IcSearchGray';
+import IcXCircleGray0424 from '@/shared/assets/svg/IcXCircleGray0424';
 import Flex from '@/shared/components/Flex/Flex';
 import Input from '@/shared/components/Input/Input';
 import Text from '@/shared/components/Text/Text';

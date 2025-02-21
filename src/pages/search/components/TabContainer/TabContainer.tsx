@@ -7,7 +7,8 @@ import Dropdown from '@/pages/search/components/TabContainer/TagSection/Dropdown
 import TagSection from '@/pages/search/components/TabContainer/TagSection/TagSection';
 import { divCustomStyle } from '@/pages/search/components/TabContainer/tabContainer.css';
 import { ClassListResponse, DancerListResponse } from '@/pages/search/types/api';
-import { IcArrowUnderGray, IcXMain04 } from '@/shared/assets/svg';
+import IcArrowUnderGray from '@/shared/assets/svg/IcArrowUnderGray';
+import IcXMain04 from '@/shared/assets/svg/IcXMain04';
 import Flex from '@/shared/components/Flex/Flex';
 import { TabButton, TabList, TabPanel, TabRoot } from '@/shared/components/Tab';
 import Text from '@/shared/components/Text/Text';
