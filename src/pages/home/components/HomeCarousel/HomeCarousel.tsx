@@ -2,7 +2,9 @@
 import { Autoplay, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SliderItem from '@/pages/home/components/SliderItem/SliderItem';
-import { BannerImg, ChoreohongImg, KkukgirlImg } from '@/shared/assets/images';
+import ChoreohongImg from '@/shared/assets/images/image_chorehong.jpeg';
+import KkukgirlImg from '@/shared/assets/images/image_kkukgirl.jpg';
+import BannerImg from '@/shared/assets/images/img_banner_750.png';
 
 const ADVERTISEMENTS = [
   {
