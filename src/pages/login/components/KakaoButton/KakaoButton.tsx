@@ -1,5 +1,5 @@
 import { buttonStyle, kakaoButtonStyle } from '@/pages/login/components/KakaoButton/kakaoButton.css';
-import { IcKakaoKakaobrown28 } from '@/shared/assets/svg';
+import IcKakaoKakaobrown28 from '@/shared/assets/svg/IcKakaoKakaobrown28';
 import Flex from '@/shared/components/Flex/Flex';
 import Head from '@/shared/components/Head/Head';
 

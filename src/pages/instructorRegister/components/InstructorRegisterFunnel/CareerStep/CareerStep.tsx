@@ -3,7 +3,8 @@ import Description from '@/pages/instructorRegister/components/Description/Descr
 import InputSection from '@/pages/instructorRegister/components/InstructorRegisterFunnel/CareerStep/InputSection/InputSection';
 import { INFO_KEY } from '@/pages/instructorRegister/constants';
 import { InstructorRegisterInfoTypes } from '@/pages/instructorRegister/types/InstructorRegisterInfoTypes';
-import { IcDocumentBlack20, IcGraduationBlack20 } from '@/shared/assets/svg';
+import IcDocumentBlack20 from '@/shared/assets/svg/IcDocumentBlack20';
+import IcGraduationBlack20 from '@/shared/assets/svg/IcGraduationBlack20';
 
 interface CareerStepProps {
   educations: string[];

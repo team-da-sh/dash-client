@@ -7,7 +7,10 @@ import TabEducation from '@/pages/dancer/components/TabWrapper/TabEducation/TabE
 import TabHistory from '@/pages/dancer/components/TabWrapper/TabExperience/TabExperience';
 import TabVideo from '@/pages/dancer/components/TabWrapper/TabVideo/TabVideo';
 import { DancerDetailResponse } from '@/pages/dancer/types/api';
-import { IcLevelAdvanced, IcLevelBasic, IcLevelIntermediate, IcLevelStarter } from '@/shared/assets/svg';
+import IcLevelAdvanced from '../assets/svg/IcLevelAdvanced';
+import IcLevelBasic from '../assets/svg/IcLevelBasic';
+import IcLevelIntermediate from '../assets/svg/IcLevelIntermediate';
+import IcLevelStarter from '../assets/svg/IcLevelStarter';
 
 export const LEVEL = [
   {

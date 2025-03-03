@@ -6,7 +6,9 @@ import {
   inputContainerStyle,
   inputIconStyle,
 } from '@/pages/instructorRegister/components/InstructorRegisterFunnel/CareerStep/careerStep.css';
-import { BtnCheck, IcPlusGray0524, IcXCircleGray } from '@/shared/assets/svg';
+import BtnCheck from '@/shared/assets/svg/BtnCheck';
+import IcPlusGray0524 from '@/shared/assets/svg/IcPlusGray0524';
+import IcXCircleGray from '@/shared/assets/svg/IcXCircleGray';
 import Flex from '@/shared/components/Flex/Flex';
 import Input from '@/shared/components/Input/Input';
 import Text from '@/shared/components/Text/Text';

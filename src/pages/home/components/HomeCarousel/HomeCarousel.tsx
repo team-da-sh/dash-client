@@ -1,8 +1,10 @@
 // Import Swiper styles
+import ChoreohongImg from 'public/images/image_chorehong.jpeg';
+import KkukgirlImg from 'public/images/image_kkukgirl.jpg';
+import BannerImg from 'public/images/img_banner_750.png';
 import { Autoplay, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SliderItem from '@/pages/home/components/SliderItem/SliderItem';
-import { BannerImg, ChoreohongImg, KkukgirlImg } from '@/shared/assets/images';
 
 const ADVERTISEMENTS = [
   {

@@ -1,4 +1,4 @@
-import { IcSpeaker3D } from '@/shared/assets/svg';
+import IcSpeaker3D from '@/shared/assets/svg/IcSpeaker3D';
 import Flex from '@/shared/components/Flex/Flex';
 import Head from '@/shared/components/Head/Head';
 import Text from '@/shared/components/Text/Text';

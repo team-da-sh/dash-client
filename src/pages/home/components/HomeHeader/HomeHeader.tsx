@@ -2,7 +2,10 @@ import { useNavigate } from 'react-router-dom';
 import { containerStyle } from '@/pages/home/components/HomeHeader/homeHeader.css';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { HomeBlack, HomeWhite } from '@/shared/assets/gif';
-import { IcMypageBlack24, IcMypageWhite24, IcSearchBlack24, IcSearchWhite24 } from '@/shared/assets/svg';
+import IcMypageBlack24 from '@/shared/assets/svg/IcMypageBlack24';
+import IcMypageWhite24 from '@/shared/assets/svg/IcMypageWhite24';
+import IcSearchBlack24 from '@/shared/assets/svg/IcSearchBlack24';
+import IcSearchWhite24 from '@/shared/assets/svg/IcSearchWhite24';
 import Flex from '@/shared/components/Flex/Flex';
 
 interface HomeHeaderProps {

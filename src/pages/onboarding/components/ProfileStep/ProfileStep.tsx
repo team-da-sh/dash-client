@@ -1,8 +1,8 @@
+import defaultProfile from 'public/images/image_profile_basic.png';
 import { icCameraStyle, inputStyle, previewImgStyle } from '@/pages/onboarding/components/ProfileStep/profileStep.css';
 import { INFO_KEY, MAX_NICKNAME_LENGTH } from '@/pages/onboarding/constants';
 import { onboardInfoTypes } from '@/pages/onboarding/types/onboardInfoTypes';
-import defaultProfile from '@/shared/assets/images/image_profile_basic.png';
-import { IcCameraMain0624 } from '@/shared/assets/svg';
+import IcCameraMain0624 from '@/shared/assets/svg/IcCameraMain0624';
 import Flex from '@/shared/components/Flex/Flex';
 import Head from '@/shared/components/Head/Head';
 import Input from '@/shared/components/Input/Input';

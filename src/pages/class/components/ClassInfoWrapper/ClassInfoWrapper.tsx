@@ -7,7 +7,7 @@ import {
 } from '@/pages/class/components/ClassInfoWrapper/classInfoWrapper.css';
 import { LessonDetailResponse } from '@/pages/class/types/api';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import { IcThunderMain0424 } from '@/shared/assets/svg';
+import IcThunderMain0424 from '@/shared/assets/svg/IcThunderMain0424';
 import Flex from '@/shared/components/Flex/Flex';
 import Head from '@/shared/components/Head/Head';
 import Tag from '@/shared/components/Tag/Tag';

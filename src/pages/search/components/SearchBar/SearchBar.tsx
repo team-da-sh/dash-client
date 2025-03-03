@@ -1,6 +1,7 @@
 import { forwardRef } from 'react';
 import { searchGrayStyle, xCircleGrayStyle } from '@/pages/search/components/SearchBar/searchBar.css';
-import { IcSearchGray, IcXCircleGray } from '@/shared/assets/svg';
+import IcSearchGray from '@/shared/assets/svg/IcSearchGray';
+import IcXCircleGray from '@/shared/assets/svg/IcXCircleGray';
 import Flex from '@/shared/components/Flex/Flex';
 import Input from '@/shared/components/Input/Input';
 

@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { boxButtonStyle } from '@/pages/error/error.css';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import { IcError } from '@/shared/assets/svg';
+import IcError from '@/shared/assets/svg/IcError';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import Flex from '@/shared/components/Flex/Flex';
 import Head from '@/shared/components/Head/Head';

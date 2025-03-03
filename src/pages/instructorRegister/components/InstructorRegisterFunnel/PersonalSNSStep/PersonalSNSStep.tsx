@@ -1,7 +1,8 @@
 import Description from '@/pages/instructorRegister/components/Description/Description';
 import { INFO_KEY } from '@/pages/instructorRegister/constants';
 import { InstructorRegisterInfoTypes } from '@/pages/instructorRegister/types/InstructorRegisterInfoTypes';
-import { IcInstagram20, IcYoutube20 } from '@/shared/assets/svg';
+import IcInstagram20 from '@/shared/assets/svg/IcInstagram20';
+import IcYoutube20 from '@/shared/assets/svg/IcYoutube20';
 import Flex from '@/shared/components/Flex/Flex';
 import Input from '@/shared/components/Input/Input';
 import Text from '@/shared/components/Text/Text';

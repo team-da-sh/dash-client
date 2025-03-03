@@ -8,7 +8,8 @@ import {
 import { INFO_KEY, VIDEO_INPUT_MAX } from '@/pages/instructorRegister/constants';
 import { InstructorRegisterInfoTypes } from '@/pages/instructorRegister/types/InstructorRegisterInfoTypes';
 import { InputItemTypes } from '@/pages/instructorRegister/types/inputItemTypes';
-import { IcPlusGray0524, IcXCircleGray } from '@/shared/assets/svg';
+import IcPlusGray0524 from '@/shared/assets/svg/IcPlusGray0524';
+import IcXCircleGray from '@/shared/assets/svg/IcXCircleGray';
 import Flex from '@/shared/components/Flex/Flex';
 import Input from '@/shared/components/Input/Input';
 

@@ -1,9 +1,7 @@
-import {
-  IcArrowRightSmallGray0732,
-  IcArrowRightSmallMain0332New,
-  IcCheckGray0724,
-  IcCheckMain0324,
-} from '@/shared/assets/svg';
+import IcArrowRightSmallGray0732 from '@/shared/assets/svg/IcArrowRightSmallGray0732';
+import IcArrowRightSmallMain0332New from '@/shared/assets/svg/IcArrowRightSmallMain0332New';
+import IcCheckGray0724 from '@/shared/assets/svg/IcCheckGray0724';
+import IcCheckMain0324 from '@/shared/assets/svg/IcCheckMain0324';
 import Flex from '@/shared/components/Flex/Flex';
 import Text from '@/shared/components/Text/Text';
 

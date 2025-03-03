@@ -4,7 +4,8 @@ import {
   inputStyle,
   previewImgStyle,
 } from '@/pages/instructorRegister/components/InstructorRegisterFunnel/ImageUploadStep/imageUploadStep.css';
-import { IcPlusGray0524, IcXCircleMain0324 } from '@/shared/assets/svg';
+import IcPlusGray0524 from '@/shared/assets/svg/IcPlusGray0524';
+import IcXCircleMain0324 from '@/shared/assets/svg/IcXCircleMain0324';
 import Flex from '@/shared/components/Flex/Flex';
 import Text from '@/shared/components/Text/Text';
 

@@ -1,3 +1,4 @@
+import defaultProfile from 'public/images/image_profile_basic.png';
 import { useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { usePostOnboard } from '@/pages/onboarding/apis/queries';
@@ -18,7 +19,6 @@ import { GenreTypes } from '@/pages/onboarding/types/genreTypes';
 import { onboardInfoTypes } from '@/pages/onboarding/types/onboardInfoTypes';
 import { validateName, validatePhoneNumber } from '@/pages/onboarding/utils/validate';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import defaultProfile from '@/shared/assets/images/image_profile_basic.png';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import ProgressBar from '@/shared/components/ProgressBar/ProgressBar';
 import { FunnelProps, StepProps } from '@/shared/hooks/useFunnel';

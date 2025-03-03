@@ -2,7 +2,8 @@ import clsx from 'clsx';
 import React, { ComponentPropsWithoutRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import { IcBack, IcClose } from '@/shared/assets/svg';
+import IcBack from '@/shared/assets/svg/IcBack';
+import IcClose from '@/shared/assets/svg/IcClose';
 import Head from '@/shared/components/Head/Head';
 import { backIconStyle, closeIconStyle, headerRootStyle, titleStyle } from '@/shared/components/Header/header.css';
 

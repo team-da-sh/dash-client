@@ -1,7 +1,10 @@
 import { useNavigate } from 'react-router-dom';
 import * as styles from '@/pages/home/components/TopSection/topSection.css';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import { IcArrowRightGray0614, IcCalendarcheckColor3D24, IcCalendarcheckMono3D24, IcClose } from '@/shared/assets/svg';
+import IcArrowRightGray0614 from '@/shared/assets/svg/IcArrowRightGray0614';
+import IcCalendarcheckColor3D24 from '@/shared/assets/svg/IcCalendarcheckColor3D24';
+import IcCalendarcheckMono3D24 from '@/shared/assets/svg/IcCalendarcheckMono3D24';
+import IcClose from '@/shared/assets/svg/IcClose';
 import Divider from '@/shared/components/Divider/Divider';
 import Flex from '@/shared/components/Flex/Flex';
 import Head from '@/shared/components/Head/Head';

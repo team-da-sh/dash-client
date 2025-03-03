@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { containerStyle } from '@/pages/home/components/HomeHeader/homeHeader.css';
-import { IcBack, IcBackWhite24 } from '@/shared/assets/svg';
+import IcBack from '@/shared/assets/svg/IcBack';
+import IcBackWhite24 from '@/shared/assets/svg/IcBackWhite24';
 import Flex from '@/shared/components/Flex/Flex';
 
 interface DancerHeaderProps {
