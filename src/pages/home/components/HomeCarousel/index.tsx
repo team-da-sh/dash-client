@@ -19,7 +19,17 @@ const ADVERTISEMENTS = [
     id: 0,
   },
 ];
+
+const preLoad = (arr: string[]) => {
+  arr.forEach((url: string) => {
+    const image = new Image();
+    image.src = url;
+  });
+};
+
 const HomeCarousel = () => {
+  preLoad([KkukgirlImg]);
+
   return (
     <Swiper
       loop={true}
@@ -35,6 +45,7 @@ const HomeCarousel = () => {
         return (
           <SwiperSlide key={`${index}-${data.description}`}>
             <SliderItem
+              index={index}
               imageUrl={data.imageUrl}
               description={data.description}
               description2={data.description2}

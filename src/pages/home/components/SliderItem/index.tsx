@@ -17,9 +17,10 @@ interface SliderItemProps {
   description: string;
   description2: string;
   id: number;
+  index: number;
 }
 
-const SliderItem = ({ imageUrl, description, description2, id }: SliderItemProps) => {
+const SliderItem = ({ imageUrl, description, description2, id, index }: SliderItemProps) => {
   const navigate = useNavigate();
   const handleDetailClick = () => {
     if (id === 0) {
@@ -29,7 +30,7 @@ const SliderItem = ({ imageUrl, description, description2, id }: SliderItemProps
   };
   return (
     <Flex position="relative" className={containerStyle}>
-      <img src={imageUrl} className={imageStyle} />
+      <img fetchPriority={index === 0 ? 'high' : 'low'} src={imageUrl} className={imageStyle} />
 
       <Head level="h2" tag="h2" color="white" className={descriptionStyle}>
         {description}
