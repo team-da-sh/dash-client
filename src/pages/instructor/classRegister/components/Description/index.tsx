@@ -1,7 +1,7 @@
 import { essentialTextStyle } from '@/pages/instructor/classRegister/components/Description/index.css';
-import Flex from '@/components/Flex';
-import Head from '@/components/Head';
-import Text from '@/components/Text';
+import Flex from '@/shared/components/Flex/Flex';
+import Head from '@/shared/components/Head/Head';
+import Text from '@/shared/components/Text/Text';
 
 interface DescriptionProps {
   title: string;

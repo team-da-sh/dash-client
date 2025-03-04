@@ -4,11 +4,11 @@ import { Suspense, useEffect } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { Toaster } from 'react-hot-toast';
 import { RouterProvider } from 'react-router-dom';
-import Error from '@/pages/error';
+import Error from '@/pages/error/Error';
 import { router } from '@/routes/router.tsx';
-import Loading from './pages/loading';
+import Loading from './pages/loading/Loading';
 import queryClient from './queryClient';
-import './styles/index.css';
+import './shared/styles/index.css';
 
 const App = () => {
   const setScreenSize = () => {

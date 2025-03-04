@@ -1,6 +1,6 @@
 import { useSearchParams } from 'react-router-dom';
-import * as styles from '@/pages/reservation/components/TossPayments/index.css';
-import Flex from '@/components/Flex';
+import * as styles from '@/pages/reservation/components/TossPayments/tossPayments.css';
+import Flex from '@/shared/components/Flex/Flex';
 
 export const FailPage = () => {
   const [searchParams] = useSearchParams();
