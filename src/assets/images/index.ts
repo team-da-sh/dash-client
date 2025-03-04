@@ -1,4 +1,4 @@
-import ChoreohongImg from './image_chorehong.jpeg';
+import ChoreohongImg from './image_chorehong.webp';
 import BreakingImg from './image_genre_breaking.png';
 import ChoreoImg from './image_genre_choreo.png';
 import FemaleHiphop from './image_genre_femalehiphop.png';
@@ -11,7 +11,7 @@ import PoppingImg from './image_genre_popping.png';
 import SoulImg from './image_genre_soul.png';
 import VoggingImg from './image_genre_voguing.png';
 import WaackingImg from './image_genre_waackgin.png';
-import KkukgirlImg from './image_kkukgirl.jpg';
+import KkukgirlImg from './image_kkukgirl.webp';
 import BannerImg from './img_banner_750.png';
 
 export {
