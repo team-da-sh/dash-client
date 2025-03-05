@@ -1,5 +1,7 @@
 import { defineProperties, createSprinkles } from '@vanilla-extract/sprinkles';
 
+const MIN_WIDTH = 375;
+
 const createNumberArray = (length: number) => {
   return Array.from({ length: length }, (_, i) => i + 1);
 };
@@ -11,8 +13,6 @@ const createEvenNumberArray = (length: number) => {
 const createPercentArray = () => {
   return Array.from({ length: 100 }, (_, i) => `${i + 1}%`);
 };
-
-const MIN_WIDTH = 375;
 
 const flexProperties = defineProperties({
   properties: {
