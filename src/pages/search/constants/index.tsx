@@ -1,5 +1,5 @@
 import { defaultSortTagProps } from '@/pages/search/types/defaultSortTag';
-import { IcArrowUnderGray } from '@/assets/svg';
+import IcArrowUnderGray from '@/shared/assets/svg/IcArrowUnderGray';
 
 export const DEFAULT_SORT_TAGS: defaultSortTagProps[] = [
   { label: '장르', icon: <IcArrowUnderGray width={18} /> },
