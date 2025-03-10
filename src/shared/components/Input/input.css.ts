@@ -24,12 +24,14 @@ export const inputStyle = recipe({
     },
   },
   variants: {
+    isTextFieldActivated: {
+      true: {
+        outline: `1px solid ${vars.colors.main04}`,
+      },
+    },
     isError: {
       true: {
         border: `1px solid ${vars.colors.alert03}`,
-      },
-      false: {
-        border: `1px solid ${vars.colors.main04}`,
       },
     },
     isSearch: {
@@ -42,6 +44,4 @@ export const inputStyle = recipe({
   },
 });
 
-export const focusStyle = style({
-  outline: `1px solid ${vars.colors.main04}`,
-});
+export const focusStyle = style({});
