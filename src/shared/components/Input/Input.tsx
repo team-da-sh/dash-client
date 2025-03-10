@@ -16,7 +16,7 @@ const Input = (
   const handleFocus = () => setIsFocused(true);
   const handleBlur = () => setIsFocused(false);
 
-  const hasValue = value !== undefined && value !== null && value !== '';
+  const ifTextFieldActivated = isFocused && !isError;
 
   return (
     <input
@@ -25,10 +25,10 @@ const Input = (
       className={clsx(
         className,
         style.inputStyle({
-          isError: hasValue ? isError : undefined,
+          ifTextFieldActivated,
+          isError,
           isSearch,
-        }),
-        { [style.focusStyle]: isFocused && !hasValue }
+        })
       )}
       onFocus={handleFocus}
       onBlur={handleBlur}
