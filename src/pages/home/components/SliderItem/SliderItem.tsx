@@ -30,7 +30,7 @@ const SliderItem = ({ imageUrl, description, description2, id, index }: SliderIt
   };
   return (
     <Flex position="relative" className={containerStyle}>
-      <img fetchPriority={index === 0 ? 'high' : 'low'} src={imageUrl} className={imageStyle} />
+      <img src={imageUrl} className={imageStyle} fetchPriority={index === 0 ? 'high' : 'low'}  loading="eager"/>
 
       <Head level="h2" tag="h2" color="white" className={descriptionStyle}>
         {description}
