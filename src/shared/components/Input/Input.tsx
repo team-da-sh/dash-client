@@ -16,7 +16,7 @@ const Input = (
   const handleFocus = () => setIsFocused(true);
   const handleBlur = () => setIsFocused(false);
 
-  const isTextFieldActivated = isFocused && !isError;
+  const isActive = isFocused && !isError;
 
   return (
     <input
@@ -25,7 +25,7 @@ const Input = (
       className={clsx(
         className,
         style.inputStyle({
-          isTextFieldActivated,
+          isActive,
           isError,
           isSearch,
         })
@@ -34,6 +34,7 @@ const Input = (
       onBlur={handleBlur}
       value={value}
       {...props}
+      aria-invalid={isError ? 'true' : 'false'}
     />
   );
 };

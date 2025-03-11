@@ -24,7 +24,7 @@ export const inputStyle = recipe({
     },
   },
   variants: {
-    isTextFieldActivated: {
+    isActive: {
       true: {
         outline: `1px solid ${vars.colors.main04}`,
       },
@@ -43,5 +43,3 @@ export const inputStyle = recipe({
     },
   },
 });
-
-export const focusStyle = style({});
