@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useGetClassList, useGetDancerList } from '@/pages/search/apis/queries';
 import SearchBar from '@/pages/search/components/SearchBar/SearchBar';
@@ -6,9 +6,11 @@ import TabContainer from '@/pages/search/components/TabContainer/TabContainer';
 import { DEFAULT_SORT_TAGS, SORT_LABELS } from '@/pages/search/constants/index';
 import { headerRootCutomStyle } from '@/pages/search/search.css';
 import { formatDateEndTime, formatDateStartTime } from '@/pages/search/utils';
+import { handleSearchChange, handleSearchIconClick, handleKeyDown } from '@/pages/search/utils/searchHandlers';
 import Flex from '@/shared/components/Flex/Flex';
 import Header from '@/shared/components/Header/Header';
 import { genreEngMapping, labelToSortOptionMap, levelEngMapping } from '@/shared/constants';
+import useDebounce from '@/shared/hooks/useDebounce';
 
 const Search = () => {
   const location = useLocation();
@@ -26,6 +28,8 @@ const Search = () => {
   const [endDate, setEndDate] = useState('');
   const [selectedLabel, setSelectedLabel] = useState<keyof typeof labelToSortOptionMap>(SORT_LABELS.LATEST);
 
+  const debouncedSearchValue = useDebounce({ value: searchValue, delay: 500 });
+
   const sortOption = labelToSortOptionMap[selectedLabel];
 
   const { data: dancerList, error } = useGetDancerList({
@@ -41,13 +45,11 @@ const Search = () => {
     sortOption,
   });
 
-  const handleSearchChange = (value: string) => {
-    setSearchValue(value);
-  };
-
-  const handleSearchIconClick = () => {
-    setSubmittedSearchValue(searchValue);
-  };
+  useEffect(() => {
+    if (debouncedSearchValue !== submittedSearchValue) {
+      setSubmittedSearchValue(debouncedSearchValue);
+    }
+  }, [debouncedSearchValue, submittedSearchValue]);
 
   return (
     <Flex>
@@ -55,8 +57,9 @@ const Search = () => {
         <Header.BackIcon />
         <SearchBar
           searchValue={searchValue}
-          handleSearchChange={handleSearchChange}
-          handleSearchIconClick={handleSearchIconClick}
+          handleSearchChange={handleSearchChange(setSearchValue)}
+          handleSearchIconClick={handleSearchIconClick(setSubmittedSearchValue, searchValue)}
+          handleKeyDown={handleKeyDown(setSubmittedSearchValue, searchValue)}
         />
       </Header.Root>
 

@@ -9,18 +9,13 @@ interface SearchBarProps {
   searchValue: string;
   handleSearchChange: (value: string) => void;
   handleSearchIconClick: () => void;
+  handleKeyDown: (event: React.KeyboardEvent<HTMLInputElement>) => void;
 }
 
 const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(
-  ({ searchValue, handleSearchChange, handleSearchIconClick }, ref) => {
+  ({ searchValue, handleSearchChange, handleSearchIconClick, handleKeyDown }, ref) => {
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       handleSearchChange(event.target.value);
-    };
-
-    const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-      if (event.key === 'Enter') {
-        handleSearchIconClick();
-      }
     };
 
     return (
