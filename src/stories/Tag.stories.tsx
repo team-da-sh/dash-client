@@ -1,7 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import IcCalendarcheckColor3D24 from '@/shared/assets/svg/IcCalendarcheckColor3D24';
 import IcCalendarcheckMono3D24 from '@/shared/assets/svg/IcCalendarcheckMono3D24';
 import Tag from '@/shared/components/Tag/Tag';
+
+import { lazy } from "react";
+
+const IcCalendarcheckColor3D24 = lazy(() => import('@/shared/assets/svg/IcCalendarcheckColor3D24'));
 
 const meta = {
   title: 'Common/Tag',

@@ -1,26 +1,29 @@
 // Import Swiper styles
-import ChoreohongImg from 'public/images/image_chorehong.jpeg';
-import KkukgirlImg from 'public/images/image_kkukgirl.jpg';
-import BannerImg from 'public/images/img_banner_750.png';
 import { Autoplay, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SliderItem from '@/pages/home/components/SliderItem/SliderItem';
 
 const ADVERTISEMENTS = [
   {
-    imageUrl: KkukgirlImg,
+    imageUrl: '/images/image_kkukgirl.jpg',
     description: `5주 집중 커리큘럼, 스걸파 출연 댄서의 `,
     description2: '피메일 힙합 기본기 튼튼하게 다지기',
     id: 25,
   },
-  { imageUrl: ChoreohongImg, description: '코레홍과 함께하는', description2: 'NMIXX-DASH 코레오그래피', id: 24 },
+  { 
+    imageUrl: '/images/image_chorehong.jpeg',
+    description: '코레홍과 함께하는', 
+    description2: 'NMIXX-DASH 코레오그래피', 
+    id: 24 
+  },
   {
-    imageUrl: BannerImg,
+    imageUrl: '/images/img_banner_750.png',
     description: '알고 싶던 댄서나 관심있는 클래스를 ',
     description2: '한 눈에 모아볼 수 있어요!',
     id: 0,
   },
 ];
+
 const HomeCarousel = () => {
   return (
     <Swiper

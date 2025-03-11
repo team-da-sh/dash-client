@@ -1,4 +1,4 @@
-import defaultProfile from 'public/images/image_profile_basic.png';
+// import defaultProfile from 'public/images/image_profile_basic.png';
 import { useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { usePostOnboard } from '@/pages/onboarding/apis/queries';
@@ -38,7 +38,7 @@ const OnboardingFunnel = ({ currentStep, Funnel, setStep, Step }: OnboardingFunn
     genres: [] as GenreTypes[],
     nickname: '',
     level: null,
-    profileImageUrl: defaultProfile,
+    profileImageUrl: '/images/image_profile_basic.png',
   });
 
   const [isNicknameError, setIsNicknameError] = useState(false);

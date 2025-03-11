@@ -1,9 +1,8 @@
+import { lazy, Suspense } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as styles from '@/pages/home/components/TopSection/topSection.css';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import IcArrowRightGray0614 from '@/shared/assets/svg/IcArrowRightGray0614';
-import IcCalendarcheckColor3D24 from '@/shared/assets/svg/IcCalendarcheckColor3D24';
-import IcCalendarcheckMono3D24 from '@/shared/assets/svg/IcCalendarcheckMono3D24';
 import IcClose from '@/shared/assets/svg/IcClose';
 import Divider from '@/shared/components/Divider/Divider';
 import Flex from '@/shared/components/Flex/Flex';
@@ -12,6 +11,9 @@ import Tag from '@/shared/components/Tag/Tag';
 import Text from '@/shared/components/Text/Text';
 import { notify } from '@/shared/components/Toast/Toast';
 import { MyPageProps } from '@/shared/types/myPageTypes';
+
+const IcCalendarcheckColor3D24 = lazy(() => import('@/shared/assets/svg/IcCalendarcheckColor3D24'));
+const IcCalendarcheckMono3D24 = lazy(() => import('@/shared/assets/svg/IcCalendarcheckMono3D24'));
 
 interface TopSectionProps {
   userData: MyPageProps;
@@ -40,7 +42,9 @@ const TopSection = ({ userData, onClose, isInstructor }: TopSectionProps) => {
 
     return (
       <>
-        <CalendarIcon width={24} height={24} />
+        <Suspense fallback={<div>Loading...</div>}>
+          <CalendarIcon width={24} height={24} />
+        </Suspense>
         {isInstructor ? '클래스 개설 가능' : '클래스 개설 불가'}
       </>
     );
@@ -77,7 +81,9 @@ const TopSection = ({ userData, onClose, isInstructor }: TopSectionProps) => {
         {/* 권한 확인할 수 있는 태그 */}
         <Flex marginTop="1.2rem" gap="0.8rem">
           <Tag hasAuth={true} size="mypage">
-            <IcCalendarcheckColor3D24 width={24} height={24} />
+            <Suspense fallback={<div>Loading...</div>}>
+              <IcCalendarcheckColor3D24 width={24} height={24} />
+            </Suspense>
             클래스 신청 가능
           </Tag>
           <Tag hasAuth={isInstructor} size="mypage">
