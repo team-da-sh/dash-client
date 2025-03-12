@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Footer from '@/pages/home/components/Footer/Footer';
 import HomeCarousel from '@/pages/home/components/HomeCarousel/HomeCarousel';
@@ -13,6 +13,20 @@ import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { isLoggedIn } from '@/shared/utils/authUtil';
 import { useIntersect } from '@/shared/utils/useIntersect';
 
+const preLoad = (arr: string[]) => {
+  arr.forEach((url: string) => {
+    const image = new Image();
+    image.src = url;
+  });
+};
+const preloadImage = (url: string) => {
+  const link = document.createElement('link');
+  link.rel = 'preload';
+  link.as = 'image';
+  link.href = url;
+  document.head.appendChild(link);
+};
+// preloadImage('public/images/image_kkukgirl.webp');
 const Home = () => {
   const navigate = useNavigate();
 

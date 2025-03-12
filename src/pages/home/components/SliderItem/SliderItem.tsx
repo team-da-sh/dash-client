@@ -28,9 +28,10 @@ const SliderItem = ({ imageUrl, description, description2, id, index }: SliderIt
     }
     navigate(ROUTES_CONFIG.class.path(`${id}`));
   };
+  // fetchPriority={index === 0 ? 'high' : 'low'} loading="eager"
   return (
     <Flex position="relative" className={containerStyle}>
-      <img src={imageUrl} className={imageStyle} fetchPriority={index === 0 ? 'high' : 'low'}  loading="eager"/>
+      <img src={imageUrl} className={imageStyle} />
 
       <Head level="h2" tag="h2" color="white" className={descriptionStyle}>
         {description}
