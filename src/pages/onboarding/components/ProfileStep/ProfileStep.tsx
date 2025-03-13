@@ -1,4 +1,4 @@
-// import defaultProfile from 'public/images/image_profile_basic.png';
+import defaultProfile from 'public/images/image_profile_basic.png';
 import { icCameraStyle, inputStyle, previewImgStyle } from '@/pages/onboarding/components/ProfileStep/profileStep.css';
 import { INFO_KEY, MAX_NICKNAME_LENGTH } from '@/pages/onboarding/constants';
 import { onboardInfoTypes } from '@/pages/onboarding/types/onboardInfoTypes';
@@ -65,9 +65,7 @@ const ProfileStep = ({ name, nickname, isNicknameError, changeIsNicknameError, o
           justify="center"
           width="100%"
           onClick={handleUploaderClick}
-          style={{ 
-            backgroundImage: `url(${previewImg || '/images/image_profile_basic.png'})`
-          }}
+          style={previewImg ? { backgroundImage: `url(${previewImg})` } : { backgroundImage: `url(${defaultProfile})` }}
           className={previewImgStyle({ hasImage: !!previewImg })}>
           <IcCameraMain0624 width={24} height={24} className={icCameraStyle} />
           <input

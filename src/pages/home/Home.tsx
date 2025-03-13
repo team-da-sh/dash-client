@@ -36,7 +36,7 @@ const Home = () => {
     <>
       <div className={`${overlayStyle} ${showMyPage ? overlayActiveStyle : ''}`} />
       {showMyPage && (
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<div></div>}>
           <MyPage showMyPage={showMyPage} onClose={handleCloseMyPageClick} />
         </Suspense>
       )}

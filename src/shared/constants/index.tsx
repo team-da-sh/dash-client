@@ -21,7 +21,7 @@ const IcLevelAdvanced = lazy(() => import('@/shared/assets/svg/IcLevelAdvanced')
 export const LEVEL = [
   {
     icon: (
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<div></div>}>
         <IcLevelStarter width={36} />
       </Suspense>
     ),
@@ -30,7 +30,7 @@ export const LEVEL = [
   },
   {
     icon: (
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<div></div>}>
         <IcLevelBasic width={36} />
       </Suspense>
     ),
@@ -39,7 +39,7 @@ export const LEVEL = [
   },
   {
     icon: (
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<div></div>}>
         <IcLevelIntermediate width={36} />
       </Suspense>
     ),
@@ -48,7 +48,7 @@ export const LEVEL = [
   },
   {
     icon: (
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<div></div>}>
         <IcLevelAdvanced width={36} />
       </Suspense>
     ),

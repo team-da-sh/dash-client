@@ -33,7 +33,7 @@ const Error = () => {
           <Text tag="b7">다시 한 번 시도하거나 홈으로 이동해 주세요.</Text>
         </Flex>
       </Flex>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<div></div>}>
         <IcError />
       </Suspense>
       <BoxButton className={boxButtonStyle} onClick={handleHomeNavigation}>
