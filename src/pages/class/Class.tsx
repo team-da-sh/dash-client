@@ -7,7 +7,7 @@ import ClassInfoWrapper from '@/pages/class/components/ClassInfoWrapper/ClassInf
 import TabWrapper from '@/pages/class/components/TabWrapper/TabWrapper';
 import Error from '@/pages/error/Error';
 import Divider from '@/shared/components/Divider/Divider';
-import { useIntersectCallback } from '@/shared/utils/useIntersectCallback';
+import { useIntersectCallback } from '@/shared/hooks/useIntersectCallback';
 
 const Class = () => {
   const { id } = useParams<{ id: string }>();

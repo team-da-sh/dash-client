@@ -10,7 +10,7 @@ import Head from '@/shared/components/Head/Head';
 import Tag from '@/shared/components/Tag/Tag';
 import Text from '@/shared/components/Text/Text';
 import { genreMapping } from '@/shared/constants/index';
-import { useIntersectCallback } from '@/shared/utils/useIntersectCallback';
+import { useIntersectCallback } from '@/shared/hooks/useIntersectCallback';
 
 const Dancer = () => {
   const { id } = useParams<{ id: string }>();
