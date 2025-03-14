@@ -1,7 +1,3 @@
-// Import Swiper styles
-// import ChoreohongImg from 'public/images/image_chorehong.jpeg';
-// import KkukgirlImg from 'public/images/image_kkukgirl.jpg';
-// import BannerImg from 'public/images/img_banner_750.png';
 import ChoreohongImg from 'public/images/image_chorehong.webp';
 import KkukgirlImg from 'public/images/image_kkukgirl.webp';
 import BannerImg from 'public/images/img_banner_750.webp';
