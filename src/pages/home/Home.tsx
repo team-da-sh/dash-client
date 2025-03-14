@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Footer from '@/pages/home/components/Footer/Footer';
 import HomeCarousel from '@/pages/home/components/HomeCarousel/HomeCarousel';
@@ -10,24 +10,18 @@ import RecommendationLessons from '@/pages/home/components/RecommendationLessons
 import UpcomingLessones from '@/pages/home/components/UpcomingLessons/UpcomingLessons';
 import { carouselContainerStyle, overlayActiveStyle, overlayStyle } from '@/pages/home/home.css';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
+import { useIntersect } from '@/shared/hooks/useIntersect';
 import { isLoggedIn } from '@/shared/utils/authUtil';
-import { useIntersect } from '@/shared/utils/useIntersect';
 
-const preLoad = (arr: string[]) => {
-  arr.forEach((url: string) => {
-    const image = new Image();
-    image.src = url;
-  });
+const images = 'public/images/image_kkukgirl.webp';
+
+const preload = (imageArray: string) => {
+  const img = new Image();
+  img.src = imageArray;
 };
-const preloadImage = (url: string) => {
-  const link = document.createElement('link');
-  link.rel = 'preload';
-  link.as = 'image';
-  link.href = url;
-  document.head.appendChild(link);
-};
-// preloadImage('public/images/image_kkukgirl.webp');
+
 const Home = () => {
+  preload(images);
   const navigate = useNavigate();
 
   const [targetRef, isVisible] = useIntersect(false);
