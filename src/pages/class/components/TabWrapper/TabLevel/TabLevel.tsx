@@ -7,8 +7,7 @@ import {
 } from '@/pages/class/components/TabWrapper/TabLevel/tabLevel.css';
 import { LessonDetailResponse } from '@/pages/class/types/api';
 import IcQuesitonmark from '@/shared/assets/svg/IcQuesitonmark';
-// import IcLevelStarter from '@/shared/assets/svg/IcLevelStarter';
-// import IcSparkleMain20 from '@/shared/assets/svg/IcSparkleMain20';
+
 import Flex from '@/shared/components/Flex/Flex';
 import Head from '@/shared/components/Head/Head';
 import Text from '@/shared/components/Text/Text';
