@@ -6,13 +6,8 @@ const createNumberArray = (length: number) => {
   return Array.from({ length: length }, (_, i) => i + 1);
 };
 
-const createEvenNumberArray = (length: number) => {
-  return Array.from({ length: length }, (_, i) => 2 * (i + 1));
-};
-
-const createPercentArray = () => {
-  return Array.from({ length: 100 }, (_, i) => `${i + 1}%`);
-};
+const numberArray = createNumberArray(MIN_WIDTH);
+const percentArray = Array.from({ length: 100 }, (_, i) => `${i + 1}%`);
 
 const flexProperties = defineProperties({
   properties: {
@@ -23,23 +18,23 @@ const flexProperties = defineProperties({
     flexGrow: [0, 1],
     flexShrink: [0, 1],
     flexWrap: ['nowrap', 'wrap', 'wrap-reverse'],
-    gap: createEvenNumberArray(50),
+    gap: numberArray,
   },
 });
 
 const layoutProperties = defineProperties({
   properties: {
     position: ['absolute', 'fixed', 'relative', 'static', 'sticky'],
-    width: [...createNumberArray(MIN_WIDTH), ...createPercentArray()],
-    height: [...createNumberArray(MIN_WIDTH), ...createPercentArray()],
-    marginTop: createNumberArray(MIN_WIDTH),
-    marginBottom: createNumberArray(MIN_WIDTH),
-    marginRight: createNumberArray(MIN_WIDTH),
-    marginLeft: createNumberArray(MIN_WIDTH),
-    paddingTop: createNumberArray(MIN_WIDTH),
-    paddingBottom: createNumberArray(MIN_WIDTH),
-    paddingRight: createNumberArray(MIN_WIDTH),
-    paddingLeft: createNumberArray(MIN_WIDTH),
+    width: [...numberArray, ...percentArray],
+    height: [...numberArray, ...percentArray],
+    marginTop: numberArray,
+    marginBottom: numberArray,
+    marginRight: numberArray,
+    marginLeft: numberArray,
+    paddingTop: numberArray,
+    paddingBottom: numberArray,
+    paddingRight: numberArray,
+    paddingLeft: numberArray,
   },
   shorthands: {
     p: ['paddingTop', 'paddingRight', 'paddingBottom', 'paddingLeft'],
