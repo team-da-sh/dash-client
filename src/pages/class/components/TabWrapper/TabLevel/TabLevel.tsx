@@ -31,7 +31,7 @@ const TabLevel = ({ lessonData }: { lessonData: LessonDetailResponse }) => {
         <Card>
           <Flex gap="0.8rem" align="center">
             {levelData?.icon || (
-              <Suspense fallback={<div></div>}>
+              <Suspense fallback={<div>Loading...</div>}>
                 <IcLevelStarter width={'3.6rem'} />{' '}
               </Suspense>
             )}
@@ -54,7 +54,7 @@ const TabLevel = ({ lessonData }: { lessonData: LessonDetailResponse }) => {
       </Flex>
       <Flex direction="column" gap="1.2rem">
         <Flex justify="flexStart" align="center" gap="0.4rem">
-          <Suspense fallback={<div></div>}>
+          <Suspense fallback={<div>Loading...</div>}>
             <IcSparkleMain20 width={'2.4rem'} />
           </Suspense>
           <Head level="h5" tag="h6">

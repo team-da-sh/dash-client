@@ -59,7 +59,7 @@ const TabLocation = ({ lessonData }: { lessonData: LessonDetailResponse }) => {
                 </Flex>
               </Flex>
             </Flex>
-            <Suspense fallback={<div></div>}>
+            <Suspense fallback={<div>Loading...</div>}>
               <IcLocation60 width={'6rem'} />
             </Suspense>
           </Flex>

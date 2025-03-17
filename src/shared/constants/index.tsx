@@ -1,7 +1,3 @@
-// import IcLevelAdvanced from '../assets/svg/IcLevelAdvanced';
-// import IcLevelBasic from '../assets/svg/IcLevelBasic';
-// import IcLevelIntermediate from '../assets/svg/IcLevelIntermediate';
-// import IcLevelStarter from '../assets/svg/IcLevelStarter';
 import { lazy, Suspense } from 'react';
 import TabIntro from '@/pages/class/components/TabWrapper/TabIntro/TabIntro';
 import TabLevel from '@/pages/class/components/TabWrapper/TabLevel/TabLevel';
@@ -21,7 +17,7 @@ const IcLevelAdvanced = lazy(() => import('@/shared/assets/svg/IcLevelAdvanced')
 export const LEVEL = [
   {
     icon: (
-      <Suspense fallback={<div></div>}>
+      <Suspense fallback={<div>Loading...</div>}>
         <IcLevelStarter width={36} />
       </Suspense>
     ),
@@ -30,7 +26,7 @@ export const LEVEL = [
   },
   {
     icon: (
-      <Suspense fallback={<div></div>}>
+      <Suspense fallback={<div>Loading...</div>}>
         <IcLevelBasic width={36} />
       </Suspense>
     ),
@@ -39,7 +35,7 @@ export const LEVEL = [
   },
   {
     icon: (
-      <Suspense fallback={<div></div>}>
+      <Suspense fallback={<div>Loading...</div>}>
         <IcLevelIntermediate width={36} />
       </Suspense>
     ),
@@ -48,7 +44,7 @@ export const LEVEL = [
   },
   {
     icon: (
-      <Suspense fallback={<div></div>}>
+      <Suspense fallback={<div>Loading...</div>}>
         <IcLevelAdvanced width={36} />
       </Suspense>
     ),

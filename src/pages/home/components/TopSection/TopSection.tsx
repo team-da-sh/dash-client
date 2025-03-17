@@ -42,7 +42,7 @@ const TopSection = ({ userData, onClose, isInstructor }: TopSectionProps) => {
 
     return (
       <>
-        <Suspense fallback={<div></div>}>
+        <Suspense fallback={<div>Loading...</div>}>
           <CalendarIcon width={24} height={24} />
         </Suspense>
         {isInstructor ? '클래스 개설 가능' : '클래스 개설 불가'}
@@ -81,7 +81,7 @@ const TopSection = ({ userData, onClose, isInstructor }: TopSectionProps) => {
         {/* 권한 확인할 수 있는 태그 */}
         <Flex marginTop="1.2rem" gap="0.8rem">
           <Tag hasAuth={true} size="mypage">
-            <Suspense fallback={<div></div>}>
+            <Suspense fallback={<div>Loading...</div>}>
               <IcCalendarcheckColor3D24 width={24} height={24} />
             </Suspense>
             클래스 신청 가능
