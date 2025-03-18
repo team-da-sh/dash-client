@@ -24,18 +24,14 @@ export const inputStyle = recipe({
     },
   },
   variants: {
-    isActive: {
-      true: {
+    defineInputState: {
+      focus: {
         outline: `1px solid ${vars.colors.main04}`,
       },
-    },
-    isError: {
-      true: {
+      error: {
         border: `1px solid ${vars.colors.alert03}`,
       },
-    },
-    isSearch: {
-      true: {
+      search: {
         borderRadius: '90px',
         padding: '1rem 4rem 1rem 4.6rem',
         ...vars.fonts.b2,

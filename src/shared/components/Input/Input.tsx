@@ -16,7 +16,21 @@ const Input = (
   const handleFocus = () => setIsFocused(true);
   const handleBlur = () => setIsFocused(false);
 
-  const isActive = isFocused && !isError;
+  // const isActive = isFocused && !isError;
+
+  const defineInputState = (isError?: boolean, isFocused?: boolean, isSearch?: boolean) => {
+    if (isError) {
+      return 'error';
+    }
+
+    if (isSearch) {
+      return 'search';
+    } else if (isFocused) {
+      return 'focus';
+    }
+  };
+
+  const inputState = defineInputState(isError, isFocused, isSearch);
 
   return (
     <input
@@ -25,9 +39,9 @@ const Input = (
       className={clsx(
         className,
         style.inputStyle({
-          isActive,
-          isError,
-          isSearch,
+          defineInputState: inputState,
+          // isError,
+          // isSearch,
         })
       )}
       onFocus={handleFocus}
