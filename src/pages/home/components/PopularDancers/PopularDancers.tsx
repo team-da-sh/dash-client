@@ -17,7 +17,7 @@ const PopularDancers = () => {
       <Head level="h2" tag="h4" className={titleStyle}>
         가장 핫한 댄서들만 모아봤어요
       </Head>
-      <Flex tag="ul" gap="0.8rem" marginTop="2rem" className={containerStyle}>
+      <Flex direction='column' position='fixed'>
         {data?.teachers.map((data) => (
           <DancerItem
             key={data.id}
