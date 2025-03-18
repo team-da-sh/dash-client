@@ -8,6 +8,7 @@ export const useGetDancerList = (params: { keyword?: string }): UseQueryResult<D
     queryFn: async () => {
       return await getDancerList(params);
     },
+    placeholderData: (prev) => prev,
   });
 };
 
@@ -17,5 +18,6 @@ export const useGetClassList = (params: ClassListParams): UseQueryResult<ClassLi
     queryFn: async () => {
       return await getClassList(params);
     },
+    placeholderData: (prev) => prev,
   });
 };

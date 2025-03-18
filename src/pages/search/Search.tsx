@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useGetClassList, useGetDancerList } from '@/pages/search/apis/queries';
 import SearchBar from '@/pages/search/components/SearchBar/SearchBar';
@@ -6,7 +6,7 @@ import TabContainer from '@/pages/search/components/TabContainer/TabContainer';
 import { DEFAULT_SORT_TAGS, SORT_LABELS } from '@/pages/search/constants/index';
 import { headerRootCutomStyle } from '@/pages/search/search.css';
 import { formatDateEndTime, formatDateStartTime } from '@/pages/search/utils';
-import { handleSearchChange, handleSearchIconClick, handleKeyDown } from '@/pages/search/utils/searchHandlers';
+import { handleSearchChange } from '@/pages/search/utils/searchHandlers';
 import Flex from '@/shared/components/Flex/Flex';
 import Header from '@/shared/components/Header/Header';
 import { genreEngMapping, labelToSortOptionMap, levelEngMapping } from '@/shared/constants';
@@ -22,7 +22,7 @@ const Search = () => {
   }
 
   const [searchValue, setSearchValue] = useState('');
-  const [submittedSearchValue, setSubmittedSearchValue] = useState('');
+
   const [level, setLevel] = useState<string | null>(null);
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
@@ -33,11 +33,11 @@ const Search = () => {
   const sortOption = labelToSortOptionMap[selectedLabel];
 
   const { data: dancerList, error } = useGetDancerList({
-    keyword: submittedSearchValue,
+    keyword: debouncedSearchValue,
   });
 
   const { data: classList } = useGetClassList({
-    keyword: submittedSearchValue,
+    keyword: debouncedSearchValue,
     genre: genre ? genreEngMapping[genre] : undefined,
     level: level ? levelEngMapping[level] : undefined,
     startDate: formatDateStartTime(startDate),
@@ -45,22 +45,11 @@ const Search = () => {
     sortOption,
   });
 
-  useEffect(() => {
-    if (debouncedSearchValue !== submittedSearchValue) {
-      setSubmittedSearchValue(debouncedSearchValue);
-    }
-  }, [debouncedSearchValue, submittedSearchValue]);
-
   return (
     <Flex>
       <Header.Root className={headerRootCutomStyle} isColor={true}>
         <Header.BackIcon />
-        <SearchBar
-          searchValue={searchValue}
-          handleSearchChange={handleSearchChange(setSearchValue)}
-          handleSearchIconClick={handleSearchIconClick(setSubmittedSearchValue, searchValue)}
-          handleKeyDown={handleKeyDown(setSubmittedSearchValue, searchValue)}
-        />
+        <SearchBar searchValue={searchValue} handleSearchChange={handleSearchChange(setSearchValue)} />
       </Header.Root>
 
       <TabContainer
