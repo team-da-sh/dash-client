@@ -1,11 +1,13 @@
+import { lazy, Suspense } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { boxButtonStyle } from '@/pages/error/error.css';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import IcError from '@/shared/assets/svg/IcError';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import Flex from '@/shared/components/Flex/Flex';
 import Head from '@/shared/components/Head/Head';
 import Text from '@/shared/components/Text/Text';
+
+const IcError = lazy(() => import('@/shared/assets/svg/IcError'));
 
 const Error = () => {
   const navigate = useNavigate();
@@ -31,7 +33,9 @@ const Error = () => {
           <Text tag="b7">다시 한 번 시도하거나 홈으로 이동해 주세요.</Text>
         </Flex>
       </Flex>
-      <IcError />
+      <Suspense fallback={<div>Loading...</div>}>
+        <IcError />
+      </Suspense>
       <BoxButton className={boxButtonStyle} onClick={handleHomeNavigation}>
         홈으로 이동
       </BoxButton>
