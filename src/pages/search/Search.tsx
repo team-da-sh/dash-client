@@ -6,9 +6,11 @@ import TabContainer from '@/pages/search/components/TabContainer/TabContainer';
 import { DEFAULT_SORT_TAGS, SORT_LABELS } from '@/pages/search/constants/index';
 import { headerRootCutomStyle } from '@/pages/search/search.css';
 import { formatDateEndTime, formatDateStartTime } from '@/pages/search/utils';
+import { handleSearchChange } from '@/pages/search/utils/searchHandlers';
 import Flex from '@/shared/components/Flex/Flex';
 import Header from '@/shared/components/Header/Header';
 import { genreEngMapping, labelToSortOptionMap, levelEngMapping } from '@/shared/constants';
+import useDebounce from '@/shared/hooks/useDebounce';
 
 const Search = () => {
   const location = useLocation();
@@ -20,20 +22,22 @@ const Search = () => {
   }
 
   const [searchValue, setSearchValue] = useState('');
-  const [submittedSearchValue, setSubmittedSearchValue] = useState('');
+
   const [level, setLevel] = useState<string | null>(null);
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const [selectedLabel, setSelectedLabel] = useState<keyof typeof labelToSortOptionMap>(SORT_LABELS.LATEST);
 
+  const debouncedSearchValue = useDebounce({ value: searchValue, delay: 500 });
+
   const sortOption = labelToSortOptionMap[selectedLabel];
 
   const { data: dancerList, error } = useGetDancerList({
-    keyword: submittedSearchValue,
+    keyword: debouncedSearchValue,
   });
 
   const { data: classList } = useGetClassList({
-    keyword: submittedSearchValue,
+    keyword: debouncedSearchValue,
     genre: genre ? genreEngMapping[genre] : undefined,
     level: level ? levelEngMapping[level] : undefined,
     startDate: formatDateStartTime(startDate),
@@ -41,23 +45,11 @@ const Search = () => {
     sortOption,
   });
 
-  const handleSearchChange = (value: string) => {
-    setSearchValue(value);
-  };
-
-  const handleSearchIconClick = () => {
-    setSubmittedSearchValue(searchValue);
-  };
-
   return (
     <Flex>
       <Header.Root className={headerRootCutomStyle} isColor={true}>
         <Header.BackIcon />
-        <SearchBar
-          searchValue={searchValue}
-          handleSearchChange={handleSearchChange}
-          handleSearchIconClick={handleSearchIconClick}
-        />
+        <SearchBar searchValue={searchValue} handleSearchChange={handleSearchChange(setSearchValue)} />
       </Header.Root>
 
       <TabContainer
