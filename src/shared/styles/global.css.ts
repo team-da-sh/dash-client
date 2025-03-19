@@ -9,6 +9,14 @@ globalStyle(':root', {
   },
 });
 
+// storybook의 경우는 모바일 view 적용 안되도록 처리
+globalStyle(':root:has(#storybook-root)', {
+  vars: {
+    '--min-width': 'auto',
+    '--max-width': 'auto',
+  },
+});
+
 globalStyle(':root', {
   vars: {
     '--swiper-theme-color': vars.colors.white,
