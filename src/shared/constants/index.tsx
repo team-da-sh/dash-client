@@ -1,3 +1,4 @@
+import { lazy, Suspense } from 'react';
 import TabIntro from '@/pages/class/components/TabWrapper/TabIntro/TabIntro';
 import TabLevel from '@/pages/class/components/TabWrapper/TabLevel/TabLevel';
 import TabLocationInfo from '@/pages/class/components/TabWrapper/TabLocation/TabLocation';
@@ -7,29 +8,46 @@ import TabEducation from '@/pages/dancer/components/TabWrapper/TabEducation/TabE
 import TabHistory from '@/pages/dancer/components/TabWrapper/TabExperience/TabExperience';
 import TabVideo from '@/pages/dancer/components/TabWrapper/TabVideo/TabVideo';
 import { DancerDetailResponse } from '@/pages/dancer/types/api';
-import IcLevelAdvanced from '../assets/svg/IcLevelAdvanced';
-import IcLevelBasic from '../assets/svg/IcLevelBasic';
-import IcLevelIntermediate from '../assets/svg/IcLevelIntermediate';
-import IcLevelStarter from '../assets/svg/IcLevelStarter';
+
+const IcLevelStarter = lazy(() => import('@/shared/assets/svg/IcLevelStarter'));
+const IcLevelBasic = lazy(() => import('@/shared/assets/svg/IcLevelBasic'));
+const IcLevelIntermediate = lazy(() => import('@/shared/assets/svg/IcLevelIntermediate'));
+const IcLevelAdvanced = lazy(() => import('@/shared/assets/svg/IcLevelAdvanced'));
 
 export const LEVEL = [
   {
-    icon: <IcLevelStarter width={36} />,
+    icon: (
+      <Suspense fallback={<div>Loading...</div>}>
+        <IcLevelStarter width={36} />
+      </Suspense>
+    ),
     title: '입문',
     description: '춤에 처음 도전해보는 초보 댄서예요',
   },
   {
-    icon: <IcLevelBasic width={36} />,
+    icon: (
+      <Suspense fallback={<div>Loading...</div>}>
+        <IcLevelBasic width={36} />
+      </Suspense>
+    ),
     title: '초급',
     description: '장르의 기본기를 본격적으로 배우고 싶어요',
   },
   {
-    icon: <IcLevelIntermediate width={36} />,
+    icon: (
+      <Suspense fallback={<div>Loading...</div>}>
+        <IcLevelIntermediate width={36} />
+      </Suspense>
+    ),
     title: '중급',
     description: '루틴과 함께 배우며 장르의 이해도를 높이고 싶어요',
   },
   {
-    icon: <IcLevelAdvanced width={36} />,
+    icon: (
+      <Suspense fallback={<div>Loading...</div>}>
+        <IcLevelAdvanced width={36} />
+      </Suspense>
+    ),
     title: '고급',
     description: '한계에 도전하며 나의 무브를 성장시키고 싶어요',
   },

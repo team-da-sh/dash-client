@@ -1,9 +1,8 @@
-import { useState } from 'react';
+import { lazy, Suspense, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Footer from '@/pages/home/components/Footer/Footer';
 import HomeCarousel from '@/pages/home/components/HomeCarousel/HomeCarousel';
 import HomeHeader from '@/pages/home/components/HomeHeader/HomeHeader';
-import MyPage from '@/pages/home/components/MyPage/MyPage';
 import PopularDancers from '@/pages/home/components/PopularDancers/PopularDancers';
 import PopularGenre from '@/pages/home/components/PopularGenre/PopularGenre';
 import RecommendationLessons from '@/pages/home/components/RecommendationLessons/RecommendationLessons';
@@ -19,6 +18,8 @@ const preload = (imageArray: string) => {
   const img = new Image();
   img.src = imageArray;
 };
+
+const MyPage = lazy(() => import('@/pages/home/components/MyPage/MyPage'));
 
 const Home = () => {
   preload(images);
@@ -42,7 +43,12 @@ const Home = () => {
   return (
     <>
       <div className={`${overlayStyle} ${showMyPage ? overlayActiveStyle : ''}`} />
-      <MyPage showMyPage={showMyPage} onClose={handleCloseMyPageClick} />
+      {showMyPage && (
+        <Suspense fallback={<div />}>
+          <MyPage showMyPage={showMyPage} onClose={handleCloseMyPageClick} />
+        </Suspense>
+      )}
+
       <HomeHeader isVisible={isVisible} onMyPageClick={handleMyPageClick} />
       <div ref={targetRef} className={carouselContainerStyle}>
         <HomeCarousel />

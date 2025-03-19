@@ -15,6 +15,7 @@ interface HomeHeaderProps {
 
 const HomeHeader = ({ isVisible, onMyPageClick }: HomeHeaderProps) => {
   const navigate = useNavigate();
+
   const handleSearchClick = () => {
     navigate(ROUTES_CONFIG.search.path);
   };

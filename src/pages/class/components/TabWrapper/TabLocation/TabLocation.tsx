@@ -1,3 +1,4 @@
+import { lazy, Suspense } from 'react';
 import Card from '@/pages/class/components/Card/Card';
 import {
   addressTitleStyle,
@@ -5,15 +6,16 @@ import {
   streetAddressStyle,
 } from '@/pages/class/components/TabWrapper/TabLocation/tabLocation.css';
 import { LessonDetailResponse } from '@/pages/class/types/api';
-import IcLocation60 from '@/shared/assets/svg/IcLocation60';
 import Flex from '@/shared/components/Flex/Flex';
 import Head from '@/shared/components/Head/Head';
 import Text from '@/shared/components/Text/Text';
 
+const IcLocation60 = lazy(() => import('@/shared/assets/svg/IcLocation60'));
+
 const TabLocation = ({ lessonData }: { lessonData: LessonDetailResponse }) => {
   const { location, streetAddress, streetDetailAddress, oldStreetAddress } = lessonData;
 
-  const isEmpty = !location || !streetAddress || !oldStreetAddress;
+  const isEmpty = !location || !oldStreetAddress;
 
   return (
     <Flex direction="column" justify="center" gap="1.2rem">
@@ -57,8 +59,9 @@ const TabLocation = ({ lessonData }: { lessonData: LessonDetailResponse }) => {
                 </Flex>
               </Flex>
             </Flex>
-
-            <IcLocation60 width={'6rem'} />
+            <Suspense fallback={<div>Loading...</div>}>
+              <IcLocation60 width={'6rem'} />
+            </Suspense>
           </Flex>
         </Card>
       )}
