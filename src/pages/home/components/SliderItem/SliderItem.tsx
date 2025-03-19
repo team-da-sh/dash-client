@@ -17,6 +17,7 @@ interface SliderItemProps {
   description: string;
   description2: string;
   id: number;
+  index: number;
 }
 
 const SliderItem = ({ imageUrl, description, description2, id }: SliderItemProps) => {

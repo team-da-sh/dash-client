@@ -1,7 +1,6 @@
-// Import Swiper styles
-import ChoreohongImg from 'public/images/image_chorehong.jpeg';
-import KkukgirlImg from 'public/images/image_kkukgirl.jpg';
-import BannerImg from 'public/images/img_banner_750.png';
+import ChoreohongImg from 'public/images/image_chorehong.webp';
+import KkukgirlImg from 'public/images/image_kkukgirl.webp';
+import BannerImg from 'public/images/img_banner_750.webp';
 import { Autoplay, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SliderItem from '@/pages/home/components/SliderItem/SliderItem';
@@ -21,7 +20,17 @@ const ADVERTISEMENTS = [
     id: 0,
   },
 ];
+
+const preLoad = (arr: string[]) => {
+  arr.forEach((url: string) => {
+    const image = new Image();
+    image.src = url;
+  });
+};
+
 const HomeCarousel = () => {
+  preLoad([KkukgirlImg]);
+
   return (
     <Swiper
       loop={true}
@@ -37,6 +46,7 @@ const HomeCarousel = () => {
         return (
           <SwiperSlide key={`${index}-${data.description}`}>
             <SliderItem
+              index={index}
               imageUrl={data.imageUrl}
               description={data.description}
               description2={data.description2}

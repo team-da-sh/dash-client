@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { ComponentPropsWithoutRef } from 'react';
+import { ComponentPropsWithRef, forwardRef } from 'react';
 import { headStyle } from '@/shared/components/Head/head.css';
 
 type HeadLevel = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
@@ -39,7 +39,7 @@ type HeadColor =
   | 'gray11'
   | 'black';
 
-export interface HeadProps extends ComponentPropsWithoutRef<'h1'> {
+export interface HeadProps extends ComponentPropsWithRef<'h1'> {
   level?: HeadLevel;
   tag?: HeadTag;
   color?: HeadColor;
@@ -54,14 +54,16 @@ const HeadTag = {
   h6: 'h6',
 } as const;
 
-const Head = ({ level = 'h3', tag = 'h3', color = 'black', className, ...props }: HeadProps) => {
-  const Tag = HeadTag[level];
+const Head = forwardRef<HTMLHeadingElement, HeadProps>(
+  ({ level = 'h3', tag = 'h3', color = 'black', className, ...props }, ref) => {
+    const Tag = HeadTag[level];
 
-  return (
-    <Tag className={clsx(className, headStyle({ tag: tag, color: color }))} {...props}>
-      {props.children}
-    </Tag>
-  );
-};
+    return (
+      <Tag className={clsx(className, headStyle({ tag: tag, color: color }))} ref={ref} {...props}>
+        {props.children}
+      </Tag>
+    );
+  }
+);
 
 export default Head;

@@ -9,12 +9,20 @@ import RecommendationLessons from '@/pages/home/components/RecommendationLessons
 import UpcomingLessones from '@/pages/home/components/UpcomingLessons/UpcomingLessons';
 import { carouselContainerStyle, overlayActiveStyle, overlayStyle } from '@/pages/home/home.css';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
+import { useIntersect } from '@/shared/hooks/useIntersect';
 import { isLoggedIn } from '@/shared/utils/authUtil';
-import { useIntersect } from '@/shared/utils/useIntersect';
+
+const images = 'public/images/image_kkukgirl.webp';
+
+const preload = (imageArray: string) => {
+  const img = new Image();
+  img.src = imageArray;
+};
 
 const MyPage = lazy(() => import('@/pages/home/components/MyPage/MyPage'));
 
 const Home = () => {
+  preload(images);
   const navigate = useNavigate();
 
   const [targetRef, isVisible] = useIntersect(false);
