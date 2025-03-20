@@ -1,11 +1,7 @@
 import { ChangeEvent, useRef, useState } from 'react';
-import { formatToISOString } from '@/utils/timeUtils';
-import { ONLY_NUMERIC } from '@/constants/regex';
-import { LocationTypes } from '../types';
-
-export interface RepresentImageUrlsTypes {
-  imageUrls: string;
-}
+import { LocationTypes, RepresentImageUrlsTypes } from '@/pages/instructor/classRegister/types';
+import { ONLY_NUMERIC } from '@/shared/constants/regex';
+import { formatToISOString } from '@/shared/utils/timeUtils';
 
 export const useClassRegisterForm = () => {
   const explainTextAreaRef = useRef<HTMLTextAreaElement>(null);

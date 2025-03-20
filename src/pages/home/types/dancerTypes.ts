@@ -1,4 +1,4 @@
-import { GenreTypes } from '@/pages/onboarding/types';
+import { GenreTypes } from '@/pages/onboarding/types/genreTypes';
 
 export type DancerTypes = {
   id: number;

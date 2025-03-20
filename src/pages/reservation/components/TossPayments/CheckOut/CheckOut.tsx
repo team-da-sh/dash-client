@@ -1,7 +1,7 @@
-import { loadTossPayments, ANONYMOUS } from '@tosspayments/tosspayments-sdk';
+import { ANONYMOUS, loadTossPayments } from '@tosspayments/tosspayments-sdk';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import * as styles from '@/pages/reservation/components/TossPayments/index.css';
+import * as styles from '@/pages/reservation/components/TossPayments/tossPayments.css';
 
 const generateRandomString = () => window.btoa(String(Math.random())).slice(0, 20);
 

@@ -1,6 +1,6 @@
 import { Meta, StoryFn } from '@storybook/react';
-import BoxButton from '@/components/BoxButton';
-import ClassCard from '@/components/ClassCard';
+import BoxButton from '@/shared/components/BoxButton/BoxButton';
+import ClassCard from '@/shared/components/ClassCard/ClassCard';
 
 export default {
   title: 'common/ClassCard',
