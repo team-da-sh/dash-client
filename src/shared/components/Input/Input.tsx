@@ -39,7 +39,7 @@ const Input = (
         {...props}
         aria-invalid={isError ? 'true' : 'false'}
       />
-      {rightAddOn ?? rightAddOn}
+      {rightAddOn}
     </div>
   );
 };
