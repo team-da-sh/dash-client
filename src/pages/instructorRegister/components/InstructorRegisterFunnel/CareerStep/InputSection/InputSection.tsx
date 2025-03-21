@@ -84,6 +84,7 @@ const InputSection = ({
         <Flex direction="column" gap="0.8rem" width="100%">
           {inputItems.map(({ id, value }) => (
             <Input
+              key={id}
               value={value}
               placeholder={placeholder}
               onChange={(e) => {
