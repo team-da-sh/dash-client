@@ -1,14 +1,15 @@
 import clsx from 'clsx';
-import { ForwardedRef, forwardRef, InputHTMLAttributes, useState } from 'react';
+import { ForwardedRef, forwardRef, InputHTMLAttributes, ReactNode, useState } from 'react';
 import * as style from '@/shared/components/Input/input.css';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   isError?: boolean;
   isSearch?: boolean;
+  rightAddOn?: ReactNode;
 }
 
 const Input = (
-  { isError, isSearch = false, className, value, ...props }: InputProps,
+  { isError, className, value, rightAddOn, ...props }: InputProps,
   ref: ForwardedRef<HTMLInputElement>
 ) => {
   const [isFocused, setIsFocused] = useState(false);
@@ -27,21 +28,19 @@ const Input = (
   const inputState = defineInputState(isError, isFocused);
 
   return (
-    <input
-      ref={ref}
-      type="text"
-      className={clsx(
-        className,
-        style.inputStyle({
-          defineInputState: inputState,
-        })
-      )}
-      onFocus={handleFocus}
-      onBlur={handleBlur}
-      value={value}
-      {...props}
-      aria-invalid={isError ? 'true' : 'false'}
-    />
+    <div className={style.containerStyle({ defineInputState: inputState })}>
+      <input
+        ref={ref}
+        type="text"
+        className={clsx(className, style.inputStyle)}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
+        value={value}
+        {...props}
+        aria-invalid={isError ? 'true' : 'false'}
+      />
+      {rightAddOn ?? rightAddOn}
+    </div>
   );
 };
 
