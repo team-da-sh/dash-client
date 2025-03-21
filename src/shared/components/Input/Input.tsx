@@ -16,21 +16,15 @@ const Input = (
   const handleFocus = () => setIsFocused(true);
   const handleBlur = () => setIsFocused(false);
 
-  // const isActive = isFocused && !isError;
-
-  const defineInputState = (isError?: boolean, isFocused?: boolean, isSearch?: boolean) => {
+  const defineInputState = (isError?: boolean, isFocused?: boolean) => {
     if (isError) {
       return 'error';
-    }
-
-    if (isSearch) {
-      return 'search';
     } else if (isFocused) {
       return 'focus';
     }
   };
 
-  const inputState = defineInputState(isError, isFocused, isSearch);
+  const inputState = defineInputState(isError, isFocused);
 
   return (
     <input
@@ -40,8 +34,6 @@ const Input = (
         className,
         style.inputStyle({
           defineInputState: inputState,
-          // isError,
-          // isSearch,
         })
       )}
       onFocus={handleFocus}

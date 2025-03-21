@@ -31,11 +31,6 @@ export const inputStyle = recipe({
       error: {
         border: `1px solid ${vars.colors.alert03}`,
       },
-      search: {
-        borderRadius: '90px',
-        padding: '1rem 4rem 1rem 4.6rem',
-        ...vars.fonts.b2,
-      },
     },
   },
 });
