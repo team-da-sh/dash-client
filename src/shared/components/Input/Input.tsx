@@ -4,7 +4,6 @@ import * as style from '@/shared/components/Input/input.css';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   isError?: boolean;
-  isSearch?: boolean;
   rightAddOn?: ReactNode;
 }
 

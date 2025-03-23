@@ -9,14 +9,20 @@ import IcXCircleGray from '@/shared/assets/svg/IcXCircleGray';
 import Flex from '@/shared/components/Flex/Flex';
 import Input from '@/shared/components/Input/Input';
 
-interface VideoLinkStepProps {
+interface VideoLinkStepPropTypes {
   videoUrls: string[];
   onInfoChange: <K extends keyof InstructorRegisterInfoTypes>(key: K, value: InstructorRegisterInfoTypes[K]) => void;
 }
 
-const VideoLinkStep = ({ videoUrls, onInfoChange }: VideoLinkStepProps) => {
+const VideoLinkStep = ({ videoUrls, onInfoChange }: VideoLinkStepPropTypes) => {
   const inputItems = videoUrls.map((value, id) => ({ id: id + 1, value }));
   const nextID = useRef<number>(inputItems.length + 1);
+
+  const handleInputChange = (id: number, e: React.ChangeEvent<HTMLInputElement>) => {
+    const updatedItems = inputItems.map((item) => (item.id === id ? { ...item, value: e.target.value } : item));
+    onItemsChange(updatedItems);
+  };
+
   const onItemsChange = (updatedItems: InputItemTypes[]) =>
     onInfoChange(
       INFO_KEY.VIDEO_URLS,
@@ -52,12 +58,7 @@ const VideoLinkStep = ({ videoUrls, onInfoChange }: VideoLinkStepProps) => {
         {inputItems.map(({ id, value }) => (
           <Input
             value={value}
-            onChange={(e) => {
-              const updatedItems = inputItems.map((item) =>
-                item.id === id ? { ...item, value: e.target.value } : item
-              );
-              onItemsChange(updatedItems);
-            }}
+            onChange={(e) => handleInputChange(id, e)}
             rightAddOn={value && <IcXCircleGray width={'2.4rem'} onClick={() => deleteItem(id)} />}
           />
         ))}
