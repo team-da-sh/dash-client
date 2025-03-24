@@ -24,7 +24,6 @@ import useImageUploader from '@/shared/hooks/useImageUploader';
 
 const ClassRegister = () => {
   const { isBottomSheetOpen, openBottomSheet, closeBottomSheet } = useBottomSheet();
-  // const [selectedLocation, setSelectedLocation] = useState<LocationTypes | null>(null);
   const navigate = useNavigate();
 
   const { mutate: classRegisterMutate } = usePostClassRegisterInfo();

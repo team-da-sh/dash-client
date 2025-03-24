@@ -6,15 +6,3 @@ export const addInputBoxStyle = style({
   height: '5.2rem',
   backgroundColor: vars.colors.gray01,
 });
-
-export const inputContainerStyle = style({
-  width: '100%',
-  position: 'relative',
-});
-
-export const inputIconStyle = style({
-  position: 'absolute',
-  right: '1.8rem',
-  top: '50%',
-  transform: 'translateY(-50%)',
-});

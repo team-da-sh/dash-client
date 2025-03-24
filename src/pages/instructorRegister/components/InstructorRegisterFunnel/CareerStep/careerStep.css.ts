@@ -23,10 +23,3 @@ export const inputContainerStyle = style({
   width: '100%',
   position: 'relative',
 });
-
-export const inputIconStyle = style({
-  position: 'absolute',
-  right: '1.8rem',
-  top: '50%',
-  transform: 'translateY(-50%)',
-});

@@ -3,8 +3,6 @@ import {
   addInputBoxStyle,
   careerFlexStyle,
   checkboxStyle,
-  inputContainerStyle,
-  inputIconStyle,
 } from '@/pages/instructorRegister/components/InstructorRegisterFunnel/CareerStep/careerStep.css';
 import BtnCheck from '@/shared/assets/svg/BtnCheck';
 import IcPlusGray0524 from '@/shared/assets/svg/IcPlusGray0524';
@@ -18,7 +16,7 @@ interface InputItemTypes {
   value: string;
 }
 
-interface InputSectionProps {
+interface InputSectionPropTypes {
   title: string;
   placeholder: string;
   icon: React.ReactNode;
@@ -36,7 +34,7 @@ const InputSection = ({
   onToggleActive,
   inputItems,
   onItemsChange,
-}: InputSectionProps) => {
+}: InputSectionPropTypes) => {
   const nextID = useRef<number>(inputItems.length + 1);
 
   const addItem = () => {
@@ -85,19 +83,18 @@ const InputSection = ({
       {!isActive && (
         <Flex direction="column" gap="0.8rem" width="100%">
           {inputItems.map(({ id, value }) => (
-            <div key={id} className={inputContainerStyle}>
-              <Input
-                value={value}
-                placeholder={placeholder}
-                onChange={(e) => {
-                  const updatedItems = inputItems.map((item) =>
-                    item.id === id ? { ...item, value: e.target.value } : item
-                  );
-                  onItemsChange(updatedItems);
-                }}
-              />
-              {value && <IcXCircleGray className={inputIconStyle} width={'2.4rem'} onClick={() => deleteItem(id)} />}
-            </div>
+            <Input
+              key={id}
+              value={value}
+              placeholder={placeholder}
+              onChange={(e) => {
+                const updatedItems = inputItems.map((item) =>
+                  item.id === id ? { ...item, value: e.target.value } : item
+                );
+                onItemsChange(updatedItems);
+              }}
+              rightAddOn={value && <IcXCircleGray width={'2.4rem'} onClick={() => deleteItem(id)} />}
+            />
           ))}
 
           <Flex justify="center" align="center" className={addInputBoxStyle} onClick={addItem}>

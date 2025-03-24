@@ -5,8 +5,6 @@ import {
   dividerStyle,
   locationItemContainerStyle,
   locationListContainerStyle,
-  searchInputContainerStyle,
-  searchInputIconStyle,
   selectedLocationContainerStyle,
 } from '@/pages/instructor/classRegister/components/ClassPlace/classPlace.css';
 import Description from '@/pages/instructor/classRegister/components/Description';
@@ -68,23 +66,17 @@ const ClassPlace = ({
             </Flex>
           ) : (
             <>
-              <div className={searchInputContainerStyle}>
-                <Input
-                  value={defaultPlace}
-                  onChange={handleDefaultPlace}
-                  placeholder="지번, 도로명, 건물명으로 검색해 주세요"
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter') {
-                      e.preventDefault();
-                    }
-                  }}
-                />
-                <IcSearchGray
-                  width={'2.4rem'}
-                  className={searchInputIconStyle}
-                  onClick={() => handleSubmitDefaultPlace()}
-                />
-              </div>
+              <Input
+                value={defaultPlace}
+                onChange={handleDefaultPlace}
+                placeholder="지번, 도로명, 건물명으로 검색해 주세요"
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    e.preventDefault();
+                  }
+                }}
+                rightAddOn={<IcSearchGray width={'2.4rem'} onClick={() => handleSubmitDefaultPlace()} />}
+              />
 
               {locationList && (
                 <Flex direction="column" gap="1rem" className={locationListContainerStyle}>

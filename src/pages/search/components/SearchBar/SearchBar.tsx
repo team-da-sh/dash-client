@@ -1,9 +1,7 @@
 import { forwardRef } from 'react';
-import { searchGrayStyle, xCircleGrayStyle } from '@/pages/search/components/SearchBar/searchBar.css';
+import { containerStyle, inputStyle } from '@/pages/search/components/SearchBar/searchBar.css';
 import IcSearchGray from '@/shared/assets/svg/IcSearchGray';
 import IcXCircleGray from '@/shared/assets/svg/IcXCircleGray';
-import Flex from '@/shared/components/Flex/Flex';
-import Input from '@/shared/components/Input/Input';
 
 interface SearchBarProps {
   searchValue: string;
@@ -16,17 +14,18 @@ const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(({ searchValue, h
   };
 
   return (
-    <Flex align="center" width="29.9rem" height="4.4rem" position="relative" margin="0 0 0 1.2rem">
-      <IcSearchGray className={searchGrayStyle} width={24} />
-      <Input
-        isSearch={true}
+    <div className={containerStyle}>
+      <IcSearchGray width={24} />
+      <input
+        type="text"
         ref={ref}
         value={searchValue}
         placeholder="장르나 댄서 네임을 검색해 보세요"
         onChange={handleInputChange}
+        className={inputStyle}
       />
-      <IcXCircleGray className={xCircleGrayStyle} width={24} onClick={() => handleSearchChange('')} />
-    </Flex>
+      <IcXCircleGray width={24} onClick={() => handleSearchChange('')} />
+    </div>
   );
 });
 
