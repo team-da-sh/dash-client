@@ -4,10 +4,11 @@ import Flex from '@/shared/components/Flex/Flex';
 import Head from '@/shared/components/Head/Head';
 
 const KakaoButton = () => {
-  const redirect_uri = 'http://localhost:5173/auth'; //Redirect URI
+  const redirect_uri = import.meta.env.VITE_KAKAO_REDIRECT_URI; //Redirect URI
 
   // auth 요청 URL
   const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${import.meta.env.VITE_REST_API_KEY}&redirect_uri=${redirect_uri}&response_type=code`;
+
   const handleLogin = () => {
     window.location.href = kakaoURL;
   };
