@@ -57,6 +57,7 @@ const VideoLinkStep = ({ videoUrls, onInfoChange }: VideoLinkStepPropTypes) => {
       <Flex direction="column" gap="0.8rem" width="100%">
         {inputItems.map(({ id, value }) => (
           <Input
+            key={id}
             value={value}
             onChange={(e) => handleInputChange(id, e)}
             rightAddOn={value && <IcXCircleGray width={'2.4rem'} onClick={() => deleteItem(id)} />}
