@@ -69,9 +69,9 @@ const InstructorRegisterFunnel = ({ currentStep, Funnel, Step, setStep }: Instru
           info.experiences.some((experience) => experience.trim().length > 0)
         );
       case 4:
-        return info.videoUrls[0]?.trim() !== '';
+        return info.videoUrls.filter((url) => url.trim().length > 0)[0]?.trim().length > 0;
       case 5:
-        return info.detail.trim() !== '' && info.detail.length >= 30;
+        return info.detail.trim().length > 0 && info.detail.length >= 30;
       case 6:
         return true;
       default:
