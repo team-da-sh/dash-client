@@ -86,7 +86,7 @@ const InputSection = ({
             <Input
               key={id}
               value={value}
-              placeholder={placeholder}
+              placeholder={id < 2 ? placeholder : undefined}
               onChange={(e) => {
                 const updatedItems = inputItems.map((item) =>
                   item.id === id ? { ...item, value: e.target.value } : item
