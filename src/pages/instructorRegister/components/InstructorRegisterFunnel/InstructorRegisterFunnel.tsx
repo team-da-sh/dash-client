@@ -15,14 +15,14 @@ import Completion from '@/shared/components/Completion/Completion';
 import useImageUploader from '@/shared/hooks/useImageUploader';
 import { setAccessToken, setRefreshToken } from '@/shared/utils/handleToken';
 
-interface InstructorRegisterFunnelProps {
+interface InstructorRegisterFunnelPropTypes {
   currentStep: number;
   Funnel: ({ children }: FunnelProps) => JSX.Element;
   setStep: (step: number) => void;
   Step: ({ children }: StepProps) => JSX.Element;
 }
 
-const InstructorRegisterFunnel = ({ currentStep, Funnel, Step, setStep }: InstructorRegisterFunnelProps) => {
+const InstructorRegisterFunnel = ({ currentStep, Funnel, Step, setStep }: InstructorRegisterFunnelPropTypes) => {
   const [info, setInfo] = useState({
     imageUrls: '',
     instagram: '',
@@ -57,28 +57,31 @@ const InstructorRegisterFunnel = ({ currentStep, Funnel, Step, setStep }: Instru
     setInfo((prev) => ({ ...prev, [key]: value }));
   };
 
+  // 버튼 활성화 조건 체크 함수 (step 별로)
+  const hasImage = () => !!info.imageUrls;
+  const hasSocialLinks = () => info.instagram.length > 0 || info.youtube.length > 0;
+  const hasEducationOrExperience = () =>
+    info.educations.some((edu) => edu.trim().length > 0) || info.experiences.some((exp) => exp.trim().length > 0);
+  const hasValidVideo = () => info.videoUrls.some((url) => url.trim().length > 0);
+  // 최대 글자 수 조건 기능 명세서 체크
+  const hasDetailedInfo = () => info.detail.trim().length >= 30;
+
   const buttonActive = (currentStep: number) => {
-    switch (currentStep) {
-      case 1:
-        return !!info.imageUrls;
-      case 2:
-        return info.instagram.length > 0 || info.youtube.length > 0;
-      case 3:
-        return (
-          info.educations.some((education) => education.trim().length > 0) ||
-          info.experiences.some((experience) => experience.trim().length > 0)
-        );
-      case 4:
-        return info.videoUrls.some((url) => url.trim().length > 0);
-      case 5:
-        return info.detail.trim().length >= 30; // 최대 글자 수 조건 기능 명세서 체크
-      case 6:
+    const stepState: Record<number, () => boolean> = {
+      1: hasImage,
+      2: hasSocialLinks,
+      3: hasEducationOrExperience,
+      4: hasValidVideo,
+      5: hasDetailedInfo,
+      6: () => {
         return true;
-      default:
-        return false;
-    }
+      },
+    };
+
+    return stepState[currentStep]?.() ?? false;
   };
 
+  // form submit 함수
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
