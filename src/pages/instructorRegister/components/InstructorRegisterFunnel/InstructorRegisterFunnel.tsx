@@ -69,9 +69,9 @@ const InstructorRegisterFunnel = ({ currentStep, Funnel, Step, setStep }: Instru
           info.experiences.some((experience) => experience.trim().length > 0)
         );
       case 4:
-        return info.videoUrls.filter((url) => url.trim().length > 0)[0]?.trim().length > 0;
+        return info.videoUrls.some((url) => url.trim().length > 0);
       case 5:
-        return info.detail.trim().length > 0 && info.detail.length >= 30;
+        return info.detail.trim().length >= 30; // 최대 글자 수 조건 기능 명세서 체크
       case 6:
         return true;
       default:
