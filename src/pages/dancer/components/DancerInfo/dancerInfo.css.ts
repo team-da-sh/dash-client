@@ -7,7 +7,7 @@ export const classTitleStyle = style({
 export const rowScrollStyle = style({
   display: 'flex',
   flexDirection: 'row',
-  
+
   width: '100%',
   gap: '0.8rem',
   paddingBottom: '3.6rem',
@@ -37,11 +37,10 @@ export const emptyStyle = style({
   alignItems: 'center',
   margin: '0 auto',
   padding: '5.2rem 0 7.2rem 0',
-  
 });
 
 export const linkStyle = style({
   overflow: 'hidden',
-  textOverflow:'ellipsis',
-  maxWidth:'15ch',
+  textOverflow: 'ellipsis',
+  maxWidth: '15ch',
 });

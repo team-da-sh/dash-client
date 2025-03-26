@@ -4,7 +4,6 @@ import GenreItem from '@/pages/home/components/GenreItem/GenreItem';
 import { genreWrapperStyle } from '@/pages/home/components/LessonItem/lessonItem.css';
 import { GENRE_ICONS } from '@/pages/home/constants';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import Flex from '@/shared/components/Flex/Flex';
 import Head from '@/shared/components/Head/Head';
 import { genreMapping } from '@/shared/constants';
 

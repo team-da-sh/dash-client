@@ -1,4 +1,4 @@
-import { ClassListParams, DancerListParams } from '@/pages/search/types/api';
+import type { ClassListParams, DancerListParams } from '@/pages/search/types/api';
 import { instance } from '@/shared/apis/instance';
 
 const SEARCH_URL = {

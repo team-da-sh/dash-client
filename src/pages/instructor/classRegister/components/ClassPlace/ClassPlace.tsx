@@ -1,4 +1,4 @@
-import { ChangeEvent } from 'react';
+import type { ChangeEvent } from 'react';
 import {
   checkboxContainerStyle,
   checkboxStyle,
@@ -14,7 +14,7 @@ import IcXCircleGray0424 from '@/shared/assets/svg/IcXCircleGray0424';
 import Flex from '@/shared/components/Flex/Flex';
 import Input from '@/shared/components/Input/Input';
 import Text from '@/shared/components/Text/Text';
-import { LocationsData, LocationTypes } from '../../types';
+import type { LocationsData, LocationTypes } from '../../types';
 
 interface ClassPlaceProps {
   hasLocation: boolean;

@@ -12,7 +12,7 @@ import {
   newTeacherImageStyle,
   newWrapperStyle,
 } from '@/pages/home/components/LessonItem/newLessonItem.css';
-import { LessonTypes } from '@/pages/home/types/classTypes';
+import type { LessonTypes } from '@/pages/home/types/classTypes';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import Head from '@/shared/components/Head/Head';
 import Tag from '@/shared/components/Tag/Tag';

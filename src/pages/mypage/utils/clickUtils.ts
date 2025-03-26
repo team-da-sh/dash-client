@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import type { useNavigate } from 'react-router-dom';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { notify } from '@/shared/components/Toast/Toast';
 

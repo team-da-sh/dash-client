@@ -48,7 +48,7 @@ const Home = () => {
           <MyPage showMyPage={showMyPage} onClose={handleCloseMyPageClick} />
         </Suspense>
       )}
-      
+
       <HomeHeader isWhite={isWhite} onMyPageClick={handleMyPageClick} />
       <div ref={targetRef} className={carouselContainerStyle}>
         <HomeCarousel />

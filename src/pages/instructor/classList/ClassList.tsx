@@ -7,7 +7,7 @@ import ClassCard from '@/shared/components/ClassCard/ClassCard';
 import Flex from '@/shared/components/Flex/Flex';
 import Header from '@/shared/components/Header/Header';
 import Text from '@/shared/components/Text/Text';
-import { Lesson } from '@/shared/types/lessonTypes';
+import type { Lesson } from '@/shared/types/lessonTypes';
 
 const ClassList = () => {
   const navigate = useNavigate();

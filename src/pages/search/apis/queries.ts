@@ -1,6 +1,7 @@
-import { useQuery, UseQueryResult } from '@tanstack/react-query';
+import type { UseQueryResult } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import { getClassList, getDancerList } from '@/pages/search/apis/axios';
-import { ClassListParams, ClassListResponse, DancerListResponse } from '@/pages/search/types/api';
+import type { ClassListParams, ClassListResponse, DancerListResponse } from '@/pages/search/types/api';
 
 export const useGetDancerList = (params: { keyword?: string }): UseQueryResult<DancerListResponse, Error> => {
   return useQuery<DancerListResponse, Error>({

@@ -1,7 +1,7 @@
 import ScheduleItem from '@/pages/reservation/components/ClassInfo/ScheduleItem/ScheduleItem';
 import { infoContainerStyle, textLabelStyle } from '@/pages/reservation/components/ClassInfo/classInfo.css';
 import InfoRow from '@/pages/reservation/components/InfoRow/InfoRow';
-import { LessonRoundTypes } from '@/pages/reservation/types/lessonRoundTypes';
+import type { LessonRoundTypes } from '@/pages/reservation/types/lessonRoundTypes';
 import Flex from '@/shared/components/Flex/Flex';
 import Head from '@/shared/components/Head/Head';
 import Text from '@/shared/components/Text/Text';

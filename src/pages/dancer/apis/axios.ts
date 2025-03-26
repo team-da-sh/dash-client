@@ -1,4 +1,4 @@
-import { DancerDetailResponse } from '@/pages/dancer/types/api';
+import type { DancerDetailResponse } from '@/pages/dancer/types/api';
 import { instance } from '@/shared/apis/instance';
 import { API_URL } from '@/shared/constants/apiURL';
 

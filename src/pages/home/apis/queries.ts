@@ -1,4 +1,5 @@
-import { useQuery, UseQueryOptions } from '@tanstack/react-query';
+import type { UseQueryOptions } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import '@/pages/home/apis/axios';
 import {
   getAdvertisements,
@@ -8,7 +9,7 @@ import {
   getRecommendationLessons,
   getUpcommingLessons,
 } from '@/pages/home/apis/axios';
-import {
+import type {
   AdvertisementResponse,
   PopularDancersResponse,
   PopularGenreResponse,
@@ -16,7 +17,7 @@ import {
   UpcomingLessonsResponse,
 } from '@/pages/home/types/api';
 import { QUERY_KEYS } from '@/shared/constants/queryKey';
-import { MyPageProps } from '@/shared/types/myPageTypes';
+import type { MyPageProps } from '@/shared/types/myPageTypes';
 
 export const useGetAdvertisements = () => {
   return useQuery<AdvertisementResponse>({
