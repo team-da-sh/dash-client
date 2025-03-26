@@ -3,8 +3,8 @@ import {
   containerStyle,
   descriptionStyle,
   imageStyle,
-  moreButtonStyle,
-  moreWrapperStyle,
+  showDetailButtonStyle,
+  showDetailWrapperStyle,
 } from '@/pages/home/components/SliderItem/sliderItem.css';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import IcArrowRightWhite14 from '@/shared/assets/svg/IcArrowRightWhite14';
@@ -34,8 +34,8 @@ const SliderItem = ({ imageUrl, description, id }: SliderItemProps) => {
         {description}
       </Head>
 
-      <div className={moreWrapperStyle}>
-        <button className={moreButtonStyle} onClick={handleShowDetailClick}>
+      <div className={showDetailWrapperStyle}>
+        <button className={showDetailButtonStyle} onClick={handleShowDetailClick}>
           자세히 보기
         </button>
         <IcArrowRightWhite14 width={14} height={14} />
