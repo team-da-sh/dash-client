@@ -6,6 +6,7 @@ import { GENRE_ICONS } from '@/pages/home/constants';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import Head from '@/shared/components/Head/Head';
 import { genreMapping } from '@/shared/constants';
+import { sprinkles } from '@/shared/styles/sprinkles.css';
 
 const PopularGenre = () => {
   const { data } = useGetPopularGenres();
@@ -22,7 +23,7 @@ const PopularGenre = () => {
         지금 가장 인기있는 댄스 장르
       </Head>
 
-      <Flex tag="ul" gap="0.7rem" marginTop="2rem">
+      <ul className={sprinkles({ display: 'flex', gap: 7, marginTop: 20 })}>
         {data?.genres.map((genre, index) => (
           <GenreItem
             key={`${index}-${genre}`}
@@ -31,7 +32,7 @@ const PopularGenre = () => {
             onClick={() => handleGenreClick(genreMapping[genre])}
           />
         ))}
-      </Flex>
+      </ul>
     </div>
   );
 };
