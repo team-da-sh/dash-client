@@ -23,6 +23,7 @@ const MyPage = lazy(() => import('@/pages/home/components/MyPage/MyPage'));
 
 const Home = () => {
   preload(images);
+
   const navigate = useNavigate();
 
   const [targetRef, isWhite] = useIntersect(false);
