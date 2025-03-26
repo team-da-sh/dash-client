@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import { useNavigate } from 'react-router-dom';
 import {
   classImageStyle,
@@ -18,6 +19,7 @@ import Head from '@/shared/components/Head/Head';
 import Tag from '@/shared/components/Tag/Tag';
 import Text from '@/shared/components/Text/Text';
 import { genreMapping, levelMapping } from '@/shared/constants';
+import { sprinkles } from '@/shared/styles/sprinkles.css';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
 import { transformDateToDotFormat } from '@/shared/utils/transformDateToDotFormat';
 
@@ -65,6 +67,8 @@ const LessonItem = ({
 
       <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 6 })}>
         <div className={sprinkles({ display: 'flex', gap: 4 })}>
+      <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 6 })}>
+        <div className={sprinkles({ display: 'flex', gap: 4 })}>
           <Tag type="genre" size="small">
             {genreMapping[genre]}
           </Tag>
@@ -72,10 +76,12 @@ const LessonItem = ({
             {levelMapping[level]}
           </Tag>
         </div>
+        </div>
 
         <Head level="h3" tag="h7" className={titleStyle}>
           {name}
         </Head>
+      </div>
       </div>
 
       <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 4 })}>
@@ -84,9 +90,14 @@ const LessonItem = ({
           <Text tag="b7">{teacherName}</Text>
         </div>
         <div className={sprinkles({ display: 'flex', gap: 4, alignItems: 'center' })}>
+        </div>
+        <div className={sprinkles({ display: 'flex', gap: 4, alignItems: 'center' })}>
           <Text tag="c1" color="gray5">
             {transformDateToDotFormat(startDate)} - {transformDateToDotFormat(endDate)}
           </Text>
+        </div>
+      </div>
+    </li>
         </div>
       </div>
     </li>
