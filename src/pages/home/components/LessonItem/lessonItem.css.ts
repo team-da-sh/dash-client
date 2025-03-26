@@ -10,7 +10,7 @@ export const classImageStyle = style({
 });
 
 export const titleStyle = style({
-  minWidth: '16.4rem',
+  maxWidth: '16.4rem',
   maxHeight: '4rem',
 
   whiteSpace: 'normal',
