@@ -1,9 +1,17 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { MemoryRouter } from 'react-router-dom';
 import Header from '@/shared/components/Header/Header';
 
 const meta: Meta = {
   title: 'Common/Header',
   component: Header.Root,
+  decorators: [
+    (Story) => (
+      <MemoryRouter>
+        <Story />
+      </MemoryRouter>
+    ),
+  ],
 
   parameters: {
     layout: 'centered',
