@@ -45,7 +45,7 @@ jobs:
               issue_number: prNumber,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: `✅ 빌드 성공적으로 완료되었지롱롱 🛠️`
+              body: `✅ 빌드가 성공적으로 완료되었습니다 🛠️`
             });
 
       - name: Add failure comment to PR
@@ -60,3 +60,17 @@ jobs:
               repo: context.repo.repo,
               body: `❌ 빌드에 실패했습니다. 다시 고치고 오셔 ㅋㅋ🚨`
             });
+
+      # 스토리북 빌드
+      - name: Build storybook
+        run: |
+          pnpm run build-storybook
+          mv ./storybook-static ./build/storybook
+
+      # gh-pages를 이용해 스토리북 빌드 파일 배포
+      - name: Deploy to gh-pages branch
+        uses: peaceiris/actions-gh-pages@v3
+        run: |
+          with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build
