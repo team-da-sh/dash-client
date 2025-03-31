@@ -1,20 +1,16 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import {
   addInputBoxStyle,
   careerFlexStyle,
   checkboxStyle,
 } from '@/pages/instructorRegister/components/InstructorRegisterFunnel/CareerStep/careerStep.css';
+import type { InputItemTypes } from '@/pages/instructorRegister/types/inputItemTypes';
 import BtnCheck from '@/shared/assets/svg/BtnCheck';
 import IcPlusGray0524 from '@/shared/assets/svg/IcPlusGray0524';
 import IcXCircleGray from '@/shared/assets/svg/IcXCircleGray';
 import Flex from '@/shared/components/Flex/Flex';
 import Input from '@/shared/components/Input/Input';
 import Text from '@/shared/components/Text/Text';
-
-interface InputItemTypes {
-  id: number;
-  value: string;
-}
 
 interface InputSectionPropTypes {
   title: string;
@@ -35,20 +31,17 @@ const InputSection = ({
   inputItems,
   onItemsChange,
 }: InputSectionPropTypes) => {
-  const nextID = useRef<number>(inputItems.length + 1);
+  const [nextID, setNextID] = useState(inputItems.length + 1);
+  const lastInputRef = useRef<HTMLInputElement | null>(null);
 
   const addItem = () => {
     if (inputItems[inputItems.length - 1]?.value.trim() === '') {
       return;
     }
 
-    const input = {
-      id: nextID.current,
-      value: '',
-    };
-
-    onItemsChange([...inputItems, input]);
-    nextID.current += 1;
+    const newItem = { id: nextID, value: '' };
+    onItemsChange([...inputItems, newItem]);
+    setNextID(nextID + 1);
   };
 
   const deleteItem = (id: number) => {
@@ -82,9 +75,14 @@ const InputSection = ({
 
       {!isActive && (
         <Flex direction="column" gap="0.8rem" width="100%">
-          {inputItems.map(({ id, value }) => (
+          {inputItems.map(({ id, value }, index) => (
             <Input
               key={id}
+              ref={(el) => {
+                if (index === inputItems.length - 1) {
+                  lastInputRef.current = el;
+                }
+              }}
               value={value}
               placeholder={id < 2 ? placeholder : undefined}
               onChange={(e) => {
@@ -97,7 +95,16 @@ const InputSection = ({
             />
           ))}
 
-          <Flex justify="center" align="center" className={addInputBoxStyle} onClick={addItem}>
+          <Flex
+            justify="center"
+            align="center"
+            className={addInputBoxStyle}
+            onClick={() => {
+              addItem();
+              Promise.resolve().then(() => {
+                lastInputRef.current?.focus();
+              });
+            }}>
             <IcPlusGray0524 width={'2.4rem'} />
           </Flex>
         </Flex>
