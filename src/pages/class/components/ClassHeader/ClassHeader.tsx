@@ -10,12 +10,12 @@ import IcBackWhite24 from '@/shared/assets/svg/IcBackWhite24';
 import Flex from '@/shared/components/Flex/Flex';
 import Head from '@/shared/components/Head/Head';
 
-interface ClassHeaderProps {
+interface ClassHeaderPropTypes {
   isWhite: boolean;
   lessonName: string;
 }
 
-const ClassHeader = ({ isWhite, lessonName }: ClassHeaderProps) => {
+const ClassHeader = ({ isWhite, lessonName }: ClassHeaderPropTypes) => {
   const navigate = useNavigate();
 
   return (

@@ -87,7 +87,7 @@ const LessonItem = ({
           <img src={teacherProfileImage} alt="강사" className={styles.teacherImage} />
           <Text tag="b7">{teacherName}</Text>
         </div>
-        <div className={sprinkles({ display: 'flex', gap: 4, alignItems: 'center' })}></div>
+
         <div className={sprinkles({ display: 'flex', gap: 4, alignItems: 'center' })}>
           <Text tag="c1" color="gray5">
             {transformDateToDotFormat(startDate)} - {transformDateToDotFormat(endDate)}

@@ -10,13 +10,13 @@ import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import IcArrowRightWhite14 from '@/shared/assets/svg/IcArrowRightWhite14';
 import Head from '@/shared/components/Head/Head';
 
-interface SliderItemProps {
+interface SliderItemPropTypes {
   imageUrl: string;
   description: string;
   id: number;
 }
 
-const SliderItem = ({ imageUrl, description, id }: SliderItemProps) => {
+const SliderItem = ({ imageUrl, description, id }: SliderItemPropTypes) => {
   const navigate = useNavigate();
 
   const handleShowDetailClick = () => {

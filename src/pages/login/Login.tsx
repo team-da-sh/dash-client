@@ -1,7 +1,7 @@
 import KakaoButton from '@/pages/login/components/KakaoButton/KakaoButton';
 import LoginHeader from '@/pages/login/components/LoginHeader/LoginHeader';
 import { containerStyle } from '@/pages/login/login.css';
-import LoginWepm from '@/shared/assets/webm/login.webm';
+import LoginWepm from '@/shared/assets/webm/login_2.webm';
 import Flex from '@/shared/components/Flex/Flex';
 import Head from '@/shared/components/Head/Head';
 
@@ -12,8 +12,12 @@ const Login = () => {
 
       <Flex direction="column" gap="3.2rem" className={containerStyle}>
         <Flex width="100%" justify="center">
-          <video width={300} autoPlay muted loop>
-            <source src={LoginWepm} type="video/webm" />
+          <video width={300} autoPlay muted loop playsInline>
+            <source
+              src={LoginWepm}
+              type="video/webm"
+              style={{ backgroundColor: 'transparent', mixBlendMode: 'multiply' }}
+            />
           </video>
         </Flex>
 
