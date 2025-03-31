@@ -17,6 +17,7 @@ interface VideoLinkStepPropTypes {
 const VideoLinkStep = ({ videoUrls, onInfoChange }: VideoLinkStepPropTypes) => {
   const inputItems = videoUrls.map((value, id) => ({ id: id + 1, value }));
   const nextID = useRef<number>(inputItems.length + 1);
+  const lastInputRef = useRef<HTMLInputElement | null>(null);
 
   const handleInputChange = (id: number, e: React.ChangeEvent<HTMLInputElement>) => {
     const updatedItems = inputItems.map((item) => (item.id === id ? { ...item, value: e.target.value } : item));
@@ -55,9 +56,14 @@ const VideoLinkStep = ({ videoUrls, onInfoChange }: VideoLinkStepPropTypes) => {
     <>
       <Description title="YOUTUBE 영상 업로드" subTitle="나를 대표하는 댄스 영상을 최대 5개 등록해 주세요" />
       <Flex direction="column" gap="0.8rem" width="100%">
-        {inputItems.map(({ id, value }) => (
+        {inputItems.map(({ id, value }, index) => (
           <Input
             key={id}
+            ref={(el) => {
+              if (index === inputItems.length - 1) {
+                lastInputRef.current = el;
+              }
+            }}
             value={value}
             onChange={(e) => handleInputChange(id, e)}
             rightAddOn={value && <IcXCircleGray width={'2.4rem'} onClick={() => deleteItem(id)} />}
@@ -66,7 +72,16 @@ const VideoLinkStep = ({ videoUrls, onInfoChange }: VideoLinkStepPropTypes) => {
         ))}
 
         {inputItems.length < VIDEO_INPUT_MAX && (
-          <Flex justify="center" align="center" className={addInputBoxStyle} onClick={addItem}>
+          <Flex
+            justify="center"
+            align="center"
+            className={addInputBoxStyle}
+            onClick={() => {
+              addItem();
+              Promise.resolve().then(() => {
+                lastInputRef.current?.focus();
+              });
+            }}>
             <IcPlusGray0524 width={'2.4rem'} />
           </Flex>
         )}
