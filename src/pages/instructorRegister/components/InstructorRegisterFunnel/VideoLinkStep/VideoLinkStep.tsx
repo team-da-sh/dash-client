@@ -61,6 +61,7 @@ const VideoLinkStep = ({ videoUrls, onInfoChange }: VideoLinkStepPropTypes) => {
             value={value}
             onChange={(e) => handleInputChange(id, e)}
             rightAddOn={value && <IcXCircleGray width={'2.4rem'} onClick={() => deleteItem(id)} />}
+            placeholder={id < 2 ? 'https://www.youtube.com/watch?v=LPh1c0pGIi' : undefined}
           />
         ))}
 
