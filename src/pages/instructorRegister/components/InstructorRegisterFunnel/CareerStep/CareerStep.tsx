@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import Description from '@/pages/instructorRegister/components/Description/Description';
 import InputSection from '@/pages/instructorRegister/components/InstructorRegisterFunnel/CareerStep/InputSection/InputSection';
 import { INFO_KEY } from '@/pages/instructorRegister/constants';
@@ -9,13 +8,22 @@ import IcGraduationBlack20 from '@/shared/assets/svg/IcGraduationBlack20';
 interface CareerStepProps {
   educations: string[];
   experiences: string[];
+  isEducationActive: boolean;
+  isCareerActive: boolean;
+  handleEducationCheck: () => void;
+  handleCareerCheck: () => void;
   onInfoChange: <K extends keyof InstructorRegisterInfoTypes>(key: K, value: InstructorRegisterInfoTypes[K]) => void;
 }
 
-const CareerStep = ({ educations, experiences, onInfoChange }: CareerStepProps) => {
-  const [isEducationActive, setIsEducationActive] = useState(false);
-  const [isCareerActive, setIsCareerActive] = useState(false);
-
+const CareerStep = ({
+  educations,
+  experiences,
+  onInfoChange,
+  isEducationActive,
+  isCareerActive,
+  handleEducationCheck,
+  handleCareerCheck,
+}: CareerStepProps) => {
   return (
     <>
       <Description title="학력 및 경력" subTitle="춤에 관련된 것이라면 자유롭게 입력해 보세요" />
@@ -25,7 +33,7 @@ const CareerStep = ({ educations, experiences, onInfoChange }: CareerStepProps) 
         placeholder="대쉬대학교 실용무용학과 졸업"
         icon={<IcGraduationBlack20 width={'2rem'} />}
         isActive={isEducationActive}
-        onToggleActive={() => setIsEducationActive((prev) => !prev)}
+        onToggleActive={handleEducationCheck}
         inputItems={educations.map((value, id) => ({ id: id + 1, value }))}
         onItemsChange={(updatedItems) =>
           onInfoChange(
@@ -40,7 +48,7 @@ const CareerStep = ({ educations, experiences, onInfoChange }: CareerStepProps) 
         placeholder="2018 BATTLE LIINEUP 1등"
         icon={<IcDocumentBlack20 width={'2rem'} />}
         isActive={isCareerActive}
-        onToggleActive={() => setIsCareerActive((prev) => !prev)}
+        onToggleActive={handleCareerCheck}
         inputItems={experiences.map((value, id) => ({ id: id + 1, value }))}
         onItemsChange={(updatedItems) =>
           onInfoChange(

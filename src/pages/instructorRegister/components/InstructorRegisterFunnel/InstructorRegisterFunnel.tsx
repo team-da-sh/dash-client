@@ -32,6 +32,16 @@ const InstructorRegisterFunnel = ({ currentStep, Funnel, Step, setStep }: Instru
     detail: '',
     videoUrls: [''],
   });
+  const [isEducationActive, setIsEducationActive] = useState(false);
+  const [isCareerActive, setIsCareerActive] = useState(false);
+
+  const handleEducationCheck = () => {
+    setIsEducationActive((prev) => !prev);
+  };
+
+  const handleCareerCheck = () => {
+    setIsCareerActive((prev) => !prev);
+  };
 
   const { mutate: instructorRegisterMutate } = usePostInstructor();
 
@@ -91,8 +101,8 @@ const InstructorRegisterFunnel = ({ currentStep, Funnel, Step, setStep }: Instru
       instagram: info.instagram.trim() === '' ? null : `https://www.instagram.com/${info.instagram.trim()}`,
       youtube: info.youtube.trim() === '' ? null : `https://www.youtube.com/@${info.youtube.trim()}`,
 
-      educations: info.educations.every((education) => education.trim() === '') ? [] : info.educations,
-      experiences: info.experiences.every((experience) => experience.trim() === '') ? [] : info.experiences,
+      educations: isEducationActive ? [] : info.educations.filter((education) => education.trim() !== ''),
+      experiences: isCareerActive ? [] : info.experiences.filter((experience) => experience.trim() !== ''),
     };
 
     instructorRegisterMutate(updatedInfo, {
@@ -130,7 +140,15 @@ const InstructorRegisterFunnel = ({ currentStep, Funnel, Step, setStep }: Instru
               <PersonalSNSStep instagram={info.instagram} youtube={info.youtube} onInfoChange={handleInfoChange} />
             </Step>
             <Step name="3">
-              <CareerStep educations={info.educations} experiences={info.experiences} onInfoChange={handleInfoChange} />
+              <CareerStep
+                educations={info.educations}
+                experiences={info.experiences}
+                onInfoChange={handleInfoChange}
+                isEducationActive={isEducationActive}
+                isCareerActive={isCareerActive}
+                handleEducationCheck={handleEducationCheck}
+                handleCareerCheck={handleCareerCheck}
+              />
             </Step>
             <Step name="4">
               <VideoLinkStep videoUrls={info.videoUrls} onInfoChange={handleInfoChange} />
