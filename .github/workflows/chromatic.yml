@@ -47,6 +47,9 @@ jobs:
         run: pnpm chromatic --project-token=${{ secrets.CHROMATIC_PROJECT_TOKEN }}
         continue-on-error: true
 
+      - name: Debug Chromatic Output
+        run: echo "Chromatic Storybook URL: ${{ steps.chromatic.outputs.storybookUrl }}"
+
       - name: Comment PR on Success
         if: success() && github.event_name == 'pull_request'
         uses: thollander/actions-comment-pull-request@v2
