@@ -45,7 +45,7 @@ jobs:
               issue_number: prNumber,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: `✅ 빌드 성공적으로 완료되었지롱롱 🛠️`
+              body: `✅ 빌드 성공적으로 완료되었tmqslek 🛠️`
             });
 
       - name: Add failure comment to PR
