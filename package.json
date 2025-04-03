@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "svgr": "npx @svgr/cli -d src/assets/svg --no-prettier --ignore-existing --typescript --no-dimensions public/svg"
+    "svgr": "npx @svgr/cli -d src/assets/svg --no-prettier --ignore-existing --typescript --no-dimensions public/svg",
+    "chromatic": "npx chromatic --project-token=chpt_27fa48fa614ddec"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.62.15",
