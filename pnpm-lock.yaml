@@ -114,6 +114,9 @@ importers:
       '@vitejs/plugin-react-swc':
         specifier: ^3.5.0
         version: 3.7.2(vite@6.0.7(@types/node@22.10.5))
+      chromatic:
+        specifier: ^11.28.0
+        version: 11.28.0
       eslint:
         specifier: ^9.17.0
         version: 9.17.0
@@ -1574,8 +1577,8 @@ packages:
     resolution: {integrity: sha512-OAlb+T7V4Op9OwdkjmguYRqncdlx5JiofwOAUkmTF+jNdHwzTaTs4sRAGpzLF3oOz5xAyDGrPgeIDFQmDOTiJw==}
     engines: {node: '>= 16'}
 
-  chromatic@11.22.0:
-    resolution: {integrity: sha512-u1kAPR9lj9aFzsCp0iWPXBbsKgcxFU7iJO6mFbgNHGVg+YPBqiJMuvgB8EQHdNbHjk5amFnGnIz/Ww8fK3t9Hw==}
+  chromatic@11.28.0:
+    resolution: {integrity: sha512-Xy3907MXY5UP7LoMksmsT02xCUsoLZpcC6sRITjd+KiXBteOxPF7J+QsFqy/VzQCEN6fpt/R2bOIpE+PwPfcZA==}
     hasBin: true
     peerDependencies:
       '@chromatic-com/cypress': ^0.*.* || ^1.0.0
@@ -3169,7 +3172,7 @@ snapshots:
 
   '@chromatic-com/storybook@3.2.3(react@18.3.1)(storybook@8.4.7(prettier@3.4.2))':
     dependencies:
-      chromatic: 11.22.0
+      chromatic: 11.28.0
       filesize: 10.1.6
       jsonfile: 6.1.0
       react-confetti: 6.2.2(react@18.3.1)
@@ -4405,7 +4408,7 @@ snapshots:
 
   check-error@2.1.1: {}
 
-  chromatic@11.22.0: {}
+  chromatic@11.28.0: {}
 
   clsx@2.1.1: {}
 
