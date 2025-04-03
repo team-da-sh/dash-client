@@ -1,27 +1,32 @@
-# Workflow name
 name: 'Chromatic Deployment'
 
-# Event for the workflow
 on: push
 
-# List of jobs
 jobs:
   chromatic:
     name: 'Run Chromatic'
     runs-on: ubuntu-latest
-    # Job steps
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - run: pnpm install
-        #👇 Adds Chromatic as a step in the workflow
-      - uses: chromaui/action@latest
-        # Options required for Chromatic's GitHub Action
+
+      - name: Install pnpm
+        run: |
+          corepack enable
+          corepack prepare pnpm@9.15.3 --activate
+          pnpm --version  # pnpm이 올바르게 설치되었는지 확인
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Run Chromatic
+        id: chromatic
+        uses: chromaui/action@latest
         with:
-          #👇 Chromatic projectToken, see https://storybook.js.org/tutorials/intro-to-storybook/react/ko/deploy/ to obtain it
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           token: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Success message
         if: success()
         run: |
@@ -30,4 +35,9 @@ jobs:
 
       - name: Failure message
         if: failure()
-        run: echo "❌ Chromatic 배포 실패!"
+        run: |
+          echo "❌ Chromatic 배포 실패!"
+
+      - name: Ensure failure message is printed
+        if: always()
+        run: echo "🔎 배포 결과를 확인하세요."
