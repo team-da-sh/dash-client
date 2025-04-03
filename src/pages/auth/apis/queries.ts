@@ -1,7 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
-import { AxiosError } from 'axios';
+import { AxiosError, AxiosResponse } from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { kakaoLogin, postLogout } from '@/pages/auth/apis/axios';
+import { kakaoLogin, postLogout, postReissue } from '@/pages/auth/apis/axios';
 import { loginTypes } from '@/pages/auth/types/api';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { instance } from '@/shared/apis/instance';
@@ -41,6 +41,24 @@ export const usePostLogout = () => {
     },
     onError: (error: AxiosError) => {
       console.error('Logout failed:', error);
+    },
+  });
+};
+
+export const usePostReissue = () => {
+  const navigate = useNavigate();
+
+  return useMutation({
+    mutationFn: postReissue,
+    onSuccess: (res: AxiosResponse) => {
+      setStorage(res.data.accessToken, res.data.refreshToken);
+    },
+    onError: (error: AxiosError) => {
+      if (error.response?.status === 401) {
+        navigate(ROUTES_CONFIG.login.path);
+      } else {
+        console.log(error.message);
+      }
     },
   });
 };
