@@ -25,6 +25,16 @@ jobs:
       - name: Install PNPM
         run: npm i -g pnpm
 
+      - name: Run Cypress Tests
+        uses: cypress-io/github-action@v4
+        with:
+          build: pnpm build
+          start: pnpm start
+          wait-on: 'http://localhost:3000'
+
+      - name: Report Cypress Results
+        run: echo "Cypress UI Tests Completed"
+
       - name: Cache node modules
         id: cache-node
         uses: actions/cache@v3
