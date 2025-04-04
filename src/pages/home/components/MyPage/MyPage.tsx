@@ -2,9 +2,9 @@ import { useGetMyPage } from '@/pages/home/apis/queries';
 import BottomSection from '@/pages/home/components/BottomSection/BottomSection';
 import * as styles from '@/pages/home/components/MyPage/myPage.css';
 import TopSection from '@/pages/home/components/TopSection/TopSection';
+import { DEFAULT_USER_DATA } from '@/pages/home/constants';
 import { useGetRole } from '@/shared/apis/queries';
 import Divider from '@/shared/components/Divider/Divider';
-import { DEFAULT_USER_DATA } from '../../constants';
 
 interface MyPagePropTypes {
   showMyPage: boolean;
