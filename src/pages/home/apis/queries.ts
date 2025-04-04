@@ -1,4 +1,4 @@
-import { useQuery, UseQueryOptions } from '@tanstack/react-query';
+import { useQuery, UseQueryOptions, useQueryClient } from '@tanstack/react-query';
 import '@/pages/home/apis/axios';
 import {
   getAdvertisements,
@@ -16,7 +16,7 @@ import {
   UpcomingLessonsResponse,
 } from '@/pages/home/types/api';
 import { QUERY_KEYS } from '@/shared/constants/queryKey';
-import { MyPageProps } from '@/shared/types/myPageTypes';
+import { MyPageResponseTypes } from '@/shared/types/myPageTypes';
 
 export const useGetAdvertisements = () => {
   return useQuery<AdvertisementResponse>({
@@ -26,10 +26,15 @@ export const useGetAdvertisements = () => {
 };
 
 // 마이페이지 조회
-export const useGetMyPage = (options?: Partial<UseQueryOptions<MyPageProps>>) => {
-  return useQuery<MyPageProps>({
+export const useGetMyPage = (options?: Partial<UseQueryOptions<MyPageResponseTypes>>) => {
+  const queryClient = useQueryClient();
+
+  return useQuery<MyPageResponseTypes>({
     queryKey: [QUERY_KEYS.MEMBERS_ME],
     queryFn: getMyPage,
+    staleTime: 1000 * 60 * 5,
+    gcTime: 1000 * 60 * 10,
+    initialData: () => queryClient.getQueryData(['membersMe']),
     ...options,
   });
 };
