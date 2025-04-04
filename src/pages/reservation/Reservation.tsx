@@ -1,3 +1,4 @@
+import { useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Error from '@/pages/error/Error';
@@ -27,12 +28,14 @@ import Flex from '@/shared/components/Flex/Flex';
 import Head from '@/shared/components/Head/Head';
 import Header from '@/shared/components/Header/Header';
 import Text from '@/shared/components/Text/Text';
+import { QUERY_KEYS } from '@/shared/constants/queryKey';
 
 const Reservation = () => {
   const [isAllChecked, setIsAllChecked] = useState(false);
   const [agreements, setAgreements] = useState([false, false]);
 
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
   const { id } = useParams<{ id: string }>();
   if (!id) {
@@ -76,9 +79,8 @@ const Reservation = () => {
   }));
 
   const handleButtonClick = async () => {
-    {
-      navigate(ROUTES_CONFIG.payments.path, { state: { lessonId: id, totalPrice, className, studentName } });
-    }
+    queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.MEMBERS_ME] });
+    navigate(ROUTES_CONFIG.payments.path, { state: { lessonId: id, totalPrice, className, studentName } });
   };
 
   return (
