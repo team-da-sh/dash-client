@@ -1,3 +1,4 @@
+import { useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
 import { usePostInstructor } from '@/pages/instructorRegister/apis/queries';
 import CareerStep from '@/pages/instructorRegister/components/InstructorRegisterFunnel/CareerStep/CareerStep';
@@ -20,9 +21,18 @@ interface InstructorRegisterFunnelProps {
   Funnel: ({ children }: FunnelProps) => JSX.Element;
   setStep: (step: number) => void;
   Step: ({ children }: StepProps) => JSX.Element;
+  onRegisterComplete: () => void;
 }
 
-const InstructorRegisterFunnel = ({ currentStep, Funnel, Step, setStep }: InstructorRegisterFunnelProps) => {
+const InstructorRegisterFunnel = ({
+  currentStep,
+  Funnel,
+  Step,
+  setStep,
+  onRegisterComplete,
+}: InstructorRegisterFunnelProps) => {
+  const queryClient = useQueryClient();
+
   const [info, setInfo] = useState({
     imageUrls: '',
     instagram: '',
@@ -98,6 +108,9 @@ const InstructorRegisterFunnel = ({ currentStep, Funnel, Step, setStep }: Instru
 
         setAccessToken(accessToken);
         setRefreshToken(refreshToken);
+
+        queryClient.invalidateQueries({ queryKey: ['role'] });
+        onRegisterComplete();
 
         setStep(1);
       },

@@ -1,3 +1,4 @@
+import { useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import InstructorRegisterFunnel from '@/pages/instructorRegister/components/InstructorRegisterFunnel/InstructorRegisterFunnel';
 import { progressBarCustomStyle } from '@/pages/instructorRegister/instructorRegister.css';
@@ -7,9 +8,14 @@ import ProgressBar from '@/shared/components/ProgressBar/ProgressBar';
 import { useFunnel } from '@/shared/hooks/useFunnel';
 
 const InstructorRegister = () => {
+  const queryClient = useQueryClient();
   const TOTAL_STEP = 6;
   const { Funnel, Step, currentStep, setStep } = useFunnel(TOTAL_STEP, ROUTES_CONFIG.home.path);
   const navigate = useNavigate();
+
+  const handleRegisterComplete = () => {
+    queryClient.invalidateQueries({ queryKey: ['role'] });
+  };
 
   return (
     <>
@@ -22,7 +28,13 @@ const InstructorRegister = () => {
       )}
 
       {/* Funnel */}
-      <InstructorRegisterFunnel Funnel={Funnel} Step={Step} currentStep={currentStep} setStep={setStep} />
+      <InstructorRegisterFunnel
+        Funnel={Funnel}
+        Step={Step}
+        currentStep={currentStep}
+        setStep={setStep}
+        onRegisterComplete={handleRegisterComplete}
+      />
     </>
   );
 };

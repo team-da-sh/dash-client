@@ -7,3 +7,11 @@ export const GENRE_ICONS = [
   <IcAssetTop2 width={44} height={44} />,
   <IcAssetTop3 width={44} height={44} />,
 ];
+
+export const DEFAULT_USER_DATA = {
+  profileImageUrl: '',
+  nickname: '',
+  reservationCount: 0,
+  favoriteCount: 0,
+  lessonCount: null,
+};
