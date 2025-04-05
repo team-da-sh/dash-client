@@ -6,6 +6,7 @@ import AgreeCheckBox from '@/pages/reservation/components/AgreeCheckBox/AgreeChe
 import ApplicantInfo from '@/pages/reservation/components/ApplicantInfo/ApplicantInfo';
 import ClassInfo from '@/pages/reservation/components/ClassInfo/ClassInfo';
 import TopInfoContent from '@/pages/reservation/components/TopInfoContent/TopInfoContent';
+import { AGREEMENT_TERMS } from '@/pages/reservation/constants/agreementTerms';
 import {
   agreementBoxStyle,
   agreementCheckedStyle,
@@ -17,7 +18,6 @@ import {
   reservationStyle,
   totalPriceContainerStyle,
 } from '@/pages/reservation/reservation.css';
-import { LessonRoundTypes } from '@/pages/reservation/types/lessonRoundTypes';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import IcCheckcircleGray0524 from '@/shared/assets/svg/IcCheckcircleGray0524';
 import IcCheckcircleMain0324 from '@/shared/assets/svg/IcCheckcircleMain0324';
@@ -70,11 +70,6 @@ const Reservation = () => {
 
   const studentName = data.studentName;
 
-  const lessonRounds: LessonRoundTypes[] = data.lessonRound.lessonRounds.map((round) => ({
-    startDateTime: round.startDateTime,
-    endDateTime: round.endDateTime,
-  }));
-
   const handleButtonClick = async () => {
     {
       navigate(ROUTES_CONFIG.payments.path, { state: { lessonId: id, totalPrice, className, studentName } });
@@ -89,7 +84,7 @@ const Reservation = () => {
           <Header.Title title="클래스 신청" />
         </Header.Root>
       </div>
-      <TopInfoContent name={data.name} teacherNickname={data.teacherNickname} imageUrl={data.imageUrl} />
+      <TopInfoContent {...data} />
       <Flex
         width="100%"
         direction="column"
@@ -102,20 +97,13 @@ const Reservation = () => {
           <Text tag="b4" color="gray9">
             클래스 정보
           </Text>
-          <ClassInfo
-            name={data.name}
-            location={data.location}
-            locationDetail={data.locationDetail}
-            teacherNickname={data.teacherNickname}
-            level={data.level}
-            lessonRound={lessonRounds}
-          />
+          <ClassInfo {...data} lessonRound={data.lessonRound.lessonRounds} />
         </Flex>
         <Flex direction="column" width="100%" gap="1.6rem">
           <Text tag="b4" color="gray9">
             신청자 정보
           </Text>
-          <ApplicantInfo studentName={data.studentName} studentPhoneNumber={data.studentPhoneNumber} />
+          <ApplicantInfo {...data} />
         </Flex>
       </Flex>
 
@@ -137,18 +125,15 @@ const Reservation = () => {
             </div>
 
             <Flex direction="column" width="100%">
-              <AgreeCheckBox
-                text="취소 및 환불 약관  (필수)"
-                isChecked={agreements[0]}
-                onToggle={() => handleToggle(0)}
-                link="https://pastoral-can-e04.notion.site/17d27658a0c780f0b42edd22f42bbae8?pvs=4"
-              />
-              <AgreeCheckBox
-                text="전자결제 서비스 이용약관  (필수)"
-                isChecked={agreements[1]}
-                onToggle={() => handleToggle(1)}
-                link="https://pastoral-can-e04.notion.site/17d27658a0c780f0b42edd22f42bbae8?pvs=4"
-              />
+              {AGREEMENT_TERMS.map((term, index) => (
+                <AgreeCheckBox
+                  key={index}
+                  text={term.text}
+                  isChecked={agreements[index]}
+                  onToggle={() => handleToggle(index)}
+                  link={term.link}
+                />
+              ))}
             </Flex>
           </div>
           <Text tag="b3" color="gray6" className={agreementTextStyle}>

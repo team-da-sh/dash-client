@@ -5,14 +5,14 @@ import IcCheckMain0324 from '@/shared/assets/svg/IcCheckMain0324';
 import Flex from '@/shared/components/Flex/Flex';
 import Text from '@/shared/components/Text/Text';
 
-interface AgreeCheckBoxProps {
+interface AgreeCheckBoxPropTypes {
   text: string;
   isChecked: boolean;
   onToggle: () => void;
   link?: string;
 }
 
-const AgreeCheckBox = ({ text, isChecked, onToggle, link = '' }: AgreeCheckBoxProps) => {
+const AgreeCheckBox = ({ text, isChecked, onToggle, link = '' }: AgreeCheckBoxPropTypes) => {
   const handleArrowClick = (e: React.MouseEvent) => {
     e.stopPropagation();
     if (link) {
