@@ -15,13 +15,13 @@ import {
   footerWrapperStyle,
   progressBarStyle,
 } from '@/pages/onboarding/onboarding.css';
-import { GenreTypes } from '@/pages/onboarding/types/genreTypes';
-import { onboardInfoTypes } from '@/pages/onboarding/types/onboardInfoTypes';
+import type { GenreTypes } from '@/pages/onboarding/types/genreTypes';
+import type { onboardInfoTypes } from '@/pages/onboarding/types/onboardInfoTypes';
 import { validateName, validatePhoneNumber } from '@/pages/onboarding/utils/validate';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import ProgressBar from '@/shared/components/ProgressBar/ProgressBar';
-import { FunnelProps, StepProps } from '@/shared/hooks/useFunnel';
+import type { FunnelProps, StepProps } from '@/shared/hooks/useFunnel';
 import { setStorage } from '@/shared/utils/handleToken';
 
 interface OnboardingFunnelProps {

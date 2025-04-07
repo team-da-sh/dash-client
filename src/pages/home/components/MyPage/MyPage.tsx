@@ -5,12 +5,12 @@ import { useGetRole } from '@/shared/apis/queries';
 import Divider from '@/shared/components/Divider/Divider';
 import BottomSection from '../BottomSection/BottomSection';
 
-interface MyPageProps {
+interface MyPagePropTypes {
   showMyPage: boolean;
   onClose: () => void;
 }
 
-const MyPage = ({ showMyPage, onClose }: MyPageProps) => {
+const MyPage = ({ showMyPage, onClose }: MyPagePropTypes) => {
   const { data: userData } = useGetMyPage({
     enabled: showMyPage,
   });

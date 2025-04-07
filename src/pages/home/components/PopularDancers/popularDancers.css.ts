@@ -1,6 +1,10 @@
 import { style } from '@vanilla-extract/css';
 
 export const containerStyle = style({
+  display: 'flex',
+  gap: '0.8rem',
+
+  marginTop: '2rem',
   overflow: 'auto',
   whiteSpace: 'nowrap',
 

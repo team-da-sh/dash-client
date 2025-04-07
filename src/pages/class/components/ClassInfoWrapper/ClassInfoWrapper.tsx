@@ -5,7 +5,7 @@ import {
   profileStyle,
   thunderIconStyle,
 } from '@/pages/class/components/ClassInfoWrapper/classInfoWrapper.css';
-import { LessonDetailResponse } from '@/pages/class/types/api';
+import type { LessonDetailResponse } from '@/pages/class/types/api';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import IcThunderMain0424 from '@/shared/assets/svg/IcThunderMain0424';
 import Flex from '@/shared/components/Flex/Flex';

@@ -10,7 +10,7 @@ import {
   linkStyle,
   rowScrollStyle,
 } from '@/pages/dancer/components/DancerInfo/dancerInfo.css';
-import { DancerDetailResponse } from '@/pages/dancer/types/api';
+import type { DancerDetailResponse } from '@/pages/dancer/types/api';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import IcInstagram20 from '@/shared/assets/svg/IcInstagram20';
 import IcYoutube20 from '@/shared/assets/svg/IcYoutube20';

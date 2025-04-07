@@ -5,16 +5,16 @@ import IcBackWhite24 from '@/shared/assets/svg/IcBackWhite24';
 import Flex from '@/shared/components/Flex/Flex';
 
 interface DancerHeaderProps {
-  isVisible: boolean;
+  isWhite: boolean;
 }
 
-const DancerHeader = ({ isVisible }: DancerHeaderProps) => {
+const DancerHeader = ({ isWhite }: DancerHeaderProps) => {
   const navigate = useNavigate();
 
   return (
-    <div className={containerStyle({ isVisible })}>
+    <div className={containerStyle({ isWhite })}>
       <Flex align="center" justify="center" onClick={() => navigate(-1)}>
-        {isVisible ? <IcBack width={'2.4rem'} /> : <IcBackWhite24 width={'2.4rem'} />}
+        {isWhite ? <IcBack width={'2.4rem'} /> : <IcBackWhite24 width={'2.4rem'} />}
       </Flex>
     </div>
   );

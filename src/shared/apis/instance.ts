@@ -1,4 +1,5 @@
-import axios, { InternalAxiosRequestConfig } from 'axios';
+import type { InternalAxiosRequestConfig } from 'axios';
+import axios from 'axios';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { HTTP_STATUS_CODE } from '@/shared/constants/api';
 import { getAccessToken } from '@/shared/utils/handleToken';

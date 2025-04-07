@@ -1,4 +1,4 @@
-import { Lesson } from '@/pages/dancer/types/lesson';
+import type { Lesson } from '@/pages/dancer/types/lesson';
 
 export interface DancerDetailResponse {
   nickname: string;

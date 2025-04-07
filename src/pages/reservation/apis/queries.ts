@@ -1,5 +1,5 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
-import { AxiosError } from 'axios';
+import type { AxiosError } from 'axios';
 import { getReservation, postReservation } from '@/pages/reservation/apis/axios';
 import type { ReservationDetailResponseTypes } from '@/pages/reservation/types/api';
 import { QUERY_KEYS } from '@/shared/constants/queryKey';

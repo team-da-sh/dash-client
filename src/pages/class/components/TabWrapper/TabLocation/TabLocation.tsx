@@ -5,7 +5,7 @@ import {
   emptyStyle,
   streetAddressStyle,
 } from '@/pages/class/components/TabWrapper/TabLocation/tabLocation.css';
-import { LessonDetailResponse } from '@/pages/class/types/api';
+import type { LessonDetailResponse } from '@/pages/class/types/api';
 import Flex from '@/shared/components/Flex/Flex';
 import Head from '@/shared/components/Head/Head';
 import Text from '@/shared/components/Text/Text';

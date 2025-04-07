@@ -1,7 +1,7 @@
 import { funnelContainerStyle } from '@/pages/instructor/classRegister/components/ClassSchedule/ClassRegisterFunnel/classRegisterFunnel.css';
 import DateStep from '@/pages/instructor/classRegister/components/ClassSchedule/DateStep/DateStep';
 import TimeStep from '@/pages/instructor/classRegister/components/ClassSchedule/TimeStep/TimeStep';
-import { FunnelProps, StepProps } from '@/pages/search/types/funnel';
+import type { FunnelProps, StepProps } from '@/pages/search/types/funnel';
 
 interface ClassRegisterBottomSheetProps {
   // currentStep: number;

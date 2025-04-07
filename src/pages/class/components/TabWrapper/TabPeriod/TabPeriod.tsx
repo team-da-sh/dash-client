@@ -1,6 +1,6 @@
 import Card from '@/pages/class/components/Card/Card';
 import { roundBoxStyle } from '@/pages/class/components/TabWrapper/TabPeriod/tabPeriod.css';
-import { LessonDetailResponse } from '@/pages/class/types/api';
+import type { LessonDetailResponse } from '@/pages/class/types/api';
 import Flex from '@/shared/components/Flex/Flex';
 import Text from '@/shared/components/Text/Text';
 import { calculatePeriod, formatDate } from '@/shared/utils/dateCalculate';

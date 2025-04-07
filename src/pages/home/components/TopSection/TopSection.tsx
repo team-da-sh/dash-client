@@ -10,17 +10,17 @@ import Head from '@/shared/components/Head/Head';
 import Tag from '@/shared/components/Tag/Tag';
 import Text from '@/shared/components/Text/Text';
 import { notify } from '@/shared/components/Toast/Toast';
-import { MyPageProps } from '@/shared/types/myPageTypes';
+import type { MyPageProps } from '@/shared/types/myPageTypes';
 
 const IcCalendarcheckColor3D24 = lazy(() => import('@/shared/assets/svg/IcCalendarcheckColor3D24'));
 const IcCalendarcheckMono3D24 = lazy(() => import('@/shared/assets/svg/IcCalendarcheckMono3D24'));
 
-interface TopSectionProps {
+interface TopSectionPropTypes {
   userData: MyPageProps;
   onClose: () => void;
   isInstructor: boolean;
 }
-const TopSection = ({ userData, onClose, isInstructor }: TopSectionProps) => {
+const TopSection = ({ userData, onClose, isInstructor }: TopSectionPropTypes) => {
   const navigate = useNavigate();
 
   const handleNavigate = (path: string) => {

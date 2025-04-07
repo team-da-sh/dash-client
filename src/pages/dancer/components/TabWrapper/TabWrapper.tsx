@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { DancerDetailResponse } from '@/pages/dancer/types/api';
+import type { DancerDetailResponse } from '@/pages/dancer/types/api';
 import Flex from '@/shared/components/Flex/Flex';
 import { TabButton, TabList, TabPanel, TabRoot } from '@/shared/components/Tab';
 import { DANCER_TABS } from '@/shared/constants';
