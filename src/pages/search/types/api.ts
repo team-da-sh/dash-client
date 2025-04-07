@@ -1,4 +1,4 @@
-import { Dancer } from '@/pages/search/types/dancer';
+import type { Dancer } from '@/pages/search/types/dancer';
 
 export interface DancerListParams {
   keyword?: string;

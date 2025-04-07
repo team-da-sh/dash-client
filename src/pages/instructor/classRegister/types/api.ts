@@ -1,4 +1,3 @@
-
 interface ClassTimeTypes {
   startTime: string;
   endTime: string;

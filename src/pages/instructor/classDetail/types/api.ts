@@ -1,4 +1,4 @@
-import { Student } from '@/shared/types/myPageLessonDetailTypes';
+import type { Student } from '@/shared/types/myPageLessonDetailTypes';
 
 export interface LessonDetailGetResponse {
   id: number;

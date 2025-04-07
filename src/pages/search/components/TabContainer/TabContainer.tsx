@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import ClassItem from '@/pages/home/components/LessonItem/LessonItem';
-import { DefaultSortTagTypes } from '@/pages/home/types/defaultSortTagTypes';
+import type { DefaultSortTagTypes } from '@/pages/home/types/defaultSortTagTypes';
 import DancerList from '@/pages/search/components/TabContainer/DancerList/DancerList';
 import EmptyView from '@/pages/search/components/TabContainer/EmptyView/EmptyView';
 import Dropdown from '@/pages/search/components/TabContainer/TagSection/Dropdown';
 import TagSection from '@/pages/search/components/TabContainer/TagSection/TagSection';
 import { divCustomStyle } from '@/pages/search/components/TabContainer/tabContainer.css';
-import { ClassListResponse, DancerListResponse } from '@/pages/search/types/api';
+import type { ClassListResponse, DancerListResponse } from '@/pages/search/types/api';
 import IcArrowUnderGray from '@/shared/assets/svg/IcArrowUnderGray';
 import IcXMain04 from '@/shared/assets/svg/IcXMain04';
 import Flex from '@/shared/components/Flex/Flex';

@@ -1,6 +1,6 @@
 import { INFO_KEY, LEVELS } from '@/pages/onboarding/constants';
-import { KO_LEVELS } from '@/pages/onboarding/types/koLevelTypes';
-import { onboardInfoTypes } from '@/pages/onboarding/types/onboardInfoTypes';
+import type { KO_LEVELS } from '@/pages/onboarding/types/koLevelTypes';
+import type { onboardInfoTypes } from '@/pages/onboarding/types/onboardInfoTypes';
 import Flex from '@/shared/components/Flex/Flex';
 import Head from '@/shared/components/Head/Head';
 import LevelButton from '@/shared/components/LevelButton/LevelButton';

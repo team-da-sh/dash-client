@@ -1,4 +1,4 @@
-import { defaultSortTagProps } from '@/pages/search/types/defaultSortTag';
+import type { defaultSortTagProps } from '@/pages/search/types/defaultSortTag';
 import IcArrowUnderGray from '@/shared/assets/svg/IcArrowUnderGray';
 
 export const DEFAULT_SORT_TAGS: defaultSortTagProps[] = [

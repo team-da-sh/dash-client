@@ -5,7 +5,7 @@ import {
   imageStyle,
   imageWrapperStyle,
 } from '@/pages/onboarding/components/GenreChip/genreChip.css';
-import { GenreTypes } from '@/pages/onboarding/types/genreTypes';
+import type { GenreTypes } from '@/pages/onboarding/types/genreTypes';
 import IcCheckMain0424 from '@/shared/assets/svg/IcCheckMain0424';
 import Flex from '@/shared/components/Flex/Flex';
 import Text from '@/shared/components/Text/Text';

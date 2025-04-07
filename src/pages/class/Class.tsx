@@ -11,12 +11,13 @@ import { useIntersectCallback } from '@/shared/hooks/useIntersectCallback';
 
 const Class = () => {
   const { id } = useParams<{ id: string }>();
-  const [targetRef, isVisible] = useIntersectCallback(false);
+  const [targetRef, isWhite] = useIntersectCallback(false);
 
   if (!id) {
     return <Error />;
   }
 
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const { data, isError, isLoading } = useGetLessonDetail(id);
 
   if (isLoading) {
@@ -37,7 +38,7 @@ const Class = () => {
         style={{
           backgroundImage: `url(${imageUrl})`,
         }}>
-        <ClassHeader isVisible={isVisible} lessonName={data.name} />
+        <ClassHeader isWhite={isWhite} lessonName={data.name} />
       </div>
 
       <ClassInfoWrapper lessonData={data} />

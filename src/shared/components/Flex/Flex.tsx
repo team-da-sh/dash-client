@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { ElementType, HTMLAttributes } from 'react';
+import type { ElementType, HTMLAttributes } from 'react';
 import { flexStyle } from '@/shared/components/Flex/flex.css';
 
 interface FlexProps extends HTMLAttributes<HTMLDivElement> {

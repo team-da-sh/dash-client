@@ -1,4 +1,5 @@
-import { ButtonHTMLAttributes, ReactNode, createContext, useContext, useState } from 'react';
+import type { ButtonHTMLAttributes, ReactNode } from 'react';
+import { createContext, useContext, useState } from 'react';
 import useOutsideClick from '@/shared/hooks/useOutsideClick';
 import * as styles from './index.css';
 

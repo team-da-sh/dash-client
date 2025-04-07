@@ -57,7 +57,7 @@ export const ROUTES_CONFIG = {
   },
   classRegisterCompletion: {
     title: 'ClassRegisterCompletion',
-    path: '/mypage/class-register/completion'
+    path: '/mypage/class-register/completion',
   },
   instructorRegister: {
     title: 'InstructorRegister',
