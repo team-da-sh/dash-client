@@ -17,20 +17,7 @@ const RecommendationLessons = () => {
       </Head>
       <ul className={recommandLessonWrapperStyle}>
         {recommendationLessonDatas?.lessons.map((lesson) => (
-          <LessonItem
-            key={lesson.id}
-            id={lesson.id}
-            imageUrl={lesson.imageUrl}
-            level={lesson.level}
-            genre={lesson.genre}
-            name={lesson.name}
-            teacherName={lesson.teacherName}
-            teacherProfileImage={lesson.teacherProfileImage}
-            startDate={lesson.startDate}
-            endDate={lesson.endDate}
-            remainingDays={lesson.remainingDays}
-            useNewStyles={false}
-          />
+          <LessonItem key={lesson.id} useNewStyles={false} {...lesson} />
         ))}
       </ul>
     </div>

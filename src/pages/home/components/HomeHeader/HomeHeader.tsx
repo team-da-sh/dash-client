@@ -8,12 +8,12 @@ import IcSearchWhite24 from '@/shared/assets/svg/IcSearchWhite24';
 import { HomeBlackWepm, HomeWhiteWepm } from '@/shared/assets/webm';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
 
-interface HomeHeaderProps {
+interface HomeHeaderPropTypes {
   isWhite: boolean;
   onMyPageClick: () => void;
 }
 
-const HomeHeader = ({ isWhite, onMyPageClick }: HomeHeaderProps) => {
+const HomeHeader = ({ isWhite, onMyPageClick }: HomeHeaderPropTypes) => {
   const navigate = useNavigate();
 
   const handleSearchClick = () => {
@@ -21,6 +21,7 @@ const HomeHeader = ({ isWhite, onMyPageClick }: HomeHeaderProps) => {
   };
 
   const handleLogoClick = () => {
+    // eslint-disable-next-line no-self-assign
     location.href = location.href;
   };
 

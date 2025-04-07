@@ -6,11 +6,11 @@ import Head from '@/shared/components/Head/Head';
 import Text from '@/shared/components/Text/Text';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
 
-interface DancerItemProps extends Omit<DancerTypes, 'genres'> {
+interface DancerItemPropTypes extends Omit<DancerTypes, 'genres'> {
   genre: string;
 }
 
-const DancerItem = ({ id, profileImage, genre, nickname }: DancerItemProps) => {
+const DancerItem = ({ id, profileImage, genre, nickname }: DancerItemPropTypes) => {
   const navigate = useNavigate();
 
   const handleDancerClick = () => {
