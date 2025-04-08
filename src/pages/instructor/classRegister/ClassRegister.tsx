@@ -127,7 +127,7 @@ const ClassRegister = () => {
       </Header.Root>
 
       <form onSubmit={handleSubmit}>
-        <div className={styles.containerStyle}>
+        <section className={styles.containerStyle}>
           <ClassName className={className} handleClassNameChange={handleClassNameChange} />
           <ClassDescription
             ref={explainTextAreaRef}
@@ -164,14 +164,15 @@ const ClassRegister = () => {
             locationList={locationList}
           />
           <ClassAmount amount={amount} handleAmountChange={handleAmountChange} />
-        </div>
+        </section>
 
-        <div className={buttonContainerStyle}>
+        <section className={buttonContainerStyle}>
           <BoxButton type="submit" disabled={!isFormValid()}>
             완료
           </BoxButton>
-        </div>
+        </section>
       </form>
+
       {isBottomSheetOpen && (
         <ClassRegisterBottomSheet
           onClose={closeBottomSheet}
