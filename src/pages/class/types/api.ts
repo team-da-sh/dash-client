@@ -1,6 +1,6 @@
 import type { StatusType } from '@/pages/class/types/statusType';
 
-export interface LessonDetailResponse {
+export interface LessonDetailResponseTypes {
   imageUrl: string;
   genre: string;
 
