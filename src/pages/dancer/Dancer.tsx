@@ -3,7 +3,7 @@ import { useGetDancerDetail } from '@/pages/dancer/apis/queries';
 import DancerHeader from '@/pages/dancer/components/DancerHeader/DancerHeader';
 import DancerInfo from '@/pages/dancer/components/DancerInfo/DancerInfo';
 import TabWrapper from '@/pages/dancer/components/TabWrapper/TabWrapper';
-import { gradientOverlayStyle, textWrapperStyle, topImgStyle } from '@/pages/dancer/dancer.css';
+import * as styles from '@/pages/dancer/dancer.css';
 import Error from '@/pages/error/Error';
 import Head from '@/shared/components/Head/Head';
 import Tag from '@/shared/components/Tag/Tag';
@@ -37,12 +37,12 @@ const Dancer = () => {
     <>
       <div
         ref={targetRef}
-        className={topImgStyle}
+        className={styles.topImgStyle}
         style={{
           backgroundImage: `url(${imageUrls[0]})`,
         }}>
-        <div className={gradientOverlayStyle} />
-        <div className={textWrapperStyle}>
+        <div className={styles.gradientOverlayStyle} />
+        <div className={styles.textWrapperStyle}>
           <div className={sprinkles({ display: 'flex', flexDirection: 'row', gap: 4 })}>
             {translatedGenres.map((genre, id) => (
               <Tag key={id} size="medium" type="genre">

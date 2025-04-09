@@ -1,6 +1,5 @@
 import { useNavigate } from 'react-router-dom';
 import * as styles from  '@/pages/class/components/ClassHeader/classHeader.css';
-import { containerStyle } from '@/pages/home/components/HomeHeader/homeHeader.css';
 import IcBack from '@/shared/assets/svg/IcBack';
 import IcBackWhite24 from '@/shared/assets/svg/IcBackWhite24';
 import Head from '@/shared/components/Head/Head';
@@ -14,7 +13,7 @@ const ClassHeader = ({ isWhite, lessonName }: ClassHeaderPropTypes) => {
   const navigate = useNavigate();
 
   return (
-    <section className={containerStyle({ isWhite })}>
+    <section className={styles.containerStyle({ isWhite })}>
       <div className={styles.backIconStyle} onClick={() => navigate(-1)}>
         {isWhite ? <IcBack width={'2.4rem'} /> : <IcBackWhite24 width={'2.4rem'} />}
       </div>
