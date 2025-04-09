@@ -12,16 +12,8 @@ export const postLogout = async () => {
   await instance.post(API_URL.AUTH_LOGOUT);
 };
 
-export const postReissue = async (refreshToken: string) => {
-  const response = await instance.post(
-    API_URL.AUTH_REISSUE,
-    {},
-    {
-      headers: {
-        Authorization: `Bearer ${refreshToken}`,
-      },
-    }
-  );
+export const postReissue = async () => {
+  const response = await instance.post(API_URL.AUTH_REISSUE);
 
   return response;
 };
