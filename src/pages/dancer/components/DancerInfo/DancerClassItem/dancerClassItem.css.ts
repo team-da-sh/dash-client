@@ -2,7 +2,12 @@ import { style } from '@vanilla-extract/css';
 import { vars } from '@/shared/styles/theme.css';
 
 export const wrapperStyle = style({
+  display: 'flex',
   position: 'relative',
+  flexDirection: 'column',
+
+  width: '16.4rem',
+  gap: '0.8rem',
 });
 
 export const classImageStyle = style({

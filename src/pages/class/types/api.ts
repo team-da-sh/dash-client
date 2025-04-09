@@ -1,5 +1,3 @@
-import type { StatusType } from '@/pages/class/types/statusType';
-
 export interface LessonDetailResponseTypes {
   imageUrl: string;
   genre: string;
@@ -30,3 +28,5 @@ export interface LessonDetailResponseTypes {
   bookStatus: boolean;
   status: StatusType;
 }
+
+type StatusType = 'OPEN' | 'EXPIRED' | 'OVER_BOOKED';
