@@ -6,12 +6,13 @@ const TabVideo = ({ dancerData }: { dancerData: DancerDetailResponseTypes }) => 
   const { videoUrls } = dancerData;
 
   return (
-    <div className={styles.videoWrapperStyle}>
+    <section className={styles.videoWrapperStyle}>
       {videoUrls.map((url, id) => {
         const embedUrl = getYoutubeEmbedUrl(url);
         return (
           <div key={id} className={styles.videoItemStyle}>
             <iframe
+              loading="lazy"
               className={styles.iframeStyle}
               src={embedUrl || ''}
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -21,7 +22,7 @@ const TabVideo = ({ dancerData }: { dancerData: DancerDetailResponseTypes }) => 
           </div>
         );
       })}
-    </div>
+    </section>
   );
 };
 

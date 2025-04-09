@@ -10,9 +10,7 @@ export const videoWrapperStyle = style({
 export const videoItemStyle = style({
   position: 'relative',
   width: '33.5rem',
-  textAlign: 'center',
-  border: 'none',
-  paddingBottom: '56.25%',
+  height: '18.8rem',
 });
 
 export const iframeStyle = style({
