@@ -54,7 +54,7 @@ const Home = () => {
       <div ref={targetRef} className={carouselContainerStyle}>
         <HomeCarousel />
       </div>
-      <RecommendationLessons />
+      {/* <RecommendationLessons /> */}
       <PopularGenre />
       <PopularDancers />
       <UpcomingLessones />
