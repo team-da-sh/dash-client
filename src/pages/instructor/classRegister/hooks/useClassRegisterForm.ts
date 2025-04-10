@@ -29,7 +29,7 @@ export const useClassRegisterForm = () => {
   const [selectedTime, setSelectedTime] = useState<number | null>(null);
 
   const [selectedLocation, setSelectedLocation] = useState<LocationTypes | null>(null);
-
+  console.log(imageUrls);
   const handleClassNameChange = (e: ChangeEvent<HTMLInputElement>) => {
     setClassName(e.target.value);
   };
