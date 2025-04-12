@@ -5,7 +5,7 @@ import DancerList from '@/pages/search/components/TabContainer/DancerList/Dancer
 import EmptyView from '@/pages/search/components/TabContainer/EmptyView/EmptyView';
 import Dropdown from '@/pages/search/components/TabContainer/TagSection/Dropdown';
 import TagSection from '@/pages/search/components/TabContainer/TagSection/TagSection';
-import { divCustomStyle } from '@/pages/search/components/TabContainer/tabContainer.css';
+import * as styles from '@/pages/search/components/TabContainer/tabContainer.css';
 import type { ClassListResponseTypes, DancerListResponseTypes } from '@/pages/search/types/api';
 import IcArrowUnderGray from '@/shared/assets/svg/IcArrowUnderGray';
 import IcXMain04 from '@/shared/assets/svg/IcXMain04';
@@ -176,7 +176,7 @@ const TabContainer = ({
               setStartDate={setStartDate}
               setEndDate={setEndDate}
             />
-            <div className={divCustomStyle}>
+            <div className={styles.divCustomStyle}>
               {classList && classList.lessons && classList.lessons.length > 0 ? (
                 classList.lessons.map((data: ClassTypes) => (
                   <ClassItem

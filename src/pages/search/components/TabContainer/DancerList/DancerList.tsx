@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { dancerImageStyle } from '@/pages/search/components/TabContainer/DancerList/dancerList.css';
+import * as styles from '@/pages/search/components/TabContainer/DancerList/dancerList.css';
 import type { DancerTypes } from '@/pages/search/types/dancer';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import Head from '@/shared/components/Head/Head';
@@ -33,7 +33,7 @@ const DancerList = ({ dancers }: DancerListPropTypes) => {
           style={{ borderBottom: `1px solid ${vars.colors.gray01}` }}
           key={dancer.id}
           onClick={() => handleDancerClick(dancer.id)}>
-          <img src={dancer.profileImage} alt={dancer.nickname} className={dancerImageStyle} />
+          <img src={dancer.profileImage} alt={dancer.nickname} className={styles.dancerImageStyle} />
           <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 8 })}>
             <Head level="h6" tag="h6">
               {dancer.nickname}

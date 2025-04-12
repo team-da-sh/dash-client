@@ -1,16 +1,6 @@
 import { useState } from 'react';
 import CalendarCustom from '@/pages/search/components/Calendar/Calendar';
-import {
-  bottomSheetContainerStyle,
-  bottomSheetHidden,
-  bottomSheetStyle,
-  bottomSheetVisible,
-  genreButtonContainerStyle,
-  overlayHidden,
-  overlayStyle,
-  overlayVisible,
-  tabListCustomStyle,
-} from '@/pages/search/components/TabContainer/TagSection/BottomSheet/bottomSheet.css';
+import * as styles from '@/pages/search/components/TabContainer/TagSection/BottomSheet/bottomSheet.css';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import LevelButton from '@/shared/components/LevelButton/LevelButton';
 import { TabButton, TabList, TabPanel, TabRoot } from '@/shared/components/Tab';
@@ -90,13 +80,16 @@ const BottomSheet = ({
   };
 
   return (
-    <div className={bottomSheetContainerStyle}>
-      <div className={`${overlayStyle} ${isClosing ? overlayHidden : overlayVisible}`} onClick={handleClose} />
+    <div className={styles.bottomSheetContainerStyle}>
       <div
-        className={`${bottomSheetStyle} ${isClosing ? bottomSheetHidden : bottomSheetVisible} ${sprinkles({ display: 'flex', flexDirection: 'column' })}`}>
+        className={`${styles.overlayStyle} ${isClosing ? styles.overlayHidden : styles.overlayVisible}`}
+        onClick={handleClose}
+      />
+      <div
+        className={`${styles.bottomSheetStyle} ${isClosing ? styles.bottomSheetHidden : styles.bottomSheetVisible} ${sprinkles({ display: 'flex', flexDirection: 'column' })}`}>
         <TabRoot>
           <div className={sprinkles({ display: 'flex', paddingBottom: 10, paddingLeft: 20 })}>
-            <TabList className={tabListCustomStyle}>
+            <TabList className={styles.tabListCustomStyle}>
               <TabButton isSelected={selectedTab === 0} onClick={() => setSelectedTab(0)} colorScheme="secondary">
                 장르
               </TabButton>
@@ -109,7 +102,7 @@ const BottomSheet = ({
             </TabList>
           </div>
           <TabPanel isSelected={selectedTab === 0}>
-            <div className={genreButtonContainerStyle}>
+            <div className={styles.genreButtonContainerStyle}>
               {GENRE_CATEGORY.flat().map((category, index) => (
                 <GenreButton
                   key={index}

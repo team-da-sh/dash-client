@@ -1,5 +1,5 @@
 import { forwardRef } from 'react';
-import { containerStyle, inputStyle } from '@/pages/search/components/SearchBar/searchBar.css';
+import * as styles from '@/pages/search/components/SearchBar/searchBar.css';
 import IcSearchGray from '@/shared/assets/svg/IcSearchGray';
 import IcXCircleGray from '@/shared/assets/svg/IcXCircleGray';
 
@@ -14,7 +14,7 @@ const SearchBar = forwardRef<HTMLInputElement, SearchBarPropTypes>(({ searchValu
   };
 
   return (
-    <div className={containerStyle}>
+    <div className={styles.containerStyle}>
       <IcSearchGray width={24} />
       <input
         type="text"
@@ -22,7 +22,7 @@ const SearchBar = forwardRef<HTMLInputElement, SearchBarPropTypes>(({ searchValu
         value={searchValue}
         placeholder="장르나 댄서 네임을 검색해 보세요"
         onChange={handleInputChange}
-        className={inputStyle}
+        className={styles.inputStyle}
       />
       <IcXCircleGray width={24} onClick={() => handleSearchChange('')} />
     </div>
