@@ -3,13 +3,13 @@ import { createContext, useContext, useState } from 'react';
 import useOutsideClick from '@/shared/hooks/useOutsideClick';
 import * as styles from './index.css';
 
-interface DropdownContextPropsTypes {
+interface DropdownContextPropTypes {
   open: boolean;
   handleToggleOpen: () => void;
   handleToggleClose: () => void;
 }
 
-const DropdownContext = createContext<DropdownContextPropsTypes | null>(null);
+const DropdownContext = createContext<DropdownContextPropTypes | null>(null);
 
 const useDropdownContext = () => {
   const context = useContext(DropdownContext);
@@ -19,10 +19,10 @@ const useDropdownContext = () => {
   return context;
 };
 
-interface DropdownRootPropsTypes {
+interface DropdownRootPropTypes {
   children: ReactNode;
 }
-const DropdownRoot = ({ children }: DropdownRootPropsTypes) => {
+const DropdownRoot = ({ children }: DropdownRootPropTypes) => {
   const [open, setOpen] = useState(false);
 
   const handleToggleOpen = () => setOpen((prev) => !prev);
@@ -30,7 +30,7 @@ const DropdownRoot = ({ children }: DropdownRootPropsTypes) => {
 
   const ref = useOutsideClick(handleClose);
 
-  const contextValue: DropdownContextPropsTypes = {
+  const contextValue: DropdownContextPropTypes = {
     open,
     handleToggleOpen,
     handleToggleClose: handleClose,
@@ -45,10 +45,10 @@ const DropdownRoot = ({ children }: DropdownRootPropsTypes) => {
   );
 };
 
-interface DropdownTriggerPropsTypes {
+interface DropdownTriggerPropTypes {
   children: ReactNode;
 }
-const DropdownTrigger = ({ children }: DropdownTriggerPropsTypes) => {
+const DropdownTrigger = ({ children }: DropdownTriggerPropTypes) => {
   const { handleToggleOpen } = useDropdownContext();
 
   return (
@@ -58,11 +58,11 @@ const DropdownTrigger = ({ children }: DropdownTriggerPropsTypes) => {
   );
 };
 
-interface DropdownContentPropsTypes {
+interface DropdownContentPropTypes {
   children: ReactNode;
 }
 
-const DropdownContent = ({ children }: DropdownContentPropsTypes) => {
+const DropdownContent = ({ children }: DropdownContentPropTypes) => {
   const { open, handleToggleClose } = useDropdownContext();
 
   return (
@@ -72,12 +72,12 @@ const DropdownContent = ({ children }: DropdownContentPropsTypes) => {
   );
 };
 
-interface DropdownItemPropsTypes extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface DropdownItemPropTypes extends ButtonHTMLAttributes<HTMLButtonElement> {
   label: string;
   onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 
-const DropdownItem = ({ label, onClick, ...props }: DropdownItemPropsTypes) => {
+const DropdownItem = ({ label, onClick, ...props }: DropdownItemPropTypes) => {
   const { handleToggleClose } = useDropdownContext();
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {

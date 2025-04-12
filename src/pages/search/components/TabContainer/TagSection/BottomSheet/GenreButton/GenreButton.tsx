@@ -1,12 +1,12 @@
 import * as styles from '@/pages/search/components/TabContainer/TagSection/BottomSheet/GenreButton/genreButton.css';
 
-interface GenreButtonPropsTypes {
+interface GenreButtonPropTypes {
   category: string;
   isSelected: boolean;
   onClick: () => void;
 }
 
-const GenreButton = ({ category, isSelected, onClick }: GenreButtonPropsTypes) => (
+const GenreButton = ({ category, isSelected, onClick }: GenreButtonPropTypes) => (
   <button
     onClick={onClick}
     className={styles.genreButtonStyle({

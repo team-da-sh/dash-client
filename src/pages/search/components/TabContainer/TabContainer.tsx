@@ -6,7 +6,7 @@ import EmptyView from '@/pages/search/components/TabContainer/EmptyView/EmptyVie
 import Dropdown from '@/pages/search/components/TabContainer/TagSection/Dropdown';
 import TagSection from '@/pages/search/components/TabContainer/TagSection/TagSection';
 import { divCustomStyle } from '@/pages/search/components/TabContainer/tabContainer.css';
-import type { ClassListResponse, DancerListResponse } from '@/pages/search/types/api';
+import type { ClassListResponseTypes, DancerListResponseTypes } from '@/pages/search/types/api';
 import IcArrowUnderGray from '@/shared/assets/svg/IcArrowUnderGray';
 import IcXMain04 from '@/shared/assets/svg/IcXMain04';
 import { TabButton, TabList, TabPanel, TabRoot } from '@/shared/components/Tab';
@@ -43,8 +43,8 @@ interface TabContainerPropTypes {
   setLevel: (level: string | null) => void;
   setStartDate: (date: string) => void;
   setEndDate: (date: string) => void;
-  classList: ClassListResponse | undefined;
-  dancerList: DancerListResponse | undefined;
+  classList: ClassListResponseTypes | undefined;
+  dancerList: DancerListResponseTypes | undefined;
   error: Error | null;
   selectedLabel: '최신 등록순' | '찜이 많은순' | '마감 임박순';
   setSelectedLabel: (label: '최신 등록순' | '찜이 많은순' | '마감 임박순') => void;

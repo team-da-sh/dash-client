@@ -5,15 +5,15 @@ import IcFilterGray from '@/shared/assets/svg/IcFilterGray';
 import Tag from '@/shared/components/Tag/Tag';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
 
-interface TagItem {
+interface TagItemTypes {
   label: string;
   icon?: JSX.Element;
   type?: string;
 }
 
-interface TagSectionPropsTypes {
-  displayTags: TagItem[];
-  activeTags: TagItem[];
+interface TagSectionPropTypes {
+  displayTags: TagItemTypes[];
+  activeTags: TagItemTypes[];
   tagSize: 'search' | 'sort';
   tagType: 'search' | 'sort';
   genre: string | null;
@@ -39,7 +39,7 @@ const TagSection = ({
   endDate,
   setStartDate,
   setEndDate,
-}: TagSectionPropsTypes) => {
+}: TagSectionPropTypes) => {
   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
   const [selectedTagIndex, setSelectedTagIndex] = useState(0);
 

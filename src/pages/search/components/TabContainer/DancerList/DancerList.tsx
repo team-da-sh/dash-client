@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { dancerImageStyle } from '@/pages/search/components/TabContainer/DancerList/dancerList.css';
-import type { Dancer } from '@/pages/search/types/dancer';
+import type { DancerTypes } from '@/pages/search/types/dancer';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import Head from '@/shared/components/Head/Head';
 import Tag from '@/shared/components/Tag/Tag';
@@ -8,11 +8,11 @@ import { genreMapping } from '@/shared/constants/index';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
 import { vars } from '@/shared/styles/theme.css';
 
-interface DancerListPropsTypes {
-  dancers: Dancer[];
+interface DancerListPropTypes {
+  dancers: DancerTypes[];
 }
 
-const DancerList = ({ dancers }: DancerListPropsTypes) => {
+const DancerList = ({ dancers }: DancerListPropTypes) => {
   const navigate = useNavigate();
 
   const handleDancerClick = (id: number) => {
