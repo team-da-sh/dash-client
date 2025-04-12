@@ -8,11 +8,11 @@ import { genreMapping } from '@/shared/constants/index';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
 import { vars } from '@/shared/styles/theme.css';
 
-interface DancerListProps {
+interface DancerListPropsTypes {
   dancers: Dancer[];
 }
 
-const DancerList = ({ dancers }: DancerListProps) => {
+const DancerList = ({ dancers }: DancerListPropsTypes) => {
   const navigate = useNavigate();
 
   const handleDancerClick = (id: number) => {

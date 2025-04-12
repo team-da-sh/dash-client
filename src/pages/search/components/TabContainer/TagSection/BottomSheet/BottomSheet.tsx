@@ -19,7 +19,7 @@ import { GENRE_CATEGORY } from '@/shared/constants/index';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
 import GenreButton from './GenreButton/GenreButton';
 
-interface BottomSheetProps {
+interface BottomSheetPropsTypes {
   onClose: () => void;
   initialTabIndex: number;
   level: string | null;
@@ -43,7 +43,7 @@ const BottomSheet = ({
   endDate,
   setStartDate,
   setEndDate,
-}: BottomSheetProps) => {
+}: BottomSheetPropsTypes) => {
   const [selectedTab, setSelectedTab] = useState(initialTabIndex);
   const [selectedGenre, setSelectedGenre] = useState<string | null>(genre);
   const [selectedLevelTitle, setSelectedLevelTitle] = useState<string | null>(level);

@@ -3,12 +3,12 @@ import { containerStyle, inputStyle } from '@/pages/search/components/SearchBar/
 import IcSearchGray from '@/shared/assets/svg/IcSearchGray';
 import IcXCircleGray from '@/shared/assets/svg/IcXCircleGray';
 
-interface SearchBarProps {
+interface SearchBarPropTypes {
   searchValue: string;
   handleSearchChange: (value: string) => void;
 }
 
-const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(({ searchValue, handleSearchChange }, ref) => {
+const SearchBar = forwardRef<HTMLInputElement, SearchBarPropTypes>(({ searchValue, handleSearchChange }, ref) => {
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     handleSearchChange(event.target.value);
   };

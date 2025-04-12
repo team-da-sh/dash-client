@@ -11,7 +11,7 @@ interface TagItem {
   type?: string;
 }
 
-interface TagSectionProps {
+interface TagSectionPropsTypes {
   displayTags: TagItem[];
   activeTags: TagItem[];
   tagSize: 'search' | 'sort';
@@ -39,7 +39,7 @@ const TagSection = ({
   endDate,
   setStartDate,
   setEndDate,
-}: TagSectionProps) => {
+}: TagSectionPropsTypes) => {
   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
   const [selectedTagIndex, setSelectedTagIndex] = useState(0);
 

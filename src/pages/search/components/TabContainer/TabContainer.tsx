@@ -33,7 +33,7 @@ interface ClassTypes {
   remainingDays: number;
 }
 
-interface TabContainerProps {
+interface TabContainerPropTypes {
   defaultSortTags: DefaultSortTagTypes[];
   genre: string | null;
   level: string | null;
@@ -65,7 +65,7 @@ const TabContainer = ({
   classList,
   selectedLabel,
   setSelectedLabel,
-}: TabContainerProps) => {
+}: TabContainerPropTypes) => {
   const [selectedTab, setSelectedTab] = useState(0);
 
   const handleTagReset = (type: string) => {
