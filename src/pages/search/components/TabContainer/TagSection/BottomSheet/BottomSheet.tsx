@@ -79,6 +79,14 @@ const BottomSheet = ({
     setSelectedGenre((prev) => (prev === category ? null : category));
   };
 
+  const calendarPropTypes = {
+    isSearch: true,
+    startDate: selectedStartDate,
+    endDate: selectedEndDate,
+    setStartDate: (date: string) => setSelectedStartDate(date),
+    setEndDate: (date: string) => setSelectedEndDate(date),
+  };
+
   return (
     <div className={styles.bottomSheetContainerStyle}>
       <div
@@ -135,13 +143,7 @@ const BottomSheet = ({
             </div>
           </TabPanel>
           <TabPanel isSelected={selectedTab === 2}>
-            <CalendarCustom
-              isSearch={true}
-              startDate={selectedStartDate}
-              endDate={selectedEndDate}
-              setStartDate={(date) => setSelectedStartDate(date)}
-              setEndDate={(date) => setSelectedEndDate(date)}
-            />
+            <CalendarCustom {...calendarPropTypes} />
           </TabPanel>
         </TabRoot>
         <div className={sprinkles({ display: 'flex', width: '100%', gap: 8, paddingLeft: 20, paddingRight: 20 })}>
