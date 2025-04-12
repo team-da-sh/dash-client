@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import CalendarCustom from '@/pages/search/components/Calendar/Calendar';
+import GenreButton from '@/pages/search/components/TabContainer/TagSection/BottomSheet/GenreButton/GenreButton';
 import * as styles from '@/pages/search/components/TabContainer/TagSection/BottomSheet/bottomSheet.css';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import LevelButton from '@/shared/components/LevelButton/LevelButton';
@@ -7,7 +8,6 @@ import { TabButton, TabList, TabPanel, TabRoot } from '@/shared/components/Tab';
 import { LEVEL } from '@/shared/constants';
 import { GENRE_CATEGORY } from '@/shared/constants/index';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
-import GenreButton from './GenreButton/GenreButton';
 
 interface BottomSheetPropTypes {
   onClose: () => void;

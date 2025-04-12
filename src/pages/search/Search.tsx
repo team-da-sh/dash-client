@@ -44,6 +44,23 @@ const Search = () => {
     sortOption,
   });
 
+  const tabContainerPropTypes = {
+    defaultSortTags: DEFAULT_SORT_TAGS,
+    genre,
+    level,
+    startDate,
+    endDate,
+    setGenre,
+    setLevel,
+    setStartDate,
+    setEndDate,
+    dancerList,
+    classList,
+    error,
+    selectedLabel,
+    setSelectedLabel,
+  };
+
   return (
     <main>
       <Header.Root className={headerRootCutomStyle} isColor={true}>
@@ -51,22 +68,7 @@ const Search = () => {
         <SearchBar searchValue={searchValue} handleSearchChange={handleSearchChange(setSearchValue)} />
       </Header.Root>
 
-      <TabContainer
-        defaultSortTags={DEFAULT_SORT_TAGS}
-        genre={genre}
-        level={level}
-        startDate={startDate}
-        endDate={endDate}
-        setGenre={setGenre}
-        setLevel={setLevel}
-        setStartDate={setStartDate}
-        setEndDate={setEndDate}
-        dancerList={dancerList}
-        classList={classList}
-        error={error}
-        selectedLabel={selectedLabel}
-        setSelectedLabel={setSelectedLabel}
-      />
+      <TabContainer {...tabContainerPropTypes} />
     </main>
   );
 };
