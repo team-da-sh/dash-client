@@ -9,9 +9,9 @@ import { divCustomStyle } from '@/pages/search/components/TabContainer/tabContai
 import type { ClassListResponse, DancerListResponse } from '@/pages/search/types/api';
 import IcArrowUnderGray from '@/shared/assets/svg/IcArrowUnderGray';
 import IcXMain04 from '@/shared/assets/svg/IcXMain04';
-import Flex from '@/shared/components/Flex/Flex';
 import { TabButton, TabList, TabPanel, TabRoot } from '@/shared/components/Tab';
 import Text from '@/shared/components/Text/Text';
+import { sprinkles } from '@/shared/styles/sprinkles.css';
 
 interface TagItem {
   label: string;
@@ -117,10 +117,25 @@ const TabContainer = ({
   const tagType: 'search' | 'sort' = activeTags.length > 0 ? 'search' : 'sort';
 
   return (
-    <Flex direction="column" paddingTop="8.4rem" width="100%" paddingLeft="2rem" paddingRight="2rem">
-      <Flex align="center" width="100%" justify="spaceBetween" position="relative">
+    <section
+      className={sprinkles({
+        display: 'flex',
+        flexDirection: 'column',
+        width: '100%',
+        paddingTop: 84,
+        paddingLeft: 20,
+        paddingRight: 20,
+      })}>
+      <div
+        className={sprinkles({
+          display: 'flex',
+          alignItems: 'center',
+          width: '100%',
+          justifyContent: 'space-between',
+          position: 'relative',
+        })}>
         <TabRoot>
-          <Flex justify="spaceBetween">
+          <div className={sprinkles({ display: 'flex', justifyContent: 'space-between' })}>
             <TabList>
               <TabButton isSelected={selectedTab === 0} onClick={() => setSelectedTab(0)} colorScheme="primary">
                 클래스
@@ -131,12 +146,12 @@ const TabContainer = ({
             </TabList>
             <Dropdown.Root>
               <Dropdown.Trigger>
-                <Flex align="center">
+                <div className={sprinkles({ display: 'flex', alignItems: 'center' })}>
                   <Text tag="b7" color="gray7">
                     {selectedLabel}
                   </Text>
                   <IcArrowUnderGray width={14} />
-                </Flex>
+                </div>
               </Dropdown.Trigger>
               <Dropdown.Content>
                 <Dropdown.Item label="최신 등록순" onClick={() => setSelectedLabel('최신 등록순')} />
@@ -144,7 +159,7 @@ const TabContainer = ({
                 <Dropdown.Item label="마감 임박순" onClick={() => setSelectedLabel('마감 임박순')} />
               </Dropdown.Content>
             </Dropdown.Root>
-          </Flex>
+          </div>
 
           <TabPanel isSelected={selectedTab === 0}>
             <TagSection
@@ -193,8 +208,8 @@ const TabContainer = ({
             )}
           </TabPanel>
         </TabRoot>
-      </Flex>
-    </Flex>
+      </div>
+    </section>
   );
 };
 
