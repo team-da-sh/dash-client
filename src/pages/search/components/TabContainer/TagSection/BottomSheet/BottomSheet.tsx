@@ -143,7 +143,13 @@ const BottomSheet = ({
             </div>
           </TabPanel>
           <TabPanel isSelected={selectedTab === 2}>
-            <CalendarCustom {...calendarPropTypes} />
+            <CalendarCustom
+              isSearch={true}
+              startDate={selectedStartDate}
+              endDate={selectedEndDate}
+              setStartDate={(date) => setSelectedStartDate(date)}
+              setEndDate={(date) => setSelectedEndDate(date)}
+            />
           </TabPanel>
         </TabRoot>
         <div className={sprinkles({ display: 'flex', width: '100%', gap: 8, paddingLeft: 20, paddingRight: 20 })}>

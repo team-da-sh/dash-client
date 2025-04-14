@@ -64,20 +64,6 @@ const TagSection = ({
     setIsBottomSheetOpen(false);
   };
 
-  // BottomSheet에 전달할 props를 객체로 구성
-  const bottomSheetPropTypes = {
-    onClose: handleBottomSheetClose,
-    initialTabIndex: selectedTagIndex,
-    genre,
-    setGenre,
-    setLevel,
-    level,
-    startDate,
-    endDate,
-    setStartDate,
-    setEndDate,
-  };
-
   return (
     <>
       <div
@@ -103,7 +89,20 @@ const TagSection = ({
         </div>
         {!activeTags.length && <IcFilterGray width={28} onClick={() => handleTagClick(0)} />}
       </div>
-      {isBottomSheetOpen && <BottomSheet {...bottomSheetPropTypes} />}
+      {isBottomSheetOpen && (
+        <BottomSheet
+          onClose={handleBottomSheetClose}
+          initialTabIndex={selectedTagIndex}
+          genre={genre}
+          setGenre={setGenre}
+          setLevel={setLevel}
+          level={level}
+          startDate={startDate}
+          endDate={endDate}
+          setStartDate={setStartDate}
+          setEndDate={setEndDate}
+        />
+      )}
     </>
   );
 };

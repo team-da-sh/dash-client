@@ -116,21 +116,6 @@ const TabContainer = ({
   const tagSize: 'search' | 'sort' = activeTags.length > 0 ? 'search' : 'sort';
   const tagType: 'search' | 'sort' = activeTags.length > 0 ? 'search' : 'sort';
 
-  const tagSectionPropTypes = {
-    displayTags,
-    activeTags,
-    tagSize,
-    tagType,
-    genre,
-    setGenre,
-    setLevel,
-    level,
-    startDate,
-    endDate,
-    setStartDate,
-    setEndDate,
-  };
-
   return (
     <section
       className={sprinkles({
@@ -177,7 +162,20 @@ const TabContainer = ({
           </div>
 
           <TabPanel isSelected={selectedTab === 0}>
-            <TagSection {...tagSectionPropTypes} />
+            <TagSection
+              displayTags={displayTags}
+              activeTags={activeTags}
+              tagSize={tagSize}
+              tagType={tagType}
+              genre={genre}
+              setGenre={setGenre}
+              setLevel={setLevel}
+              level={level}
+              startDate={startDate}
+              endDate={endDate}
+              setStartDate={setStartDate}
+              setEndDate={setEndDate}
+            />
             <div className={styles.divCustomStyle}>
               {classList && classList.lessons && classList.lessons.length > 0 ? (
                 classList.lessons.map((data: ClassTypes) => <ClassItem key={data.id} {...data} useNewStyles={true} />)
