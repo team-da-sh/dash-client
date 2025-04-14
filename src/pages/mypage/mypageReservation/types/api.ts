@@ -1,4 +1,4 @@
-import { Reservation } from '@/shared/types/reservationTypes';
+import type { Reservation } from '@/shared/types/reservationTypes';
 
 export interface ReservationResponse {
   reservations: Reservation[];

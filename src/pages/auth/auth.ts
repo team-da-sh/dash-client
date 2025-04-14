@@ -13,7 +13,7 @@ export const LoginCallback = () => {
 
   useEffect(() => {
     if (code) login({ redirectUrl: import.meta.env.VITE_KAKAO_REDIRECT_URI, code });
-  }, [code]);
+  }, [code, login]);
 
   // 잠시 인가 코드만 추출해서 api를 보내는 페이지이기 때문에 null 값 반환
   return null;

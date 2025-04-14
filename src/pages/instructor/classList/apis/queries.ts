@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { LessonResponse } from '@/pages/instructor/classList/types/api';
+import type { LessonResponse } from '@/pages/instructor/classList/types/api';
 import { QUERY_KEYS } from '@/shared/constants/queryKey';
 import { getMyLessons } from './axios';
 

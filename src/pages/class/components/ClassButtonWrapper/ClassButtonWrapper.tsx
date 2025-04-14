@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { buttonWrapperStyle } from '@/pages/class/components/ClassButtonWrapper/classButtonWrapper.css';
-import { LessonDetailResponse } from '@/pages/class/types/api';
+import type { LessonDetailResponse } from '@/pages/class/types/api';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import IcHeartFilledGray07 from '@/shared/assets/svg/IcHeartFilledGray07';
 import IcHeartOutlinedGray07 from '@/shared/assets/svg/IcHeartOutlinedGray07';

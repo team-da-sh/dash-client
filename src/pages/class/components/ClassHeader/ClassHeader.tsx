@@ -10,22 +10,22 @@ import IcBackWhite24 from '@/shared/assets/svg/IcBackWhite24';
 import Flex from '@/shared/components/Flex/Flex';
 import Head from '@/shared/components/Head/Head';
 
-interface ClassHeaderProps {
-  isVisible: boolean;
+interface ClassHeaderPropTypes {
+  isWhite: boolean;
   lessonName: string;
 }
 
-const ClassHeader = ({ isVisible, lessonName }: ClassHeaderProps) => {
+const ClassHeader = ({ isWhite, lessonName }: ClassHeaderPropTypes) => {
   const navigate = useNavigate();
 
   return (
-    <div className={containerStyle({ isVisible })}>
+    <div className={containerStyle({ isWhite })}>
       <Flex align="center" className={backIconStyle} onClick={() => navigate(-1)}>
-        {isVisible ? <IcBack width={'2.4rem'} /> : <IcBackWhite24 width={'2.4rem'} />}
+        {isWhite ? <IcBack width={'2.4rem'} /> : <IcBackWhite24 width={'2.4rem'} />}
       </Flex>
 
       <Flex align="center" justify="center" className={classNameHeaderStyle}>
-        {isVisible && (
+        {isWhite && (
           <Head level="h5" tag="h6" className={headerTextStyle}>
             {lessonName}
           </Head>

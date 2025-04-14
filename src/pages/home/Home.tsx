@@ -23,9 +23,10 @@ const MyPage = lazy(() => import('@/pages/home/components/MyPage/MyPage'));
 
 const Home = () => {
   preload(images);
+
   const navigate = useNavigate();
 
-  const [targetRef, isVisible] = useIntersect(false);
+  const [targetRef, isWhite] = useIntersect(false);
   const [showMyPage, setShowMyPage] = useState(false);
 
   const handleMyPageClick = () => {
@@ -49,7 +50,7 @@ const Home = () => {
         </Suspense>
       )}
 
-      <HomeHeader isVisible={isVisible} onMyPageClick={handleMyPageClick} />
+      <HomeHeader isWhite={isWhite} onMyPageClick={handleMyPageClick} />
       <div ref={targetRef} className={carouselContainerStyle}>
         <HomeCarousel />
       </div>

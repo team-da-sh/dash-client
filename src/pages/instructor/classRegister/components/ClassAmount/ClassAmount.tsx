@@ -1,4 +1,4 @@
-import { ChangeEvent } from 'react';
+import type { ChangeEvent } from 'react';
 import Description from '@/pages/instructor/classRegister/components/Description';
 import Flex from '@/shared/components/Flex/Flex';
 import Input from '@/shared/components/Input/Input';

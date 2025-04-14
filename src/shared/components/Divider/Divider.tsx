@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { HTMLAttributes } from 'react';
+import type { HTMLAttributes } from 'react';
 import { dividerStyle } from '@/shared/components/Divider/divider.css';
 
 interface DividerProps extends HTMLAttributes<HTMLDivElement> {
