@@ -13,8 +13,12 @@ const BottomSection = ({ isInstructor }: { isInstructor: boolean }) => {
   const { mutate: logout } = usePostLogout();
   const navigate = useNavigate();
 
-  const getIsDisabled = (item: (typeof LIST_DATA)[number]) =>
-    (item.isInstructorRequired && !isInstructor) || (item.label === '강사 등록' && isInstructor);
+  const getIsDisabled = (item: (typeof LIST_DATA)[number]) => {
+    const isInstructorOnly = item.isInstructorRequired && !isInstructor;
+    const isAlreadyRegisteredInstructor = item.label === '강사 등록' && isInstructor;
+
+    return isInstructorOnly || isAlreadyRegisteredInstructor;
+  };
 
   const getArrowIcon = (isDisabled: boolean) => (isDisabled ? IcArrowRightSmallGray0432 : IcArrowRightSmallGray0732);
 

@@ -3,6 +3,7 @@ import BottomSection from '@/pages/home/components/BottomSection/BottomSection';
 import * as styles from '@/pages/home/components/MyPage/myPage.css';
 import TopSection from '@/pages/home/components/TopSection/TopSection';
 import { DEFAULT_USER_DATA } from '@/pages/home/constants';
+import { getUserRole, setUserRole } from '@/pages/mypage/utils/storage';
 import { useGetRole } from '@/shared/apis/queries';
 import Divider from '@/shared/components/Divider/Divider';
 
@@ -12,8 +13,7 @@ interface MyPagePropTypes {
 }
 
 const MyPage = ({ showMyPage, onClose }: MyPagePropTypes) => {
-  const storedRole = localStorage.getItem('userRole');
-  let initialRole = storedRole ? JSON.parse(storedRole) : null;
+  let initialRole = getUserRole();
 
   const { data: fetchedRole, isSuccess } = useGetRole({
     enabled: showMyPage && !initialRole,
@@ -24,7 +24,7 @@ const MyPage = ({ showMyPage, onClose }: MyPagePropTypes) => {
   const roleData = isSuccess && fetchedRole ? fetchedRole : initialRole;
 
   if (isSuccess && fetchedRole) {
-    localStorage.setItem('userRole', JSON.stringify(fetchedRole));
+    setUserRole(fetchedRole.roleName);
   }
 
   const isInstructor = roleData?.role === 'TEACHER';

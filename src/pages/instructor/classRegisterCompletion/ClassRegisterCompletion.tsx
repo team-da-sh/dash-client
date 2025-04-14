@@ -1,4 +1,3 @@
-import { useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import {
   buttonContainerStyle,
@@ -12,14 +11,11 @@ import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import Flex from '@/shared/components/Flex/Flex';
 import Head from '@/shared/components/Head/Head';
 import Text from '@/shared/components/Text/Text';
-import { QUERY_KEYS } from '@/shared/constants/queryKey';
 
 const ClassRegisterCompletion = () => {
   const navigate = useNavigate();
-  const queryClient = useQueryClient();
 
   const handleComplete = () => {
-    queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.MEMBERS_ME] });
     navigate(ROUTES_CONFIG.home.path);
   };
 

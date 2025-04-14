@@ -30,7 +30,6 @@ export const useGetMyPage = (options?: Partial<UseQueryOptions<MyPageResponseTyp
   return useQuery<MyPageResponseTypes>({
     queryKey: [QUERY_KEYS.MEMBERS_ME],
     queryFn: getMyPage,
-    staleTime: 0,
     gcTime: 1000 * 60 * 10,
     ...options,
   });

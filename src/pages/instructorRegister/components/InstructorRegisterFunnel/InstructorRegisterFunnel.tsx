@@ -13,6 +13,7 @@ import type { InstructorRegisterInfoTypes } from '@/pages/instructorRegister/typ
 import type { FunnelProps, StepProps } from '@/pages/search/types/funnel';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import Completion from '@/shared/components/Completion/Completion';
+import { QUERY_KEYS } from '@/shared/constants/queryKey';
 import useImageUploader from '@/shared/hooks/useImageUploader';
 import { setAccessToken, setRefreshToken } from '@/shared/utils/handleToken';
 
@@ -21,16 +22,9 @@ interface InstructorRegisterFunnelProps {
   Funnel: ({ children }: FunnelProps) => JSX.Element;
   setStep: (step: number) => void;
   Step: ({ children }: StepProps) => JSX.Element;
-  onRegisterComplete: () => void;
 }
 
-const InstructorRegisterFunnel = ({
-  currentStep,
-  Funnel,
-  Step,
-  setStep,
-  onRegisterComplete,
-}: InstructorRegisterFunnelProps) => {
+const InstructorRegisterFunnel = ({ currentStep, Funnel, Step, setStep }: InstructorRegisterFunnelProps) => {
   const queryClient = useQueryClient();
 
   const [info, setInfo] = useState({
@@ -109,8 +103,7 @@ const InstructorRegisterFunnel = ({
         setAccessToken(accessToken);
         setRefreshToken(refreshToken);
 
-        queryClient.invalidateQueries({ queryKey: ['role'] });
-        onRegisterComplete();
+        queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.ROLE] });
 
         setStep(1);
       },

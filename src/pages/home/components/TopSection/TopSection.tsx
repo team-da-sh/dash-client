@@ -47,7 +47,6 @@ const TopSection = ({ userData, onClose, isInstructor }: TopSectionPropTypes) =>
       handleNavigate(ROUTES_CONFIG.instructorClassList.path);
     }
   };
-  console.log(userData.profileImageUrl);
 
   return (
     <section className={styles.sectionStyle}>
