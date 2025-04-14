@@ -10,8 +10,8 @@ export const resizeImage = (file: File): Promise<Blob> =>
         'WEBP',
         100,
         0,
-        (uri) => {
-          resolve(uri as Blob);
+        (imageBlob) => {
+          resolve(imageBlob as Blob);
         },
         'blob'
       );
