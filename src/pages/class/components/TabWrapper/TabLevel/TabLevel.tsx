@@ -44,11 +44,17 @@ const TabLevel = ({ lessonData }: { lessonData: LessonDetailResponseTypes }) => 
             </Text>
           </div>
         </Card>
-        <div className={sprinkles({ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: 6 })}>
+        <div
+          className={sprinkles({
+            display: 'flex',
+            justifyContent: 'flex-end',
+            alignItems: 'center',
+            gap: 6,
+          })}>
           <Text tag="c3" color="gray7">
             클래스 난이도는 이렇게 설정되어있어요!
           </Text>
-          <button className={styles.questionStyle}>
+          <button className={sprinkles({ display: 'flex' })}>
             <IcQuesitonmark width={'1.4rem'} />
           </button>
         </div>

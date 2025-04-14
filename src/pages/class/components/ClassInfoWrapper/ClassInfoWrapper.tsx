@@ -58,7 +58,7 @@ const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetailResponseType
         </Tag>
       </div>
 
-      <Head level="h2" tag="h4" className={styles.lessonNameStyle}>
+      <Head level="h2" tag="h4" className={sprinkles({ mb: 16 })}>
         {name}
       </Head>
 
@@ -94,7 +94,7 @@ const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetailResponseType
       </div>
 
       <div className={styles.cardStyle}>
-        <IcThunderMain0424 width={'2.4rem'} color={iconColor} className={styles.thunderIconStyle} />
+        <IcThunderMain0424 width={'2.4rem'} color={iconColor} className={sprinkles({ mr: 4 })} />
         <Text tag="b2" color="black">
           {isSoldOut ? '' : '마감까지'}
         </Text>

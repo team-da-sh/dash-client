@@ -35,7 +35,14 @@ const DancerClassItem = ({ imageUrl, remainingDays, genre, level, name }: ClassI
   const translatedLevel = levelMapping[level] || level;
 
   return (
-    <section className={styles.wrapperStyle}>
+    <section
+      className={sprinkles({
+        display: 'flex',
+        position: 'relative',
+        flexDirection: 'column',
+        width: 164,
+        gap: 8,
+      })}>
       <img src={imageUrl} alt="클래스 섬네일" className={styles.classImageStyle} />
       {renderDeadlineTag()}
 

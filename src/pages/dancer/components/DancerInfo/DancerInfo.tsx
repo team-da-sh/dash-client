@@ -58,13 +58,17 @@ const DancerInfo = ({ dancerData }: { dancerData: DancerDetailResponseTypes }) =
       </section>
 
       <section className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 12 })}>
-        <Head level="h4" tag="h5" className={styles.classTitleStyle}>
+        <Head level="h4" tag="h5" className={sprinkles({ pl: 20 })}>
           {nickname}님의 클래스
         </Head>
 
         {/* 개설한 클래스 없을 때 */}
         {lessons.length === 0 ? (
-          <Head level="h5" tag="h6" color="gray9" className={styles.emptyStyle}>
+          <Head
+            level="h5"
+            tag="h6"
+            color="gray9"
+            className={sprinkles({ display: 'flex', justifyContent: 'center', pt: 52, pb: 72 })}>
             아직 개설한 클래스가 없어요
           </Head>
         ) : (

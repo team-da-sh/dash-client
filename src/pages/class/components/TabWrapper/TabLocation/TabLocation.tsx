@@ -16,7 +16,11 @@ const TabLocation = ({ lessonData }: { lessonData: LessonDetailResponseTypes }) 
   return (
     <section className={sprinkles({ display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 12 })}>
       {isEmpty ? (
-        <Head level="h5" tag="h6" color="gray9" className={styles.emptyStyle}>
+        <Head
+          level="h5"
+          tag="h6"
+          color="gray9"
+          className={sprinkles({ display: 'flex', justifyContent: 'center', pt: 8 })}>
           아직 장소가 등록되지 않은 클래스예요
         </Head>
       ) : (
