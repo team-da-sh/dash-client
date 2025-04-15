@@ -1,12 +1,12 @@
 import { useNavigate } from 'react-router-dom';
 import { useGetMyLessons } from '@/pages/instructor/classList/apis/queries';
-import { containerStyle, layoutStyle } from '@/pages/instructor/classList/classList.css';
+import * as styles from '@/pages/instructor/classList/classList.css';
 import { handleBoxButtonClick, handleCancelClick, handleClassCardClick } from '@/pages/mypage/utils/clickUtils';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import ClassCard from '@/shared/components/ClassCard/ClassCard';
-import Flex from '@/shared/components/Flex/Flex';
 import Header from '@/shared/components/Header/Header';
 import Text from '@/shared/components/Text/Text';
+import { sprinkles } from '@/shared/styles/sprinkles.css';
 import type { Lesson } from '@/shared/types/lessonTypes';
 
 const ClassList = () => {
@@ -23,16 +23,16 @@ const ClassList = () => {
   }
 
   return (
-    <div className={layoutStyle}>
+    <div className={styles.layoutStyle}>
       <Header.Root isColor={true}>
         <Header.BackIcon />
         <Header.Title title="내 클래스 목록" />
       </Header.Root>
-      <div className={containerStyle}>
+      <main className={styles.containerStyle}>
         <Text tag="b2" color="gray9">
           전체 {lessonData?.count}
         </Text>
-        <Flex direction="column" gap="1.2rem" marginTop="1.6rem">
+        <section className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 12, marginTop: 16 })}>
           {lessonData?.lessons.map((lesson: Lesson) => (
             <ClassCard
               onClick={() => handleClassCardClick(navigate, lesson.id)}
@@ -47,8 +47,8 @@ const ClassList = () => {
               </BoxButton>
             </ClassCard>
           ))}
-        </Flex>
-      </div>
+        </section>
+      </main>
     </div>
   );
 };
