@@ -1,3 +1,4 @@
+import { useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
 import { usePostInstructor } from '@/pages/instructorRegister/apis/queries';
 import CareerStep from '@/pages/instructorRegister/components/InstructorRegisterFunnel/CareerStep/CareerStep';
@@ -12,6 +13,7 @@ import type { InstructorRegisterInfoTypes } from '@/pages/instructorRegister/typ
 import type { FunnelProps, StepProps } from '@/pages/search/types/funnel';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import Completion from '@/shared/components/Completion/Completion';
+import { QUERY_KEYS } from '@/shared/constants/queryKey';
 import useImageUploader from '@/shared/hooks/useImageUploader';
 import { setAccessToken, setRefreshToken } from '@/shared/utils/handleToken';
 
@@ -22,7 +24,10 @@ interface InstructorRegisterFunnelPropTypes {
   Step: ({ children }: StepProps) => JSX.Element;
 }
 
-const InstructorRegisterFunnel = ({ currentStep, Funnel, Step, setStep }: InstructorRegisterFunnelPropTypes) => {
+
+const InstructorRegisterFunnel = ({ currentStep, Funnel, Step, setStep }: InstructorRegisterFunnelProps) => {
+  const queryClient = useQueryClient();
+
   const [info, setInfo] = useState({
     imageUrls: '',
     instagram: '',
@@ -119,6 +124,8 @@ const InstructorRegisterFunnel = ({ currentStep, Funnel, Step, setStep }: Instru
 
         setAccessToken(accessToken);
         setRefreshToken(refreshToken);
+
+        queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.ROLE] });
 
         setStep(1);
       },

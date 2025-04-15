@@ -1,7 +1,7 @@
-export interface RoleNameProps {
+export interface RoleNameResponseTypes {
   roleName: string;
 }
-export interface MyPageProps {
+export interface MyPageResponseTypes {
   profileImageUrl: string;
   nickname: string;
   reservationCount: number;

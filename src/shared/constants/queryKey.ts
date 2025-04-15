@@ -34,4 +34,6 @@ export const QUERY_KEYS = {
   AUTH_ROLE: 'auth_role',
 
   IMAGES: 'images',
+
+  ROLE: 'role',
 };
