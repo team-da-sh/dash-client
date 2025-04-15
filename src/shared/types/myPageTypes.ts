@@ -1,5 +1,5 @@
 export interface RoleNameResponseTypes {
-  roleName: string;
+  role: string;
 }
 export interface MyPageResponseTypes {
   profileImageUrl: string;
