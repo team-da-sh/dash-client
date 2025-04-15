@@ -11,7 +11,9 @@ export const resizeImage = (file: File): Promise<Blob> =>
         100,
         0,
         (imageBlob) => {
-          resolve(imageBlob as Blob);
+          if (imageBlob instanceof Blob) {
+            resolve(imageBlob);
+          }
         },
         'blob'
       );

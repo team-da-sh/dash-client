@@ -167,7 +167,9 @@ const ClassRegister = () => {
         </div>
 
         <div className={buttonContainerStyle}>
-          <BoxButton type="submit">완료</BoxButton>
+          <BoxButton type="submit" disabled={!isFormValid()}>
+            완료
+          </BoxButton>
         </div>
       </form>
       {isBottomSheetOpen && (
