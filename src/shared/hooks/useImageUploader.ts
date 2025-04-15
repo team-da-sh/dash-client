@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react';
 import { useImageMutation } from '@/shared/apis/queries';
+import { resizeImage } from '@/shared/utils/resizeImage';
 
 const useImageUploader = (onSuccess: (url: string) => void, handleDeleteUrl: () => void) => {
   const [previewImg, setPreviewImg] = useState<string>('');
@@ -13,16 +14,17 @@ const useImageUploader = (onSuccess: (url: string) => void, handleDeleteUrl: () 
     }
   };
 
-  const uploadImgFile = () => {
+  const uploadImgFile = async () => {
     if (!imgRef.current || !imgRef.current.files) return;
 
     const file = imgRef.current.files[0];
+    const image = await resizeImage(file);
+
     const formData = new FormData();
-    formData.append('image', file);
+    formData.append('image', image);
 
     uploadImage(formData, {
       onSuccess: (data) => {
-        // 이미지 업로드 api res는 imageUrl (string)
         if (data?.imageUrl) {
           onSuccess(data.imageUrl);
         }
