@@ -1,25 +1,15 @@
 import { useState } from 'react';
 import CalendarCustom from '@/pages/search/components/Calendar/Calendar';
-import {
-  bottomSheetContainerStyle,
-  bottomSheetHidden,
-  bottomSheetStyle,
-  bottomSheetVisible,
-  genreButtonContainerStyle,
-  overlayHidden,
-  overlayStyle,
-  overlayVisible,
-  tabListCustomStyle,
-} from '@/pages/search/components/TabContainer/TagSection/BottomSheet/bottomSheet.css';
+import GenreButton from '@/pages/search/components/TabContainer/TagSection/BottomSheet/GenreButton/GenreButton';
+import * as styles from '@/pages/search/components/TabContainer/TagSection/BottomSheet/bottomSheet.css';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
-import Flex from '@/shared/components/Flex/Flex';
 import LevelButton from '@/shared/components/LevelButton/LevelButton';
 import { TabButton, TabList, TabPanel, TabRoot } from '@/shared/components/Tab';
 import { LEVEL } from '@/shared/constants';
 import { GENRE_CATEGORY } from '@/shared/constants/index';
-import GenreButton from './GenreButton/GenreButton';
+import { sprinkles } from '@/shared/styles/sprinkles.css';
 
-interface BottomSheetProps {
+interface BottomSheetPropTypes {
   onClose: () => void;
   initialTabIndex: number;
   level: string | null;
@@ -43,7 +33,7 @@ const BottomSheet = ({
   endDate,
   setStartDate,
   setEndDate,
-}: BottomSheetProps) => {
+}: BottomSheetPropTypes) => {
   const [selectedTab, setSelectedTab] = useState(initialTabIndex);
   const [selectedGenre, setSelectedGenre] = useState<string | null>(genre);
   const [selectedLevelTitle, setSelectedLevelTitle] = useState<string | null>(level);
@@ -89,13 +79,25 @@ const BottomSheet = ({
     setSelectedGenre((prev) => (prev === category ? null : category));
   };
 
+  const calendarPropTypes = {
+    isSearch: true,
+    startDate: selectedStartDate,
+    endDate: selectedEndDate,
+    setStartDate: (date: string) => setSelectedStartDate(date),
+    setEndDate: (date: string) => setSelectedEndDate(date),
+  };
+
   return (
-    <div className={bottomSheetContainerStyle}>
-      <div className={`${overlayStyle} ${isClosing ? overlayHidden : overlayVisible}`} onClick={handleClose} />
-      <Flex direction="column" className={`${bottomSheetStyle} ${isClosing ? bottomSheetHidden : bottomSheetVisible}`}>
+    <div className={styles.bottomSheetContainerStyle}>
+      <div
+        className={`${styles.overlayStyle} ${isClosing ? styles.overlayHidden : styles.overlayVisible}`}
+        onClick={handleClose}
+      />
+      <div
+        className={`${styles.bottomSheetStyle} ${isClosing ? styles.bottomSheetHidden : styles.bottomSheetVisible} ${sprinkles({ display: 'flex', flexDirection: 'column' })}`}>
         <TabRoot>
-          <Flex paddingBottom="1rem" paddingLeft="2rem">
-            <TabList className={tabListCustomStyle}>
+          <div className={sprinkles({ display: 'flex', paddingBottom: 10, paddingLeft: 20 })}>
+            <TabList className={styles.tabListCustomStyle}>
               <TabButton isSelected={selectedTab === 0} onClick={() => setSelectedTab(0)} colorScheme="secondary">
                 장르
               </TabButton>
@@ -106,9 +108,9 @@ const BottomSheet = ({
                 기간
               </TabButton>
             </TabList>
-          </Flex>
+          </div>
           <TabPanel isSelected={selectedTab === 0}>
-            <div className={genreButtonContainerStyle}>
+            <div className={styles.genreButtonContainerStyle}>
               {GENRE_CATEGORY.flat().map((category, index) => (
                 <GenreButton
                   key={index}
@@ -120,13 +122,16 @@ const BottomSheet = ({
             </div>
           </TabPanel>
           <TabPanel isSelected={selectedTab === 1}>
-            <Flex
-              direction="column"
-              gap="0.8rem"
-              paddingBottom="4.6rem"
-              paddingTop="0.8rem"
-              paddingLeft="2rem"
-              paddingRight="2rem">
+            <div
+              className={sprinkles({
+                display: 'flex',
+                flexDirection: 'column',
+                gap: 8,
+                paddingBottom: 46,
+                paddingTop: 8,
+                paddingLeft: 20,
+                paddingRight: 20,
+              })}>
               {LEVEL.map((level) => (
                 <LevelButton
                   key={level.title}
@@ -135,7 +140,7 @@ const BottomSheet = ({
                   onClick={() => handleLevelSelect(level.title)}
                 />
               ))}
-            </Flex>
+            </div>
           </TabPanel>
           <TabPanel isSelected={selectedTab === 2}>
             <CalendarCustom
@@ -147,7 +152,7 @@ const BottomSheet = ({
             />
           </TabPanel>
         </TabRoot>
-        <Flex width="100%" gap="0.8rem" paddingLeft="2rem" paddingRight="2rem">
+        <div className={sprinkles({ display: 'flex', width: '100%', gap: 8, paddingLeft: 20, paddingRight: 20 })}>
           <BoxButton variant="secondary" onClick={handleReset}>
             초기화
           </BoxButton>
@@ -156,8 +161,8 @@ const BottomSheet = ({
             onClick={handleApplyClick}>
             적용하기
           </BoxButton>
-        </Flex>
-      </Flex>
+        </div>
+      </div>
     </div>
   );
 };
