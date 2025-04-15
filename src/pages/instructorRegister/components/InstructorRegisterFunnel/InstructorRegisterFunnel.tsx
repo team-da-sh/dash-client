@@ -7,7 +7,7 @@ import IntroductionStep from '@/pages/instructorRegister/components/InstructorRe
 import PersonalSNSStep from '@/pages/instructorRegister/components/InstructorRegisterFunnel/PersonalSNSStep/PersonalSNSStep';
 import VideoLinkStep from '@/pages/instructorRegister/components/InstructorRegisterFunnel/VideoLinkStep/VideoLinkStep';
 import { funnelContainerStyle } from '@/pages/instructorRegister/components/InstructorRegisterFunnel/instructorRegisterFunnel.css';
-import { TOTAL_STEP } from '@/pages/instructorRegister/constants';
+import { TOTAL_STEP } from '@/pages/instructorRegister/constants/funnel';
 import { buttonContainerStyle } from '@/pages/instructorRegister/instructorRegister.css';
 import type { InstructorRegisterInfoTypes } from '@/pages/instructorRegister/types/InstructorRegisterInfoTypes';
 import type { FunnelProps, StepProps } from '@/pages/search/types/funnel';
@@ -17,12 +17,13 @@ import { QUERY_KEYS } from '@/shared/constants/queryKey';
 import useImageUploader from '@/shared/hooks/useImageUploader';
 import { setAccessToken, setRefreshToken } from '@/shared/utils/handleToken';
 
-interface InstructorRegisterFunnelProps {
+interface InstructorRegisterFunnelPropTypes {
   currentStep: number;
   Funnel: ({ children }: FunnelProps) => JSX.Element;
   setStep: (step: number) => void;
   Step: ({ children }: StepProps) => JSX.Element;
 }
+
 
 const InstructorRegisterFunnel = ({ currentStep, Funnel, Step, setStep }: InstructorRegisterFunnelProps) => {
   const queryClient = useQueryClient();
@@ -36,6 +37,16 @@ const InstructorRegisterFunnel = ({ currentStep, Funnel, Step, setStep }: Instru
     detail: '',
     videoUrls: [''],
   });
+  const [isEduNoneChecked, setEduNoneChecked] = useState(false);
+  const [isCareerNoneChecked, setCareerNoneChecked] = useState(false);
+
+  const handleEducationCheck = () => {
+    setEduNoneChecked((prev) => !prev);
+  };
+
+  const handleCareerCheck = () => {
+    setCareerNoneChecked((prev) => !prev);
+  };
 
   const { mutate: instructorRegisterMutate } = usePostInstructor();
 
@@ -61,28 +72,39 @@ const InstructorRegisterFunnel = ({ currentStep, Funnel, Step, setStep }: Instru
     setInfo((prev) => ({ ...prev, [key]: value }));
   };
 
+  // 버튼 활성화 조건 체크 함수 (step 별로)
+  const hasImage = () => !!info.imageUrls;
+  const hasSocialId = () => info.instagram.length > 0 || info.youtube.length > 0;
+  const hasEducationOrCareer = () => {
+    const hasEducation = info.educations.some((edu) => edu.trim().length > 0);
+    const hasCareer = info.experiences.some((exp) => exp.trim().length > 0);
+
+    const educationValid = hasEducation || isEduNoneChecked;
+    const careerValid = hasCareer || isCareerNoneChecked;
+
+    return educationValid && careerValid;
+  };
+  const hasVideoUrls = () => info.videoUrls.some((url) => url.trim().length > 0);
+
+  // 최대 글자 수 조건 기능 명세서 체크
+  const hasDetailedInfo = () => info.detail.trim().length >= 30;
+
   const buttonActive = (currentStep: number) => {
-    switch (currentStep) {
-      case 1:
-        return !!info.imageUrls;
-      case 2:
-        return info.instagram.length > 0 || info.youtube.length > 0;
-      case 3:
-        return (
-          info.educations.some((education) => education.trim().length > 0) ||
-          info.experiences.some((experience) => experience.trim().length > 0)
-        );
-      case 4:
-        return info.videoUrls[0]?.trim() !== '';
-      case 5:
-        return info.detail.trim() !== '' && info.detail.length >= 30;
-      case 6:
+    const stepState: Record<number, () => boolean> = {
+      1: hasImage,
+      2: hasSocialId,
+      3: hasEducationOrCareer,
+      4: hasVideoUrls,
+      5: hasDetailedInfo,
+      6: () => {
         return true;
-      default:
-        return false;
-    }
+      },
+    };
+
+    return stepState[currentStep]?.() ?? false;
   };
 
+  // form submit 함수
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -92,8 +114,8 @@ const InstructorRegisterFunnel = ({ currentStep, Funnel, Step, setStep }: Instru
       instagram: info.instagram.trim() === '' ? null : `https://www.instagram.com/${info.instagram.trim()}`,
       youtube: info.youtube.trim() === '' ? null : `https://www.youtube.com/@${info.youtube.trim()}`,
 
-      educations: info.educations.every((education) => education.trim() === '') ? [] : info.educations,
-      experiences: info.experiences.every((experience) => experience.trim() === '') ? [] : info.experiences,
+      educations: isEduNoneChecked ? [] : info.educations.filter((education) => education.trim() !== ''),
+      experiences: isCareerNoneChecked ? [] : info.experiences.filter((experience) => experience.trim() !== ''),
     };
 
     instructorRegisterMutate(updatedInfo, {
@@ -133,7 +155,15 @@ const InstructorRegisterFunnel = ({ currentStep, Funnel, Step, setStep }: Instru
               <PersonalSNSStep instagram={info.instagram} youtube={info.youtube} onInfoChange={handleInfoChange} />
             </Step>
             <Step name="3">
-              <CareerStep educations={info.educations} experiences={info.experiences} onInfoChange={handleInfoChange} />
+              <CareerStep
+                educations={info.educations}
+                experiences={info.experiences}
+                onInfoChange={handleInfoChange}
+                isEduNoneChecked={isEduNoneChecked}
+                isCareerNoneChecked={isCareerNoneChecked}
+                handleEducationCheck={handleEducationCheck}
+                handleCareerCheck={handleCareerCheck}
+              />
             </Step>
             <Step name="4">
               <VideoLinkStep videoUrls={info.videoUrls} onInfoChange={handleInfoChange} />
