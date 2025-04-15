@@ -1,6 +1,6 @@
 import { instance } from '@/shared/apis/instance';
 import { API_URL } from '@/shared/constants/apiURL';
-import { ClassRegisterInfoTypes } from '../types/api';
+import type { ClassRegisterInfoTypes } from '../types/api';
 
 export const getLocationList = async (query: string) => {
   const { data } = await instance.get(API_URL.LOCATIONS, {

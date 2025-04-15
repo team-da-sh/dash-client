@@ -10,7 +10,7 @@ import Text from '@/shared/components/Text/Text';
 import { getStatusMessage } from '@/shared/utils/getStatusMessage';
 import { formatDateTime, getClassStatus } from '@/shared/utils/timeCalculate';
 
-const ClassReservationDetail = () => {
+const MyPageReservationDetail = () => {
   const { id } = useParams<{ id: string }>();
 
   const lessonId = Number(id);
@@ -71,4 +71,4 @@ const ClassReservationDetail = () => {
   );
 };
 
-export default ClassReservationDetail;
+export default MyPageReservationDetail;

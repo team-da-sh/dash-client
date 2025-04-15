@@ -1,4 +1,4 @@
-import { Lesson } from '@/shared/types/lessonTypes';
+import type { Lesson } from '@/shared/types/lessonTypes';
 
 export interface LessonResponse {
   count: number;

@@ -8,8 +8,8 @@ import VideoLinkStep from '@/pages/instructorRegister/components/InstructorRegis
 import { funnelContainerStyle } from '@/pages/instructorRegister/components/InstructorRegisterFunnel/instructorRegisterFunnel.css';
 import { TOTAL_STEP } from '@/pages/instructorRegister/constants/funnel';
 import { buttonContainerStyle } from '@/pages/instructorRegister/instructorRegister.css';
-import { InstructorRegisterInfoTypes } from '@/pages/instructorRegister/types/InstructorRegisterInfoTypes';
-import { FunnelProps, StepProps } from '@/pages/search/types/funnel';
+import type { InstructorRegisterInfoTypes } from '@/pages/instructorRegister/types/InstructorRegisterInfoTypes';
+import type { FunnelProps, StepProps } from '@/pages/search/types/funnel';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import Completion from '@/shared/components/Completion/Completion';
 import useImageUploader from '@/shared/hooks/useImageUploader';

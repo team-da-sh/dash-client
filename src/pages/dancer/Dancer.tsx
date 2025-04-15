@@ -14,7 +14,7 @@ import { useIntersectCallback } from '@/shared/hooks/useIntersectCallback';
 
 const Dancer = () => {
   const { id } = useParams<{ id: string }>();
-  const [targetRef, isVisible] = useIntersectCallback(false);
+  const [targetRef, isWhite] = useIntersectCallback(false);
 
   if (!id) {
     return <Error />;
@@ -61,7 +61,7 @@ const Dancer = () => {
           </Flex>
         </div>
       </Flex>
-      <DancerHeader isVisible={isVisible} />
+      <DancerHeader isWhite={isWhite} />
       <DancerInfo dancerData={data} />
       <TabWrapper colorScheme="primary" dancerData={data} />
     </>

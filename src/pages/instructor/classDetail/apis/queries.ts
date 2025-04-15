@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { getLessonDetail } from '@/pages/instructor/classDetail/apis/axios';
-import { LessonDetailGetResponse } from '@/pages/instructor/classDetail/types/api';
+import type { LessonDetailGetResponse } from '@/pages/instructor/classDetail/types/api';
 import { QUERY_KEYS } from '@/shared/constants/queryKey';
 
 export const useGetLessonDetail = (lessonId: number) => {

@@ -1,5 +1,6 @@
 import clsx from 'clsx';
-import { ComponentPropsWithRef, forwardRef } from 'react';
+import type { ComponentPropsWithRef } from 'react';
+import { forwardRef } from 'react';
 import { headStyle } from '@/shared/components/Head/head.css';
 
 type HeadLevel = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';

@@ -1,5 +1,5 @@
 import { emptyStyle } from '@/pages/dancer/components/TabWrapper/TabExperience/tabExperience.css';
-import { DancerDetailResponse } from '@/pages/dancer/types/api';
+import type { DancerDetailResponse } from '@/pages/dancer/types/api';
 import Flex from '@/shared/components/Flex/Flex';
 import Head from '@/shared/components/Head/Head';
 import Text from '@/shared/components/Text/Text';

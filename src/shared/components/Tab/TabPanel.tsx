@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 import { tabPanelStyle } from '@/shared/components/Tab/index.css';
 
 interface TabPanelProps {

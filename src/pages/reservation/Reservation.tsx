@@ -17,7 +17,7 @@ import {
   reservationStyle,
   totalPriceContainerStyle,
 } from '@/pages/reservation/reservation.css';
-import { LessonRoundTypes } from '@/pages/reservation/types/lessonRoundTypes';
+import type { LessonRoundTypes } from '@/pages/reservation/types/lessonRoundTypes';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import IcCheckcircleGray0524 from '@/shared/assets/svg/IcCheckcircleGray0524';
 import IcCheckcircleMain0324 from '@/shared/assets/svg/IcCheckcircleMain0324';

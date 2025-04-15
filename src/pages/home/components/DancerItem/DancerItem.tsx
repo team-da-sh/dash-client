@@ -1,15 +1,16 @@
 import { useNavigate } from 'react-router-dom';
 import { dancerImageStyle } from '@/pages/home/components/DancerItem/dancerItem.css';
-import { DancerTypes } from '@/pages/home/types/dancerTypes';
+import type { DancerTypes } from '@/pages/home/types/dancerTypes';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import Flex from '@/shared/components/Flex/Flex';
 import Head from '@/shared/components/Head/Head';
 import Text from '@/shared/components/Text/Text';
+import { sprinkles } from '@/shared/styles/sprinkles.css';
 
-interface DancerItemProps extends Omit<DancerTypes, 'genres'> {
+interface DancerItemPropTypes extends Omit<DancerTypes, 'genres'> {
   genre: string;
 }
-const DancerItem = ({ id, profileImage, genre, nickname }: DancerItemProps) => {
+
+const DancerItem = ({ id, profileImage, genre, nickname }: DancerItemPropTypes) => {
   const navigate = useNavigate();
 
   const handleDancerClick = () => {
@@ -17,13 +18,15 @@ const DancerItem = ({ id, profileImage, genre, nickname }: DancerItemProps) => {
   };
 
   return (
-    <Flex tag="li" direction="column" gap="1.2rem" align="center" onClick={handleDancerClick}>
+    <li
+      className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 12, alignItems: 'center' })}
+      onClick={handleDancerClick}>
       <img src={profileImage} alt="댄서 프로필" className={dancerImageStyle} />
-      <Flex direction="column" gap="0.4rem" align="center">
+      <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 4, alignItems: 'center' })}>
         <Head tag="h6">{nickname}</Head>
         <Text tag="b6">{genre}</Text>
-      </Flex>
-    </Flex>
+      </div>
+    </li>
   );
 };
 
