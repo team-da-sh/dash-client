@@ -8,39 +8,30 @@ import Head from '@/shared/components/Head/Head';
 import Tag from '@/shared/components/Tag/Tag';
 import Text from '@/shared/components/Text/Text';
 import { genreMapping, levelMapping } from '@/shared/constants';
+import type { Lesson } from '@/shared/types/lessonTypes';
 import { formatLessonDateRange, getClassStatus } from '@/shared/utils/timeCalculate';
 
-interface ClassCardPropTypes {
-  lessonId?: number;
-  reservationId?: number;
-  lessonName: string | undefined;
-  lessonImageUrl: string | undefined;
-  lessonGenre: string | undefined;
-  lessonLevel: string | undefined;
-  lessonLocation: string | undefined;
-  lessonDetailedAddress?: string | undefined;
-  lessonStartDateTime: string | undefined;
-  lessonEndDateTime: string | undefined;
+interface ClassCardPropTypes extends Lesson {
   isReservation?: boolean;
   onClick?: () => void;
   children?: React.ReactNode;
 }
 
 const ClassCard = ({
-  lessonName,
-  lessonImageUrl,
-  lessonGenre,
-  lessonLevel,
-  lessonLocation,
-  lessonStartDateTime,
-  lessonDetailedAddress,
-  lessonEndDateTime,
+  name,
+  imageUrl,
+  genre,
+  level,
+  location,
+  detailedAddress,
+  startDateTime,
+  endDateTime,
   isReservation = true,
   children,
   onClick,
 }: ClassCardPropTypes) => {
   // 클래스 상태 계산
-  const { status, remainingDays } = getClassStatus(lessonStartDateTime, lessonEndDateTime);
+  const { status, remainingDays } = getClassStatus(startDateTime, endDateTime);
 
   // 상태 한글 번역
   const korstatus = () => {
@@ -114,18 +105,18 @@ const ClassCard = ({
       </Flex>
 
       <Flex gap="1.2rem" marginBottom="1.6rem">
-        <img src={lessonImageUrl} className={styles.cardImageStyle} alt={`${lessonName} 이미지`} />
+        <img src={imageUrl} className={styles.cardImageStyle} alt={`${name} 이미지`} />
         <Flex direction="column" gap="0.8rem" className={styles.cardContentStyle}>
           <Flex gap="0.3rem">
             <Tag type="genre" size="small">
-              {lessonGenre && genreMapping[lessonGenre]}
+              {genre && genreMapping[genre]}
             </Tag>
             <Tag type="level" size="small">
-              {lessonLevel && levelMapping[lessonLevel]}
+              {level && levelMapping[level]}
             </Tag>
           </Flex>
           <Head level="h2" tag="h6" className={styles.lessonNameStyle}>
-            {lessonName}
+            {name}
           </Head>
           <Flex direction="column" gap="0.4rem">
             <Flex gap="0.8rem" align="center">
@@ -134,9 +125,7 @@ const ClassCard = ({
               </Text>
               <Text tag="c1" color="gray9">
                 <Text tag="c1" color="gray9">
-                  {lessonStartDateTime &&
-                    lessonEndDateTime &&
-                    formatLessonDateRange(lessonStartDateTime, lessonEndDateTime)}
+                  {startDateTime && endDateTime && formatLessonDateRange(startDateTime, endDateTime)}
                 </Text>
               </Text>
             </Flex>
@@ -145,10 +134,10 @@ const ClassCard = ({
                 장소
               </Text>
               <Text tag="c1" color="gray9">
-                {lessonLocation || lessonDetailedAddress ? (
+                {location || detailedAddress ? (
                   <>
-                    {lessonLocation}&nbsp;
-                    {lessonDetailedAddress}
+                    {location}&nbsp;
+                    {detailedAddress}
                   </>
                 ) : (
                   '미정'

@@ -14,7 +14,6 @@ const ClassList = () => {
 
   const { data: lessonData, isError, isLoading } = useGetMyLessons();
 
-  // 로딩, 에러 페이지 처리
   if (isLoading) {
     return <div></div>;
   }
@@ -39,13 +38,7 @@ const ClassList = () => {
               onClick={() => handleClassCardClick(navigate, lesson.id)}
               isReservation={false}
               key={lesson.id}
-              lessonName={lesson.name}
-              lessonImageUrl={lesson.imageUrl}
-              lessonGenre={lesson.genre}
-              lessonLevel={lesson.level}
-              lessonLocation={lesson.location}
-              lessonStartDateTime={lesson.startDateTime}
-              lessonEndDateTime={lesson.endDateTime}>
+              {...lesson}>
               <BoxButton onClick={handleCancelClick} variant="temp">
                 수정하기
               </BoxButton>

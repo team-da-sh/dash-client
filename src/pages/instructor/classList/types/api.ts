@@ -1,6 +1,6 @@
 import type { Lesson } from '@/shared/types/lessonTypes';
 
-export interface LessonResponse {
+export interface LessonResponseTypes {
   count: number;
   lessons: Lesson[];
 }
