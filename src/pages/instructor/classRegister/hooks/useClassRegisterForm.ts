@@ -113,6 +113,7 @@ export const useClassRegisterForm = () => {
   const handleDetailPlace = (e: ChangeEvent<HTMLInputElement>) => {
     setDetailPlace(e.target.value);
   };
+
   const isFormValid = () => {
     if (!hasLocation) {
       return (

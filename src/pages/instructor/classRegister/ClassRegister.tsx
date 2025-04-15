@@ -28,19 +28,21 @@ const ClassRegister = () => {
 
   const { mutate: classRegisterMutate } = usePostClassRegisterInfo();
   const {
-    explainTextAreaRef,
-    recommendTextAreaRef,
     className,
+
     explanation,
+    explainTextAreaRef,
+
     imageUrls,
+
     selectedGenre,
     selectedLevelTitle,
+
     recommend,
+    recommendTextAreaRef,
+
     personnel,
-    hasLocation,
-    defaultPlace,
-    submitDefaultPlace,
-    detailPlace,
+
     amount,
     selectedTime,
     times,
@@ -48,35 +50,48 @@ const ClassRegister = () => {
     minute,
     ampm,
     startDate,
+
+    hasLocation,
+    defaultPlace,
+    detailPlace,
     selectedLocation,
-    setStartDate,
+    submitDefaultPlace,
+
     handleClassNameChange,
+
+    handleExplainTextArea,
+
+    setImageUrls,
+    handleImageUploadSuccess,
+
+    toggleCategory,
+    handleLevelSelect,
+
+    handleRecommendChange,
+
+    setStartDate,
     handlePersonnelChange,
     handleAmountChange,
-    setImageUrls,
     setHour,
     setMinute,
     setAmpm,
     setSelectedTime,
     handleAddTime,
-    toggleCategory,
-    handleLevelSelect,
-    handleExplainTextArea,
-    handleImageUploadSuccess,
-    handleRecommendChange,
+    handleRemoveTime,
+
     handleHasLocation,
     handleDefaultPlace,
     handleSubmitDefaultPlace,
     handleDetailPlace,
-    handleRemoveTime,
-    isFormValid,
     setSelectedLocation,
+
+    isFormValid,
   } = useClassRegisterForm();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (selectedGenre && selectedLevelTitle && selectedTime) {
+    if (selectedGenre && selectedLevelTitle) {
       const updatedInfo: ClassRegisterInfoTypes = {
         imageUrls: [imageUrls.imageUrls],
         name: className,
@@ -103,7 +118,7 @@ const ClassRegister = () => {
           navigate(ROUTES_CONFIG.classRegisterCompletion.path);
         },
         onError: () => {
-          // 에러 페이지로 navigate
+          navigate(ROUTES_CONFIG.error.path);
         },
       });
     }
@@ -127,7 +142,7 @@ const ClassRegister = () => {
       </Header.Root>
 
       <form onSubmit={handleSubmit}>
-        <section className={styles.containerStyle}>
+        <div className={styles.containerStyle}>
           <ClassName className={className} handleClassNameChange={handleClassNameChange} />
           <ClassDescription
             ref={explainTextAreaRef}
@@ -164,13 +179,12 @@ const ClassRegister = () => {
             locationList={locationList}
           />
           <ClassAmount amount={amount} handleAmountChange={handleAmountChange} />
-        </section>
-
-        <section className={buttonContainerStyle}>
+        </div>
+        <div className={buttonContainerStyle}>
           <BoxButton type="submit" disabled={!isFormValid()}>
             완료
           </BoxButton>
-        </section>
+        </div>
       </form>
 
       {isBottomSheetOpen && (
