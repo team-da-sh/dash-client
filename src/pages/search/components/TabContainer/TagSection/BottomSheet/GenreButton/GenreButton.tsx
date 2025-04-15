@@ -8,6 +8,7 @@ interface GenreButtonProps {
 
 const GenreButton = ({ category, isSelected, onClick }: GenreButtonProps) => (
   <button
+    type="button"
     onClick={onClick}
     className={styles.genreButtonStyle({
       state: isSelected ? 'selected' : 'unselected',
