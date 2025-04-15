@@ -6,7 +6,6 @@ import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import Completion from '@/shared/components/Completion/Completion';
 import Flex from '@/shared/components/Flex/Flex';
-import Header from '@/shared/components/Header/Header';
 
 export const SuccessPage = () => {
   const [isConfirmed, setIsConfirmed] = useState(false);
@@ -52,17 +51,10 @@ export const SuccessPage = () => {
     navigate(ROUTES_CONFIG.mypageReservation.path);
   };
 
-  const handleHomeNavigate = () => {
-    navigate(ROUTES_CONFIG.home.path);
-  };
-
   return (
     <div className={`${styles.flexCustomStyle}`}>
       {isConfirmed ? (
         <Flex direction="column" width="100%">
-          <Header.Root>
-            <Header.CloseIcon onClick={handleHomeNavigate} />
-          </Header.Root>
           <Flex direction="column" paddingTop="5.2rem" paddingLeft="2rem" paddingRight="2rem" width="100%" gap="2.8rem">
             <Completion
               title="클래스 신청 완료!"

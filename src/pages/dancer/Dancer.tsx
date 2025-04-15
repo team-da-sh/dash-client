@@ -1,6 +1,5 @@
 import { useParams } from 'react-router-dom';
 import { useGetDancerDetail } from '@/pages/dancer/apis/queries';
-import DancerHeader from '@/pages/dancer/components/DancerHeader/DancerHeader';
 import DancerInfo from '@/pages/dancer/components/DancerInfo/DancerInfo';
 import TabWrapper from '@/pages/dancer/components/TabWrapper/TabWrapper';
 import { gradientOverlayStyle, textWrapperStyle, topImgStyle } from '@/pages/dancer/dancer.css';
@@ -10,11 +9,9 @@ import Head from '@/shared/components/Head/Head';
 import Tag from '@/shared/components/Tag/Tag';
 import Text from '@/shared/components/Text/Text';
 import { genreMapping } from '@/shared/constants/index';
-import { useIntersectCallback } from '@/shared/hooks/useIntersectCallback';
 
 const Dancer = () => {
   const { id } = useParams<{ id: string }>();
-  const [targetRef, isWhite] = useIntersectCallback(false);
 
   if (!id) {
     return <Error />;
@@ -38,7 +35,6 @@ const Dancer = () => {
     <>
       <Flex width="100%">
         <div
-          ref={targetRef}
           className={topImgStyle}
           style={{
             backgroundImage: `url(${imageUrls[0]})`,
@@ -61,7 +57,6 @@ const Dancer = () => {
           </Flex>
         </div>
       </Flex>
-      <DancerHeader isWhite={isWhite} />
       <DancerInfo dancerData={data} />
       <TabWrapper colorScheme="primary" dancerData={data} />
     </>

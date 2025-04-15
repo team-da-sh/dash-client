@@ -1,16 +1,11 @@
 import { lazy, Suspense, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import Footer from '@/pages/home/components/Footer/Footer';
 import HomeCarousel from '@/pages/home/components/HomeCarousel/HomeCarousel';
-import HomeHeader from '@/pages/home/components/HomeHeader/HomeHeader';
 import PopularDancers from '@/pages/home/components/PopularDancers/PopularDancers';
 import PopularGenre from '@/pages/home/components/PopularGenre/PopularGenre';
 import RecommendationLessons from '@/pages/home/components/RecommendationLessons/RecommendationLessons';
 import UpcomingLessones from '@/pages/home/components/UpcomingLessons/UpcomingLessons';
 import { carouselContainerStyle, overlayActiveStyle, overlayStyle } from '@/pages/home/home.css';
-import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import { useIntersect } from '@/shared/hooks/useIntersect';
-import { isLoggedIn } from '@/shared/utils/authUtil';
 
 const images = 'public/images/image_kkukgirl.webp';
 
@@ -24,18 +19,7 @@ const MyPage = lazy(() => import('@/pages/home/components/MyPage/MyPage'));
 const Home = () => {
   preload(images);
 
-  const navigate = useNavigate();
-
-  const [targetRef, isWhite] = useIntersect(false);
   const [showMyPage, setShowMyPage] = useState(false);
-
-  const handleMyPageClick = () => {
-    if (!isLoggedIn()) {
-      navigate(ROUTES_CONFIG.login.path);
-      return;
-    }
-    setShowMyPage(!showMyPage);
-  };
 
   const handleCloseMyPageClick = () => {
     setShowMyPage(false);
@@ -50,8 +34,7 @@ const Home = () => {
         </Suspense>
       )}
 
-      <HomeHeader isWhite={isWhite} onMyPageClick={handleMyPageClick} />
-      <div ref={targetRef} className={carouselContainerStyle}>
+      <div className={carouselContainerStyle}>
         <HomeCarousel />
       </div>
       <RecommendationLessons />

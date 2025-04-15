@@ -29,14 +29,3 @@ export const backIconStyle = style({
   gridColumn: '1',
   justifySelf: 'start',
 });
-
-export const titleStyle = style({
-  gridColumn: '2',
-  justifySelf: 'center',
-  textAlign: 'center',
-});
-
-export const closeIconStyle = style({
-  gridColumn: '3',
-  justifySelf: 'end',
-});

@@ -14,7 +14,7 @@ interface TopInfoContentProps {
 
 const TopInfoContent = ({ name, teacherNickname, imageUrl }: TopInfoContentProps) => {
   return (
-    <Flex width="100%" paddingTop="6rem">
+    <Flex width="100%">
       <div
         className={topImgStyle}
         style={{

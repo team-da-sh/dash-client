@@ -2,7 +2,6 @@ import * as styles from '@/pages/instructor/classRegister/components/ClassSchedu
 import ClassRegisterFunnel from '@/pages/instructor/classRegister/components/ClassSchedule/ClassRegisterFunnel/ClassRegisterFunnel';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
-import Header from '@/shared/components/Header/Header';
 import { CLASS_REGISTER_TOTAL_STEP } from '@/shared/constants';
 import { useFunnel } from '@/shared/hooks/useFunnel';
 
@@ -55,22 +54,9 @@ const ClassRegisterBottomSheet = ({
     setAmpm('AM');
   };
 
-  const handleBackClick = () => {
-    if (currentStep === 1) {
-      onClose();
-    } else {
-      setStep(-1);
-    }
-  };
-
   return (
     <div className={styles.bottomSheetContainerStyle}>
       <div className={styles.mainWrapperStyle}>
-        <Header.Root isColor={true} className={styles.headerStyle}>
-          <Header.BackIcon onFunnelBackClick={handleBackClick} />
-          <Header.Title title={currentStep === 1 ? '날짜 선택' : '시간 선택'} />
-        </Header.Root>
-
         <ClassRegisterFunnel
           Funnel={Funnel}
           Step={Step}

@@ -5,7 +5,6 @@ import ApplicantInfo from '@/pages/reservation/components/ApplicantInfo/Applican
 import ClassInfo from '@/pages/reservation/components/ClassInfo/ClassInfo';
 import Flex from '@/shared/components/Flex/Flex';
 import Head from '@/shared/components/Head/Head';
-import Header from '@/shared/components/Header/Header';
 import Text from '@/shared/components/Text/Text';
 import { getStatusMessage } from '@/shared/utils/getStatusMessage';
 import { formatDateTime, getClassStatus } from '@/shared/utils/timeCalculate';
@@ -29,11 +28,6 @@ const MyPageReservationDetail = () => {
 
   return (
     <div className={styles.layoutStyle}>
-      <Header.Root isColor={true}>
-        <Header.BackIcon />
-        <Header.Title title="클래스 예약 내역" />
-      </Header.Root>
-
       <div className={styles.containerStyle}>
         <Flex width="100%" justify="center">
           <Head tag="h5" color={status === 'completed' ? 'gray8' : 'black'}>

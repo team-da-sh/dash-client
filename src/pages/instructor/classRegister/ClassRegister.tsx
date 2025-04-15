@@ -17,7 +17,6 @@ import type { ClassRegisterInfoTypes } from '@/pages/instructor/classRegister/ty
 import { buttonContainerStyle } from '@/pages/instructorRegister/instructorRegister.css';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
-import Header from '@/shared/components/Header/Header';
 import { genreEngMapping, levelEngMapping } from '@/shared/constants';
 import useBottomSheet from '@/shared/hooks/useBottomSheet';
 import useImageUploader from '@/shared/hooks/useImageUploader';
@@ -121,11 +120,6 @@ const ClassRegister = () => {
 
   return (
     <>
-      <Header.Root isColor={true}>
-        <Header.BackIcon />
-        <Header.Title title="클래스 개설" />
-      </Header.Root>
-
       <form onSubmit={handleSubmit}>
         <div className={styles.containerStyle}>
           <ClassName className={className} handleClassNameChange={handleClassNameChange} />

@@ -13,7 +13,6 @@ import {
   agreementTextStyle,
   agreementUncheckedStyle,
   bottomButtonStyle,
-  headerStyle,
   reservationStyle,
   totalPriceContainerStyle,
 } from '@/pages/reservation/reservation.css';
@@ -25,7 +24,6 @@ import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import Divider from '@/shared/components/Divider/Divider';
 import Flex from '@/shared/components/Flex/Flex';
 import Head from '@/shared/components/Head/Head';
-import Header from '@/shared/components/Header/Header';
 import Text from '@/shared/components/Text/Text';
 
 const Reservation = () => {
@@ -83,12 +81,6 @@ const Reservation = () => {
 
   return (
     <Flex direction="column" width="100%" className={reservationStyle}>
-      <div className={headerStyle}>
-        <Header.Root isColor={true}>
-          <Header.BackIcon />
-          <Header.Title title="클래스 신청" />
-        </Header.Root>
-      </div>
       <TopInfoContent name={data.name} teacherNickname={data.teacherNickname} imageUrl={data.imageUrl} />
       <Flex
         width="100%"

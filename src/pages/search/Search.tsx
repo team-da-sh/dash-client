@@ -8,9 +8,9 @@ import { headerRootCutomStyle } from '@/pages/search/search.css';
 import { formatDateEndTime, formatDateStartTime } from '@/pages/search/utils';
 import { handleSearchChange } from '@/pages/search/utils/searchHandlers';
 import Flex from '@/shared/components/Flex/Flex';
-import Header from '@/shared/components/Header/Header';
 import { genreEngMapping, labelToSortOptionMap, levelEngMapping } from '@/shared/constants';
 import useDebounce from '@/shared/hooks/useDebounce';
+import SearchHeader from './components/SearchHeader/SearchHeader';
 
 const Search = () => {
   const location = useLocation();
@@ -47,10 +47,10 @@ const Search = () => {
 
   return (
     <Flex>
-      <Header.Root className={headerRootCutomStyle} isColor={true}>
-        <Header.BackIcon />
+      <SearchHeader.Root className={headerRootCutomStyle}>
+        <SearchHeader.BackIcon />
         <SearchBar searchValue={searchValue} handleSearchChange={handleSearchChange(setSearchValue)} />
-      </Header.Root>
+      </SearchHeader.Root>
 
       <TabContainer
         defaultSortTags={DEFAULT_SORT_TAGS}
