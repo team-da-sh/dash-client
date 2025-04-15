@@ -63,15 +63,15 @@ export const vars = createGlobalTheme(':root', {
       letterSpacing: '-0.12rem',
     },
     h3: {
-      fontWeight: '500',
-      fontSize: '2rem',
-      lineHeight: '2.8rem',
-      letterSpacing: '-0.1rem',
-    },
-    h4: {
       fontWeight: '600',
       fontSize: '2rem',
       lineHeight: '2.4rem',
+      letterSpacing: '-0.1rem',
+    },
+    h4: {
+      fontWeight: '500',
+      fontSize: '2rem',
+      lineHeight: '2.8rem',
       letterSpacing: '-0.1rem',
     },
     h5: {
@@ -83,25 +83,25 @@ export const vars = createGlobalTheme(':root', {
     h6: {
       fontWeight: '600',
       fontSize: '1.6rem',
-      lineHeight: '1.8rem',
+      lineHeight: '2.0rem',
       letterSpacing: '-0.08rem',
     },
     h7: {
       fontWeight: '600',
       fontSize: '1.6rem',
-      lineHeight: '2rem',
+      lineHeight: '1.8rem',
       letterSpacing: '-0.08rem',
     },
 
     // body
     b1: {
-      fontWeight: '400',
+      fontWeight: '600',
       fontSize: '1.4rem',
-      lineHeight: '1.8rem',
-      letterSpacing: '-0.1rem',
+      lineHeight: '2.2rem',
+      letterSpacing: '-0.7rem',
     },
     b2: {
-      fontWeight: '500',
+      fontWeight: '600',
       fontSize: '1.4rem',
       lineHeight: '1.8rem',
       letterSpacing: '-0.07rem',
@@ -113,25 +113,25 @@ export const vars = createGlobalTheme(':root', {
       letterSpacing: '-0.07rem',
     },
     b4: {
-      fontWeight: '600',
+      fontWeight: '500',
       fontSize: '1.4rem',
       lineHeight: '1.8rem',
       letterSpacing: '-0.07rem',
     },
     b5: {
-      fontWeight: '600',
+      fontWeight: '400',
       fontSize: '1.4rem',
-      lineHeight: '2.2rem',
-      letterSpacing: '-0.07rem',
+      lineHeight: '1.8rem',
+      letterSpacing: '-0.1rem',
     },
     b6: {
-      fontWeight: '400',
+      fontWeight: '600',
       fontSize: '1.2rem',
       lineHeight: '1.6rem',
-      letterSpacing: '-0.06rem',
+      letterSpacing: '-0.096rem',
     },
     b7: {
-      fontWeight: '500',
+      fontWeight: '600',
       fontSize: '1.2rem',
       lineHeight: '1.6rem',
       letterSpacing: '-0.06rem',
@@ -143,39 +143,39 @@ export const vars = createGlobalTheme(':root', {
       letterSpacing: '-0.096rem',
     },
     b9: {
-      fontWeight: '600',
+      fontWeight: '500',
       fontSize: '1.2rem',
       lineHeight: '1.6rem',
       letterSpacing: '-0.06rem',
     },
     b10: {
-      fontWeight: '600',
+      fontWeight: '400',
       fontSize: '1.2rem',
       lineHeight: '1.6rem',
-      letterSpacing: '-0.096rem',
+      letterSpacing: '-0.06rem',
     },
 
     // caption
     c1: {
-      fontWeight: '400',
+      fontWeight: '600',
       fontSize: '1rem',
       lineHeight: '1.4rem',
       letterSpacing: '-0.05rem',
     },
     c2: {
-      fontWeight: '400',
-      fontSize: '1rem',
-      lineHeight: '1.4rem',
-      letterSpacing: '-0.08rem',
-    },
-    c3: {
       fontWeight: '500',
       fontSize: '1rem',
       lineHeight: '1.8rem',
       letterSpacing: '-0.05rem',
     },
+    c3: {
+      fontWeight: '400',
+      fontSize: '1rem',
+      lineHeight: '1.4rem',
+      letterSpacing: '-0.08rem',
+    },
     c4: {
-      fontWeight: '600',
+      fontWeight: '400',
       fontSize: '1rem',
       lineHeight: '1.4rem',
       letterSpacing: '-0.05rem',
