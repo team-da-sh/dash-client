@@ -1,5 +1,5 @@
-import { tokenTypes } from '@/pages/onboarding/types/api';
-import { onboardInfoTypes } from '@/pages/onboarding/types/onboardInfoTypes';
+import type { tokenTypes } from '@/pages/onboarding/types/api';
+import type { onboardInfoTypes } from '@/pages/onboarding/types/onboardInfoTypes';
 import { instance } from '@/shared/apis/instance';
 
 export const postOnboard = async ({

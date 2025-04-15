@@ -1,17 +1,17 @@
-import { introTextStyle } from '@/pages/class/components/TabWrapper/TabIntro/tabIntro.css';
-import { LessonDetailResponse } from '@/pages/class/types/api';
-import Flex from '@/shared/components/Flex/Flex';
+import * as styles from '@/pages/class/components/TabWrapper/TabIntro/tabIntro.css';
+import type { LessonDetailResponseTypes } from '@/pages/class/types/api';
 import Text from '@/shared/components/Text/Text';
+import { sprinkles } from '@/shared/styles/sprinkles.css';
 
-const TabIntro = ({ lessonData }: { lessonData: LessonDetailResponse }) => {
+const TabIntro = ({ lessonData }: { lessonData: LessonDetailResponseTypes }) => {
   const { detail } = lessonData;
 
   return (
-    <Flex paddingTop="0.8rem">
-      <Text tag="b3" color="gray8" className={introTextStyle}>
+    <section className={sprinkles({ pt: 8 })}>
+      <Text tag="b3" color="gray8" className={styles.introTextStyle}>
         {detail}
       </Text>
-    </Flex>
+    </section>
   );
 };
 

@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useGetLessonDetail } from '@/pages/class/apis/queries';
-import { headerStyle } from '@/pages/class/class.css';
+import * as styles from '@/pages/class/class.css';
 import ClassButtonWrapper from '@/pages/class/components/ClassButtonWrapper/ClassButtonWrapper';
 import ClassHeader from '@/pages/class/components/ClassHeader/ClassHeader';
 import ClassInfoWrapper from '@/pages/class/components/ClassInfoWrapper/ClassInfoWrapper';
@@ -11,12 +11,13 @@ import { useIntersectCallback } from '@/shared/hooks/useIntersectCallback';
 
 const Class = () => {
   const { id } = useParams<{ id: string }>();
-  const [targetRef, isVisible] = useIntersectCallback(false);
+  const [targetRef, isWhite] = useIntersectCallback(false);
 
   if (!id) {
     return <Error />;
   }
 
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const { data, isError, isLoading } = useGetLessonDetail(id);
 
   if (isLoading) {
@@ -33,11 +34,11 @@ const Class = () => {
     <>
       <div
         ref={targetRef}
-        className={headerStyle}
+        className={styles.headerStyle}
         style={{
           backgroundImage: `url(${imageUrl})`,
         }}>
-        <ClassHeader isVisible={isVisible} lessonName={data.name} />
+        <ClassHeader isWhite={isWhite} lessonName={data.name} />
       </div>
 
       <ClassInfoWrapper lessonData={data} />

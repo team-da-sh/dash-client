@@ -1,21 +1,20 @@
 import { useNavigate } from 'react-router-dom';
-import { containerStyle } from '@/pages/home/components/HomeHeader/homeHeader.css';
+import * as styles from '@/pages/dancer/components/DancerHeader/dancerHeader.css';
 import IcBack from '@/shared/assets/svg/IcBack';
 import IcBackWhite24 from '@/shared/assets/svg/IcBackWhite24';
-import Flex from '@/shared/components/Flex/Flex';
 
-interface DancerHeaderProps {
-  isVisible: boolean;
+interface DancerHeaderPropTypes {
+  isWhite: boolean;
 }
 
-const DancerHeader = ({ isVisible }: DancerHeaderProps) => {
+const DancerHeader = ({ isWhite }: DancerHeaderPropTypes) => {
   const navigate = useNavigate();
 
   return (
-    <div className={containerStyle({ isVisible })}>
-      <Flex align="center" justify="center" onClick={() => navigate(-1)}>
-        {isVisible ? <IcBack width={'2.4rem'} /> : <IcBackWhite24 width={'2.4rem'} />}
-      </Flex>
+    <div className={styles.containerStyle({ isWhite })}>
+      <div onClick={() => navigate(-1)} >
+        {isWhite ? <IcBack width={24} /> : <IcBackWhite24 width={24} />}
+      </div>
     </div>
   );
 };

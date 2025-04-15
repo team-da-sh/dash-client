@@ -1,6 +1,4 @@
-import { Lesson } from '@/pages/dancer/types/lesson';
-
-export interface DancerDetailResponse {
+export interface DancerDetailResponseTypes {
   nickname: string;
   instagram?: string;
   youtube?: string;
@@ -10,5 +8,14 @@ export interface DancerDetailResponse {
   imageUrls: string[];
   videoUrls: string[];
   genres: string[];
-  lessons: Lesson[];
+  lessons: ClassItemPropTypes[];
+}
+
+export interface ClassItemPropTypes {
+  id: number;
+  genre: string;
+  level: string;
+  name: string;
+  imageUrl: string;
+  remainingDays: number;
 }

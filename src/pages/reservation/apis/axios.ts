@@ -1,4 +1,4 @@
-import { ReservationDetailResponse } from '@/pages/reservation/types/api';
+import type { ReservationDetailResponse } from '@/pages/reservation/types/api';
 import { instance } from '@/shared/apis/instance';
 import { API_URL } from '@/shared/constants/apiURL';
 

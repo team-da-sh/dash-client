@@ -12,8 +12,8 @@ export const LoginCallback = () => {
   const { mutate: login } = useLoginMutation();
 
   useEffect(() => {
-    if (code) login({ redirectUrl: 'http://localhost:5173/auth', code });
-  }, [code]);
+    if (code) login({ redirectUrl: import.meta.env.VITE_KAKAO_REDIRECT_URI, code });
+  }, [code, login]);
 
   // 잠시 인가 코드만 추출해서 api를 보내는 페이지이기 때문에 null 값 반환
   return null;

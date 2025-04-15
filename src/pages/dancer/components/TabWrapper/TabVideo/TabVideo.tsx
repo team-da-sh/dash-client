@@ -1,38 +1,32 @@
-import {
-  iframeStyle,
-  videoItemStyle,
-  videoWrapperStyle,
-} from '@/pages/dancer/components/TabWrapper/TabVideo/tabVideo.css';
-import { DancerDetailResponse } from '@/pages/dancer/types/api';
-import Flex from '@/shared/components/Flex/Flex';
+import * as styles from '@/pages/dancer/components/TabWrapper/TabVideo/tabVideo.css';
+import type { DancerDetailResponseTypes } from '@/pages/dancer/types/api';
 import { getYoutubeEmbedUrl } from '@/shared/constants/regex';
+import { sprinkles } from '@/shared/styles/sprinkles.css';
 
-interface TabVideoProps {
-  dancerData: DancerDetailResponse;
-}
-
-const TabVideo = ({ dancerData }: TabVideoProps) => {
+const TabVideo = ({ dancerData }: { dancerData: DancerDetailResponseTypes }) => {
   const { videoUrls } = dancerData;
 
+  const validVideoUrls = videoUrls.map(getYoutubeEmbedUrl).filter((url): url is string => url !== null);
+
   return (
-    <Flex justify="center">
-      <div className={videoWrapperStyle}>
-        {videoUrls.map((url, id) => {
-          const embedUrl = getYoutubeEmbedUrl(url);
-          return (
-            <div key={id} className={videoItemStyle}>
-              <iframe
-                className={iframeStyle}
-                src={embedUrl || ''}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                title={`video-${id}`}
-              />
-            </div>
-          );
-        })}
-      </div>
-    </Flex>
+    <section className={sprinkles({ display: 'flex', flexWrap: 'wrap', gap: 16, justifyContent: 'center' })}>
+      {validVideoUrls.length === 0 ? (
+        <div />
+      ) : (
+        validVideoUrls.map((embedUrl, id) => (
+          <div key={id} className={sprinkles({ position: 'relative', width: 335, height: 188 })}>
+            <iframe
+              loading="lazy"
+              className={styles.iframeStyle}
+              src={embedUrl}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              title={`video-${id}`}
+            />
+          </div>
+        ))
+      )}
+    </section>
   );
 };
 

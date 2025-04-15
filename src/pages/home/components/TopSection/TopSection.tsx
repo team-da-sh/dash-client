@@ -10,17 +10,23 @@ import Head from '@/shared/components/Head/Head';
 import Tag from '@/shared/components/Tag/Tag';
 import Text from '@/shared/components/Text/Text';
 import { notify } from '@/shared/components/Toast/Toast';
-import { MyPageProps } from '@/shared/types/myPageTypes';
+import { MyPageResponseTypes } from '@/shared/types/myPageTypes';
 
 const IcCalendarcheckColor3D24 = lazy(() => import('@/shared/assets/svg/IcCalendarcheckColor3D24'));
 const IcCalendarcheckMono3D24 = lazy(() => import('@/shared/assets/svg/IcCalendarcheckMono3D24'));
 
-interface TopSectionProps {
-  userData: MyPageProps;
+interface TopSectionPropTypes {
+  userData: MyPageResponseTypes;
   onClose: () => void;
   isInstructor: boolean;
 }
-const TopSection = ({ userData, onClose, isInstructor }: TopSectionProps) => {
+
+const LazyIcon = ({ component: Component, size = 24 }: { component: React.ElementType; size?: number }) => (
+  <Suspense fallback={<div>Loading...</div>}>
+    <Component width={size} height={size} />
+  </Suspense>
+);
+const TopSection = ({ userData, onClose, isInstructor }: TopSectionPropTypes) => {
   const navigate = useNavigate();
 
   const handleNavigate = (path: string) => {
@@ -32,36 +38,19 @@ const TopSection = ({ userData, onClose, isInstructor }: TopSectionProps) => {
     return;
   };
 
-  // 신청 내역, 관심목록, 내 클래스 값이 0 이상일 때 gray8 색상 적용
   const getTextColor = (value: number) => {
     return value > 0 ? 'gray8' : 'gray4';
   };
 
-  const renderTagContent = (isInstructor: boolean) => {
-    const CalendarIcon = isInstructor ? IcCalendarcheckColor3D24 : IcCalendarcheckMono3D24;
-
-    return (
-      <>
-        <Suspense fallback={<div>Loading...</div>}>
-          <CalendarIcon width={24} height={24} />
-        </Suspense>
-        {isInstructor ? '클래스 개설 가능' : '클래스 개설 불가'}
-      </>
-    );
-  };
-
   const handleMyClassesClick = () => {
-    if (isInstructor && userData.lessonCount === 0) {
-      return;
-    }
-    if (isInstructor) {
+    if (isInstructor && userData.lessonCount !== null) {
       handleNavigate(ROUTES_CONFIG.instructorClassList.path);
     }
   };
 
   return (
     <section className={styles.sectionStyle}>
-      <Flex direction="column" align="center">
+      <Flex tag="section" direction="column" align="center">
         <Flex align="center" width="100%" justify="spaceBetween">
           <IcClose width={24} height={24} onClick={onClose} />
           <Flex align="center" gap="0.2rem">
@@ -81,13 +70,12 @@ const TopSection = ({ userData, onClose, isInstructor }: TopSectionProps) => {
         {/* 권한 확인할 수 있는 태그 */}
         <Flex marginTop="1.2rem" gap="0.8rem">
           <Tag hasAuth={true} size="mypage">
-            <Suspense fallback={<div>Loading...</div>}>
-              <IcCalendarcheckColor3D24 width={24} height={24} />
-            </Suspense>
+            <LazyIcon component={IcCalendarcheckColor3D24} />
             클래스 신청 가능
           </Tag>
           <Tag hasAuth={isInstructor} size="mypage">
-            {renderTagContent(isInstructor)}
+            <LazyIcon component={isInstructor ? IcCalendarcheckColor3D24 : IcCalendarcheckMono3D24} />
+            {isInstructor ? '클래스 개설 가능' : '클래스 개설 불가'}
           </Tag>
         </Flex>
       </Flex>

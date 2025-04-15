@@ -1,8 +1,8 @@
-import { DancerDetailResponse } from '@/pages/dancer/types/api';
+import type { DancerDetailResponseTypes } from '@/pages/dancer/types/api';
 import { instance } from '@/shared/apis/instance';
 import { API_URL } from '@/shared/constants/apiURL';
 
-export const getDancerDetail = async (teacherId: string): Promise<DancerDetailResponse> => {
+export const getDancerDetail = async (teacherId: string): Promise<DancerDetailResponseTypes> => {
   const url = `${API_URL.TEACHER_DETAIL}/${teacherId}`;
 
   const { data } = await instance.get(url);

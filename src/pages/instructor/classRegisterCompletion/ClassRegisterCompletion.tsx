@@ -15,6 +15,10 @@ import Text from '@/shared/components/Text/Text';
 const ClassRegisterCompletion = () => {
   const navigate = useNavigate();
 
+  const handleComplete = () => {
+    navigate(ROUTES_CONFIG.home.path);
+  };
+
   return (
     <>
       <Flex className={funnelContainerStyle}>
@@ -32,12 +36,7 @@ const ClassRegisterCompletion = () => {
         </Flex>
       </Flex>
       <div className={buttonContainerStyle}>
-        <BoxButton
-          onClick={() => {
-            navigate(ROUTES_CONFIG.home.path);
-          }}>
-          완료
-        </BoxButton>
+        <BoxButton onClick={handleComplete}>완료</BoxButton>
       </div>
     </>
   );

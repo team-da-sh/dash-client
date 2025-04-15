@@ -48,15 +48,3 @@ export const selectedLocationContainerStyle = style({
   borderRadius: '4px',
   padding: '1.4rem 2rem',
 });
-
-export const searchInputContainerStyle = style({
-  width: '100%',
-  position: 'relative',
-});
-
-export const searchInputIconStyle = style({
-  position: 'absolute',
-  right: '1.8rem',
-  top: '50%',
-  transform: 'translateY(-50%)',
-});

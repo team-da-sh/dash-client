@@ -1,12 +1,10 @@
-import { ChangeEvent } from 'react';
+import type { ChangeEvent } from 'react';
 import {
   checkboxContainerStyle,
   checkboxStyle,
   dividerStyle,
   locationItemContainerStyle,
   locationListContainerStyle,
-  searchInputContainerStyle,
-  searchInputIconStyle,
   selectedLocationContainerStyle,
 } from '@/pages/instructor/classRegister/components/ClassPlace/classPlace.css';
 import Description from '@/pages/instructor/classRegister/components/Description';
@@ -16,7 +14,7 @@ import IcXCircleGray0424 from '@/shared/assets/svg/IcXCircleGray0424';
 import Flex from '@/shared/components/Flex/Flex';
 import Input from '@/shared/components/Input/Input';
 import Text from '@/shared/components/Text/Text';
-import { LocationsData, LocationTypes } from '../../types';
+import type { LocationsData, LocationTypes } from '../../types';
 
 interface ClassPlaceProps {
   hasLocation: boolean;
@@ -68,23 +66,17 @@ const ClassPlace = ({
             </Flex>
           ) : (
             <>
-              <div className={searchInputContainerStyle}>
-                <Input
-                  value={defaultPlace}
-                  onChange={handleDefaultPlace}
-                  placeholder="지번, 도로명, 건물명으로 검색해 주세요"
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter') {
-                      e.preventDefault();
-                    }
-                  }}
-                />
-                <IcSearchGray
-                  width={'2.4rem'}
-                  className={searchInputIconStyle}
-                  onClick={() => handleSubmitDefaultPlace()}
-                />
-              </div>
+              <Input
+                value={defaultPlace}
+                onChange={handleDefaultPlace}
+                placeholder="지번, 도로명, 건물명으로 검색해 주세요"
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    e.preventDefault();
+                  }
+                }}
+                rightAddOn={<IcSearchGray width={'2.4rem'} onClick={() => handleSubmitDefaultPlace()} />}
+              />
 
               {locationList && (
                 <Flex direction="column" gap="1rem" className={locationListContainerStyle}>

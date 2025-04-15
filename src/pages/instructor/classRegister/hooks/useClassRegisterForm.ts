@@ -1,5 +1,6 @@
-import { ChangeEvent, useRef, useState } from 'react';
-import { LocationTypes, RepresentImageUrlsTypes } from '@/pages/instructor/classRegister/types';
+import type { ChangeEvent } from 'react';
+import { useRef, useState } from 'react';
+import type { LocationTypes, RepresentImageUrlsTypes } from '@/pages/instructor/classRegister/types';
 import { ONLY_NUMERIC } from '@/shared/constants/regex';
 import { formatToISOString } from '@/shared/utils/timeUtils';
 

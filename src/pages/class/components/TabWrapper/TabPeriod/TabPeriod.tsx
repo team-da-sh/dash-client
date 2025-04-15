@@ -1,43 +1,42 @@
 import Card from '@/pages/class/components/Card/Card';
-import { roundBoxStyle } from '@/pages/class/components/TabWrapper/TabPeriod/tabPeriod.css';
-import { LessonDetailResponse } from '@/pages/class/types/api';
-import Flex from '@/shared/components/Flex/Flex';
+import * as styles from '@/pages/class/components/TabWrapper/TabPeriod/tabPeriod.css';
+import type { LessonDetailResponseTypes } from '@/pages/class/types/api';
 import Text from '@/shared/components/Text/Text';
+import { sprinkles } from '@/shared/styles/sprinkles.css';
 import { calculatePeriod, formatDate } from '@/shared/utils/dateCalculate';
 
-const TabPeriod = ({ lessonData }: { lessonData: LessonDetailResponse }) => {
+const TabPeriod = ({ lessonData }: { lessonData: LessonDetailResponseTypes }) => {
   const { lessonRound } = lessonData;
   const lessonRounds = lessonRound.lessonRounds;
 
   return (
-    <Flex direction="column" justify="center" gap="1.2rem">
+    <section className={sprinkles({ display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 12 })}>
       {lessonRounds.map((item, id) => {
         const { startDateTime, endDateTime } = item;
         const { startTime, formattedEndTime, durationString } = calculatePeriod(startDateTime, endDateTime);
-
         return (
           <Card key={id}>
             <div>
-              <Flex align="center" width="100%">
-                <div className={roundBoxStyle}>
+              <div className={sprinkles({ display: 'flex', alignItems: 'center', width: '100%' })}>
+                <div className={styles.roundBoxStyle}>
                   <Text tag="b10" color="white">
                     {id + 1}회차
                   </Text>
                 </div>
-                <Flex gap="0.4rem" direction="column">
+                <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 4 })}>
                   <Text tag="b4" color="black">
                     {formatDate(startDateTime)}
                   </Text>
                   <Text tag="b7" color="gray7">
                     {startTime} - {formattedEndTime} ({durationString})
                   </Text>
-                </Flex>
-              </Flex>
+                </div>
+              </div>
             </div>
           </Card>
         );
       })}
-    </Flex>
+    </section>
   );
 };
 

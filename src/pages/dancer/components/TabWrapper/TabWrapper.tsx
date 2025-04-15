@@ -1,21 +1,21 @@
 import { useState } from 'react';
-import { DancerDetailResponse } from '@/pages/dancer/types/api';
-import Flex from '@/shared/components/Flex/Flex';
+import * as styles from '@/pages/dancer/components/TabWrapper/tabWrapper.css';
+import type { DancerDetailResponseTypes } from '@/pages/dancer/types/api';
 import { TabButton, TabList, TabPanel, TabRoot } from '@/shared/components/Tab';
 import { DANCER_TABS } from '@/shared/constants';
-import { vars } from '@/shared/styles/theme.css';
+import { sprinkles } from '@/shared/styles/sprinkles.css';
 
-interface TabWrapperProps {
+interface TabWrapperPropTypes {
   colorScheme: 'primary' | 'secondary';
-  dancerData: DancerDetailResponse;
+  dancerData: DancerDetailResponseTypes;
 }
 
-const TabWrapper = ({ colorScheme, dancerData }: TabWrapperProps) => {
+const TabWrapper = ({ colorScheme, dancerData }: TabWrapperPropTypes) => {
   const [selectedTab, setSelectedTab] = useState(0);
 
   return (
     <TabRoot>
-      <Flex paddingTop="1.6rem" paddingLeft="2rem">
+      <div className={sprinkles({ pt: 16, pl: 20 })}>
         <TabList>
           {DANCER_TABS.map((tab) => (
             <TabButton
@@ -27,20 +27,15 @@ const TabWrapper = ({ colorScheme, dancerData }: TabWrapperProps) => {
             </TabButton>
           ))}
         </TabList>
-      </Flex>
+      </div>
 
-      <Flex
-        paddingTop="3.6rem"
-        paddingRight="2rem"
-        paddingLeft="2rem"
-        paddingBottom="4.8rem"
-        borderTop={`1px solid ${vars.colors.gray01}`}>
+      <div className={styles.tabPanelStyle}>
         {DANCER_TABS.map((tab) => (
           <TabPanel key={tab.id} isSelected={selectedTab === tab.id - 1}>
             {selectedTab === tab.id - 1 && tab.component(dancerData)}
           </TabPanel>
         ))}
-      </Flex>
+      </div>
     </TabRoot>
   );
 };

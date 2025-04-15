@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { ButtonHTMLAttributes } from 'react';
+import type { ButtonHTMLAttributes } from 'react';
 import { buttonStyle } from '@/shared/components/BoxButton/boxButton.css';
 
 export interface BoxButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
