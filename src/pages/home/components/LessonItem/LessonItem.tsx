@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import { useNavigate } from 'react-router-dom';
 import {
   classImageStyle,
@@ -56,34 +57,28 @@ const LessonItem = ({
 
   return (
     <li
-      className={(styles.wrapper, sprinkles({ display: 'flex', flexDirection: 'column', gap: 8 }))}
+      className={clsx(styles.wrapper, sprinkles({ display: 'flex', flexDirection: 'column', gap: 8 }))}
       onClick={handleLessonClick}>
       <img src={imageUrl} alt="클래스 섬네일" className={styles.classImage} />
       {remainingDays < 4 && (
         <Tag type="deadline" size="thumbnail" className={styles.deadlineTag}>{`마감 D-${remainingDays || 'Day'}`}</Tag>
       )}
 
-      <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 6 })}>
-        <div className={sprinkles({ display: 'flex', gap: 4 })}>
-          <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 6 })}>
-            <div className={sprinkles({ display: 'flex', gap: 4 })}>
-              <Tag type="genre" size="small">
-                {genreMapping[genre]}
-              </Tag>
-              <Tag type="level" size="small">
-                {levelMapping[level]}
-              </Tag>
-            </div>
-          </div>
-
-          <Head level="h3" tag="h7" className={titleStyle}>
-            {name}
-          </Head>
-        </div>
+      <div className={sprinkles({ display: 'flex', gap: 4 })}>
+        <Tag type="genre" size="small">
+          {genreMapping[genre]}
+        </Tag>
+        <Tag type="level" size="small">
+          {levelMapping[level]}
+        </Tag>
       </div>
 
+      <Head level="h3" tag="h7" className={titleStyle}>
+        {name}
+      </Head>
+
       <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 4 })}>
-        <div className={sprinkles({ display: 'flex', gap: 8, alignItems: 'center' })}>
+        <div className={sprinkles({ display: 'flex', gap: 6, alignItems: 'center' })}>
           <img src={teacherProfileImage} alt="강사" className={styles.teacherImage} />
           <Text tag="b7">{teacherName}</Text>
         </div>

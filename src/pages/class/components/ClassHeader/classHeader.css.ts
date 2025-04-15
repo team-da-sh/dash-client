@@ -7,6 +7,8 @@ export const containerStyle = recipe({
     display: 'flex',
     position: 'fixed',
     top: 0,
+    zIndex: vars.zIndex.two,
+    justifyContent: 'space-between',
     alignItems: 'center',
 
     width: '100%',
@@ -16,7 +18,7 @@ export const containerStyle = recipe({
     transition: 'all 0.2s',
   },
   variants: {
-    isVisible: {
+    isWhite: {
       true: {
         backgroundColor: vars.colors.white,
       },

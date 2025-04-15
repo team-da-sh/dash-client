@@ -60,9 +60,7 @@ const Reservation = () => {
   const studentName = data.studentName;
 
   const handleButtonClick = async () => {
-    {
-      navigate(ROUTES_CONFIG.payments.path, { state: { lessonId: id, totalPrice, className, studentName } });
-    }
+    navigate(ROUTES_CONFIG.payments.path, { state: { lessonId: id, totalPrice, className, studentName } });
   };
 
   return (
