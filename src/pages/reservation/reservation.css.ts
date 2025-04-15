@@ -9,10 +9,6 @@ export const headerStyle = style({
   zIndex: vars.zIndex.three,
 });
 
-export const agreementContainerStyle = style({
-  width: '100%',
-});
-
 export const agreementBoxStyle = style({
   display: 'flex',
   alignItems: 'center',
@@ -51,8 +47,4 @@ export const bottomButtonStyle = style({
   bottom: '0',
   padding: '2.4rem 2rem',
   width: '100%',
-});
-
-export const agreementTextStyle = style({
-  paddingBottom: '4.2rem',
 });

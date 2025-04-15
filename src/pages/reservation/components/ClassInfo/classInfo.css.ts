@@ -13,4 +13,5 @@ export const infoContainerStyle = style({
 
 export const textLabelStyle = style({
   width: '4.4rem',
+  whiteSpace: 'nowrap',
 });

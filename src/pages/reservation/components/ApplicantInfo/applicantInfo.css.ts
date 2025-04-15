@@ -13,3 +13,8 @@ export const bookerComponentStyle = style({
   background: vars.colors.white,
   borderRadius: '4px',
 });
+
+export const textLabelStyle = style({
+  width: '4.4rem',
+  whiteSpace: 'nowrap',
+});

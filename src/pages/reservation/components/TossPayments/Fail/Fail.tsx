@@ -1,6 +1,6 @@
 import { useSearchParams } from 'react-router-dom';
 import * as styles from '@/pages/reservation/components/TossPayments/tossPayments.css';
-import Flex from '@/shared/components/Flex/Flex';
+import { sprinkles } from '@/shared/styles/sprinkles.css';
 
 export const FailPage = () => {
   const [searchParams] = useSearchParams();
@@ -9,22 +9,23 @@ export const FailPage = () => {
 
   return (
     <div className={`${styles.wrapper} ${styles.w100}`}>
-      <Flex direction="column" align="center" width="100%" className={styles.maxW540}>
+      <div
+        className={`${sprinkles({ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' })} ${styles.maxW540}`}>
         <img src="https://static.toss.im/lotties/error-spot-apng.png" width="120" height="120" />
         <h2 className={styles.title}>결제를 실패했어요</h2>
         <div className={`${styles.responseSection} ${styles.w100}`}>
-          <Flex justify="spaceBetween">
+          <div className={sprinkles({ display: 'flex', justifyContent: 'space-between' })}>
             <span className={styles.responseLabel}>code</span>
             <span id="error-code" className={styles.responseText}>
               {errorCode}
             </span>
-          </Flex>
-          <Flex justify="spaceBetween">
+          </div>
+          <div className={sprinkles({ display: 'flex', justifyContent: 'space-between' })}>
             <span className={styles.responseLabel}>message</span>
             <span id="error-message" className={styles.responseText}>
               {errorMessage}
             </span>
-          </Flex>
+          </div>
         </div>
 
         <div className={`${styles.buttonGroup} ${styles.w100}`}>
@@ -35,7 +36,7 @@ export const FailPage = () => {
             rel="noreferrer noopener">
             다시 테스트하기
           </a>
-          <Flex gap="1.5rem">
+          <div className={sprinkles({ display: 'flex', gap: 15 })}>
             <a
               className={`${styles.btn} ${styles.w100}`}
               href="https://docs.tosspayments.com/reference/error-codes"
@@ -50,9 +51,9 @@ export const FailPage = () => {
               rel="noreferrer noopener">
               실시간 문의하기
             </a>
-          </Flex>
+          </div>
         </div>
-      </Flex>
+      </div>
     </div>
   );
 };
