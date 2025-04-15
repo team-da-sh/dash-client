@@ -24,7 +24,7 @@ const MyPage = ({ showMyPage, onClose }: MyPagePropTypes) => {
   const roleData = isSuccess && fetchedRole ? fetchedRole : initialRole;
 
   if (isSuccess && fetchedRole) {
-    setUserRole(fetchedRole.roleName);
+    setUserRole(fetchedRole.role);
   }
 
   const isInstructor = roleData?.role === 'TEACHER';
