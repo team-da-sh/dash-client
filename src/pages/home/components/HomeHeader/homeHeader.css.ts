@@ -17,7 +17,7 @@ export const containerStyle = recipe({
     transition: 'all 0.2s',
   },
   variants: {
-    isVisible: {
+    isWhite: {
       true: {
         backgroundColor: vars.colors.white,
       },

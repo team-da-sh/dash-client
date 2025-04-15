@@ -5,7 +5,7 @@ import HomeCarousel from '@/pages/home/components/HomeCarousel/HomeCarousel';
 import HomeHeader from '@/pages/home/components/HomeHeader/HomeHeader';
 import PopularDancers from '@/pages/home/components/PopularDancers/PopularDancers';
 import PopularGenre from '@/pages/home/components/PopularGenre/PopularGenre';
-import RecommendationLessons from '@/pages/home/components/RecommendationLessons/RecommendationLessons';
+// import RecommendationLessons from '@/pages/home/components/RecommendationLessons/RecommendationLessons';
 import UpcomingLessones from '@/pages/home/components/UpcomingLessons/UpcomingLessons';
 import { carouselContainerStyle, overlayActiveStyle, overlayStyle } from '@/pages/home/home.css';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
@@ -23,9 +23,10 @@ const MyPage = lazy(() => import('@/pages/home/components/MyPage/MyPage'));
 
 const Home = () => {
   preload(images);
+
   const navigate = useNavigate();
 
-  const [targetRef, isVisible] = useIntersect(false);
+  const [targetRef, isWhite] = useIntersect(false);
   const [showMyPage, setShowMyPage] = useState(false);
 
   const handleMyPageClick = () => {
@@ -49,11 +50,11 @@ const Home = () => {
         </Suspense>
       )}
 
-      <HomeHeader isVisible={isVisible} onMyPageClick={handleMyPageClick} />
+      <HomeHeader isWhite={isWhite} onMyPageClick={handleMyPageClick} />
       <div ref={targetRef} className={carouselContainerStyle}>
         <HomeCarousel />
       </div>
-      <RecommendationLessons />
+      {/* <RecommendationLessons /> */}
       <PopularGenre />
       <PopularDancers />
       <UpcomingLessones />

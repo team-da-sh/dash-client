@@ -5,7 +5,7 @@ import {
   questionStyle,
   recommendClassStyle,
 } from '@/pages/class/components/TabWrapper/TabLevel/tabLevel.css';
-import { LessonDetailResponse } from '@/pages/class/types/api';
+import type { LessonDetailResponse } from '@/pages/class/types/api';
 import IcQuesitonmark from '@/shared/assets/svg/IcQuesitonmark';
 import Flex from '@/shared/components/Flex/Flex';
 import Head from '@/shared/components/Head/Head';

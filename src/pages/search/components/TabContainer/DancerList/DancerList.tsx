@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { dancerImageStyle } from '@/pages/search/components/TabContainer/DancerList/dancerList.css';
-import { Dancer } from '@/pages/search/types/dancer';
+import type { Dancer } from '@/pages/search/types/dancer';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import Flex from '@/shared/components/Flex/Flex';
 import Head from '@/shared/components/Head/Head';

@@ -48,4 +48,3 @@ export const selectedLocationContainerStyle = style({
   borderRadius: '4px',
   padding: '1.4rem 2rem',
 });
-

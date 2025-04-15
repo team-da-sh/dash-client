@@ -13,7 +13,7 @@ import ClassRepresentImage from '@/pages/instructor/classRegister/components/Cla
 import ClassRegisterBottomSheet from '@/pages/instructor/classRegister/components/ClassSchedule/ClassRegisterBottomSheet/ClassRegisterBottomSheet';
 import ClassSchedule from '@/pages/instructor/classRegister/components/ClassSchedule/ClassSchedule';
 import { useClassRegisterForm } from '@/pages/instructor/classRegister/hooks/useClassRegisterForm';
-import { ClassRegisterInfoTypes } from '@/pages/instructor/classRegister/types/api';
+import type { ClassRegisterInfoTypes } from '@/pages/instructor/classRegister/types/api';
 import { buttonContainerStyle } from '@/pages/instructorRegister/instructorRegister.css';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';

@@ -1,4 +1,4 @@
-import { InstructorRegisterRequestTypes } from '@/pages/instructorRegister/types/api';
+import type { InstructorRegisterRequestTypes } from '@/pages/instructorRegister/types/api';
 import { instance } from '@/shared/apis/instance';
 import { API_URL } from '@/shared/constants/apiURL';
 

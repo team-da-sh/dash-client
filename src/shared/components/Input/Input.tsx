@@ -1,5 +1,6 @@
 import clsx from 'clsx';
-import { ForwardedRef, forwardRef, InputHTMLAttributes, ReactNode, useState } from 'react';
+import type { ForwardedRef, InputHTMLAttributes, ReactNode } from 'react';
+import { forwardRef, useState } from 'react';
 import * as style from '@/shared/components/Input/input.css';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {

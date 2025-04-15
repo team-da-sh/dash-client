@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { HTMLAttributes } from 'react';
+import type { HTMLAttributes } from 'react';
 import { textStyle } from '@/shared/components/Text/text.css';
 
 interface TextProps extends HTMLAttributes<HTMLParagraphElement> {

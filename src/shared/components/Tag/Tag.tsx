@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { ComponentPropsWithoutRef } from 'react';
+import type { ComponentPropsWithoutRef } from 'react';
 import { tagStyle } from '@/shared/components/Tag/tag.css';
 
 interface TagProps extends ComponentPropsWithoutRef<'div'> {

@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { MemoryRouter } from 'react-router-dom';
 import Header from '@/shared/components/Header/Header';
 
 const meta: Meta = {
@@ -13,6 +14,14 @@ const meta: Meta = {
     Title: Header.Title,
     CloseIcon: Header.CloseIcon,
   },
+
+  decorators: [
+    (Story) => (
+      <MemoryRouter>
+        <Story />
+      </MemoryRouter>
+    ),
+  ],
 
   argTypes: {
     title: {

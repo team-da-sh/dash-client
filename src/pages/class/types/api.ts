@@ -1,4 +1,4 @@
-import { StatusType } from '@/pages/class/types/statusType';
+import type { StatusType } from '@/pages/class/types/statusType';
 
 export interface LessonDetailResponse {
   imageUrl: string;
