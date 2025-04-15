@@ -6,7 +6,7 @@ import IntroductionStep from '@/pages/instructorRegister/components/InstructorRe
 import PersonalSNSStep from '@/pages/instructorRegister/components/InstructorRegisterFunnel/PersonalSNSStep/PersonalSNSStep';
 import VideoLinkStep from '@/pages/instructorRegister/components/InstructorRegisterFunnel/VideoLinkStep/VideoLinkStep';
 import { funnelContainerStyle } from '@/pages/instructorRegister/components/InstructorRegisterFunnel/instructorRegisterFunnel.css';
-import { TOTAL_STEP } from '@/pages/instructorRegister/constants';
+import { TOTAL_STEP } from '@/pages/instructorRegister/constants/funnel';
 import { buttonContainerStyle } from '@/pages/instructorRegister/instructorRegister.css';
 import { InstructorRegisterInfoTypes } from '@/pages/instructorRegister/types/InstructorRegisterInfoTypes';
 import { FunnelProps, StepProps } from '@/pages/search/types/funnel';
@@ -32,15 +32,15 @@ const InstructorRegisterFunnel = ({ currentStep, Funnel, Step, setStep }: Instru
     detail: '',
     videoUrls: [''],
   });
-  const [isEducationActive, setIsEducationActive] = useState(false);
-  const [isCareerActive, setIsCareerActive] = useState(false);
+  const [isEduNoneChecked, setEduNoneChecked] = useState(false);
+  const [isCareerNoneChecked, setCareerNoneChecked] = useState(false);
 
   const handleEducationCheck = () => {
-    setIsEducationActive((prev) => !prev);
+    setEduNoneChecked((prev) => !prev);
   };
 
   const handleCareerCheck = () => {
-    setIsCareerActive((prev) => !prev);
+    setCareerNoneChecked((prev) => !prev);
   };
 
   const { mutate: instructorRegisterMutate } = usePostInstructor();
@@ -69,19 +69,27 @@ const InstructorRegisterFunnel = ({ currentStep, Funnel, Step, setStep }: Instru
 
   // 버튼 활성화 조건 체크 함수 (step 별로)
   const hasImage = () => !!info.imageUrls;
-  const hasSocialLinks = () => info.instagram.length > 0 || info.youtube.length > 0;
-  const hasEducationOrExperience = () =>
-    info.educations.some((edu) => edu.trim().length > 0) || info.experiences.some((exp) => exp.trim().length > 0);
-  const hasValidVideo = () => info.videoUrls.some((url) => url.trim().length > 0);
+  const hasSocialId = () => info.instagram.length > 0 || info.youtube.length > 0;
+  const hasEducationOrCareer = () => {
+    const hasEducation = info.educations.some((edu) => edu.trim().length > 0);
+    const hasCareer = info.experiences.some((exp) => exp.trim().length > 0);
+
+    const educationValid = hasEducation || isEduNoneChecked;
+    const careerValid = hasCareer || isCareerNoneChecked;
+
+    return educationValid && careerValid;
+  };
+  const hasVideoUrls = () => info.videoUrls.some((url) => url.trim().length > 0);
+
   // 최대 글자 수 조건 기능 명세서 체크
   const hasDetailedInfo = () => info.detail.trim().length >= 30;
 
   const buttonActive = (currentStep: number) => {
     const stepState: Record<number, () => boolean> = {
       1: hasImage,
-      2: hasSocialLinks,
-      3: hasEducationOrExperience,
-      4: hasValidVideo,
+      2: hasSocialId,
+      3: hasEducationOrCareer,
+      4: hasVideoUrls,
       5: hasDetailedInfo,
       6: () => {
         return true;
@@ -101,8 +109,8 @@ const InstructorRegisterFunnel = ({ currentStep, Funnel, Step, setStep }: Instru
       instagram: info.instagram.trim() === '' ? null : `https://www.instagram.com/${info.instagram.trim()}`,
       youtube: info.youtube.trim() === '' ? null : `https://www.youtube.com/@${info.youtube.trim()}`,
 
-      educations: isEducationActive ? [] : info.educations.filter((education) => education.trim() !== ''),
-      experiences: isCareerActive ? [] : info.experiences.filter((experience) => experience.trim() !== ''),
+      educations: isEduNoneChecked ? [] : info.educations.filter((education) => education.trim() !== ''),
+      experiences: isCareerNoneChecked ? [] : info.experiences.filter((experience) => experience.trim() !== ''),
     };
 
     instructorRegisterMutate(updatedInfo, {
@@ -144,8 +152,8 @@ const InstructorRegisterFunnel = ({ currentStep, Funnel, Step, setStep }: Instru
                 educations={info.educations}
                 experiences={info.experiences}
                 onInfoChange={handleInfoChange}
-                isEducationActive={isEducationActive}
-                isCareerActive={isCareerActive}
+                isEduNoneChecked={isEduNoneChecked}
+                isCareerNoneChecked={isCareerNoneChecked}
                 handleEducationCheck={handleEducationCheck}
                 handleCareerCheck={handleCareerCheck}
               />

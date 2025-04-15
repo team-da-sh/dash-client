@@ -1,5 +1,5 @@
 import Description from '@/pages/instructorRegister/components/Description/Description';
-import { INFO_KEY } from '@/pages/instructorRegister/constants';
+import { INFO_KEY } from '@/pages/instructorRegister/constants/funnel';
 import { InstructorRegisterInfoTypes } from '@/pages/instructorRegister/types/InstructorRegisterInfoTypes';
 import IcInstagram20 from '@/shared/assets/svg/IcInstagram20';
 import IcYoutube20 from '@/shared/assets/svg/IcYoutube20';

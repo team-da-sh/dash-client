@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import {
-  addInputBoxStyle,
+  addButtonStyle,
   careerFlexStyle,
   checkboxStyle,
 } from '@/pages/instructorRegister/components/InstructorRegisterFunnel/CareerStep/careerStep.css';
@@ -16,17 +16,19 @@ interface InputSectionPropTypes {
   title: string;
   placeholder: string;
   icon: React.ReactNode;
-  isActive: boolean;
+  isNoneChecked: boolean;
   onToggleActive: () => void;
   inputItems: InputItemTypes[];
   onItemsChange: (updatedItems: InputItemTypes[]) => void;
 }
 
+const PLACEHOLDER_VISIBLE_COUNT = 2;
+
 const InputSection = ({
   title,
   placeholder,
   icon,
-  isActive,
+  isNoneChecked,
   onToggleActive,
   inputItems,
   onItemsChange,
@@ -45,10 +47,21 @@ const InputSection = ({
   };
 
   const deleteItem = (id: number) => {
-    if (id === 1) {
-      onItemsChange(inputItems.map((item) => (item.id === id ? { ...item, value: '' } : item)));
+    if (inputItems.length === 1) {
+      onItemsChange([{ ...inputItems[0], value: '' }]);
     } else {
       onItemsChange(inputItems.filter((item) => item.id !== id));
+    }
+    Promise.resolve().then(() => {
+      lastInputRef.current?.focus();
+    });
+  };
+
+  const renderDeleteIcon = (id: number, value: string) => {
+    if (id === 1) {
+      return value && <IcXCircleGray width={'2.4rem'} onClick={() => deleteItem(id)} />;
+    } else {
+      return <IcXCircleGray width={'2.4rem'} onClick={() => deleteItem(id)} />;
     }
   };
 
@@ -65,7 +78,7 @@ const InputSection = ({
           <Text tag="b7" color="gray10">
             해당 없음
           </Text>
-          {isActive ? (
+          {isNoneChecked ? (
             <BtnCheck width={'2rem'} onClick={onToggleActive} />
           ) : (
             <div className={checkboxStyle} onClick={onToggleActive} />
@@ -73,7 +86,7 @@ const InputSection = ({
         </Flex>
       </Flex>
 
-      {!isActive && (
+      {!isNoneChecked && (
         <Flex direction="column" gap="0.8rem" width="100%">
           {inputItems.map(({ id, value }, index) => (
             <Input
@@ -84,21 +97,20 @@ const InputSection = ({
                 }
               }}
               value={value}
-              placeholder={id < 2 ? placeholder : undefined}
+              placeholder={id < PLACEHOLDER_VISIBLE_COUNT ? placeholder : undefined}
               onChange={(e) => {
                 const updatedItems = inputItems.map((item) =>
                   item.id === id ? { ...item, value: e.target.value } : item
                 );
                 onItemsChange(updatedItems);
               }}
-              rightAddOn={value && <IcXCircleGray width={'2.4rem'} onClick={() => deleteItem(id)} />}
+              rightAddOn={renderDeleteIcon(id, value)}
             />
           ))}
 
-          <Flex
-            justify="center"
-            align="center"
-            className={addInputBoxStyle}
+          <button
+            type="button"
+            className={addButtonStyle}
             onClick={() => {
               addItem();
               Promise.resolve().then(() => {
@@ -106,7 +118,7 @@ const InputSection = ({
               });
             }}>
             <IcPlusGray0524 width={'2.4rem'} />
-          </Flex>
+          </button>
         </Flex>
       )}
     </Flex>
