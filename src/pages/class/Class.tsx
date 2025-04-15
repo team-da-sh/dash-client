@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useGetLessonDetail } from '@/pages/class/apis/queries';
-import { headerStyle } from '@/pages/class/class.css';
+import * as styles from '@/pages/class/class.css';
 import ClassButtonWrapper from '@/pages/class/components/ClassButtonWrapper/ClassButtonWrapper';
 import ClassHeader from '@/pages/class/components/ClassHeader/ClassHeader';
 import ClassInfoWrapper from '@/pages/class/components/ClassInfoWrapper/ClassInfoWrapper';
@@ -34,7 +34,7 @@ const Class = () => {
     <>
       <div
         ref={targetRef}
-        className={headerStyle}
+        className={styles.headerStyle}
         style={{
           backgroundImage: `url(${imageUrl})`,
         }}>

@@ -1,10 +1,6 @@
 import { style } from '@vanilla-extract/css';
 import { vars } from '@/shared/styles/theme.css';
 
-export const wrapperStyle = style({
-  position: 'relative',
-});
-
 export const classImageStyle = style({
   width: '16.4rem',
   height: '9.1rem',
