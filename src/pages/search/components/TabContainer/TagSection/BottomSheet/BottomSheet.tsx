@@ -79,14 +79,6 @@ const BottomSheet = ({
     setSelectedGenre((prev) => (prev === category ? null : category));
   };
 
-  const calendarPropTypes = {
-    isSearch: true,
-    startDate: selectedStartDate,
-    endDate: selectedEndDate,
-    setStartDate: (date: string) => setSelectedStartDate(date),
-    setEndDate: (date: string) => setSelectedEndDate(date),
-  };
-
   return (
     <div className={styles.bottomSheetContainerStyle}>
       <div

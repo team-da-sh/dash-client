@@ -74,13 +74,12 @@ const DropdownContent = ({ children }: DropdownContentPropTypes) => {
 
 interface DropdownItemPropTypes extends ButtonHTMLAttributes<HTMLButtonElement> {
   label: string;
-  onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 
 const DropdownItem = ({ label, onClick, ...props }: DropdownItemPropTypes) => {
   const { handleToggleClose } = useDropdownContext();
 
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     if (onClick) onClick(event);
     handleToggleClose();
   };
