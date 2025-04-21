@@ -33,7 +33,7 @@ const Dancer = () => {
 
   return (
     <>
-      <Flex width="100%">
+      <Flex width="100%" paddingTop="4rem">
         <div
           className={topImgStyle}
           style={{

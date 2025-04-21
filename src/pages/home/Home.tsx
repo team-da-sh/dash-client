@@ -6,6 +6,7 @@ import PopularGenre from '@/pages/home/components/PopularGenre/PopularGenre';
 import RecommendationLessons from '@/pages/home/components/RecommendationLessons/RecommendationLessons';
 import UpcomingLessones from '@/pages/home/components/UpcomingLessons/UpcomingLessons';
 import { carouselContainerStyle, overlayActiveStyle, overlayStyle } from '@/pages/home/home.css';
+import { sprinkles } from '@/shared/styles/sprinkles.css';
 
 const images = 'public/images/image_kkukgirl.webp';
 
@@ -26,7 +27,7 @@ const Home = () => {
   };
 
   return (
-    <>
+    <main className={sprinkles({ pt: 40 })}>
       <div className={`${overlayStyle} ${showMyPage ? overlayActiveStyle : ''}`} />
       {showMyPage && (
         <Suspense fallback={<div />}>
@@ -42,7 +43,7 @@ const Home = () => {
       <PopularDancers />
       <UpcomingLessones />
       <Footer />
-    </>
+    </main>
   );
 };
 
