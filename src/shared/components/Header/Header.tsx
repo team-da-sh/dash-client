@@ -43,10 +43,16 @@ const Header = () => {
           <MyPage showMyPage={showMyPage} onClose={handleCloseMyPageClick} />
         </Suspense>
       )}
-      <IcLogoSmallBlack width={58} height={20} onClick={handleLogoClick} />
+      <button onClick={handleLogoClick} aria-label="홈으로 이동">
+        <IcLogoSmallBlack width={58} height={20} />
+      </button>
       <div className={sprinkles({ display: 'flex', gap: 20 })}>
-        <IcSearchBlack24 width={24} height={24} onClick={handleSearchClick} />
-        <IcMypageBlack24 width={24} height={24} onClick={handleMypageClick} />
+        <button onClick={handleSearchClick} aria-label="검색 페이지로 이동">
+          <IcSearchBlack24 width={24} height={24} />
+        </button>
+        <button onClick={handleMypageClick} aria-label="마이페이지로 이동">
+          <IcMypageBlack24 width={24} height={24} />
+        </button>
       </div>
     </header>
   );
