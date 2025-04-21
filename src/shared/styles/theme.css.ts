@@ -1,5 +1,28 @@
 import { createGlobalTheme } from '@vanilla-extract/css';
 
+export type FontKey =
+  | 'h1_sb'
+  | 'h3_sb'
+  | 'h5_sb'
+  | 'h5_m'
+  | 'h6_sb'
+  | 'b1_sb_long'
+  | 'b1_sb'
+  | 'b2_sb_long'
+  | 'b2_sb'
+  | 'b2_m_long'
+  | 'b2_m'
+  | 'b2_r'
+  | 'b3_sb_narrow'
+  | 'b3_sb'
+  | 'b3_m_narrow'
+  | 'b3_m'
+  | 'b3_r'
+  | 'c1_sb'
+  | 'c1_m'
+  | 'c1_r_narrow'
+  | 'c1_r';
+
 export const vars = createGlobalTheme(':root', {
   colors: {
     // main
@@ -187,5 +210,28 @@ export const vars = createGlobalTheme(':root', {
     three: '3',
     four: '4',
     five: '5',
+  },
+  tags: {
+    h1_sb: 'h1_sb',
+    h3_sb: 'h3_sb',
+    h5_sb: 'h5_sb',
+    h5_m: 'h5_m',
+    h6_sb: 'h6_sb',
+    b1_sb_long: 'b1_sb_long',
+    b1_sb: 'b1_sb',
+    b2_sb_long: 'b2_sb_long',
+    b2_sb: 'b2_sb',
+    b2_m_long: 'b2_m_long',
+    b2_m: 'b2_m',
+    b2_r: 'b2_r',
+    b3_sb_narrow: 'b3_sb_narrow',
+    b3_sb: 'b3_sb',
+    b3_m_narrow: 'b3_m_narrow',
+    b3_m: 'b3_m',
+    b3_r: 'b3_r',
+    c1_sb: 'c1_sb',
+    c1_m: 'c1_m',
+    c1_r_narrow: 'c1_r_narrow',
+    c1_r: 'c1_r',
   },
 });
