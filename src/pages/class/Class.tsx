@@ -6,7 +6,6 @@ import ClassInfoWrapper from '@/pages/class/components/ClassInfoWrapper/ClassInf
 import TabWrapper from '@/pages/class/components/TabWrapper/TabWrapper';
 import Error from '@/pages/error/Error';
 import Divider from '@/shared/components/Divider/Divider';
-import { sprinkles } from '@/shared/styles/sprinkles.css';
 
 const Class = () => {
   const { id } = useParams<{ id: string }>();
@@ -29,7 +28,7 @@ const Class = () => {
   const imageUrl = data.imageUrl;
 
   return (
-    <main className={sprinkles({ pt: 60 })}>
+    <main>
       <div
         className={headerStyle}
         style={{

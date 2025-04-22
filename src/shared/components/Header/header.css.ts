@@ -2,7 +2,8 @@ import { style } from '@vanilla-extract/css';
 import { vars } from '@/shared/styles/theme.css';
 
 export const headerStyle = style({
-  position: 'fixed',
+  position: 'sticky',
+  top: 0,
   zIndex: 10,
 
   display: 'flex',

@@ -3,7 +3,6 @@ import { vars } from '@/shared/styles/theme.css';
 
 export const reservationStyle = style({
   backgroundColor: vars.colors.gray01,
-  paddingTop: '6rem',
 });
 
 export const headerStyle = style({
