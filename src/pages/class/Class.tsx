@@ -29,7 +29,7 @@ const Class = () => {
   const imageUrl = data.imageUrl;
 
   return (
-    <main className={sprinkles({ pt: 40 })}>
+    <main className={sprinkles({ pt: 60 })}>
       <div
         className={headerStyle}
         style={{

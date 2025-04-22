@@ -27,7 +27,7 @@ const Home = () => {
   };
 
   return (
-    <main className={sprinkles({ pt: 40 })}>
+    <main className={sprinkles({ pt: 60 })}>
       <div className={`${overlayStyle} ${showMyPage ? overlayActiveStyle : ''}`} />
       {showMyPage && (
         <Suspense fallback={<div />}>
