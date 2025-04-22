@@ -61,13 +61,11 @@ const TopSection = ({ userData, onClose, isInstructor }: TopSectionPropTypes) =>
           </Flex>
         </Flex>
 
-        {/* 프로필 이미지, 닉네임 */}
         <img src={userData.profileImageUrl} alt="프로필 이미지" className={styles.profileImageStyle} />
         <Head level="h1" tag="h2">
           {userData.nickname}
         </Head>
 
-        {/* 권한 확인할 수 있는 태그 */}
         <Flex marginTop="1.2rem" gap="0.8rem">
           <Tag hasAuth={true} size="mypage">
             <LazyIcon component={IcCalendarcheckColor3D24} />
