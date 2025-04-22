@@ -1,3 +1,4 @@
+import { useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { useGetLocationList, usePostClassRegisterInfo } from '@/pages/instructor/classRegister/apis/queries';
 import * as styles from '@/pages/instructor/classRegister/classRegister.css';
@@ -19,12 +20,14 @@ import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import Header from '@/shared/components/Header/Header';
 import { genreEngMapping, levelEngMapping } from '@/shared/constants';
+import { QUERY_KEYS } from '@/shared/constants/queryKey';
 import useBottomSheet from '@/shared/hooks/useBottomSheet';
 import useImageUploader from '@/shared/hooks/useImageUploader';
 
 const ClassRegister = () => {
   const { isBottomSheetOpen, openBottomSheet, closeBottomSheet } = useBottomSheet();
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
   const { mutate: classRegisterMutate } = usePostClassRegisterInfo();
   const {
@@ -100,6 +103,7 @@ const ClassRegister = () => {
 
       classRegisterMutate(updatedInfo, {
         onSuccess: () => {
+          queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.MEMBERS_ME] });
           navigate(ROUTES_CONFIG.classRegisterCompletion.path);
         },
         onError: () => {

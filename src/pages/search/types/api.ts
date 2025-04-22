@@ -1,10 +1,10 @@
-import type { Dancer } from '@/pages/search/types/dancer';
+import type { DancerTypes } from '@/pages/search/types/dancer';
 
-export interface DancerListParams {
+export interface DancerListParamsTypes {
   keyword?: string;
 }
 
-export interface ClassListParams {
+export interface ClassListParamsTypes {
   genre?: string;
   level?: string;
   startDate?: string;
@@ -13,11 +13,11 @@ export interface ClassListParams {
   keyword?: string;
 }
 
-export interface DancerListResponse {
-  teachers: Dancer[];
+export interface DancerListResponseTypes {
+  teachers: DancerTypes[];
 }
 
-export interface Class {
+export interface ClassTypes {
   id: number;
   genre: string;
   level: string;
@@ -31,6 +31,6 @@ export interface Class {
   remainingDays: number;
 }
 
-export interface ClassListResponse {
-  lessons: Class[];
+export interface ClassListResponseTypes {
+  lessons: ClassTypes[];
 }

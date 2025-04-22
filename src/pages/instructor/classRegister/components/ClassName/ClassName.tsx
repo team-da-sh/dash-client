@@ -16,7 +16,7 @@ const ClassName = ({ className, handleClassNameChange }: ClassNameProps) => {
       <Description title="클래스명" subTitle="돋보일 수 있는 클래스명을 최대 30자 입력해 주세요" />
       <Flex direction="column" gap="0.4rem" width="100%">
         <Input placeholder="클래스명을 입력해 주세요" maxLength={30} onChange={handleClassNameChange} />
-        <Text tag="c3" color="gray4" className={nameLengthStyle}>
+        <Text tag="c1_m" color="gray4" className={nameLengthStyle}>
           {className.length} / 30
         </Text>
       </Flex>

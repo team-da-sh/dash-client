@@ -18,7 +18,7 @@ export const listStyle = style({
 
   color: vars.colors.gray09,
 
-  ...vars.fonts.b2,
+  ...vars.fonts.b2_m,
 });
 
 export const dividerStyle = style({

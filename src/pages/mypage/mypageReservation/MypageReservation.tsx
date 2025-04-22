@@ -26,7 +26,7 @@ const MyPageReservation = () => {
 
       <div className={containerStyle}>
         {reservationData && (
-          <Text tag="b2" color="gray9">
+          <Text tag="b2_m" color="gray9">
             전체 {reservationData?.reservations.length}
           </Text>
         )}

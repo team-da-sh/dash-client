@@ -19,7 +19,7 @@ const PopularGenre = () => {
 
   return (
     <div className={genreWrapperStyle}>
-      <Head level="h2" tag="h4">
+      <Head level="h2" tag="h5_sb">
         지금 가장 인기있는 댄스 장르
       </Head>
 

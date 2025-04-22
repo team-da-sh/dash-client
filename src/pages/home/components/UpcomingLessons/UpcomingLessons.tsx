@@ -12,7 +12,7 @@ const UpcomingLessones = () => {
 
   return (
     <div className={deadlineLessonWrapperStyle}>
-      <Head level="h2" tag="h4" className={titleStyle}>
+      <Head level="h2" tag="h5_sb" className={titleStyle}>
         놓치면 아쉬울 마지막 기회
       </Head>
       <ul className={containerStyle}>

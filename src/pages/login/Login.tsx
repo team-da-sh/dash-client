@@ -23,8 +23,8 @@ const Login = () => {
 
         <Flex direction="column" width="100%">
           <Flex padding="10px 20px"></Flex>
-          <Head tag="h2">댄스 클래스로의 첫 걸음,</Head>
-          <Head tag="h2">지금 시작해 보세요</Head>
+          <Head tag="h3_sb">댄스 클래스로의 첫 걸음,</Head>
+          <Head tag="h3_sb">지금 시작해 보세요</Head>
         </Flex>
         <KakaoButton />
       </Flex>

@@ -9,7 +9,7 @@ export const getStatusMessage = (status: Status, remainingDays: number | undefin
       return (
         <Flex gap="0.2rem">
           {'클래스 시작까지'}
-          <Head tag="h5" color="main4">
+          <Head tag="h6_sb" color="main4">
             {remainingDays} 일
           </Head>
           {'남았어요'}
@@ -19,7 +19,7 @@ export const getStatusMessage = (status: Status, remainingDays: number | undefin
       return (
         <Flex gap="0.2rem">
           {'클래스가'}
-          <Head tag="h5" color="main4">
+          <Head tag="h6_sb" color="main4">
             진행 중
           </Head>
           {'이에요'}

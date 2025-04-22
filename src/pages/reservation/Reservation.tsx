@@ -39,6 +39,7 @@ const Reservation = () => {
     return <Error />;
   }
 
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const { data, isError, isLoading } = useGetReservaion(id);
 
   if (isLoading) {
@@ -76,9 +77,7 @@ const Reservation = () => {
   }));
 
   const handleButtonClick = async () => {
-    {
-      navigate(ROUTES_CONFIG.payments.path, { state: { lessonId: id, totalPrice, className, studentName } });
-    }
+    navigate(ROUTES_CONFIG.payments.path, { state: { lessonId: id, totalPrice, className, studentName } });
   };
 
   return (
@@ -99,7 +98,7 @@ const Reservation = () => {
         paddingBottom="3.6rem"
         gap="3.2rem">
         <Flex direction="column" width="100%" gap="1.6rem">
-          <Text tag="b4" color="gray9">
+          <Text tag="b2_sb" color="gray9">
             클래스 정보
           </Text>
           <ClassInfo
@@ -112,7 +111,7 @@ const Reservation = () => {
           />
         </Flex>
         <Flex direction="column" width="100%" gap="1.6rem">
-          <Text tag="b4" color="gray9">
+          <Text tag="b2_sb" color="gray9">
             신청자 정보
           </Text>
           <ApplicantInfo studentName={data.studentName} studentPhoneNumber={data.studentPhoneNumber} />
@@ -123,7 +122,7 @@ const Reservation = () => {
 
       <Flex direction="column" width="100%" paddingTop="2.8rem" paddingRight="2rem" paddingLeft="2rem">
         <Flex direction="column" width="100%" gap="2rem">
-          <Text tag="b4" color="gray9">
+          <Text tag="b2_sb" color="gray9">
             필수 약관 전체 동의
           </Text>
           <div className={agreementContainerStyle}>
@@ -131,7 +130,7 @@ const Reservation = () => {
               onClick={handleToggleAll}
               className={`${agreementBoxStyle} ${isAllChecked ? agreementCheckedStyle : agreementUncheckedStyle}`}>
               {isAllChecked ? <IcCheckcircleMain0324 height={24} /> : <IcCheckcircleGray0524 height={24} />}
-              <Head level="h5" tag="h6">
+              <Head level="h5" tag="b1_sb">
                 전체동의
               </Head>
             </div>
@@ -151,7 +150,7 @@ const Reservation = () => {
               />
             </Flex>
           </div>
-          <Text tag="b3" color="gray6" className={agreementTextStyle}>
+          <Text tag="b2_m_long" color="gray6" className={agreementTextStyle}>
             * 예약 서비스 이용을 위한 개인정보 수집 및 제 3자 제공,
             <br />
             취소/환불 규정을 확인하였으며 이에 동의합니다.
@@ -161,10 +160,10 @@ const Reservation = () => {
       </Flex>
 
       <div className={totalPriceContainerStyle}>
-        <Head level="h3" tag="h4" color="gray9">
+        <Head level="h3" tag="h5_sb" color="gray9">
           총 결제 금액
         </Head>
-        <Head level="h2" tag="h2" color="main4">
+        <Head level="h2" tag="h3_sb" color="main4">
           {data.price.toLocaleString()}원
         </Head>
       </div>

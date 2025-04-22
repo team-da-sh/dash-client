@@ -1,11 +1,11 @@
 import type { ComponentProps } from 'react';
-import { cardStyle } from '@/pages/class/components/Card/card.css';
+import * as styles from '@/pages/class/components/Card/card.css';
 
-type CardProps = ComponentProps<'div'>;
+type CardPropTypes = ComponentProps<'div'>;
 
-const Card = ({ children, ...props }: CardProps) => {
+const Card = ({ children, ...props }: CardPropTypes) => {
   return (
-    <div className={cardStyle} {...props}>
+    <div className={styles.cardStyle} {...props}>
       {children}
     </div>
   );

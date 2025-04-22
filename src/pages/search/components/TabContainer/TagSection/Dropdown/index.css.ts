@@ -30,7 +30,7 @@ export const dropdownItem = style({
 });
 
 export const dropdownItemText = style({
-  ...vars.fonts.b6,
+  ...vars.fonts.b3_r,
   padding: '0.8rem 1rem',
   color: vars.colors.gray09,
 });
