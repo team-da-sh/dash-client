@@ -1,4 +1,3 @@
-import clsx from 'clsx';
 import type { ComponentPropsWithoutRef } from 'react';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -9,8 +8,8 @@ interface HeaderRootProps extends ComponentPropsWithoutRef<'div'> {
   children: React.ReactNode;
 }
 
-const HeaderRoot = ({ children, className }: HeaderRootProps): JSX.Element => {
-  return <header className={clsx(className, headerRootStyle())}>{children}</header>;
+const HeaderRoot = ({ children }: HeaderRootProps): JSX.Element => {
+  return <header className={headerRootStyle({ isColor: true })}>{children}</header>;
 };
 
 const BackIcon = (): JSX.Element => {
