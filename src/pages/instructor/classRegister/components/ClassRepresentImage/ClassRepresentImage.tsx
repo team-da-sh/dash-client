@@ -39,7 +39,7 @@ const ClassRepresentImage = ({
         {!previewImg && (
           <Flex direction="column" align="center">
             <IcPlusGray0524 width={'2.4rem'} />
-            <Text tag="c1" color="gray5">
+            <Text tag="c1_r" color="gray5">
               1/1
             </Text>
           </Flex>

@@ -58,7 +58,7 @@ const BackIcon = ({ onFunnelBackClick, onHomeBackClick }: BackIconProps): JSX.El
 
 const Title = ({ title }: TitleProps): JSX.Element => {
   return (
-    <Head level="h1" tag="h6" className={titleStyle}>
+    <Head level="h1" tag="b1_sb" className={titleStyle}>
       {title}
     </Head>
   );

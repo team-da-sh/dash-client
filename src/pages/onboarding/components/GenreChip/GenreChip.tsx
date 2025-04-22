@@ -35,7 +35,7 @@ const GenreChip = ({ genre, imageUrl, id, onCheckboxClick, isChecked }: GenreChi
         <IcCheckMain0424 width={40} height={40} className={checkStyle({ isChecked })} />
       </Flex>
 
-      <Text tag={isChecked ? 'b4' : 'b2'}>{genre}</Text>
+      <Text tag={isChecked ? 'b2_sb' : 'b2_m'}>{genre}</Text>
     </Flex>
   );
 };

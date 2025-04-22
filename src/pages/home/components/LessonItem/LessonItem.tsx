@@ -73,18 +73,18 @@ const LessonItem = ({
         </Tag>
       </div>
 
-      <Head level="h3" tag="h7" className={titleStyle}>
+      <Head level="h3" tag="b1_sb_long" className={titleStyle}>
         {name}
       </Head>
 
       <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 4 })}>
         <div className={sprinkles({ display: 'flex', gap: 6, alignItems: 'center' })}>
           <img src={teacherProfileImage} alt="강사" className={styles.teacherImage} />
-          <Text tag="b7">{teacherName}</Text>
+          <Text tag="b3_m">{teacherName}</Text>
         </div>
 
         <div className={sprinkles({ display: 'flex', gap: 4, alignItems: 'center' })}>
-          <Text tag="c1" color="gray5">
+          <Text tag="c1_r_narrow" color="gray5">
             {transformDateToDotFormat(startDate)} - {transformDateToDotFormat(endDate)}
           </Text>
         </div>

@@ -35,7 +35,7 @@ const DancerList = ({ dancers }: DancerListPropTypes) => {
           onClick={() => handleDancerClick(dancer.id)}>
           <img src={dancer.profileImage} alt={dancer.nickname} className={styles.dancerImageStyle} />
           <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 8 })}>
-            <Head level="h6" tag="h6">
+            <Head level="h6" tag="b1_sb">
               {dancer.nickname}
             </Head>
             <div className={sprinkles({ display: 'flex', gap: 5 })}>

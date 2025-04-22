@@ -15,6 +15,7 @@ const EmptyView = () => {
         marginTop: 60,
       })}>
       <img src={EmptyGif} width={300} />
+
       <div
         className={sprinkles({
           display: 'flex',
@@ -22,8 +23,8 @@ const EmptyView = () => {
           justifyContent: 'center',
           alignItems: 'center',
         })}>
-        <Head tag="h5">검색 결과가 없어요.</Head>
-        <Head tag="h5">다른단어로 검색해 보시겠어요?</Head>
+        <Head tag="h6_sb">검색 결과가 없어요.</Head>
+        <Head tag="h6_sb">다른단어로 검색해 보시겠어요?</Head>
       </div>
     </div>
   );

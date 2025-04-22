@@ -12,7 +12,7 @@ const RecommendationLessons = () => {
 
   return (
     <div className={containerStyle}>
-      <Head level="h2" tag="h4" className={titleStyle}>
+      <Head level="h2" tag="h5_sb" className={titleStyle}>
         이 클래스는 꼭 들어야 해요!
       </Head>
       <ul className={recommandLessonWrapperStyle}>

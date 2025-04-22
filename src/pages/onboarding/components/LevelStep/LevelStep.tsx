@@ -21,10 +21,10 @@ const LevelStep = ({ name, level, onInfoChange }: LevelStepProps) => {
   return (
     <Flex direction="column" width="100%">
       <Flex direction="column" gap="0.8rem">
-        <Head level="h1" tag="h2">
+        <Head level="h1" tag="h3_sb">
           원하는 클래스의 난이도
         </Head>
-        <Text tag="b2" color="gray7">
+        <Text tag="b2_m" color="gray7">
           {name}님께 딱 맞는 클래스를 추천해 드릴게요
         </Text>
       </Flex>

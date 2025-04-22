@@ -46,7 +46,7 @@ const ClassPlace = ({
       <Flex justify="spaceBetween" width="100%">
         <Description title="클래스 장소" subTitle="클래스가 진행될 장소를 알려주세요" />
         <Flex align="center" gap="0.8rem" className={checkboxContainerStyle}>
-          <Text tag="b7" color="gray8">
+          <Text tag="b3_m" color="gray8">
             장소 미정
           </Text>
           {hasLocation ? (
@@ -85,10 +85,10 @@ const ClassPlace = ({
                       <div key={idx} onClick={() => setSelectedLocation(item)} className={locationItemContainerStyle}>
                         {idx !== 0 && <div className={dividerStyle} />}
                         <Flex direction="column" width="100%">
-                          <Text tag="b5" color="gray10">
+                          <Text tag="b2_sb_long" color="gray10">
                             {item.location}
                           </Text>
-                          <Text tag="b9" color="gray5">
+                          <Text tag="b3_sb" color="gray5">
                             {item.streetAddress}
                           </Text>
                         </Flex>
