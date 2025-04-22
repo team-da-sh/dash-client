@@ -4,7 +4,7 @@ import '@/pages/search/components/Calendar/calendar.css';
 type Value = Date | null;
 type Range<T> = [T, T];
 
-interface CalendarCustomProps {
+interface CalendarCustomPropTypes {
   startDate: string;
   endDate?: string;
   setStartDate: (date: string) => void;
@@ -12,7 +12,7 @@ interface CalendarCustomProps {
   isSearch: boolean;
 }
 
-const CalendarCustom = ({ startDate, endDate, setStartDate, setEndDate, isSearch }: CalendarCustomProps) => {
+const CalendarCustom = ({ startDate, endDate, setStartDate, setEndDate, isSearch }: CalendarCustomPropTypes) => {
   const dateChangeHandler = (value: Value | Range<Value>) => {
     // 시작과 끝 날짜 모두 선택한 경우
     if (Array.isArray(value)) {
