@@ -21,7 +21,7 @@ export const buttonStyle = style({
   backgroundColor: vars.colors.gray01,
 
   color: vars.colors.gray05,
-  ...vars.fonts.h6,
+  ...vars.fonts.b1_sb,
 
   cursor: 'default',
 });

@@ -13,10 +13,10 @@ const ScheduleItem = ({ index, startDateTime, endDateTime }: ScheduleItemProps) 
 
   return (
     <Flex direction="column" gap="0.4rem">
-      <Text tag="b7" color="gray10">
+      <Text tag="b3_m" color="gray10">
         {index + 1}회차: {formatSimpleDate(startDateTime)}
       </Text>
-      <Text tag="b7" color="gray6">
+      <Text tag="b3_m" color="gray6">
         {startTime} - {formattedEndTime} ({durationString})
       </Text>
     </Flex>

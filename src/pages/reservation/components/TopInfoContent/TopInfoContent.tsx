@@ -23,10 +23,10 @@ const TopInfoContent = ({ name, teacherNickname, imageUrl }: TopInfoContentProps
         <div className={gradientOverlayStyle} />
 
         <Flex className={textWrapperStyle}>
-          <Head level="h3" tag="h4" color="white">
+          <Head level="h3" tag="h5_sb" color="white">
             {name}
           </Head>
-          <Head level="h5" tag="h6" color="gray4">
+          <Head level="h5" tag="b1_sb" color="gray4">
             {teacherNickname}
           </Head>
         </Flex>

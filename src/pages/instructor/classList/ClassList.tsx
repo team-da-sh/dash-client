@@ -30,7 +30,7 @@ const ClassList = () => {
         <Header.Title title="내 클래스 목록" />
       </Header.Root>
       <div className={containerStyle}>
-        <Text tag="b2" color="gray9">
+        <Text tag="b2_m" color="gray9">
           전체 {lessonData?.count}
         </Text>
         <Flex direction="column" gap="1.2rem" marginTop="1.6rem">

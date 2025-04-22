@@ -6,7 +6,7 @@ export const genreButtonStyle = recipe({
     padding: '1.2rem 1.6rem',
     borderRadius: '4px',
     cursor: 'pointer',
-    ...vars.fonts.b4,
+    ...vars.fonts.b2_sb,
     transition: 'background-color 0.3s, color 0.3s',
     color: vars.colors.gray09,
   },

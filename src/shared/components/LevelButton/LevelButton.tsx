@@ -23,10 +23,10 @@ const LevelButton = ({ level, isSelected, onClick }: LevelButtonProps) => {
       onClick={onClick}
       type="button">
       {level.icon}
-      <Head className={headCustomStyle} tag="h6" level="h6" color={isSelected ? 'white' : 'gray9'}>
+      <Head className={headCustomStyle} tag="b1_sb" level="h6" color={isSelected ? 'white' : 'gray9'}>
         {level.title}
       </Head>
-      <Text tag="b8" color={isSelected ? 'gray2' : 'gray9'}>
+      <Text tag="b3_m_narrow" color={isSelected ? 'gray2' : 'gray9'}>
         {level.description}
       </Text>
     </button>

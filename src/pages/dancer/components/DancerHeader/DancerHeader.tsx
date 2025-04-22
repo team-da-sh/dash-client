@@ -12,9 +12,7 @@ const DancerHeader = ({ isWhite }: DancerHeaderPropTypes) => {
 
   return (
     <div className={styles.containerStyle({ isWhite })}>
-      <div onClick={() => navigate(-1)} >
-        {isWhite ? <IcBack width={24} /> : <IcBackWhite24 width={24} />}
-      </div>
+      <div onClick={() => navigate(-1)}>{isWhite ? <IcBack width={24} /> : <IcBackWhite24 width={24} />}</div>
     </div>
   );
 };

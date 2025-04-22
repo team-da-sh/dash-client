@@ -39,7 +39,7 @@ export const showDetailWrapperStyle = style({
 
 export const showDetailButtonStyle = style({
   color: vars.colors.white,
-  ...vars.fonts.b7,
+  ...vars.fonts.b3_m,
 
   border: 'none',
 

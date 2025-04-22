@@ -29,7 +29,7 @@ export const containerStyle = recipe({
 
 export const inputStyle = style({
   width: '100%',
-  ...vars.fonts.b5,
+  ...vars.fonts.b2_sb_long,
 
   '::placeholder': {
     color: vars.colors.gray05,

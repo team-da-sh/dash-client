@@ -19,7 +19,7 @@ export const buttonStyle = recipe({
         backgroundColor: vars.colors.main04,
 
         color: vars.colors.white,
-        ...vars.fonts.h6,
+        ...vars.fonts.b1_sb,
 
         '&:disabled': {
           backgroundColor: vars.colors.gray05,
@@ -36,7 +36,7 @@ export const buttonStyle = recipe({
         backgroundColor: vars.colors.gray03,
 
         color: vars.colors.gray07,
-        ...vars.fonts.h6,
+        ...vars.fonts.b1_sb,
 
         '&:disabled': {
           cursor: 'default',
@@ -49,7 +49,7 @@ export const buttonStyle = recipe({
         border: `0.5px solid ${vars.colors.gray09}`,
         backgroundColor: vars.colors.main03,
 
-        ...vars.fonts.b8,
+        ...vars.fonts.b3_m_narrow,
 
         '&:disabled': {
           border: `0.5px solid ${vars.colors.gray04}`,
@@ -68,7 +68,7 @@ export const buttonStyle = recipe({
         backgroundColor: vars.colors.gray01,
 
         color: vars.colors.gray05,
-        ...vars.fonts.b8,
+        ...vars.fonts.b3_m_narrow,
 
         cursor: 'default',
       },
@@ -84,7 +84,7 @@ export const buttonStyle = recipe({
         backgroundColor: vars.colors.gray03,
 
         color: vars.colors.gray07,
-        ...vars.fonts.h6,
+        ...vars.fonts.b1_sb,
 
         '&:disabled': {
           cursor: 'default',

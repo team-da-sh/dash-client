@@ -33,7 +33,7 @@ const DancerList = ({ dancers }: DancerListProps) => {
           onClick={() => handleDancerClick(dancer.id)}>
           <img src={dancer.profileImage} alt={dancer.nickname} className={dancerImageStyle} />
           <Flex direction="column" gap="0.8rem">
-            <Head level="h6" tag="h6">
+            <Head level="h6" tag="b1_sb">
               {dancer.nickname}
             </Head>
             <Flex gap="0.5rem">

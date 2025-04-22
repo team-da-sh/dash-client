@@ -132,7 +132,7 @@ const TabContainer = ({
             <Dropdown.Root>
               <Dropdown.Trigger>
                 <Flex align="center">
-                  <Text tag="b7" color="gray7">
+                  <Text tag="b3_m" color="gray7">
                     {selectedLabel}
                   </Text>
                   <IcArrowUnderGray width={14} />

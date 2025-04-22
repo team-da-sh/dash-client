@@ -1,5 +1,5 @@
 import * as styles from '@/pages/dancer/components/DancerInfo/DancerClassItem/dancerClassItem.css';
-import { ClassItemPropTypes } from '@/pages/dancer/types/api';
+import type { ClassItemPropTypes } from '@/pages/dancer/types/api';
 import Head from '@/shared/components/Head/Head';
 import Tag from '@/shared/components/Tag/Tag';
 import { genreMapping, levelMapping } from '@/shared/constants/index';
@@ -14,7 +14,7 @@ const DancerClassItem = ({ imageUrl, remainingDays, genre, level, name }: ClassI
         </Tag>
       );
     }
-    if (remainingDays == 0) {
+    if (remainingDays === 0) {
       return (
         <Tag type="deadline" size="thumbnail" className={styles.deadlineTagStyle}>
           D-DAY
@@ -55,7 +55,7 @@ const DancerClassItem = ({ imageUrl, remainingDays, genre, level, name }: ClassI
         </Tag>
       </div>
 
-      <Head level="h5" tag="h7">
+      <Head level="h5" tag="b1_sb_long">
         {name}
       </Head>
     </section>
