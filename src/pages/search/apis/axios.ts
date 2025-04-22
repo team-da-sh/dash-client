@@ -1,4 +1,4 @@
-import type { ClassListParams, DancerListParams } from '@/pages/search/types/api';
+import type { ClassListParamsTypes, DancerListParamsTypes } from '@/pages/search/types/api';
 import { instance } from '@/shared/apis/instance';
 
 const SEARCH_URL = {
@@ -6,7 +6,7 @@ const SEARCH_URL = {
   GET_CLASSLIST: '/api/v1/lessons',
 };
 
-export const getDancerList = async ({ keyword }: DancerListParams) => {
+export const getDancerList = async ({ keyword }: DancerListParamsTypes) => {
   const { data } = await instance.get(SEARCH_URL.GET_DANCERLIST, {
     params: {
       keyword,
@@ -16,7 +16,7 @@ export const getDancerList = async ({ keyword }: DancerListParams) => {
   return data;
 };
 
-export const getClassList = async ({ genre, level, startDate, endDate, sortOption, keyword }: ClassListParams) => {
+export const getClassList = async ({ genre, level, startDate, endDate, sortOption, keyword }: ClassListParamsTypes) => {
   const { data } = await instance.get(SEARCH_URL.GET_CLASSLIST, {
     params: {
       genre,
