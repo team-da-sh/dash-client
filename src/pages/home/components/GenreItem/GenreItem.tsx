@@ -12,7 +12,7 @@ const GenreItem = ({ medalIcon, genre, onClick }: GenreItemPropTypes) => {
     <li className={containerStyle} onClick={onClick}>
       <div className={medalStyle}>{medalIcon}</div>
 
-      <Text tag="b2" className={genreStyle}>
+      <Text tag="b2_m" className={genreStyle}>
         {genre}
       </Text>
     </li>

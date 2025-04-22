@@ -13,7 +13,7 @@ interface MyPagePropTypes {
 }
 
 const MyPage = ({ showMyPage, onClose }: MyPagePropTypes) => {
-  let initialRole = getUserRole();
+  const initialRole = getUserRole();
 
   const { data: fetchedRole, isSuccess } = useGetRole({
     enabled: showMyPage && !initialRole,
