@@ -8,5 +8,5 @@ export interface Lesson {
   detailedAddress: string;
   startDateTime: string;
   endDateTime: string;
-  applyStatus: [];
+  applyStatus: string;
 }
