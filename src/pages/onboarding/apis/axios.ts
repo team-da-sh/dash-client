@@ -14,7 +14,6 @@ export const postOnboard = async ({
     {
       name,
       phoneNumber,
-
       nickname,
       profileImageUrl,
     },
