@@ -31,9 +31,9 @@ const HomeCarousel = () => {
         delay: 4500,
         disableOnInteraction: false,
       }}>
-      {ADVERTISEMENTS.map((advertisement, index) => {
+      {ADVERTISEMENTS.map((advertisement) => {
         return (
-          <SwiperSlide key={`${index}-${advertisement.id}`}>
+          <SwiperSlide key={`${advertisement.id}`}>
             <SliderItem {...advertisement} />
           </SwiperSlide>
         );
