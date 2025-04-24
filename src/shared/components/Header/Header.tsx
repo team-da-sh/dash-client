@@ -1,5 +1,6 @@
 import clsx from 'clsx';
-import React, { ComponentPropsWithoutRef } from 'react';
+import type { ComponentPropsWithoutRef } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import IcBack from '@/shared/assets/svg/IcBack';
@@ -57,7 +58,7 @@ const BackIcon = ({ onFunnelBackClick, onHomeBackClick }: BackIconProps): JSX.El
 
 const Title = ({ title }: TitleProps): JSX.Element => {
   return (
-    <Head level="h1" tag="h6" className={titleStyle}>
+    <Head level="h1" tag="b1_sb" className={titleStyle}>
       {title}
     </Head>
   );

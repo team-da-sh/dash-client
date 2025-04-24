@@ -15,6 +15,6 @@ export const toastContainerStyle = style({
   borderRadius: '6px',
   backgroundColor: vars.colors.gray10,
 
-  ...vars.fonts.b2,
+  ...vars.fonts.b2_m,
   color: vars.colors.white,
 });

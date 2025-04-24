@@ -1,8 +1,8 @@
 import { useMutation } from '@tanstack/react-query';
-import { AxiosError } from 'axios';
+import type { AxiosError } from 'axios';
 import { postOnboard } from '@/pages/onboarding/apis/axios';
-import { tokenTypes } from '@/pages/onboarding/types/api';
-import { onboardInfoTypes } from '@/pages/onboarding/types/onboardInfoTypes';
+import type { tokenTypes } from '@/pages/onboarding/types/api';
+import type { onboardInfoTypes } from '@/pages/onboarding/types/onboardInfoTypes';
 
 export const usePostOnboard = () => {
   return useMutation({

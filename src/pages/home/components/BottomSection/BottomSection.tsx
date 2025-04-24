@@ -13,33 +13,28 @@ const BottomSection = ({ isInstructor }: { isInstructor: boolean }) => {
   const { mutate: logout } = usePostLogout();
   const navigate = useNavigate();
 
-  const handleLogout = () => {
-    logout();
+  const getIsDisabled = (item: (typeof LIST_DATA)[number]) => {
+    const isInstructorOnly = item.isInstructorRequired && !isInstructor;
+    const isAlreadyRegisteredInstructor = item.label === '강사 등록' && isInstructor;
+
+    return isInstructorOnly || isAlreadyRegisteredInstructor;
   };
+
+  const getArrowIcon = (isDisabled: boolean) => (isDisabled ? IcArrowRightSmallGray0432 : IcArrowRightSmallGray0732);
 
   const handleItemClick = (item: (typeof LIST_DATA)[number], isDisabled: boolean) => {
     if (isDisabled) return;
-
-    if (item.inActive) {
-      notify();
-      return;
-    }
-
-    if (item.label === '로그아웃') {
-      handleLogout();
-    } else if (item.path) {
-      navigate(item.path);
-    }
+    if (item.inActive) return notify();
+    if (item.label === '로그아웃') return logout();
+    if (item.path) navigate(item.path);
   };
 
   return (
-    <Flex>
+    <Flex tag="section">
       <ul className={styles.ulStyle}>
         {LIST_DATA.map((item) => {
-          const isDisabled =
-            (item.isInstructorRequired && !isInstructor) || (item.label === '강사 등록' && isInstructor);
-          const ArrowIcon = isDisabled ? IcArrowRightSmallGray0432 : IcArrowRightSmallGray0732;
-
+          const isDisabled = getIsDisabled(item);
+          const ArrowIcon = getArrowIcon(isDisabled);
           return (
             <React.Fragment key={item.id}>
               <li

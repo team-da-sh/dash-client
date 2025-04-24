@@ -1,6 +1,6 @@
 import Description from '@/pages/instructorRegister/components/Description/Description';
-import { INFO_KEY } from '@/pages/instructorRegister/constants';
-import { InstructorRegisterInfoTypes } from '@/pages/instructorRegister/types/InstructorRegisterInfoTypes';
+import { INFO_KEY } from '@/pages/instructorRegister/constants/funnel';
+import type { InstructorRegisterInfoTypes } from '@/pages/instructorRegister/types/InstructorRegisterInfoTypes';
 import IcInstagram20 from '@/shared/assets/svg/IcInstagram20';
 import IcYoutube20 from '@/shared/assets/svg/IcYoutube20';
 import Flex from '@/shared/components/Flex/Flex';
@@ -30,7 +30,7 @@ const PersonalSNSStep = ({ onInfoChange, instagram, youtube }: PersonalSNSStepPr
         <Flex direction="column" gap="1.2rem" width="100%">
           <Flex gap="0.8rem" align="center">
             <IcInstagram20 width={'2rem'} />
-            <Text tag="b6">인스타그램</Text>
+            <Text tag="b2_sb">인스타그램</Text>
           </Flex>
           <Input value={instagram} placeholder="dashdash.kr" onChange={(e) => handleInstagramChange(e.target.value)} />
         </Flex>
@@ -38,7 +38,7 @@ const PersonalSNSStep = ({ onInfoChange, instagram, youtube }: PersonalSNSStepPr
         <Flex direction="column" gap="1.2rem" width="100%">
           <Flex gap="0.8rem" align="center">
             <IcYoutube20 width={'2rem'} />
-            <Text tag="b6">유튜브 채널</Text>
+            <Text tag="b2_sb">유튜브 채널</Text>
           </Flex>
           <Input value={youtube} placeholder="dashofficial" onChange={(e) => handleYoutubeChange(e.target.value)} />
         </Flex>

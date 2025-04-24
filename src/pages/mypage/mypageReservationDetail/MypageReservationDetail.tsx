@@ -10,7 +10,7 @@ import Text from '@/shared/components/Text/Text';
 import { getStatusMessage } from '@/shared/utils/getStatusMessage';
 import { formatDateTime, getClassStatus } from '@/shared/utils/timeCalculate';
 
-const ClassReservationDetail = () => {
+const MyPageReservationDetail = () => {
   const { id } = useParams<{ id: string }>();
 
   const lessonId = Number(id);
@@ -36,12 +36,12 @@ const ClassReservationDetail = () => {
 
       <div className={styles.containerStyle}>
         <Flex width="100%" justify="center">
-          <Head tag="h5" color={status === 'completed' ? 'gray8' : 'black'}>
+          <Head tag="h6_sb" color={status === 'completed' ? 'gray8' : 'black'}>
             {getStatusMessage(status, data?.dDay)}
           </Head>
         </Flex>
         <div className={styles.classHeaderStyle}>
-          <Text tag="b4" color="gray9">
+          <Text tag="b2_sb" color="gray9">
             클래스 정보
           </Text>
         </div>
@@ -54,7 +54,7 @@ const ClassReservationDetail = () => {
           lessonRound={data?.rounds}
         />
         <div className={styles.applicantHeaderStyle}>
-          <Text tag="b4" color="gray9">
+          <Text tag="b2_sb" color="gray9">
             신청자 정보
           </Text>
         </div>
@@ -62,7 +62,7 @@ const ClassReservationDetail = () => {
         <ApplicantInfo studentName={data?.name} studentPhoneNumber={data?.phoneNumber} />
 
         <Flex marginTop="1.2rem" justify="flexEnd">
-          <Text tag="c1" color="gray9">
+          <Text tag="c1_r" color="gray9">
             {formatDateTime(data?.reservationDateTime || '')} 신청 완료
           </Text>
         </Flex>
@@ -71,4 +71,4 @@ const ClassReservationDetail = () => {
   );
 };
 
-export default ClassReservationDetail;
+export default MyPageReservationDetail;

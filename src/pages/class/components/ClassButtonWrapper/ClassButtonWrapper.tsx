@@ -1,15 +1,15 @@
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { buttonWrapperStyle } from '@/pages/class/components/ClassButtonWrapper/classButtonWrapper.css';
-import { LessonDetailResponse } from '@/pages/class/types/api';
+import * as styles from '@/pages/class/components/ClassButtonWrapper/classButtonWrapper.css';
+import type { LessonDetailResponseTypes } from '@/pages/class/types/api';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import IcHeartFilledGray07 from '@/shared/assets/svg/IcHeartFilledGray07';
 import IcHeartOutlinedGray07 from '@/shared/assets/svg/IcHeartOutlinedGray07';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
-import Flex from '@/shared/components/Flex/Flex';
 import { BUTTON_TEXT, DISABLED_STATUS } from '@/shared/constants';
+import { sprinkles } from '@/shared/styles/sprinkles.css';
 
-const ClassButtonWrapper = ({ lessonData }: { lessonData: LessonDetailResponse }) => {
+const ClassButtonWrapper = ({ lessonData }: { lessonData: LessonDetailResponseTypes }) => {
   const [isHeartFilled, setIsHeartFilled] = useState(false);
   const navigate = useNavigate();
 
@@ -43,7 +43,7 @@ const ClassButtonWrapper = ({ lessonData }: { lessonData: LessonDetailResponse }
   };
 
   return (
-    <Flex height="10.2rem" width="100%" className={buttonWrapperStyle}>
+    <section className={`${sprinkles({ display: 'flex', height: 102, width: '100%' })} ${styles.buttonWrapperStyle}`}>
       <BoxButton variant="heart" isDisabled={false} onClick={toggleHeart}>
         {isHeartFilled ? <IcHeartFilledGray07 width={28} /> : <IcHeartOutlinedGray07 width={28} />}
       </BoxButton>
@@ -51,7 +51,7 @@ const ClassButtonWrapper = ({ lessonData }: { lessonData: LessonDetailResponse }
       <BoxButton variant="primary" isDisabled={isDisabled} onClick={handleApplyClick}>
         {buttonText}
       </BoxButton>
-    </Flex>
+    </section>
   );
 };
 

@@ -7,7 +7,7 @@ import ClassCard from '@/shared/components/ClassCard/ClassCard';
 import Flex from '@/shared/components/Flex/Flex';
 import Header from '@/shared/components/Header/Header';
 import Text from '@/shared/components/Text/Text';
-import { Reservation } from '@/shared/types/reservationTypes';
+import type { Reservation } from '@/shared/types/reservationTypes';
 
 const MyPageReservation = () => {
   const navigate = useNavigate();
@@ -26,7 +26,7 @@ const MyPageReservation = () => {
 
       <div className={containerStyle}>
         {reservationData && (
-          <Text tag="b2" color="gray9">
+          <Text tag="b2_m" color="gray9">
             전체 {reservationData?.reservations.length}
           </Text>
         )}

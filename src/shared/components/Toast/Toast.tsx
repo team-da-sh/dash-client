@@ -14,7 +14,7 @@ export const notify = () => {
 
       backgroundColor: vars.colors.gray10,
       color: vars.colors.white,
-      ...vars.fonts.b2,
+      ...vars.fonts.b2_m,
     },
   });
 };

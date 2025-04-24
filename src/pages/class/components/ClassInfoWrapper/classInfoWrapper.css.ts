@@ -10,9 +10,6 @@ export const profileStyle = style({
   backgroundColor: vars.colors.gray01,
 });
 
-export const lessonNameStyle = style({
-  marginBottom: '1.6rem',
-});
 
 export const cardStyle = style({
   display: 'inline-flex',
@@ -25,8 +22,4 @@ export const cardStyle = style({
   borderRadius: '4px',
   backgroundColor: vars.colors.white,
   boxShadow: '0px 0px 0.4rem 0px rgba(0, 0, 0, 0.10)',
-});
-
-export const thunderIconStyle = style({
-  marginRight: '0.4rem',
 });

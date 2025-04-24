@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 import { tabListStyle } from '@/shared/components/Tab/index.css';
 
 interface TabListProps {

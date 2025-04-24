@@ -2,8 +2,8 @@ import GenreChip from '@/pages/onboarding/components/GenreChip/GenreChip';
 import { genreListStyle } from '@/pages/onboarding/components/GenreStep/genreStep.css';
 import { GENRELIST, INFO_KEY } from '@/pages/onboarding/constants';
 import { GENRE_INFO } from '@/pages/onboarding/mocks';
-import { GenreTypes } from '@/pages/onboarding/types/genreTypes';
-import { onboardInfoTypes } from '@/pages/onboarding/types/onboardInfoTypes';
+import type { GenreTypes } from '@/pages/onboarding/types/genreTypes';
+import type { onboardInfoTypes } from '@/pages/onboarding/types/onboardInfoTypes';
 import Flex from '@/shared/components/Flex/Flex';
 import Head from '@/shared/components/Head/Head';
 import Text from '@/shared/components/Text/Text';
@@ -38,10 +38,10 @@ const GenreStep = ({ genres = [], onInfoChange }: GenreStepProps) => {
   return (
     <Flex direction="column" width="100%">
       <Flex direction="column" gap="0.8rem">
-        <Head level="h1" tag="h2">
+        <Head level="h1" tag="h3_sb">
           선호하는 댄스 장르
         </Head>
-        <Text tag="b2" color="gray7">
+        <Text tag="b2_m" color="gray7">
           최대 3개까지 고를 수 있어요
         </Text>
       </Flex>

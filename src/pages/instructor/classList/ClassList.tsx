@@ -7,7 +7,7 @@ import ClassCard from '@/shared/components/ClassCard/ClassCard';
 import Flex from '@/shared/components/Flex/Flex';
 import Header from '@/shared/components/Header/Header';
 import Text from '@/shared/components/Text/Text';
-import { Lesson } from '@/shared/types/lessonTypes';
+import type { Lesson } from '@/shared/types/lessonTypes';
 
 const ClassList = () => {
   const navigate = useNavigate();
@@ -30,7 +30,7 @@ const ClassList = () => {
         <Header.Title title="내 클래스 목록" />
       </Header.Root>
       <div className={containerStyle}>
-        <Text tag="b2" color="gray9">
+        <Text tag="b2_m" color="gray9">
           전체 {lessonData?.count}
         </Text>
         <Flex direction="column" gap="1.2rem" marginTop="1.6rem">

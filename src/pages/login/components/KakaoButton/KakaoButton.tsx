@@ -17,7 +17,7 @@ const KakaoButton = () => {
     <button className={kakaoButtonStyle} onClick={handleLogin}>
       <div className={sprinkles({ display: 'flex', gap: 8, alignItems: 'center', justifyContent: 'center' })}>
         <IcKakaoKakaobrown28 width={28} height={28} />
-        <Head tag="h6" color="kakao2" className={buttonStyle}>
+        <Head tag="b1_sb" color="kakao2" className={buttonStyle}>
           카카오로 계속하기
         </Head>
       </div>

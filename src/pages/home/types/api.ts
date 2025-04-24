@@ -1,23 +1,23 @@
-import { AdvertisementsTypes } from '@/pages/home/types/advertisementsTypes';
-import { LessonTypes } from '@/pages/home/types/classTypes';
-import { DancerTypes } from '@/pages/home/types/dancerTypes';
+import type { AdvertisementsTypes } from '@/pages/home/types/advertisementsTypes';
+import type { LessonTypes } from '@/pages/home/types/classTypes';
+import type { DancerTypes } from '@/pages/home/types/dancerTypes';
 
-export interface AdvertisementResponse {
+export interface AdvertisementResponseTypes {
   advertisements: AdvertisementsTypes[];
 }
 
-export interface PopularGenreResponse {
+export interface PopularGenreResponseTypes {
   genres: string[];
 }
 
-export interface UpcomingLessonsResponse {
+export interface UpcomingLessonsResponseTypes {
   lessons: LessonTypes[];
 }
 
-export interface RecommendationLessonsResponse {
+export interface RecommendationLessonsResponseTypes {
   lessons: LessonTypes[];
 }
 
-export interface PopularDancersResponse {
+export interface PopularDancersResponseTypes {
   teachers: DancerTypes[];
 }

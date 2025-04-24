@@ -32,7 +32,7 @@ const TimeStep = ({
 
   return (
     <Flex direction="column">
-      <Head level="h2" tag="h6">
+      <Head level="h2" tag="b1_sb">
         클래스 시작 시간
       </Head>
 
@@ -56,7 +56,7 @@ const TimeStep = ({
           onDecrease={() => setAmpm(toggleAmpm(ampm))}
         />
       </Flex>
-      <Head level="h2" tag="h6">
+      <Head level="h2" tag="b1_sb">
         클래스 진행 시간
       </Head>
 

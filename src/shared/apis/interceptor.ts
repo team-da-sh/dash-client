@@ -1,4 +1,4 @@
-import { AxiosError, InternalAxiosRequestConfig } from 'axios';
+import type { AxiosError, InternalAxiosRequestConfig } from 'axios';
 import { postReissue } from '@/pages/auth/apis/axios';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { instance } from '@/shared/apis/instance';

@@ -93,11 +93,11 @@ const ClassCard = ({
         <Flex align="center" gap="0.3rem" marginBottom="1.2rem">
           <Flex marginRight="0.5rem">{statusIcon()}</Flex>
 
-          <Text tag="b4" color={status === 'completed' ? 'gray8' : 'black'}>
+          <Text tag="b2_sb" color={status === 'completed' ? 'gray8' : 'black'}>
             {korstatus()}
           </Text>
           {isReservation && status === 'upcoming' && remainingDays !== undefined && (
-            <Text tag="b7" color="main4">
+            <Text tag="b3_m" color="main4">
               D - {remainingDays}
             </Text>
           )}
@@ -105,7 +105,7 @@ const ClassCard = ({
 
         {isReservation && (
           <Flex align="center" gap="0.2rem">
-            <Text tag="b7" color="gray7" onClick={handleTextClick}>
+            <Text tag="b3_m" color="gray7" onClick={handleTextClick}>
               문의하기
             </Text>
             <IcArrowRightGray0614 width="1.4rem" height="1.4rem" />
@@ -124,27 +124,25 @@ const ClassCard = ({
               {lessonLevel && levelMapping[lessonLevel]}
             </Tag>
           </Flex>
-          <Head level="h2" tag="h6" className={styles.lessonNameStyle}>
+          <Head level="h2" tag="b1_sb" className={styles.lessonNameStyle}>
             {lessonName}
           </Head>
           <Flex direction="column" gap="0.4rem">
             <Flex gap="0.8rem" align="center">
-              <Text tag="c4" color="gray7">
+              <Text tag="c1_sb" color="gray7">
                 일정
               </Text>
-              <Text tag="c1" color="gray9">
-                <Text tag="c1" color="gray9">
-                  {lessonStartDateTime &&
-                    lessonEndDateTime &&
-                    formatLessonDateRange(lessonStartDateTime, lessonEndDateTime)}
-                </Text>
+              <Text tag="c1_r" color="gray9">
+                {lessonStartDateTime &&
+                  lessonEndDateTime &&
+                  formatLessonDateRange(lessonStartDateTime, lessonEndDateTime)}
               </Text>
             </Flex>
             <Flex gap="0.8rem" align="center">
-              <Text tag="c4" color="gray7">
+              <Text tag="c1_sb" color="gray7">
                 장소
               </Text>
-              <Text tag="c1" color="gray9">
+              <Text tag="c1_r" color="gray9">
                 {lessonLocation || lessonDetailedAddress ? (
                   <>
                     {lessonLocation}&nbsp;

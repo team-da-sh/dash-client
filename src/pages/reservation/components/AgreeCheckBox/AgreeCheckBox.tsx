@@ -35,7 +35,7 @@ const AgreeCheckBox = ({ text, isChecked, onToggle, link = '' }: AgreeCheckBoxPr
         ) : (
           <IcCheckGray0724 width={'2.4rem'} height={'2.4rem'} />
         )}
-        <Text tag="b2" color={isChecked ? 'main4' : 'gray7'}>
+        <Text tag="b2_m" color={isChecked ? 'main4' : 'gray7'}>
           {text}
         </Text>
       </Flex>

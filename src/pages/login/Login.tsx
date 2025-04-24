@@ -18,9 +18,10 @@ const Login = () => {
         </div>
 
         <div className={sprinkles({ display: 'flex', flexDirection: 'column', width: '100%' })}>
-          <Head tag="h2">댄스 클래스로의 첫 걸음,</Head>
-          <Head tag="h2">지금 시작해 보세요</Head>
+          <Head tag="h3_sb">댄스 클래스로의 첫 걸음,</Head>
+          <Head tag="h3_sb">지금 시작해 보세요</Head>
         </div>
+
         <KakaoButton />
       </div>
     </>

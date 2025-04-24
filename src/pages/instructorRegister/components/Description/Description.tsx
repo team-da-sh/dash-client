@@ -11,10 +11,10 @@ interface DescriptionProps {
 const Description = ({ title, subTitle }: DescriptionProps) => {
   return (
     <Flex direction="column" gap="0.8rem" className={flexCustomStyle}>
-      <Head level="h1" tag="h2">
+      <Head level="h1" tag="h3_sb">
         {title}
       </Head>
-      <Text tag="b2" color="gray7">
+      <Text tag="b2_m" color="gray7">
         {subTitle}
       </Text>
     </Flex>

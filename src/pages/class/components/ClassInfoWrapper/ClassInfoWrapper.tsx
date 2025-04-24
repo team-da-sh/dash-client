@@ -1,21 +1,16 @@
 import { useNavigate } from 'react-router-dom';
-import {
-  cardStyle,
-  lessonNameStyle,
-  profileStyle,
-  thunderIconStyle,
-} from '@/pages/class/components/ClassInfoWrapper/classInfoWrapper.css';
-import { LessonDetailResponse } from '@/pages/class/types/api';
+import * as styles from '@/pages/class/components/ClassInfoWrapper/classInfoWrapper.css';
+import type { LessonDetailResponseTypes } from '@/pages/class/types/api';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import IcThunderMain0424 from '@/shared/assets/svg/IcThunderMain0424';
-import Flex from '@/shared/components/Flex/Flex';
 import Head from '@/shared/components/Head/Head';
 import Tag from '@/shared/components/Tag/Tag';
 import Text from '@/shared/components/Text/Text';
 import { genreMapping } from '@/shared/constants/index';
+import { sprinkles } from '@/shared/styles/sprinkles.css';
 import { vars } from '@/shared/styles/theme.css';
 
-const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetailResponse }) => {
+const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetailResponseTypes }) => {
   const {
     genre,
     name,
@@ -49,58 +44,68 @@ const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetailResponse }) 
   };
 
   return (
-    <Flex direction="column" paddingTop="2rem" paddingRight="2.4rem" paddingBottom="2.4rem" paddingLeft="2rem">
-      <Flex gap="0.4rem" marginBottom="1.2rem">
+    <section className={sprinkles({ flexDirection: 'column', pt: 20, pr: 24, pb: 24, pl: 20 })}>
+      <div className={sprinkles({ display: 'flex', mb: 12, gap: 4 })}>
         <Tag type="genre" size="medium">
-          <Text tag="b7" color="white">
+          <Text tag="b3_m" color="white">
             {translatedGenre}
           </Text>
         </Tag>
         <Tag type="deadline" size="medium">
-          <Text tag="b7" color="white">
+          <Text tag="b3_m" color="white">
             {dDay}
           </Text>
         </Tag>
-      </Flex>
+      </div>
 
-      <Head level="h2" tag="h4" className={lessonNameStyle}>
+      <Head level="h2" tag="h5_sb" className={sprinkles({ mb: 16 })}>
         {name}
       </Head>
 
-      <Flex align="center" gap="0.8rem" onClick={() => handleTeacherClick(teacherId)}>
-        <img src={teacherImageUrl} alt={`${teacherNickname} 프로필`} className={profileStyle} />
-        <Text tag="b2" color="gray9">
+      <div
+        className={sprinkles({ display: 'flex', alignItems: 'center', gap: 8 })}
+        onClick={() => handleTeacherClick(teacherId)}>
+        <img src={teacherImageUrl} alt={`${teacherNickname} 프로필`} className={styles.profileStyle} />
+        <Text tag="b2_m" color="gray9">
           {teacherNickname}
         </Text>
-      </Flex>
+      </div>
 
-      <Flex justify="flexEnd" width="100%" align="center" gap="0.8rem" marginBottom="1.5rem">
-        <Head level="h4" tag="h5" color="gray6">
+      <div
+        className={sprinkles({
+          display: 'flex',
+          justifyContent: 'flex-end',
+          width: '100%',
+          alignItems: 'center',
+          gap: 8,
+          mb: 15,
+        })}>
+        <Head level="h4" tag="h6_sb" color="gray6">
           {lessonRounds.length}회
         </Head>
-        <Flex align="center" gap="0.2rem">
-          <Head level="h5" tag="h2">
+        <div className={sprinkles({ display: 'flex', alignItems: 'center', gap: 2 })}>
+          <Head level="h5" tag="h3_sb">
             {price.toLocaleString()}
           </Head>
-          <Head level="h5" tag="h2">
+          <Head level="h5" tag="h3_sb">
             원
           </Head>
-        </Flex>
-      </Flex>
+        </div>
+      </div>
 
-      <div className={cardStyle}>
-        <IcThunderMain0424 width={'2.4rem'} color={iconColor} className={thunderIconStyle} />
-        <Text tag="b2" color="black">
+      <div className={styles.cardStyle}>
+        <IcThunderMain0424 width={'2.4rem'} color={iconColor} className={sprinkles({ mr: 4 })} />
+        <Text tag="b2_m" color="black">
           {isSoldOut ? '' : '마감까지'}
         </Text>
-        <Text tag="b2" color={textColor}>
+        <Text tag="b2_m" color={textColor}>
           {remainingText}
         </Text>
-        <Text tag="b2" color="black">
+        <Text tag="b2_m" color="black">
           {isSoldOut ? '' : '명 남았어요!'}
         </Text>
       </div>
-    </Flex>
+    </section>
   );
 };
 

@@ -1,13 +1,9 @@
 import { style } from '@vanilla-extract/css';
 
-export const classTitleStyle = style({
-  paddingLeft: '2rem',
-});
-
 export const rowScrollStyle = style({
   display: 'flex',
   flexDirection: 'row',
-  
+
   width: '100%',
   gap: '0.8rem',
   paddingBottom: '3.6rem',
@@ -32,16 +28,9 @@ export const detailStyle = style({
   wordBreak: 'break-word',
 });
 
-export const emptyStyle = style({
-  display: 'flex',
-  alignItems: 'center',
-  margin: '0 auto',
-  padding: '5.2rem 0 7.2rem 0',
-  
-});
 
 export const linkStyle = style({
   overflow: 'hidden',
-  textOverflow:'ellipsis',
-  maxWidth:'15ch',
+  textOverflow: 'ellipsis',
+  maxWidth: '15ch',
 });

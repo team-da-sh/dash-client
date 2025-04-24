@@ -1,7 +1,7 @@
-import { useMutation, useQuery } from '@tanstack/react-query';
-import { AxiosError } from 'axios';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import type { AxiosError } from 'axios';
 import { getReservation, postReservation } from '@/pages/reservation/apis/axios';
-import { ReservationDetailResponse } from '@/pages/reservation/types/api';
+import type { ReservationDetailResponse } from '@/pages/reservation/types/api';
 import { QUERY_KEYS } from '@/shared/constants/queryKey';
 
 export const useGetReservaion = (lessonId: string) => {
@@ -12,11 +12,16 @@ export const useGetReservaion = (lessonId: string) => {
 };
 
 export const usePostReservation = () => {
+  const queryClient = useQueryClient();
+
   return useMutation<
-  ReservationDetailResponse,
+    ReservationDetailResponse,
     AxiosError,
     { lessonId: string; paymentKey: string; orderId: string; amount: number }
   >({
     mutationFn: ({ lessonId, paymentKey, orderId, amount }) => postReservation(lessonId, paymentKey, orderId, amount),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.MEMBERS_ME] });
+    },
   });
 };
