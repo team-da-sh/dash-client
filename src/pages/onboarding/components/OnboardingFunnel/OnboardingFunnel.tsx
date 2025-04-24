@@ -3,24 +3,16 @@ import { useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { usePostOnboard } from '@/pages/onboarding/apis/queries';
 import FinishStep from '@/pages/onboarding/components/FinishStep/FinishStep';
-import GenreStep from '@/pages/onboarding/components/GenreStep/GenreStep';
 import InfoStep from '@/pages/onboarding/components/InfoStep/InfoStep';
-import LevelStep from '@/pages/onboarding/components/LevelStep/LevelStep';
 import OnboardingHeader from '@/pages/onboarding/components/OnboardingHeader/OnboardingHeader';
 import ProfileStep from '@/pages/onboarding/components/ProfileStep/ProfileStep';
 import { MAX_ONBOARDING_STEP } from '@/pages/onboarding/constants';
-import {
-  bodyWrapperStyle,
-  containerStyle,
-  footerWrapperStyle,
-  progressBarStyle,
-} from '@/pages/onboarding/onboarding.css';
+import { bodyWrapperStyle, containerStyle, footerWrapperStyle } from '@/pages/onboarding/onboarding.css';
 import type { GenreTypes } from '@/pages/onboarding/types/genreTypes';
 import type { onboardInfoTypes } from '@/pages/onboarding/types/onboardInfoTypes';
 import { validateName, validatePhoneNumber } from '@/pages/onboarding/utils/validate';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
-import ProgressBar from '@/shared/components/ProgressBar/ProgressBar';
 import type { FunnelProps, StepProps } from '@/shared/hooks/useFunnel';
 import { setStorage } from '@/shared/utils/handleToken';
 
@@ -35,9 +27,7 @@ const OnboardingFunnel = ({ currentStep, Funnel, setStep, Step }: OnboardingFunn
   const [info, setInfo] = useState<onboardInfoTypes>({
     name: '',
     phoneNumber: '',
-    genres: [] as GenreTypes[],
     nickname: '',
-    level: null,
     profileImageUrl: defaultProfile,
   });
 
@@ -95,10 +85,6 @@ const OnboardingFunnel = ({ currentStep, Funnel, setStep, Step }: OnboardingFunn
       case 1:
         return !(validateName(info.name) && validatePhoneNumber(info.phoneNumber));
       case 2:
-        return !info.genres.length;
-      case 3:
-        return !info.level;
-      case 4:
         return !info.nickname || isNicknameError;
       case 5:
         return false;
@@ -110,9 +96,6 @@ const OnboardingFunnel = ({ currentStep, Funnel, setStep, Step }: OnboardingFunn
   return (
     <form className={containerStyle} onSubmit={handleOnboardSubmit}>
       <OnboardingHeader currentStep={currentStep} onPrevButtonClick={handlePrevButtonClick} />
-      {currentStep < MAX_ONBOARDING_STEP && (
-        <ProgressBar totalStep={MAX_ONBOARDING_STEP - 1} currentStep={currentStep} className={progressBarStyle} />
-      )}
 
       <div className={bodyWrapperStyle}>
         <Funnel>
@@ -120,12 +103,6 @@ const OnboardingFunnel = ({ currentStep, Funnel, setStep, Step }: OnboardingFunn
             <InfoStep name={info.name} phoneNumber={info.phoneNumber} onInfoChange={handleInfoChange} />
           </Step>
           <Step name="2" key={2}>
-            <GenreStep genres={info.genres} onInfoChange={handleInfoChange} />
-          </Step>
-          <Step name="3" key={3}>
-            <LevelStep name={info.name} level={info.level} onInfoChange={handleInfoChange} />
-          </Step>
-          <Step name="4" key={4}>
             <ProfileStep
               name={info.name}
               nickname={info.nickname}
@@ -136,7 +113,7 @@ const OnboardingFunnel = ({ currentStep, Funnel, setStep, Step }: OnboardingFunn
               setInfo={setInfo}
             />
           </Step>
-          <Step name="5" key={5}>
+          <Step name="3" key={3}>
             <FinishStep nickname={info.nickname} />
           </Step>
         </Funnel>
