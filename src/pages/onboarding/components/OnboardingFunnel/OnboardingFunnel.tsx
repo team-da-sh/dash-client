@@ -8,7 +8,6 @@ import OnboardingHeader from '@/pages/onboarding/components/OnboardingHeader/Onb
 import ProfileStep from '@/pages/onboarding/components/ProfileStep/ProfileStep';
 import { MAX_ONBOARDING_STEP } from '@/pages/onboarding/constants';
 import { bodyWrapperStyle, containerStyle, footerWrapperStyle } from '@/pages/onboarding/onboarding.css';
-import type { GenreTypes } from '@/pages/onboarding/types/genreTypes';
 import type { onboardInfoTypes } from '@/pages/onboarding/types/onboardInfoTypes';
 import { validateName, validatePhoneNumber } from '@/pages/onboarding/utils/validate';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
