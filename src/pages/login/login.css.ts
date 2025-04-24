@@ -1,7 +1,5 @@
 import { style } from '@vanilla-extract/css';
 
-export const imageStyle = style({});
-
 export const containerStyle = style({
   display: 'flex',
   flexDirection: 'column',

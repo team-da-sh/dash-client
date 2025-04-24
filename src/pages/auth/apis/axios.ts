@@ -13,7 +13,7 @@ export const postLogout = async () => {
 };
 
 export const postReissue = async () => {
-  const response = await instance.post(API_URL.AUTH_REISSUE);
+  const { data } = await instance.post(API_URL.AUTH_REISSUE);
 
-  return response;
+  return data;
 };

@@ -8,7 +8,7 @@ import { clearStorage, getAccessToken, getRefreshToken, setStorage } from '@/sha
 
 type FailedRequest = {
   resolve: (token?: string) => void;
-  reject: (error?: any) => void;
+  reject: (error?: AxiosError) => void;
 };
 
 let isRefreshing = false;
@@ -18,19 +18,16 @@ let failedRequests: FailedRequest[] = [];
 export const onResponse = (config: InternalAxiosRequestConfig) => {
   // reissue의 경우 헤더에 refresh 토큰 넣어주기
   if (config.url === API_URL.AUTH_REISSUE) {
-    const newConfig = { ...config };
-    newConfig.headers.Authorization = `Bearer ${getRefreshToken()}`;
+    config.headers.Authorization = `Bearer ${getRefreshToken()}`;
 
-    return newConfig;
+    return config;
   }
 
-  const accessToken = getAccessToken();
-
   // 로그인을 해서 accessToken이 있는 경우
+  const accessToken = getAccessToken();
   if (accessToken) {
-    const newConfig = { ...config };
-    newConfig.headers.Authorization = `Bearer ${accessToken}`;
-    return newConfig;
+    config.headers.Authorization = `Bearer ${accessToken}`;
+    return config;
   }
 
   // 로그인을 안한 경우
@@ -41,7 +38,7 @@ export const onResponse = (config: InternalAxiosRequestConfig) => {
 export const onErrorResponse = async (error: AxiosError) => {
   const originRequest = error.config;
 
-  if (!originRequest) throw new Error('에러 발생');
+  if (!originRequest) throw new Error('401 요청 에러');
 
   const statusCode = error.response?.status;
 
@@ -57,24 +54,24 @@ export const onErrorResponse = async (error: AxiosError) => {
     isRefreshing = true;
 
     try {
-      const { data } = await postReissue();
-      setStorage(data.accessToken, data.refreshToken);
+      const { accessToken, refreshToken } = await postReissue();
+      setStorage(accessToken, refreshToken);
 
       // 대기열 실행 및 초기화
       failedRequests.forEach((prom) => prom.resolve());
       failedRequests = [];
 
       return instance(originRequest);
-    } catch (error) {
-      failedRequests.forEach((prom) => prom.reject(error));
+    } catch (reissueError) {
+      failedRequests.forEach((prom) => prom.reject(reissueError as AxiosError));
       failedRequests = [];
 
       window.location.replace(ROUTES_CONFIG.login.path);
+      alert('에러가 발생하였습니다. 다시 로그인해주세요.');
       clearStorage();
-
-      throw error;
     } finally {
-      isRefreshing = false; // 요청 완료 후 상태 초기화
+      // 요청 완료 후 상태 초기화
+      isRefreshing = false;
     }
   }
 
