@@ -83,8 +83,8 @@ export const SuccessPage = () => {
         </div>
       ) : (
         <div
-          className={`${sprinkles({ display:'flex', flexDirection: 'column', alignItems: 'center' })} ${styles.confirmLoading} ${styles.w100} ${styles.maxW540}`}>
-          <div className={sprinkles({ display:'flex', flexDirection: 'column', alignItems: 'center' })}>
+          className={`${sprinkles({ display: 'flex', flexDirection: 'column', alignItems: 'center' })} ${styles.confirmLoading} ${styles.w100} ${styles.maxW540}`}>
+          <div className={sprinkles({ display: 'flex', flexDirection: 'column', alignItems: 'center' })}>
             <img src="https://static.toss.im/lotties/loading-spot-apng.png" width="120" height="120" />
             <h2 className={`${styles.title} ${styles.textCenter}`}>결제 요청까지 성공했어요.</h2>
             <h4 className={`${styles.textCenter} ${styles.description}`}>결제 승인하고 완료해보세요.</h4>

@@ -15,7 +15,7 @@ export const usePostReservation = () => {
   const queryClient = useQueryClient();
 
   return useMutation<
-  ReservationDetailResponseTypes,
+    ReservationDetailResponseTypes,
     AxiosError,
     { lessonId: string; paymentKey: string; orderId: string; amount: number }
   >({
