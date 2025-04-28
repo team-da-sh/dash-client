@@ -25,6 +25,7 @@ const Reservation = () => {
   const navigate = useNavigate();
 
   const { id } = useParams<{ id: string }>();
+
   if (!id) {
     return <Error />;
   }
@@ -63,6 +64,10 @@ const Reservation = () => {
     navigate(ROUTES_CONFIG.payments.path, { state: { lessonId: id, totalPrice, className, studentName } });
   };
 
+  const agreementClassStyle = `${styles.agreementBoxStyle} ${
+    isAllChecked ? styles.agreementCheckedStyle : styles.agreementUncheckedStyle
+  }`;
+
   return (
     <main
       className={`${sprinkles({ display: 'flex', flexDirection: 'column', width: '100%' })} ${styles.reservationStyle}`}>
@@ -73,7 +78,7 @@ const Reservation = () => {
         </Header.Root>
       </div>
       <section className={sprinkles({ pt: 60 })}>
-        <TopInfoContent {...data} />
+        <TopInfoContent name={data.name} teacherNickname={data.teacherNickname} imageUrl={data.imageUrl} />
       </section>
       <section
         className={sprinkles({
@@ -109,9 +114,7 @@ const Reservation = () => {
             필수 약관 전체 동의
           </Text>
           <div>
-            <div
-              onClick={handleToggleAll}
-              className={`${styles.agreementBoxStyle} ${isAllChecked ? styles.agreementCheckedStyle : styles.agreementUncheckedStyle}`}>
+            <div onClick={handleToggleAll} className={agreementClassStyle}>
               {isAllChecked ? <IcCheckcircleMain0324 height={24} /> : <IcCheckcircleGray0524 height={24} />}
               <Head level="h5" tag="h6">
                 전체동의
