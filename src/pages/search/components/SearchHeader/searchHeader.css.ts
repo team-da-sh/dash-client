@@ -12,7 +12,7 @@ export const headerRootStyle = recipe({
     height: '6rem',
     padding: '1.8rem 2rem',
     transition: 'background-color 0.3s ease',
-    zIndex: 2,
+    zIndex: vars.zIndex.two,
   },
   variants: {
     isColor: {

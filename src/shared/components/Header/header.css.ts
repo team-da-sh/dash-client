@@ -4,7 +4,7 @@ import { vars } from '@/shared/styles/theme.css';
 export const headerStyle = style({
   position: 'sticky',
   top: 0,
-  zIndex: 10,
+  zIndex: vars.zIndex.two,
 
   display: 'flex',
   width: '100%',
