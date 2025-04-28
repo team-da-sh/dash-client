@@ -14,7 +14,6 @@ import IcCheckcircleMain0324 from '@/shared/assets/svg/IcCheckcircleMain0324';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import Divider from '@/shared/components/Divider/Divider';
 import Head from '@/shared/components/Head/Head';
-import Header from '@/shared/components/Header/Header';
 import Text from '@/shared/components/Text/Text';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
 
@@ -72,12 +71,6 @@ const Reservation = () => {
   return (
     <main
       className={`${sprinkles({ display: 'flex', flexDirection: 'column', width: '100%' })} ${styles.reservationStyle}`}>
-      <div className={styles.headerStyle}>
-        <Header.Root isColor={true}>
-          <Header.BackIcon />
-          <Header.Title title="클래스 신청" />
-        </Header.Root>
-      </div>
       <section className={sprinkles({ pt: 60 })}>
         <TopInfoContent name={data.name} teacherNickname={data.teacherNickname} imageUrl={data.imageUrl} />
       </section>

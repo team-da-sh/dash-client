@@ -5,7 +5,6 @@ import * as styles from '@/pages/reservation/components/TossPayments/tossPayment
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import Completion from '@/shared/components/Completion/Completion';
-import Header from '@/shared/components/Header/Header';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
 
 export const SuccessPage = () => {
@@ -52,17 +51,10 @@ export const SuccessPage = () => {
     navigate(ROUTES_CONFIG.mypageReservation.path);
   };
 
-  const handleHomeNavigate = () => {
-    navigate(ROUTES_CONFIG.home.path);
-  };
-
   return (
     <div className={`${styles.flexCustomStyle}`}>
       {isConfirmed ? (
         <div className={sprinkles({ flexDirection: 'column', width: '100%' })}>
-          <Header.Root>
-            <Header.CloseIcon onClick={handleHomeNavigate} />
-          </Header.Root>
           <div
             className={sprinkles({
               display: 'flex',

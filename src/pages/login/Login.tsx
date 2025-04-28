@@ -1,5 +1,4 @@
 import KakaoButton from '@/pages/login/components/KakaoButton/KakaoButton';
-import LoginHeader from '@/pages/login/components/LoginHeader/LoginHeader';
 import { containerStyle } from '@/pages/login/login.css';
 import LoginWepm from '@/shared/assets/webm/login.webm';
 import Head from '@/shared/components/Head/Head';
@@ -8,8 +7,6 @@ import { sprinkles } from '@/shared/styles/sprinkles.css';
 const Login = () => {
   return (
     <>
-      <LoginHeader />
-
       <div className={containerStyle}>
         <div className={sprinkles({ display: 'flex', justifyContent: 'center', width: '100%' })}>
           <video width={300} autoPlay muted loop>

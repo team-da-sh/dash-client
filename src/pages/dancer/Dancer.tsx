@@ -1,6 +1,5 @@
 import { useParams } from 'react-router-dom';
 import { useGetDancerDetail } from '@/pages/dancer/apis/queries';
-import DancerHeader from '@/pages/dancer/components/DancerHeader/DancerHeader';
 import DancerInfo from '@/pages/dancer/components/DancerInfo/DancerInfo';
 import TabWrapper from '@/pages/dancer/components/TabWrapper/TabWrapper';
 import * as styles from '@/pages/dancer/dancer.css';
