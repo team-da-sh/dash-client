@@ -58,7 +58,6 @@ const Dancer = () => {
           </Head>
         </div>
       </div>
-      <DancerHeader isWhite={isWhite} />
       <DancerInfo dancerData={data} />
       <TabWrapper colorScheme="primary" dancerData={data} />
     </>
