@@ -8,7 +8,6 @@ export const LoginCallback = () => {
   // 인가 코드 추출
   const code = params.get('code');
 
-  // 해당 코드로 소셜 로그인 api 쏘기
   const { mutate: login } = useLoginMutation();
 
   useEffect(() => {

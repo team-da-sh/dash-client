@@ -18,7 +18,7 @@ const TabLocation = ({ lessonData }: { lessonData: LessonDetailResponseTypes }) 
       {isEmpty ? (
         <Head
           level="h5"
-          tag="h6"
+          tag="b1_sb"
           color="gray9"
           className={sprinkles({ display: 'flex', justifyContent: 'center', pt: 8 })}>
           아직 장소가 등록되지 않은 클래스예요
@@ -27,32 +27,32 @@ const TabLocation = ({ lessonData }: { lessonData: LessonDetailResponseTypes }) 
         <Card>
           <div className={sprinkles({ display: 'flex', justifyContent: 'space-between', width: '100%', gap: 16 })}>
             <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 6 })}>
-              <Text tag="b4" color="black">
+              <Text tag="b2_sb" color="black">
                 {location}
               </Text>
               <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 4 })}>
                 <div className={sprinkles({ display: 'flex' })}>
                   <div className={sprinkles({ mr: 4 })}>
-                    <Text tag="b7" color="gray6" className={styles.addressTitleStyle}>
+                    <Text tag="b3_m" color="gray6" className={styles.addressTitleStyle}>
                       주소
                     </Text>
                   </div>
                   <div className={sprinkles({ flexDirection: 'column' })}>
-                    <Text tag="b7" color="gray7" className={styles.streetAddressStyle}>
+                    <Text tag="b3_m" color="gray7" className={styles.streetAddressStyle}>
                       {streetAddress}
                     </Text>
-                    <Text tag="b7" color="gray7" className={styles.streetAddressStyle}>
+                    <Text tag="b3_m" color="gray7" className={styles.streetAddressStyle}>
                       {streetDetailAddress}
                     </Text>
                   </div>
                 </div>
                 <div className={sprinkles({ display: 'flex' })}>
                   <div className={sprinkles({ mr: 4 })}>
-                    <Text tag="b7" color="gray6" className={styles.addressTitleStyle}>
+                    <Text tag="b3_m" color="gray6" className={styles.addressTitleStyle}>
                       지번
                     </Text>
                   </div>
-                  <Text tag="b7" color="gray7">
+                  <Text tag="b3_m" color="gray7">
                     {oldStreetAddress}
                   </Text>
                 </div>

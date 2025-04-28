@@ -3,7 +3,28 @@ import type { HTMLAttributes } from 'react';
 import { textStyle } from '@/shared/components/Text/text.css';
 
 interface TextProps extends HTMLAttributes<HTMLParagraphElement> {
-  tag?: 'b1' | 'b2' | 'b3' | 'b4' | 'b5' | 'b6' | 'b7' | 'b8' | 'b9' | 'b10' | 'c1' | 'c2' | 'c3' | 'c4';
+  tag?:
+    | 'h1_sb'
+    | 'h3_sb'
+    | 'h5_sb'
+    | 'h5_m'
+    | 'h6_sb'
+    | 'b1_sb_long'
+    | 'b1_sb'
+    | 'b2_sb_long'
+    | 'b2_sb'
+    | 'b2_m_long'
+    | 'b2_m'
+    | 'b2_r'
+    | 'b3_sb_narrow'
+    | 'b3_sb'
+    | 'b3_m_narrow'
+    | 'b3_m'
+    | 'b3_r'
+    | 'c1_sb'
+    | 'c1_m'
+    | 'c1_r_narrow'
+    | 'c1_r';
   color?:
     | 'main1'
     | 'main2'
@@ -40,7 +61,7 @@ interface TextProps extends HTMLAttributes<HTMLParagraphElement> {
     | 'black';
 }
 
-const Text = ({ tag = 'b1', color = 'black', children, className, ...props }: TextProps) => {
+const Text = ({ tag = 'b1_sb_long', color = 'black', children, className, ...props }: TextProps) => {
   return (
     <p className={clsx(className, textStyle({ tag, color }))} {...props}>
       {children}

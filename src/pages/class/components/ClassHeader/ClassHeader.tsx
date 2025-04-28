@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import * as styles from  '@/pages/class/components/ClassHeader/classHeader.css';
+import * as styles from '@/pages/class/components/ClassHeader/classHeader.css';
 import IcBack from '@/shared/assets/svg/IcBack';
 import IcBackWhite24 from '@/shared/assets/svg/IcBackWhite24';
 import Head from '@/shared/components/Head/Head';
@@ -20,7 +20,7 @@ const ClassHeader = ({ isWhite, lessonName }: ClassHeaderPropTypes) => {
 
       <div className={styles.classNameHeaderStyle}>
         {isWhite && (
-          <Head level="h5" tag="h6" className={styles.headerTextStyle}>
+          <Head level="h5" tag="b1_sb" className={styles.headerTextStyle}>
             {lessonName}
           </Head>
         )}

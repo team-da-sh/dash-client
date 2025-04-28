@@ -30,6 +30,7 @@ const Reservation = () => {
     return <Error />;
   }
 
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const { data, isError, isLoading } = useGetReservaion(id);
 
   if (isLoading) {
@@ -92,13 +93,20 @@ const Reservation = () => {
           gap: 32,
         })}>
         <div className={sprinkles({ display: 'flex', flexDirection: 'column', width: '100%', gap: 16 })}>
-          <Text tag="b4" color="gray9">
+          <Text tag="b2_sb" color="gray9">
             클래스 정보
           </Text>
-          <ClassInfo {...data} lessonRound={data.lessonRound.lessonRounds} />
+          <ClassInfo
+            name={data.name}
+            location={data.location}
+            locationDetail={data.locationDetail}
+            teacherNickname={data.teacherNickname}
+            level={data.level}
+            lessonRound={data.lessonRound.lessonRounds}
+          />
         </div>
         <div className={sprinkles({ display: 'flex', flexDirection: 'column', width: '100%', gap: 16 })}>
-          <Text tag="b4" color="gray9">
+          <Text tag="b2_sb" color="gray9">
             신청자 정보
           </Text>
           <ApplicantInfo {...data} />
@@ -110,13 +118,13 @@ const Reservation = () => {
       <section
         className={sprinkles({ display: 'flex', flexDirection: 'column', width: '100%', pt: 28, pr: 20, pl: 20 })}>
         <div className={sprinkles({ display: 'flex', flexDirection: 'column', width: '100%', gap: 20 })}>
-          <Text tag="b4" color="gray9">
+          <Text tag="b2_sb" color="gray9">
             필수 약관 전체 동의
           </Text>
           <div>
             <div onClick={handleToggleAll} className={agreementClassStyle}>
               {isAllChecked ? <IcCheckcircleMain0324 height={24} /> : <IcCheckcircleGray0524 height={24} />}
-              <Head level="h5" tag="h6">
+              <Head level="h5" tag="b1_sb">
                 전체동의
               </Head>
             </div>
@@ -130,8 +138,7 @@ const Reservation = () => {
               />
             ))}
           </div>
-
-          <Text tag="b3" color="gray6" className={sprinkles({ pb: 42 })}>
+          <Text tag="b2_m_long" color="gray6" className={sprinkles({ pb: 42 })}>
             * 예약 서비스 이용을 위한 개인정보 수집 및 제 3자 제공,
             <br />
             취소/환불 규정을 확인하였으며 이에 동의합니다.
@@ -141,10 +148,10 @@ const Reservation = () => {
       </section>
 
       <div className={styles.totalPriceContainerStyle}>
-        <Head level="h3" tag="h4" color="gray9">
+        <Head level="h3" tag="h5_sb" color="gray9">
           총 결제 금액
         </Head>
-        <Head level="h2" tag="h2" color="main4">
+        <Head level="h2" tag="h3_sb" color="main4">
           {data.price.toLocaleString()}원
         </Head>
       </div>

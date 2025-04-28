@@ -30,20 +30,20 @@ const ClassInfo = ({
   return (
     <div className={styles.infoContainerStyle}>
       <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 20 })}>
-        <Head level="h5" tag="h6">
+        <Head level="h5" tag="b1_sb">
           {name}
         </Head>
         <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 10 })}>
           <div className={sprinkles({ display: 'flex', gap: 12 })}>
-            <Text tag="b10" color="gray7" className={styles.textLabelStyle}>
+            <Text tag="b3_sb_narrow" color="gray7" className={styles.textLabelStyle}>
               강사
             </Text>
-            <Text tag="b7" color="gray10">
+            <Text tag="b3_m" color="gray10">
               {teacherNickname}
             </Text>
           </div>
           <div className={sprinkles({ display: 'flex', gap: 12 })}>
-            <Text tag="b10" color="gray7" className={styles.textLabelStyle}>
+            <Text tag="b3_sb_narrow" color="gray7" className={styles.textLabelStyle}>
               일정
             </Text>
             <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 12 })}>
@@ -54,10 +54,10 @@ const ClassInfo = ({
                 );
                 return (
                   <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 4 })} key={id}>
-                    <Text tag="b7" color="gray10">
+                    <Text tag="b3_m" color="gray10">
                       {id + 1}회차: {formatSimpleDate(round.startDateTime)}
                     </Text>
-                    <Text tag="b7" color="gray6">
+                    <Text tag="b3_m" color="gray6">
                       {startTime} - {formattedEndTime} ({durationString})
                     </Text>
                   </div>
@@ -67,25 +67,25 @@ const ClassInfo = ({
           </div>
 
           <div className={sprinkles({ display: 'flex', gap: 12 })}>
-            <Text tag="b10" color="gray7" className={styles.textLabelStyle}>
+            <Text tag="b3_sb_narrow" color="gray7" className={styles.textLabelStyle}>
               장소
             </Text>
             <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 4 })}>
-              <Text tag="b7" color="gray10">
+              <Text tag="b3_m" color="gray10">
                 {location ? location : '미정'}
               </Text>
               {locationDetail && (
-                <Text tag="b7" color="gray6">
+                <Text tag="b3_m" color="gray6">
                   {locationDetail}
                 </Text>
               )}
             </div>
           </div>
           <div className={sprinkles({ display: 'flex', gap: 12 })}>
-            <Text tag="b10" color="gray7" className={styles.textLabelStyle}>
+            <Text tag="b3_sb_narrow" color="gray7" className={styles.textLabelStyle}>
               난이도
             </Text>
-            <Text tag="b7" color="gray10">
+            <Text tag="b3_m" color="gray10">
               {levelMapping[level]}
             </Text>
           </div>

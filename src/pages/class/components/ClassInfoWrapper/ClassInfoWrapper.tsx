@@ -47,18 +47,18 @@ const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetailResponseType
     <section className={sprinkles({ flexDirection: 'column', pt: 20, pr: 24, pb: 24, pl: 20 })}>
       <div className={sprinkles({ display: 'flex', mb: 12, gap: 4 })}>
         <Tag type="genre" size="medium">
-          <Text tag="b7" color="white">
+          <Text tag="b3_m" color="white">
             {translatedGenre}
           </Text>
         </Tag>
         <Tag type="deadline" size="medium">
-          <Text tag="b7" color="white">
+          <Text tag="b3_m" color="white">
             {dDay}
           </Text>
         </Tag>
       </div>
 
-      <Head level="h2" tag="h4" className={sprinkles({ mb: 16 })}>
+      <Head level="h2" tag="h5_sb" className={sprinkles({ mb: 16 })}>
         {name}
       </Head>
 
@@ -66,7 +66,7 @@ const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetailResponseType
         className={sprinkles({ display: 'flex', alignItems: 'center', gap: 8 })}
         onClick={() => handleTeacherClick(teacherId)}>
         <img src={teacherImageUrl} alt={`${teacherNickname} 프로필`} className={styles.profileStyle} />
-        <Text tag="b2" color="gray9">
+        <Text tag="b2_m" color="gray9">
           {teacherNickname}
         </Text>
       </div>
@@ -80,14 +80,14 @@ const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetailResponseType
           gap: 8,
           mb: 15,
         })}>
-        <Head level="h4" tag="h5" color="gray6">
+        <Head level="h4" tag="h6_sb" color="gray6">
           {lessonRounds.length}회
         </Head>
         <div className={sprinkles({ display: 'flex', alignItems: 'center', gap: 2 })}>
-          <Head level="h5" tag="h2">
+          <Head level="h5" tag="h3_sb">
             {price.toLocaleString()}
           </Head>
-          <Head level="h5" tag="h2">
+          <Head level="h5" tag="h3_sb">
             원
           </Head>
         </div>
@@ -95,13 +95,13 @@ const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetailResponseType
 
       <div className={styles.cardStyle}>
         <IcThunderMain0424 width={'2.4rem'} color={iconColor} className={sprinkles({ mr: 4 })} />
-        <Text tag="b2" color="black">
+        <Text tag="b2_m" color="black">
           {isSoldOut ? '' : '마감까지'}
         </Text>
-        <Text tag="b2" color={textColor}>
+        <Text tag="b2_m" color={textColor}>
           {remainingText}
         </Text>
-        <Text tag="b2" color="black">
+        <Text tag="b2_m" color="black">
           {isSoldOut ? '' : '명 남았어요!'}
         </Text>
       </div>

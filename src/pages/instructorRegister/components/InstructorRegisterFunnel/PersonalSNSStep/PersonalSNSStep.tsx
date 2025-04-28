@@ -30,7 +30,7 @@ const PersonalSNSStep = ({ onInfoChange, instagram, youtube }: PersonalSNSStepPr
         <Flex direction="column" gap="1.2rem" width="100%">
           <Flex gap="0.8rem" align="center">
             <IcInstagram20 width={'2rem'} />
-            <Text tag="b6">인스타그램</Text>
+            <Text tag="b2_sb">인스타그램</Text>
           </Flex>
           <Input value={instagram} placeholder="dashdash.kr" onChange={(e) => handleInstagramChange(e.target.value)} />
         </Flex>
@@ -38,7 +38,7 @@ const PersonalSNSStep = ({ onInfoChange, instagram, youtube }: PersonalSNSStepPr
         <Flex direction="column" gap="1.2rem" width="100%">
           <Flex gap="0.8rem" align="center">
             <IcYoutube20 width={'2rem'} />
-            <Text tag="b6">유튜브 채널</Text>
+            <Text tag="b2_sb">유튜브 채널</Text>
           </Flex>
           <Input value={youtube} placeholder="dashofficial" onChange={(e) => handleYoutubeChange(e.target.value)} />
         </Flex>

@@ -24,8 +24,7 @@ interface InstructorRegisterFunnelPropTypes {
   Step: ({ children }: StepProps) => JSX.Element;
 }
 
-
-const InstructorRegisterFunnel = ({ currentStep, Funnel, Step, setStep }: InstructorRegisterFunnelProps) => {
+const InstructorRegisterFunnel = ({ currentStep, Funnel, Step, setStep }: InstructorRegisterFunnelPropTypes) => {
   const queryClient = useQueryClient();
 
   const [info, setInfo] = useState({

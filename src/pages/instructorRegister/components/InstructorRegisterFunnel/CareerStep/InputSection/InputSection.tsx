@@ -70,12 +70,12 @@ const InputSection = ({
       <Flex justify="spaceBetween" width="100%">
         <Flex gap="0.8rem" align="center">
           {icon}
-          <Text tag="b4" color="gray10">
+          <Text tag="b2_sb" color="gray10">
             {title}
           </Text>
         </Flex>
         <Flex gap="0.8rem" align="center">
-          <Text tag="b7" color="gray10">
+          <Text tag="b3_m" color="gray10">
             해당 없음
           </Text>
           {isNoneChecked ? (

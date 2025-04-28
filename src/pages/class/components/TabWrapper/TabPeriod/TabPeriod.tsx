@@ -19,15 +19,15 @@ const TabPeriod = ({ lessonData }: { lessonData: LessonDetailResponseTypes }) =>
             <div>
               <div className={sprinkles({ display: 'flex', alignItems: 'center', width: '100%' })}>
                 <div className={styles.roundBoxStyle}>
-                  <Text tag="b10" color="white">
+                  <Text tag="b3_sb_narrow" color="white">
                     {id + 1}회차
                   </Text>
                 </div>
                 <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 4 })}>
-                  <Text tag="b4" color="black">
+                  <Text tag="b2_sb" color="black">
                     {formatDate(startDateTime)}
                   </Text>
-                  <Text tag="b7" color="gray7">
+                  <Text tag="b3_m" color="gray7">
                     {startTime} - {formattedEndTime} ({durationString})
                   </Text>
                 </div>

@@ -20,6 +20,7 @@ const Dancer = () => {
     return <Error />;
   }
 
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const { data, isError, isLoading } = useGetDancerDetail(id);
 
   if (isLoading) {
@@ -46,14 +47,14 @@ const Dancer = () => {
           <div className={sprinkles({ display: 'flex', flexDirection: 'row', gap: 4 })}>
             {translatedGenres.map((genre, id) => (
               <Tag key={id} size="medium" type="genre">
-                <Text tag="b7" color="white">
+                <Text tag="b3_m" color="white">
                   {genre}
                 </Text>
               </Tag>
             ))}
           </div>
 
-          <Head level="h1" tag="h1" color="white">
+          <Head level="h1" tag="h1_sb" color="white">
             {nickname}
           </Head>
         </div>

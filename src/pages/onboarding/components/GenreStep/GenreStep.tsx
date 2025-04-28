@@ -38,10 +38,10 @@ const GenreStep = ({ genres = [], onInfoChange }: GenreStepProps) => {
   return (
     <Flex direction="column" width="100%">
       <Flex direction="column" gap="0.8rem">
-        <Head level="h1" tag="h2">
+        <Head level="h1" tag="h3_sb">
           선호하는 댄스 장르
         </Head>
-        <Text tag="b2" color="gray7">
+        <Text tag="b2_m" color="gray7">
           최대 3개까지 고를 수 있어요
         </Text>
       </Flex>
