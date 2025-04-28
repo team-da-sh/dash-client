@@ -8,11 +8,11 @@ const Layout = () => {
   const isSearchPath = pathname === ROUTES_CONFIG.search.path;
   const isOnboardingPath = pathname === ROUTES_CONFIG.onboarding.path;
 
-  const shouldHideHeader = !isSearchPath || !isOnboardingPath;
+  const shouldShowHeader = !isSearchPath && !isOnboardingPath;
 
   return (
     <>
-      {shouldHideHeader && <Header />}
+      {shouldShowHeader && <Header />}
       <Outlet />
       <ScrollRestoration />
     </>
