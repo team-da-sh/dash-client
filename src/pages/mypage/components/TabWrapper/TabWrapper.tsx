@@ -1,6 +1,8 @@
 import { useState } from 'react';
-import * as styles from '@/pages/mypage/components/TabWrapper/TabWrapper.css';
-import { TabList, TabButton } from '@/shared/components/Tab';
+import StudentContent from '@/pages/mypage/components/StudentContent/StudentContent';
+import * as styles from '@/pages/mypage/components/TabWrapper/tabWrapper.css';
+import TeacherContent from '@/pages/mypage/components/TeacherContent/TeacherContent';
+import { TabList, TabButton, TabPanel } from '@/shared/components/Tab';
 import { MYPAGE_TABS } from '@/shared/constants';
 
 const TabWrapper = () => {
@@ -19,6 +21,12 @@ const TabWrapper = () => {
           </TabButton>
         ))}
       </TabList>
+      <TabPanel isSelected={selected === 'student'}>
+        <StudentContent />
+      </TabPanel>
+      <TabPanel isSelected={selected === 'teacher'}>
+        <TeacherContent />
+      </TabPanel>
     </section>
   );
 };
