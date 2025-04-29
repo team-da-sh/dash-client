@@ -14,3 +14,11 @@ export const topContainerStyle = style({
 
   backgroundColor: vars.colors.gray01,
 });
+
+export const reviewContainerStyle = style({
+  display: 'flex',
+  padding: '2rem 1.6rem',
+  gap: '0.4rem',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+});

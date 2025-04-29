@@ -2,8 +2,10 @@ import BottomList from '@/pages/mypage/components/BottomList/BottomList';
 import * as styles from '@/pages/mypage/components/TeacherContent/teacherContent.css';
 import TeacherLessons from '@/pages/mypage/components/TeacherLessons/TeacherLessons';
 import { getFullUrl } from '@/pages/mypage/utils/url';
+import SvgIcArrowRightSmallGray0732 from '@/shared/assets/svg/IcArrowRightSmallGray0732';
 import SvgIcInstagram20 from '@/shared/assets/svg/IcInstagram20';
 import SvgIcYoutube20 from '@/shared/assets/svg/IcYoutube20';
+import Divider from '@/shared/components/Divider/Divider';
 import InfoComponent from '@/shared/components/InfoComponent/InfoComponent';
 import Text from '@/shared/components/Text/Text';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
@@ -64,6 +66,16 @@ const TeacherContent = () => {
         </div>
         <TeacherLessons />
       </section>
+      <div className={styles.reviewContainerStyle}>
+        <div className={sprinkles({ display: 'flex', alignItems: 'center' })}>
+          <SvgIcArrowRightSmallGray0732 width={32} />
+          <Text tag="b2_sb" color="gray11">
+            리뷰 확인
+          </Text>
+        </div>
+        <SvgIcArrowRightSmallGray0732 width={32} />
+      </div>
+      <Divider color="gray1" thickness="0.4rem" />
       <BottomList />
     </div>
   );
