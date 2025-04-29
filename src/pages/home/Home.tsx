@@ -7,7 +7,7 @@ import PopularGenre from '@/pages/home/components/PopularGenre/PopularGenre';
 import UpcomingLessones from '@/pages/home/components/UpcomingLessons/UpcomingLessons';
 import { carouselContainerStyle, overlayActiveStyle, overlayStyle } from '@/pages/home/home.css';
 
-const images = 'public/images/image_kkukgirl.webp';
+const images = '/images/image_kkukgirl.webp';
 
 const preload = (imageArray: string) => {
   const img = new Image();

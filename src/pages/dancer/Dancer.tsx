@@ -8,12 +8,10 @@ import Head from '@/shared/components/Head/Head';
 import Tag from '@/shared/components/Tag/Tag';
 import Text from '@/shared/components/Text/Text';
 import { genreMapping } from '@/shared/constants/index';
-import { useIntersectCallback } from '@/shared/hooks/useIntersectCallback';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
 
 const Dancer = () => {
   const { id } = useParams<{ id: string }>();
-  const [targetRef, isWhite] = useIntersectCallback(false);
 
   if (!id) {
     return <Error />;
@@ -36,7 +34,6 @@ const Dancer = () => {
   return (
     <>
       <div
-        ref={targetRef}
         className={styles.topImgStyle}
         style={{
           backgroundImage: `url(${imageUrls[0]})`,
