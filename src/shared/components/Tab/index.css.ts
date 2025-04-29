@@ -14,6 +14,7 @@ export const tabButtonStyle = recipe({
     colorScheme: {
       primary: {},
       secondary: {},
+      plain: {},
     },
     state: {
       active: {
@@ -69,6 +70,28 @@ export const tabButtonStyle = recipe({
       style: {
         ...vars.fonts.b1_sb,
         color: vars.colors.gray05,
+      },
+    },
+    {
+      variants: {
+        colorScheme: 'plain',
+        state: 'active',
+      },
+      style: {
+        color: vars.colors.black,
+        ...vars.fonts.h5_sb,
+        border: 'none',
+      },
+    },
+    {
+      variants: {
+        colorScheme: 'plain',
+        state: 'inactive',
+      },
+      style: {
+        color: vars.colors.gray04,
+        ...vars.fonts.h5_sb,
+        border: 'none',
       },
     },
   ],

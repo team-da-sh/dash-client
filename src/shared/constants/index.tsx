@@ -70,19 +70,32 @@ export const GENRE_CATEGORY = [
   ],
 ];
 
+export const MYPAGE_TABS = [
+  { key: 'student', label: '수강생' },
+  { key: 'teacher', label: '강사' },
+];
+
 export const DANCER_TABS = [
   {
     id: 1,
     label: '학력',
     component: (dancerData: DancerDetailResponseTypes) => <TabEducation dancerData={dancerData} />,
   },
-  { id: 2, label: '경력', component: (dancerData: DancerDetailResponseTypes) => <TabHistory dancerData={dancerData} /> },
+  {
+    id: 2,
+    label: '경력',
+    component: (dancerData: DancerDetailResponseTypes) => <TabHistory dancerData={dancerData} />,
+  },
   { id: 3, label: '영상', component: (dancerData: DancerDetailResponseTypes) => <TabVideo dancerData={dancerData} /> },
 ];
 
 export const CLASS_TABS = [
   { id: 1, label: '소개', component: (lessonData: LessonDetailResponseTypes) => <TabIntro lessonData={lessonData} /> },
-  { id: 2, label: '난이도', component: (lessonData: LessonDetailResponseTypes) => <TabLevel lessonData={lessonData} /> },
+  {
+    id: 2,
+    label: '난이도',
+    component: (lessonData: LessonDetailResponseTypes) => <TabLevel lessonData={lessonData} />,
+  },
   { id: 3, label: '기간', component: (lessonData: LessonDetailResponseTypes) => <TabPeriod lessonData={lessonData} /> },
   {
     id: 4,
