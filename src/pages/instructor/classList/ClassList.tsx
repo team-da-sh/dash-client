@@ -5,7 +5,6 @@ import { handleBoxButtonClick, handleCancelClick, handleClassCardClick } from '@
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import ClassCard from '@/shared/components/ClassCard/ClassCard';
 import Flex from '@/shared/components/Flex/Flex';
-import Header from '@/shared/components/Header/Header';
 import Text from '@/shared/components/Text/Text';
 import type { Lesson } from '@/shared/types/lessonTypes';
 
@@ -25,10 +24,6 @@ const ClassList = () => {
 
   return (
     <div className={layoutStyle}>
-      <Header.Root isColor={true}>
-        <Header.BackIcon />
-        <Header.Title title="내 클래스 목록" />
-      </Header.Root>
       <div className={containerStyle}>
         <Text tag="b2_m" color="gray9">
           전체 {lessonData?.count}

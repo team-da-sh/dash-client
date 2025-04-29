@@ -1,4 +1,3 @@
-import defaultProfile from 'public/images/image_profile_basic.png';
 import { icCameraStyle, inputStyle, previewImgStyle } from '@/pages/onboarding/components/ProfileStep/profileStep.css';
 import { INFO_KEY, MAX_NICKNAME_LENGTH } from '@/pages/onboarding/constants';
 import type { onboardInfoTypes } from '@/pages/onboarding/types/onboardInfoTypes';
@@ -9,6 +8,7 @@ import Input from '@/shared/components/Input/Input';
 import Text from '@/shared/components/Text/Text';
 import { INCLUDE_BLANK, INCLUDE_SPECIAL } from '@/shared/constants/regex';
 import useImageUploader from '@/shared/hooks/useImageUploader';
+import defaultProfile from '/images/image_profile_basic.png';
 
 interface ProfileStepProps {
   name: string;
