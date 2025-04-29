@@ -4,6 +4,7 @@ import * as styles from '@/pages/instructor/classList/classList.css';
 import { handleBoxButtonClick, handleCancelClick, handleClassCardClick } from '@/pages/mypage/utils/clickUtils';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import ClassCard from '@/shared/components/ClassCard/ClassCard';
+import Head from '@/shared/components/Head/Head';
 import Text from '@/shared/components/Text/Text';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
 import type { Lesson } from '@/shared/types/lessonTypes';
@@ -24,9 +25,15 @@ const ClassList = () => {
   return (
     <div className={styles.layoutStyle}>
       <main className={styles.containerStyle}>
-        <Text tag="b2_m" color="gray9">
-          전체 {lessonData?.count}
-        </Text>
+        <div className={sprinkles({ display: 'flex', alignItems: 'center', gap: 4 })}>
+          <Head level="h2" tag="h6_sb" color="black">
+            내 클래스 관리
+          </Head>
+          <Text tag="b2_m" color="gray9">
+            ({lessonData?.count})
+          </Text>
+        </div>
+
         <section className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 12, marginTop: 16 })}>
           {lessonData?.lessons.map((lesson: Lesson) => (
             <ClassCard

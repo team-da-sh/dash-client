@@ -1,4 +1,5 @@
 import * as styles from '@/pages/instructor/classDetail/components/StudentCard/studentCard.css';
+import { formatPhoneNumber } from '@/pages/instructor/utils/format';
 import Head from '@/shared/components/Head/Head';
 import Text from '@/shared/components/Text/Text';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
@@ -23,13 +24,20 @@ const StudentCard = ({ students, index }: StudentCardPropTypes) => {
           {index + 1}
         </Head>
       </div>
-      <div className={sprinkles({ gap: 2, width: '100%' })}>
+      <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 2, width: '100%' })}>
         <Text tag="b3_sb" color="black">
           {students.name}
         </Text>
-        <div className={sprinkles({ gap: 3.5, alignItems: 'center', width: '100%', justifyContent: 'space-between' })}>
+        <div
+          className={sprinkles({
+            display: 'flex',
+            gap: 35,
+            alignItems: 'center',
+            width: '100%',
+            justifyContent: 'space-between',
+          })}>
           <Text tag="b3_m" color="gray9">
-            {students.phoneNumber}
+            {formatPhoneNumber(students.phoneNumber)}
           </Text>
           <Text tag="c1_r" color="gray9">
             {formatDateTime(students.createdAt)}

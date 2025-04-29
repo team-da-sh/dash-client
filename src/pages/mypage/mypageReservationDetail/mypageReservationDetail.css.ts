@@ -11,7 +11,14 @@ export const containerStyle = style({
   display: 'flex',
   flexDirection: 'column',
 
-  padding: '8.4rem 2rem 3.4rem 2rem',
+  padding: '2rem 2rem 3.4rem 2rem',
+});
+
+export const wrapperStyle = style({
+  display: 'flex',
+
+  width: '100%',
+  justifyContent: 'center',
 });
 
 export const cardStyle = style({
@@ -31,4 +38,11 @@ export const classHeaderStyle = style({
 export const applicantHeaderStyle = style({
   marginTop: '3.2rem',
   marginBottom: '1.6rem',
+});
+
+export const applyDateStyle = style({
+  display: 'flex',
+  justifyContent: 'flex-end',
+
+  marginTop: '1.2rem',
 });
