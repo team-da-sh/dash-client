@@ -1,4 +1,3 @@
-import defaultProfile from 'public/images/image_profile_basic.png';
 import { useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { usePostOnboard } from '@/pages/onboarding/apis/queries';
@@ -21,6 +20,7 @@ import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import ProgressBar from '@/shared/components/ProgressBar/ProgressBar';
 import type { FunnelProps, StepProps } from '@/shared/hooks/useFunnel';
 import { setStorage } from '@/shared/utils/handleToken';
+import defaultProfile from '/images/image_profile_basic.png';
 
 interface OnboardingFunnelProps {
   currentStep: number;
