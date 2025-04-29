@@ -23,8 +23,9 @@ export const imgStyle = style({
 
 export const wrapperStyle = style({
   display: 'flex',
-  alignItems: 'center',
-  gap: '1.2rem',
+  flexDirection: 'column',
+
+  gap: '0.8rem',
 });
 
 export const textWrapperStyle = style({

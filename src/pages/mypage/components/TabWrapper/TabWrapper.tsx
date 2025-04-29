@@ -9,18 +9,20 @@ const TabWrapper = () => {
   const [selected, setSelected] = useState('student');
 
   return (
-    <section className={styles.tabPanelStyle}>
-      <TabList>
-        {MYPAGE_TABS.map((tab) => (
-          <TabButton
-            key={tab.key}
-            colorScheme="plain"
-            isSelected={selected === tab.key}
-            onClick={() => setSelected(tab.key)}>
-            {tab.label}
-          </TabButton>
-        ))}
-      </TabList>
+    <section>
+      <div className={styles.tabPanelStyle}>
+        <TabList>
+          {MYPAGE_TABS.map((tab) => (
+            <TabButton
+              key={tab.key}
+              colorScheme="plain"
+              isSelected={selected === tab.key}
+              onClick={() => setSelected(tab.key)}>
+              {tab.label}
+            </TabButton>
+          ))}
+        </TabList>
+      </div>
       <TabPanel isSelected={selected === 'student'}>
         <StudentContent />
       </TabPanel>
