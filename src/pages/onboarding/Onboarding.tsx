@@ -5,6 +5,7 @@ import { useFunnel } from '@/shared/hooks/useFunnel';
 const Onboarding = () => {
   const { Funnel, Step, setStep, currentStep } = useFunnel(5, ROUTES_CONFIG.home.path);
 
+  //test
   return <OnboardingFunnel Funnel={Funnel} Step={Step} setStep={setStep} currentStep={currentStep} />;
 };
 
