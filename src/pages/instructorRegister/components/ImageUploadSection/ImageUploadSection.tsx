@@ -3,13 +3,13 @@ import {
   closeIconStyle,
   inputStyle,
   previewImgStyle,
-} from '@/pages/instructorRegister/components/InstructorRegisterFunnel/ImageUploadStep/imageUploadStep.css';
+} from '@/pages/instructorRegister/components/ImageUploadSection/imageUploadSection.css';
 import IcPlusGray0524 from '@/shared/assets/svg/IcPlusGray0524';
 import IcXCircleMain0324 from '@/shared/assets/svg/IcXCircleMain0324';
-import Flex from '@/shared/components/Flex/Flex';
 import Text from '@/shared/components/Text/Text';
+import { sprinkles } from '@/shared/styles/sprinkles.css';
 
-interface ImageUploadStepProps {
+interface ImageUploadSectionPropTypes {
   handleUploaderClick: () => void;
   uploadImgFile: () => void;
   deleteImgFile: (e: React.MouseEvent) => void;
@@ -18,31 +18,28 @@ interface ImageUploadStepProps {
   imgRef: React.MutableRefObject<HTMLInputElement | null>;
 }
 
-const ImageUploadStep = ({
+const ImageUploadSection = ({
   imgFile,
   imgRef,
   previewImg,
   deleteImgFile,
   uploadImgFile,
   handleUploaderClick,
-}: ImageUploadStepProps) => {
+}: ImageUploadSectionPropTypes) => {
   return (
-    <>
-      <Description title="강사 이미지 업로드" subTitle="대표 이미지는 최대 한 장까지 등록 가능해요" />
-      <Flex
-        justify="center"
-        align="center"
-        direction="column"
+    <div className={sprinkles({ display: 'flex', flexDirection: 'column' })}>
+      <Description title="강사 이미지 등록" />
+      <div
         className={previewImgStyle({ hasImage: !!previewImg })}
         style={previewImg ? { backgroundImage: `url(${previewImg})` } : {}}
         onClick={handleUploaderClick}>
         {!previewImg && (
-          <Flex direction="column" align="center">
+          <div className={sprinkles({ display: 'flex', flexDirection: 'column', alignItems: 'center' })}>
             <IcPlusGray0524 width={'2.4rem'} />
             <Text tag="c1_r" color="gray5">
               1/1
             </Text>
-          </Flex>
+          </div>
         )}
 
         {imgFile && (
@@ -50,7 +47,7 @@ const ImageUploadStep = ({
             <IcXCircleMain0324 width={'2.4rem'} />
           </div>
         )}
-      </Flex>
+      </div>
 
       <input
         type="file"
@@ -60,8 +57,8 @@ const ImageUploadStep = ({
         onChange={uploadImgFile}
         ref={imgRef}
       />
-    </>
+    </div>
   );
 };
 
-export default ImageUploadStep;
+export default ImageUploadSection;

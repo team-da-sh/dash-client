@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import Description from '@/pages/instructorRegister/components/Description/Description';
-import { addInputBoxStyle } from '@/pages/instructorRegister/components/InstructorRegisterFunnel/VideoLinkStep/videoLinkStep.css';
+import { addInputBoxStyle } from '@/pages/instructorRegister/components/VideoLinkSection/videoLinkSection.css';
 import { INFO_KEY, MAX_VIDEO_INPUT } from '@/pages/instructorRegister/constants/funnel';
 import type { InstructorRegisterInfoTypes } from '@/pages/instructorRegister/types/InstructorRegisterInfoTypes';
 import type { InputItemTypes } from '@/pages/instructorRegister/types/inputItemTypes';
@@ -8,13 +8,14 @@ import IcPlusGray0524 from '@/shared/assets/svg/IcPlusGray0524';
 import IcXCircleGray from '@/shared/assets/svg/IcXCircleGray';
 import Flex from '@/shared/components/Flex/Flex';
 import Input from '@/shared/components/Input/Input';
+import { sprinkles } from '@/shared/styles/sprinkles.css';
 
-interface VideoLinkStepPropTypes {
+interface VideoLinkSectionPropTypes {
   videoUrls: string[];
   onInfoChange: <K extends keyof InstructorRegisterInfoTypes>(key: K, value: InstructorRegisterInfoTypes[K]) => void;
 }
 
-const VideoLinkStep = ({ videoUrls, onInfoChange }: VideoLinkStepPropTypes) => {
+const VideoLinkSection = ({ videoUrls, onInfoChange }: VideoLinkSectionPropTypes) => {
   const inputItems = videoUrls.map((value, id) => ({ id: id + 1, value }));
   const nextID = useRef<number>(inputItems.length + 1);
   const lastInputRef = useRef<HTMLInputElement | null>(null);
@@ -65,8 +66,8 @@ const VideoLinkStep = ({ videoUrls, onInfoChange }: VideoLinkStepPropTypes) => {
   };
 
   return (
-    <>
-      <Description title="YOUTUBE 영상 업로드" subTitle="나를 대표하는 댄스 영상을 최대 5개 등록해 주세요" />
+    <div className={sprinkles({ display: 'flex', flexDirection: 'column', width: '100%', pb: 20 })}>
+      <Description title="유튜브 영상 등록" subTitle="나를 대표하는 댄스 영상을 최대 5개 등록해 주세요" />
       <Flex direction="column" gap="0.8rem" width="100%">
         {inputItems.map(({ id, value }, index) => (
           <Input
@@ -98,8 +99,8 @@ const VideoLinkStep = ({ videoUrls, onInfoChange }: VideoLinkStepPropTypes) => {
           </Flex>
         )}
       </Flex>
-    </>
+    </div>
   );
 };
 
-export default VideoLinkStep;
+export default VideoLinkSection;

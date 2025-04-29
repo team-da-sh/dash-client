@@ -2,6 +2,7 @@ import { useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { useGetLocationList, usePostClassRegisterInfo } from '@/pages/instructor/classRegister/apis/queries';
 import * as styles from '@/pages/instructor/classRegister/classRegister.css';
+import { buttonContainerStyle } from '@/pages/instructor/classRegister/classRegister.css';
 import ClassAmount from '@/pages/instructor/classRegister/components/ClassAmount/ClassAmount';
 import ClassDescription from '@/pages/instructor/classRegister/components/ClassDescription/ClassDescription';
 import ClassGenre from '@/pages/instructor/classRegister/components/ClassGenre/ClassGenre';
@@ -15,7 +16,6 @@ import ClassRegisterBottomSheet from '@/pages/instructor/classRegister/component
 import ClassSchedule from '@/pages/instructor/classRegister/components/ClassSchedule/ClassSchedule';
 import { useClassRegisterForm } from '@/pages/instructor/classRegister/hooks/useClassRegisterForm';
 import type { ClassRegisterInfoTypes } from '@/pages/instructor/classRegister/types/api';
-import { buttonContainerStyle } from '@/pages/instructorRegister/instructorRegister.css';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import { genreEngMapping, levelEngMapping } from '@/shared/constants';
@@ -106,7 +106,7 @@ const ClassRegister = () => {
           navigate(ROUTES_CONFIG.classRegisterCompletion.path);
         },
         onError: () => {
-          // 에러 페이지로 navigate
+          navigate(ROUTES_CONFIG.error.path);
         },
       });
     }

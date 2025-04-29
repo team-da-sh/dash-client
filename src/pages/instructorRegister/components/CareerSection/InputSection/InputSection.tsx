@@ -1,9 +1,9 @@
 import { useRef, useState } from 'react';
 import {
   addButtonStyle,
-  careerFlexStyle,
   checkboxStyle,
-} from '@/pages/instructorRegister/components/InstructorRegisterFunnel/CareerStep/careerStep.css';
+  containerStyle,
+} from '@/pages/instructorRegister/components/CareerSection/careerSection.css';
 import type { InputItemTypes } from '@/pages/instructorRegister/types/inputItemTypes';
 import BtnCheck from '@/shared/assets/svg/BtnCheck';
 import IcPlusGray0524 from '@/shared/assets/svg/IcPlusGray0524';
@@ -66,7 +66,7 @@ const InputSection = ({
   };
 
   return (
-    <Flex direction="column" gap="1.2rem" className={careerFlexStyle}>
+    <div className={containerStyle}>
       <Flex justify="spaceBetween" width="100%">
         <Flex gap="0.8rem" align="center">
           {icon}
@@ -121,7 +121,7 @@ const InputSection = ({
           </button>
         </Flex>
       )}
-    </Flex>
+    </div>
   );
 };
 

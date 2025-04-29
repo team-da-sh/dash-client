@@ -4,12 +4,19 @@ import { vars } from '@/shared/styles/theme.css';
 
 export const previewImgStyle = recipe({
   base: {
-    width: '8.4rem',
-    height: '8.4rem',
-    backgroundColor: vars.colors.gray01,
-    cursor: 'pointer',
-    borderRadius: '4px',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+
     position: 'relative',
+
+    width: '9.6rem',
+    height: '9.6rem',
+    margin: '0 auto',
+    backgroundColor: vars.colors.gray01,
+    borderRadius: '50%',
+    cursor: 'pointer',
   },
   variants: {
     hasImage: {
