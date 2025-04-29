@@ -4,7 +4,6 @@ import * as styles from '@/pages/instructor/classDetail/classDetail.css';
 import StudentCard from '@/pages/instructor/classDetail/components/StudentCard/StudentCard';
 import ClassCard from '@/shared/components/ClassCard/ClassCard';
 import Head from '@/shared/components/Head/Head';
-import Header from '@/shared/components/Header/Header';
 import Text from '@/shared/components/Text/Text';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
 
@@ -25,11 +24,6 @@ const ClassDetail = () => {
 
   return (
     <div className={styles.layoutStyle}>
-      <Header.Root isColor={true}>
-        <Header.BackIcon />
-        <Header.Title title="내 클래스 관리" />
-      </Header.Root>
-
       <div className={styles.containerStyle}>
         <Head level="h2" tag="h6_sb" color="black">
           클래스 정보

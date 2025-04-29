@@ -1,12 +1,10 @@
-import defaultProfile from 'public/images/image_profile_basic.png';
 import { useRef, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { usePostOnboard } from '@/pages/onboarding/apis/queries';
 import FinishStep from '@/pages/onboarding/components/FinishStep/FinishStep';
 import GenreStep from '@/pages/onboarding/components/GenreStep/GenreStep';
 import InfoStep from '@/pages/onboarding/components/InfoStep/InfoStep';
 import LevelStep from '@/pages/onboarding/components/LevelStep/LevelStep';
-import OnboardingHeader from '@/pages/onboarding/components/OnboardingHeader/OnboardingHeader';
 import ProfileStep from '@/pages/onboarding/components/ProfileStep/ProfileStep';
 import { MAX_ONBOARDING_STEP } from '@/pages/onboarding/constants';
 import {
@@ -18,11 +16,11 @@ import {
 import type { GenreTypes } from '@/pages/onboarding/types/genreTypes';
 import type { onboardInfoTypes } from '@/pages/onboarding/types/onboardInfoTypes';
 import { validateName, validatePhoneNumber } from '@/pages/onboarding/utils/validate';
-import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import ProgressBar from '@/shared/components/ProgressBar/ProgressBar';
 import type { FunnelProps, StepProps } from '@/shared/hooks/useFunnel';
 import { setStorage } from '@/shared/utils/handleToken';
+import defaultProfile from '/images/image_profile_basic.png';
 
 interface OnboardingFunnelProps {
   currentStep: number;
@@ -43,8 +41,6 @@ const OnboardingFunnel = ({ currentStep, Funnel, setStep, Step }: OnboardingFunn
 
   const [isNicknameError, setIsNicknameError] = useState(false);
 
-  const navigate = useNavigate();
-
   const { mutate: onboardMutate } = usePostOnboard();
 
   // 토큰 ref로 전역변수로 저장
@@ -60,13 +56,6 @@ const OnboardingFunnel = ({ currentStep, Funnel, setStep, Step }: OnboardingFunn
 
   const handleNextButtonClick = () => {
     setStep(1);
-  };
-  const handlePrevButtonClick = () => {
-    if (currentStep === 1) {
-      navigate(ROUTES_CONFIG.login.path);
-      return;
-    }
-    setStep(-1);
   };
 
   const handleOnboardSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -109,7 +98,6 @@ const OnboardingFunnel = ({ currentStep, Funnel, setStep, Step }: OnboardingFunn
 
   return (
     <form className={containerStyle} onSubmit={handleOnboardSubmit}>
-      <OnboardingHeader currentStep={currentStep} onPrevButtonClick={handlePrevButtonClick} />
       {currentStep < MAX_ONBOARDING_STEP && (
         <ProgressBar totalStep={MAX_ONBOARDING_STEP - 1} currentStep={currentStep} className={progressBarStyle} />
       )}
