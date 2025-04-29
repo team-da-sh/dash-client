@@ -15,6 +15,7 @@ import defaultProfile from '/images/image_profile_basic.png';
 const Onboarding = () => {
   const { Funnel, Step, setStep, currentStep } = useFunnel(3, ROUTES_CONFIG.home.path);
 
+  
   const [info, setInfo] = useState<onboardInfoTypes>({
     name: '',
     phoneNumber: '',
