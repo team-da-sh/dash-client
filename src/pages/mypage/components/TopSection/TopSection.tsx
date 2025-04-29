@@ -17,7 +17,6 @@ const IcCalendarcheckMono3D24 = lazy(() => import('@/shared/assets/svg/IcCalenda
 
 interface TopSectionPropTypes {
   userData: MyPageResponseTypes;
-  onClose: () => void;
   isInstructor: boolean;
 }
 
@@ -26,7 +25,7 @@ const LazyIcon = ({ component: Component, size = 24 }: { component: React.Elemen
     <Component width={size} height={size} />
   </Suspense>
 );
-const TopSection = ({ userData, onClose, isInstructor }: TopSectionPropTypes) => {
+const TopSection = ({ userData, isInstructor }: TopSectionPropTypes) => {
   const navigate = useNavigate();
 
   const handleNavigate = (path: string) => {
@@ -52,12 +51,12 @@ const TopSection = ({ userData, onClose, isInstructor }: TopSectionPropTypes) =>
     <section className={styles.sectionStyle}>
       <Flex tag="section" direction="column" align="center">
         <Flex align="center" width="100%" justify="spaceBetween">
-          <IcClose width={24} height={24} onClick={onClose} />
+          <IcClose width={24} height={24} />
           <Flex align="center" gap="0.2rem">
             <Text tag="b3_m" color="gray7" onClick={notify}>
               프로필 수정
             </Text>
-            <IcArrowRightGray0614 width={14} height={14} onClick={onClose} />
+            <IcArrowRightGray0614 width={14} height={14} />
           </Flex>
         </Flex>
 

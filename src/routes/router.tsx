@@ -10,6 +10,7 @@ import ClassRegister from '@/pages/instructor/classRegister/ClassRegister';
 import ClassRegisterCompletion from '@/pages/instructor/classRegisterCompletion/ClassRegisterCompletion';
 import InstructorRegister from '@/pages/instructorRegister/InstructorRegister';
 import Login from '@/pages/login/Login';
+import MyPage from '@/pages/mypage/MyPage';
 import MyPageReservation from '@/pages/mypage/components/mypageReservation/MypageReservation';
 import MyPageReservationDetail from '@/pages/mypage/components/mypageReservationDetail/MypageReservationDetail';
 import Onboarding from '@/pages/onboarding/Onboarding';
@@ -34,6 +35,7 @@ export const router = createBrowserRouter([
       { path: ROUTES_CONFIG.class.path(':id'), element: <Class /> },
       { path: ROUTES_CONFIG.dancer.path(':id'), element: <Dancer /> },
       { path: ROUTES_CONFIG.reservation.path(':id'), element: <Reservation /> },
+      { path: ROUTES_CONFIG.mypage.path, element: <MyPage /> },
       { path: ROUTES_CONFIG.mypageReservation.path, element: <MyPageReservation /> },
       { path: ROUTES_CONFIG.mypageReservationDetail.path(':id'), element: <MyPageReservationDetail /> },
       { path: ROUTES_CONFIG.classRegister.path, element: <ClassRegister /> },

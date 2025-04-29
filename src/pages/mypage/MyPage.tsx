@@ -7,16 +7,11 @@ import { getUserRole, setUserRole } from '@/pages/mypage/utils/storage';
 import { useGetRole } from '@/shared/apis/queries';
 import Divider from '@/shared/components/Divider/Divider';
 
-interface MyPagePropTypes {
-  showMyPage: boolean;
-  onClose: () => void;
-}
-
-const MyPage = ({ showMyPage, onClose }: MyPagePropTypes) => {
+const MyPage = () => {
   const initialRole = getUserRole();
 
   const { data: fetchedRole, isSuccess } = useGetRole({
-    enabled: showMyPage && !initialRole,
+    enabled: !initialRole,
     staleTime: Infinity,
     gcTime: Infinity,
   });
@@ -29,20 +24,12 @@ const MyPage = ({ showMyPage, onClose }: MyPagePropTypes) => {
 
   const isInstructor = roleData === 'TEACHER';
 
-  const handleClickOutside = (e: React.MouseEvent) => {
-    if (e.target === e.currentTarget) {
-      onClose();
-    }
-  };
-
-  const { data: userData = DEFAULT_USER_DATA } = useGetMyPage({
-    enabled: showMyPage,
-  });
+  const { data: userData = DEFAULT_USER_DATA } = useGetMyPage({});
 
   return (
-    <div onClick={handleClickOutside} className={showMyPage ? styles.visibleStyle : styles.invisibleStyle}>
+    <div>
       <div className={styles.wrapperStyle}>
-        <TopSection userData={userData} onClose={onClose} isInstructor={isInstructor} />
+        <TopSection userData={userData} isInstructor={isInstructor} />
         <Divider length="100%" color="gray1" thickness={8} />
         <BottomSection isInstructor={isInstructor} />
       </div>
