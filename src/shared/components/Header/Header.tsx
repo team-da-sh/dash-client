@@ -1,7 +1,7 @@
 import { useState, Suspense } from 'react';
 import { useNavigate } from 'react-router-dom';
-import MyPage from '@/pages/home/components/MyPage/MyPage';
 import { overlayActiveStyle, overlayStyle } from '@/pages/home/home.css';
+import MyPage from '@/pages/mypage/MyPage';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import IcLogoSmallBlack from '@/shared/assets/svg/IcLogoSmallBlack';
 import IcMypageBlack24 from '@/shared/assets/svg/IcMypageBlack24';

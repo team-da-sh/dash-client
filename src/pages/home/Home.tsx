@@ -14,7 +14,7 @@ const preload = (imageArray: string) => {
   img.src = imageArray;
 };
 
-const MyPage = lazy(() => import('@/pages/home/components/MyPage/MyPage'));
+const MyPage = lazy(() => import('@/pages/mypage/MyPage'));
 
 const Home = () => {
   preload(images);

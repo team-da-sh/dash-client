@@ -1,8 +1,8 @@
 import { useGetMyPage } from '@/pages/home/apis/queries';
-import BottomSection from '@/pages/home/components/BottomSection/BottomSection';
-import * as styles from '@/pages/home/components/MyPage/myPage.css';
-import TopSection from '@/pages/home/components/TopSection/TopSection';
 import { DEFAULT_USER_DATA } from '@/pages/home/constants';
+import BottomSection from '@/pages/mypage/components/BottomSection/BottomSection';
+import TopSection from '@/pages/mypage/components/TopSection/TopSection';
+import * as styles from '@/pages/mypage/myPage.css';
 import { getUserRole, setUserRole } from '@/pages/mypage/utils/storage';
 import { useGetRole } from '@/shared/apis/queries';
 import Divider from '@/shared/components/Divider/Divider';

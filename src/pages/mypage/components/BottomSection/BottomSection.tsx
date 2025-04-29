@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { usePostLogout } from '@/pages/auth/apis/queries';
-import * as styles from '@/pages/home/components/BottomSection/bottomSection.css';
+import * as styles from '@/pages/mypage/components/BottomSection/bottomSection.css';
 import { LIST_DATA } from '@/pages/mypage/constants/myPageList';
 import IcArrowRightSmallGray0432 from '@/shared/assets/svg/IcArrowRightSmallGray0432';
 import IcArrowRightSmallGray0732 from '@/shared/assets/svg/IcArrowRightSmallGray0732';

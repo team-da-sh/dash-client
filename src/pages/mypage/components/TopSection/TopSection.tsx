@@ -1,6 +1,6 @@
 import { lazy, Suspense } from 'react';
 import { useNavigate } from 'react-router-dom';
-import * as styles from '@/pages/home/components/TopSection/topSection.css';
+import * as styles from '@/pages/mypage/components/TopSection/topSection.css';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import IcArrowRightGray0614 from '@/shared/assets/svg/IcArrowRightGray0614';
 import IcClose from '@/shared/assets/svg/IcClose';

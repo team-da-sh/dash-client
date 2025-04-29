@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
-import { useGetReservations } from '@/pages/mypage/mypageReservation/apis/queries';
-import { containerStyle, layoutStyle } from '@/pages/mypage/mypageReservation/mypageReservation.css';
+import { useGetReservations } from '@/pages/mypage/components/mypageReservation/apis/queries';
+import { containerStyle, layoutStyle } from '@/pages/mypage/components/mypageReservation/mypageReservation.css';
 import { handleBoxButtonClick, handleCancelClick, handleClassCardClick } from '@/pages/mypage/utils/clickUtils';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import ClassCard from '@/shared/components/ClassCard/ClassCard';
