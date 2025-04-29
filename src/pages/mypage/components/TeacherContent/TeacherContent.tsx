@@ -1,10 +1,10 @@
+import { getFullUrl } from '@/pages/mypage/utils/url';
 import SvgIcInstagram20 from '@/shared/assets/svg/IcInstagram20';
 import SvgIcYoutube20 from '@/shared/assets/svg/IcYoutube20';
 import InfoComponent from '@/shared/components/InfoComponent/InfoComponent';
 import Text from '@/shared/components/Text/Text';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
 import { mockMyTeacherData } from '../TabWrapper/mockData';
-import * as styles from './teacherContent.css';
 
 const TeacherContent = () => {
   const data = mockMyTeacherData;
@@ -16,7 +16,7 @@ const TeacherContent = () => {
         subContent={
           <div className={sprinkles({ display: 'flex', alignItems: 'center', gap: 4 })}>
             <a
-              href={data.instagram}
+              href={getFullUrl('instagram', data.instagram)}
               target="_blank"
               rel="noopener noreferrer"
               className={sprinkles({ display: 'flex', gap: 4, alignItems: 'center' })}>
@@ -31,7 +31,7 @@ const TeacherContent = () => {
             </Text>
             <div>
               <a
-                href={data.youtube}
+                href={getFullUrl('youtube', data.youtube)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className={sprinkles({ display: 'flex', gap: 4, alignItems: 'center' })}>
