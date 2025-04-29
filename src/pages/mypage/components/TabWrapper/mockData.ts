@@ -17,3 +17,40 @@ export const mockMyTeacherData = {
   instagram: 'pvrkjyun',
   youtube: 'www.youtube.com',
 };
+
+export const mockTeacherLessonData = {
+  lessons: [
+    {
+      id: 1,
+      name: '화이팅',
+      imageUrl: 'https://example.com/image1.jpg',
+      genre: 'SOUL',
+      level: 'BEGINNER',
+      dDay: 3,
+    },
+    {
+      id: 2,
+      name: '춤',
+      imageUrl: 'https://example.com/image2.jpg',
+      genre: 'HIPHOP',
+      level: 'INTERMEDIATE',
+      dDay: 5,
+    },
+    {
+      id: 2,
+      name: '춤',
+      imageUrl: 'https://example.com/image2.jpg',
+      genre: 'HIPHOP',
+      level: 'INTERMEDIATE',
+      dDay: 5,
+    },
+    {
+      id: 2,
+      name: '춤추새',
+      imageUrl: 'https://example.com/image2.jpg',
+      genre: 'HIPHOP',
+      level: 'INTERMEDIATE',
+      dDay: 1,
+    },
+  ],
+};
