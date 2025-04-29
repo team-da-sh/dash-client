@@ -59,38 +59,38 @@ export const tagStyle = recipe({
         borderRadius: '2px',
         padding: '0.4rem 0.6rem',
         gap: '1rem',
-        ...vars.fonts.c1,
+        ...vars.fonts.c1_r,
       },
       medium: {
         borderRadius: '2.4px',
         padding: '0.3rem 0.8rem',
         gap: '1.2rem',
-        ...vars.fonts.b2,
+        ...vars.fonts.b2_m,
       },
       large: {
         borderRadius: 2,
         border: `1px solid ${vars.colors.main03}`,
         padding: '0.2rem 0.6rem',
         gap: '1rem',
-        ...vars.fonts.b7,
+        ...vars.fonts.b3_m,
       },
       thumbnail: {
         borderRadius: '0px 4px 4px 0px',
         padding: '0.2rem 0.8rem',
         gap: '1rem',
-        ...vars.fonts.c1,
+        ...vars.fonts.c1_r,
       },
       search: {
         borderRadius: '14px',
         border: `1px solid ${vars.colors.main04}`,
         padding: '0.5rem 0.8rem 0.5rem 1.2rem',
-        ...vars.fonts.b9,
+        ...vars.fonts.b3_sb,
       },
       sort: {
         borderRadius: '14px',
         border: `1px solid ${vars.colors.gray04}`,
         padding: '0.5rem 0.8rem 0.5rem 1.2rem',
-        ...vars.fonts.b9,
+        ...vars.fonts.b3_sb,
       },
       mypage: {
         width: '13.2rem',
@@ -98,7 +98,7 @@ export const tagStyle = recipe({
         height: '4rem',
         gap: '0.4rem',
         padding: '0.8rem 1.5rem',
-        ...vars.fonts.b9,
+        ...vars.fonts.b3_sb,
       },
       timeSelector: {
         gap: '1rem',
@@ -107,7 +107,7 @@ export const tagStyle = recipe({
 
         borderRadius: '30px',
 
-        ...vars.fonts.b3,
+        ...vars.fonts.b2_m_long,
       },
     },
   },

@@ -13,7 +13,12 @@ const ClassPersonnel = ({ personnel, handlePersonnelChange }: ClassPersonnelProp
   return (
     <Flex tag="section" direction="column" gap="2rem" width="100%" marginBottom="4rem">
       <Description title="모집 인원" subTitle="원활한 클래스 진행을 위해 최대 인원을 알려주세요" />
-      <Input placeholder="0" value={personnel} onChange={handlePersonnelChange} rightAddOn={<Text tag="b5">명</Text>} />
+      <Input
+        placeholder="0"
+        value={personnel}
+        onChange={handlePersonnelChange}
+        rightAddOn={<Text tag="b2_sb_long">명</Text>}
+      />
     </Flex>
   );
 };

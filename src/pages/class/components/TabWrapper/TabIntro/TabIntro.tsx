@@ -8,7 +8,7 @@ const TabIntro = ({ lessonData }: { lessonData: LessonDetailResponseTypes }) => 
 
   return (
     <section className={sprinkles({ pt: 8 })}>
-      <Text tag="b3" color="gray8" className={styles.introTextStyle}>
+      <Text tag="b2_m_long" color="gray8" className={styles.introTextStyle}>
         {detail}
       </Text>
     </section>

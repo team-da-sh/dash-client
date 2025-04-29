@@ -23,5 +23,5 @@ export const tagStyle = style({
   backgroundColor: vars.colors.main04,
   borderRadius: '4px',
   color: vars.colors.white,
-  ...vars.fonts.b10,
+  ...vars.fonts.b3_sb_narrow,
 });

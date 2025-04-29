@@ -5,7 +5,6 @@ import { handleBoxButtonClick, handleCancelClick, handleClassCardClick } from '@
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import ClassCard from '@/shared/components/ClassCard/ClassCard';
 import Flex from '@/shared/components/Flex/Flex';
-import Header from '@/shared/components/Header/Header';
 import Text from '@/shared/components/Text/Text';
 import type { Reservation } from '@/shared/types/reservationTypes';
 
@@ -13,20 +12,11 @@ const MyPageReservation = () => {
   const navigate = useNavigate();
   const { data: reservationData } = useGetReservations();
 
-  const handleNavigateHome = () => {
-    navigate('/');
-  };
-
   return (
     <div className={layoutStyle}>
-      <Header.Root isColor={true}>
-        <Header.BackIcon onHomeBackClick={handleNavigateHome} />
-        <Header.Title title="클래스 예약 내역" />
-      </Header.Root>
-
       <div className={containerStyle}>
         {reservationData && (
-          <Text tag="b2" color="gray9">
+          <Text tag="b2_m" color="gray9">
             전체 {reservationData?.reservations.length}
           </Text>
         )}

@@ -11,7 +11,29 @@ const meta = {
   argTypes: {
     tag: {
       control: { type: 'radio' },
-      options: ['b1', 'b2', 'b3', 'b4', 'b5', 'b6', 'b7', 'b8', 'b9', 'b10', 'c1', 'c2', 'c3', 'c4'],
+      options: [
+        'h1_sb',
+        'h3_sb',
+        'h5_sb',
+        'h5_m',
+        'h6_sb',
+        'b1_sb_long',
+        'b1_sb',
+        'b2_sb_long',
+        'b2_sb',
+        'b2_m_long',
+        'b2_m',
+        'b2_r',
+        'b3_sb_narrow',
+        'b3_sb',
+        'b3_m_narrow',
+        'b3_m',
+        'b3_r',
+        'c1_sb',
+        'c1_m',
+        'c1_r_narrow',
+        'c1_r',
+      ],
     },
     color: {
       control: { type: 'select' },
@@ -71,52 +93,52 @@ export const Sizes: Story = {
   render: () => (
     <ul style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
       <li>
-        <Text tag="b1" color="main1">
+        <Text tag="h1_sb" color="main1">
           DASH 웨비들 행복 앱잼해~
         </Text>
       </li>
       <li>
-        <Text tag="b2" color="main2">
+        <Text tag="h3_sb" color="main2">
           DASH 웨비들 행복 앱잼해~
         </Text>
       </li>
       <li>
-        <Text tag="b3" color="main3">
+        <Text tag="h5_sb" color="main3">
           DASH 웨비들 행복 앱잼해~
         </Text>
       </li>
       <li>
-        <Text tag="b4" color="main4">
+        <Text tag="h5_m" color="main4">
           DASH 웨비들 행복 앱잼해~
         </Text>
       </li>
       <li>
-        <Text tag="b5" color="main5">
+        <Text tag="h6_sb" color="main5">
           DASH 웨비들 행복 앱잼해~
         </Text>
       </li>
       <li>
-        <Text tag="b6" color="main6">
+        <Text tag="b1_sb_long" color="main6">
           DASH 웨비들 행복 앱잼해~
         </Text>
       </li>
       <li>
-        <Text tag="b7" color="sub1">
+        <Text tag="b1_sb" color="sub1">
           DASH 웨비들 행복 앱잼해~
         </Text>
       </li>
       <li>
-        <Text tag="b8" color="alert1">
+        <Text tag="b2_sb_long" color="alert1">
           DASH 웨비들 행복 앱잼해~
         </Text>
       </li>
       <li>
-        <Text tag="b9" color="black">
+        <Text tag="b2_sb" color="black">
           DASH 웨비들 행복 앱잼해~
         </Text>
       </li>
       <li>
-        <Text tag="b10" color="white">
+        <Text tag="b2_m_long" color="white">
           DASH 웨비들 행복 앱잼해~
         </Text>
       </li>

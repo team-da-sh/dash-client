@@ -16,7 +16,7 @@ const TimeControl = ({ label, value, onIncrease, onDecrease }: TimeControlProps)
       <IcArrowUpGray1032 width={'3.2rem'} />
     </button>
     <div className={styles.timeValueWrapperStyle}>
-      <Head level="h2" tag="h6">
+      <Head level="h2" tag="b1_sb">
         {label === 'minute' ? (value === 0 ? '00' : '30') : value}
       </Head>
     </div>

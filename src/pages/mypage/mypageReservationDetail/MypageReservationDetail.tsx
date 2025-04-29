@@ -5,7 +5,6 @@ import ApplicantInfo from '@/pages/reservation/components/ApplicantInfo/Applican
 import ClassInfo from '@/pages/reservation/components/ClassInfo/ClassInfo';
 import Flex from '@/shared/components/Flex/Flex';
 import Head from '@/shared/components/Head/Head';
-import Header from '@/shared/components/Header/Header';
 import Text from '@/shared/components/Text/Text';
 import { getStatusMessage } from '@/shared/utils/getStatusMessage';
 import { formatDateTime, getClassStatus } from '@/shared/utils/timeCalculate';
@@ -29,19 +28,14 @@ const MyPageReservationDetail = () => {
 
   return (
     <div className={styles.layoutStyle}>
-      <Header.Root isColor={true}>
-        <Header.BackIcon />
-        <Header.Title title="클래스 예약 내역" />
-      </Header.Root>
-
       <div className={styles.containerStyle}>
         <Flex width="100%" justify="center">
-          <Head tag="h5" color={status === 'completed' ? 'gray8' : 'black'}>
+          <Head tag="h6_sb" color={status === 'completed' ? 'gray8' : 'black'}>
             {getStatusMessage(status, data?.dDay)}
           </Head>
         </Flex>
         <div className={styles.classHeaderStyle}>
-          <Text tag="b4" color="gray9">
+          <Text tag="b2_sb" color="gray9">
             클래스 정보
           </Text>
         </div>
@@ -54,7 +48,7 @@ const MyPageReservationDetail = () => {
           lessonRound={data?.rounds}
         />
         <div className={styles.applicantHeaderStyle}>
-          <Text tag="b4" color="gray9">
+          <Text tag="b2_sb" color="gray9">
             신청자 정보
           </Text>
         </div>
@@ -62,7 +56,7 @@ const MyPageReservationDetail = () => {
         <ApplicantInfo studentName={data?.name} studentPhoneNumber={data?.phoneNumber} />
 
         <Flex marginTop="1.2rem" justify="flexEnd">
-          <Text tag="c1" color="gray9">
+          <Text tag="c1_r" color="gray9">
             {formatDateTime(data?.reservationDateTime || '')} 신청 완료
           </Text>
         </Flex>

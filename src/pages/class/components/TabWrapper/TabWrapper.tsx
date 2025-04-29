@@ -1,9 +1,9 @@
 import { useState } from 'react';
+import * as styles from '@/pages/class/components/TabWrapper/tabWrapper.css';
 import type { LessonDetailResponseTypes } from '@/pages/class/types/api';
-import * as styles from '@/pages/class/components/TabWrapper/tabWrapper.css'
 import { TabButton, TabList, TabPanel, TabRoot } from '@/shared/components/Tab';
 import { CLASS_TABS } from '@/shared/constants';
-import { sprinkles } from "@/shared/styles/sprinkles.css";
+import { sprinkles } from '@/shared/styles/sprinkles.css';
 
 interface TabWrapperPropTypes {
   colorScheme: 'primary' | 'secondary';
@@ -15,7 +15,7 @@ const TabWrapper = ({ colorScheme, lessonData }: TabWrapperPropTypes) => {
 
   return (
     <TabRoot>
-      <div className={sprinkles({pt:16, pl: 20})}>
+      <div className={sprinkles({ pt: 16, pl: 20 })}>
         <TabList>
           {CLASS_TABS.map((tab) => (
             <TabButton
@@ -27,15 +27,15 @@ const TabWrapper = ({ colorScheme, lessonData }: TabWrapperPropTypes) => {
             </TabButton>
           ))}
         </TabList>
-        </div>
+      </div>
 
-        <div className={styles.tabPanelStyle}>
+      <div className={styles.tabPanelStyle}>
         {CLASS_TABS.map((tab) => (
           <TabPanel key={tab.id} isSelected={selectedTab === tab.id - 1}>
             {tab.component(lessonData)}
           </TabPanel>
         ))}
-        </div>
+      </div>
     </TabRoot>
   );
 };

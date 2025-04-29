@@ -30,7 +30,7 @@ const SliderItem = ({ imageUrl, description, id }: SliderItemPropTypes) => {
     <div className={containerStyle}>
       <img src={imageUrl} className={imageStyle} />
 
-      <Head level="h2" tag="h2" color="white" className={descriptionStyle}>
+      <Head level="h2" tag="h3_sb" color="white" className={descriptionStyle}>
         {description}
       </Head>
 

@@ -1,4 +1,3 @@
-import defaultProfile from 'public/images/image_profile_basic.png';
 import { icCameraStyle, inputStyle, previewImgStyle } from '@/pages/onboarding/components/ProfileStep/profileStep.css';
 import { INFO_KEY, MAX_NICKNAME_LENGTH } from '@/pages/onboarding/constants';
 import type { onboardInfoTypes } from '@/pages/onboarding/types/onboardInfoTypes';
@@ -9,6 +8,7 @@ import Input from '@/shared/components/Input/Input';
 import Text from '@/shared/components/Text/Text';
 import { INCLUDE_BLANK, INCLUDE_SPECIAL } from '@/shared/constants/regex';
 import useImageUploader from '@/shared/hooks/useImageUploader';
+import defaultProfile from '/images/image_profile_basic.png';
 
 interface ProfileStepProps {
   name: string;
@@ -52,10 +52,10 @@ const ProfileStep = ({ name, nickname, isNicknameError, changeIsNicknameError, o
   return (
     <Flex direction="column" width="100%">
       <Flex direction="column" gap="0.8rem" marginBottom="3.95rem">
-        <Head level="h1" tag="h2">
+        <Head level="h1" tag="h3_sb">
           프로필 완성
         </Head>
-        <Text tag="b2" color="gray7">
+        <Text tag="b2_m" color="gray7">
           {name}님의 댄서네임을 알려주세요
         </Text>
       </Flex>
@@ -87,11 +87,11 @@ const ProfileStep = ({ name, nickname, isNicknameError, changeIsNicknameError, o
           onChange={(e) => handleNicknameChange(e.target.value)}
         />
         <Flex width="100%" justify="spaceBetween">
-          <Text tag="b6" color="alert3">
+          <Text tag="b3_r" color="alert3">
             {isNicknameError ? '특수기호, 띄어쓰기는 입력할 수 없어요' : ''}
           </Text>
 
-          <Text tag="c3" color={isNicknameError ? 'alert3' : 'main4'}>
+          <Text tag="c1_m" color={isNicknameError ? 'alert3' : 'main4'}>
             {nickname && `${nickname.length}/${MAX_NICKNAME_LENGTH}`}
           </Text>
         </Flex>

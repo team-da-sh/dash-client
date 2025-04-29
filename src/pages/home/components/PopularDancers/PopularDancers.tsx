@@ -13,7 +13,7 @@ const PopularDancers = () => {
 
   return (
     <div className={dancerListWrapperstyle}>
-      <Head level="h2" tag="h4" className={titleStyle}>
+      <Head level="h2" tag="h5_sb" className={titleStyle}>
         가장 핫한 댄서들만 모아봤어요
       </Head>
 

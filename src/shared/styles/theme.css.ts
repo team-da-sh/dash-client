@@ -1,5 +1,28 @@
 import { createGlobalTheme } from '@vanilla-extract/css';
 
+export type FontKey =
+  | 'h1_sb'
+  | 'h3_sb'
+  | 'h5_sb'
+  | 'h5_m'
+  | 'h6_sb'
+  | 'b1_sb_long'
+  | 'b1_sb'
+  | 'b2_sb_long'
+  | 'b2_sb'
+  | 'b2_m_long'
+  | 'b2_m'
+  | 'b2_r'
+  | 'b3_sb_narrow'
+  | 'b3_sb'
+  | 'b3_m_narrow'
+  | 'b3_m'
+  | 'b3_r'
+  | 'c1_sb'
+  | 'c1_m'
+  | 'c1_r_narrow'
+  | 'c1_r';
+
 export const vars = createGlobalTheme(':root', {
   colors: {
     // main
@@ -50,132 +73,132 @@ export const vars = createGlobalTheme(':root', {
 
   fonts: {
     // head
-    h1: {
+    h1_sb: {
       fontWeight: '600',
       fontSize: '2.8rem',
       lineHeight: '4rem',
       letterSpacing: '-0.14rem',
     },
-    h2: {
+    h3_sb: {
       fontWeight: '600',
       fontSize: '2.4rem',
       lineHeight: '3.6rem',
       letterSpacing: '-0.12rem',
     },
-    h3: {
-      fontWeight: '500',
-      fontSize: '2rem',
-      lineHeight: '2.8rem',
-      letterSpacing: '-0.1rem',
-    },
-    h4: {
+    h5_sb: {
       fontWeight: '600',
       fontSize: '2rem',
       lineHeight: '2.4rem',
       letterSpacing: '-0.1rem',
     },
-    h5: {
+    h5_m: {
+      fontWeight: '500',
+      fontSize: '2rem',
+      lineHeight: '2.8rem',
+      letterSpacing: '-0.1rem',
+    },
+    h6_sb: {
       fontWeight: '600',
       fontSize: '1.8rem',
       lineHeight: '2.6rem',
       letterSpacing: '-0.09rem',
     },
-    h6: {
-      fontWeight: '600',
-      fontSize: '1.6rem',
-      lineHeight: '1.8rem',
-      letterSpacing: '-0.08rem',
-    },
-    h7: {
-      fontWeight: '600',
-      fontSize: '1.6rem',
-      lineHeight: '2rem',
-      letterSpacing: '-0.08rem',
-    },
 
     // body
-    b1: {
-      fontWeight: '400',
-      fontSize: '1.4rem',
-      lineHeight: '1.8rem',
-      letterSpacing: '-0.1rem',
-    },
-    b2: {
-      fontWeight: '500',
-      fontSize: '1.4rem',
-      lineHeight: '1.8rem',
-      letterSpacing: '-0.07rem',
-    },
-    b3: {
-      fontWeight: '500',
-      fontSize: '1.4rem',
-      lineHeight: '2rem',
-      letterSpacing: '-0.07rem',
-    },
-    b4: {
+    b1_sb_long: {
       fontWeight: '600',
-      fontSize: '1.4rem',
-      lineHeight: '1.8rem',
-      letterSpacing: '-0.07rem',
+      fontSize: '1.6rem',
+      lineHeight: '2rem',
+      letterSpacing: '-0.08rem',
     },
-    b5: {
+    b1_sb: {
+      fontWeight: '600',
+      fontSize: '1.6rem',
+      lineHeight: '1.8rem',
+      letterSpacing: '-0.08rem',
+    },
+    b2_sb_long: {
       fontWeight: '600',
       fontSize: '1.4rem',
       lineHeight: '2.2rem',
       letterSpacing: '-0.07rem',
     },
-    b6: {
+    b2_sb: {
+      fontWeight: '600',
+      fontSize: '1.4rem',
+      lineHeight: '1.8rem',
+      letterSpacing: '-0.07rem',
+    },
+    b2_m_long: {
+      fontWeight: '500',
+      fontSize: '1.4rem',
+      lineHeight: '2rem',
+      letterSpacing: '-0.07rem',
+    },
+    b2_m: {
+      fontWeight: '500',
+      fontSize: '1.4rem',
+      lineHeight: '1.8rem',
+      letterSpacing: '-0.07rem',
+    },
+    b2_r: {
+      fontWeight: '400',
+      fontSize: '1.4rem',
+      lineHeight: '1.8rem',
+      letterSpacing: '-0.1rem',
+    },
+    b3_sb_narrow: {
+      fontWeight: '600',
+      fontSize: '1.2rem',
+      lineHeight: '1.6rem',
+      letterSpacing: '-0.096rem',
+    },
+    b3_sb: {
+      fontWeight: '600',
+      fontSize: '1.2rem',
+      lineHeight: '1.6rem',
+      letterSpacing: '-0.06rem',
+    },
+    b3_m_narrow: {
+      fontWeight: '500',
+      fontSize: '1.2rem',
+      lineHeight: '1.6rem',
+      letterSpacing: '-0.096rem',
+    },
+    b3_m: {
+      fontWeight: '500',
+      fontSize: '1.2rem',
+      lineHeight: '1.6rem',
+      letterSpacing: '-0.06rem',
+    },
+    b3_r: {
       fontWeight: '400',
       fontSize: '1.2rem',
       lineHeight: '1.6rem',
       letterSpacing: '-0.06rem',
-    },
-    b7: {
-      fontWeight: '500',
-      fontSize: '1.2rem',
-      lineHeight: '1.6rem',
-      letterSpacing: '-0.06rem',
-    },
-    b8: {
-      fontWeight: '500',
-      fontSize: '1.2rem',
-      lineHeight: '1.6rem',
-      letterSpacing: '-0.096rem',
-    },
-    b9: {
-      fontWeight: '600',
-      fontSize: '1.2rem',
-      lineHeight: '1.6rem',
-      letterSpacing: '-0.06rem',
-    },
-    b10: {
-      fontWeight: '600',
-      fontSize: '1.2rem',
-      lineHeight: '1.6rem',
-      letterSpacing: '-0.096rem',
     },
 
     // caption
-    c1: {
-      fontWeight: '400',
+    c1_sb: {
+      fontWeight: '600',
       fontSize: '1rem',
       lineHeight: '1.4rem',
       letterSpacing: '-0.05rem',
     },
-    c2: {
-      fontWeight: '400',
-      fontSize: '1rem',
-      lineHeight: '1.4rem',
-      letterSpacing: '-0.08rem',
-    },
-    c3: {
+    c1_m: {
       fontWeight: '500',
       fontSize: '1rem',
       lineHeight: '1.8rem',
       letterSpacing: '-0.05rem',
     },
-    c4: {
-      fontWeight: '600',
+    c1_r_narrow: {
+      fontWeight: '400',
+      fontSize: '1rem',
+      lineHeight: '1.4rem',
+      letterSpacing: '-0.08rem',
+    },
+    c1_r: {
+      fontWeight: '400',
       fontSize: '1rem',
       lineHeight: '1.4rem',
       letterSpacing: '-0.05rem',
@@ -187,5 +210,28 @@ export const vars = createGlobalTheme(':root', {
     three: '3',
     four: '4',
     five: '5',
+  },
+  tags: {
+    h1_sb: 'h1_sb',
+    h3_sb: 'h3_sb',
+    h5_sb: 'h5_sb',
+    h5_m: 'h5_m',
+    h6_sb: 'h6_sb',
+    b1_sb_long: 'b1_sb_long',
+    b1_sb: 'b1_sb',
+    b2_sb_long: 'b2_sb_long',
+    b2_sb: 'b2_sb',
+    b2_m_long: 'b2_m_long',
+    b2_m: 'b2_m',
+    b2_r: 'b2_r',
+    b3_sb_narrow: 'b3_sb_narrow',
+    b3_sb: 'b3_sb',
+    b3_m_narrow: 'b3_m_narrow',
+    b3_m: 'b3_m',
+    b3_r: 'b3_r',
+    c1_sb: 'c1_sb',
+    c1_m: 'c1_m',
+    c1_r_narrow: 'c1_r_narrow',
+    c1_r: 'c1_r',
   },
 });

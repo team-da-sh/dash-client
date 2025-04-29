@@ -33,7 +33,7 @@ const DancerInfo = ({ dancerData }: { dancerData: DancerDetailResponseTypes }) =
             <a href={instagram} target="_blank" rel="noopener noreferrer">
               <div className={sprinkles({ display: 'flex', flexDirection: 'row', gap: 9 })}>
                 <IcInstagram20 width="2rem" />
-                <Text tag="b2" color="gray5" className={styles.linkStyle}>
+                <Text tag="b2_m" color="gray5" className={styles.linkStyle}>
                   {instagramHandle}
                 </Text>
               </div>
@@ -44,7 +44,7 @@ const DancerInfo = ({ dancerData }: { dancerData: DancerDetailResponseTypes }) =
             <a href={youtube} target="_blank" rel="noopener noreferrer">
               <div className={sprinkles({ display: 'flex', flexDirection: 'row', gap: 9 })}>
                 <IcYoutube20 width="2rem" height="2rem" />
-                <Text tag="b2" color="gray5" className={styles.linkStyle}>
+                <Text tag="b2_m" color="gray5" className={styles.linkStyle}>
                   {youtubeHandle}
                 </Text>
               </div>
@@ -52,13 +52,13 @@ const DancerInfo = ({ dancerData }: { dancerData: DancerDetailResponseTypes }) =
           )}
         </div>
 
-        <Text tag="b3" color="gray8" className={styles.detailStyle}>
+        <Text tag="b2_m_long" color="gray8" className={styles.detailStyle}>
           {detail}
         </Text>
       </section>
 
       <section className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 12 })}>
-        <Head level="h4" tag="h5" className={sprinkles({ pl: 20 })}>
+        <Head level="h4" tag="h6_sb" className={sprinkles({ pl: 20 })}>
           {nickname}님의 클래스
         </Head>
 
@@ -66,7 +66,7 @@ const DancerInfo = ({ dancerData }: { dancerData: DancerDetailResponseTypes }) =
         {lessons.length === 0 ? (
           <Head
             level="h5"
-            tag="h6"
+            tag="b1_sb"
             color="gray9"
             className={sprinkles({ display: 'flex', justifyContent: 'center', pt: 52, pb: 72 })}>
             아직 개설한 클래스가 없어요

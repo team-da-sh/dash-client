@@ -1,82 +1,61 @@
-import clsx from 'clsx';
-import type { ComponentPropsWithoutRef } from 'react';
-import React from 'react';
+import { useState, Suspense } from 'react';
 import { useNavigate } from 'react-router-dom';
+import MyPage from '@/pages/home/components/MyPage/MyPage';
+import { overlayActiveStyle, overlayStyle } from '@/pages/home/home.css';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import IcBack from '@/shared/assets/svg/IcBack';
-import IcClose from '@/shared/assets/svg/IcClose';
-import Head from '@/shared/components/Head/Head';
-import { backIconStyle, closeIconStyle, headerRootStyle, titleStyle } from '@/shared/components/Header/header.css';
+import IcLogoSmallBlack from '@/shared/assets/svg/IcLogoSmallBlack';
+import IcMypageBlack24 from '@/shared/assets/svg/IcMypageBlack24';
+import IcSearchBlack24 from '@/shared/assets/svg/IcSearchBlack24';
+import { sprinkles } from '@/shared/styles/sprinkles.css';
+import { isLoggedIn } from '@/shared/utils/authUtil';
+import { headerStyle } from './header.css';
 
-interface HeaderRootProps extends ComponentPropsWithoutRef<'div'> {
-  children: React.ReactNode;
-  isColor?: boolean;
-}
-
-interface BackIconProps {
-  onFunnelBackClick?: () => void;
-  onHomeBackClick?: () => void;
-}
-
-interface TitleProps {
-  title: string;
-}
-
-interface CloseIconProps {
-  onClick?: () => void;
-}
-
-interface BackIconProps {
-  onClick?: () => void;
-}
-
-const HeaderRoot = ({ children, isColor = false, className }: HeaderRootProps): JSX.Element => {
-  return <div className={clsx(className, headerRootStyle({ isColor }))}>{children}</div>;
-};
-
-const BackIcon = ({ onFunnelBackClick, onHomeBackClick }: BackIconProps): JSX.Element => {
+const Header = () => {
   const navigate = useNavigate();
-  const handleBackClick = () => {
-    if (onFunnelBackClick) {
-      onFunnelBackClick();
-      return;
-    }
+  const [showMyPage, setShowMyPage] = useState(false);
 
-    if (onHomeBackClick) {
-      navigate(ROUTES_CONFIG.home.path);
-      return;
-    }
-
-    navigate(-1);
+  const handleLogoClick = () => {
+    navigate(ROUTES_CONFIG.home.path);
   };
-  return (
-    <button className={backIconStyle} type="button" onClick={handleBackClick} aria-label="뒤로가기">
-      <IcBack width={24} height={24} />
-    </button>
-  );
-};
 
-const Title = ({ title }: TitleProps): JSX.Element => {
-  return (
-    <Head level="h1" tag="h6" className={titleStyle}>
-      {title}
-    </Head>
-  );
-};
+  const handleSearchClick = () => {
+    navigate(ROUTES_CONFIG.search.path);
+  };
 
-const CloseIcon = ({ onClick }: CloseIconProps): JSX.Element => {
-  return (
-    <button className={closeIconStyle} type="button" onClick={onClick} aria-label="닫기">
-      <IcClose width={24} height={24} />
-    </button>
-  );
-};
+  const handleMypageClick = () => {
+    if (!isLoggedIn()) {
+      navigate(ROUTES_CONFIG.login.path);
+      return;
+    }
+    setShowMyPage(!showMyPage);
+    // navigate(ROUTES_CONFIG.mypage.path); -> mypage 페이지화 작업되면 적용 예정
+  };
 
-const Header = {
-  Root: HeaderRoot,
-  BackIcon: BackIcon,
-  Title: Title,
-  CloseIcon: CloseIcon,
+  const handleCloseMyPageClick = () => {
+    setShowMyPage(false);
+  };
+
+  return (
+    <header className={headerStyle}>
+      <div className={`${overlayStyle} ${showMyPage ? overlayActiveStyle : ''}`} />
+      {showMyPage && (
+        <Suspense fallback={<div />}>
+          <MyPage showMyPage={showMyPage} onClose={handleCloseMyPageClick} />
+        </Suspense>
+      )}
+      <button onClick={handleLogoClick} aria-label="홈으로 이동">
+        <IcLogoSmallBlack width={58} height={20} />
+      </button>
+      <div className={sprinkles({ display: 'flex', gap: 20 })}>
+        <button onClick={handleSearchClick} aria-label="검색 페이지로 이동">
+          <IcSearchBlack24 width={24} height={24} />
+        </button>
+        <button onClick={handleMypageClick} aria-label="마이페이지로 이동">
+          <IcMypageBlack24 width={24} height={24} />
+        </button>
+      </div>
+    </header>
+  );
 };
 
 export default Header;

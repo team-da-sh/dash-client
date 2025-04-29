@@ -13,7 +13,7 @@ interface MyPagePropTypes {
 }
 
 const MyPage = ({ showMyPage, onClose }: MyPagePropTypes) => {
-  let initialRole = getUserRole();
+  const initialRole = getUserRole();
 
   const { data: fetchedRole, isSuccess } = useGetRole({
     enabled: showMyPage && !initialRole,
@@ -27,7 +27,7 @@ const MyPage = ({ showMyPage, onClose }: MyPagePropTypes) => {
     setUserRole(fetchedRole.role);
   }
 
-  const isInstructor = roleData?.role === 'TEACHER';
+  const isInstructor = roleData === 'TEACHER';
 
   const handleClickOutside = (e: React.MouseEvent) => {
     if (e.target === e.currentTarget) {
