@@ -4,12 +4,10 @@ import { usePostOnboard } from '@/pages/onboarding/apis/queries';
 import FinishStep from '@/pages/onboarding/components/FinishStep/FinishStep';
 import InfoStep from '@/pages/onboarding/components/InfoStep/InfoStep';
 import ProfileStep from '@/pages/onboarding/components/ProfileStep/ProfileStep';
-import { MAX_ONBOARDING_STEP } from '@/pages/onboarding/constants';
+import SubmitButton from '@/pages/onboarding/components/SubmitButton/SubmitButton';
 import { bodyWrapperStyle, containerStyle, footerWrapperStyle } from '@/pages/onboarding/onboarding.css';
 import type { onboardInfoTypes } from '@/pages/onboarding/types/onboardInfoTypes';
-import { validateName, validatePhoneNumber } from '@/pages/onboarding/utils/validate';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import { useFunnel } from '@/shared/hooks/useFunnel';
 import { setStorage } from '@/shared/utils/handleToken';
 import defaultProfile from '/images/image_profile_basic.png';
@@ -35,6 +33,7 @@ const Onboarding = () => {
   const handleInfoChange = <K extends keyof onboardInfoTypes>(key: K, value: onboardInfoTypes[K]) => {
     setInfo((prev) => ({ ...prev, [key]: value }));
   };
+
   const changeNicknameError = (isError: boolean) => {
     setIsNicknameError(isError);
   };
@@ -63,20 +62,6 @@ const Onboarding = () => {
     );
   };
 
-  // 다음 버튼 활성화 판단
-  const buttonActive = (currentStep: number) => {
-    switch (currentStep) {
-      case 1:
-        return !(validateName(info.name) && validatePhoneNumber(info.phoneNumber));
-      case 2:
-        return !info.nickname || isNicknameError;
-      case 3:
-        return false;
-      default:
-        return true;
-    }
-  };
-
   return (
     <form className={containerStyle} onSubmit={handleOnboardSubmit}>
       <div className={bodyWrapperStyle}>
@@ -102,13 +87,12 @@ const Onboarding = () => {
       </div>
 
       <div className={footerWrapperStyle}>
-        <BoxButton
-          variant="primary"
-          onClick={currentStep === MAX_ONBOARDING_STEP - 1 ? () => {} : handleNextButtonClick}
-          isDisabled={buttonActive(currentStep)}
-          type={currentStep === MAX_ONBOARDING_STEP - 1 ? 'submit' : 'button'}>
-          {currentStep === MAX_ONBOARDING_STEP ? '홈으로 이동' : '다음'}
-        </BoxButton>
+        <SubmitButton
+          currentStep={currentStep}
+          info={info}
+          onNextButtonClick={handleNextButtonClick}
+          isNicknameError={isNicknameError}
+        />
       </div>
     </form>
   );
