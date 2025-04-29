@@ -6,9 +6,9 @@ export const mockMyPageData = {
 };
 
 export const mockMyLessonData = {
-  beforeLessonCount: 1,
-  duringLessonCount: 2,
-  afterLessonCount: 3,
+  beforeLessonCount: 4,
+  duringLessonCount: 4,
+  afterLessonCount: 4,
 };
 
 export const mockMyTeacherData = {

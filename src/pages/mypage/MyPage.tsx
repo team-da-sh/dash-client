@@ -14,7 +14,7 @@ const MyPage = () => {
     gcTime: Infinity,
   });
 
-  const roleData = isSuccess && fetchedRole ? fetchedRole : initialRole;
+  // const roleData = isSuccess && fetchedRole ? fetchedRole : initialRole;
 
   if (isSuccess && fetchedRole) {
     setUserRole(fetchedRole.role);

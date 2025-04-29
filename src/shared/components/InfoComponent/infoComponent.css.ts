@@ -5,9 +5,6 @@ export const infoContainerStyle = style({
   display: 'flex',
   alignItems: 'center',
 
-  height: '10rem',
-  padding: '2rem',
-
   justifyContent: 'space-between',
 
   backgroundColor: vars.colors.gray01,
