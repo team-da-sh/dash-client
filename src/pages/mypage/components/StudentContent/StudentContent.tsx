@@ -5,6 +5,7 @@ import { MENU_LIST } from '@/pages/mypage/constants/myPageList';
 import Divider from '@/shared/components/Divider/Divider';
 import InfoComponent from '@/shared/components/InfoComponent/InfoComponent';
 import Text from '@/shared/components/Text/Text';
+import BottomList from '../BottomList/BottomList';
 import { mockMyPageData } from '../TabWrapper/mockData';
 
 const StudentContent = () => {
@@ -29,6 +30,7 @@ const StudentContent = () => {
         ))}
       </div>
       <Divider color="gray1" thickness="0.4rem" />
+      <BottomList />
     </div>
   );
 };

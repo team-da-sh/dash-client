@@ -9,6 +9,8 @@ export const ulStyle = style({
 
   padding: '2.4rem 2rem 2.8rem 2rem',
   gap: '0.8rem',
+
+  backgroundColor: vars.colors.white,
 });
 
 export const listStyle = style({
