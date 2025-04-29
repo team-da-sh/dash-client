@@ -1,17 +1,31 @@
-import { bookerComponentStyle } from '@/pages/reservation/components/ApplicantInfo/applicantInfo.css';
-import InfoRow from '@/pages/reservation/components/InfoRow/InfoRow';
+import * as styles from '@/pages/reservation/components/ApplicantInfo/applicantInfo.css';
+import Text from '@/shared/components/Text/Text';
+import { sprinkles } from '@/shared/styles/sprinkles.css';
 
-interface ApplicantInfoProps {
+interface ApplicantInfoPropTypes {
   studentName: string;
   studentPhoneNumber: string;
 }
 
-const ApplicantInfo = ({ studentName, studentPhoneNumber }: ApplicantInfoProps) => {
+const ApplicantInfo = ({ studentName, studentPhoneNumber }: ApplicantInfoPropTypes) => {
   return (
-    <div className={bookerComponentStyle}>
-      <InfoRow label="이름" value={studentName} />
-
-      <InfoRow label="전화번호" value={studentPhoneNumber} />
+    <div className={styles.bookerComponentStyle}>
+      <div className={sprinkles({ display: 'flex', gap: 12 })}>
+        <Text tag="b3_sb_narrow" color="gray7" className={styles.textLabelStyle}>
+          이름
+        </Text>
+        <Text tag="b3_m" color="gray10">
+          {studentName}
+        </Text>
+      </div>
+      <div className={sprinkles({ display: 'flex', gap: 12 })}>
+        <Text tag="b3_sb_narrow" color="gray7" className={styles.textLabelStyle}>
+          전화번호
+        </Text>
+        <Text tag="b3_m" color="gray10">
+          {studentPhoneNumber}
+        </Text>
+      </div>
     </div>
   );
 };
