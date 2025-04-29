@@ -2,18 +2,22 @@ import SvgIcArrowRightGray0614 from '@/shared/assets/svg/IcArrowRightGray0614';
 import Head from '@/shared/components/Head/Head';
 import Text from '@/shared/components/Text/Text';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
+import { LessonCountResponseTypes } from '../../types/api';
 import { mockMyLessonData } from '../TabWrapper/mockData';
 import * as styles from './ClassProgress.css';
 
 const ClassProgress = () => {
-  const data = mockMyLessonData;
+  const data: LessonCountResponseTypes = mockMyLessonData;
+
+  const isAllZero = data.beforeLessonCount === 0 && data.duringLessonCount === 0 && data.afterLessonCount === 0;
+
   return (
     <div className={styles.containerStyle}>
       <div className={styles.wrapperStyle}>
         <Text tag="b3_r" color="gray8">
           수강 전
         </Text>
-        <Head level="h3" tag="h6_sb">
+        <Head level="h3" tag="h6_sb" color={isAllZero ? 'gray5' : 'gray10'}>
           {data.beforeLessonCount}
         </Head>
       </div>
@@ -22,7 +26,7 @@ const ClassProgress = () => {
         <Text tag="b3_r" color="gray8">
           수강 중
         </Text>
-        <Head level="h3" tag="h6_sb">
+        <Head level="h3" tag="h6_sb" color={isAllZero ? 'gray5' : 'gray10'}>
           {data.duringLessonCount}
         </Head>
       </div>
@@ -31,7 +35,7 @@ const ClassProgress = () => {
         <Text tag="b3_r" color="gray8">
           수강 완료
         </Text>
-        <Head level="h3" tag="h6_sb">
+        <Head level="h3" tag="h6_sb" color={isAllZero ? 'gray5' : 'gray10'}>
           {data.afterLessonCount}
         </Head>
       </div>
