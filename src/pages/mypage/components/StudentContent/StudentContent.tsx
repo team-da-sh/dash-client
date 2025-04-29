@@ -2,6 +2,7 @@ import ClassProgress from '@/pages/mypage/components/ClassProgress/ClassProgress
 import MenuButton from '@/pages/mypage/components/MenuButton/MenuButton';
 import * as styles from '@/pages/mypage/components/StudentContent/studentContent.css';
 import { MENU_LIST } from '@/pages/mypage/constants/myPageList';
+import { formatPhoneNumber } from '@/pages/mypage/utils/format';
 import Divider from '@/shared/components/Divider/Divider';
 import InfoComponent from '@/shared/components/InfoComponent/InfoComponent';
 import Text from '@/shared/components/Text/Text';
@@ -18,7 +19,7 @@ const StudentContent = () => {
           mainText={<Text tag="b1_sb">{data.nickname}</Text>}
           subContent={
             <Text tag="b3_m" color="gray6">
-              {data.name} · {data.phoneNumber}
+              {data.name} · {formatPhoneNumber(data.phoneNumber)}
             </Text>
           }
         />
