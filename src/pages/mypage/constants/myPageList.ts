@@ -1,3 +1,4 @@
+import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import SvgIcKakaoKakaobrown28 from '@/shared/assets/svg/IcKakaoKakaobrown28';
 
 export const LIST_DATA = [
@@ -11,7 +12,7 @@ export const MENU_LIST = [
   {
     icon: SvgIcKakaoKakaobrown28,
     label: '수강 목록',
-    path: '/courses',
+    path: ROUTES_CONFIG.mypageReservation.path,
   },
   {
     icon: SvgIcKakaoKakaobrown28,
