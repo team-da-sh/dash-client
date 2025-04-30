@@ -53,7 +53,7 @@ const MyPageReservationDetail = () => {
           </Text>
         </div>
 
-        <ApplicantInfo studentName={data?.name} studentPhoneNumber={data?.phoneNumber} />
+        <ApplicantInfo memberName={data?.name} memberPhoneNumber={data?.phoneNumber} />
 
         <Flex marginTop="1.2rem" justify="flexEnd">
           <Text tag="c1_r" color="gray9">

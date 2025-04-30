@@ -1,4 +1,5 @@
 import * as styles from '@/pages/reservation/components/ApplicantInfo/applicantInfo.css';
+import { formatPhoneNumber } from '@/pages/reservation/utils/format';
 import Text from '@/shared/components/Text/Text';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
 
@@ -23,7 +24,7 @@ const ApplicantInfo = ({ memberName, memberPhoneNumber }: ApplicantInfoPropTypes
           전화번호
         </Text>
         <Text tag="b3_m" color="gray10">
-          {memberPhoneNumber}
+          {formatPhoneNumber(memberPhoneNumber)}
         </Text>
       </div>
     </div>
