@@ -1,6 +1,6 @@
 export interface Reservation {
-  lessonId?: number;
-  reservationId?: number;
+  id?: number;
+  reservationId: number;
   name: string;
   imageUrl: string;
   genre: string;
