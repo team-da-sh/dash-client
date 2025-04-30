@@ -11,7 +11,12 @@ export const containerStyle = style({
   display: 'flex',
   flexDirection: 'column',
 
-  padding: '2rem 2rem 3.4rem 2rem',
+  padding: '0rem 2rem',
+  gap: '1.6rem',
+});
+
+export const mainTextStyle = style({
+  paddingTop: '2rem',
 });
 
 export const wrapperStyle = style({

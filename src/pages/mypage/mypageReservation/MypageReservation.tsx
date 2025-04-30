@@ -26,6 +26,7 @@ const MyPageReservation = () => {
             </Text>
           )}
         </div>
+
         {reservationData?.reservations?.length && (
           <div className={sprinkles({ display: 'flex', gap: 12, marginTop: 16 })}>
             {reservationData.reservations.map((reservation: Reservation) => (
