@@ -3,11 +3,11 @@ import Text from '@/shared/components/Text/Text';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
 
 interface ApplicantInfoPropTypes {
-  studentName: string;
-  studentPhoneNumber: string;
+  memberName: string;
+  memberPhoneNumber: string;
 }
 
-const ApplicantInfo = ({ studentName, studentPhoneNumber }: ApplicantInfoPropTypes) => {
+const ApplicantInfo = ({ memberName, memberPhoneNumber }: ApplicantInfoPropTypes) => {
   return (
     <div className={styles.bookerComponentStyle}>
       <div className={sprinkles({ display: 'flex', gap: 12 })}>
@@ -15,7 +15,7 @@ const ApplicantInfo = ({ studentName, studentPhoneNumber }: ApplicantInfoPropTyp
           이름
         </Text>
         <Text tag="b3_m" color="gray10">
-          {studentName}
+          {memberName}
         </Text>
       </div>
       <div className={sprinkles({ display: 'flex', gap: 12 })}>
@@ -23,7 +23,7 @@ const ApplicantInfo = ({ studentName, studentPhoneNumber }: ApplicantInfoPropTyp
           전화번호
         </Text>
         <Text tag="b3_m" color="gray10">
-          {studentPhoneNumber}
+          {memberPhoneNumber}
         </Text>
       </div>
     </div>
