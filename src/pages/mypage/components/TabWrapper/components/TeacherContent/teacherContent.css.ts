@@ -22,3 +22,19 @@ export const reviewContainerStyle = style({
   alignItems: 'center',
   justifyContent: 'space-between',
 });
+
+export const classButtonStyle = style({
+  position: 'fixed',
+  right: '20px',
+  bottom: '36px',
+
+  display: 'flex',
+  justifyContent: 'center',
+  width: 'max-content',
+  alignItems: 'center',
+  gap: '0.2rem',
+  padding: '1.2rem 1.6rem 1.2rem 1.2rem',
+
+  borderRadius: '40px',
+  backgroundColor: vars.colors.main04,
+});

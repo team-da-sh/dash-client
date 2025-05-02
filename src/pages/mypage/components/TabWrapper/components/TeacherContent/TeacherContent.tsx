@@ -1,8 +1,11 @@
+import { useNavigate } from 'react-router-dom';
 import BottomList from '@/pages/mypage/components/BottomList/BottomList';
 import EmptyClassList from '@/pages/mypage/components/TabWrapper/components/TeacherContent/components/EmptyClassList/EmptyClassList';
 import TeacherLessons from '@/pages/mypage/components/TabWrapper/components/TeacherContent/components/TeacherLessons/TeacherLessons';
 import * as styles from '@/pages/mypage/components/TabWrapper/components/TeacherContent/teacherContent.css';
 import { getFullUrl } from '@/pages/mypage/utils/url';
+import { ROUTES_CONFIG } from '@/routes/routesConfig';
+import SvgIcPlusWhite24 from '@/assets/svg/IcPlusWhite24';
 import SvgIcReview from '@/assets/svg/IcReview';
 import SvgIcArrowRightSmallGray0732 from '@/shared/assets/svg/IcArrowRightSmallGray0732';
 import SvgIcInstagram20 from '@/shared/assets/svg/IcInstagram20';
@@ -14,8 +17,13 @@ import { sprinkles } from '@/shared/styles/sprinkles.css';
 import { mockMyTeacherData, mockTeacherLessonData } from '../../mockData';
 
 const TeacherContent = () => {
+  const navigate = useNavigate();
   const data = mockMyTeacherData;
   const lessonData = mockTeacherLessonData;
+
+  const handleClassButtonClick = () => {
+    navigate(ROUTES_CONFIG.classRegister.path);
+  };
 
   return (
     <div className={styles.containerStyle}>
@@ -81,6 +89,12 @@ const TeacherContent = () => {
       </div>
       <Divider color="gray1" thickness="0.4rem" />
       <BottomList />
+      <button type="button" className={styles.classButtonStyle} onClick={handleClassButtonClick}>
+        <SvgIcPlusWhite24 width={24} />
+        <Text tag="b1_sb_long" color="white">
+          클래스 개설
+        </Text>
+      </button>
     </div>
   );
 };
