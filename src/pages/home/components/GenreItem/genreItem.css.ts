@@ -4,6 +4,7 @@ import { vars } from '@/shared/styles/theme.css';
 export const containerStyle = style({
   position: 'relative',
   width: '100%',
+  maxWidth: '12rem',
   height: '7.6rem',
 
   borderRadius: '4px',
