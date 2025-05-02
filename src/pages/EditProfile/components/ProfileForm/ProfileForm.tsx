@@ -20,6 +20,7 @@ interface ProfileFormPropTypes {
 
 const ProfileForm = ({ defaultValues, onSubmit }: ProfileFormPropTypes) => {
   const [isChanged, setIsChanged] = useState(false);
+  const [fileSelected, setFileSelected] = useState(false);
 
   const {
     register,
@@ -38,18 +39,21 @@ const ProfileForm = ({ defaultValues, onSubmit }: ProfileFormPropTypes) => {
 
   const currentNickname = watch('nickname');
   const currentPhoneNumber = watch('phoneNumber');
-  const profileImageUrl = watch('profileImageUrl');
+
+  const handleFileChange = (selected: boolean) => {
+    setFileSelected(selected);
+  };
 
   useEffect(() => {
     // !! 연산자로 boolean 타입 보장
     const hasChanged = !!(
       currentNickname !== defaultValues.nickname ||
       currentPhoneNumber !== defaultValues.phoneNumber ||
-      (profileImageUrl && profileImageUrl.length > 0)
+      fileSelected
     );
 
     setIsChanged(hasChanged);
-  }, [currentNickname, currentPhoneNumber, profileImageUrl, defaultValues]);
+  }, [currentNickname, currentPhoneNumber, fileSelected, defaultValues]);
 
   const isButtonActive = isChanged && isValid;
 
@@ -59,6 +63,7 @@ const ProfileForm = ({ defaultValues, onSubmit }: ProfileFormPropTypes) => {
         defaultImageUrl={defaultValues.profileImageUrl}
         register={register}
         error={errors.profileImageUrl}
+        onFileChange={handleFileChange}
       />
 
       <FormField

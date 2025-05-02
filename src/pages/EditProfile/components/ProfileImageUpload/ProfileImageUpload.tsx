@@ -6,8 +6,9 @@ interface ProfileImageUploadPropTypes {
   defaultImageUrl: string;
   register: any;
   error?: { message?: string } | undefined;
+  onFileChange?: (selected: boolean) => void;
 }
-const ProfileImageUpload = ({ defaultImageUrl, register, error }: ProfileImageUploadPropTypes) => {
+const ProfileImageUpload = ({ defaultImageUrl, register, error, onFileChange }: ProfileImageUploadPropTypes) => {
   const [previewUrl, setPreviewUrl] = useState(defaultImageUrl);
 
   const handleImageClick = () => {
@@ -22,6 +23,8 @@ const ProfileImageUpload = ({ defaultImageUrl, register, error }: ProfileImageUp
         setPreviewUrl(e.target?.result as string);
       };
       reader.readAsDataURL(file);
+
+      onFileChange?.(true);
     }
   };
 
