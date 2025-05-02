@@ -7,8 +7,10 @@ export const ulStyle = style({
 
   width: '100%',
 
-  padding: '2.4rem 2rem 2.8rem 2rem',
+  padding: '2.4rem 1.6rem 2.8rem 1.6rem',
   gap: '0.8rem',
+
+  backgroundColor: vars.colors.white,
 });
 
 export const listStyle = style({

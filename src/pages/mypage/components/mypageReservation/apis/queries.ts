@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { getReservations } from '@/pages/mypage/mypageReservation/apis/axios';
+import { getReservations } from '@/pages/mypage/components/mypageReservation/apis/axios';
 import { QUERY_KEYS } from '@/shared/constants/queryKey';
 import type { ReservationResponseTypes } from '../types/api';
 

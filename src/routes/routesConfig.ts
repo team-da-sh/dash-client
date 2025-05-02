@@ -43,6 +43,10 @@ export const ROUTES_CONFIG = {
     title: 'paymentsFail',
     path: '/reservation/payments/fail',
   },
+  mypage: {
+    title: 'Mypage',
+    path: '/mypage',
+  },
   mypageReservation: {
     title: 'MypageReservation',
     path: '/mypage/reservation',
