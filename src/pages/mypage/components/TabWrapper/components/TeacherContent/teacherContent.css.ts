@@ -10,9 +10,8 @@ export const topContainerStyle = style({
   display: 'flex',
   flexDirection: 'column',
   gap: '2rem',
-  padding: '2rem',
 
-  backgroundColor: vars.colors.gray01,
+  backgroundColor: vars.colors.white,
 });
 
 export const reviewContainerStyle = style({
