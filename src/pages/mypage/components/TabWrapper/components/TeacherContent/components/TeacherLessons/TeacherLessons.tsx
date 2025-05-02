@@ -1,12 +1,14 @@
 import MypageLessonItem from '@/pages/mypage/components/MypageLessonItem/MypageLessonItem';
-import { mockTeacherLessonData } from '../../../../mockData';
+import {
+  lessons,
+  LessonDataResponseTypes,
+} from '@/pages/mypage/components/TabWrapper/components/TeacherContent/types/api';
 import * as styles from './teacherLessons.css';
 
-const TeacherLessons = () => {
-  const data = mockTeacherLessonData;
+const TeacherLessons = ({ data }: { data: LessonDataResponseTypes }) => {
   return (
     <ul className={styles.containerStyle}>
-      {data?.lessons.map((lesson) => <MypageLessonItem key={lesson.id} {...lesson} />)}
+      {data?.lessons?.map((lesson: lessons) => <MypageLessonItem key={lesson.id} {...lesson} />)}
     </ul>
   );
 };

@@ -11,10 +11,12 @@ import Divider from '@/shared/components/Divider/Divider';
 import InfoComponent from '@/shared/components/InfoComponent/InfoComponent';
 import Text from '@/shared/components/Text/Text';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
-import { mockMyTeacherData } from '../../mockData';
+import { mockMyTeacherData, mockTeacherLessonData } from '../../mockData';
 
 const TeacherContent = () => {
   const data = mockMyTeacherData;
+  const lessonData = mockTeacherLessonData;
+
   return (
     <div className={styles.containerStyle}>
       <div className={styles.topContainerStyle}>
@@ -66,8 +68,7 @@ const TeacherContent = () => {
           </Text>
           <p>모두 보기</p>
         </div>
-        <TeacherLessons />
-        <EmptyClassList />
+        {lessonData.lessons.length > 0 ? <TeacherLessons data={lessonData} /> : <EmptyClassList />}
       </section>
       <div className={styles.reviewContainerStyle}>
         <div className={sprinkles({ display: 'flex', alignItems: 'center', gap: 4 })}>
