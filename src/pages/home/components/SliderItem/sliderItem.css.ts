@@ -6,6 +6,7 @@ export const containerStyle = style({
   position: 'relative',
 
   width: '100%',
+  marginTop: '-6rem',
   aspectRatio: '1 / 1',
 });
 
