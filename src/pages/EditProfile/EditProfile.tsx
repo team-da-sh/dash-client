@@ -12,6 +12,8 @@ const profileSchema = z.object({
     .string()
     .min(1, '댄서네임을 입력해주세요')
     .regex(/^[\w가-힣]+$/, '특수기호, 띄어쓰기는 입력할 수 없어요'),
+  phoneNumber: z.string().regex(/^[0-9]\d{10}$/, '숫자만 11자리 입력해주세요'),
+  name: z.string().optional(),
 });
 
 type profileFormValues = z.infer<typeof profileSchema>;
@@ -23,11 +25,13 @@ const EditProfile = () => {
     register,
     handleSubmit,
     formState: { errors },
-    watch,
+    // watch,
   } = useForm<profileFormValues>({
     resolver: zodResolver(profileSchema),
     defaultValues: {
       nickname: data.nickname,
+      name: data.name,
+      phoneNumber: data.phoneNumber,
     },
   });
 
@@ -50,9 +54,35 @@ const EditProfile = () => {
           </label>
           <Input placeholder="댄서네임을 입력해주세요" {...register('nickname')} isError={!!errors.nickname} />
           {errors.nickname && (
-            <Text tag="b3_r" color="alert3">
-              {errors.nickname.message}
-            </Text>
+            <div className={styles.errorMessageStyle}>
+              <Text tag="b3_r" color="alert3">
+                {errors.nickname.message}
+              </Text>
+              {/* 
+                댄서네임 길이 조건 물어보고 추가예정
+                <Text tag="b3_r" color="alert3">
+                  {watch('nickname')?.length || 0}/8
+                </Text> */}
+            </div>
+          )}
+        </div>
+        <div className={styles.inputWrapperStyle}>
+          <label>
+            <Text tag="b2_sb">이름</Text>
+          </label>
+          <Input {...register('name')} readOnly />
+        </div>
+        <div className={styles.inputWrapperStyle}>
+          <label>
+            <Text tag="b2_sb">전화번호</Text>
+          </label>
+          <Input placeholder="전화번호를 입력해주세요" {...register('phoneNumber')} isError={!!errors.phoneNumber} />
+          {errors.phoneNumber && (
+            <div className={styles.errorMessageStyle}>
+              <Text tag="b3_r" color="alert3">
+                {errors.phoneNumber.message}
+              </Text>
+            </div>
           )}
         </div>
         <button type="submit">확인</button>

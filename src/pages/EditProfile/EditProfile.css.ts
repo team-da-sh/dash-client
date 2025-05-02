@@ -11,3 +11,8 @@ export const inputWrapperStyle = style({
 
   padding: '1.2rem 0 1.2rem 0',
 });
+
+export const errorMessageStyle = style({
+  display: 'flex',
+  justifyContent: 'space-between',
+});
