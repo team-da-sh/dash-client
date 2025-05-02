@@ -1,5 +1,5 @@
 import type { Reservation } from '@/shared/types/reservationTypes';
 
-export interface ReservationResponse {
+export interface ReservationResponseTypes {
   reservations: Reservation[];
 }

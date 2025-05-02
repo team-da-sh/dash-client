@@ -4,8 +4,9 @@ import { containerStyle, layoutStyle } from '@/pages/mypage/components/mypageRes
 import { handleBoxButtonClick, handleCancelClick, handleClassCardClick } from '@/pages/mypage/utils/clickUtils';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import ClassCard from '@/shared/components/ClassCard/ClassCard';
-import Flex from '@/shared/components/Flex/Flex';
+import Head from '@/shared/components/Head/Head';
 import Text from '@/shared/components/Text/Text';
+import { sprinkles } from '@/shared/styles/sprinkles.css';
 import type { Reservation } from '@/shared/types/reservationTypes';
 
 const MyPageReservation = () => {
@@ -15,25 +16,32 @@ const MyPageReservation = () => {
   return (
     <div className={layoutStyle}>
       <div className={containerStyle}>
-        {reservationData && (
-          <Text tag="b2_m" color="gray9">
-            전체 {reservationData?.reservations.length}
-          </Text>
-        )}
-
+        <div className={sprinkles({ display: 'flex', alignItems: 'center', gap: 4 })}>
+          <Head tag="h6_sb" color="black">
+            클래스 신청 내역
+          </Head>
+          {reservationData && (
+            <Text tag="b2_m" color="gray7">
+              ({reservationData?.reservations.length})
+            </Text>
+          )}
+        </div>
         {reservationData?.reservations?.length && (
-          <Flex direction="column" gap="1.2rem" marginTop="1.6rem">
+          <div className={sprinkles({ display: 'flex', gap: 12, marginTop: 16 })}>
             {reservationData.reservations.map((reservation: Reservation) => (
               <ClassCard
                 key={reservation.reservationId}
-                lessonName={reservation.name}
-                lessonImageUrl={reservation.imageUrl}
-                lessonGenre={reservation.genre}
-                lessonLevel={reservation.level}
-                lessonLocation={reservation.location}
-                lessonStartDateTime={reservation.startDateTime}
-                lessonEndDateTime={reservation.endDateTime}
+                id={reservation.reservationId}
+                name={reservation.name}
+                imageUrl={reservation.imageUrl}
+                genre={reservation.genre}
+                level={reservation.level}
+                location={reservation.location}
+                detailedAddress={reservation.location}
+                startDateTime={reservation.startDateTime}
+                endDateTime={reservation.endDateTime}
                 isReservation={true}
+                applyStatus={reservation.attendStatus}
                 onClick={() => handleClassCardClick(navigate, reservation.reservationId)}>
                 <BoxButton onClick={handleCancelClick} variant="temp">
                   취소하기
@@ -46,7 +54,7 @@ const MyPageReservation = () => {
                 </BoxButton>
               </ClassCard>
             ))}
-          </Flex>
+          </div>
         )}
       </div>
     </div>
