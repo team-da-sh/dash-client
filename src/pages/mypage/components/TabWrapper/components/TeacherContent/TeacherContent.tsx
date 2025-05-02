@@ -1,7 +1,9 @@
 import BottomList from '@/pages/mypage/components/BottomList/BottomList';
+import EmptyClassList from '@/pages/mypage/components/TabWrapper/components/TeacherContent/components/EmptyClassList/EmptyClassList';
+import TeacherLessons from '@/pages/mypage/components/TabWrapper/components/TeacherContent/components/TeacherLessons/TeacherLessons';
 import * as styles from '@/pages/mypage/components/TabWrapper/components/TeacherContent/teacherContent.css';
-import TeacherLessons from '@/pages/mypage/components/TeacherLessons/TeacherLessons';
 import { getFullUrl } from '@/pages/mypage/utils/url';
+import SvgIcReview from '@/assets/svg/IcReview';
 import SvgIcArrowRightSmallGray0732 from '@/shared/assets/svg/IcArrowRightSmallGray0732';
 import SvgIcInstagram20 from '@/shared/assets/svg/IcInstagram20';
 import SvgIcYoutube20 from '@/shared/assets/svg/IcYoutube20';
@@ -65,10 +67,11 @@ const TeacherContent = () => {
           <p>모두 보기</p>
         </div>
         <TeacherLessons />
+        <EmptyClassList />
       </section>
       <div className={styles.reviewContainerStyle}>
-        <div className={sprinkles({ display: 'flex', alignItems: 'center' })}>
-          <SvgIcArrowRightSmallGray0732 width={32} />
+        <div className={sprinkles({ display: 'flex', alignItems: 'center', gap: 4 })}>
+          <SvgIcReview width={24} />
           <Text tag="b2_sb" color="gray11">
             리뷰 확인
           </Text>

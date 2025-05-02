@@ -1,5 +1,5 @@
-import MypageLessonItem from '../MypageLessonItem/MypageLessonItem';
-import { mockTeacherLessonData } from '../TabWrapper/mockData';
+import MypageLessonItem from '@/pages/mypage/components/MypageLessonItem/MypageLessonItem';
+import { mockTeacherLessonData } from '../../../../mockData';
 import * as styles from './teacherLessons.css';
 
 const TeacherLessons = () => {
