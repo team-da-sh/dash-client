@@ -1,5 +1,5 @@
-import Text from '../components/Text/Text';
-import { sprinkles } from '../styles/sprinkles.css';
+import Text from '@/shared/components/Text/Text';
+import { sprinkles } from '@/shared/styles/sprinkles.css';
 
 type Status = 'upcoming' | 'ongoing' | 'completed';
 

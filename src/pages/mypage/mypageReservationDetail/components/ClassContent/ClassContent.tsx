@@ -7,9 +7,7 @@ import { getStatusMessage } from '@/shared/utils/getStatusMessage';
 import { getClassStatus } from '@/shared/utils/timeCalculate';
 
 const ClassContent = () => {
-  const { id } = useParams<{ id: string }>();
-
-  const lessonId = Number(id);
+  const lessonId = Number(useParams<{ id: string }>().id);
 
   const { data } = useGetReservationsDetail(lessonId);
 
@@ -24,11 +22,10 @@ const ClassContent = () => {
 
   return (
     <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 16 })}>
-      <div>
-        <Text tag="b2_m_long" color="gray8">
-          {getStatusMessage(status, data?.dDay)}
-        </Text>
-      </div>
+      <Text tag="b2_m_long" color="gray8">
+        {getStatusMessage(status, data?.dDay)}
+      </Text>
+
       <ClassInfo
         name={data?.lessonName}
         location={data?.location}
