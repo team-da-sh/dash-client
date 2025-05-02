@@ -1,6 +1,8 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
+import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import Head from '@/shared/components/Head/Head';
 import Input from '@/shared/components/Input/Input';
 import Text from '@/shared/components/Text/Text';
@@ -20,12 +22,13 @@ type profileFormValues = z.infer<typeof profileSchema>;
 
 const EditProfile = () => {
   const data = mockMyPageData;
+  const [isChanged, setIsChanged] = useState(false);
 
   const {
     register,
     handleSubmit,
-    formState: { errors },
-    // watch,
+    formState: { errors, isValid },
+    watch,
   } = useForm<profileFormValues>({
     resolver: zodResolver(profileSchema),
     defaultValues: {
@@ -33,7 +36,19 @@ const EditProfile = () => {
       name: data.name,
       phoneNumber: data.phoneNumber,
     },
+    mode: 'onChange',
   });
+
+  const currentNickname = watch('nickname');
+  const currentPhoneNumber = watch('phoneNumber');
+
+  useEffect(() => {
+    const hasChanged = currentNickname !== data.nickname || currentPhoneNumber !== data.phoneNumber;
+
+    setIsChanged(hasChanged);
+  }, [currentNickname, currentPhoneNumber, data.nickname, data.phoneNumber]);
+
+  const isButtonActive = isChanged && isValid;
 
   // 폼 제출 처리, 임시 로직
   const onSubmit = (formData: profileFormValues) => {
@@ -85,7 +100,11 @@ const EditProfile = () => {
             </div>
           )}
         </div>
-        <button type="submit">확인</button>
+        <div className={styles.buttonWrapperStyle}>
+          <BoxButton variant="primary" isDisabled={!isButtonActive} type="submit">
+            확인
+          </BoxButton>
+        </div>
       </form>
     </div>
   );
