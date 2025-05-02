@@ -1,16 +1,17 @@
-import ClassProgress from '@/pages/mypage/components/ClassProgress/ClassProgress';
-import MenuButton from '@/pages/mypage/components/MenuButton/MenuButton';
-import * as styles from '@/pages/mypage/components/StudentContent/studentContent.css';
+import ClassProgress from '@/pages/mypage/components/TabWrapper/components/StudentContent/components/ClassProgress/ClassProgress';
+import MenuButton from '@/pages/mypage/components/TabWrapper/components/StudentContent/components/MenuButton/MenuButton';
+import * as styles from '@/pages/mypage/components/TabWrapper/components/StudentContent/studentContent.css';
 import { MENU_LIST } from '@/pages/mypage/constants/myPageList';
 import { formatPhoneNumber } from '@/pages/mypage/utils/format';
 import Divider from '@/shared/components/Divider/Divider';
 import InfoComponent from '@/shared/components/InfoComponent/InfoComponent';
 import Text from '@/shared/components/Text/Text';
-import BottomList from '../BottomList/BottomList';
-import { mockMyPageData } from '../TabWrapper/mockData';
+import BottomList from '../../../BottomList/BottomList';
+import { mockMyPageData } from '../../mockData';
 
 const StudentContent = () => {
   const data = mockMyPageData;
+
   return (
     <div className={styles.containerStyle}>
       <div className={styles.topContainerStyle}>
@@ -26,8 +27,8 @@ const StudentContent = () => {
         <ClassProgress />
       </div>
       <div className={styles.menuButtonContainerStyle}>
-        {MENU_LIST.map((item) => (
-          <MenuButton key={item.label} {...item} />
+        {MENU_LIST.map((menu) => (
+          <MenuButton key={menu.label} {...menu} />
         ))}
       </div>
       <Divider color="gray1" thickness="0.4rem" />

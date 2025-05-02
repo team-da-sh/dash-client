@@ -1,5 +1,5 @@
 import BottomList from '@/pages/mypage/components/BottomList/BottomList';
-import * as styles from '@/pages/mypage/components/TeacherContent/teacherContent.css';
+import * as styles from '@/pages/mypage/components/TabWrapper/components/TeacherContent/teacherContent.css';
 import TeacherLessons from '@/pages/mypage/components/TeacherLessons/TeacherLessons';
 import { getFullUrl } from '@/pages/mypage/utils/url';
 import SvgIcArrowRightSmallGray0732 from '@/shared/assets/svg/IcArrowRightSmallGray0732';
@@ -9,7 +9,7 @@ import Divider from '@/shared/components/Divider/Divider';
 import InfoComponent from '@/shared/components/InfoComponent/InfoComponent';
 import Text from '@/shared/components/Text/Text';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
-import { mockMyTeacherData } from '../TabWrapper/mockData';
+import { mockMyTeacherData } from '../../mockData';
 
 const TeacherContent = () => {
   const data = mockMyTeacherData;

@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import StudentContent from '@/pages/mypage/components/StudentContent/StudentContent';
+import StudentContent from '@/pages/mypage/components/TabWrapper/components/StudentContent/StudentContent';
+import TeacherContent from '@/pages/mypage/components/TabWrapper/components/TeacherContent/TeacherContent';
 import * as styles from '@/pages/mypage/components/TabWrapper/tabWrapper.css';
-import TeacherContent from '@/pages/mypage/components/TeacherContent/TeacherContent';
+import { MYPAGE_TABS } from '@/pages/mypage/constants/tabs';
 import { TabList, TabButton, TabPanel } from '@/shared/components/Tab';
-import { MYPAGE_TABS } from '@/shared/constants';
 
 const TabWrapper = () => {
   const [selected, setSelected] = useState('student');

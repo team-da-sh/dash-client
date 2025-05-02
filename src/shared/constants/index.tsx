@@ -70,11 +70,6 @@ export const GENRE_CATEGORY = [
   ],
 ];
 
-export const MYPAGE_TABS = [
-  { key: 'student', label: '수강생' },
-  { key: 'teacher', label: '강사' },
-];
-
 export const DANCER_TABS = [
   {
     id: 1,

@@ -25,9 +25,9 @@ const MyPage = () => {
   //  const { data: userData = DEFAULT_USER_DATA } = useGetMyPage({});
 
   return (
-    <div className={styles.containerStyle}>
+    <main className={styles.containerStyle}>
       <TabWrapper />
-    </div>
+    </main>
   );
 };
 
