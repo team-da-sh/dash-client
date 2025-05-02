@@ -1,4 +1,3 @@
-// EditProfile.tsx
 import Head from '@/shared/components/Head/Head';
 import { mockMyPageData } from '../mypage/components/TabWrapper/mockData';
 import * as styles from './EditProfile.css';
@@ -6,15 +5,16 @@ import ProfileForm from './components/ProfileForm/ProfileForm';
 import { ProfileFormValues } from './schema/profileSchema';
 
 const EditProfile = () => {
-  const defaultValues: ProfileFormValues = {
-    nickname: mockMyPageData.nickname,
-    name: mockMyPageData.name,
-    phoneNumber: mockMyPageData.phoneNumber,
-  };
-
-  //api 연결 전 임시
   const handleSubmit = (formData: ProfileFormValues) => {
-    console.log('제출성공', formData);
+    const submitData = new FormData();
+    submitData.append('nickname', formData.nickname);
+    submitData.append('phoneNumber', formData.phoneNumber);
+
+    if (formData.profileImageUrl && formData.profileImageUrl.length > 0) {
+      submitData.append('profileImage', formData.profileImageUrl[0]);
+    }
+
+    console.log('제출 데이터:', formData);
     alert('성공적으로 변경되었습니다.');
   };
 
@@ -23,7 +23,15 @@ const EditProfile = () => {
       <Head level="h2" tag="h6_sb">
         내 정보 수정
       </Head>
-      <ProfileForm defaultValues={defaultValues} onSubmit={handleSubmit} />
+      <ProfileForm
+        defaultValues={{
+          nickname: mockMyPageData.nickname,
+          name: mockMyPageData.name,
+          phoneNumber: mockMyPageData.phoneNumber,
+          profileImageUrl: mockMyPageData.profileImageUrl,
+        }}
+        onSubmit={handleSubmit}
+      />
     </div>
   );
 };
