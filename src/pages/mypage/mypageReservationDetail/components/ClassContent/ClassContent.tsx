@@ -15,8 +15,8 @@ const ClassContent = () => {
     return <div>오류 data 없음 </div>;
   }
 
-  const lessonStartDateTime = data.rounds[0]?.startDateTime;
-  const lessonEndDateTime = data.rounds[0]?.endDateTime;
+  const lessonStartDateTime = data.rounds?.[0]?.startDateTime;
+  const lessonEndDateTime = data.rounds?.[0]?.endDateTime;
 
   const { status } = getClassStatus(lessonStartDateTime, lessonEndDateTime);
 
@@ -27,12 +27,12 @@ const ClassContent = () => {
       </Text>
 
       <ClassInfo
-        name={data?.lessonName}
-        location={data?.location}
-        locationDetail={data?.detailedAddress}
-        teacherNickname={data?.nickname}
-        level={data?.level}
-        lessonRound={data?.rounds}
+        name={data.lessonName}
+        location={data.location}
+        locationDetail={data.detailedAddress}
+        teacherNickname={data.nickname}
+        level={data.level}
+        lessonRound={data.rounds}
       />
     </div>
   );

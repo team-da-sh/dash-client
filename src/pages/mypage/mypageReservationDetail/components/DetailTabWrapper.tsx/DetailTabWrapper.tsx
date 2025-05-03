@@ -7,24 +7,23 @@ const DetailTabWrapper = () => {
   const [selected, setSelected] = useState('class');
   return (
     <section className={styles.containerStyle}>
-      <div>
-        <TabList>
-          <TabButton
-            key="class"
-            colorScheme="secondary"
-            isSelected={selected === 'class'}
-            onClick={() => setSelected('class')}>
-            클래스 정보
-          </TabButton>
-          <TabButton
-            key="reservation"
-            colorScheme="secondary"
-            isSelected={selected === 'reservation'}
-            onClick={() => setSelected('reservation')}>
-            신청 정보
-          </TabButton>
-        </TabList>
-      </div>
+      <TabList>
+        <TabButton
+          key="class"
+          colorScheme="secondary"
+          isSelected={selected === 'class'}
+          onClick={() => setSelected('class')}>
+          클래스 정보
+        </TabButton>
+        <TabButton
+          key="reservation"
+          colorScheme="secondary"
+          isSelected={selected === 'reservation'}
+          onClick={() => setSelected('reservation')}>
+          신청 정보
+        </TabButton>
+      </TabList>
+
       <TabPanel isSelected={selected === 'class'}>
         <ClassContent />
       </TabPanel>
