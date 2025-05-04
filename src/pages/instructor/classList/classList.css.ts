@@ -8,7 +8,7 @@ export const layoutStyle = style({
 });
 
 export const containerStyle = style({
-  padding: '8.4rem 2rem 3.4rem 2rem',
+  padding: '2rem 2rem 3.4rem 2rem',
 });
 
 export const buttonStyle = style({

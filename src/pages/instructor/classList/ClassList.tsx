@@ -1,11 +1,12 @@
 import { useNavigate } from 'react-router-dom';
 import { useGetMyLessons } from '@/pages/instructor/classList/apis/queries';
-import { containerStyle, layoutStyle } from '@/pages/instructor/classList/classList.css';
+import * as styles from '@/pages/instructor/classList/classList.css';
 import { handleBoxButtonClick, handleCancelClick, handleClassCardClick } from '@/pages/mypage/utils/clickUtils';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import ClassCard from '@/shared/components/ClassCard/ClassCard';
-import Flex from '@/shared/components/Flex/Flex';
+import Head from '@/shared/components/Head/Head';
 import Text from '@/shared/components/Text/Text';
+import { sprinkles } from '@/shared/styles/sprinkles.css';
 import type { Lesson } from '@/shared/types/lessonTypes';
 
 const ClassList = () => {
@@ -13,7 +14,6 @@ const ClassList = () => {
 
   const { data: lessonData, isError, isLoading } = useGetMyLessons();
 
-  // 로딩, 에러 페이지 처리
   if (isLoading) {
     return <div></div>;
   }
@@ -23,24 +23,24 @@ const ClassList = () => {
   }
 
   return (
-    <div className={layoutStyle}>
-      <div className={containerStyle}>
-        <Text tag="b2_m" color="gray9">
-          전체 {lessonData?.count}
-        </Text>
-        <Flex direction="column" gap="1.2rem" marginTop="1.6rem">
+    <div className={styles.layoutStyle}>
+      <main className={styles.containerStyle}>
+        <div className={sprinkles({ display: 'flex', alignItems: 'center', gap: 4 })}>
+          <Head level="h2" tag="h6_sb" color="black">
+            내 클래스 관리
+          </Head>
+          <Text tag="b2_m" color="gray9">
+            ({lessonData?.count})
+          </Text>
+        </div>
+
+        <section className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 12, marginTop: 16 })}>
           {lessonData?.lessons.map((lesson: Lesson) => (
             <ClassCard
               onClick={() => handleClassCardClick(navigate, lesson.id)}
               isReservation={false}
               key={lesson.id}
-              lessonName={lesson.name}
-              lessonImageUrl={lesson.imageUrl}
-              lessonGenre={lesson.genre}
-              lessonLevel={lesson.level}
-              lessonLocation={lesson.location}
-              lessonStartDateTime={lesson.startDateTime}
-              lessonEndDateTime={lesson.endDateTime}>
+              {...lesson}>
               <BoxButton onClick={handleCancelClick} variant="temp">
                 수정하기
               </BoxButton>
@@ -49,8 +49,8 @@ const ClassList = () => {
               </BoxButton>
             </ClassCard>
           ))}
-        </Flex>
-      </div>
+        </section>
+      </main>
     </div>
   );
 };
