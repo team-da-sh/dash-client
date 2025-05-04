@@ -12,10 +12,10 @@ interface TabWrapperPropTypes {
 
 const TabWrapper = ({ colorScheme, lessonData }: TabWrapperPropTypes) => {
   const [selectedTab, setSelectedTab] = useState(0);
-
+  // pt: 24, pl: 56
   return (
     <TabRoot>
-      <div className={sprinkles({ pt: 16, pl: 20 })}>
+      <div className={sprinkles({ display: 'flex', pt: 24, justifyContent: 'center' })}>
         <TabList>
           {CLASS_TABS.map((tab) => (
             <TabButton

@@ -2,13 +2,11 @@ import { useNavigate } from 'react-router-dom';
 import * as styles from '@/pages/class/components/ClassInfoWrapper/classInfoWrapper.css';
 import type { LessonDetailResponseTypes } from '@/pages/class/types/api';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import IcThunderMain0424 from '@/shared/assets/svg/IcThunderMain0424';
 import Head from '@/shared/components/Head/Head';
 import Tag from '@/shared/components/Tag/Tag';
 import Text from '@/shared/components/Text/Text';
 import { genreMapping } from '@/shared/constants/index';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
-import { vars } from '@/shared/styles/theme.css';
 
 const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetailResponseTypes }) => {
   const {
@@ -19,22 +17,12 @@ const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetailResponseType
     teacherNickname,
     lessonRound: { lessonRounds },
     price,
-    maxReservationCount,
-    reservationCount,
     remainingDays,
   } = lessonData;
   const translatedGenre = genreMapping[genre] || genre;
 
   // D-DAY remaingDays로 통일
   const dDay = remainingDays > 0 ? `D-${remainingDays}` : remainingDays === 0 ? 'D-DAY' : '마감';
-
-  // 남은 예약 가능 인원 계산
-  const remainingSeats = maxReservationCount - reservationCount;
-
-  const isSoldOut = remainingSeats <= 0;
-  const remainingText = isSoldOut ? '신청 마감된 수업이에요' : `${remainingSeats}`;
-  const iconColor = isSoldOut ? vars.colors.alert03 : vars.colors.main04;
-  const textColor = isSoldOut ? 'alert3' : 'main4';
 
   const navigate = useNavigate();
 
@@ -63,7 +51,7 @@ const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetailResponseType
       </Head>
 
       <div
-        className={sprinkles({ display: 'flex', alignItems: 'center', gap: 8 })}
+        className={sprinkles({ display: 'flex', alignItems: 'center', marginBottom: 8, gap: 8 })}
         onClick={() => handleTeacherClick(teacherId)}>
         <img src={teacherImageUrl} alt={`${teacherNickname} 프로필`} className={styles.profileStyle} />
         <Text tag="b2_m" color="gray9">
@@ -92,18 +80,8 @@ const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetailResponseType
           </Head>
         </div>
       </div>
-
-      <div className={styles.cardStyle}>
-        <IcThunderMain0424 width={'2.4rem'} color={iconColor} className={sprinkles({ mr: 4 })} />
-        <Text tag="b2_m" color="black">
-          {isSoldOut ? '' : '마감까지'}
-        </Text>
-        <Text tag="b2_m" color={textColor}>
-          {remainingText}
-        </Text>
-        <Text tag="b2_m" color="black">
-          {isSoldOut ? '' : '명 남았어요!'}
-        </Text>
+      <div>
+        <p>난이도 인원 리뷰</p>
       </div>
     </section>
   );
