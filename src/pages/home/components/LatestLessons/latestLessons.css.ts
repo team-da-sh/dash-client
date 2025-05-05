@@ -6,7 +6,7 @@ export const containerStyle = style({
   marginTop: '3.2rem',
 });
 
-export const recommandLessonWrapperStyle = style({
+export const latestLessonWrapperStyle = style({
   display: 'flex',
   gap: '0.8rem',
   marginTop: '2rem',
