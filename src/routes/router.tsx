@@ -1,8 +1,8 @@
 import { createBrowserRouter } from 'react-router-dom';
-import EditProfile from '@/pages/EditProfile/EditProfile';
 import { LoginCallback } from '@/pages/auth/auth';
 import Class from '@/pages/class/Class';
 import Dancer from '@/pages/dancer/Dancer';
+import EditProfile from '@/pages/editProfile/EditProfile';
 import Error from '@/pages/error/Error';
 import Home from '@/pages/home/Home';
 import ClassDetail from '@/pages/instructor/classDetail/ClassDetail';

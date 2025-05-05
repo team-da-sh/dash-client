@@ -1,11 +1,11 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
-import { useFormChanged } from '@/pages/EditProfile/hooks/useFormChanged.ts';
+import FormField from '@/pages/editProfile/components/FormField/FormField.tsx';
+import ProfileImageUpload from '@/pages/editProfile/components/ProfileImageUpload/ProfileImageUpload.tsx';
+import { useFormChanged } from '@/pages/editProfile/hooks/useFormChanged.ts';
+import { profileSchema, ProfileFormValues } from '@/pages/editProfile/schema/profileSchema.ts';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import Text from '@/shared/components/Text/Text';
-import { profileSchema, ProfileFormValues } from '../../schema/profileSchema';
-import FormField from '../FormField/FormField';
-import ProfileImageUpload from '../ProfileImageUpload/ProfileImageUpload.tsx';
 import * as styles from './profileForm.css.ts';
 
 interface ProfileFormPropTypes {

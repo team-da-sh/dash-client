@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { ACCEPTED_IMAGE_TYPES, MAX_FILE_SIZE } from '@/pages/EditProfile/constants/imgLimit';
+import { ACCEPTED_IMAGE_TYPES, MAX_FILE_SIZE } from '@/pages/editProfile/constants/imgLimit';
 
 export const profileSchema = z.object({
   profileImageUrl: z.union([
