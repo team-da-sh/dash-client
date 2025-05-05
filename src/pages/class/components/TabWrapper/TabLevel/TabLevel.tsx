@@ -7,6 +7,7 @@ import Head from '@/shared/components/Head/Head';
 import Text from '@/shared/components/Text/Text';
 import { LEVEL, levelMapping } from '@/shared/constants/index';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
+import { vars } from '@/shared/styles/theme.css';
 
 const IcSparkleMain20 = lazy(() => import('@/shared/assets/svg/IcSparkleMain20'));
 const IcLevelStarter = lazy(() => import('@/shared/assets/svg/IcLevelStarter'));
@@ -29,7 +30,7 @@ const TabLevel = ({ lessonData }: { lessonData: LessonDetailResponseTypes }) => 
           width: '100%',
           gap: 6,
         })}>
-        <Card>
+        <Card style={{ border: `1px solid ${vars.colors.gray03}` }}>
           <div className={sprinkles({ display: 'flex', alignItems: 'center', gap: 8 })}>
             {levelData?.icon || (
               <Suspense fallback={<div>Loading...</div>}>

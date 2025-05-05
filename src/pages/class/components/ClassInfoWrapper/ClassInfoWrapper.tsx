@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import Card from '@/pages/class/components/Card/Card';
 import * as styles from '@/pages/class/components/ClassInfoWrapper/classInfoWrapper.css';
 import type { LessonDetailResponseTypes } from '@/pages/class/types/api';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
@@ -6,7 +7,9 @@ import Head from '@/shared/components/Head/Head';
 import Tag from '@/shared/components/Tag/Tag';
 import Text from '@/shared/components/Text/Text';
 import { genreMapping } from '@/shared/constants/index';
+import { levelMapping } from '@/shared/constants/index';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
+import { vars } from '@/shared/styles/theme.css';
 
 const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetailResponseTypes }) => {
   const {
@@ -18,8 +21,11 @@ const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetailResponseType
     lessonRound: { lessonRounds },
     price,
     remainingDays,
+    maxReservationCount,
+    level,
   } = lessonData;
   const translatedGenre = genreMapping[genre] || genre;
+  const translatedLevel = levelMapping[level] || level;
 
   // D-DAY remaingDays로 통일
   const dDay = remainingDays > 0 ? `D-${remainingDays}` : remainingDays === 0 ? 'D-DAY' : '마감';
@@ -32,7 +38,7 @@ const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetailResponseType
   };
 
   return (
-    <section className={sprinkles({ flexDirection: 'column', pt: 20, pr: 24, pb: 24, pl: 20 })}>
+    <section className={sprinkles({ flexDirection: 'column', pt: 20, pr: 20, pb: 24, pl: 20 })}>
       <div className={sprinkles({ display: 'flex', mb: 12, gap: 4 })}>
         <Tag type="genre" size="medium">
           <Text tag="b3_m" color="white">
@@ -66,7 +72,7 @@ const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetailResponseType
           width: '100%',
           alignItems: 'center',
           gap: 8,
-          mb: 15,
+          mb: 24,
         })}>
         <Head level="h4" tag="h6_sb" color="gray6">
           {lessonRounds.length}회
@@ -80,9 +86,41 @@ const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetailResponseType
           </Head>
         </div>
       </div>
-      <div>
-        <p>난이도 인원 리뷰</p>
-      </div>
+      <Card style={{ border: `1px solid ${vars.colors.gray02}` }}>
+        <div style={{ display: 'flex', width: '100%', justifyContent: 'center', gap: '36px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '6rem', gap: 6 }}>
+            <Text tag="b3_sb" color="gray7">
+              난이도
+            </Text>
+            <Text tag="h6_sb" color="gray10">
+              {translatedLevel}
+            </Text>
+          </div>
+
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '6rem', gap: 6 }}>
+            <Text tag="b3_sb" color="gray7">
+              인원
+            </Text>
+            <Text tag="h6_sb" color="gray10">
+              {maxReservationCount}
+            </Text>
+          </div>
+
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '6rem', gap: 6 }}>
+            <Text tag="b3_sb" color="gray7">
+              리뷰
+            </Text>
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'baseline', gap: '2px' }}>
+              <Text tag="h6_sb" color="gray10">
+                5.0
+              </Text>
+              <Text tag="c1_r" color="gray6">
+                (34)
+              </Text>
+            </div>
+          </div>
+        </div>
+      </Card>
     </section>
   );
 };

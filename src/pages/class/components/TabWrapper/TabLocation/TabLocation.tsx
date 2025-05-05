@@ -5,6 +5,7 @@ import type { LessonDetailResponseTypes } from '@/pages/class/types/api';
 import Head from '@/shared/components/Head/Head';
 import Text from '@/shared/components/Text/Text';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
+import { vars } from '@/shared/styles/theme.css';
 
 const IcLocation60 = lazy(() => import('@/shared/assets/svg/IcLocation60'));
 
@@ -24,7 +25,7 @@ const TabLocation = ({ lessonData }: { lessonData: LessonDetailResponseTypes }) 
           아직 장소가 등록되지 않은 클래스예요
         </Head>
       ) : (
-        <Card>
+        <Card style={{ border: `1px solid ${vars.colors.gray03}` }}>
           <div className={sprinkles({ display: 'flex', justifyContent: 'space-between', width: '100%', gap: 16 })}>
             <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 6 })}>
               <Text tag="b2_sb" color="black">

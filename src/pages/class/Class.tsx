@@ -3,6 +3,7 @@ import { useGetLessonDetail } from '@/pages/class/apis/queries';
 import * as styles from '@/pages/class/class.css';
 import ClassButtonWrapper from '@/pages/class/components/ClassButtonWrapper/ClassButtonWrapper';
 import ClassInfoWrapper from '@/pages/class/components/ClassInfoWrapper/ClassInfoWrapper';
+import LimitedChip from '@/pages/class/components/LimitedChip/LimitedChip';
 import TabWrapper from '@/pages/class/components/TabWrapper/TabWrapper';
 import Error from '@/pages/error/Error';
 import Divider from '@/shared/components/Divider/Divider';
@@ -16,7 +17,7 @@ const Class = () => {
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const { data, isError, isLoading } = useGetLessonDetail(id);
-
+  console.log(data);
   if (isLoading) {
     return <></>;
   }
@@ -33,7 +34,9 @@ const Class = () => {
         className={styles.headerStyle}
         style={{
           backgroundImage: `url(${imageUrl})`,
-        }}></div>
+        }}>
+        <LimitedChip lessonData={data} />
+      </div>
 
       <ClassInfoWrapper lessonData={data} />
       <Divider direction="horizontal" color="gray1" length="100%" thickness="1.2rem" />

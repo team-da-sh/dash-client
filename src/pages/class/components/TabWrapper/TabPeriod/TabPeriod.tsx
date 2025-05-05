@@ -3,6 +3,7 @@ import * as styles from '@/pages/class/components/TabWrapper/TabPeriod/tabPeriod
 import type { LessonDetailResponseTypes } from '@/pages/class/types/api';
 import Text from '@/shared/components/Text/Text';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
+import { vars } from '@/shared/styles/theme.css';
 import { calculatePeriod, formatDate } from '@/shared/utils/dateCalculate';
 
 const TabPeriod = ({ lessonData }: { lessonData: LessonDetailResponseTypes }) => {
@@ -15,7 +16,7 @@ const TabPeriod = ({ lessonData }: { lessonData: LessonDetailResponseTypes }) =>
         const { startDateTime, endDateTime } = item;
         const { startTime, formattedEndTime, durationString } = calculatePeriod(startDateTime, endDateTime);
         return (
-          <Card key={id}>
+          <Card key={id} style={{ border: `0.5px solid ${vars.colors.gray02}` }}>
             <div>
               <div className={sprinkles({ display: 'flex', alignItems: 'center', width: '100%' })}>
                 <div className={styles.roundBoxStyle}>
