@@ -2,8 +2,6 @@ import InputSection from '@/pages/instructorRegister/components/CareerSection/In
 import Description from '@/pages/instructorRegister/components/Description/Description';
 import { INFO_KEY } from '@/pages/instructorRegister/constants/registerSection';
 import type { InstructorRegisterInfoTypes } from '@/pages/instructorRegister/types/InstructorRegisterInfoTypes';
-import IcDocumentBlack20 from '@/shared/assets/svg/IcDocumentBlack20';
-import IcGraduationBlack20 from '@/shared/assets/svg/IcGraduationBlack20';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
 
 interface CareerSectionPropTypes {
@@ -38,7 +36,7 @@ const CareerSection = ({
       <InputSection
         title="학력"
         placeholder="대쉬대학교 실용무용학과 졸업"
-        icon={<IcGraduationBlack20 width={'2rem'} />}
+        // icon={<IcGraduationBlack20 width={'2rem'} />}
         isNoneChecked={isEduNoneChecked}
         onToggleActive={handleEducationCheck}
         inputItems={educations.map((value, id) => ({ id: id + 1, value }))}
@@ -53,7 +51,7 @@ const CareerSection = ({
       <InputSection
         title="경력"
         placeholder="2018 BATTLE LIINEUP 1등"
-        icon={<IcDocumentBlack20 width={'2rem'} />}
+        // icon={<IcDocumentBlack20 width={'2rem'} />}
         isNoneChecked={isCareerNoneChecked}
         onToggleActive={handleCareerCheck}
         inputItems={experiences.map((value, id) => ({ id: id + 1, value }))}
@@ -68,7 +66,7 @@ const CareerSection = ({
       <InputSection
         title="수상"
         placeholder="2018 BATTLE LIINEUP 1등"
-        icon={<IcDocumentBlack20 width={'2rem'} />}
+        // icon={<IcDocumentBlack20 width={'2rem'} />}
         isNoneChecked={isPrizeNoneChecked}
         onToggleActive={handlePrizeCheck}
         inputItems={prizes.map((value, id) => ({ id: id + 1, value }))}
