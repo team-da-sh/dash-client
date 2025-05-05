@@ -1,18 +1,16 @@
 import Description from '@/pages/instructorRegister/components/Description/Description';
 import {
-  closeIconStyle,
   inputStyle,
   previewImgStyle,
 } from '@/pages/instructorRegister/components/ImageUploadSection/imageUploadSection.css';
 import IcPlusGray0524 from '@/shared/assets/svg/IcPlusGray0524';
-import IcXCircleMain0324 from '@/shared/assets/svg/IcXCircleMain0324';
 import Text from '@/shared/components/Text/Text';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
 
 interface ImageUploadSectionPropTypes {
   handleUploaderClick: () => void;
   uploadImgFile: () => void;
-  deleteImgFile: (e: React.MouseEvent) => void;
+  // deleteImgFile: (e: React.MouseEvent) => void;
   previewImg: string;
   imgFile: File | undefined;
   imgRef: React.MutableRefObject<HTMLInputElement | null>;
@@ -22,7 +20,7 @@ const ImageUploadSection = ({
   imgFile,
   imgRef,
   previewImg,
-  deleteImgFile,
+  // deleteImgFile,
   uploadImgFile,
   handleUploaderClick,
 }: ImageUploadSectionPropTypes) => {
@@ -42,11 +40,11 @@ const ImageUploadSection = ({
           </div>
         )}
 
-        {imgFile && (
+        {/* {imgFile && (
           <div className={closeIconStyle} onClick={deleteImgFile}>
             <IcXCircleMain0324 width={'2.4rem'} />
           </div>
-        )}
+        )} */}
       </div>
 
       <input

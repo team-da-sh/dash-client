@@ -83,13 +83,13 @@ const InstructorRegister = () => {
     setInfo((prev) => ({ ...prev, imageUrls: url }));
   };
 
-  const handleDeleteUrl = () => {
-    handleInfoChange('imageUrls', '');
-  };
+  // const handleDeleteUrl = () => {
+  //   handleInfoChange('imageUrls', '');
+  // };
 
-  const { imgFile, previewImg, imgRef, handleUploaderClick, uploadImgFile, deleteImgFile } = useImageUploader(
-    handleImageUploadSuccess,
-    handleDeleteUrl
+  const { imgFile, previewImg, imgRef, handleUploaderClick, uploadImgFile } = useImageUploader(
+    handleImageUploadSuccess
+    // handleDeleteUrl
   );
 
   // form submit 함수
@@ -139,7 +139,7 @@ const InstructorRegister = () => {
               imgFile={imgFile}
               imgRef={imgRef}
               previewImg={previewImg}
-              deleteImgFile={deleteImgFile}
+              // deleteImgFile={deleteImgFile}
               uploadImgFile={uploadImgFile}
               handleUploaderClick={handleUploaderClick}
             />
@@ -172,7 +172,6 @@ const InstructorRegister = () => {
               handlePrizeCheck={handlePrizeCheck}
             />
           </div>
-
           <Divider direction="horizontal" color="gray1" length={'100%'} thickness={'0.8rem'} />
 
           <div className={sectionWrapperStyle}>
