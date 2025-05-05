@@ -1,50 +1,31 @@
 import { style } from '@vanilla-extract/css';
-import { recipe } from '@vanilla-extract/recipes';
 import { vars } from '@/shared/styles/theme.css';
 
-export const previewImgStyle = recipe({
-  base: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    overflow: 'hidden',
+export const previewImgStyle = style({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
 
-    position: 'relative',
+  position: 'relative',
 
-    width: '9.6rem',
-    height: '9.6rem',
-    margin: '0 auto',
-    backgroundColor: vars.colors.gray01,
-    borderRadius: '50%',
-    cursor: 'pointer',
-  },
-  variants: {
-    hasImage: {
-      true: { backgroundSize: 'cover' },
-    },
-  },
-  defaultVariants: {
-    hasImage: false,
-  },
+  width: '9.6rem',
+  height: '9.6rem',
+  margin: '0 auto',
+  backgroundColor: vars.colors.gray01,
+  objectFit: 'cover',
+  backgroundSize: 'cover',
+
+  borderRadius: '100%',
+  cursor: 'pointer',
+  border: `1px solid ${vars.colors.gray04}`,
 });
 
 export const inputStyle = style({
   display: 'none',
 });
 
-export const changeIconStyle = style({
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
+export const icCameraStyle = style({
   position: 'absolute',
-  bottom: '0',
-
-  width: '100%',
-  height: '2.1rem',
-  color: '#ffffff',
-  backgroundColor: 'rgba(0, 0, 0, 0.7);',
-  ...vars.fonts.c1_sb,
-
-  zIndex: 1,
+  bottom: '0.6rem',
+  right: '0.6rem',
 });

@@ -130,7 +130,6 @@ const InstructorRegister = () => {
         <div className={containerStyle}>
           <div className={sectionWrapperStyle}>
             <ImageUploadSection
-              imgFile={imgFile}
               imgRef={imgRef}
               previewImg={previewImg}
               uploadImgFile={uploadImgFile}

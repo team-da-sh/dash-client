@@ -1,15 +1,14 @@
 import Description from '@/pages/instructorRegister/components/Description/Description';
 import {
-  changeIconStyle,
+  icCameraStyle,
   inputStyle,
   previewImgStyle,
 } from '@/pages/instructorRegister/components/ImageUploadSection/imageUploadSection.css';
-import IcPlusGray0524 from '@/shared/assets/svg/IcPlusGray0524';
-import Text from '@/shared/components/Text/Text';
+import IcCameraMain0624 from '@/shared/assets/svg/IcCameraMain0624';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
+import defaultProfile from '/images/image_profile_basic.png';
 
 interface ImageUploadSectionPropTypes {
-  imgFile: File | undefined;
   handleUploaderClick: () => void;
   uploadImgFile: () => void;
   previewImg: string;
@@ -17,7 +16,6 @@ interface ImageUploadSectionPropTypes {
 }
 
 const ImageUploadSection = ({
-  imgFile,
   imgRef,
   previewImg,
   uploadImgFile,
@@ -27,18 +25,10 @@ const ImageUploadSection = ({
     <div className={sprinkles({ display: 'flex', flexDirection: 'column' })}>
       <Description title="강사 이미지 등록" />
       <div
-        className={previewImgStyle({ hasImage: !!previewImg })}
-        style={previewImg ? { backgroundImage: `url(${previewImg})` } : {}}
+        className={previewImgStyle}
+        style={previewImg ? { backgroundImage: `url(${previewImg})` } : { backgroundImage: `url(${defaultProfile})` }}
         onClick={handleUploaderClick}>
-        {!previewImg && (
-          <div className={sprinkles({ display: 'flex', flexDirection: 'column', alignItems: 'center' })}>
-            <IcPlusGray0524 width={'2.4rem'} />
-            <Text tag="c1_r" color="gray5">
-              1/1
-            </Text>
-          </div>
-        )}
-        {imgFile && <div className={changeIconStyle}>수정</div>}
+        <IcCameraMain0624 width={24} height={24} className={icCameraStyle} />
       </div>
 
       <input
