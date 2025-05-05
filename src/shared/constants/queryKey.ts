@@ -14,7 +14,7 @@ export const QUERY_KEYS = {
 
   LESSONS: 'lessons',
   LESSON_DETAIL: 'lesson_detail',
-  LESSONS_RECOMMENDATIONS: 'lessons_recommendations',
+  LESSONS_LATEST: 'lessons_latest',
   LESSONS_POPULAR_GENRES: 'lessons_popular_genres',
   LESSONS_UPCOMING: 'lessons_upcoming',
   LESSONS_FAVORITES: 'lessons_favorites',

@@ -1,3 +1,5 @@
+import 'swiper/css';
+import 'swiper/css/pagination';
 import { Autoplay, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SliderItem from '@/pages/home/components/SliderItem/SliderItem';
@@ -31,9 +33,9 @@ const HomeCarousel = () => {
         delay: 4500,
         disableOnInteraction: false,
       }}>
-      {ADVERTISEMENTS.map((advertisement, index) => {
+      {ADVERTISEMENTS.map((advertisement) => {
         return (
-          <SwiperSlide key={`${index}-${advertisement.id}`}>
+          <SwiperSlide key={`${advertisement.id}`}>
             <SliderItem {...advertisement} />
           </SwiperSlide>
         );
