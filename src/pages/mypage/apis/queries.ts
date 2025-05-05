@@ -1,14 +1,18 @@
-import type { UseQueryOptions } from '@tanstack/react-query';
 import { useQuery } from '@tanstack/react-query';
-import { MyPageResponseTypes } from '@/pages/mypage/types/api';
+import { MyPageResponseTypes, LessonCountResponseTypes } from '@/pages/mypage/types/api';
 import { QUERY_KEYS } from '@/shared/constants/queryKey';
-import { getMyPage } from './axios';
+import { getMyPage, getMyLessons } from './axios';
 
-export const useGetMyPage = (options?: Partial<UseQueryOptions<MyPageResponseTypes>>) => {
+export const useGetMyPage = () => {
   return useQuery<MyPageResponseTypes>({
     queryKey: [QUERY_KEYS.MEMBERS_ME],
     queryFn: getMyPage,
-    gcTime: 1000 * 60 * 10,
-    ...options,
+  });
+};
+
+export const useGetMyLessonCounts = () => {
+  return useQuery<LessonCountResponseTypes>({
+    queryKey: [QUERY_KEYS.MEMBERS_RESERVATION_STATISTICS],
+    queryFn: getMyLessons,
   });
 };

@@ -6,6 +6,7 @@ export const QUERY_KEYS = {
   MEMBERS_ME: 'members_me',
   MEMBERS_RESERVATIONS: 'members_reservations',
   MEMBERS_RESERVATION_DETAIL: 'members_reservation_detail',
+  MEMBERS_RESERVATION_STATISTICS: 'members_reservation_statistics',
 
   TEACHERS: 'teachers',
   TEACHER_DETAIL: 'teacher_detail',

@@ -6,3 +6,9 @@ export const getMyPage = async () => {
 
   return data;
 };
+
+export const getMyLessons = async () => {
+  const { data } = await instance.get(API_URL.MEMBERS_RESERVATIONS_STATISTICS);
+
+  return data;
+};

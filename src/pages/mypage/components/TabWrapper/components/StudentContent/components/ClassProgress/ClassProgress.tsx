@@ -1,3 +1,4 @@
+import { useGetMyLessonCounts } from '@/pages/mypage/apis/queries';
 import * as styles from '@/pages/mypage/components/TabWrapper/components/StudentContent/components/ClassProgress/ClassProgress.css';
 import { mockMyLessonData } from '@/pages/mypage/components/TabWrapper/mockData';
 import { LessonCountResponseTypes } from '@/pages/mypage/types/api';
@@ -7,7 +8,11 @@ import Text from '@/shared/components/Text/Text';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
 
 const ClassProgress = () => {
-  const data: LessonCountResponseTypes = mockMyLessonData;
+  const { data, isLoading } = useGetMyLessonCounts();
+
+  if (isLoading || !data) {
+    return <></>;
+  }
 
   const isAllZero = data.beforeLessonCount === 0 && data.duringLessonCount === 0 && data.afterLessonCount === 0;
 
