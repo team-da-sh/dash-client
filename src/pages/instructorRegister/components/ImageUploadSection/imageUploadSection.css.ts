@@ -8,6 +8,7 @@ export const previewImgStyle = recipe({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
+    overflow: 'hidden',
 
     position: 'relative',
 
@@ -32,8 +33,18 @@ export const inputStyle = style({
   display: 'none',
 });
 
-export const closeIconStyle = style({
+export const changeIconStyle = style({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
   position: 'absolute',
-  left: '6.8rem',
-  top: '-0.8rem',
+  bottom: '0',
+
+  width: '100%',
+  height: '2.1rem',
+  color: '#ffffff',
+  backgroundColor: 'rgba(0, 0, 0, 0.7);',
+  ...vars.fonts.c1_sb,
+
+  zIndex: 1,
 });

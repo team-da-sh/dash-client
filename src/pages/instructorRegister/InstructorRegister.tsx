@@ -83,7 +83,8 @@ const InstructorRegister = () => {
     setInfo((prev) => ({ ...prev, imageUrls: url }));
   };
 
-  const { previewImg, imgRef, handleUploaderClick, uploadImgFile } = useImageUploader(handleImageUploadSuccess);
+  const { imgFile, previewImg, imgRef, handleUploaderClick, uploadImgFile } =
+    useImageUploader(handleImageUploadSuccess);
 
   // form submit 함수
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -129,6 +130,7 @@ const InstructorRegister = () => {
         <div className={containerStyle}>
           <div className={sectionWrapperStyle}>
             <ImageUploadSection
+              imgFile={imgFile}
               imgRef={imgRef}
               previewImg={previewImg}
               uploadImgFile={uploadImgFile}

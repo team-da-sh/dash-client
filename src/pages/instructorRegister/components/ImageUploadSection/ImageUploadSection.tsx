@@ -1,5 +1,6 @@
 import Description from '@/pages/instructorRegister/components/Description/Description';
 import {
+  changeIconStyle,
   inputStyle,
   previewImgStyle,
 } from '@/pages/instructorRegister/components/ImageUploadSection/imageUploadSection.css';
@@ -8,6 +9,7 @@ import Text from '@/shared/components/Text/Text';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
 
 interface ImageUploadSectionPropTypes {
+  imgFile: File | undefined;
   handleUploaderClick: () => void;
   uploadImgFile: () => void;
   previewImg: string;
@@ -15,6 +17,7 @@ interface ImageUploadSectionPropTypes {
 }
 
 const ImageUploadSection = ({
+  imgFile,
   imgRef,
   previewImg,
   uploadImgFile,
@@ -35,6 +38,7 @@ const ImageUploadSection = ({
             </Text>
           </div>
         )}
+        {imgFile && <div className={changeIconStyle}>수정</div>}
       </div>
 
       <input
