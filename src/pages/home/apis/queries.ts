@@ -3,7 +3,6 @@ import { useQuery } from '@tanstack/react-query';
 import '@/pages/home/apis/axios';
 import {
   getAdvertisements,
-  getMyPage,
   getPopularDancers,
   getPopularGenres,
   getRecommendationLessons,
@@ -23,15 +22,6 @@ export const useGetAdvertisements = () => {
   return useQuery<AdvertisementResponseTypes>({
     queryKey: [QUERY_KEYS.ADVERTISEMENTS],
     queryFn: getAdvertisements,
-  });
-};
-
-export const useGetMyPage = (options?: Partial<UseQueryOptions<MyPageResponseTypes>>) => {
-  return useQuery<MyPageResponseTypes>({
-    queryKey: [QUERY_KEYS.MEMBERS_ME],
-    queryFn: getMyPage,
-    gcTime: 1000 * 60 * 10,
-    ...options,
   });
 };
 
