@@ -13,11 +13,12 @@ import SvgIcReview from '@/assets/svg/IcReview';
 import SvgIcArrowRightSmallGray0732 from '@/shared/assets/svg/IcArrowRightSmallGray0732';
 import SvgIcInstagram20 from '@/shared/assets/svg/IcInstagram20';
 import SvgIcYoutube20 from '@/shared/assets/svg/IcYoutube20';
+import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import Divider from '@/shared/components/Divider/Divider';
 import InfoComponent from '@/shared/components/InfoComponent/InfoComponent';
 import Text from '@/shared/components/Text/Text';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
-import { mockMyTeacherData, mockTeacherLessonData } from '../../mockData';
+import { mockTeacherLessonData } from '../../mockData';
 
 const TeacherContent = () => {
   const navigate = useNavigate();
@@ -31,6 +32,10 @@ const TeacherContent = () => {
 
   const handleClassButtonClick = () => {
     navigate(ROUTES_CONFIG.classRegister.path);
+  };
+
+  const handleAllButtonClick = () => {
+    navigate(ROUTES_CONFIG.instructorClassList.path);
   };
 
   let isUnregisteredTeacherProfile = userRole === 'STUDENT';
@@ -90,7 +95,9 @@ const TeacherContent = () => {
                 <Text tag="b1_sb" color="black">
                   내 클래스 목록
                 </Text>
-                <p>모두 보기</p>
+                <button className={styles.allButtonStyle} type="button" onClick={handleAllButtonClick}>
+                  모두 보기
+                </button>
               </div>
               {lessonData.lessons.length > 0 ? <TeacherLessons data={lessonData} /> : <EmptyClassList />}
             </section>
