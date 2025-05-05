@@ -25,8 +25,8 @@ export const getUpcommingLessons = async () => {
   return data;
 };
 
-export const getRecommendationLessons = async () => {
-  const { data } = await instance.get(API_URL.LESSONS_RECOMMENDATIONS);
+export const getLatestLessons = async () => {
+  const { data } = await instance.get(API_URL.LESSONS_LATEST);
 
   return data;
 };

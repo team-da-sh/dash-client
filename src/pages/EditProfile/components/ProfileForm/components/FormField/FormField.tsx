@@ -1,5 +1,5 @@
 import { UseFormRegister } from 'react-hook-form';
-import * as styles from '@/pages/editProfile/components/FormField/formField.css';
+import * as styles from '@/pages/editProfile/components/ProfileForm/components/FormField/formField.css';
 import { ProfileFormValues } from '@/pages/editProfile/schema/profileSchema';
 import Input from '@/shared/components/Input/Input';
 import Text from '@/shared/components/Text/Text';

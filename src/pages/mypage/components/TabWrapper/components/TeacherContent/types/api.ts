@@ -1,8 +1,8 @@
 export interface LessonDataResponseTypes {
-  lessons: lessons[];
+  lessons: lessonResponseTypes[];
 }
 
-export interface lessons {
+export interface lessonResponseTypes {
   id: number;
   name: string;
   imageUrl: string;

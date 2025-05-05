@@ -20,7 +20,7 @@ export const API_URL = {
 
   LESSONS: '/api/v1/lessons',
   LESSON_DETAIL: '/api/v1/lessons',
-  LESSONS_RECOMMENDATIONS: '/api/v1/lessons/recommendations',
+  LESSONS_LATEST: '/api/v1/lessons/latest',
   LESSONS_POPULAR_GENRES: '/api/v1/lessons/popular-genres',
   LESSONS_UPCOMING: '/api/v1/lessons/upcoming',
   LESSONS_FAVORITES: '/api/v1/lessons/favorites/{lessonId}',

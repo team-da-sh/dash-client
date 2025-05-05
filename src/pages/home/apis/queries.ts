@@ -1,22 +1,20 @@
-import type { UseQueryOptions } from '@tanstack/react-query';
 import { useQuery } from '@tanstack/react-query';
 import '@/pages/home/apis/axios';
 import {
   getAdvertisements,
+  getLatestLessons,
   getPopularDancers,
   getPopularGenres,
-  getRecommendationLessons,
   getUpcommingLessons,
 } from '@/pages/home/apis/axios';
 import type {
   AdvertisementResponseTypes,
   PopularDancersResponseTypes,
   PopularGenreResponseTypes,
-  RecommendationLessonsResponseTypes,
+  LatestLessonsResponseTypes,
   UpcomingLessonsResponseTypes,
 } from '@/pages/home/types/api';
 import { QUERY_KEYS } from '@/shared/constants/queryKey';
-import { MyPageResponseTypes } from '@/shared/types/myPageTypes';
 
 export const useGetAdvertisements = () => {
   return useQuery<AdvertisementResponseTypes>({
@@ -39,10 +37,10 @@ export const useGetUpcomingLessons = () => {
   });
 };
 
-export const useGetRecommendationLessons = () => {
-  return useQuery<RecommendationLessonsResponseTypes>({
-    queryKey: [QUERY_KEYS.LESSONS_RECOMMENDATIONS],
-    queryFn: () => getRecommendationLessons(),
+export const useGetLatestLessons = () => {
+  return useQuery<LatestLessonsResponseTypes>({
+    queryKey: [QUERY_KEYS.LESSONS_LATEST],
+    queryFn: () => getLatestLessons(),
   });
 };
 
