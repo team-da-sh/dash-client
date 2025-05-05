@@ -5,6 +5,7 @@ import {
 } from '@/pages/instructorRegister/components/IntroductionSection/introductionSection.css';
 import {
   INFO_KEY,
+  INTRODUCTION_LENGTH_ERROR_MSG,
   MAX_INTRODUCTION_LENGTH,
   MIN_INTRODUCTION_LENGTH,
 } from '@/pages/instructorRegister/constants/registerSection';
@@ -50,7 +51,9 @@ const IntroductionSection = ({
   const counterColor = getCounterColor(isDetailError, isFocused, !!detail);
 
   const handleTextareaValueChange = (value: string) => {
-    if (value.length < MIN_INTRODUCTION_LENGTH || value.length > MAX_INTRODUCTION_LENGTH) {
+    const isValidLength = value.length < MIN_INTRODUCTION_LENGTH || value.length > MAX_INTRODUCTION_LENGTH;
+
+    if (isValidLength) {
       handleDetailError(true);
     } else {
       handleDetailError(false);
@@ -71,7 +74,7 @@ const IntroductionSection = ({
   };
 
   return (
-    <div className={containerStyle}>
+    <section className={containerStyle}>
       <Text tag="b2_sb">강사 소개</Text>
       <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 4 })}>
         <textarea
@@ -87,7 +90,7 @@ const IntroductionSection = ({
 
         <div className={sprinkles({ display: 'flex', justifyContent: 'space-between' })}>
           <Text tag="b3_r" color="alert3">
-            {isDetailError ? '30자 이상 작성해 주세요' : ''}
+            {isDetailError ? INTRODUCTION_LENGTH_ERROR_MSG : ''}
           </Text>
 
           <div className={sprinkles({ display: 'flex', gap: 2 })}>
@@ -103,7 +106,7 @@ const IntroductionSection = ({
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

@@ -5,5 +5,5 @@ export const textAreaContainerStyle = style({
   flexDirection: 'column',
   gap: '0.8rem',
   width: '100%',
-  padding: '1.2rem 0 1.2rem 0',
+  padding: '1.2rem 0',
 });

@@ -57,9 +57,9 @@ const InputSection = ({
 
   const renderDeleteIcon = (id: number, value: string) => {
     if (id === 1) {
-      return value && <IcXCircleGray width={'2.4rem'} onClick={() => deleteItem(id)} />;
+      return value && <IcXCircleGray width={'2.4rem'} height={'2.4rem'} onClick={() => deleteItem(id)} />;
     } else {
-      return <IcXCircleGray width={'2.4rem'} onClick={() => deleteItem(id)} />;
+      return <IcXCircleGray width={'2.4rem'} height={'2.4rem'} onClick={() => deleteItem(id)} />;
     }
   };
 

@@ -2,7 +2,6 @@ import { useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { useGetLocationList, usePostClassRegisterInfo } from '@/pages/instructor/classRegister/apis/queries';
 import * as styles from '@/pages/instructor/classRegister/classRegister.css';
-import { buttonContainerStyle } from '@/pages/instructor/classRegister/classRegister.css';
 import ClassAmount from '@/pages/instructor/classRegister/components/ClassAmount/ClassAmount';
 import ClassDescription from '@/pages/instructor/classRegister/components/ClassDescription/ClassDescription';
 import ClassGenre from '@/pages/instructor/classRegister/components/ClassGenre/ClassGenre';
@@ -164,7 +163,7 @@ const ClassRegister = () => {
           <ClassAmount amount={amount} handleAmountChange={handleAmountChange} />
         </div>
 
-        <div className={buttonContainerStyle}>
+        <div className={styles.buttonContainerStyle}>
           <BoxButton type="submit" disabled={!isFormValid()}>
             완료
           </BoxButton>

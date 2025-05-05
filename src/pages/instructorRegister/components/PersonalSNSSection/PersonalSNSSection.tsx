@@ -21,7 +21,7 @@ const PersonalSNSSection = ({ onInfoChange, instagram, youtube }: PersonalSNSSec
   };
 
   return (
-    <div className={sprinkles({ width: '100%', flexDirection: 'column', pb: 20 })}>
+    <section className={sprinkles({ width: '100%', flexDirection: 'column', pb: 20 })}>
       <Description title="개인 SNS 등록" subTitle="두 항목 중 하나는 반드시 입력해 주세요" />
 
       <div className={sprinkles({ flexDirection: 'column', width: '100%' })}>
@@ -35,7 +35,7 @@ const PersonalSNSSection = ({ onInfoChange, instagram, youtube }: PersonalSNSSec
           <Input value={youtube} placeholder="dashofficial" onChange={(e) => handleYoutubeChange(e.target.value)} />
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

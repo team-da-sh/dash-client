@@ -22,7 +22,7 @@ const ImageUploadSection = ({
   handleUploaderClick,
 }: ImageUploadSectionPropTypes) => {
   return (
-    <div className={sprinkles({ display: 'flex', flexDirection: 'column' })}>
+    <section className={sprinkles({ display: 'flex', flexDirection: 'column' })}>
       <Description title="강사 이미지 등록" />
       <div
         className={previewImgStyle}
@@ -39,7 +39,7 @@ const ImageUploadSection = ({
         onChange={uploadImgFile}
         ref={imgRef}
       />
-    </div>
+    </section>
   );
 };
 

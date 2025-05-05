@@ -7,12 +7,14 @@ import ImageUploadSection from '@/pages/instructorRegister/components/ImageUploa
 import IntroductionSection from '@/pages/instructorRegister/components/IntroductionSection/IntroductionSection';
 import PersonalSNSSection from '@/pages/instructorRegister/components/PersonalSNSSection/PersonalSNSSection';
 import VideoLinkSection from '@/pages/instructorRegister/components/VideoLinkSection/VideoLinkSection';
-import { MIN_INTRODUCTION_LENGTH } from '@/pages/instructorRegister/constants/registerSection';
 import {
-  buttonContainerStyle,
-  containerStyle,
-  sectionWrapperStyle,
-} from '@/pages/instructorRegister/instructorRegister.css';
+  MIN_CAREER_INPUT_COUNT,
+  MIN_EDUCATION_INPUT_COUNT,
+  MIN_INTRODUCTION_LENGTH,
+  MIN_PRIZE_INPUT_COUNT,
+  MIN_VIDEO_INPUT,
+} from '@/pages/instructorRegister/constants/registerSection';
+import * as styles from '@/pages/instructorRegister/instructorRegister.css';
 import type { InstructorRegisterInfoTypes } from '@/pages/instructorRegister/types/InstructorRegisterInfoTypes';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
@@ -61,11 +63,11 @@ const InstructorRegister = () => {
   // 버튼 활성화 조건 체크 함수
   const hasDetailedInfo = () => info.detail.trim().length >= MIN_INTRODUCTION_LENGTH;
   const hasImage = () => !!info.imageUrls;
-  const hasSocialId = () => info.instagram.length > 0 || info.youtube.length > 0;
+  const hasSocialId = () => !!info.instagram || !!info.youtube;
   const hasDancerBackground = () => {
-    const hasEducation = info.educations.some((edu) => edu.trim().length > 0);
-    const hasCareer = info.experiences.some((exp) => exp.trim().length > 0);
-    const hasPrize = info.prizes.some((prize) => prize.trim().length > 0);
+    const hasEducation = info.educations.some((edu) => edu.trim().length >= MIN_EDUCATION_INPUT_COUNT);
+    const hasCareer = info.experiences.some((exp) => exp.trim().length >= MIN_CAREER_INPUT_COUNT);
+    const hasPrize = info.prizes.some((prize) => prize.trim().length >= MIN_PRIZE_INPUT_COUNT);
 
     const educationValid = hasEducation || isEduNoneChecked;
     const careerValid = hasCareer || isCareerNoneChecked;
@@ -73,7 +75,7 @@ const InstructorRegister = () => {
 
     return educationValid && careerValid && prizeValid;
   };
-  const hasVideoUrls = () => info.videoUrls.some((url) => url.trim().length > 0);
+  const hasVideoUrls = () => info.videoUrls.some((url) => url.trim().length >= MIN_VIDEO_INPUT);
 
   const buttonActive = () => {
     return (
@@ -129,8 +131,8 @@ const InstructorRegister = () => {
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <div className={containerStyle}>
-          <div className={sectionWrapperStyle}>
+        <div className={styles.containerStyle}>
+          <div className={styles.sectionWrapperStyle}>
             <ImageUploadSection
               imgRef={imgRef}
               previewImg={previewImg}
@@ -147,12 +149,12 @@ const InstructorRegister = () => {
           </div>
           <Divider direction="horizontal" color="gray1" length={'100%'} thickness={'0.8rem'} />
 
-          <div className={sectionWrapperStyle}>
+          <div className={styles.sectionWrapperStyle}>
             <PersonalSNSSection instagram={info.instagram} youtube={info.youtube} onInfoChange={handleInfoChange} />
           </div>
           <Divider direction="horizontal" color="gray1" length={'100%'} thickness={'0.8rem'} />
 
-          <div className={sectionWrapperStyle}>
+          <div className={styles.sectionWrapperStyle}>
             <CareerSection
               educations={info.educations}
               experiences={info.experiences}
@@ -168,12 +170,12 @@ const InstructorRegister = () => {
           </div>
           <Divider direction="horizontal" color="gray1" length={'100%'} thickness={'0.8rem'} />
 
-          <div className={sectionWrapperStyle}>
+          <div className={styles.sectionWrapperStyle}>
             <VideoLinkSection videoUrls={info.videoUrls} onInfoChange={handleInfoChange} />
           </div>
         </div>
 
-        <div className={buttonContainerStyle}>
+        <div className={styles.buttonContainerStyle}>
           <BoxButton variant="primary" isDisabled={!buttonActive()} type="submit">
             등록
           </BoxButton>
