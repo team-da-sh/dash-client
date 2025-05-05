@@ -15,7 +15,6 @@ import Text from '@/shared/components/Text/Text';
 interface InputSectionPropTypes {
   title: string;
   placeholder: string;
-  // icon: React.ReactNode;
   isNoneChecked: boolean;
   onToggleActive: () => void;
   inputItems: InputItemTypes[];
@@ -27,7 +26,6 @@ const PLACEHOLDER_VISIBLE_COUNT = 2;
 const InputSection = ({
   title,
   placeholder,
-  // icon,
   isNoneChecked,
   onToggleActive,
   inputItems,
@@ -68,15 +66,12 @@ const InputSection = ({
   return (
     <div className={containerStyle}>
       <Flex justify="spaceBetween" width="100%">
-        {/* <Flex gap="0.8rem" align="center"> */}
-        {/* {icon} */}
         <Text tag="b2_sb" color="gray10">
           {title}
         </Text>
-        {/* </Flex> */}
         <Flex gap="0.8rem" align="center">
-          <Text tag="b3_m" color="gray10">
-            해당 없음
+          <Text tag="b3_m" color="gray6">
+            해당없음
           </Text>
           {isNoneChecked ? (
             <BtnCheck width={'2rem'} onClick={onToggleActive} />

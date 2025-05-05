@@ -174,7 +174,7 @@ const InstructorRegister = () => {
 
         <div className={buttonContainerStyle}>
           <BoxButton variant="primary" isDisabled={!buttonActive()} type="submit">
-            완료
+            등록
           </BoxButton>
         </div>
       </form>

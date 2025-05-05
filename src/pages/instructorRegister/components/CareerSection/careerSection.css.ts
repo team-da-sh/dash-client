@@ -25,7 +25,7 @@ export const addButtonStyle = style({
 export const checkboxStyle = style({
   width: '2rem',
   height: '2rem',
-  outline: `1px solid ${vars.colors.gray07}`,
+  outline: `1px solid ${vars.colors.gray06}`,
   borderRadius: '0.2rem',
   cursor: 'pointer',
 });

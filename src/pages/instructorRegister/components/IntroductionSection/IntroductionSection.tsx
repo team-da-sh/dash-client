@@ -39,7 +39,15 @@ const IntroductionSection = ({
     }
   };
 
+  const getCounterColor = (isError: boolean, isFocused: boolean, hasValue: boolean) => {
+    if (isError) return 'alert3';
+    if (isFocused) return 'main4';
+    if (hasValue) return 'gray9';
+    return 'gray4';
+  };
+
   const inputState = defineInputState(isDetailError, isFocused);
+  const counterColor = getCounterColor(isDetailError, isFocused, !!detail);
 
   const handleTextareaValueChange = (value: string) => {
     if (value.length < MIN_INTRODUCTION_LENGTH || value.length > MAX_INTRODUCTION_LENGTH) {
@@ -62,13 +70,6 @@ const IntroductionSection = ({
     }
   };
 
-  const getCounterColor = (isError: boolean, isFocused: boolean, hasValue: boolean) => {
-    if (isError) return 'alert3';
-    if (isFocused) return 'main4';
-    if (hasValue) return 'gray9';
-    return 'gray4';
-  };
-
   return (
     <div className={containerStyle}>
       <Text tag="b2_sb">강사 소개</Text>
@@ -87,9 +88,17 @@ const IntroductionSection = ({
             {isDetailError ? '30자 이상 작성해 주세요' : ''}
           </Text>
 
-          <Text tag="c1_m" color={getCounterColor(isDetailError, isFocused, !!detail)}>
-            {`${detail.length}/${MAX_INTRODUCTION_LENGTH}`}
-          </Text>
+          <div className={sprinkles({ display: 'flex', gap: 2 })}>
+            <Text tag="c1_m" color={counterColor}>
+              {detail.length}
+            </Text>
+            <Text tag="c1_m" color={counterColor}>
+              /
+            </Text>
+            <Text tag="c1_m" color={counterColor}>
+              {MAX_INTRODUCTION_LENGTH}
+            </Text>
+          </div>
         </div>
       </div>
     </div>

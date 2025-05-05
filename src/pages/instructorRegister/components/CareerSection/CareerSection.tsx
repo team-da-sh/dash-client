@@ -36,7 +36,6 @@ const CareerSection = ({
       <InputSection
         title="학력"
         placeholder="대쉬대학교 실용무용학과 졸업"
-        // icon={<IcGraduationBlack20 width={'2rem'} />}
         isNoneChecked={isEduNoneChecked}
         onToggleActive={handleEducationCheck}
         inputItems={educations.map((value, id) => ({ id: id + 1, value }))}
@@ -51,7 +50,6 @@ const CareerSection = ({
       <InputSection
         title="경력"
         placeholder="2018 BATTLE LIINEUP 1등"
-        // icon={<IcDocumentBlack20 width={'2rem'} />}
         isNoneChecked={isCareerNoneChecked}
         onToggleActive={handleCareerCheck}
         inputItems={experiences.map((value, id) => ({ id: id + 1, value }))}
@@ -66,7 +64,6 @@ const CareerSection = ({
       <InputSection
         title="수상"
         placeholder="2018 BATTLE LIINEUP 1등"
-        // icon={<IcDocumentBlack20 width={'2rem'} />}
         isNoneChecked={isPrizeNoneChecked}
         onToggleActive={handlePrizeCheck}
         inputItems={prizes.map((value, id) => ({ id: id + 1, value }))}

@@ -40,3 +40,20 @@ export const textAreaStyle = recipe({
 export const detailLengthTextStyle = style({
   alignSelf: 'flex-end',
 });
+
+export const counterColorStyle = recipe({
+  base: {
+    color: vars.colors.gray04,
+  },
+  variants: {
+    color: {
+      alert3: { color: vars.colors.alert03 },
+      main4: { color: vars.colors.main04 },
+      gray9: { color: vars.colors.gray09 },
+      gray4: { color: vars.colors.gray04 },
+    },
+  },
+  defaultVariants: {
+    color: 'gray4',
+  },
+});
