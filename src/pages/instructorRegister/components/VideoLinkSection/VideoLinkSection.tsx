@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import Description from '@/pages/instructorRegister/components/Description/Description';
 import { addInputBoxStyle } from '@/pages/instructorRegister/components/VideoLinkSection/videoLinkSection.css';
-import { INFO_KEY, MAX_VIDEO_INPUT } from '@/pages/instructorRegister/constants/funnel';
+import { INFO_KEY, MAX_VIDEO_INPUT } from '@/pages/instructorRegister/constants/registerSection';
 import type { InstructorRegisterInfoTypes } from '@/pages/instructorRegister/types/InstructorRegisterInfoTypes';
 import type { InputItemTypes } from '@/pages/instructorRegister/types/inputItemTypes';
 import IcPlusGray0524 from '@/shared/assets/svg/IcPlusGray0524';

@@ -1,6 +1,6 @@
 import InputSection from '@/pages/instructorRegister/components/CareerSection/InputSection/InputSection';
 import Description from '@/pages/instructorRegister/components/Description/Description';
-import { INFO_KEY } from '@/pages/instructorRegister/constants/funnel';
+import { INFO_KEY } from '@/pages/instructorRegister/constants/registerSection';
 import type { InstructorRegisterInfoTypes } from '@/pages/instructorRegister/types/InstructorRegisterInfoTypes';
 import IcDocumentBlack20 from '@/shared/assets/svg/IcDocumentBlack20';
 import IcGraduationBlack20 from '@/shared/assets/svg/IcGraduationBlack20';

@@ -7,7 +7,7 @@ import {
   INFO_KEY,
   MAX_INTRODUCTION_LENGTH,
   MIN_INTRODUCTION_LENGTH,
-} from '@/pages/instructorRegister/constants/funnel';
+} from '@/pages/instructorRegister/constants/registerSection';
 import type { InstructorRegisterInfoTypes } from '@/pages/instructorRegister/types/InstructorRegisterInfoTypes';
 import Text from '@/shared/components/Text/Text';
 import { sprinkles } from '@/shared/styles/sprinkles.css';

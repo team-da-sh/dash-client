@@ -2,23 +2,24 @@ import { useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { usePostInstructor } from '@/pages/instructorRegister/apis/queries';
+import CareerSection from '@/pages/instructorRegister/components/CareerSection/CareerSection';
+import ImageUploadSection from '@/pages/instructorRegister/components/ImageUploadSection/ImageUploadSection';
+import IntroductionSection from '@/pages/instructorRegister/components/IntroductionSection/IntroductionSection';
+import PersonalSNSSection from '@/pages/instructorRegister/components/PersonalSNSSection/PersonalSNSSection';
+import VideoLinkSection from '@/pages/instructorRegister/components/VideoLinkSection/VideoLinkSection';
+import { MIN_INTRODUCTION_LENGTH } from '@/pages/instructorRegister/constants/registerSection';
 import {
   buttonContainerStyle,
   containerStyle,
   sectionWrapperStyle,
 } from '@/pages/instructorRegister/instructorRegister.css';
+import type { InstructorRegisterInfoTypes } from '@/pages/instructorRegister/types/InstructorRegisterInfoTypes';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import Divider from '@/shared/components/Divider/Divider';
 import { QUERY_KEYS } from '@/shared/constants/queryKey';
 import useImageUploader from '@/shared/hooks/useImageUploader';
 import { setAccessToken, setRefreshToken } from '@/shared/utils/handleToken';
-import CareerSection from './components/CareerSection/CareerSection';
-import ImageUploadSection from './components/ImageUploadSection/ImageUploadSection';
-import IntroductionSection from './components/IntroductionSection/IntroductionSection';
-import PersonalSNSSection from './components/PersonalSNSSection/PersonalSNSSection';
-import VideoLinkSection from './components/VideoLinkSection/VideoLinkSection';
-import type { InstructorRegisterInfoTypes } from './types/InstructorRegisterInfoTypes';
 
 const InstructorRegister = () => {
   const queryClient = useQueryClient();
@@ -57,25 +58,24 @@ const InstructorRegister = () => {
     setPrizeNoneChecked((prev) => !prev);
   };
 
-  // 버튼 활성화 조건 체크 함수 (step 별로)
+  // 버튼 활성화 조건 체크 함수
+  const hasDetailedInfo = () => info.detail.trim().length >= MIN_INTRODUCTION_LENGTH;
   const hasImage = () => !!info.imageUrls;
   const hasSocialId = () => info.instagram.length > 0 || info.youtube.length > 0;
-  const hasEducationOrCareer = () => {
+  const hasDancerBackground = () => {
     const hasEducation = info.educations.some((edu) => edu.trim().length > 0);
     const hasCareer = info.experiences.some((exp) => exp.trim().length > 0);
+    const hasPrize = info.prizes.some((prize) => prize.trim().length > 0);
 
     const educationValid = hasEducation || isEduNoneChecked;
     const careerValid = hasCareer || isCareerNoneChecked;
+    const prizeValid = hasPrize || isPrizeNoneChecked;
 
-    return educationValid && careerValid;
+    return educationValid && careerValid && prizeValid;
   };
   const hasVideoUrls = () => info.videoUrls.some((url) => url.trim().length > 0);
-
-  // 최대 글자 수 조건 기능 명세서 체크
-  const hasDetailedInfo = () => info.detail.trim().length >= 30;
-
   const buttonActive = () => {
-    return hasImage() && hasSocialId() && hasEducationOrCareer() && hasVideoUrls() && hasDetailedInfo();
+    return hasImage() && hasSocialId() && hasDancerBackground() && hasVideoUrls() && hasDetailedInfo();
   };
 
   // 이미지 업로드 로직

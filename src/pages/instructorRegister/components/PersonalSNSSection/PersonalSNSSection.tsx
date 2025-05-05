@@ -1,10 +1,10 @@
 import Description from '@/pages/instructorRegister/components/Description/Description';
-import { INFO_KEY } from '@/pages/instructorRegister/constants/funnel';
+import { textAreaContainerStyle } from '@/pages/instructorRegister/components/PersonalSNSSection/personalSNSSection.css';
+import { INFO_KEY } from '@/pages/instructorRegister/constants/registerSection';
 import type { InstructorRegisterInfoTypes } from '@/pages/instructorRegister/types/InstructorRegisterInfoTypes';
 import Input from '@/shared/components/Input/Input';
 import Text from '@/shared/components/Text/Text';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
-import { textAreaContainerStyle } from './personalSNSSection.css';
 
 interface PersonalSNSSectionPropTypes {
   instagram: string;
