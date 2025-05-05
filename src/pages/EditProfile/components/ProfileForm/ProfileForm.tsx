@@ -1,6 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import { useFormChanged } from '@/pages/EditProfile/hooks/useFormChanged.ts';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import Text from '@/shared/components/Text/Text';
 import { profileSchema, ProfileFormValues } from '../../schema/profileSchema';
@@ -19,12 +19,10 @@ interface ProfileFormPropTypes {
 }
 
 const ProfileForm = ({ defaultValues, onSubmit }: ProfileFormPropTypes) => {
-  const [isChanged, setIsChanged] = useState(false);
-  const [fileSelected, setFileSelected] = useState(false);
-
   const {
     register,
     handleSubmit,
+    control,
     formState: { errors, isValid },
     watch,
   } = useForm<ProfileFormValues>({
@@ -33,6 +31,7 @@ const ProfileForm = ({ defaultValues, onSubmit }: ProfileFormPropTypes) => {
       nickname: defaultValues.nickname,
       phoneNumber: defaultValues.phoneNumber,
       name: defaultValues.name,
+      profileImageUrl: defaultValues.profileImageUrl,
     },
     mode: 'onChange',
   });
@@ -40,21 +39,12 @@ const ProfileForm = ({ defaultValues, onSubmit }: ProfileFormPropTypes) => {
   const currentNickname = watch('nickname');
   const currentName = watch('name');
   const currentPhoneNumber = watch('phoneNumber');
+  const currentProfileImage = watch('profileImageUrl');
 
-  const handleFileChange = (selected: boolean) => {
-    setFileSelected(selected);
-  };
-
-  useEffect(() => {
-    const hasChanged = !!(
-      currentNickname !== defaultValues.nickname ||
-      currentPhoneNumber !== defaultValues.phoneNumber ||
-      currentName !== defaultValues.name ||
-      fileSelected
-    );
-
-    setIsChanged(hasChanged);
-  }, [currentNickname, currentPhoneNumber, currentName, fileSelected, defaultValues]);
+  const isChanged = useFormChanged(
+    [currentNickname, currentPhoneNumber, currentName, currentProfileImage],
+    [defaultValues.nickname, defaultValues.phoneNumber, defaultValues.name, defaultValues.profileImageUrl]
+  );
 
   const isButtonActive = isChanged && isValid;
 
@@ -62,9 +52,8 @@ const ProfileForm = ({ defaultValues, onSubmit }: ProfileFormPropTypes) => {
     <form onSubmit={handleSubmit(onSubmit)}>
       <ProfileImageUpload
         defaultImageUrl={defaultValues.profileImageUrl}
-        register={register}
+        control={control}
         error={errors.profileImageUrl}
-        onFileChange={handleFileChange}
       />
 
       <FormField

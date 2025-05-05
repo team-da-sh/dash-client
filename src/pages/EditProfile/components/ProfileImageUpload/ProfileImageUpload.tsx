@@ -1,26 +1,30 @@
+import { useController, Control } from 'react-hook-form';
+import { ProfileFormValues } from '@/pages/EditProfile/schema/profileSchema';
 import Text from '@/shared/components/Text/Text';
 import useImageUploader from '@/shared/hooks/useImageUploader';
 import * as styles from './profileImageUpload.css';
 
 interface ProfileImageUploadPropTypes {
   defaultImageUrl: string;
-  register: any;
+  control: Control<ProfileFormValues>;
   error?: { message?: string } | undefined;
   onFileChange?: (selected: boolean) => void;
 }
-const ProfileImageUpload = ({ defaultImageUrl, register, onFileChange }: ProfileImageUploadPropTypes) => {
+const ProfileImageUpload = ({ defaultImageUrl, control }: ProfileImageUploadPropTypes) => {
+  const { field } = useController({
+    name: 'profileImageUrl',
+    control,
+  });
+
   const handleSuccess = (url: string) => {
-    onFileChange?.(true);
+    field.onChange(url);
   };
 
   const handleDelete = () => {
-    onFileChange?.(true);
+    field.onChange('');
   };
 
-  const { previewImg, imgRef, handleUploaderClick, uploadImgFile, deleteImgFile } = useImageUploader(
-    handleSuccess,
-    handleDelete
-  );
+  const { previewImg, imgRef, handleUploaderClick, uploadImgFile } = useImageUploader(handleSuccess, handleDelete);
 
   return (
     <div className={styles.containerStyle}>
@@ -37,7 +41,6 @@ const ProfileImageUpload = ({ defaultImageUrl, register, onFileChange }: Profile
         accept="image/*"
         ref={(el) => {
           imgRef.current = el;
-          register('profileImageUrl').ref(el);
         }}
         className={styles.inputStyle}
         onChange={uploadImgFile}

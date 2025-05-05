@@ -15,7 +15,12 @@ const EditProfile = () => {
       submitData.append('profileImage', formData.profileImageUrl[0]);
     }
 
-    console.log('제출 데이터:', formData);
+    console.log('==== FormData 내용 ====');
+    for (const pair of submitData.entries()) {
+      console.log(`${pair[0]}: ${pair[1] instanceof File ? `File(${pair[1].name}, ${pair[1].size} bytes)` : pair[1]}`);
+    }
+
+    console.log('==== 원본 폼 데이터 ====', formData);
     alert('성공적으로 변경되었습니다.');
   };
 

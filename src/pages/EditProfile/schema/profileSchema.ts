@@ -2,18 +2,21 @@ import { z } from 'zod';
 import { ACCEPTED_IMAGE_TYPES, MAX_FILE_SIZE } from '@/pages/EditProfile/constants/imgLimit';
 
 export const profileSchema = z.object({
-  profileImageUrl: z
-    .custom<FileList>()
-    .optional()
-    .refine((files) => !files || files.length <= 1, '프로필 이미지는 최대 1개만 가능합니다')
-    .refine(
-      (files) => !files || Array.from(files).every((file) => file.size <= MAX_FILE_SIZE),
-      '이미지 용량은 5MB 이하만 가능합니다'
-    )
-    .refine(
-      (files) => !files || Array.from(files).every((file) => ACCEPTED_IMAGE_TYPES.includes(file.type)),
-      'jpg, jpeg, png 형식의 이미지 파일만 업로드 가능합니다'
-    ),
+  profileImageUrl: z.union([
+    z.string().optional(),
+    z
+      .instanceof(FileList)
+      .optional()
+      .refine((files) => !files || files.length <= 1, '프로필 이미지는 최대 1개만 가능합니다')
+      .refine(
+        (files) => !files || Array.from(files).every((file) => file.size <= MAX_FILE_SIZE),
+        '이미지 용량은 5MB 이하만 가능합니다'
+      )
+      .refine(
+        (files) => !files || Array.from(files).every((file) => ACCEPTED_IMAGE_TYPES.includes(file.type)),
+        'jpg, jpeg, png, heic 형식의 이미지 파일만 업로드 가능합니다'
+      ),
+  ]),
   nickname: z
     .string()
     .min(1, '댄서네임을 입력해주세요')
@@ -27,9 +30,4 @@ export const profileSchema = z.object({
     .regex(/^[a-zA-Z0-9ㄱ-ㅎㅏ-ㅣ가-힣]+$/, '특수기호/띄어쓰기는 입력할 수 없어요'),
 });
 
-export interface ProfileFormValues {
-  nickname: string;
-  phoneNumber: string;
-  name: string;
-  profileImageUrl?: FileList;
-}
+export type ProfileFormValues = z.infer<typeof profileSchema>;
