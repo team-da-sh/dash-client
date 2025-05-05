@@ -12,8 +12,8 @@ export const previewImgStyle = style({
   height: '9.6rem',
   margin: '0 auto',
   backgroundColor: vars.colors.gray01,
-  objectFit: 'cover',
   backgroundSize: 'cover',
+  backgroundPosition: 'center',
 
   borderRadius: '100%',
   cursor: 'pointer',
