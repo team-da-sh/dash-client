@@ -1,5 +1,5 @@
-import { useState } from 'react';
 import Text from '@/shared/components/Text/Text';
+import useImageUploader from '@/shared/hooks/useImageUploader';
 import * as styles from './profileImageUpload.css';
 
 interface ProfileImageUploadPropTypes {
@@ -8,50 +8,40 @@ interface ProfileImageUploadPropTypes {
   error?: { message?: string } | undefined;
   onFileChange?: (selected: boolean) => void;
 }
-const ProfileImageUpload = ({ defaultImageUrl, register, error, onFileChange }: ProfileImageUploadPropTypes) => {
-  const [previewUrl, setPreviewUrl] = useState(defaultImageUrl);
-
-  const handleImageClick = () => {
-    document.getElementById('file-input')?.click();
+const ProfileImageUpload = ({ defaultImageUrl, register, onFileChange }: ProfileImageUploadPropTypes) => {
+  const handleSuccess = (url: string) => {
+    onFileChange?.(true);
   };
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        setPreviewUrl(e.target?.result as string);
-      };
-      reader.readAsDataURL(file);
-
-      onFileChange?.(true);
-    }
+  const handleDelete = () => {
+    onFileChange?.(true);
   };
+
+  const { previewImg, imgRef, handleUploaderClick, uploadImgFile, deleteImgFile } = useImageUploader(
+    handleSuccess,
+    handleDelete
+  );
 
   return (
     <div className={styles.containerStyle}>
-      <div className={styles.imgWrapperStyle}>
-        <img src={previewUrl} alt="프로필 이미지" />
-        <button type="button" onClick={handleImageClick}>
-          <Text tag="c1_sb" color="white" className={styles.overlayStyle}>
-            수정
-          </Text>
-        </button>
+      <div className={styles.imgWrapperStyle} onClick={handleUploaderClick}>
+        <img src={previewImg || defaultImageUrl} alt="프로필 이미지" />
+
+        <Text tag="c1_sb" color="white" className={styles.overlayStyle}>
+          수정
+        </Text>
       </div>
       <input
         id="file-input"
         type="file"
+        accept="image/*"
+        ref={(el) => {
+          imgRef.current = el;
+          register('profileImageUrl').ref(el);
+        }}
         className={styles.inputStyle}
-        // accept="image/jpeg,image/jpg,image/png"
-        {...register('profileImageUrl')}
-        onChange={handleFileChange}
+        onChange={uploadImgFile}
       />
-
-      {error && error.message && (
-        <Text tag="b3_sb" color="alert3">
-          {error.message}
-        </Text>
-      )}
     </div>
   );
 };

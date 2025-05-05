@@ -19,6 +19,8 @@ export const imgWrapperStyle = style({
   overflow: 'hidden',
   border: `1px solid ${vars.colors.gray04}`,
   borderRadius: '110px',
+
+  cursor: 'pointer',
 });
 
 export const overlayStyle = style({
@@ -32,6 +34,4 @@ export const overlayStyle = style({
   padding: '0.2rem 0rem 0.5rem 0rem',
 
   backgroundColor: vars.colors.black70,
-
-  cursor: 'pointer',
 });
