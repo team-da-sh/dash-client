@@ -12,7 +12,7 @@ interface ProfileFormPropTypes {
   defaultValues: {
     nickname: string;
     phoneNumber: string;
-    name?: string;
+    name: string;
     profileImageUrl: string;
   };
   onSubmit: (data: ProfileFormValues) => void;
@@ -38,6 +38,7 @@ const ProfileForm = ({ defaultValues, onSubmit }: ProfileFormPropTypes) => {
   });
 
   const currentNickname = watch('nickname');
+  const currentName = watch('name');
   const currentPhoneNumber = watch('phoneNumber');
 
   const handleFileChange = (selected: boolean) => {
@@ -45,15 +46,15 @@ const ProfileForm = ({ defaultValues, onSubmit }: ProfileFormPropTypes) => {
   };
 
   useEffect(() => {
-    // !! 연산자로 boolean 타입 보장
     const hasChanged = !!(
       currentNickname !== defaultValues.nickname ||
       currentPhoneNumber !== defaultValues.phoneNumber ||
+      currentName !== defaultValues.name ||
       fileSelected
     );
 
     setIsChanged(hasChanged);
-  }, [currentNickname, currentPhoneNumber, fileSelected, defaultValues]);
+  }, [currentNickname, currentPhoneNumber, currentName, fileSelected, defaultValues]);
 
   const isButtonActive = isChanged && isValid;
 
@@ -79,7 +80,18 @@ const ProfileForm = ({ defaultValues, onSubmit }: ProfileFormPropTypes) => {
         }
       />
 
-      <FormField label="이름" name="name" register={register} readOnly />
+      <FormField
+        label="이름"
+        name="name"
+        register={register}
+        placeholder="이름을 입력해주세요"
+        error={errors.name}
+        rightAddOn={
+          <Text tag="b3_r" color="alert3">
+            {currentName?.length || 0}/8
+          </Text>
+        }
+      />
 
       <FormField
         label="전화번호"

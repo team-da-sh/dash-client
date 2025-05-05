@@ -9,6 +9,7 @@ const EditProfile = () => {
     const submitData = new FormData();
     submitData.append('nickname', formData.nickname);
     submitData.append('phoneNumber', formData.phoneNumber);
+    submitData.append('name', formData.name);
 
     if (formData.profileImageUrl && formData.profileImageUrl.length > 0) {
       submitData.append('profileImage', formData.profileImageUrl[0]);
