@@ -9,6 +9,7 @@ export const QUERY_KEYS = {
   MEMBERS_RESERVATION_STATISTICS: 'members_reservation_statistics',
 
   TEACHERS: 'teachers',
+  TEACHERS_ME: 'teachers_me',
   TEACHER_DETAIL: 'teacher_detail',
   TEACHERS_POPULAR: 'teachers_popular',
   TEACHERS_SEARCH: 'teachers_search',

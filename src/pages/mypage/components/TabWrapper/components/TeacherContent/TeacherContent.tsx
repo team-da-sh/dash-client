@@ -1,7 +1,9 @@
 import { useNavigate } from 'react-router-dom';
+import { useGetMyTeacherInfo } from '@/pages/mypage/apis/queries';
 import BottomList from '@/pages/mypage/components/BottomList/BottomList';
 import EmptyClassList from '@/pages/mypage/components/TabWrapper/components/TeacherContent/components/EmptyClassList/EmptyClassList';
 import TeacherLessons from '@/pages/mypage/components/TabWrapper/components/TeacherContent/components/TeacherLessons/TeacherLessons';
+import UnregisteredTeacher from '@/pages/mypage/components/TabWrapper/components/TeacherContent/components/UnregisteredTeacher/UnregisteredTeacher';
 import * as styles from '@/pages/mypage/components/TabWrapper/components/TeacherContent/teacherContent.css';
 import { getUserRole } from '@/pages/mypage/utils/storage';
 import { getFullUrl } from '@/pages/mypage/utils/url';
@@ -16,13 +18,16 @@ import InfoComponent from '@/shared/components/InfoComponent/InfoComponent';
 import Text from '@/shared/components/Text/Text';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
 import { mockMyTeacherData, mockTeacherLessonData } from '../../mockData';
-import UnregisteredTeacher from './components/UnregisteredTeacher/UnregisteredTeacher';
 
 const TeacherContent = () => {
   const navigate = useNavigate();
-  const data = mockMyTeacherData;
+  const { data, isLoading } = useGetMyTeacherInfo();
   const lessonData = mockTeacherLessonData;
   const userRole = getUserRole();
+
+  if (!data || isLoading) {
+    return <></>;
+  }
 
   const handleClassButtonClick = () => {
     navigate(ROUTES_CONFIG.classRegister.path);

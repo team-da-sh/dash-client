@@ -10,3 +10,10 @@ export interface MyPageResponseTypes {
   name: string;
   phoneNumber: string;
 }
+
+export interface MyTeacherInfoResponseTypes {
+  profileImage: string;
+  nickname: string;
+  instagram: string;
+  youtube: string;
+}

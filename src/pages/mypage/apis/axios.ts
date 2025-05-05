@@ -12,3 +12,9 @@ export const getMyLessons = async () => {
 
   return data;
 };
+
+export const getMyTeacherInfo = async () => {
+  const { data } = await instance.get(API_URL.TEACHERS_ME);
+
+  return data;
+};
