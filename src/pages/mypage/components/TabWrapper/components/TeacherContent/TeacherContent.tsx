@@ -37,17 +37,12 @@ const TeacherContent = () => {
     navigate(ROUTES_CONFIG.instructorClassList.path);
   };
 
-  let isUnregisteredTeacherProfile = userRole === 'STUDENT';
+  let isRegisteredTeacherProfile = userRole === 'TEACHER';
 
   return (
     <div className={styles.containerStyle}>
       <div className={styles.topContainerStyle}>
-        {isUnregisteredTeacherProfile ? (
-          <>
-            <UnregisteredTeacher nickname={data.nickname} />
-            <Divider color="gray1" thickness="0.4rem" />
-          </>
-        ) : (
+        {isRegisteredTeacherProfile ? (
           <>
             <InfoComponent
               profileImageUrl={data.profileImage}
@@ -100,6 +95,11 @@ const TeacherContent = () => {
               </div>
               {lessonData.data?.lessons?.length ? <TeacherLessons data={lessonData.data} /> : <EmptyClassList />}
             </section>
+          </>
+        ) : (
+          <>
+            <UnregisteredTeacher nickname={data.nickname} />
+            <Divider color="gray1" thickness="0.4rem" />
           </>
         )}
       </div>

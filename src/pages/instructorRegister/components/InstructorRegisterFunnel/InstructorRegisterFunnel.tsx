@@ -1,4 +1,3 @@
-import { useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
 import { usePostInstructor } from '@/pages/instructorRegister/apis/queries';
 import CareerStep from '@/pages/instructorRegister/components/InstructorRegisterFunnel/CareerStep/CareerStep';
@@ -10,10 +9,10 @@ import { funnelContainerStyle } from '@/pages/instructorRegister/components/Inst
 import { TOTAL_STEP } from '@/pages/instructorRegister/constants/funnel';
 import { buttonContainerStyle } from '@/pages/instructorRegister/instructorRegister.css';
 import type { InstructorRegisterInfoTypes } from '@/pages/instructorRegister/types/InstructorRegisterInfoTypes';
+import { setUserRole } from '@/pages/mypage/utils/storage';
 import type { FunnelProps, StepProps } from '@/pages/search/types/funnel';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import Completion from '@/shared/components/Completion/Completion';
-import { QUERY_KEYS } from '@/shared/constants/queryKey';
 import useImageUploader from '@/shared/hooks/useImageUploader';
 import { setAccessToken, setRefreshToken } from '@/shared/utils/handleToken';
 
@@ -25,8 +24,6 @@ interface InstructorRegisterFunnelPropTypes {
 }
 
 const InstructorRegisterFunnel = ({ currentStep, Funnel, Step, setStep }: InstructorRegisterFunnelPropTypes) => {
-  const queryClient = useQueryClient();
-
   const [info, setInfo] = useState({
     imageUrls: '',
     instagram: '',
@@ -124,8 +121,7 @@ const InstructorRegisterFunnel = ({ currentStep, Funnel, Step, setStep }: Instru
         setAccessToken(accessToken);
         setRefreshToken(refreshToken);
 
-        queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.ROLE] });
-
+        setUserRole('TEACHER');
         setStep(1);
       },
       onError: (error) => {
