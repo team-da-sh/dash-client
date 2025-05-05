@@ -47,6 +47,10 @@ export const ROUTES_CONFIG = {
     title: 'Mypage',
     path: '/mypage',
   },
+  editProfile: {
+    title: 'editProfile',
+    path: '/mypage/edit',
+  },
   mypageReservation: {
     title: 'MypageReservation',
     path: '/mypage/reservation',

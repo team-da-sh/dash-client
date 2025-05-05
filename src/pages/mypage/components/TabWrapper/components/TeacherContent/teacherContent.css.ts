@@ -10,9 +10,8 @@ export const topContainerStyle = style({
   display: 'flex',
   flexDirection: 'column',
   gap: '2rem',
-  padding: '2rem',
 
-  backgroundColor: vars.colors.gray01,
+  backgroundColor: vars.colors.white,
 });
 
 export const reviewContainerStyle = style({
@@ -21,4 +20,20 @@ export const reviewContainerStyle = style({
   gap: '0.4rem',
   alignItems: 'center',
   justifyContent: 'space-between',
+});
+
+export const classButtonStyle = style({
+  position: 'fixed',
+  right: '20px',
+  bottom: '36px',
+
+  display: 'flex',
+  justifyContent: 'center',
+  width: 'max-content',
+  alignItems: 'center',
+  gap: '0.2rem',
+  padding: '1.2rem 1.6rem 1.2rem 1.2rem',
+
+  borderRadius: '40px',
+  backgroundColor: vars.colors.main04,
 });
