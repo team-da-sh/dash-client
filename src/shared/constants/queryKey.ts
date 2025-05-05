@@ -4,6 +4,7 @@ export const QUERY_KEYS = {
   AUTH_LOGOUT: 'auth_logout',
 
   MEMBERS_ME: 'members_me',
+  MEMBERS_ME_THUMBNAILS: 'members_me_thumbnails',
   MEMBERS_RESERVATIONS: 'members_reservations',
   MEMBERS_RESERVATION_DETAIL: 'members_reservation_detail',
   MEMBERS_RESERVATION_STATISTICS: 'members_reservation_statistics',

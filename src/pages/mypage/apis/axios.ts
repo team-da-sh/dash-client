@@ -18,3 +18,9 @@ export const getMyTeacherInfo = async () => {
 
   return data;
 };
+
+export const getMyLessonThumbnails = async () => {
+  const { data } = await instance.get(API_URL.MEMBERS_ME_THUMBNAILS);
+
+  return data;
+};

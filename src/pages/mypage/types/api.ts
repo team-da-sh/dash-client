@@ -17,3 +17,16 @@ export interface MyTeacherInfoResponseTypes {
   instagram: string;
   youtube: string;
 }
+
+export interface lessons {
+  id: number;
+  name: string;
+  imageUrl: string;
+  genre: string;
+  level: string;
+  dDay: number;
+}
+
+export interface LessonThumbnailsResponseTypes {
+  lessons: lessons[];
+}

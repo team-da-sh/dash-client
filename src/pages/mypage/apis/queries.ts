@@ -1,7 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
-import { MyPageResponseTypes, LessonCountResponseTypes, MyTeacherInfoResponseTypes } from '@/pages/mypage/types/api';
+import {
+  MyPageResponseTypes,
+  LessonCountResponseTypes,
+  MyTeacherInfoResponseTypes,
+  LessonThumbnailsResponseTypes,
+} from '@/pages/mypage/types/api';
 import { QUERY_KEYS } from '@/shared/constants/queryKey';
-import { getMyPage, getMyLessons, getMyTeacherInfo } from './axios';
+import { getMyPage, getMyLessons, getMyTeacherInfo, getMyLessonThumbnails } from './axios';
 
 export const useGetMyPage = () => {
   return useQuery<MyPageResponseTypes>({
@@ -21,5 +26,12 @@ export const useGetMyTeacherInfo = () => {
   return useQuery<MyTeacherInfoResponseTypes>({
     queryKey: [QUERY_KEYS.TEACHERS_ME],
     queryFn: getMyTeacherInfo,
+  });
+};
+
+export const useGetMyLessonThumbnails = () => {
+  return useQuery<LessonThumbnailsResponseTypes>({
+    queryKey: [QUERY_KEYS.MEMBERS_ME_THUMBNAILS],
+    queryFn: getMyLessonThumbnails,
   });
 };

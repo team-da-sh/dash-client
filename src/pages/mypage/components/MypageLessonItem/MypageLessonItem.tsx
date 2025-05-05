@@ -1,5 +1,4 @@
 import LessonItem from '@/pages/home/components/LessonItem/LessonItem';
-import { sprinkles } from '@/shared/styles/sprinkles.css';
 
 interface TeacherLessonItemPropTypes {
   id: number;
