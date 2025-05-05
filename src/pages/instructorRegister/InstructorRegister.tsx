@@ -74,8 +74,11 @@ const InstructorRegister = () => {
     return educationValid && careerValid && prizeValid;
   };
   const hasVideoUrls = () => info.videoUrls.some((url) => url.trim().length > 0);
+
   const buttonActive = () => {
-    return hasImage() && hasSocialId() && hasDancerBackground() && hasVideoUrls() && hasDetailedInfo();
+    return (
+      !isDetailError && hasImage() && hasSocialId() && hasDancerBackground() && hasVideoUrls() && hasDetailedInfo()
+    );
   };
 
   // 이미지 업로드 로직
@@ -83,8 +86,7 @@ const InstructorRegister = () => {
     setInfo((prev) => ({ ...prev, imageUrls: url }));
   };
 
-  const { imgFile, previewImg, imgRef, handleUploaderClick, uploadImgFile } =
-    useImageUploader(handleImageUploadSuccess);
+  const { previewImg, imgRef, handleUploaderClick, uploadImgFile } = useImageUploader(handleImageUploadSuccess);
 
   // form submit 함수
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {

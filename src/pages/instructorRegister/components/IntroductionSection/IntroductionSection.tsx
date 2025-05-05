@@ -81,7 +81,9 @@ const IntroductionSection = ({
           placeholder="저는 이런 댄서예요!"
           className={textAreaStyle({ defineInputState: inputState })}
           onFocus={handleFocus}
-          onBlur={handleBlur}></textarea>
+          onBlur={handleBlur}
+          maxLength={MAX_INTRODUCTION_LENGTH}
+        />
 
         <div className={sprinkles({ display: 'flex', justifyContent: 'space-between' })}>
           <Text tag="b3_r" color="alert3">
