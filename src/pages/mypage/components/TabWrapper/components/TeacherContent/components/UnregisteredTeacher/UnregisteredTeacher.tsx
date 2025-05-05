@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import SvgIcProfile from '@/assets/svg/IcProfile';
+import IcProfile from '@/shared/assets/svg/IcProfile';
 import Head from '@/shared/components/Head/Head';
 import Text from '@/shared/components/Text/Text';
 import * as styles from './unregisteredTeacher.css';
@@ -16,7 +16,7 @@ const UnregisteredTeacher = ({ nickname }: UnregisteredTeacherPropTypes) => {
 
   return (
     <section className={styles.layoutStyle}>
-      <SvgIcProfile width={120} height={120} />
+      <IcProfile width={120} height={120} />
       <div className={styles.textConatinerStyle}>
         <Head level="h3" tag="h6_sb">
           강사 프로필을 등록해 보세요!

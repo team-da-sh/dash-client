@@ -6,11 +6,11 @@ import * as styles from '@/pages/mypage/components/TabWrapper/components/Teacher
 import { getUserRole } from '@/pages/mypage/utils/storage';
 import { getFullUrl } from '@/pages/mypage/utils/url';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import SvgIcPlusWhite24 from '@/assets/svg/IcPlusWhite24';
-import SvgIcReview from '@/assets/svg/IcReview';
-import SvgIcArrowRightSmallGray0732 from '@/shared/assets/svg/IcArrowRightSmallGray0732';
-import SvgIcInstagram20 from '@/shared/assets/svg/IcInstagram20';
-import SvgIcYoutube20 from '@/shared/assets/svg/IcYoutube20';
+import IcArrowRightSmallGray0732 from '@/shared/assets/svg/IcArrowRightSmallGray0732';
+import IcInstagram20 from '@/shared/assets/svg/IcInstagram20';
+import IcPlusWhite24 from '@/shared/assets/svg/IcPlusWhite24';
+import IcReview from '@/shared/assets/svg/IcReview';
+import IcYoutube20 from '@/shared/assets/svg/IcYoutube20';
 import Divider from '@/shared/components/Divider/Divider';
 import InfoComponent from '@/shared/components/InfoComponent/InfoComponent';
 import Text from '@/shared/components/Text/Text';
@@ -50,7 +50,7 @@ const TeacherContent = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     className={sprinkles({ display: 'flex', gap: 4, alignItems: 'center' })}>
-                    <SvgIcInstagram20 className={sprinkles({ width: 16, height: 16 })} />
+                    <IcInstagram20 width={16} height={12} />
                     <Text tag="b3_m" color="gray6">
                       {data.instagram}
                     </Text>
@@ -65,7 +65,7 @@ const TeacherContent = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       className={sprinkles({ display: 'flex', gap: 4, alignItems: 'center' })}>
-                      <SvgIcYoutube20 className={sprinkles({ width: 16, height: 12 })} />
+                      <IcYoutube20 width={16} height={12} />
                       <Text tag="b3_m" color="gray6">
                         {data.youtube}
                       </Text>
@@ -95,17 +95,17 @@ const TeacherContent = () => {
 
       <div className={styles.reviewContainerStyle}>
         <div className={sprinkles({ display: 'flex', alignItems: 'center', gap: 4 })}>
-          <SvgIcReview width={24} />
+          <IcReview width={24} />
           <Text tag="b2_sb" color="gray11">
             리뷰 확인
           </Text>
         </div>
-        <SvgIcArrowRightSmallGray0732 width={32} />
+        <IcArrowRightSmallGray0732 width={32} />
       </div>
       <Divider color="gray1" thickness="0.4rem" />
       <BottomList />
       <button type="button" className={styles.classButtonStyle} onClick={handleClassButtonClick}>
-        <SvgIcPlusWhite24 width={24} />
+        <IcPlusWhite24 width={24} />
         <Text tag="b1_sb_long" color="white">
           클래스 개설
         </Text>

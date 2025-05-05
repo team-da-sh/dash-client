@@ -1,3 +1,4 @@
+import BottomList from '@/pages/mypage/components/BottomList/BottomList';
 import ClassProgress from '@/pages/mypage/components/TabWrapper/components/StudentContent/components/ClassProgress/ClassProgress';
 import MenuButton from '@/pages/mypage/components/TabWrapper/components/StudentContent/components/MenuButton/MenuButton';
 import * as styles from '@/pages/mypage/components/TabWrapper/components/StudentContent/studentContent.css';
@@ -6,7 +7,6 @@ import { formatPhoneNumber } from '@/pages/mypage/utils/format';
 import Divider from '@/shared/components/Divider/Divider';
 import InfoComponent from '@/shared/components/InfoComponent/InfoComponent';
 import Text from '@/shared/components/Text/Text';
-import BottomList from '../../../BottomList/BottomList';
 import { mockMyPageData } from '../../mockData';
 
 const StudentContent = () => {

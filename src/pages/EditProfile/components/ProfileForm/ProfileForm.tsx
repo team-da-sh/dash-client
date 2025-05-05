@@ -2,7 +2,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import FormField from '@/pages/editProfile/components/FormField/FormField.tsx';
 import ProfileImageUpload from '@/pages/editProfile/components/ProfileImageUpload/ProfileImageUpload.tsx';
-import { useFormChanged } from '@/pages/editProfile/hooks/useFormChanged.ts';
+import { MAX_NAME_LENGTH, MAX_NICKNAME_LENGTH } from '@/pages/editProfile/constants/limit.ts';
 import { profileSchema, ProfileFormValues } from '@/pages/editProfile/schema/profileSchema.ts';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import Text from '@/shared/components/Text/Text';
@@ -15,15 +15,14 @@ interface ProfileFormPropTypes {
     name: string;
     profileImageUrl: string;
   };
-  onSubmit: (data: ProfileFormValues) => void;
 }
 
-const ProfileForm = ({ defaultValues, onSubmit }: ProfileFormPropTypes) => {
+const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
   const {
     register,
     handleSubmit,
     control,
-    formState: { errors, isValid },
+    formState: { errors, isValid, isDirty },
     watch,
   } = useForm<ProfileFormValues>({
     resolver: zodResolver(profileSchema),
@@ -36,25 +35,24 @@ const ProfileForm = ({ defaultValues, onSubmit }: ProfileFormPropTypes) => {
     mode: 'onChange',
   });
 
-  const currentNickname = watch('nickname');
-  const currentName = watch('name');
-  const currentPhoneNumber = watch('phoneNumber');
-  const currentProfileImage = watch('profileImageUrl');
+  const { nickname, name } = watch();
 
-  const isChanged = useFormChanged(
-    [currentNickname, currentPhoneNumber, currentName, currentProfileImage],
-    [defaultValues.nickname, defaultValues.phoneNumber, defaultValues.name, defaultValues.profileImageUrl]
-  );
+  const isButtonActive = isDirty && isValid;
 
-  const isButtonActive = isChanged && isValid;
+  const onSubmit = (formData: ProfileFormValues) => {
+    const submitData = new FormData();
+    submitData.append('nickname', formData.nickname);
+    submitData.append('phoneNumber', formData.phoneNumber);
+    submitData.append('name', formData.name);
+
+    if (formData.profileImageUrl && formData.profileImageUrl.length > 0) {
+      submitData.append('profileImage', formData.profileImageUrl[0]);
+    }
+  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <ProfileImageUpload
-        defaultImageUrl={defaultValues.profileImageUrl}
-        control={control}
-        error={errors.profileImageUrl}
-      />
+      <ProfileImageUpload defaultImageUrl={defaultValues.profileImageUrl} control={control} />
 
       <FormField
         label="댄서네임"
@@ -62,9 +60,9 @@ const ProfileForm = ({ defaultValues, onSubmit }: ProfileFormPropTypes) => {
         placeholder="댄서네임을 입력해주세요"
         register={register}
         error={errors.nickname}
-        rightAddOn={
+        validationMessage={
           <Text tag="b3_r" color="alert3">
-            {currentNickname?.length || 0}/8
+            {`${nickname?.length || 0}/${MAX_NICKNAME_LENGTH}`}
           </Text>
         }
       />
@@ -75,9 +73,9 @@ const ProfileForm = ({ defaultValues, onSubmit }: ProfileFormPropTypes) => {
         register={register}
         placeholder="이름을 입력해주세요"
         error={errors.name}
-        rightAddOn={
+        validationMessage={
           <Text tag="b3_r" color="alert3">
-            {currentName?.length || 0}/8
+            {`${name?.length || 0}/${MAX_NAME_LENGTH}`}
           </Text>
         }
       />

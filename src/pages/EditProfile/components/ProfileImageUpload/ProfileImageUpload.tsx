@@ -7,8 +7,6 @@ import * as styles from './profileImageUpload.css';
 interface ProfileImageUploadPropTypes {
   defaultImageUrl: string;
   control: Control<ProfileFormValues>;
-  error?: { message?: string } | undefined;
-  onFileChange?: (selected: boolean) => void;
 }
 const ProfileImageUpload = ({ defaultImageUrl, control }: ProfileImageUploadPropTypes) => {
   const { field } = useController({
