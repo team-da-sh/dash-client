@@ -5,6 +5,7 @@ import FinishStep from '@/pages/onboarding/components/FinishStep/FinishStep';
 import InfoStep from '@/pages/onboarding/components/InfoStep/InfoStep';
 import ProfileStep from '@/pages/onboarding/components/ProfileStep/ProfileStep';
 import SubmitButton from '@/pages/onboarding/components/SubmitButton/SubmitButton';
+import { FINAL_ONBOARDING_STEP } from '@/pages/onboarding/constants';
 import { bodyWrapperStyle, containerStyle, footerWrapperStyle } from '@/pages/onboarding/onboarding.css';
 import type { onboardInfoTypes } from '@/pages/onboarding/types/onboardInfoTypes';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
@@ -13,9 +14,8 @@ import { setStorage } from '@/shared/utils/handleToken';
 import defaultProfile from '/images/image_profile_basic.png';
 
 const Onboarding = () => {
-  const { Funnel, Step, setStep, currentStep } = useFunnel(3, ROUTES_CONFIG.home.path);
+  const { Funnel, Step, setStep, currentStep } = useFunnel(FINAL_ONBOARDING_STEP, ROUTES_CONFIG.home.path);
 
-  
   const [info, setInfo] = useState<onboardInfoTypes>({
     name: '',
     phoneNumber: '',
@@ -78,7 +78,6 @@ const Onboarding = () => {
               changeIsNicknameError={changeNicknameError}
               profileImageUrl={info.profileImageUrl}
               onInfoChange={handleInfoChange}
-              setInfo={setInfo}
             />
           </Step>
           <Step name="3">

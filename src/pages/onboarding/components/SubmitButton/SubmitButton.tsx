@@ -1,4 +1,4 @@
-import { MAX_ONBOARDING_STEP } from '@/pages/onboarding/constants';
+import { FINAL_ONBOARDING_STEP } from '@/pages/onboarding/constants';
 import type { onboardInfoTypes } from '@/pages/onboarding/types/onboardInfoTypes';
 import { validateName, validatePhoneNumber } from '@/pages/onboarding/utils/validate';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
@@ -12,7 +12,7 @@ interface SubmitButtonPropTypes {
 
 const SubmitButton = ({ currentStep, info, onNextButtonClick, isNicknameError }: SubmitButtonPropTypes) => {
   // 다음 버튼 활성화 판단
-  const buttonActive = (currentStep: number) => {
+  const isButtonDisabled = (currentStep: number) => {
     switch (currentStep) {
       case 1:
         return !(validateName(info.name) && validatePhoneNumber(info.phoneNumber));
@@ -28,10 +28,10 @@ const SubmitButton = ({ currentStep, info, onNextButtonClick, isNicknameError }:
   return (
     <BoxButton
       variant="primary"
-      onClick={currentStep === MAX_ONBOARDING_STEP - 1 ? () => {} : onNextButtonClick}
-      isDisabled={buttonActive(currentStep)}
-      type={currentStep === MAX_ONBOARDING_STEP - 1 ? 'submit' : 'button'}>
-      {currentStep === MAX_ONBOARDING_STEP ? '홈으로 이동' : '다음'}
+      onClick={currentStep === FINAL_ONBOARDING_STEP - 1 ? undefined : onNextButtonClick}
+      isDisabled={isButtonDisabled(currentStep)}
+      type={currentStep === FINAL_ONBOARDING_STEP - 1 ? 'submit' : 'button'}>
+      {currentStep === FINAL_ONBOARDING_STEP ? '홈으로 이동' : '다음'}
     </BoxButton>
   );
 };
