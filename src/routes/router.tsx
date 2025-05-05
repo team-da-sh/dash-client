@@ -2,6 +2,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import { LoginCallback } from '@/pages/auth/auth';
 import Class from '@/pages/class/Class';
 import Dancer from '@/pages/dancer/Dancer';
+import EditProfile from '@/pages/editProfile/EditProfile';
 import Error from '@/pages/error/Error';
 import Home from '@/pages/home/Home';
 import ClassDetail from '@/pages/instructor/classDetail/ClassDetail';
@@ -36,6 +37,7 @@ export const router = createBrowserRouter([
       { path: ROUTES_CONFIG.dancer.path(':id'), element: <Dancer /> },
       { path: ROUTES_CONFIG.reservation.path(':id'), element: <Reservation /> },
       { path: ROUTES_CONFIG.mypage.path, element: <MyPage /> },
+      { path: ROUTES_CONFIG.editProfile.path, element: <EditProfile /> },
       { path: ROUTES_CONFIG.mypageReservation.path, element: <MyPageReservation /> },
       { path: ROUTES_CONFIG.mypageReservationDetail.path(':id'), element: <MyPageReservationDetail /> },
       { path: ROUTES_CONFIG.classRegister.path, element: <ClassRegister /> },

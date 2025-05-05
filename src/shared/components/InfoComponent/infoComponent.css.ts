@@ -6,6 +6,7 @@ export const infoContainerStyle = style({
   alignItems: 'center',
 
   justifyContent: 'space-between',
+  padding: '2rem',
 
   backgroundColor: vars.colors.gray01,
 });

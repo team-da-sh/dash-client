@@ -14,7 +14,7 @@ export interface UpcomingLessonsResponseTypes {
   lessons: LessonTypes[];
 }
 
-export interface RecommendationLessonsResponseTypes {
+export interface LatestLessonsResponseTypes {
   lessons: LessonTypes[];
 }
 
