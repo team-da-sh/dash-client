@@ -28,7 +28,7 @@ const TabLevel = ({ lessonData }: { lessonData: LessonDetailResponseTypes }) => 
           flexDirection: 'column',
           alignItems: 'flex-end',
           width: '100%',
-          gap: 6,
+          gap: 8,
         })}>
         <Card style={{ border: `1px solid ${vars.colors.gray03}` }}>
           <div className={sprinkles({ display: 'flex', alignItems: 'center', gap: 8 })}>
@@ -60,7 +60,7 @@ const TabLevel = ({ lessonData }: { lessonData: LessonDetailResponseTypes }) => 
           </button>
         </div>
       </div>
-      <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 12 })}>
+      <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 17 })}>
         <div className={sprinkles({ display: 'flex', justifyContent: 'flex-start', alignItems: 'center', gap: 4 })}>
           <Suspense fallback={<div>Loading...</div>}>
             <IcSparkleMain20 width={'2.4rem'} />

@@ -12,7 +12,7 @@ interface TabWrapperPropTypes {
 
 const TabWrapper = ({ colorScheme, lessonData }: TabWrapperPropTypes) => {
   const [selectedTab, setSelectedTab] = useState(0);
-  // pt: 24, pl: 56
+
   return (
     <TabRoot>
       <div className={sprinkles({ display: 'flex', pt: 24, justifyContent: 'center' })}>

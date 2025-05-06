@@ -6,7 +6,7 @@ export const roundBoxStyle = style({
   justifyContent: 'center',
   alignItems: 'center',
 
-  marginRight: '1rem',
+  marginRight: '1.6rem',
   padding: '0.6rem 1.2rem',
 
   borderRadius: '4px',

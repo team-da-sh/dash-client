@@ -52,7 +52,7 @@ const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetailResponseType
         </Tag>
       </div>
 
-      <Head level="h2" tag="h5_sb" className={sprinkles({ mb: 16 })}>
+      <Head level="h2" tag="h5_sb" className={sprinkles({ mb: 18 })}>
         {name}
       </Head>
 

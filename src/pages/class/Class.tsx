@@ -27,6 +27,8 @@ const Class = () => {
   }
 
   const imageUrl = data.imageUrl;
+  const remainingSeats = data.maxReservationCount - data.reservationCount;
+  const shouldShowChip = data.status === 'OPEN' && remainingSeats < 10;
 
   return (
     <main>
@@ -34,8 +36,18 @@ const Class = () => {
         className={styles.headerStyle}
         style={{
           backgroundImage: `url(${imageUrl})`,
+          position: 'relative',
         }}>
-        <LimitedChip lessonData={data} />
+        {shouldShowChip && (
+          <div
+            style={{
+              position: 'absolute',
+              left: 20,
+              bottom: 16,
+            }}>
+            <LimitedChip lessonData={data} />
+          </div>
+        )}
       </div>
 
       <ClassInfoWrapper lessonData={data} />
