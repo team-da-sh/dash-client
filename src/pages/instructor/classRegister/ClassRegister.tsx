@@ -1,3 +1,4 @@
+import { useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { useGetLocationList, usePostClassRegisterInfo } from '@/pages/instructor/classRegister/apis/queries';
 import * as styles from '@/pages/instructor/classRegister/classRegister.css';
@@ -17,14 +18,15 @@ import type { ClassRegisterInfoTypes } from '@/pages/instructor/classRegister/ty
 import { buttonContainerStyle } from '@/pages/instructorRegister/instructorRegister.css';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
-import Header from '@/shared/components/Header/Header';
 import { genreEngMapping, levelEngMapping } from '@/shared/constants';
+import { QUERY_KEYS } from '@/shared/constants/queryKey';
 import useBottomSheet from '@/shared/hooks/useBottomSheet';
 import useImageUploader from '@/shared/hooks/useImageUploader';
 
 const ClassRegister = () => {
   const { isBottomSheetOpen, openBottomSheet, closeBottomSheet } = useBottomSheet();
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
   const { mutate: classRegisterMutate } = usePostClassRegisterInfo();
   const {
@@ -115,6 +117,7 @@ const ClassRegister = () => {
 
       classRegisterMutate(updatedInfo, {
         onSuccess: () => {
+          queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.MEMBERS_ME] });
           navigate(ROUTES_CONFIG.classRegisterCompletion.path);
         },
         onError: () => {
@@ -136,11 +139,6 @@ const ClassRegister = () => {
 
   return (
     <>
-      <Header.Root isColor={true}>
-        <Header.BackIcon />
-        <Header.Title title="클래스 개설" />
-      </Header.Root>
-
       <form onSubmit={handleSubmit}>
         <div className={styles.containerStyle}>
           <ClassName className={className} handleClassNameChange={handleClassNameChange} />

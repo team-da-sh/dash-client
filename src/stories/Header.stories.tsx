@@ -1,77 +1,51 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { MemoryRouter } from 'react-router-dom';
+import { within, userEvent } from '@storybook/testing-library';
+import { BrowserRouter } from 'react-router-dom';
 import Header from '@/shared/components/Header/Header';
 
-const meta: Meta = {
+const meta: Meta<typeof Header> = {
   title: 'Common/Header',
-  component: Header.Root,
-
+  component: Header,
   parameters: {
-    layout: 'centered',
+    layout: 'fullscreen',
   },
-  subcomponents: {
-    BackIcon: Header.BackIcon,
-    Title: Header.Title,
-    CloseIcon: Header.CloseIcon,
-  },
-
   decorators: [
     (Story) => (
-      <MemoryRouter>
+      <BrowserRouter>
         <Story />
-      </MemoryRouter>
+      </BrowserRouter>
     ),
   ],
-
-  argTypes: {
-    title: {
-      control: { type: 'text' },
-      description: '헤더 타이틀 텍스트',
-      defaultValue: 'HEADER TITLE',
-    },
-    onClickBack: {
-      action: 'onClickBack',
-      description: '뒤로가기 버튼 클릭 이벤트',
-    },
-    onClickClose: {
-      action: 'onClickClose',
-      description: '닫기 버튼 클릭 이벤트',
-    },
-  },
 };
 
 export default meta;
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<typeof Header>;
 
 export const Default: Story = {
-  args: {
-    title: 'HEADER TITLE',
-  },
-  render: ({ title }) => (
-    <Header.Root>
-      <Header.BackIcon />
-      <Header.Title title={title} />
-      <Header.CloseIcon />
-    </Header.Root>
-  ),
+  render: () => <Header />,
 };
 
-export const BackOnly: Story = {
-  args: {
-    title: 'Go Back',
+export const WithMyPageOpen: Story = {
+  parameters: {
+    reactRouter: {
+      browserPath: '/',
+      routePath: '/',
+    },
   },
-  render: ({ title }) => (
-    <Header.Root>
-      <Header.BackIcon />
-      <Header.Title title={title} />
-    </Header.Root>
-  ),
+  render: () => <Header />,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const mypageButton = canvas.getByRole('button', { name: /마이페이지로 이동/i });
+    await userEvent.click(mypageButton);
+  },
 };
 
-export const CloseOnly: Story = {
-  render: () => (
-    <Header.Root>
-      <Header.CloseIcon />
-    </Header.Root>
-  ),
+export const InSearchPage: Story = {
+  parameters: {
+    reactRouter: {
+      browserPath: '/search',
+      routePath: '/search',
+    },
+  },
+  render: () => <Header />,
 };

@@ -1,9 +1,11 @@
-import ChoreohongImg from 'public/images/image_chorehong.webp';
-import KkukgirlImg from 'public/images/image_kkukgirl.webp';
-import BannerImg from 'public/images/img_banner_750.webp';
+import 'swiper/css';
+import 'swiper/css/pagination';
 import { Autoplay, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SliderItem from '@/pages/home/components/SliderItem/SliderItem';
+import ChoreohongImg from '/images/image_chorehong.webp';
+import KkukgirlImg from '/images/image_kkukgirl.webp';
+import BannerImg from '/images/img_banner_750.webp';
 
 const ADVERTISEMENTS = [
   {
@@ -31,9 +33,9 @@ const HomeCarousel = () => {
         delay: 4500,
         disableOnInteraction: false,
       }}>
-      {ADVERTISEMENTS.map((advertisement, index) => {
+      {ADVERTISEMENTS.map((advertisement) => {
         return (
-          <SwiperSlide key={`${index}-${advertisement.id}`}>
+          <SwiperSlide key={`${advertisement.id}`}>
             <SliderItem {...advertisement} />
           </SwiperSlide>
         );

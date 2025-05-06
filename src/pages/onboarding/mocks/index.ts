@@ -1,15 +1,15 @@
-import BreakingImg from 'public/images/image_genre_breaking.png';
-import ChoreoImg from 'public/images/image_genre_choreo.png';
-import FemaleHiphop from 'public/images/image_genre_femalehiphop.png';
-import HiphopImg from 'public/images/image_genre_hiphop.png';
-import HouseImg from 'public/images/image_genre_house.png';
-import KpopImg from 'public/images/image_genre_kpop.png';
-import KrumpImg from 'public/images/image_genre_krump.png';
-import LockingImg from 'public/images/image_genre_locking.png';
-import PoppingImg from 'public/images/image_genre_popping.png';
-import SoulImg from 'public/images/image_genre_soul.png';
-import VoguingImg from 'public/images/image_genre_voguing.png';
-import WaackingImg from 'public/images/image_genre_waacking.png';
+import BreakingImg from '/images/image_genre_breaking.png';
+import ChoreoImg from '/images/image_genre_choreo.png';
+import FemaleHiphop from '/images/image_genre_femalehiphop.png';
+import HiphopImg from '/images/image_genre_hiphop.png';
+import HouseImg from '/images/image_genre_house.png';
+import KpopImg from '/images/image_genre_kpop.png';
+import KrumpImg from '/images/image_genre_krump.png';
+import LockingImg from '/images/image_genre_locking.png';
+import PoppingImg from '/images/image_genre_popping.png';
+import SoulImg from '/images/image_genre_soul.png';
+import VoguingImg from '/images/image_genre_voguing.png';
+import WaackingImg from '/images/image_genre_waacking.png';
 
 export const GENRE_INFO = [
   { genre: '힙합', url: HiphopImg },

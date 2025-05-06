@@ -5,13 +5,13 @@ import DancerList from '@/pages/search/components/TabContainer/DancerList/Dancer
 import EmptyView from '@/pages/search/components/TabContainer/EmptyView/EmptyView';
 import Dropdown from '@/pages/search/components/TabContainer/TagSection/Dropdown';
 import TagSection from '@/pages/search/components/TabContainer/TagSection/TagSection';
-import { divCustomStyle } from '@/pages/search/components/TabContainer/tabContainer.css';
-import type { ClassListResponse, DancerListResponse } from '@/pages/search/types/api';
+import * as styles from '@/pages/search/components/TabContainer/tabContainer.css';
+import type { ClassListResponseTypes, DancerListResponseTypes } from '@/pages/search/types/api';
 import IcArrowUnderGray from '@/shared/assets/svg/IcArrowUnderGray';
 import IcXMain04 from '@/shared/assets/svg/IcXMain04';
-import Flex from '@/shared/components/Flex/Flex';
 import { TabButton, TabList, TabPanel, TabRoot } from '@/shared/components/Tab';
 import Text from '@/shared/components/Text/Text';
+import { sprinkles } from '@/shared/styles/sprinkles.css';
 
 interface TagItem {
   label: string;
@@ -33,7 +33,7 @@ interface ClassTypes {
   remainingDays: number;
 }
 
-interface TabContainerProps {
+interface TabContainerPropTypes {
   defaultSortTags: DefaultSortTagTypes[];
   genre: string | null;
   level: string | null;
@@ -43,8 +43,8 @@ interface TabContainerProps {
   setLevel: (level: string | null) => void;
   setStartDate: (date: string) => void;
   setEndDate: (date: string) => void;
-  classList: ClassListResponse | undefined;
-  dancerList: DancerListResponse | undefined;
+  classList: ClassListResponseTypes | undefined;
+  dancerList: DancerListResponseTypes | undefined;
   error: Error | null;
   selectedLabel: '최신 등록순' | '찜이 많은순' | '마감 임박순';
   setSelectedLabel: (label: '최신 등록순' | '찜이 많은순' | '마감 임박순') => void;
@@ -65,7 +65,7 @@ const TabContainer = ({
   classList,
   selectedLabel,
   setSelectedLabel,
-}: TabContainerProps) => {
+}: TabContainerPropTypes) => {
   const [selectedTab, setSelectedTab] = useState(0);
 
   const handleTagReset = (type: string) => {
@@ -117,10 +117,25 @@ const TabContainer = ({
   const tagType: 'search' | 'sort' = activeTags.length > 0 ? 'search' : 'sort';
 
   return (
-    <Flex direction="column" paddingTop="8.4rem" width="100%" paddingLeft="2rem" paddingRight="2rem">
-      <Flex align="center" width="100%" justify="spaceBetween" position="relative">
+    <section
+      className={sprinkles({
+        display: 'flex',
+        flexDirection: 'column',
+        width: '100%',
+        paddingTop: 84,
+        paddingLeft: 20,
+        paddingRight: 20,
+      })}>
+      <div
+        className={sprinkles({
+          display: 'flex',
+          alignItems: 'center',
+          width: '100%',
+          justifyContent: 'space-between',
+          position: 'relative',
+        })}>
         <TabRoot>
-          <Flex justify="spaceBetween">
+          <div className={sprinkles({ display: 'flex', justifyContent: 'space-between' })}>
             <TabList>
               <TabButton isSelected={selectedTab === 0} onClick={() => setSelectedTab(0)} colorScheme="primary">
                 클래스
@@ -131,12 +146,12 @@ const TabContainer = ({
             </TabList>
             <Dropdown.Root>
               <Dropdown.Trigger>
-                <Flex align="center">
-                  <Text tag="b7" color="gray7">
+                <div className={sprinkles({ display: 'flex', alignItems: 'center' })}>
+                  <Text tag="b3_m" color="gray7">
                     {selectedLabel}
                   </Text>
                   <IcArrowUnderGray width={14} />
-                </Flex>
+                </div>
               </Dropdown.Trigger>
               <Dropdown.Content>
                 <Dropdown.Item label="최신 등록순" onClick={() => setSelectedLabel('최신 등록순')} />
@@ -144,7 +159,7 @@ const TabContainer = ({
                 <Dropdown.Item label="마감 임박순" onClick={() => setSelectedLabel('마감 임박순')} />
               </Dropdown.Content>
             </Dropdown.Root>
-          </Flex>
+          </div>
 
           <TabPanel isSelected={selectedTab === 0}>
             <TagSection
@@ -161,24 +176,9 @@ const TabContainer = ({
               setStartDate={setStartDate}
               setEndDate={setEndDate}
             />
-            <div className={divCustomStyle}>
+            <div className={styles.divCustomStyle}>
               {classList && classList.lessons && classList.lessons.length > 0 ? (
-                classList.lessons.map((data: ClassTypes) => (
-                  <ClassItem
-                    key={data.id}
-                    id={data.id}
-                    imageUrl={data.imageUrl}
-                    level={data.level}
-                    genre={data.genre}
-                    name={data.name}
-                    teacherName={data.teacherName}
-                    teacherProfileImage={data.teacherProfileImage}
-                    startDate={data.startDate}
-                    endDate={data.endDate}
-                    remainingDays={data.remainingDays}
-                    useNewStyles={true}
-                  />
-                ))
+                classList.lessons.map((data: ClassTypes) => <ClassItem key={data.id} {...data} useNewStyles={true} />)
               ) : (
                 <EmptyView />
               )}
@@ -193,8 +193,8 @@ const TabContainer = ({
             )}
           </TabPanel>
         </TabRoot>
-      </Flex>
-    </Flex>
+      </div>
+    </section>
   );
 };
 

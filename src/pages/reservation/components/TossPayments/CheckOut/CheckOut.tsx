@@ -36,6 +36,7 @@ export const CheckoutPage = () => {
 
   useEffect(() => {
     const renderPaymentWidgets = async () => {
+      // eslint-disable-next-line eqeqeq
       if (widgets == null) return;
 
       await widgets.setAmount(amount);

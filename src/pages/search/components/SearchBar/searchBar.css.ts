@@ -17,7 +17,7 @@ export const containerStyle = style({
 
 export const inputStyle = style({
   width: '100%',
-  ...vars.fonts.b4,
+  ...vars.fonts.b2_sb,
 
   '::placeholder': {
     color: vars.colors.gray05,

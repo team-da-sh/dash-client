@@ -10,7 +10,7 @@ export const textareaStyle = style({
   resize: 'none',
   borderRadius: '4px',
   backgroundColor: vars.colors.gray01,
-  ...vars.fonts.b5,
+  ...vars.fonts.b2_sb_long,
 
   '::placeholder': {
     color: vars.colors.gray05,

@@ -32,7 +32,7 @@ globalStyle('.react-calendar__navigation__arrow.react-calendar__navigation__next
 });
 
 globalStyle('.react-calendar__navigation__label', {
-  ...vars.fonts.h4,
+  ...vars.fonts.h5_sb,
   marginTop: '0.8rem',
   pointerEvents: 'none',
 });
@@ -52,7 +52,7 @@ globalStyle('.react-calendar__month-view__weekdays__weekday', {
   textAlign: 'center',
   marginBottom: '1.2rem',
   color: vars.colors.gray07,
-  ...vars.fonts.b7,
+  ...vars.fonts.b3_m,
   width: '100%',
 });
 
@@ -72,7 +72,7 @@ globalStyle('.react-calendar__month-view__days__day', {
 
 globalStyle('.react-calendar__month-view__days', {
   height: '26.9rem',
-  ...vars.fonts.h6,
+  ...vars.fonts.b1_sb,
 });
 
 // 기간 첫 날짜 배경 원 스타일

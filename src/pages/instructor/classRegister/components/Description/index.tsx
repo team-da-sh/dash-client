@@ -12,14 +12,14 @@ const Description = ({ title, subTitle }: DescriptionProps) => {
   return (
     <Flex direction="column" gap="0.8rem">
       <Flex gap="0.8rem">
-        <Head level="h2" tag="h4">
+        <Head level="h2" tag="h5_sb">
           {title}
         </Head>
-        <Text tag="c3" color="main4" className={essentialTextStyle}>
+        <Text tag="c1_m" color="main4" className={essentialTextStyle}>
           *필수
         </Text>
       </Flex>
-      <Text tag="b2" color="gray7">
+      <Text tag="b2_m" color="gray7">
         {subTitle}
       </Text>
     </Flex>

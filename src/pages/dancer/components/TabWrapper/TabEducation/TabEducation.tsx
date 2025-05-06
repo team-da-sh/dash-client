@@ -1,34 +1,29 @@
-import { emptyStyle } from '@/pages/dancer/components/TabWrapper/TabExperience/tabExperience.css';
-import type { DancerDetailResponse } from '@/pages/dancer/types/api';
-import Flex from '@/shared/components/Flex/Flex';
+import type { DancerDetailResponseTypes } from '@/pages/dancer/types/api';
 import Head from '@/shared/components/Head/Head';
 import Text from '@/shared/components/Text/Text';
+import { sprinkles } from '@/shared/styles/sprinkles.css';
 
-interface TabEducationProps {
-  dancerData: DancerDetailResponse;
-}
-
-const TabEducation = ({ dancerData }: TabEducationProps) => {
+const TabEducation = ({ dancerData }: { dancerData: DancerDetailResponseTypes }) => {
   const { educations } = dancerData;
 
   return (
-    <Flex direction="column" gap="0.8rem">
+    <section className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 8 })}>
       {educations?.length === 0 || educations?.every((exp) => exp === '') ? (
-        <Head level="h5" tag="h6" color="gray9" className={emptyStyle}>
+        <Head level="h5" tag="b1_sb" color="gray9" className={sprinkles({ display: 'flex', justifyContent: 'center' })}>
           아직 등록된 학력이 없어요
         </Head>
       ) : (
         educations?.map((edu, id) => {
           return (
             <div key={id}>
-              <Text tag="b2" color="gray7">
+              <Text tag="b2_m" color="gray7">
                 {edu}
               </Text>
             </div>
           );
         })
       )}
-    </Flex>
+    </section>
   );
 };
 

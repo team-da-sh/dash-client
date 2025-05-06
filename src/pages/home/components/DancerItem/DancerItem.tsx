@@ -23,8 +23,8 @@ const DancerItem = ({ id, profileImage, genre, nickname }: DancerItemPropTypes) 
       onClick={handleDancerClick}>
       <img src={profileImage} alt="댄서 프로필" className={dancerImageStyle} />
       <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 4, alignItems: 'center' })}>
-        <Head tag="h6">{nickname}</Head>
-        <Text tag="b6">{genre}</Text>
+        <Head tag="b1_sb">{nickname}</Head>
+        <Text tag="b3_r">{genre}</Text>
       </div>
     </li>
   );

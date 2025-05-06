@@ -1,4 +1,4 @@
-export interface ReservationDetailResponse {
+export interface ReservationDetailResponseTypes {
   imageUrl: string;
   name: string;
   teacherNickname: string;
@@ -13,6 +13,6 @@ export interface ReservationDetailResponse {
       endDateTime: string;
     }[];
   };
-  studentName: string;
-  studentPhoneNumber: string;
+  memberName: string;
+  memberPhoneNumber: string;
 }

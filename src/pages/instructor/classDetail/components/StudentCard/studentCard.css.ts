@@ -5,7 +5,7 @@ export const cardContainerStyle = style({
   display: 'flex',
   alignItems: 'center',
 
-  width: '33.5rem',
+  width: '100%',
   height: '6.4rem',
 
   padding: '1.6rem 2rem 1.4rem 2.4rem',

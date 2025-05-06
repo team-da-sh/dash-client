@@ -5,10 +5,8 @@ import { instance } from '@/shared/apis/instance';
 export const postOnboard = async ({
   name,
   phoneNumber,
-  level,
   nickname,
   profileImageUrl,
-  genres,
   accessToken,
 }: onboardInfoTypes & tokenTypes) => {
   const response = await instance.post(
@@ -16,10 +14,8 @@ export const postOnboard = async ({
     {
       name,
       phoneNumber,
-      level,
       nickname,
       profileImageUrl,
-      genres,
     },
     {
       headers: {

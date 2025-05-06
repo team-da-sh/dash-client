@@ -33,8 +33,8 @@ const ClassSchedule = ({ openBottomSheet, times, handleRemoveTime }: ClassSchedu
             <Flex gap="1.6rem" align="center">
               <div className={tagStyle}>{idx + 1}회차</div>
               <Flex direction="column" gap="0.4rem">
-                <Text tag="b4"> {formatDate(time.date)}</Text>
-                <Text tag="b7" color="gray7">
+                <Text tag="b2_sb"> {formatDate(time.date)}</Text>
+                <Text tag="b3_m" color="gray7">
                   {`${calculatePeriod(time.startTime, time.endTime).startTime} ~ ${
                     calculatePeriod(time.startTime, time.endTime).formattedEndTime
                   }`}{' '}
