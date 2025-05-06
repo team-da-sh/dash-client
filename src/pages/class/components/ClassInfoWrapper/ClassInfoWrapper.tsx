@@ -7,7 +7,7 @@ import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import Head from '@/shared/components/Head/Head';
 import Tag from '@/shared/components/Tag/Tag';
 import Text from '@/shared/components/Text/Text';
-import { genreMapping, levelMapping } from '@/shared/constants/index';
+import { levelMapping } from '@/shared/constants/index';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
 
 const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetailResponseTypes }) => {
@@ -23,8 +23,6 @@ const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetailResponseType
     maxReservationCount,
     level,
   } = lessonData;
-  const translatedGenre = genreMapping[genre] || genre;
-  const translatedLevel = levelMapping[level] || level;
 
   const dDay = getDDayLabel(remainingDays);
 
@@ -40,7 +38,7 @@ const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetailResponseType
       <div className={sprinkles({ display: 'flex', mb: 12, gap: 4 })}>
         <Tag type="genre" size="medium">
           <Text tag="b3_m" color="white">
-            {translatedGenre}
+            {genre}
           </Text>
         </Tag>
         <Tag type="deadline" size="medium">
@@ -98,7 +96,7 @@ const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetailResponseType
             난이도
           </Text>
           <Text tag="h6_sb" color="gray10">
-            {translatedLevel}
+            {levelMapping[level]}
           </Text>
         </div>
 

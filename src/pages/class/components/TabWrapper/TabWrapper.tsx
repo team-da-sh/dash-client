@@ -6,7 +6,7 @@ import { CLASS_TABS } from '@/shared/constants';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
 
 interface TabWrapperPropTypes {
-  colorScheme: 'primary' | 'secondary';
+  colorScheme: 'tertiary';
   lessonData: LessonDetailResponseTypes;
 }
 

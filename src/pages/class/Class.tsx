@@ -47,7 +47,7 @@ const Class = () => {
 
       <ClassInfoWrapper lessonData={data} />
       <Divider direction="horizontal" color="gray1" length="100%" thickness="0.8rem" />
-      <TabWrapper colorScheme="primary" lessonData={data} />
+      <TabWrapper colorScheme="tertiary" lessonData={data} />
       <ClassButtonWrapper lessonData={data} />
     </main>
   );
