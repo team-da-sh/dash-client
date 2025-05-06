@@ -53,8 +53,6 @@ const ClassRegister = () => {
     ampm,
     startDate,
 
-    // hasLocation,
-    // isNoneLocationChecked,
     isUndecidedLocation,
     defaultPlace,
     detailPlace,
