@@ -17,7 +17,6 @@ interface ProfileStepProps {
   isNicknameError: boolean;
   changeIsNicknameError: (isError: boolean) => void;
   onInfoChange: <K extends keyof onboardInfoTypes>(key: K, value: onboardInfoTypes[K]) => void;
-  setInfo: React.Dispatch<React.SetStateAction<onboardInfoTypes>>;
 }
 
 const ProfileStep = ({ name, nickname, isNicknameError, changeIsNicknameError, onInfoChange }: ProfileStepProps) => {
