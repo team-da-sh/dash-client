@@ -11,6 +11,7 @@ import type { onboardInfoTypes } from '@/pages/onboarding/types/onboardInfoTypes
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { useFunnel } from '@/shared/hooks/useFunnel';
 import { setStorage } from '@/shared/utils/handleToken';
+import OnboardingHeader from './components/OnboardingHeader/OnboardingHeader';
 import defaultProfile from '/images/image_profile_basic.png';
 
 const Onboarding = () => {
@@ -65,6 +66,7 @@ const Onboarding = () => {
 
   return (
     <form className={containerStyle} onSubmit={handleOnboardSubmit}>
+      <OnboardingHeader />
       <div className={bodyWrapperStyle}>
         <Funnel>
           <Step name="1">
