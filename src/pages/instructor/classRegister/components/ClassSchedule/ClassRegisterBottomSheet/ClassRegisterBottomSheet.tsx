@@ -5,7 +5,7 @@ import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import { CLASS_REGISTER_TOTAL_STEP } from '@/shared/constants';
 import { useFunnel } from '@/shared/hooks/useFunnel';
 
-interface ClassRegisterBottomSheetProps {
+interface ClassRegisterBottomSheetPropTypes {
   onClose: () => void;
   startDate: string;
   hour: number;
@@ -33,7 +33,7 @@ const ClassRegisterBottomSheet = ({
   setSelectedTime,
   selectedTime,
   handleAddTime,
-}: ClassRegisterBottomSheetProps) => {
+}: ClassRegisterBottomSheetPropTypes) => {
   const { Funnel, Step, currentStep, setStep } = useFunnel(
     CLASS_REGISTER_TOTAL_STEP,
     `${ROUTES_CONFIG.classRegister}`,

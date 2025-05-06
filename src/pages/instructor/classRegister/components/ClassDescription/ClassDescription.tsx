@@ -1,17 +1,24 @@
 import React, { forwardRef } from 'react';
 import { textareaStyle } from '@/pages/instructor/classRegister/components/ClassDescription/classDescription.css';
 import Description from '@/pages/instructor/classRegister/components/Description';
-import Flex from '@/shared/components/Flex/Flex';
+import { sprinkles } from '@/shared/styles/sprinkles.css';
 
-interface ClassDescriptionProps {
+interface ClassDescriptionPropTypes {
   explanation: string;
   handleExplainTextArea: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
 }
 
-const ClassDescription = forwardRef<HTMLTextAreaElement, ClassDescriptionProps>(
+const ClassDescription = forwardRef<HTMLTextAreaElement, ClassDescriptionPropTypes>(
   ({ explanation, handleExplainTextArea }, ref) => {
     return (
-      <Flex tag="section" direction="column" gap="2rem" width="100%" marginBottom="4rem">
+      <div
+        className={sprinkles({
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 20,
+          width: '100%',
+          mb: 40,
+        })}>
         <Description title="클래스 설명" subTitle="예비 수강생들을 위해 클래스를 소개해 주세요" />
         <textarea
           ref={ref}
@@ -21,7 +28,7 @@ const ClassDescription = forwardRef<HTMLTextAreaElement, ClassDescriptionProps>(
           className={textareaStyle}
           maxLength={300}
         />
-      </Flex>
+      </div>
     );
   }
 );

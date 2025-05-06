@@ -11,12 +11,12 @@ import Description from '@/pages/instructor/classRegister/components/Description
 import BtnCheck from '@/shared/assets/svg/BtnCheck';
 import IcSearchGray from '@/shared/assets/svg/IcSearchGray';
 import IcXCircleGray0424 from '@/shared/assets/svg/IcXCircleGray0424';
-import Flex from '@/shared/components/Flex/Flex';
 import Input from '@/shared/components/Input/Input';
 import Text from '@/shared/components/Text/Text';
+import { sprinkles } from '@/shared/styles/sprinkles.css';
 import type { LocationsData, LocationTypes } from '../../types';
 
-interface ClassPlaceProps {
+interface ClassPlacePropTypes {
   hasLocation: boolean;
   defaultPlace: string;
   detailPlace: string;
@@ -40,12 +40,19 @@ const ClassPlace = ({
   selectedLocation,
   locationList,
   setSelectedLocation,
-}: ClassPlaceProps) => {
+}: ClassPlacePropTypes) => {
   return (
-    <Flex tag="section" direction="column" gap="2rem" width="100%" marginBottom="4rem">
-      <Flex justify="spaceBetween" width="100%">
+    <div
+      className={sprinkles({
+        display: 'flex',
+        flexDirection: 'column',
+        width: '100%',
+        gap: 20,
+        mb: 40,
+      })}>
+      <div className={sprinkles({ display: 'flex', width: '100%', justifyContent: 'space-between' })}>
         <Description title="클래스 장소" subTitle="클래스가 진행될 장소를 알려주세요" />
-        <Flex align="center" gap="0.8rem" className={checkboxContainerStyle}>
+        <div className={checkboxContainerStyle}>
           <Text tag="b3_m" color="gray8">
             장소 미정
           </Text>
@@ -54,16 +61,16 @@ const ClassPlace = ({
           ) : (
             <BtnCheck width={'2rem'} onClick={handleHasLocation} />
           )}
-        </Flex>
-      </Flex>
+        </div>
+      </div>
 
       {hasLocation && (
-        <Flex width="100%" direction="column" gap="0.8rem">
+        <div className={sprinkles({ display: 'flex', width: '100%', flexDirection: 'column', gap: 8 })}>
           {selectedLocation ? (
-            <Flex justify="spaceBetween" align="center" width="100%" className={selectedLocationContainerStyle}>
+            <div className={selectedLocationContainerStyle}>
               <Text>{selectedLocation.location}</Text>
               <IcXCircleGray0424 width={'2.4rem'} onClick={() => setSelectedLocation(null)} />
-            </Flex>
+            </div>
           ) : (
             <>
               <Input
@@ -79,23 +86,23 @@ const ClassPlace = ({
               />
 
               {locationList && (
-                <Flex direction="column" gap="1rem" className={locationListContainerStyle}>
-                  <Flex direction="column" gap="1rem" width="100%">
+                <div className={locationListContainerStyle}>
+                  <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 10 })}>
                     {locationList.locations.map((item, idx) => (
                       <div key={idx} onClick={() => setSelectedLocation(item)} className={locationItemContainerStyle}>
                         {idx !== 0 && <div className={dividerStyle} />}
-                        <Flex direction="column" width="100%">
+                        <div className={sprinkles({ display: 'flex', flexDirection: 'column', width: '100%' })}>
                           <Text tag="b2_sb_long" color="gray10">
                             {item.location}
                           </Text>
                           <Text tag="b3_sb" color="gray5">
                             {item.streetAddress}
                           </Text>
-                        </Flex>
+                        </div>
                       </div>
                     ))}
-                  </Flex>
-                </Flex>
+                  </div>
+                </div>
               )}
             </>
           )}
@@ -105,9 +112,9 @@ const ClassPlace = ({
             onChange={handleDetailPlace}
             placeholder="건물명, 층 수 등의 상세 주소를 입력해 주세요"
           />
-        </Flex>
+        </div>
       )}
-    </Flex>
+    </div>
   );
 };
 

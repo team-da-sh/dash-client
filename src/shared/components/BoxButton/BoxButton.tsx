@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import type { ButtonHTMLAttributes } from 'react';
 import { buttonStyle } from '@/shared/components/BoxButton/boxButton.css';
 
-export interface BoxButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+export interface BoxButtonPropTypes extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary' | 'outline' | 'temp' | 'heart';
   type?: 'button' | 'reset' | 'submit' | undefined;
   isDisabled?: boolean;
@@ -15,7 +15,7 @@ const BoxButton = ({
   className,
   type = 'button',
   ...props
-}: BoxButtonProps) => {
+}: BoxButtonPropTypes) => {
   return (
     <button
       className={clsx(

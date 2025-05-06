@@ -1,17 +1,24 @@
 import React, { forwardRef } from 'react';
 import { textareaStyle } from '@/pages/instructor/classRegister/components/ClassRecommend/classRecommend.css';
 import Description from '@/pages/instructor/classRegister/components/Description';
-import Flex from '@/shared/components/Flex/Flex';
+import { sprinkles } from '@/shared/styles/sprinkles.css';
 
-interface ClassRecommendProps {
-  recommend: string; // 추천 대상 텍스트
-  handleRecommendChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void; // 추천 대상 변경 핸들러
+interface ClassRecommendPropTypes {
+  recommend: string;
+  handleRecommendChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
 }
 
-const ClassRecommend = forwardRef<HTMLTextAreaElement, ClassRecommendProps>(
+const ClassRecommend = forwardRef<HTMLTextAreaElement, ClassRecommendPropTypes>(
   ({ recommend, handleRecommendChange }, ref) => {
     return (
-      <Flex tag="section" direction="column" gap="2rem" width="100%" marginBottom="3rem">
+      <div
+        className={sprinkles({
+          display: 'flex',
+          flexDirection: 'column',
+          width: '100%',
+          gap: 20,
+          mb: 30,
+        })}>
         <Description title="클래스 추천 대상" subTitle="어떤 수강생에게 추천하고 싶은지 알려주세요" />
         <textarea
           ref={ref}
@@ -21,7 +28,7 @@ const ClassRecommend = forwardRef<HTMLTextAreaElement, ClassRecommendProps>(
           className={textareaStyle}
           maxLength={200}
         />
-      </Flex>
+      </div>
     );
   }
 );

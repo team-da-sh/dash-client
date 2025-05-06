@@ -25,8 +25,8 @@ import useImageUploader from '@/shared/hooks/useImageUploader';
 
 const ClassRegister = () => {
   const { isBottomSheetOpen, openBottomSheet, closeBottomSheet } = useBottomSheet();
-  const navigate = useNavigate();
   const queryClient = useQueryClient();
+  const navigate = useNavigate();
 
   const { mutate: classRegisterMutate } = usePostClassRegisterInfo();
   const {
