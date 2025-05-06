@@ -17,6 +17,7 @@ const Class = () => {
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const { data, isError, isLoading } = useGetLessonDetail(id);
+
   console.log(data);
   if (isLoading) {
     return <></>;
@@ -32,26 +33,20 @@ const Class = () => {
 
   return (
     <main>
-      <div
-        className={styles.headerStyle}
+      <section
+        className={styles.topImgStyle}
         style={{
           backgroundImage: `url(${imageUrl})`,
-          position: 'relative',
         }}>
         {shouldShowChip && (
-          <div
-            style={{
-              position: 'absolute',
-              left: 20,
-              bottom: 16,
-            }}>
+          <div className={styles.chipWrapperStyle}>
             <LimitedChip lessonData={data} />
           </div>
         )}
-      </div>
+      </section>
 
       <ClassInfoWrapper lessonData={data} />
-      <Divider direction="horizontal" color="gray1" length="100%" thickness="1.2rem" />
+      <Divider direction="horizontal" color="gray1" length="100%" thickness="0.8rem" />
       <TabWrapper colorScheme="primary" lessonData={data} />
       <ClassButtonWrapper lessonData={data} />
     </main>

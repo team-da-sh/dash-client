@@ -6,10 +6,8 @@ import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import Head from '@/shared/components/Head/Head';
 import Tag from '@/shared/components/Tag/Tag';
 import Text from '@/shared/components/Text/Text';
-import { genreMapping } from '@/shared/constants/index';
-import { levelMapping } from '@/shared/constants/index';
+import { genreMapping, levelMapping } from '@/shared/constants/index';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
-import { vars } from '@/shared/styles/theme.css';
 
 const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetailResponseTypes }) => {
   const {
@@ -57,7 +55,7 @@ const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetailResponseType
       </Head>
 
       <div
-        className={sprinkles({ display: 'flex', alignItems: 'center', marginBottom: 8, gap: 8 })}
+        className={sprinkles({ display: 'flex', alignItems: 'center', marginBottom: 8, gap: 9 })}
         onClick={() => handleTeacherClick(teacherId)}>
         <img src={teacherImageUrl} alt={`${teacherNickname} 프로필`} className={styles.profileStyle} />
         <Text tag="b2_m" color="gray9">
@@ -77,7 +75,7 @@ const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetailResponseType
         <Head level="h4" tag="h6_sb" color="gray6">
           {lessonRounds.length}회
         </Head>
-        <div className={sprinkles({ display: 'flex', alignItems: 'center', gap: 2 })}>
+        <div className={styles.priceTextStyle}>
           <Head level="h5" tag="h3_sb">
             {price.toLocaleString()}
           </Head>
@@ -86,38 +84,58 @@ const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetailResponseType
           </Head>
         </div>
       </div>
-      <Card style={{ border: `1px solid ${vars.colors.gray02}` }}>
-        <div style={{ display: 'flex', width: '100%', justifyContent: 'center', gap: '36px' }}>
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '6rem', gap: 6 }}>
-            <Text tag="b3_sb" color="gray7">
-              난이도
-            </Text>
-            <Text tag="h6_sb" color="gray10">
-              {translatedLevel}
-            </Text>
-          </div>
 
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '6rem', gap: 6 }}>
-            <Text tag="b3_sb" color="gray7">
-              인원
-            </Text>
-            <Text tag="h6_sb" color="gray10">
-              {maxReservationCount}
-            </Text>
-          </div>
+      <Card className={styles.cardStyle}>
+        <div
+          className={sprinkles({
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            width: 60,
+            gap: 6,
+          })}>
+          <Text tag="b3_sb" color="gray7">
+            난이도
+          </Text>
+          <Text tag="h6_sb" color="gray10">
+            {translatedLevel}
+          </Text>
+        </div>
 
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '6rem', gap: 6 }}>
-            <Text tag="b3_sb" color="gray7">
-              리뷰
+        <div
+          className={sprinkles({
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            width: 60,
+            gap: 6,
+          })}>
+          <Text tag="b3_sb" color="gray7">
+            인원
+          </Text>
+          <Text tag="h6_sb" color="gray10">
+            {maxReservationCount}
+          </Text>
+        </div>
+
+        <div
+          className={sprinkles({
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            width: 60,
+            gap: 6,
+          })}>
+          <Text tag="b3_sb" color="gray7">
+            리뷰
+          </Text>
+          <div className={styles.reviewTextStyle}>
+            <Text tag="h6_sb" color="gray10">
+              5.0
             </Text>
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'baseline', gap: '2px' }}>
-              <Text tag="h6_sb" color="gray10">
-                5.0
-              </Text>
-              <Text tag="c1_r" color="gray6">
-                (34)
-              </Text>
-            </div>
+            <Text tag="c1_r" color="gray6" className={styles.reviewSubText}>
+              (34)
+            </Text>
           </div>
         </div>
       </Card>

@@ -28,7 +28,6 @@ export const detailStyle = style({
   wordBreak: 'break-word',
 });
 
-
 export const linkStyle = style({
   overflow: 'hidden',
   textOverflow: 'ellipsis',

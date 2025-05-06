@@ -12,3 +12,7 @@ export const roundBoxStyle = style({
   borderRadius: '4px',
   backgroundColor: vars.colors.main04,
 });
+
+export const cardStyle = style({
+  border: `0.5px solid ${vars.colors.gray02}`,
+});

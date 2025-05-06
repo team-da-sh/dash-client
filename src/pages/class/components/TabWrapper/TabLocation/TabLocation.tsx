@@ -5,14 +5,15 @@ import type { LessonDetailResponseTypes } from '@/pages/class/types/api';
 import Head from '@/shared/components/Head/Head';
 import Text from '@/shared/components/Text/Text';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
-import { vars } from '@/shared/styles/theme.css';
 
 const IcLocation60 = lazy(() => import('@/shared/assets/svg/IcLocation60'));
 
 const TabLocation = ({ lessonData }: { lessonData: LessonDetailResponseTypes }) => {
   const { location, streetAddress, streetDetailAddress, oldStreetAddress } = lessonData;
 
-  const isEmpty = !location || !oldStreetAddress;
+  const isEmpty = !location;
+  const hasStreetAddress = !!streetAddress || !!streetDetailAddress;
+  const hasOldStreetAddress = !!oldStreetAddress;
 
   return (
     <section className={sprinkles({ display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 12 })}>
@@ -25,40 +26,49 @@ const TabLocation = ({ lessonData }: { lessonData: LessonDetailResponseTypes }) 
           아직 장소가 등록되지 않은 클래스예요
         </Head>
       ) : (
-        <Card style={{ border: `1px solid ${vars.colors.gray03}` }}>
+        <Card className={styles.cardStyle}>
           <div className={sprinkles({ display: 'flex', justifyContent: 'space-between', width: '100%', gap: 16 })}>
             <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 6 })}>
               <Text tag="b2_sb" color="black">
                 {location}
               </Text>
+
               <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 4 })}>
-                <div className={sprinkles({ display: 'flex' })}>
-                  <div className={sprinkles({ mr: 4 })}>
-                    <Text tag="b3_m" color="gray6" className={styles.addressTitleStyle}>
-                      주소
-                    </Text>
+                {hasStreetAddress && (
+                  <div className={sprinkles({ display: 'flex' })}>
+                    <div className={sprinkles({ mr: 4 })}>
+                      <Text tag="b3_m" color="gray6" className={styles.addressTitleStyle}>
+                        주소
+                      </Text>
+                    </div>
+                    <div className={sprinkles({ flexDirection: 'column' })}>
+                      {streetAddress && (
+                        <Text tag="b3_m" color="gray7" className={styles.streetAddressStyle}>
+                          {streetAddress}
+                        </Text>
+                      )}
+                      {streetDetailAddress && (
+                        <Text tag="b3_m" color="gray7" className={styles.streetAddressStyle}>
+                          {streetDetailAddress}
+                        </Text>
+                      )}
+                    </div>
                   </div>
-                  <div className={sprinkles({ flexDirection: 'column' })}>
-                    <Text tag="b3_m" color="gray7" className={styles.streetAddressStyle}>
-                      {streetAddress}
-                    </Text>
-                    <Text tag="b3_m" color="gray7" className={styles.streetAddressStyle}>
-                      {streetDetailAddress}
-                    </Text>
-                  </div>
-                </div>
-                <div className={sprinkles({ display: 'flex' })}>
-                  <div className={sprinkles({ mr: 4 })}>
+                )}
+
+                {hasOldStreetAddress && (
+                  <div className={sprinkles({ display: 'flex' })}>
                     <Text tag="b3_m" color="gray6" className={styles.addressTitleStyle}>
                       지번
                     </Text>
+                    <Text tag="b3_m" color="gray7">
+                      {oldStreetAddress}
+                    </Text>
                   </div>
-                  <Text tag="b3_m" color="gray7">
-                    {oldStreetAddress}
-                  </Text>
-                </div>
+                )}
               </div>
             </div>
+
             <Suspense fallback={<div>Loading...</div>}>
               <IcLocation60 width={'6rem'} />
             </Suspense>

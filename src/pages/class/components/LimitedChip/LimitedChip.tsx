@@ -9,14 +9,12 @@ const LimitedChip = ({ lessonData }: { lessonData: LessonDetailResponseTypes }) 
   const remainingSeats = maxReservationCount - reservationCount;
 
   return (
-    <>
-      <div className={styles.cardStyle}>
-        <IcThunderMain0424 width={'18'} color={vars.colors.alert02} />
-        <Text tag="b3_sb" color="gray1">
-          마감까지 {remainingSeats}명 남았어요!
-        </Text>
-      </div>
-    </>
+    <div className={styles.cardStyle}>
+      <IcThunderMain0424 width={'18'} color={vars.colors.alert01} />
+      <Text tag="b3_sb" color="gray1">
+        마감까지 {remainingSeats}명 남았어요!
+      </Text>
+    </div>
   );
 };
 
