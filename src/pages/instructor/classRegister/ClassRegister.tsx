@@ -53,7 +53,9 @@ const ClassRegister = () => {
     ampm,
     startDate,
 
-    hasLocation,
+    // hasLocation,
+    // isNoneLocationChecked,
+    isUndecidedLocation,
     defaultPlace,
     detailPlace,
     selectedLocation,
@@ -81,13 +83,14 @@ const ClassRegister = () => {
     handleAddTime,
     handleRemoveTime,
 
-    handleHasLocation,
+    // handleHasLocation,
+    handleNoneLocationCheck,
     handleDefaultPlace,
     handleSubmitDefaultPlace,
     handleDetailPlace,
     setSelectedLocation,
 
-    isFormValid,
+    isButtonActive,
   } = useClassRegisterForm();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -104,10 +107,10 @@ const ClassRegister = () => {
         level: levelEngMapping[selectedLevelTitle],
         recommendation: recommend,
         price: Number(amount),
-        location: hasLocation ? (selectedLocation?.location ?? null) : null,
-        streetAddress: hasLocation ? (selectedLocation?.streetAddress ?? null) : null,
-        oldStreetAddress: hasLocation ? (selectedLocation?.oldStreetAddress ?? null) : null,
-        detailedAddress: hasLocation ? detailPlace : null,
+        location: !isUndecidedLocation ? (selectedLocation?.location ?? null) : null,
+        streetAddress: !isUndecidedLocation ? (selectedLocation?.streetAddress ?? null) : null,
+        oldStreetAddress: !isUndecidedLocation ? (selectedLocation?.oldStreetAddress ?? null) : null,
+        detailedAddress: !isUndecidedLocation ? detailPlace : null,
 
         times: times.map((time) => ({
           startTime: time.startTime,
@@ -165,8 +168,8 @@ const ClassRegister = () => {
           <ClassSchedule openBottomSheet={openBottomSheet} times={times} handleRemoveTime={handleRemoveTime} />
           <ClassPersonnel personnel={personnel} handlePersonnelChange={handlePersonnelChange} />
           <ClassPlace
-            hasLocation={hasLocation}
-            handleHasLocation={handleHasLocation}
+            isUndecidedLocation={isUndecidedLocation}
+            handleHasLocation={handleNoneLocationCheck}
             defaultPlace={defaultPlace}
             detailPlace={detailPlace}
             handleDefaultPlace={handleDefaultPlace}
@@ -179,7 +182,7 @@ const ClassRegister = () => {
           <ClassAmount amount={amount} handleAmountChange={handleAmountChange} />
         </div>
         <div className={buttonContainerStyle}>
-          <BoxButton type="submit" disabled={!isFormValid()}>
+          <BoxButton type="submit" disabled={!isButtonActive()}>
             완료
           </BoxButton>
         </div>

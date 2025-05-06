@@ -15,7 +15,7 @@ export const useClassRegisterForm = () => {
   const [selectedLevelTitle, setSelectedLevelTitle] = useState<string | null>(null);
   const [recommend, setRecommend] = useState('');
   const [personnel, setPersonnelChange] = useState('');
-  const [hasLocation, setHasLocation] = useState(true);
+  const [isUndecidedLocation, setIsUndecidedLocation] = useState(false);
   const [defaultPlace, setDefaultPlace] = useState('');
   const [submitDefaultPlace, setSubmitDefaultPlace] = useState('');
   const [detailPlace, setDetailPlace] = useState('');
@@ -78,8 +78,8 @@ export const useClassRegisterForm = () => {
     }
   };
 
-  const handleHasLocation = () => {
-    setHasLocation((prev) => !prev);
+  const handleNoneLocationCheck = () => {
+    setIsUndecidedLocation((prev) => !prev);
   };
 
   const handleDefaultPlace = (e: ChangeEvent<HTMLInputElement>) => {
@@ -114,8 +114,8 @@ export const useClassRegisterForm = () => {
     setDetailPlace(e.target.value);
   };
 
-  const isFormValid = () => {
-    if (!hasLocation) {
+  const isButtonActive = () => {
+    if (isUndecidedLocation) {
       return (
         className &&
         explanation &&
@@ -126,7 +126,6 @@ export const useClassRegisterForm = () => {
         recommend &&
         personnel &&
         amount &&
-        selectedLocation &&
         times.length > 0
       );
     }
@@ -155,7 +154,7 @@ export const useClassRegisterForm = () => {
     selectedLevelTitle,
     recommend,
     personnel,
-    hasLocation,
+    isUndecidedLocation,
     defaultPlace,
     submitDefaultPlace,
     detailPlace,
@@ -182,13 +181,13 @@ export const useClassRegisterForm = () => {
     handleLevelSelect,
     handleExplainTextArea,
     handleRecommendChange,
-    handleHasLocation,
+    handleNoneLocationCheck,
     handleDefaultPlace,
     handleSubmitDefaultPlace,
     handleDetailPlace,
     handleRemoveTime,
     setImageUrls,
-    isFormValid,
+    isButtonActive,
     setSelectedLocation,
   };
 };

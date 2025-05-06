@@ -1,21 +1,21 @@
-import type { ChangeEvent } from 'react';
+import { useEffect, type ChangeEvent } from 'react';
 import * as styles from '@/pages/instructor/classRegister/components/ClassPlace/classPlace.css';
 import Description from '@/pages/instructor/classRegister/components/Description';
+import {
+  CLASS_DEFAULT_PLACE_PLACEHOLDER,
+  CLASS_DETAIL_PLACE_PLACEHOLDER,
+  CLASS_PLACE_SUBTITLE,
+} from '@/pages/instructor/classRegister/constants/registerSection';
 import BtnCheck from '@/shared/assets/svg/BtnCheck';
 import IcSearchGray from '@/shared/assets/svg/IcSearchGray';
 import IcXCircleGray0424 from '@/shared/assets/svg/IcXCircleGray0424';
 import Input from '@/shared/components/Input/Input';
 import Text from '@/shared/components/Text/Text';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
-import {
-  CLASS_DEFAULT_PLACE_PLACEHOLDER,
-  CLASS_DETAIL_PLACE_PLACEHOLDER,
-  CLASS_PLACE_SUBTITLE,
-} from '../../constants/registerSection';
 import type { LocationsData, LocationTypes } from '../../types';
 
 interface ClassPlacePropTypes {
-  hasLocation: boolean;
+  isUndecidedLocation: boolean;
   defaultPlace: string;
   detailPlace: string;
   handleHasLocation: () => void;
@@ -28,7 +28,7 @@ interface ClassPlacePropTypes {
 }
 
 const ClassPlace = ({
-  hasLocation,
+  isUndecidedLocation,
   defaultPlace,
   detailPlace,
   handleHasLocation,
@@ -39,6 +39,10 @@ const ClassPlace = ({
   locationList,
   setSelectedLocation,
 }: ClassPlacePropTypes) => {
+  useEffect(() => {
+    console.log(isUndecidedLocation);
+  }, [isUndecidedLocation]);
+
   return (
     <div
       className={sprinkles({
@@ -54,15 +58,15 @@ const ClassPlace = ({
           <Text tag="b3_m" color="gray8">
             장소 미정
           </Text>
-          {hasLocation ? (
-            <div className={styles.checkboxStyle} onClick={handleHasLocation} />
-          ) : (
+          {isUndecidedLocation ? (
             <BtnCheck width={'2rem'} onClick={handleHasLocation} />
+          ) : (
+            <div className={styles.checkboxStyle} onClick={handleHasLocation} />
           )}
         </div>
       </div>
 
-      {hasLocation && (
+      {!isUndecidedLocation && (
         <div className={sprinkles({ display: 'flex', width: '100%', flexDirection: 'column', gap: 8 })}>
           {selectedLocation ? (
             <div className={styles.selectedLocationContainerStyle}>
