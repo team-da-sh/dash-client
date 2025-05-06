@@ -1,5 +1,6 @@
 import type { ChangeEvent } from 'react';
 import Description from '@/pages/instructor/classRegister/components/Description';
+import { CLASS_PERSONNEL_SUBTITLE } from '@/pages/instructor/classRegister/constants/registerSection';
 import Input from '@/shared/components/Input/Input';
 import Text from '@/shared/components/Text/Text';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
@@ -19,7 +20,7 @@ const ClassPersonnel = ({ personnel, handlePersonnelChange }: ClassPersonnelProp
         gap: 20,
         mb: 40,
       })}>
-      <Description title="모집 인원" subTitle="원활한 클래스 진행을 위해 최대 인원을 알려주세요" />
+      <Description title="모집 인원" subTitle={CLASS_PERSONNEL_SUBTITLE} />
       <Input
         placeholder="0"
         value={personnel}

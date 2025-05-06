@@ -1,12 +1,5 @@
 import type { ChangeEvent } from 'react';
-import {
-  checkboxContainerStyle,
-  checkboxStyle,
-  dividerStyle,
-  locationItemContainerStyle,
-  locationListContainerStyle,
-  selectedLocationContainerStyle,
-} from '@/pages/instructor/classRegister/components/ClassPlace/classPlace.css';
+import * as styles from '@/pages/instructor/classRegister/components/ClassPlace/classPlace.css';
 import Description from '@/pages/instructor/classRegister/components/Description';
 import BtnCheck from '@/shared/assets/svg/BtnCheck';
 import IcSearchGray from '@/shared/assets/svg/IcSearchGray';
@@ -14,6 +7,11 @@ import IcXCircleGray0424 from '@/shared/assets/svg/IcXCircleGray0424';
 import Input from '@/shared/components/Input/Input';
 import Text from '@/shared/components/Text/Text';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
+import {
+  CLASS_DEFAULT_PLACE_PLACEHOLDER,
+  CLASS_DETAIL_PLACE_PLACEHOLDER,
+  CLASS_PLACE_SUBTITLE,
+} from '../../constants/registerSection';
 import type { LocationsData, LocationTypes } from '../../types';
 
 interface ClassPlacePropTypes {
@@ -51,13 +49,13 @@ const ClassPlace = ({
         mb: 40,
       })}>
       <div className={sprinkles({ display: 'flex', width: '100%', justifyContent: 'space-between' })}>
-        <Description title="클래스 장소" subTitle="클래스가 진행될 장소를 알려주세요" />
-        <div className={checkboxContainerStyle}>
+        <Description title="클래스 장소" subTitle={CLASS_PLACE_SUBTITLE} />
+        <div className={styles.checkboxContainerStyle}>
           <Text tag="b3_m" color="gray8">
             장소 미정
           </Text>
           {hasLocation ? (
-            <div className={checkboxStyle} onClick={handleHasLocation} />
+            <div className={styles.checkboxStyle} onClick={handleHasLocation} />
           ) : (
             <BtnCheck width={'2rem'} onClick={handleHasLocation} />
           )}
@@ -67,7 +65,7 @@ const ClassPlace = ({
       {hasLocation && (
         <div className={sprinkles({ display: 'flex', width: '100%', flexDirection: 'column', gap: 8 })}>
           {selectedLocation ? (
-            <div className={selectedLocationContainerStyle}>
+            <div className={styles.selectedLocationContainerStyle}>
               <Text>{selectedLocation.location}</Text>
               <IcXCircleGray0424 width={'2.4rem'} onClick={() => setSelectedLocation(null)} />
             </div>
@@ -76,7 +74,7 @@ const ClassPlace = ({
               <Input
                 value={defaultPlace}
                 onChange={handleDefaultPlace}
-                placeholder="지번, 도로명, 건물명으로 검색해 주세요"
+                placeholder={CLASS_DEFAULT_PLACE_PLACEHOLDER}
                 onKeyDown={(e) => {
                   if (e.key === 'Enter') {
                     e.preventDefault();
@@ -86,11 +84,14 @@ const ClassPlace = ({
               />
 
               {locationList && (
-                <div className={locationListContainerStyle}>
+                <div className={styles.locationListContainerStyle}>
                   <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 10 })}>
                     {locationList.locations.map((item, idx) => (
-                      <div key={idx} onClick={() => setSelectedLocation(item)} className={locationItemContainerStyle}>
-                        {idx !== 0 && <div className={dividerStyle} />}
+                      <div
+                        key={idx}
+                        onClick={() => setSelectedLocation(item)}
+                        className={styles.locationItemContainerStyle}>
+                        {idx !== 0 && <div className={styles.dividerStyle} />}
                         <div className={sprinkles({ display: 'flex', flexDirection: 'column', width: '100%' })}>
                           <Text tag="b2_sb_long" color="gray10">
                             {item.location}
@@ -107,11 +108,7 @@ const ClassPlace = ({
             </>
           )}
 
-          <Input
-            value={detailPlace}
-            onChange={handleDetailPlace}
-            placeholder="건물명, 층 수 등의 상세 주소를 입력해 주세요"
-          />
+          <Input value={detailPlace} onChange={handleDetailPlace} placeholder={CLASS_DETAIL_PLACE_PLACEHOLDER} />
         </div>
       )}
     </div>

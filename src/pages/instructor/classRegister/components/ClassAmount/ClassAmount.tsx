@@ -1,5 +1,6 @@
 import type { ChangeEvent } from 'react';
 import Description from '@/pages/instructor/classRegister/components/Description';
+import { CLASS_AMOUNT_SUBTITLE } from '@/pages/instructor/classRegister/constants/registerSection';
 import Input from '@/shared/components/Input/Input';
 import Text from '@/shared/components/Text/Text';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
@@ -11,8 +12,8 @@ interface ClassAmountPropTypes {
 
 const ClassAmount = ({ amount, handleAmountChange }: ClassAmountPropTypes) => {
   return (
-    <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 2, width: '100%' })}>
-      <Description title="수강료" subTitle="전체 회차를 포함한 최종 금액을 알려주세요" />
+    <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 20, width: '100%' })}>
+      <Description title="수강료" subTitle={CLASS_AMOUNT_SUBTITLE} />
       <Input
         placeholder="0"
         value={amount}

@@ -1,4 +1,5 @@
 import Description from '@/pages/instructor/classRegister/components/Description';
+import { CLASS_LEVEL_SUBTITLE } from '@/pages/instructor/classRegister/constants/registerSection';
 import Flex from '@/shared/components/Flex/Flex';
 import LevelButton from '@/shared/components/LevelButton/LevelButton';
 import { LEVEL } from '@/shared/constants';
@@ -19,7 +20,7 @@ const ClassLevel = ({ selectedLevelTitle, handleLevelSelect }: ClassLevelPropTyp
         gap: 20,
         mb: 40,
       })}>
-      <Description title="난이도" subTitle="클래스에 해당하는 난이도를 골라주세요" />
+      <Description title="난이도" subTitle={CLASS_LEVEL_SUBTITLE} />
       <Flex direction="column" gap="0.8rem" width="100%">
         {LEVEL.map((level) => (
           <LevelButton

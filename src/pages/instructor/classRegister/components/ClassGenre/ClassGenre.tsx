@@ -1,5 +1,6 @@
 import { genreButtonContainerStyle } from '@/pages/instructor/classRegister/components/ClassGenre/classGenre.css';
 import Description from '@/pages/instructor/classRegister/components/Description';
+import { CLASS_GENRE_SUBTITLE } from '@/pages/instructor/classRegister/constants/registerSection';
 import GenreButton from '@/pages/search/components/TabContainer/TagSection/BottomSheet/GenreButton/GenreButton';
 import { GENRE_CATEGORY } from '@/shared/constants';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
@@ -19,7 +20,7 @@ const ClassGenre = ({ selectedGenre, toggleCategory }: ClassGenrePropTypes) => {
         gap: 20,
         mb: 40,
       })}>
-      <Description title="장르" subTitle="클래스에 해당하는 장르를 한 가지만 골라 주세요" />
+      <Description title="장르" subTitle={CLASS_GENRE_SUBTITLE} />
 
       <div className={genreButtonContainerStyle}>
         {GENRE_CATEGORY.flat().map((category, index) => (
