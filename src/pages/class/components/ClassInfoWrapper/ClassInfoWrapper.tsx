@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import Card from '@/pages/class/components/Card/Card';
 import * as styles from '@/pages/class/components/ClassInfoWrapper/classInfoWrapper.css';
 import type { LessonDetailResponseTypes } from '@/pages/class/types/api';
+import { getDDayLabel } from '@/pages/class/utils/dDay';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import Head from '@/shared/components/Head/Head';
 import Tag from '@/shared/components/Tag/Tag';
@@ -25,8 +26,7 @@ const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetailResponseType
   const translatedGenre = genreMapping[genre] || genre;
   const translatedLevel = levelMapping[level] || level;
 
-  // D-DAY remaingDays로 통일
-  const dDay = remainingDays > 0 ? `D-${remainingDays}` : remainingDays === 0 ? 'D-DAY' : '마감';
+  const dDay = getDDayLabel(remainingDays);
 
   const navigate = useNavigate();
 
