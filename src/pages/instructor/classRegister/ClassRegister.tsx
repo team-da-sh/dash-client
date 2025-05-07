@@ -27,19 +27,10 @@ import useBottomSheet from '@/shared/hooks/useBottomSheet';
 import useImageUploader from '@/shared/hooks/useImageUploader';
 
 const ClassRegister = () => {
-  const { isBottomSheetOpen, openBottomSheet, closeBottomSheet } = useBottomSheet();
-
-  const handleTextAreaHeight = (e: React.FormEvent<HTMLTextAreaElement>) => {
-    const textArea = e.target as HTMLTextAreaElement;
-
-    if (textArea) {
-      textArea.style.height = '9.8rem';
-      textArea.style.height = `${textArea.scrollHeight}px`;
-    }
-  };
-
   const queryClient = useQueryClient();
   const navigate = useNavigate();
+  const { mutate: classRegisterMutate } = usePostClassRegisterInfo();
+  const { isBottomSheetOpen, openBottomSheet, closeBottomSheet } = useBottomSheet();
 
   const {
     register,
@@ -57,11 +48,20 @@ const ClassRegister = () => {
       recommendation: '',
       maxReservationCount: '',
       price: '',
+      isUndecidedLocation: false,
     },
   });
 
-  const { mutate: classRegisterMutate } = usePostClassRegisterInfo();
   const { className, detail, selectedGenre, selectedLevel, recommendation, maxReservationCount, price } = watch();
+
+  const handleTextAreaHeight = (e: React.FormEvent<HTMLTextAreaElement>) => {
+    const textArea = e.target as HTMLTextAreaElement;
+
+    if (textArea) {
+      textArea.style.height = '9.8rem';
+      textArea.style.height = `${textArea.scrollHeight}px`;
+    }
+  };
 
   const toggleCategory = (category: string) => {
     setValue('selectedGenre', category === selectedGenre ? '' : category, {

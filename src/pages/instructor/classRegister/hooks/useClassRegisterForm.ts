@@ -5,12 +5,12 @@ import type { LocationTypes, RepresentImageUrlsTypes } from '@/pages/instructor/
 import { formatToISOString } from '@/shared/utils/timeUtils';
 
 export const useClassRegisterForm = () => {
-  const [className, setClassName] = useState('');
   const [imageUrls, setImageUrls] = useState<RepresentImageUrlsTypes>({ imageUrls: '' });
   const [isUndecidedLocation, setIsUndecidedLocation] = useState(false);
   const [defaultPlace, setDefaultPlace] = useState('');
   const [submitDefaultPlace, setSubmitDefaultPlace] = useState('');
   const [detailPlace, setDetailPlace] = useState('');
+  const [selectedLocation, setSelectedLocation] = useState<LocationTypes | null>(null);
 
   const [times, setTimes] = useState<{ startTime: string; endTime: string; date: string; duration: number }[]>([]);
   const [startDate, setStartDate] = useState('');
@@ -18,12 +18,6 @@ export const useClassRegisterForm = () => {
   const [minute, setMinute] = useState(0);
   const [ampm, setAmpm] = useState('AM');
   const [selectedTime, setSelectedTime] = useState<number | null>(null);
-
-  const [selectedLocation, setSelectedLocation] = useState<LocationTypes | null>(null);
-
-  const handleClassNameChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setClassName(e.target.value);
-  };
 
   const handleImageUploadSuccess = (url: string) => {
     setImageUrls({ imageUrls: url });
@@ -67,14 +61,13 @@ export const useClassRegisterForm = () => {
 
   const isButtonActive = () => {
     if (isUndecidedLocation) {
-      return className && imageUrls.imageUrls.length > 0 && selectedTime && times.length > 0;
+      return imageUrls.imageUrls.length > 0 && selectedTime && times.length > 0;
     }
 
-    return className && imageUrls.imageUrls.length > 0 && selectedTime && selectedLocation && times.length > 0;
+    return imageUrls.imageUrls.length > 0 && selectedTime && selectedLocation && times.length > 0;
   };
 
   return {
-    className,
     isUndecidedLocation,
     defaultPlace,
     submitDefaultPlace,
@@ -93,7 +86,6 @@ export const useClassRegisterForm = () => {
     setSelectedTime,
     selectedTime,
     handleAddTime,
-    handleClassNameChange,
     handleImageUploadSuccess,
     handleNoneLocationCheck,
     handleDefaultPlace,
