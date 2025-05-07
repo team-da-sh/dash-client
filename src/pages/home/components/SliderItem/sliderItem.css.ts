@@ -6,6 +6,7 @@ export const containerStyle = style({
   position: 'relative',
 
   width: '100%',
+  marginTop: '-6rem',
   aspectRatio: '1 / 1',
 });
 
@@ -20,7 +21,7 @@ export const imageStyle = style({
 export const descriptionStyle = style({
   position: 'absolute',
   left: '2rem',
-  bottom: '9rem',
+  bottom: '5.6rem',
   maxWidth: '34rem',
 
   wordBreak: 'keep-all',

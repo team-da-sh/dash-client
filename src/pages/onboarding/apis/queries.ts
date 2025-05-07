@@ -6,22 +6,12 @@ import type { onboardInfoTypes } from '@/pages/onboarding/types/onboardInfoTypes
 
 export const usePostOnboard = () => {
   return useMutation({
-    mutationFn: ({
-      name,
-      phoneNumber,
-      level,
-      nickname,
-      profileImageUrl,
-      genres,
-      accessToken,
-    }: onboardInfoTypes & tokenTypes) =>
+    mutationFn: ({ name, phoneNumber, nickname, profileImageUrl, accessToken }: onboardInfoTypes & tokenTypes) =>
       postOnboard({
         name,
         phoneNumber,
-        level,
         nickname,
         profileImageUrl,
-        genres,
         accessToken,
       }),
 
