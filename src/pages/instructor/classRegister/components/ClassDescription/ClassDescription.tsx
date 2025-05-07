@@ -1,10 +1,10 @@
 import React, { forwardRef } from 'react';
 import { textareaStyle } from '@/pages/instructor/classRegister/components/ClassDescription/classDescription.css';
 import Description from '@/pages/instructor/classRegister/components/Description';
+import { MAX_CLASS_DESCRIPTION_LENGTH } from '@/pages/instructor/classRegister/constants/formLimit';
 import {
   CLASS_DESCRIPTION_PLACEHOLDER,
   CLASS_DESCRIPTION_SUBTITLE,
-  MAX_CLASS_DESCRIPTION_LENGTH,
 } from '@/pages/instructor/classRegister/constants/registerSectionText';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
 

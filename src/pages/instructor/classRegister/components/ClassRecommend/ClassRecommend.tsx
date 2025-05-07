@@ -1,10 +1,10 @@
 import React, { forwardRef } from 'react';
 import { textareaStyle } from '@/pages/instructor/classRegister/components/ClassRecommend/classRecommend.css';
 import Description from '@/pages/instructor/classRegister/components/Description';
+import { MAX_RECOMMEND_LENGTH } from '@/pages/instructor/classRegister/constants/formLimit';
 import {
   CLASS_RECOMMEND_PLACEHOLDER,
   CLASS_RECOMMEND_SUBTITLE,
-  MAX_RECOMMEND_LENGTH,
 } from '@/pages/instructor/classRegister/constants/registerSectionText';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
 
