@@ -1,8 +1,9 @@
+import type { UseFormRegister, UseFormSetValue } from 'react-hook-form';
 import InputSection from '@/pages/instructorRegister/components/CareerSection/InputSection/InputSection';
 import Description from '@/pages/instructorRegister/components/Description/Description';
 import { INFO_KEY } from '@/pages/instructorRegister/constants/registerSection';
-import type { InstructorRegisterInfoTypes } from '@/pages/instructorRegister/types/InstructorRegisterInfoTypes';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
+import type { instructorRegisterFormTypes } from '../../types/instructorRegisterForm';
 
 interface CareerSectionPropTypes {
   educations: string[];
@@ -14,14 +15,18 @@ interface CareerSectionPropTypes {
   handleEducationCheck: () => void;
   handleCareerCheck: () => void;
   handlePrizeCheck: () => void;
-  onInfoChange: <K extends keyof InstructorRegisterInfoTypes>(key: K, value: InstructorRegisterInfoTypes[K]) => void;
+
+  register: UseFormRegister<instructorRegisterFormTypes>;
+  setValue: UseFormSetValue<instructorRegisterFormTypes>;
 }
 
 const CareerSection = ({
   educations,
   experiences,
   prizes,
-  onInfoChange,
+  register,
+  setValue,
+
   isEduNoneChecked,
   isCareerNoneChecked,
   isPrizeNoneChecked,
@@ -40,11 +45,13 @@ const CareerSection = ({
         onToggleActive={handleEducationCheck}
         inputItems={educations.map((value, id) => ({ id: id + 1, value }))}
         onItemsChange={(updatedItems) =>
-          onInfoChange(
+          setValue(
             INFO_KEY.EDUCATIONS,
             updatedItems.map((item) => item.value)
           )
         }
+        register={register}
+        key={INFO_KEY.EDUCATIONS}
       />
 
       <InputSection
@@ -54,11 +61,13 @@ const CareerSection = ({
         onToggleActive={handleCareerCheck}
         inputItems={experiences.map((value, id) => ({ id: id + 1, value }))}
         onItemsChange={(updatedItems) =>
-          onInfoChange(
+          setValue(
             INFO_KEY.EXPERIENCES,
             updatedItems.map((item) => item.value)
           )
         }
+        register={register}
+        key={INFO_KEY.EXPERIENCES}
       />
 
       <InputSection
@@ -68,11 +77,13 @@ const CareerSection = ({
         onToggleActive={handlePrizeCheck}
         inputItems={prizes.map((value, id) => ({ id: id + 1, value }))}
         onItemsChange={(updatedItems) =>
-          onInfoChange(
+          setValue(
             INFO_KEY.PRIZES,
             updatedItems.map((item) => item.value)
           )
         }
+        register={register}
+        key={INFO_KEY.PRIZES}
       />
     </div>
   );

@@ -6,9 +6,9 @@ export const instructorRegisterSchema = z
     instagram: z.string().optional(),
     youtube: z.string().optional(),
 
-    educations: z.array(z.object({})),
-    experiences: z.array(z.object({})),
-    prizes: z.array(z.object({})),
+    educations: z.array(z.string()),
+    experiences: z.array(z.string()),
+    prizes: z.array(z.string()),
     imageUrls: z.string().url('올바른 URL 형식이 아닙니다.').optional(),
     videoUrls: z.array(z.string().url('올바른 URL 형식이 아닙니다.')),
   })

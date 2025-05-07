@@ -54,17 +54,21 @@ const InstructorRegister = () => {
       imageUrls: '',
       instagram: '',
       youtube: '',
-      // educations: [''],
-      // experiences: [''],
-      // prizes: [''],
+      educations: [''],
+      experiences: [''],
+      prizes: [''],
       detail: '',
-      // videoUrls: [''],
+      videoUrls: [''],
     },
   });
 
-  const { detail, instagram, youtube } = watch();
+  const { detail, instagram, youtube, educations, experiences, prizes } = watch();
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    console.log('educations', educations);
+    console.log('experiences', experiences);
+    console.log('prizes', prizes);
+  }, [educations, experiences, prizes]);
 
   const [isEduNoneChecked, setEduNoneChecked] = useState(false);
   const [isCareerNoneChecked, setCareerNoneChecked] = useState(false);
@@ -178,10 +182,11 @@ const InstructorRegister = () => {
 
           <div className={styles.sectionWrapperStyle}>
             <CareerSection
-              educations={info.educations}
-              experiences={info.experiences}
-              prizes={info.prizes}
-              onInfoChange={handleInfoChange}
+              educations={educations}
+              experiences={experiences}
+              prizes={prizes}
+              register={register}
+              setValue={setValue}
               isEduNoneChecked={isEduNoneChecked}
               isCareerNoneChecked={isCareerNoneChecked}
               isPrizeNoneChecked={isPrizeNoneChecked}
