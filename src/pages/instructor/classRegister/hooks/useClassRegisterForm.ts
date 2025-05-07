@@ -10,8 +10,8 @@ export const useClassRegisterForm = () => {
   const [className, setClassName] = useState('');
   // const [explanation, setExplanation] = useState('');
   const [imageUrls, setImageUrls] = useState<RepresentImageUrlsTypes>({ imageUrls: '' });
-  const [selectedGenre, setSelectedGenre] = useState<string | null>(null);
-  const [selectedLevelTitle, setSelectedLevelTitle] = useState<string | null>(null);
+  // const [selectedGenre, setSelectedGenre] = useState<string | null>(null);
+  // const [selectedLevelTitle, setSelectedLevelTitle] = useState<string | null>(null);
   const [recommend, setRecommend] = useState('');
   const [personnel, setPersonnelChange] = useState('');
   const [isUndecidedLocation, setIsUndecidedLocation] = useState(false);
@@ -51,13 +51,13 @@ export const useClassRegisterForm = () => {
     }
   };
 
-  const toggleCategory = (category: string) => {
-    setSelectedGenre((prev) => (prev === category ? null : category));
-  };
+  // const toggleCategory = (category: string) => {
+  //   setSelectedGenre((prev) => (prev === category ? null : category));
+  // };
 
-  const handleLevelSelect = (title: string) => {
-    setSelectedLevelTitle((prev) => (prev === title ? null : title));
-  };
+  // const handleLevelSelect = (title: string) => {
+  //   setSelectedLevelTitle((prev) => (prev === title ? null : title));
+  // };
 
   const handleRecommendChange = () => {
     const textArea = recommendTextAreaRef.current;
@@ -110,8 +110,8 @@ export const useClassRegisterForm = () => {
         className &&
         // explanation &&
         imageUrls.imageUrls.length > 0 &&
-        selectedGenre &&
-        selectedLevelTitle &&
+        // selectedGenre &&
+        // selectedLevelTitle &&
         selectedTime &&
         recommend &&
         personnel &&
@@ -124,8 +124,8 @@ export const useClassRegisterForm = () => {
       className &&
       // explanation &&
       imageUrls.imageUrls.length > 0 &&
-      selectedGenre &&
-      selectedLevelTitle &&
+      // selectedGenre &&
+      // selectedLevelTitle &&
       selectedTime &&
       recommend &&
       personnel &&
@@ -140,8 +140,8 @@ export const useClassRegisterForm = () => {
     recommendTextAreaRef,
     className,
     // explanation,
-    selectedGenre,
-    selectedLevelTitle,
+    // selectedGenre,
+    // selectedLevelTitle,
     recommend,
     personnel,
     isUndecidedLocation,
@@ -167,8 +167,8 @@ export const useClassRegisterForm = () => {
     handlePersonnelChange,
     handleAmountChange,
     handleImageUploadSuccess,
-    toggleCategory,
-    handleLevelSelect,
+    // toggleCategory,
+    // handleLevelSelect,
     handleRecommendChange,
     handleNoneLocationCheck,
     handleDefaultPlace,

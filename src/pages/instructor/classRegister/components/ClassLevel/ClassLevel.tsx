@@ -6,11 +6,11 @@ import { LEVEL } from '@/shared/constants';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
 
 interface ClassLevelPropTypes {
-  selectedLevelTitle: string | null;
-  handleLevelSelect: (title: string) => void;
+  selectedLevel: string | null;
+  toggleLevel: (title: string) => void;
 }
 
-const ClassLevel = ({ selectedLevelTitle, handleLevelSelect }: ClassLevelPropTypes) => {
+const ClassLevel = ({ selectedLevel, toggleLevel }: ClassLevelPropTypes) => {
   return (
     <div
       className={sprinkles({
@@ -26,8 +26,8 @@ const ClassLevel = ({ selectedLevelTitle, handleLevelSelect }: ClassLevelPropTyp
           <LevelButton
             key={level.title}
             level={level}
-            isSelected={selectedLevelTitle === level.title}
-            onClick={() => handleLevelSelect(level.title)}
+            isSelected={selectedLevel === level.title}
+            onClick={() => toggleLevel(level.title)}
           />
         ))}
       </Flex>

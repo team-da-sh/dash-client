@@ -1,6 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useQueryClient } from '@tanstack/react-query';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { useGetLocationList, usePostClassRegisterInfo } from '@/pages/instructor/classRegister/apis/queries';
@@ -53,11 +53,32 @@ const ClassRegister = () => {
     defaultValues: {
       className: '',
       detail: '',
+      selectedGenre: '',
+      selectedLevel: '',
     },
   });
 
   const { mutate: classRegisterMutate } = usePostClassRegisterInfo();
-  const { className, detail } = watch();
+  const { className, detail, selectedGenre, selectedLevel } = watch();
+
+  const toggleCategory = (category: string) => {
+    setValue('selectedGenre', category === selectedGenre ? '' : category, {
+      shouldValidate: true,
+      shouldDirty: true,
+    });
+  };
+
+  const toggleLevel = (level: string) => {
+    setValue('selectedLevel', level === selectedLevel ? '' : level, {
+      shouldValidate: true,
+      shouldDirty: true,
+    });
+  };
+
+  useEffect(() => {
+    console.log('detail', detail);
+  }, [detail]);
+
   const {
     // className,
 
@@ -66,8 +87,8 @@ const ClassRegister = () => {
 
     imageUrls,
 
-    selectedGenre,
-    selectedLevelTitle,
+    // selectedGenre,
+    // selectedLevelTitle,
 
     recommend,
     recommendTextAreaRef,
@@ -95,8 +116,8 @@ const ClassRegister = () => {
     setImageUrls,
     handleImageUploadSuccess,
 
-    toggleCategory,
-    handleLevelSelect,
+    // toggleCategory,
+    // handleLevelSelect,
 
     handleRecommendChange,
 
@@ -123,7 +144,7 @@ const ClassRegister = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (selectedGenre && selectedLevelTitle) {
+    if (selectedGenre && selectedLevel) {
       const updatedInfo: ClassRegisterInfoTypes = {
         imageUrls: [imageUrls.imageUrls],
         name: className,
@@ -131,7 +152,7 @@ const ClassRegister = () => {
         videoUrls: [],
         maxReservationCount: Number(personnel),
         genre: genreEngMapping[selectedGenre],
-        level: levelEngMapping[selectedLevelTitle],
+        level: levelEngMapping[selectedLevel],
         recommendation: recommend,
         price: Number(amount),
         location: !isUndecidedLocation ? (selectedLocation?.location ?? null) : null,
@@ -188,7 +209,7 @@ const ClassRegister = () => {
             deleteImgFile={deleteImgFile}
           />
           <ClassGenre selectedGenre={selectedGenre} toggleCategory={toggleCategory} />
-          <ClassLevel selectedLevelTitle={selectedLevelTitle} handleLevelSelect={handleLevelSelect} />
+          <ClassLevel selectedLevel={selectedLevel} toggleLevel={toggleLevel} />
           <ClassRecommend
             ref={recommendTextAreaRef}
             recommend={recommend}
