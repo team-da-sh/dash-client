@@ -79,9 +79,9 @@ const VideoLinkSection = ({ control, register, setFocus }: VideoLinkSectionPropT
         })}
 
         {fields.length < MAX_VIDEO_INPUT && (
-          <Flex justify="center" align="center" className={addInputBoxStyle} onClick={handleAdd}>
+          <div className={addInputBoxStyle} onClick={handleAdd}>
             <IcPlusGray0524 width="2.4rem" />
-          </Flex>
+          </div>
         )}
       </Flex>
     </section>
