@@ -15,7 +15,9 @@ export const classRegisterSchema = z.object({
   className: z
     .string()
     .min(MIN_CLASS_NAME_LENGTH, '클래스명을 입력해주세요')
-    .max(MAX_CLASS_NAME_LENGTH, '클래스명은 최대 30자까지 입력 가능합니다'),
+    .max(MAX_CLASS_NAME_LENGTH, '클래스명은 최대 30자까지 입력 가능합니다')
+    .regex(/^[a-zA-Z0-9ㄱ-ㅎㅏ-ㅣ가-힣\s]*$/, '특수기호는 입력할 수 없어요'),
+
   explanation: z
     .string()
     .min(MIN_CLASS_DESCRIPTION_LENGTH, '설명을 입력해주세요')

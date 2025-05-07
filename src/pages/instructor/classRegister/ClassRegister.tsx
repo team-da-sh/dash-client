@@ -1,4 +1,6 @@
+import { zodResolver } from '@hookform/resolvers/zod';
 import { useQueryClient } from '@tanstack/react-query';
+import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { useGetLocationList, usePostClassRegisterInfo } from '@/pages/instructor/classRegister/apis/queries';
 import * as styles from '@/pages/instructor/classRegister/classRegister.css';
@@ -14,6 +16,7 @@ import ClassRepresentImage from '@/pages/instructor/classRegister/components/Cla
 import ClassRegisterBottomSheet from '@/pages/instructor/classRegister/components/ClassSchedule/ClassRegisterBottomSheet/ClassRegisterBottomSheet';
 import ClassSchedule from '@/pages/instructor/classRegister/components/ClassSchedule/ClassSchedule';
 import { useClassRegisterForm } from '@/pages/instructor/classRegister/hooks/useClassRegisterForm';
+import { classRegisterSchema } from '@/pages/instructor/classRegister/schema/classRegisterSchema';
 import type { ClassRegisterInfoTypes } from '@/pages/instructor/classRegister/types/api';
 import { buttonContainerStyle } from '@/pages/instructorRegister/instructorRegister.css';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
@@ -28,9 +31,23 @@ const ClassRegister = () => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
-  const { mutate: classRegisterMutate } = usePostClassRegisterInfo();
   const {
-    className,
+    register,
+    watch,
+    setValue,
+    formState: { errors, isValid },
+  } = useForm({
+    resolver: zodResolver(classRegisterSchema),
+    mode: 'onChange',
+    defaultValues: {
+      className: '',
+    },
+  });
+
+  const { mutate: classRegisterMutate } = usePostClassRegisterInfo();
+  const { className } = watch();
+  const {
+    // className,
 
     explanation,
     explainTextAreaRef,
@@ -59,7 +76,7 @@ const ClassRegister = () => {
     selectedLocation,
     submitDefaultPlace,
 
-    handleClassNameChange,
+    // handleClassNameChange,
 
     handleExplainTextArea,
 
@@ -142,7 +159,7 @@ const ClassRegister = () => {
     <>
       <form onSubmit={handleSubmit}>
         <div className={styles.containerStyle}>
-          <ClassName className={className} handleClassNameChange={handleClassNameChange} />
+          <ClassName className={className} register={register} error={errors.className} />
           <ClassDescription
             ref={explainTextAreaRef}
             explanation={explanation}
