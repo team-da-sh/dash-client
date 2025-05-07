@@ -17,7 +17,6 @@ import {
   MIN_VIDEO_INPUT,
 } from '@/pages/instructorRegister/constants/registerSection';
 import * as styles from '@/pages/instructorRegister/instructorRegister.css';
-import type { InstructorRegisterInfoTypes } from '@/pages/instructorRegister/types/InstructorRegisterInfoTypes';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import Divider from '@/shared/components/Divider/Divider';
@@ -142,14 +141,6 @@ const InstructorRegister = () => {
         navigate(ROUTES_CONFIG.error.path);
       },
     });
-  };
-
-  // 이외 로직
-  const handleInfoChange = <K extends keyof InstructorRegisterInfoTypes>(
-    key: K,
-    value: InstructorRegisterInfoTypes[K]
-  ) => {
-    setInfo((prev) => ({ ...prev, [key]: value }));
   };
 
   return (
