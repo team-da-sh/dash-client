@@ -169,7 +169,7 @@ const InstructorRegister = () => {
               educations={educations}
               experiences={experiences}
               prizes={prizes}
-              register={register}
+              // register={register}
               setValue={setValue}
               isEduNoneChecked={isEduNoneChecked}
               isCareerNoneChecked={isCareerNoneChecked}

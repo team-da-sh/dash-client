@@ -1,12 +1,10 @@
 import { useRef, useState } from 'react';
-import type { UseFormRegister } from 'react-hook-form';
 import {
   addButtonStyle,
   checkboxStyle,
   containerStyle,
 } from '@/pages/instructorRegister/components/CareerSection/careerSection.css';
 import type { InputItemTypes } from '@/pages/instructorRegister/types/inputItemTypes';
-import type { instructorRegisterFormTypes } from '@/pages/instructorRegister/types/instructorRegisterForm';
 import BtnCheck from '@/shared/assets/svg/BtnCheck';
 import IcPlusGray0524 from '@/shared/assets/svg/IcPlusGray0524';
 import IcXCircleGray from '@/shared/assets/svg/IcXCircleGray';
@@ -21,7 +19,6 @@ interface InputSectionPropTypes {
   onToggleActive: () => void;
   inputItems: InputItemTypes[];
   onItemsChange: (updatedItems: InputItemTypes[]) => void;
-  register: UseFormRegister<instructorRegisterFormTypes>;
 }
 
 const PLACEHOLDER_VISIBLE_COUNT = 2;
@@ -33,7 +30,6 @@ const InputSection = ({
   onToggleActive,
   inputItems,
   onItemsChange,
-  register,
 }: InputSectionPropTypes) => {
   const [nextID, setNextID] = useState(inputItems.length + 1);
   const lastInputRef = useRef<HTMLInputElement | null>(null);

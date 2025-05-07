@@ -1,4 +1,4 @@
-import type { UseFormRegister, UseFormSetValue } from 'react-hook-form';
+import type { UseFormSetValue } from 'react-hook-form';
 import InputSection from '@/pages/instructorRegister/components/CareerSection/InputSection/InputSection';
 import Description from '@/pages/instructorRegister/components/Description/Description';
 import { INFO_KEY } from '@/pages/instructorRegister/constants/registerSection';
@@ -16,7 +16,7 @@ interface CareerSectionPropTypes {
   handleCareerCheck: () => void;
   handlePrizeCheck: () => void;
 
-  register: UseFormRegister<instructorRegisterFormTypes>;
+  // register: UseFormRegister<instructorRegisterFormTypes>;
   setValue: UseFormSetValue<instructorRegisterFormTypes>;
 }
 
@@ -24,7 +24,6 @@ const CareerSection = ({
   educations,
   experiences,
   prizes,
-  register,
   setValue,
 
   isEduNoneChecked,
@@ -50,7 +49,6 @@ const CareerSection = ({
             updatedItems.map((item) => item.value)
           )
         }
-        register={register}
         key={INFO_KEY.EDUCATIONS}
       />
 
@@ -66,7 +64,6 @@ const CareerSection = ({
             updatedItems.map((item) => item.value)
           )
         }
-        register={register}
         key={INFO_KEY.EXPERIENCES}
       />
 
@@ -82,7 +79,6 @@ const CareerSection = ({
             updatedItems.map((item) => item.value)
           )
         }
-        register={register}
         key={INFO_KEY.PRIZES}
       />
     </div>

@@ -1,6 +1,6 @@
-import { UseFormRegister } from 'react-hook-form';
+import type { UseFormRegister } from 'react-hook-form';
 import * as styles from '@/pages/editProfile/components/FormField/formField.css';
-import { ProfileFormValues } from '@/pages/editProfile/schema/profileSchema';
+import type { ProfileFormValues } from '@/pages/editProfile/schema/profileSchema';
 import Input from '@/shared/components/Input/Input';
 import Text from '@/shared/components/Text/Text';
 
