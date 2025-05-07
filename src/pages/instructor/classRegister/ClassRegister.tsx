@@ -1,6 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useQueryClient } from '@tanstack/react-query';
-import { useEffect, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { useGetLocationList, usePostClassRegisterInfo } from '@/pages/instructor/classRegister/apis/queries';
@@ -29,10 +28,10 @@ import useImageUploader from '@/shared/hooks/useImageUploader';
 
 const ClassRegister = () => {
   const { isBottomSheetOpen, openBottomSheet, closeBottomSheet } = useBottomSheet();
-  const explainTextAreaRef = useRef<HTMLTextAreaElement>(null);
 
-  const handleExplainTextArea = () => {
-    const textArea = explainTextAreaRef.current;
+  const handleTextAreaHeight = (e: React.FormEvent<HTMLTextAreaElement>) => {
+    const textArea = e.target as HTMLTextAreaElement;
+
     if (textArea) {
       textArea.style.height = '9.8rem';
       textArea.style.height = `${textArea.scrollHeight}px`;
@@ -55,11 +54,12 @@ const ClassRegister = () => {
       detail: '',
       selectedGenre: '',
       selectedLevel: '',
+      recommendation: '',
     },
   });
 
   const { mutate: classRegisterMutate } = usePostClassRegisterInfo();
-  const { className, detail, selectedGenre, selectedLevel } = watch();
+  const { className, detail, selectedGenre, selectedLevel, recommendation } = watch();
 
   const toggleCategory = (category: string) => {
     setValue('selectedGenre', category === selectedGenre ? '' : category, {
@@ -75,23 +75,8 @@ const ClassRegister = () => {
     });
   };
 
-  useEffect(() => {
-    console.log('detail', detail);
-  }, [detail]);
-
   const {
-    // className,
-
-    // explanation,
-    // explainTextAreaRef,
-
     imageUrls,
-
-    // selectedGenre,
-    // selectedLevelTitle,
-
-    recommend,
-    recommendTextAreaRef,
 
     personnel,
 
@@ -109,17 +94,8 @@ const ClassRegister = () => {
     selectedLocation,
     submitDefaultPlace,
 
-    // handleClassNameChange,
-
-    // handleExplainTextArea,
-
     setImageUrls,
     handleImageUploadSuccess,
-
-    // toggleCategory,
-    // handleLevelSelect,
-
-    handleRecommendChange,
 
     setStartDate,
     handlePersonnelChange,
@@ -131,7 +107,6 @@ const ClassRegister = () => {
     handleAddTime,
     handleRemoveTime,
 
-    // handleHasLocation,
     handleNoneLocationCheck,
     handleDefaultPlace,
     handleSubmitDefaultPlace,
@@ -153,7 +128,7 @@ const ClassRegister = () => {
         maxReservationCount: Number(personnel),
         genre: genreEngMapping[selectedGenre],
         level: levelEngMapping[selectedLevel],
-        recommendation: recommend,
+        recommendation: recommendation,
         price: Number(amount),
         location: !isUndecidedLocation ? (selectedLocation?.location ?? null) : null,
         streetAddress: !isUndecidedLocation ? (selectedLocation?.streetAddress ?? null) : null,
@@ -193,13 +168,7 @@ const ClassRegister = () => {
       <form onSubmit={handleSubmit}>
         <div className={styles.containerStyle}>
           <ClassName className={className} register={register} error={errors.className} />
-          <ClassDescription
-            register={register}
-            detail={detail}
-            error={errors.detail}
-            ref={explainTextAreaRef}
-            handleExplainTextArea={handleExplainTextArea}
-          />
+          <ClassDescription register={register} error={errors.detail} handleTextAreaHeight={handleTextAreaHeight} />
           <ClassRepresentImage
             imgFile={imgFile}
             previewImg={previewImg}
@@ -210,11 +179,7 @@ const ClassRegister = () => {
           />
           <ClassGenre selectedGenre={selectedGenre} toggleCategory={toggleCategory} />
           <ClassLevel selectedLevel={selectedLevel} toggleLevel={toggleLevel} />
-          <ClassRecommend
-            ref={recommendTextAreaRef}
-            recommend={recommend}
-            handleRecommendChange={handleRecommendChange}
-          />
+          <ClassRecommend register={register} handleTextAreaHeight={handleTextAreaHeight} />
           <ClassSchedule openBottomSheet={openBottomSheet} times={times} handleRemoveTime={handleRemoveTime} />
           <ClassPersonnel personnel={personnel} handlePersonnelChange={handlePersonnelChange} />
           <ClassPlace

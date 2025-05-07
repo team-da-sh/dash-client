@@ -1,4 +1,5 @@
-import React, { forwardRef } from 'react';
+import React from 'react';
+import type { UseFormRegister } from 'react-hook-form';
 import { textareaStyle } from '@/pages/instructor/classRegister/components/ClassRecommend/classRecommend.css';
 import Description from '@/pages/instructor/classRegister/components/Description';
 import { MAX_RECOMMEND_LENGTH } from '@/pages/instructor/classRegister/constants/formLimit';
@@ -7,35 +8,34 @@ import {
   CLASS_RECOMMEND_SUBTITLE,
 } from '@/pages/instructor/classRegister/constants/registerSectionText';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
+import type { ClassRegisterFormTypes } from '../../types/classRegisterForm';
 
 interface ClassRecommendPropTypes {
-  recommend: string;
-  handleRecommendChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  register: UseFormRegister<ClassRegisterFormTypes>;
+  handleTextAreaHeight: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
 }
 
-const ClassRecommend = forwardRef<HTMLTextAreaElement, ClassRecommendPropTypes>(
-  ({ recommend, handleRecommendChange }, ref) => {
-    return (
-      <div
-        className={sprinkles({
-          display: 'flex',
-          flexDirection: 'column',
-          width: '100%',
-          gap: 20,
-          mb: 30,
-        })}>
-        <Description title="클래스 추천 대상" subTitle={CLASS_RECOMMEND_SUBTITLE} />
-        <textarea
-          ref={ref}
-          value={recommend}
-          onInput={handleRecommendChange}
-          placeholder={CLASS_RECOMMEND_PLACEHOLDER}
-          className={textareaStyle}
-          maxLength={MAX_RECOMMEND_LENGTH}
-        />
-      </div>
-    );
-  }
-);
+const ClassRecommend = ({ register, handleTextAreaHeight }: ClassRecommendPropTypes) => {
+  return (
+    <div
+      className={sprinkles({
+        display: 'flex',
+        flexDirection: 'column',
+        width: '100%',
+        gap: 20,
+        mb: 30,
+      })}>
+      <Description title="클래스 추천 대상" subTitle={CLASS_RECOMMEND_SUBTITLE} />
+      <textarea
+        {...register('recommendation', {
+          onChange: handleTextAreaHeight,
+        })}
+        placeholder={CLASS_RECOMMEND_PLACEHOLDER}
+        className={textareaStyle}
+        maxLength={MAX_RECOMMEND_LENGTH}
+      />
+    </div>
+  );
+};
 
 export default ClassRecommend;

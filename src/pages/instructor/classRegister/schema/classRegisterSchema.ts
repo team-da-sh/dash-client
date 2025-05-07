@@ -25,7 +25,7 @@ export const classRegisterSchema = z.object({
   imageUrls: z.string().url('유효한 이미지 URL이 아닙니다'),
   selectedGenre: z.string().min(MIN_CLASS_GENRE_LENGTH, '장르를 선택해주세요'),
   selectedLevel: z.string().min(MIN_CLASS_LEVEL_LENGTH, '레벨을 선택해주세요'),
-  recommend: z
+  recommendation: z
     .string()
     .min(MIN_RECOMMEND_LENGTH, '추천사항을 입력해주세요')
     .max(MAX_RECOMMEND_LENGTH, '추천사항은 최대 200자까지 입력 가능합니다'),

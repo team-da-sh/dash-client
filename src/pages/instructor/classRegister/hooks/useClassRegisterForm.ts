@@ -1,18 +1,12 @@
 import type { ChangeEvent } from 'react';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import type { LocationTypes, RepresentImageUrlsTypes } from '@/pages/instructor/classRegister/types';
 import { ONLY_NUMERIC } from '@/shared/constants/regex';
 import { formatToISOString } from '@/shared/utils/timeUtils';
 
 export const useClassRegisterForm = () => {
-  const recommendTextAreaRef = useRef<HTMLTextAreaElement>(null);
-
   const [className, setClassName] = useState('');
-  // const [explanation, setExplanation] = useState('');
   const [imageUrls, setImageUrls] = useState<RepresentImageUrlsTypes>({ imageUrls: '' });
-  // const [selectedGenre, setSelectedGenre] = useState<string | null>(null);
-  // const [selectedLevelTitle, setSelectedLevelTitle] = useState<string | null>(null);
-  const [recommend, setRecommend] = useState('');
   const [personnel, setPersonnelChange] = useState('');
   const [isUndecidedLocation, setIsUndecidedLocation] = useState(false);
   const [defaultPlace, setDefaultPlace] = useState('');
@@ -48,23 +42,6 @@ export const useClassRegisterForm = () => {
     // 숫자만 입력되도록
     if (!e.target.value.match(ONLY_NUMERIC)) {
       setAmount(e.target.value);
-    }
-  };
-
-  // const toggleCategory = (category: string) => {
-  //   setSelectedGenre((prev) => (prev === category ? null : category));
-  // };
-
-  // const handleLevelSelect = (title: string) => {
-  //   setSelectedLevelTitle((prev) => (prev === title ? null : title));
-  // };
-
-  const handleRecommendChange = () => {
-    const textArea = recommendTextAreaRef.current;
-    if (textArea) {
-      textArea.style.height = '9.8rem';
-      textArea.style.height = `${textArea.scrollHeight}px`;
-      setRecommend(textArea.value);
     }
   };
 
@@ -106,28 +83,13 @@ export const useClassRegisterForm = () => {
 
   const isButtonActive = () => {
     if (isUndecidedLocation) {
-      return (
-        className &&
-        // explanation &&
-        imageUrls.imageUrls.length > 0 &&
-        // selectedGenre &&
-        // selectedLevelTitle &&
-        selectedTime &&
-        recommend &&
-        personnel &&
-        amount &&
-        times.length > 0
-      );
+      return className && imageUrls.imageUrls.length > 0 && selectedTime && personnel && amount && times.length > 0;
     }
 
     return (
       className &&
-      // explanation &&
       imageUrls.imageUrls.length > 0 &&
-      // selectedGenre &&
-      // selectedLevelTitle &&
       selectedTime &&
-      recommend &&
       personnel &&
       amount &&
       selectedLocation &&
@@ -136,13 +98,7 @@ export const useClassRegisterForm = () => {
   };
 
   return {
-    // explainTextAreaRef,
-    recommendTextAreaRef,
     className,
-    // explanation,
-    // selectedGenre,
-    // selectedLevelTitle,
-    recommend,
     personnel,
     isUndecidedLocation,
     defaultPlace,
@@ -167,9 +123,6 @@ export const useClassRegisterForm = () => {
     handlePersonnelChange,
     handleAmountChange,
     handleImageUploadSuccess,
-    // toggleCategory,
-    // handleLevelSelect,
-    handleRecommendChange,
     handleNoneLocationCheck,
     handleDefaultPlace,
     handleSubmitDefaultPlace,
