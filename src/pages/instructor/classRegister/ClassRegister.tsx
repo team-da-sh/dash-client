@@ -1,5 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useQueryClient } from '@tanstack/react-query';
+import { useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { useGetLocationList, usePostClassRegisterInfo } from '@/pages/instructor/classRegister/apis/queries';
@@ -28,6 +29,16 @@ import useImageUploader from '@/shared/hooks/useImageUploader';
 
 const ClassRegister = () => {
   const { isBottomSheetOpen, openBottomSheet, closeBottomSheet } = useBottomSheet();
+  const explainTextAreaRef = useRef<HTMLTextAreaElement>(null);
+
+  const handleExplainTextArea = () => {
+    const textArea = explainTextAreaRef.current;
+    if (textArea) {
+      textArea.style.height = '9.8rem';
+      textArea.style.height = `${textArea.scrollHeight}px`;
+    }
+  };
+
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
@@ -41,16 +52,17 @@ const ClassRegister = () => {
     mode: 'onChange',
     defaultValues: {
       className: '',
+      detail: '',
     },
   });
 
   const { mutate: classRegisterMutate } = usePostClassRegisterInfo();
-  const { className } = watch();
+  const { className, detail } = watch();
   const {
     // className,
 
-    explanation,
-    explainTextAreaRef,
+    // explanation,
+    // explainTextAreaRef,
 
     imageUrls,
 
@@ -78,7 +90,7 @@ const ClassRegister = () => {
 
     // handleClassNameChange,
 
-    handleExplainTextArea,
+    // handleExplainTextArea,
 
     setImageUrls,
     handleImageUploadSuccess,
@@ -115,7 +127,7 @@ const ClassRegister = () => {
       const updatedInfo: ClassRegisterInfoTypes = {
         imageUrls: [imageUrls.imageUrls],
         name: className,
-        detail: explanation,
+        detail: detail,
         videoUrls: [],
         maxReservationCount: Number(personnel),
         genre: genreEngMapping[selectedGenre],
@@ -161,8 +173,10 @@ const ClassRegister = () => {
         <div className={styles.containerStyle}>
           <ClassName className={className} register={register} error={errors.className} />
           <ClassDescription
+            register={register}
+            detail={detail}
+            error={errors.detail}
             ref={explainTextAreaRef}
-            explanation={explanation}
             handleExplainTextArea={handleExplainTextArea}
           />
           <ClassRepresentImage

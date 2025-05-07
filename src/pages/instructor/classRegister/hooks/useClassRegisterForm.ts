@@ -5,11 +5,10 @@ import { ONLY_NUMERIC } from '@/shared/constants/regex';
 import { formatToISOString } from '@/shared/utils/timeUtils';
 
 export const useClassRegisterForm = () => {
-  const explainTextAreaRef = useRef<HTMLTextAreaElement>(null);
   const recommendTextAreaRef = useRef<HTMLTextAreaElement>(null);
 
   const [className, setClassName] = useState('');
-  const [explanation, setExplanation] = useState('');
+  // const [explanation, setExplanation] = useState('');
   const [imageUrls, setImageUrls] = useState<RepresentImageUrlsTypes>({ imageUrls: '' });
   const [selectedGenre, setSelectedGenre] = useState<string | null>(null);
   const [selectedLevelTitle, setSelectedLevelTitle] = useState<string | null>(null);
@@ -58,15 +57,6 @@ export const useClassRegisterForm = () => {
 
   const handleLevelSelect = (title: string) => {
     setSelectedLevelTitle((prev) => (prev === title ? null : title));
-  };
-
-  const handleExplainTextArea = () => {
-    const textArea = explainTextAreaRef.current;
-    if (textArea) {
-      textArea.style.height = '9.8rem';
-      textArea.style.height = `${textArea.scrollHeight}px`;
-      setExplanation(textArea.value);
-    }
   };
 
   const handleRecommendChange = () => {
@@ -118,7 +108,7 @@ export const useClassRegisterForm = () => {
     if (isUndecidedLocation) {
       return (
         className &&
-        explanation &&
+        // explanation &&
         imageUrls.imageUrls.length > 0 &&
         selectedGenre &&
         selectedLevelTitle &&
@@ -132,7 +122,7 @@ export const useClassRegisterForm = () => {
 
     return (
       className &&
-      explanation &&
+      // explanation &&
       imageUrls.imageUrls.length > 0 &&
       selectedGenre &&
       selectedLevelTitle &&
@@ -146,10 +136,10 @@ export const useClassRegisterForm = () => {
   };
 
   return {
-    explainTextAreaRef,
+    // explainTextAreaRef,
     recommendTextAreaRef,
     className,
-    explanation,
+    // explanation,
     selectedGenre,
     selectedLevelTitle,
     recommend,
@@ -179,7 +169,6 @@ export const useClassRegisterForm = () => {
     handleImageUploadSuccess,
     toggleCategory,
     handleLevelSelect,
-    handleExplainTextArea,
     handleRecommendChange,
     handleNoneLocationCheck,
     handleDefaultPlace,
