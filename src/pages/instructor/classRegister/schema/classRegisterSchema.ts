@@ -29,8 +29,8 @@ export const classRegisterSchema = z.object({
     .string()
     .min(MIN_RECOMMEND_LENGTH, '추천사항을 입력해주세요')
     .max(MAX_RECOMMEND_LENGTH, '추천사항은 최대 200자까지 입력 가능합니다'),
-  personnel: z.string().regex(/^\d+$/, '숫자만 입력해주세요'),
-  amount: z.string().regex(/^\d+$/, '숫자만 입력해주세요'),
+  maxReservationCount: z.string().regex(/^\d+$/, '숫자만 입력해주세요'),
+  price: z.string().regex(/^\d+$/, '숫자만 입력해주세요'),
   isUndecidedLocation: z.boolean(),
   selectedLocation: z.union([
     z.object({

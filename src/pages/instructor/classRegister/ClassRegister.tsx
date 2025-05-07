@@ -55,11 +55,13 @@ const ClassRegister = () => {
       selectedGenre: '',
       selectedLevel: '',
       recommendation: '',
+      maxReservationCount: '',
+      price: '',
     },
   });
 
   const { mutate: classRegisterMutate } = usePostClassRegisterInfo();
-  const { className, detail, selectedGenre, selectedLevel, recommendation } = watch();
+  const { className, detail, selectedGenre, selectedLevel, recommendation, maxReservationCount, price } = watch();
 
   const toggleCategory = (category: string) => {
     setValue('selectedGenre', category === selectedGenre ? '' : category, {
@@ -78,9 +80,6 @@ const ClassRegister = () => {
   const {
     imageUrls,
 
-    personnel,
-
-    amount,
     selectedTime,
     times,
     hour,
@@ -98,8 +97,6 @@ const ClassRegister = () => {
     handleImageUploadSuccess,
 
     setStartDate,
-    handlePersonnelChange,
-    handleAmountChange,
     setHour,
     setMinute,
     setAmpm,
@@ -125,11 +122,11 @@ const ClassRegister = () => {
         name: className,
         detail: detail,
         videoUrls: [],
-        maxReservationCount: Number(personnel),
+        maxReservationCount: Number(maxReservationCount),
         genre: genreEngMapping[selectedGenre],
         level: levelEngMapping[selectedLevel],
         recommendation: recommendation,
-        price: Number(amount),
+        price: Number(price),
         location: !isUndecidedLocation ? (selectedLocation?.location ?? null) : null,
         streetAddress: !isUndecidedLocation ? (selectedLocation?.streetAddress ?? null) : null,
         oldStreetAddress: !isUndecidedLocation ? (selectedLocation?.oldStreetAddress ?? null) : null,
@@ -181,7 +178,7 @@ const ClassRegister = () => {
           <ClassLevel selectedLevel={selectedLevel} toggleLevel={toggleLevel} />
           <ClassRecommend register={register} handleTextAreaHeight={handleTextAreaHeight} />
           <ClassSchedule openBottomSheet={openBottomSheet} times={times} handleRemoveTime={handleRemoveTime} />
-          <ClassPersonnel personnel={personnel} handlePersonnelChange={handlePersonnelChange} />
+          <ClassPersonnel maxReservationCount={maxReservationCount} register={register} />
           <ClassPlace
             isUndecidedLocation={isUndecidedLocation}
             handleHasLocation={handleNoneLocationCheck}
@@ -194,7 +191,7 @@ const ClassRegister = () => {
             setSelectedLocation={setSelectedLocation}
             locationList={locationList}
           />
-          <ClassAmount amount={amount} handleAmountChange={handleAmountChange} />
+          <ClassAmount price={price} register={register} />
         </div>
         <div className={buttonContainerStyle}>
           <BoxButton type="submit" disabled={!isButtonActive()}>

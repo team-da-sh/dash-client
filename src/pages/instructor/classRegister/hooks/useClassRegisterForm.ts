@@ -1,18 +1,16 @@
 import type { ChangeEvent } from 'react';
 import { useState } from 'react';
 import type { LocationTypes, RepresentImageUrlsTypes } from '@/pages/instructor/classRegister/types';
-import { ONLY_NUMERIC } from '@/shared/constants/regex';
+// import { ONLY_NUMERIC } from '@/shared/constants/regex';
 import { formatToISOString } from '@/shared/utils/timeUtils';
 
 export const useClassRegisterForm = () => {
   const [className, setClassName] = useState('');
   const [imageUrls, setImageUrls] = useState<RepresentImageUrlsTypes>({ imageUrls: '' });
-  const [personnel, setPersonnelChange] = useState('');
   const [isUndecidedLocation, setIsUndecidedLocation] = useState(false);
   const [defaultPlace, setDefaultPlace] = useState('');
   const [submitDefaultPlace, setSubmitDefaultPlace] = useState('');
   const [detailPlace, setDetailPlace] = useState('');
-  const [amount, setAmount] = useState('');
 
   const [times, setTimes] = useState<{ startTime: string; endTime: string; date: string; duration: number }[]>([]);
   const [startDate, setStartDate] = useState('');
@@ -27,22 +25,8 @@ export const useClassRegisterForm = () => {
     setClassName(e.target.value);
   };
 
-  const handlePersonnelChange = (e: ChangeEvent<HTMLInputElement>) => {
-    // 숫자만 입력되도록
-    if (!e.target.value.match(ONLY_NUMERIC)) {
-      setPersonnelChange(e.target.value);
-    }
-  };
-
   const handleImageUploadSuccess = (url: string) => {
     setImageUrls({ imageUrls: url });
-  };
-
-  const handleAmountChange = (e: ChangeEvent<HTMLInputElement>) => {
-    // 숫자만 입력되도록
-    if (!e.target.value.match(ONLY_NUMERIC)) {
-      setAmount(e.target.value);
-    }
   };
 
   const handleNoneLocationCheck = () => {
@@ -83,28 +67,18 @@ export const useClassRegisterForm = () => {
 
   const isButtonActive = () => {
     if (isUndecidedLocation) {
-      return className && imageUrls.imageUrls.length > 0 && selectedTime && personnel && amount && times.length > 0;
+      return className && imageUrls.imageUrls.length > 0 && selectedTime && times.length > 0;
     }
 
-    return (
-      className &&
-      imageUrls.imageUrls.length > 0 &&
-      selectedTime &&
-      personnel &&
-      amount &&
-      selectedLocation &&
-      times.length > 0
-    );
+    return className && imageUrls.imageUrls.length > 0 && selectedTime && selectedLocation && times.length > 0;
   };
 
   return {
     className,
-    personnel,
     isUndecidedLocation,
     defaultPlace,
     submitDefaultPlace,
     detailPlace,
-    amount,
     imageUrls,
     times,
     hour,
@@ -120,8 +94,6 @@ export const useClassRegisterForm = () => {
     selectedTime,
     handleAddTime,
     handleClassNameChange,
-    handlePersonnelChange,
-    handleAmountChange,
     handleImageUploadSuccess,
     handleNoneLocationCheck,
     handleDefaultPlace,
