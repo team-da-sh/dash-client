@@ -5,6 +5,7 @@ import ClassButtonWrapper from '@/pages/class/components/ClassButtonWrapper/Clas
 import ClassInfoWrapper from '@/pages/class/components/ClassInfoWrapper/ClassInfoWrapper';
 import LimitedChip from '@/pages/class/components/LimitedChip/LimitedChip';
 import TabWrapper from '@/pages/class/components/TabWrapper/TabWrapper';
+import { LOW_SEAT_THRESHOLD } from '@/pages/class/constants';
 import Error from '@/pages/error/Error';
 import Divider from '@/shared/components/Divider/Divider';
 
@@ -28,7 +29,7 @@ const Class = () => {
 
   const imageUrl = data.imageUrl;
   const remainingSeats = data.maxReservationCount - data.reservationCount;
-  const shouldShowChip = data.status === 'OPEN' && remainingSeats < 10;
+  const shouldShowChip = data.status === 'OPEN' && remainingSeats < LOW_SEAT_THRESHOLD;
 
   return (
     <main>
