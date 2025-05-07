@@ -58,7 +58,7 @@ const InstructorRegister = () => {
       experiences: [''],
       prizes: [''],
       detail: '',
-      videoUrls: [''],
+      videoUrls: [{ value: '' }],
     },
   });
 
@@ -99,15 +99,11 @@ const InstructorRegister = () => {
 
     return educationValid && careerValid && prizeValid;
   };
-  const hasVideoUrls = () => videoUrls.some((url) => url.trim().length >= MIN_VIDEO_INPUT);
+  const hasVideoUrls = () => videoUrls.some((url) => url.value.trim().length >= MIN_VIDEO_INPUT);
 
   useEffect(() => {
-    console.log('hasImage:', hasImage());
-    console.log('hasSocialId:', hasSocialId());
-    console.log('hasDancerBackground:', hasDancerBackground());
-    console.log('hasDetailedInfo:', hasDetailedInfo());
-    console.log('hasVideoUrls:', hasVideoUrls());
-  });
+    console.log('videoUrls', videoUrls);
+  }, [videoUrls]);
 
   const buttonActive = () => {
     return (
@@ -135,7 +131,7 @@ const InstructorRegister = () => {
       prizes: isPrizeNoneChecked ? [] : prizes.filter((prize) => prize.trim() !== ''),
 
       detail: detail.trim(), // 자기소개를 적절히 처리
-      videoUrls: videoUrls.filter((url) => url.trim() !== ''), // 비디오 URL 필터링
+      videoUrls: videoUrls.map((url) => url.value.trim()).filter((value) => value !== ''),
     };
 
     instructorRegisterMutate(updatedInfo, {
@@ -192,7 +188,7 @@ const InstructorRegister = () => {
           <Divider direction="horizontal" color="gray1" length={'100%'} thickness={'0.8rem'} />
 
           <div className={styles.sectionWrapperStyle}>
-            <VideoLinkSection videoUrls={videoUrls} register={register} setValue={setValue} />
+            <VideoLinkSection control={control} register={register} />
           </div>
         </div>
 
