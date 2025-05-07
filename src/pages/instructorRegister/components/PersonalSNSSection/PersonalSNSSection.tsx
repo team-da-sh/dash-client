@@ -12,13 +12,8 @@ interface PersonalSNSSectionPropTypes {
   register: UseFormRegister<instructorRegisterFormTypes>;
 }
 const PersonalSNSSection = ({ instagram, youtube, register }: PersonalSNSSectionPropTypes) => {
-  // const handleInstagramChange = (value: string) => {
-  //   onInfoChange(INFO_KEY.INSTAGRAM, value);
-  // };
-
-  // const handleYoutubeChange = (value: string) => {
-  //   onInfoChange(INFO_KEY.YOUTUBE, value);
-  // };
+  const { ref: instagramRef, onChange: instagramOnChange, name: instagramName } = register('instagram');
+  const { ref: youtubeRef, onChange: youtubeOnChange, name: youtubeName } = register('youtube');
 
   return (
     <section className={sprinkles({ width: '100%', flexDirection: 'column', pb: 20 })}>
@@ -27,12 +22,24 @@ const PersonalSNSSection = ({ instagram, youtube, register }: PersonalSNSSection
       <div className={sprinkles({ flexDirection: 'column', width: '100%' })}>
         <div className={textAreaContainerStyle}>
           <Text tag="b2_sb">인스타그램</Text>
-          <Input {...register('instagram')} value={instagram} placeholder="dashdash.kr" />
+          <Input
+            ref={instagramRef}
+            onChange={instagramOnChange}
+            name={instagramName}
+            value={instagram}
+            placeholder="dashdash.kr"
+          />
         </div>
 
         <div className={textAreaContainerStyle}>
           <Text tag="b2_sb">유튜브 채널</Text>
-          <Input {...register('youtube')} value={youtube} placeholder="dashofficial" />
+          <Input
+            ref={youtubeRef}
+            onChange={youtubeOnChange}
+            name={youtubeName}
+            value={youtube}
+            placeholder="dashofficial"
+          />
         </div>
       </div>
     </section>

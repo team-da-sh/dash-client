@@ -68,10 +68,6 @@ const InstructorRegister = () => {
     control,
   });
 
-  useEffect(() => {
-    console.log('imageUrls', imageUrls);
-  }, [imageUrls]);
-
   const [isEduNoneChecked, setEduNoneChecked] = useState(false);
   const [isCareerNoneChecked, setCareerNoneChecked] = useState(false);
   const [isPrizeNoneChecked, setPrizeNoneChecked] = useState(false);
@@ -90,12 +86,12 @@ const InstructorRegister = () => {
 
   // 버튼 활성화 조건 체크 함수
   const hasDetailedInfo = () => detail.trim().length >= MIN_INTRODUCTION_LENGTH;
-  const hasImage = () => !!info.imageUrls;
+  const hasImage = () => !!imageUrls;
   const hasSocialId = () => !!instagram || !!youtube;
   const hasDancerBackground = () => {
-    const hasEducation = info.educations.some((edu) => edu.trim().length >= MIN_EDUCATION_INPUT_COUNT);
-    const hasCareer = info.experiences.some((exp) => exp.trim().length >= MIN_CAREER_INPUT_COUNT);
-    const hasPrize = info.prizes.some((prize) => prize.trim().length >= MIN_PRIZE_INPUT_COUNT);
+    const hasEducation = educations.some((edu) => edu.trim().length >= MIN_EDUCATION_INPUT_COUNT);
+    const hasCareer = experiences.some((exp) => exp.trim().length >= MIN_CAREER_INPUT_COUNT);
+    const hasPrize = prizes.some((prize) => prize.trim().length >= MIN_PRIZE_INPUT_COUNT);
 
     const educationValid = hasEducation || isEduNoneChecked;
     const careerValid = hasCareer || isCareerNoneChecked;
@@ -103,7 +99,15 @@ const InstructorRegister = () => {
 
     return educationValid && careerValid && prizeValid;
   };
-  const hasVideoUrls = () => info.videoUrls.some((url) => url.trim().length >= MIN_VIDEO_INPUT);
+  const hasVideoUrls = () => videoUrls.some((url) => url.trim().length >= MIN_VIDEO_INPUT);
+
+  useEffect(() => {
+    console.log('hasImage:', hasImage());
+    console.log('hasSocialId:', hasSocialId());
+    console.log('hasDancerBackground:', hasDancerBackground());
+    console.log('hasDetailedInfo:', hasDetailedInfo());
+    console.log('hasVideoUrls:', hasVideoUrls());
+  });
 
   const buttonActive = () => {
     return (
@@ -122,14 +126,16 @@ const InstructorRegister = () => {
     e.preventDefault();
 
     const updatedInfo = {
-      ...info,
-      imageUrls: [info.imageUrls],
-      instagram: info.instagram.trim() === '' ? null : `https://www.instagram.com/${info.instagram.trim()}`,
-      youtube: info.youtube.trim() === '' ? null : `https://www.youtube.com/@${info.youtube.trim()}`,
+      imageUrls: [imageUrls],
+      instagram: instagram?.trim() === '' ? null : `https://www.instagram.com/${info.instagram.trim()}`,
+      youtube: youtube?.trim() === '' ? null : `https://www.youtube.com/@${info.youtube.trim()}`,
 
-      educations: isEduNoneChecked ? [] : info.educations.filter((education) => education.trim() !== ''),
-      experiences: isCareerNoneChecked ? [] : info.experiences.filter((experience) => experience.trim() !== ''),
-      prizes: isPrizeNoneChecked ? [] : info.prizes.filter((prize) => prize.trim() !== ''),
+      educations: isEduNoneChecked ? [] : educations.filter((education) => education.trim() !== ''),
+      experiences: isCareerNoneChecked ? [] : experiences.filter((experience) => experience.trim() !== ''),
+      prizes: isPrizeNoneChecked ? [] : prizes.filter((prize) => prize.trim() !== ''),
+
+      detail: detail.trim(), // 자기소개를 적절히 처리
+      videoUrls: videoUrls.filter((url) => url.trim() !== ''), // 비디오 URL 필터링
     };
 
     instructorRegisterMutate(updatedInfo, {
@@ -191,7 +197,7 @@ const InstructorRegister = () => {
         </div>
 
         <div className={styles.buttonContainerStyle}>
-          <BoxButton variant="primary" isDisabled={!buttonActive()} type="submit">
+          <BoxButton variant="primary" isDisabled={isValid} type="submit">
             등록
           </BoxButton>
         </div>
