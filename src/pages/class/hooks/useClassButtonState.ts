@@ -1,7 +1,8 @@
+import type { StatusType } from '@/pages/class/types/api';
 import { BUTTON_TEXT } from '@/shared/constants';
 
 export const useClassButtonState = (
-  status: string,
+  status: StatusType,
   bookStatus?: boolean
 ): { buttonText: string; isDisabled: boolean } => {
   if (bookStatus) {
@@ -11,22 +12,25 @@ export const useClassButtonState = (
     };
   }
 
-  if (status === 'OPEN') {
-    return {
+  const statusToButtonMap: Record<StatusType, { buttonText: string; isDisabled: boolean }> = {
+    OPEN: {
       buttonText: BUTTON_TEXT.OPEN.AVAILABLE,
       isDisabled: false,
-    };
-  }
-
-  if (status === 'EXPIRED' || status === 'OVER_BOOKED') {
-    return {
-      buttonText: BUTTON_TEXT[status],
+    },
+    EXPIRED: {
+      buttonText: BUTTON_TEXT.EXPIRED,
       isDisabled: true,
-    };
-  }
-
-  return {
-    buttonText: '',
-    isDisabled: false,
+    },
+    OVER_BOOKED: {
+      buttonText: BUTTON_TEXT.OVER_BOOKED,
+      isDisabled: true,
+    },
   };
+
+  return (
+    statusToButtonMap[status] ?? {
+      buttonText: '',
+      isDisabled: false,
+    }
+  );
 };
