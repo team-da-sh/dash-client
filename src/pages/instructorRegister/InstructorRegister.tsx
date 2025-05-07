@@ -45,6 +45,7 @@ const InstructorRegister = () => {
     register,
     watch,
     setValue,
+    setFocus,
     control,
     formState: { errors, isValid },
   } = useForm({
@@ -130,7 +131,7 @@ const InstructorRegister = () => {
       experiences: isCareerNoneChecked ? [] : experiences.filter((experience) => experience.trim() !== ''),
       prizes: isPrizeNoneChecked ? [] : prizes.filter((prize) => prize.trim() !== ''),
 
-      detail: detail.trim(), // 자기소개를 적절히 처리
+      detail: detail.trim(),
       videoUrls: videoUrls.map((url) => url.value.trim()).filter((value) => value !== ''),
     };
 
@@ -188,7 +189,7 @@ const InstructorRegister = () => {
           <Divider direction="horizontal" color="gray1" length={'100%'} thickness={'0.8rem'} />
 
           <div className={styles.sectionWrapperStyle}>
-            <VideoLinkSection control={control} register={register} />
+            <VideoLinkSection control={control} register={register} setFocus={setFocus} />
           </div>
         </div>
 
