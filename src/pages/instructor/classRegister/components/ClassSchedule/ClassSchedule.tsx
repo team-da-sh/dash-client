@@ -1,6 +1,6 @@
 import * as styles from '@/pages/instructor/classRegister/components/ClassSchedule/classSchedule.css';
 import Description from '@/pages/instructor/classRegister/components/Description';
-import { CLASS_SCHEDULE_SUBTITLE } from '@/pages/instructor/classRegister/constants/registerSection';
+import { CLASS_SCHEDULE_SUBTITLE } from '@/pages/instructor/classRegister/constants/registerSectionText';
 import type { TimesTypes } from '@/pages/instructor/classRegister/types/classSchedule';
 import IcPlusGray0524 from '@/shared/assets/svg/IcPlusGray0524';
 import IcXCircleGray0424 from '@/shared/assets/svg/IcXCircleGray0424';

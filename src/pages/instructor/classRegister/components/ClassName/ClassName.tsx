@@ -1,7 +1,10 @@
 import type { ChangeEvent } from 'react';
 import { nameLengthStyle } from '@/pages/instructor/classRegister/components/ClassName/className.css';
 import Description from '@/pages/instructor/classRegister/components/Description';
-import { CLASS_NAME_SUBTITLE, MAX_CLASS_NAME_LENGTH } from '@/pages/instructor/classRegister/constants/registerSection';
+import {
+  CLASS_NAME_SUBTITLE,
+  MAX_CLASS_NAME_LENGTH,
+} from '@/pages/instructor/classRegister/constants/registerSectionText';
 import Input from '@/shared/components/Input/Input';
 import Text from '@/shared/components/Text/Text';
 import { sprinkles } from '@/shared/styles/sprinkles.css';

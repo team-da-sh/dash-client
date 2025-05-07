@@ -1,0 +1,15 @@
+export const MIN_CLASS_NAME_LENGTH = 1;
+export const MAX_CLASS_NAME_LENGTH = 30;
+
+export const MIN_CLASS_DESCRIPTION_LENGTH = 1;
+export const MAX_CLASS_DESCRIPTION_LENGTH = 300;
+
+export const MAX_CLASS_REPRESENT_IMAGE_LENGTH = 1;
+
+export const MIN_CLASS_GENRE_LENGTH = 1;
+export const MIN_CLASS_LEVEL_LENGTH = 1;
+
+export const MIN_RECOMMEND_LENGTH = 1;
+export const MAX_RECOMMEND_LENGTH = 200;
+
+export const MIN_TIMES_LENGTH = 1;

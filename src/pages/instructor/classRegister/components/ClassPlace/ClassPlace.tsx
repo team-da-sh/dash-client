@@ -5,7 +5,7 @@ import {
   CLASS_DEFAULT_PLACE_PLACEHOLDER,
   CLASS_DETAIL_PLACE_PLACEHOLDER,
   CLASS_PLACE_SUBTITLE,
-} from '@/pages/instructor/classRegister/constants/registerSection';
+} from '@/pages/instructor/classRegister/constants/registerSectionText';
 import BtnCheck from '@/shared/assets/svg/BtnCheck';
 import IcSearchGray from '@/shared/assets/svg/IcSearchGray';
 import IcXCircleGray0424 from '@/shared/assets/svg/IcXCircleGray0424';

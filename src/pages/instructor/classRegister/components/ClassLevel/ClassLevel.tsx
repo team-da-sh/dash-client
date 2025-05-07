@@ -1,5 +1,5 @@
 import Description from '@/pages/instructor/classRegister/components/Description';
-import { CLASS_LEVEL_SUBTITLE } from '@/pages/instructor/classRegister/constants/registerSection';
+import { CLASS_LEVEL_SUBTITLE } from '@/pages/instructor/classRegister/constants/registerSectionText';
 import Flex from '@/shared/components/Flex/Flex';
 import LevelButton from '@/shared/components/LevelButton/LevelButton';
 import { LEVEL } from '@/shared/constants';

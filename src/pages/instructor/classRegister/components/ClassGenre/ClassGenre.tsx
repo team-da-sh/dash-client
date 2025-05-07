@@ -1,6 +1,6 @@
 import { genreButtonContainerStyle } from '@/pages/instructor/classRegister/components/ClassGenre/classGenre.css';
 import Description from '@/pages/instructor/classRegister/components/Description';
-import { CLASS_GENRE_SUBTITLE } from '@/pages/instructor/classRegister/constants/registerSection';
+import { CLASS_GENRE_SUBTITLE } from '@/pages/instructor/classRegister/constants/registerSectionText';
 import GenreButton from '@/pages/search/components/TabContainer/TagSection/BottomSheet/GenreButton/GenreButton';
 import { GENRE_CATEGORY } from '@/shared/constants';
 import { sprinkles } from '@/shared/styles/sprinkles.css';

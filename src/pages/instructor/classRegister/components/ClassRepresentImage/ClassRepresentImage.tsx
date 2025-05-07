@@ -7,7 +7,7 @@ import Description from '@/pages/instructor/classRegister/components/Description
 import {
   CLASS_REPRESENT_IMAGE_SUBTITLE,
   MAX_CLASS_REPRESENT_IMAGE_LENGTH,
-} from '@/pages/instructor/classRegister/constants/registerSection';
+} from '@/pages/instructor/classRegister/constants/registerSectionText';
 import IcPlusGray0524 from '@/shared/assets/svg/IcPlusGray0524';
 import IcXCircleMain0324 from '@/shared/assets/svg/IcXCircleMain0324';
 import Text from '@/shared/components/Text/Text';

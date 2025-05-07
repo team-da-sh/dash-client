@@ -5,7 +5,7 @@ import {
   CLASS_DESCRIPTION_PLACEHOLDER,
   CLASS_DESCRIPTION_SUBTITLE,
   MAX_CLASS_DESCRIPTION_LENGTH,
-} from '@/pages/instructor/classRegister/constants/registerSection';
+} from '@/pages/instructor/classRegister/constants/registerSectionText';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
 
 interface ClassDescriptionPropTypes {

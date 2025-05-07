@@ -5,7 +5,7 @@ import {
   CLASS_RECOMMEND_PLACEHOLDER,
   CLASS_RECOMMEND_SUBTITLE,
   MAX_RECOMMEND_LENGTH,
-} from '@/pages/instructor/classRegister/constants/registerSection';
+} from '@/pages/instructor/classRegister/constants/registerSectionText';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
 
 interface ClassRecommendPropTypes {
