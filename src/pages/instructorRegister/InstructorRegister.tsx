@@ -52,8 +52,8 @@ const InstructorRegister = () => {
     mode: 'onChange',
     defaultValues: {
       imageUrls: '',
-      // instagram: '',
-      // youtube: '',
+      instagram: '',
+      youtube: '',
       // educations: [''],
       // experiences: [''],
       // prizes: [''],
@@ -62,11 +62,9 @@ const InstructorRegister = () => {
     },
   });
 
-  const { detail } = watch();
+  const { detail, instagram, youtube } = watch();
 
-  useEffect(() => {
-    console.log('detail', detail);
-  }, [detail]);
+  useEffect(() => {}, []);
 
   const [isEduNoneChecked, setEduNoneChecked] = useState(false);
   const [isCareerNoneChecked, setCareerNoneChecked] = useState(false);
@@ -85,9 +83,9 @@ const InstructorRegister = () => {
   };
 
   // 버튼 활성화 조건 체크 함수
-  const hasDetailedInfo = () => info.detail.trim().length >= MIN_INTRODUCTION_LENGTH;
+  const hasDetailedInfo = () => detail.trim().length >= MIN_INTRODUCTION_LENGTH;
   const hasImage = () => !!info.imageUrls;
-  const hasSocialId = () => !!info.instagram || !!info.youtube;
+  const hasSocialId = () => !!instagram || !!youtube;
   const hasDancerBackground = () => {
     const hasEducation = info.educations.some((edu) => edu.trim().length >= MIN_EDUCATION_INPUT_COUNT);
     const hasCareer = info.experiences.some((exp) => exp.trim().length >= MIN_CAREER_INPUT_COUNT);
@@ -174,7 +172,7 @@ const InstructorRegister = () => {
           <Divider direction="horizontal" color="gray1" length={'100%'} thickness={'0.8rem'} />
 
           <div className={styles.sectionWrapperStyle}>
-            <PersonalSNSSection instagram={info.instagram} youtube={info.youtube} onInfoChange={handleInfoChange} />
+            <PersonalSNSSection instagram={instagram} youtube={youtube} register={register} />
           </div>
           <Divider direction="horizontal" color="gray1" length={'100%'} thickness={'0.8rem'} />
 
