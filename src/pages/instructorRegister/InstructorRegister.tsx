@@ -30,24 +30,13 @@ const InstructorRegister = () => {
   const { mutate: instructorRegisterMutate } = usePostInstructor();
   const navigate = useNavigate();
 
-  const [info, setInfo] = useState({
-    imageUrls: '',
-    instagram: '',
-    youtube: '',
-    educations: [''],
-    experiences: [''],
-    prizes: [''],
-    detail: '',
-    videoUrls: [''],
-  });
-
   const {
     register,
     watch,
     setValue,
     setFocus,
     control,
-    formState: { errors, isValid },
+    formState: { errors, isDirty },
   } = useForm({
     resolver: zodResolver(instructorRegisterSchema),
     mode: 'onChange',
@@ -62,6 +51,10 @@ const InstructorRegister = () => {
       videoUrls: [{ value: '' }],
     },
   });
+
+  useEffect(() => {
+    console.log('isDirty', isDirty);
+  }, [isDirty]);
 
   const { detail, instagram, youtube, educations, experiences, prizes, videoUrls, imageUrls } = watch();
   const { field } = useController({
@@ -124,8 +117,8 @@ const InstructorRegister = () => {
 
     const updatedInfo = {
       imageUrls: [imageUrls],
-      instagram: instagram?.trim() === '' ? null : `https://www.instagram.com/${info.instagram.trim()}`,
-      youtube: youtube?.trim() === '' ? null : `https://www.youtube.com/@${info.youtube.trim()}`,
+      instagram: instagram?.trim() === '' ? null : `https://www.instagram.com/${instagram?.trim()}`,
+      youtube: youtube?.trim() === '' ? null : `https://www.youtube.com/@${youtube?.trim()}`,
 
       educations: isEduNoneChecked ? [] : educations.filter((education) => education.trim() !== ''),
       experiences: isCareerNoneChecked ? [] : experiences.filter((experience) => experience.trim() !== ''),
@@ -194,7 +187,7 @@ const InstructorRegister = () => {
         </div>
 
         <div className={styles.buttonContainerStyle}>
-          <BoxButton variant="primary" isDisabled={isValid} type="submit">
+          <BoxButton variant="primary" isDisabled={!buttonActive()} type="submit">
             등록
           </BoxButton>
         </div>
