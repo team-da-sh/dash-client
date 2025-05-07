@@ -72,7 +72,8 @@ const CareerSection = ({
             INFO_KEY.PRIZES,
             updatedItems.map((item) => item.value)
           )
-        }></InputSection>
+        }
+      />
     </div>
   );
 };

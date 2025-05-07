@@ -1,39 +1,31 @@
-import { useRef, useState } from 'react';
+import { useState } from 'react';
+import type { FieldError, UseFormRegister } from 'react-hook-form';
 import {
   containerStyle,
   textAreaStyle,
 } from '@/pages/instructorRegister/components/IntroductionSection/introductionSection.css';
-import {
-  INFO_KEY,
-  INTRODUCTION_LENGTH_ERROR_MSG,
-  MAX_INTRODUCTION_LENGTH,
-  MIN_INTRODUCTION_LENGTH,
-} from '@/pages/instructorRegister/constants/registerSection';
+import { MAX_INTRODUCTION_LENGTH } from '@/pages/instructorRegister/constants/registerSection';
 import type { InstructorRegisterInfoTypes } from '@/pages/instructorRegister/types/InstructorRegisterInfoTypes';
 import Text from '@/shared/components/Text/Text';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
+import type { instructorRegisterFormTypes } from '../../types/instructorRegisterForm';
 
 interface IntroductionSectionPropTypes {
   detail: string;
-  isDetailError: boolean;
-  handleDetailError: (isError: boolean) => void;
+  register: UseFormRegister<instructorRegisterFormTypes>;
+  error: FieldError | undefined;
+
   onInfoChange: <K extends keyof InstructorRegisterInfoTypes>(key: K, value: InstructorRegisterInfoTypes[K]) => void;
 }
 
-const IntroductionSection = ({
-  detail,
-  onInfoChange,
-  isDetailError,
-  handleDetailError,
-}: IntroductionSectionPropTypes) => {
-  const textAreaRef = useRef<HTMLTextAreaElement>(null);
+const IntroductionSection = ({ detail, register, error }: IntroductionSectionPropTypes) => {
   const [isFocused, setIsFocused] = useState(false);
 
   const handleFocus = () => setIsFocused(true);
   const handleBlur = () => setIsFocused(false);
 
-  const defineInputState = (isDetailError?: boolean, isFocused?: boolean) => {
-    if (isDetailError) {
+  const defineInputState = (error?: boolean, isFocused?: boolean) => {
+    if (error) {
       return 'error';
     } else if (isFocused) {
       return 'focus';
@@ -47,29 +39,15 @@ const IntroductionSection = ({
     return 'gray4';
   };
 
-  const inputState = defineInputState(isDetailError, isFocused);
-  const counterColor = getCounterColor(isDetailError, isFocused, !!detail);
+  const inputState = defineInputState(!!error, isFocused);
+  const counterColor = getCounterColor(!!error, isFocused, !!detail);
 
-  const handleTextareaValueChange = (value: string) => {
-    const isValidLength = value.length < MIN_INTRODUCTION_LENGTH || value.length > MAX_INTRODUCTION_LENGTH;
+  const handleTextAreaHeight = (e: React.FormEvent<HTMLTextAreaElement>) => {
+    const textArea = e.target as HTMLTextAreaElement;
 
-    if (isValidLength) {
-      handleDetailError(true);
-    } else {
-      handleDetailError(false);
-    }
-    onInfoChange(INFO_KEY.DETAIL, value);
-  };
-
-  const handleTextArea = () => {
-    const textArea = textAreaRef.current;
     if (textArea) {
-      // Default 높이!
       textArea.style.height = '5.4rem';
-      // 내용에 따라 높이 조정
       textArea.style.height = `${textArea.scrollHeight}px`;
-
-      handleTextareaValueChange(textArea.value);
     }
   };
 
@@ -78,8 +56,9 @@ const IntroductionSection = ({
       <Text tag="b2_sb">강사 소개</Text>
       <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 4 })}>
         <textarea
-          ref={textAreaRef}
-          onInput={handleTextArea}
+          {...register('detail', {
+            onChange: handleTextAreaHeight,
+          })}
           value={detail}
           placeholder="저는 이런 댄서예요!"
           className={textAreaStyle({ defineInputState: inputState })}
@@ -90,7 +69,7 @@ const IntroductionSection = ({
 
         <div className={sprinkles({ display: 'flex', justifyContent: 'space-between' })}>
           <Text tag="b3_r" color="alert3">
-            {isDetailError ? INTRODUCTION_LENGTH_ERROR_MSG : ''}
+            {error && error.message}
           </Text>
 
           <div className={sprinkles({ display: 'flex', gap: 2 })}>

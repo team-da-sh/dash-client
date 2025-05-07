@@ -1,5 +1,7 @@
+import { zodResolver } from '@hookform/resolvers/zod';
 import { useQueryClient } from '@tanstack/react-query';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { usePostInstructor } from '@/pages/instructorRegister/apis/queries';
 import CareerSection from '@/pages/instructorRegister/components/CareerSection/CareerSection';
@@ -22,6 +24,7 @@ import Divider from '@/shared/components/Divider/Divider';
 import { QUERY_KEYS } from '@/shared/constants/queryKey';
 import useImageUploader from '@/shared/hooks/useImageUploader';
 import { setAccessToken, setRefreshToken } from '@/shared/utils/handleToken';
+import { instructorRegisterSchema } from './schema/instructorRegisterSchema';
 
 const InstructorRegister = () => {
   const queryClient = useQueryClient();
@@ -39,14 +42,35 @@ const InstructorRegister = () => {
     videoUrls: [''],
   });
 
+  const {
+    register,
+    watch,
+    setValue,
+    formState: { errors, isValid },
+  } = useForm({
+    resolver: zodResolver(instructorRegisterSchema),
+    mode: 'onChange',
+    defaultValues: {
+      imageUrls: '',
+      // instagram: '',
+      // youtube: '',
+      // educations: [''],
+      // experiences: [''],
+      // prizes: [''],
+      detail: '',
+      // videoUrls: [''],
+    },
+  });
+
+  const { detail } = watch();
+
+  useEffect(() => {
+    console.log('detail', detail);
+  }, [detail]);
+
   const [isEduNoneChecked, setEduNoneChecked] = useState(false);
   const [isCareerNoneChecked, setCareerNoneChecked] = useState(false);
   const [isPrizeNoneChecked, setPrizeNoneChecked] = useState(false);
-  const [isDetailError, setIsDetailError] = useState(false);
-
-  const handleDetailError = (isError: boolean) => {
-    setIsDetailError(isError);
-  };
 
   const handleEducationCheck = () => {
     setEduNoneChecked((prev) => !prev);
@@ -79,7 +103,7 @@ const InstructorRegister = () => {
 
   const buttonActive = () => {
     return (
-      !isDetailError && hasImage() && hasSocialId() && hasDancerBackground() && hasVideoUrls() && hasDetailedInfo()
+      !errors.detail && hasImage() && hasSocialId() && hasDancerBackground() && hasVideoUrls() && hasDetailedInfo()
     );
   };
 
@@ -141,10 +165,10 @@ const InstructorRegister = () => {
             />
 
             <IntroductionSection
-              detail={info.detail}
+              register={register}
+              error={errors.detail}
+              detail={detail}
               onInfoChange={handleInfoChange}
-              isDetailError={isDetailError}
-              handleDetailError={handleDetailError}
             />
           </div>
           <Divider direction="horizontal" color="gray1" length={'100%'} thickness={'0.8rem'} />
