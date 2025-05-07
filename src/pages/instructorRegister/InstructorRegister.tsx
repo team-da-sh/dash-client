@@ -62,13 +62,11 @@ const InstructorRegister = () => {
     },
   });
 
-  const { detail, instagram, youtube, educations, experiences, prizes } = watch();
+  const { detail, instagram, youtube, educations, experiences, prizes, videoUrls } = watch();
 
   useEffect(() => {
-    console.log('educations', educations);
-    console.log('experiences', experiences);
-    console.log('prizes', prizes);
-  }, [educations, experiences, prizes]);
+    console.log('videoUrls', videoUrls);
+  }, [videoUrls]);
 
   const [isEduNoneChecked, setEduNoneChecked] = useState(false);
   const [isCareerNoneChecked, setCareerNoneChecked] = useState(false);
@@ -166,12 +164,7 @@ const InstructorRegister = () => {
               handleUploaderClick={handleUploaderClick}
             />
 
-            <IntroductionSection
-              register={register}
-              error={errors.detail}
-              detail={detail}
-              onInfoChange={handleInfoChange}
-            />
+            <IntroductionSection register={register} error={errors.detail} detail={detail} />
           </div>
           <Divider direction="horizontal" color="gray1" length={'100%'} thickness={'0.8rem'} />
 
@@ -198,7 +191,7 @@ const InstructorRegister = () => {
           <Divider direction="horizontal" color="gray1" length={'100%'} thickness={'0.8rem'} />
 
           <div className={styles.sectionWrapperStyle}>
-            <VideoLinkSection videoUrls={info.videoUrls} onInfoChange={handleInfoChange} />
+            <VideoLinkSection videoUrls={videoUrls} register={register} setValue={setValue} />
           </div>
         </div>
 

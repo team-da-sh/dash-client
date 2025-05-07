@@ -5,7 +5,6 @@ import {
   textAreaStyle,
 } from '@/pages/instructorRegister/components/IntroductionSection/introductionSection.css';
 import { MAX_INTRODUCTION_LENGTH } from '@/pages/instructorRegister/constants/registerSection';
-import type { InstructorRegisterInfoTypes } from '@/pages/instructorRegister/types/InstructorRegisterInfoTypes';
 import Text from '@/shared/components/Text/Text';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
 import type { instructorRegisterFormTypes } from '../../types/instructorRegisterForm';
@@ -14,8 +13,6 @@ interface IntroductionSectionPropTypes {
   detail: string;
   register: UseFormRegister<instructorRegisterFormTypes>;
   error: FieldError | undefined;
-
-  onInfoChange: <K extends keyof InstructorRegisterInfoTypes>(key: K, value: InstructorRegisterInfoTypes[K]) => void;
 }
 
 const IntroductionSection = ({ detail, register, error }: IntroductionSectionPropTypes) => {

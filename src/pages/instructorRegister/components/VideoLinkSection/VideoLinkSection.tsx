@@ -1,24 +1,27 @@
 import { useRef } from 'react';
+import type { UseFormRegister, UseFormSetValue } from 'react-hook-form';
 import Description from '@/pages/instructorRegister/components/Description/Description';
 import { addInputBoxStyle } from '@/pages/instructorRegister/components/VideoLinkSection/videoLinkSection.css';
 import { INFO_KEY, MAX_VIDEO_INPUT } from '@/pages/instructorRegister/constants/registerSection';
-import type { InstructorRegisterInfoTypes } from '@/pages/instructorRegister/types/InstructorRegisterInfoTypes';
 import type { InputItemTypes } from '@/pages/instructorRegister/types/inputItemTypes';
 import IcPlusGray0524 from '@/shared/assets/svg/IcPlusGray0524';
 import IcXCircleGray from '@/shared/assets/svg/IcXCircleGray';
 import Flex from '@/shared/components/Flex/Flex';
 import Input from '@/shared/components/Input/Input';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
+import type { instructorRegisterFormTypes } from '../../types/instructorRegisterForm';
 
 interface VideoLinkSectionPropTypes {
+  register: UseFormRegister<instructorRegisterFormTypes>;
+  setValue: UseFormSetValue<instructorRegisterFormTypes>;
   videoUrls: string[];
-  onInfoChange: <K extends keyof InstructorRegisterInfoTypes>(key: K, value: InstructorRegisterInfoTypes[K]) => void;
 }
 
-const VideoLinkSection = ({ videoUrls, onInfoChange }: VideoLinkSectionPropTypes) => {
+const VideoLinkSection = ({ videoUrls, register, setValue }: VideoLinkSectionPropTypes) => {
   const inputItems = videoUrls.map((value, id) => ({ id: id + 1, value }));
   const nextID = useRef<number>(inputItems.length + 1);
   const lastInputRef = useRef<HTMLInputElement | null>(null);
+  const { name } = register(INFO_KEY.VIDEO_URLS);
 
   const handleInputChange = (id: number, e: React.ChangeEvent<HTMLInputElement>) => {
     const updatedItems = inputItems.map((item) => (item.id === id ? { ...item, value: e.target.value } : item));
@@ -26,7 +29,7 @@ const VideoLinkSection = ({ videoUrls, onInfoChange }: VideoLinkSectionPropTypes
   };
 
   const onItemsChange = (updatedItems: InputItemTypes[]) =>
-    onInfoChange(
+    setValue(
       INFO_KEY.VIDEO_URLS,
       updatedItems.map((item) => item.value)
     );
@@ -78,6 +81,7 @@ const VideoLinkSection = ({ videoUrls, onInfoChange }: VideoLinkSectionPropTypes
               }
             }}
             value={value}
+            name={`${name}[${id - 1}]`}
             onChange={(e) => handleInputChange(id, e)}
             rightAddOn={renderDeleteIcon(id, value)}
             placeholder={id < 2 ? 'https://www.youtube.com/watch?v=LPh1c0pGIi' : undefined}
