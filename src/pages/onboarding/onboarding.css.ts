@@ -5,18 +5,8 @@ export const containerStyle = style({
   position: 'relative',
 });
 
-export const headerWrapperStyle = style({
-  position: 'fixed',
-  top: 0,
-});
-
-export const progressBarStyle = style({
-  position: 'fixed',
-  top: '6rem',
-});
-
 export const bodyWrapperStyle = style({
-  padding: '11.2rem 2rem 10.2rem 2rem',
+  padding: '4.1rem 2rem 10.2rem 2rem',
 });
 
 export const footerWrapperStyle = style({
