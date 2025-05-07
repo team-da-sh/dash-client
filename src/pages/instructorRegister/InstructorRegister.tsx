@@ -1,7 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useQueryClient } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { useController, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { usePostInstructor } from '@/pages/instructorRegister/apis/queries';
 import CareerSection from '@/pages/instructorRegister/components/CareerSection/CareerSection';
@@ -45,6 +45,7 @@ const InstructorRegister = () => {
     register,
     watch,
     setValue,
+    control,
     formState: { errors, isValid },
   } = useForm({
     resolver: zodResolver(instructorRegisterSchema),
@@ -61,11 +62,15 @@ const InstructorRegister = () => {
     },
   });
 
-  const { detail, instagram, youtube, educations, experiences, prizes, videoUrls } = watch();
+  const { detail, instagram, youtube, educations, experiences, prizes, videoUrls, imageUrls } = watch();
+  const { field } = useController({
+    name: 'imageUrls',
+    control,
+  });
 
   useEffect(() => {
-    console.log('videoUrls', videoUrls);
-  }, [videoUrls]);
+    console.log('imageUrls', imageUrls);
+  }, [imageUrls]);
 
   const [isEduNoneChecked, setEduNoneChecked] = useState(false);
   const [isCareerNoneChecked, setCareerNoneChecked] = useState(false);
@@ -106,9 +111,8 @@ const InstructorRegister = () => {
     );
   };
 
-  // 이미지 업로드 로직
   const handleImageUploadSuccess = (url: string) => {
-    setInfo((prev) => ({ ...prev, imageUrls: url }));
+    field.onChange(url);
   };
 
   const { previewImg, imgRef, handleUploaderClick, uploadImgFile } = useImageUploader(handleImageUploadSuccess);

@@ -9,7 +9,7 @@ export const instructorRegisterSchema = z
     educations: z.array(z.string()),
     experiences: z.array(z.string()),
     prizes: z.array(z.string()),
-    imageUrls: z.string().url('올바른 URL 형식이 아닙니다.').optional(),
+    imageUrls: z.union([z.string().optional(), z.instanceof(FileList).optional()]),
     videoUrls: z.array(z.string().url('올바른 URL 형식이 아닙니다.')),
   })
   .refine((data) => data.instagram?.trim() || data.youtube?.trim(), {
