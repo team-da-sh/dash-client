@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import type { FieldError, UseFormRegister } from 'react-hook-form';
 import {
   containerStyle,
@@ -39,23 +39,20 @@ const IntroductionSection = ({ detail, register, error }: IntroductionSectionPro
   const inputState = defineInputState(!!error, isFocused);
   const counterColor = getCounterColor(!!error, isFocused, !!detail);
 
-  const handleTextAreaHeight = (e: React.FormEvent<HTMLTextAreaElement>) => {
-    const textArea = e.target as HTMLTextAreaElement;
-
+  useEffect(() => {
+    const textArea = document.querySelector('#introduction-textarea') as HTMLTextAreaElement | null;
     if (textArea) {
-      textArea.style.height = '5.4rem';
       textArea.style.height = `${textArea.scrollHeight}px`;
     }
-  };
+  }, [detail]);
 
   return (
     <section className={containerStyle}>
       <Text tag="b2_sb">강사 소개</Text>
       <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 4 })}>
         <textarea
-          {...register('detail', {
-            onChange: handleTextAreaHeight,
-          })}
+          id="introduction-textarea"
+          {...register('detail')}
           value={detail}
           placeholder="저는 이런 댄서예요!"
           className={textAreaStyle({ defineInputState: inputState })}
