@@ -23,6 +23,7 @@ const DetailTabWrapper = () => {
           신청 정보
         </TabButton>
       </TabList>
+
       <TabPanel isSelected={selected === 'class'}>
         <ClassContent />
       </TabPanel>

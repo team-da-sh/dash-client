@@ -27,12 +27,12 @@ const ClassContent = () => {
       </Text>
 
       <ClassInfo
-        name={data?.lessonName}
-        location={data?.location}
-        locationDetail={data?.detailedAddress}
-        teacherNickname={data?.nickname}
-        level={data?.level}
-        lessonRound={data?.rounds}
+        name={data.lessonName}
+        location={data.location}
+        locationDetail={data.detailedAddress}
+        teacherNickname={data.nickname}
+        level={data.level}
+        lessonRound={data.rounds}
       />
     </div>
   );
