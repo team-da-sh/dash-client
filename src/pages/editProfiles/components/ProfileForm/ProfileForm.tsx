@@ -1,12 +1,12 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
-import { patchMyProfile } from '@/pages/editProfile/api/axios.ts';
-import FormField from '@/pages/editProfile/components/FormField/FormField.tsx';
-import * as styles from '@/pages/editProfile/components/ProfileForm/profileForm.css';
-import ProfileImageUpload from '@/pages/editProfile/components/ProfileImageUpload/ProfileImageUpload.tsx';
-import { MAX_NAME_LENGTH, MAX_NICKNAME_LENGTH } from '@/pages/editProfile/constants/limit.ts';
-import { profileSchema, ProfileFormValues } from '@/pages/editProfile/schema/profileSchema.ts';
-import { UpdateProfileRequestTypes } from '@/pages/editProfile/types/api.ts';
+import { patchMyProfile } from '@/pages/editProfiles/api/axios.ts';
+import FormField from '@/pages/editProfiles/components/FormField/FormField.tsx';
+import * as styles from '@/pages/editProfiles/components/ProfileForm/profileForm.css';
+import ProfileImageUpload from '@/pages/editProfiles/components/ProfileImageUpload/ProfileImageUpload.tsx';
+import { MAX_NAME_LENGTH, MAX_NICKNAME_LENGTH } from '@/pages/editProfiles/constants/limit.ts';
+import { profileSchema, ProfileFormValues } from '@/pages/editProfiles/schema/profileSchema.ts';
+import { UpdateProfileRequestTypes } from '@/pages/editProfiles/types/api.ts';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import Text from '@/shared/components/Text/Text';
 

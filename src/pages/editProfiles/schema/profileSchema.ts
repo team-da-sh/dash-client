@@ -6,13 +6,13 @@ import {
   MAX_NICKNAME_LENGTH,
   MIN_NAME_LENGTH,
   MIN_NICKNAME_LENGTH,
-} from '@/pages/editProfile/constants/limit';
+} from '@/pages/editProfiles/constants/limit';
 import {
   PROFILE_IMAGE_ERRORS,
   NICKNAME_ERRORS,
   NAME_ERRORS,
   PHONE_NUMBER_ERRORS,
-} from '@/pages/editProfile/constants/validationMessage';
+} from '@/pages/editProfiles/constants/validationMessage';
 
 export const profileSchema = z.object({
   profileImageUrl: z.union([

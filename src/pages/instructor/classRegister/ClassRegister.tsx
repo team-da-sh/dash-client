@@ -37,7 +37,7 @@ const ClassRegister = () => {
     watch,
     setValue,
     control,
-    formState: { errors, isValid },
+    formState: { errors },
   } = useForm({
     resolver: zodResolver(classRegisterSchema),
     mode: 'onChange',

@@ -1,4 +1,4 @@
-import ProfileForm from '@/pages/editProfile/components/ProfileForm/ProfileForm';
+import ProfileForm from '@/pages/editProfiles/components/ProfileForm/ProfileForm';
 import { mockMyPageData } from '@/pages/mypage/components/TabWrapper/mockData';
 import Head from '@/shared/components/Head/Head';
 import { sprinkles } from '@/shared/styles/sprinkles.css';

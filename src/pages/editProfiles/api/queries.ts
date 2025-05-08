@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
-import { patchMyProfile } from '@/pages/editProfile/api/axios';
-import { UpdateProfileRequestTypes } from '@/pages/editProfile/types/api';
+import { patchMyProfile } from '@/pages/editProfiles/api/axios';
+import { UpdateProfileRequestTypes } from '@/pages/editProfiles/types/api';
 
 export const usePatchMyProfile = () => {
   return useMutation({

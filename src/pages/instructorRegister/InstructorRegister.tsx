@@ -1,5 +1,4 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useQueryClient } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 import { useController, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
@@ -22,21 +21,18 @@ import {
 } from '@/pages/instructorRegister/constants/registerSection';
 import useInstructorRegisterForm from '@/pages/instructorRegister/hooks/useInstructorRegisterForm';
 import * as styles from '@/pages/instructorRegister/instructorRegister.css';
-import { ROLE_KEY } from '@/pages/mypage/constants/storageKey';
-import { setUser } from '@/pages/mypage/utils/storage';
 import { instructorRegisterSchema } from '@/pages/instructorRegister/schema/instructorRegisterSchema';
-import { setUserRole } from '@/pages/mypage/utils/storage';
+import { setUser } from '@/pages/mypage/utils/storage';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import Divider from '@/shared/components/Divider/Divider';
 import Head from '@/shared/components/Head/Head';
-import { QUERY_KEYS } from '@/shared/constants/queryKey';
 import { USER_ROLE } from '@/shared/constants/userRole';
 import useImageUploader from '@/shared/hooks/useImageUploader';
 import { setAccessToken, setRefreshToken } from '@/shared/utils/handleToken';
+import { ROLE_KEY } from '../mypage/constants/storageKey';
 
 const InstructorRegister = () => {
-  const queryClient = useQueryClient();
   const navigate = useNavigate();
 
   // 강사 등록
@@ -144,15 +140,9 @@ const InstructorRegister = () => {
 
       setAccessToken(accessToken);
       setRefreshToken(refreshToken);
-        setUser(ROLE_KEY, USER_ROLE.TEACHER);
-      },
-      onError: () => {
-        navigate(ROUTES_CONFIG.error.path);
-      },
-    });
+      setUser(ROLE_KEY, USER_ROLE.TEACHER);
 
       navigate(ROUTES_CONFIG.instructorRegisterCompletion.path);
-
     };
 
     const onError = () => {
