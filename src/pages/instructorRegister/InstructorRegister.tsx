@@ -1,3 +1,8 @@
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useQueryClient } from '@tanstack/react-query';
+import { useState } from 'react';
+import { useController, useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import { useGetInstructorRegisterInfo, usePostInstructor } from '@/pages/instructorRegister/apis/queries';
 import CareerSection from '@/pages/instructorRegister/components/CareerSection/CareerSection';
 import ImageUploadSection from '@/pages/instructorRegister/components/ImageUploadSection/ImageUploadSection';
@@ -19,11 +24,6 @@ import Head from '@/shared/components/Head/Head';
 import { QUERY_KEYS } from '@/shared/constants/queryKey';
 import useImageUploader from '@/shared/hooks/useImageUploader';
 import { setAccessToken, setRefreshToken } from '@/shared/utils/handleToken';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useQueryClient } from '@tanstack/react-query';
-import { useState } from 'react';
-import { useController, useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
 import { instructorRegisterSchema } from './schema/instructorRegisterSchema';
 
 const InstructorRegister = () => {

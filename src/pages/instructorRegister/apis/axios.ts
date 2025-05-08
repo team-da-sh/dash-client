@@ -12,3 +12,8 @@ export const getInstructorRegisterInfo = async () => {
   const { data } = await instance.get(API_URL.TEACHER_DETAIL_INTRODUCTION);
   return data;
 };
+
+export const patchInstructorRegisterInfo = async (infoData: InstructorRegisterRequestTypes) => {
+  const response = await instance.patch(API_URL.TEACHER_ME, infoData);
+  return response;
+};
