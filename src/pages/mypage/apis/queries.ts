@@ -8,6 +8,9 @@ import {
   LessonThumbnailsResponseTypes,
 } from '@/pages/mypage/types/api';
 import { QUERY_KEYS } from '@/shared/constants/queryKey';
+import { getUserRole } from '../utils/storage';
+
+const userRole = getUserRole();
 
 export const useGetMyPage = (): UseQueryResult<MyPageResponseTypes, AxiosError> => {
   return useQuery<MyPageResponseTypes, AxiosError>({
@@ -27,6 +30,7 @@ export const useGetMyTeacherInfo = (): UseQueryResult<MyTeacherInfoResponseTypes
   return useQuery<MyTeacherInfoResponseTypes, AxiosError>({
     queryKey: [QUERY_KEYS.TEACHERS_ME],
     queryFn: getMyTeacherInfo,
+    enabled: userRole === 'TEACHER',
   });
 };
 
@@ -34,5 +38,6 @@ export const useGetMyLessonThumbnails = (): UseQueryResult<LessonThumbnailsRespo
   return useQuery<LessonThumbnailsResponseTypes, AxiosError>({
     queryKey: [QUERY_KEYS.MEMBERS_ME_THUMBNAILS],
     queryFn: getMyLessonThumbnails,
+    enabled: userRole === 'TEACHER',
   });
 };
