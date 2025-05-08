@@ -1,4 +1,5 @@
 import LessonItem from '@/pages/home/components/LessonItem/LessonItem';
+import { containerStyle } from '@/pages/mypage/components/MypageLessonItem/mypageLessonItem.css';
 
 interface TeacherLessonItemPropTypes {
   id: number;
@@ -11,19 +12,21 @@ interface TeacherLessonItemPropTypes {
 
 const MypageLessonItem = ({ id, genre, level, name, imageUrl, dDay }: TeacherLessonItemPropTypes) => {
   return (
-    <LessonItem
-      id={id}
-      genre={genre}
-      level={level}
-      name={name}
-      imageUrl={imageUrl}
-      remainingDays={dDay}
-      teacherProfileImage={''}
-      teacherName={''}
-      startDate={''}
-      endDate={''}
-      useNewStyles={false}
-    />
+    <div className={containerStyle}>
+      <LessonItem
+        id={id}
+        genre={genre}
+        level={level}
+        name={name}
+        imageUrl={imageUrl}
+        remainingDays={dDay}
+        teacherProfileImage={''}
+        teacherName={''}
+        startDate={''}
+        endDate={''}
+        useNewStyles={false}
+      />
+    </div>
   );
 };
 
