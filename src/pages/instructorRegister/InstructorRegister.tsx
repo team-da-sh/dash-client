@@ -16,7 +16,8 @@ import {
   MIN_VIDEO_INPUT,
 } from '@/pages/instructorRegister/constants/registerSection';
 import * as styles from '@/pages/instructorRegister/instructorRegister.css';
-import { setUserRole } from '@/pages/mypage/utils/storage';
+import { ROLE_KEY } from '@/pages/mypage/constants/storageKey';
+import { setUser } from '@/pages/mypage/utils/storage';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import Divider from '@/shared/components/Divider/Divider';
@@ -133,7 +134,7 @@ const InstructorRegister = () => {
         setAccessToken(accessToken);
         setRefreshToken(refreshToken);
 
-        setUserRole('TEACHER');
+        setUser(ROLE_KEY, 'TEACHER');
       },
       onError: () => {
         navigate(ROUTES_CONFIG.error.path);

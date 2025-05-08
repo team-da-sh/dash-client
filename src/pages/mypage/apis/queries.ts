@@ -1,16 +1,17 @@
 import { useQuery, type UseQueryResult } from '@tanstack/react-query';
 import type { AxiosError } from 'axios';
 import { getMyPage, getMyLessons, getMyTeacherInfo, getMyLessonThumbnails } from '@/pages/mypage/apis/axios';
+import { ROLE_KEY } from '@/pages/mypage/constants/storageKey';
 import {
   MyPageResponseTypes,
   LessonCountResponseTypes,
   MyTeacherInfoResponseTypes,
   LessonThumbnailsResponseTypes,
 } from '@/pages/mypage/types/api';
+import { getUser } from '@/pages/mypage/utils/storage';
 import { QUERY_KEYS } from '@/shared/constants/queryKey';
-import { getUserRole } from '../utils/storage';
 
-const userRole = getUserRole();
+const userRole = getUser(ROLE_KEY);
 
 export const useGetMyPage = (): UseQueryResult<MyPageResponseTypes, AxiosError> => {
   return useQuery<MyPageResponseTypes, AxiosError>({
