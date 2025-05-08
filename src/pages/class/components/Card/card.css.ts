@@ -10,7 +10,5 @@ export const cardStyle = style({
   gap: '0.8rem',
 
   borderRadius: '4px',
-  border: `1px solid ${vars.colors.gray02}`,
-  borderColor: vars.colors.gray02,
   backgroundColor: vars.colors.white,
 });

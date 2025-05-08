@@ -3,7 +3,9 @@ import { useGetLessonDetail } from '@/pages/class/apis/queries';
 import * as styles from '@/pages/class/class.css';
 import ClassButtonWrapper from '@/pages/class/components/ClassButtonWrapper/ClassButtonWrapper';
 import ClassInfoWrapper from '@/pages/class/components/ClassInfoWrapper/ClassInfoWrapper';
+import LimitedChip from '@/pages/class/components/LimitedChip/LimitedChip';
 import TabWrapper from '@/pages/class/components/TabWrapper/TabWrapper';
+import { LOW_SEAT_THRESHOLD } from '@/pages/class/constants';
 import Error from '@/pages/error/Error';
 import Divider from '@/shared/components/Divider/Divider';
 
@@ -26,18 +28,26 @@ const Class = () => {
   }
 
   const imageUrl = data.imageUrl;
+  const remainingSeats = data.maxReservationCount - data.reservationCount;
+  const shouldShowChip = data.status === 'OPEN' && remainingSeats < LOW_SEAT_THRESHOLD;
 
   return (
     <main>
-      <div
-        className={styles.headerStyle}
+      <section
+        className={styles.topImgStyle}
         style={{
           backgroundImage: `url(${imageUrl})`,
-        }}></div>
+        }}>
+        {shouldShowChip && (
+          <div className={styles.chipWrapperStyle}>
+            <LimitedChip lessonData={data} />
+          </div>
+        )}
+      </section>
 
       <ClassInfoWrapper lessonData={data} />
-      <Divider direction="horizontal" color="gray1" length="100%" thickness="1.2rem" />
-      <TabWrapper colorScheme="primary" lessonData={data} />
+      <Divider direction="horizontal" color="gray1" length="100%" thickness="0.8rem" />
+      <TabWrapper colorScheme="tertiary" lessonData={data} />
       <ClassButtonWrapper lessonData={data} />
     </main>
   );

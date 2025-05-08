@@ -5,7 +5,7 @@ interface TabButtonProps {
   children: ReactNode;
   isSelected: boolean;
   onClick: () => void;
-  colorScheme?: 'primary' | 'secondary' | 'plain';
+  colorScheme: 'primary' | 'secondary' | 'tertiary' | 'plain';
 }
 
 const TabButton = ({ children, isSelected, onClick, colorScheme = 'primary' }: TabButtonProps) => {

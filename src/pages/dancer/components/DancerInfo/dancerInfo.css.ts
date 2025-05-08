@@ -5,7 +5,7 @@ export const rowScrollStyle = style({
   flexDirection: 'row',
 
   width: '100%',
-  gap: '0.8rem',
+  gap: '2rem',
   paddingBottom: '3.6rem',
 
   overflowX: 'auto',
@@ -27,7 +27,6 @@ export const detailStyle = style({
   whiteSpace: 'pre-line',
   wordBreak: 'break-word',
 });
-
 
 export const linkStyle = style({
   overflow: 'hidden',

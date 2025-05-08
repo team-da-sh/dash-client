@@ -1,14 +1,14 @@
 import { useNavigate } from 'react-router-dom';
+import Card from '@/pages/class/components/Card/Card';
 import * as styles from '@/pages/class/components/ClassInfoWrapper/classInfoWrapper.css';
 import type { LessonDetailResponseTypes } from '@/pages/class/types/api';
+import { getDDayLabel } from '@/pages/class/utils/dDay';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import IcThunderMain0424 from '@/shared/assets/svg/IcThunderMain0424';
 import Head from '@/shared/components/Head/Head';
 import Tag from '@/shared/components/Tag/Tag';
 import Text from '@/shared/components/Text/Text';
-import { genreMapping } from '@/shared/constants/index';
+import { levelMapping, genreMapping } from '@/shared/constants/index';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
-import { vars } from '@/shared/styles/theme.css';
 
 const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetailResponseTypes }) => {
   const {
@@ -19,22 +19,13 @@ const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetailResponseType
     teacherNickname,
     lessonRound: { lessonRounds },
     price,
-    maxReservationCount,
-    reservationCount,
     remainingDays,
+    maxReservationCount,
+    level,
   } = lessonData;
+
   const translatedGenre = genreMapping[genre] || genre;
-
-  // D-DAY remaingDays로 통일
-  const dDay = remainingDays > 0 ? `D-${remainingDays}` : remainingDays === 0 ? 'D-DAY' : '마감';
-
-  // 남은 예약 가능 인원 계산
-  const remainingSeats = maxReservationCount - reservationCount;
-
-  const isSoldOut = remainingSeats <= 0;
-  const remainingText = isSoldOut ? '신청 마감된 수업이에요' : `${remainingSeats}`;
-  const iconColor = isSoldOut ? vars.colors.alert03 : vars.colors.main04;
-  const textColor = isSoldOut ? 'alert3' : 'main4';
+  const dDay = getDDayLabel(remainingDays);
 
   const navigate = useNavigate();
 
@@ -44,8 +35,8 @@ const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetailResponseType
   };
 
   return (
-    <section className={sprinkles({ flexDirection: 'column', pt: 20, pr: 24, pb: 24, pl: 20 })}>
-      <div className={sprinkles({ display: 'flex', mb: 12, gap: 4 })}>
+    <section className={sprinkles({ flexDirection: 'column', pt: 20, pr: 20, pb: 24, pl: 20 })}>
+      <div className={sprinkles({ display: 'flex', mb: 12, gap: 6 })}>
         <Tag type="genre" size="medium">
           <Text tag="b3_m" color="white">
             {translatedGenre}
@@ -58,12 +49,12 @@ const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetailResponseType
         </Tag>
       </div>
 
-      <Head level="h2" tag="h5_sb" className={sprinkles({ mb: 16 })}>
+      <Head level="h2" tag="h5_sb" className={sprinkles({ mb: 18 })}>
         {name}
       </Head>
 
       <div
-        className={sprinkles({ display: 'flex', alignItems: 'center', gap: 8 })}
+        className={sprinkles({ display: 'flex', alignItems: 'center', marginBottom: 8, gap: 9 })}
         onClick={() => handleTeacherClick(teacherId)}>
         <img src={teacherImageUrl} alt={`${teacherNickname} 프로필`} className={styles.profileStyle} />
         <Text tag="b2_m" color="gray9">
@@ -78,12 +69,12 @@ const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetailResponseType
           width: '100%',
           alignItems: 'center',
           gap: 8,
-          mb: 15,
+          mb: 24,
         })}>
         <Head level="h4" tag="h6_sb" color="gray6">
           {lessonRounds.length}회
         </Head>
-        <div className={sprinkles({ display: 'flex', alignItems: 'center', gap: 2 })}>
+        <div className={styles.priceTextStyle}>
           <Head level="h5" tag="h3_sb">
             {price.toLocaleString()}
           </Head>
@@ -93,18 +84,60 @@ const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetailResponseType
         </div>
       </div>
 
-      <div className={styles.cardStyle}>
-        <IcThunderMain0424 width={'2.4rem'} color={iconColor} className={sprinkles({ mr: 4 })} />
-        <Text tag="b2_m" color="black">
-          {isSoldOut ? '' : '마감까지'}
-        </Text>
-        <Text tag="b2_m" color={textColor}>
-          {remainingText}
-        </Text>
-        <Text tag="b2_m" color="black">
-          {isSoldOut ? '' : '명 남았어요!'}
-        </Text>
-      </div>
+      <Card className={styles.cardStyle}>
+        <div
+          className={sprinkles({
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            width: 60,
+            gap: 6,
+          })}>
+          <Text tag="b3_sb" color="gray7">
+            난이도
+          </Text>
+          <Text tag="h6_sb" color="gray10">
+            {levelMapping[level]}
+          </Text>
+        </div>
+
+        <div
+          className={sprinkles({
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            width: 60,
+            gap: 6,
+          })}>
+          <Text tag="b3_sb" color="gray7">
+            인원
+          </Text>
+          <Text tag="h6_sb" color="gray10">
+            {maxReservationCount}
+          </Text>
+        </div>
+
+        <div
+          className={sprinkles({
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            width: 60,
+            gap: 6,
+          })}>
+          <Text tag="b3_sb" color="gray7">
+            리뷰
+          </Text>
+          <div className={styles.reviewTextStyle}>
+            <Text tag="h6_sb" color="gray10">
+              5.0
+            </Text>
+            <Text tag="c1_r" color="gray6" className={styles.reviewSubText}>
+              (34)
+            </Text>
+          </div>
+        </div>
+      </Card>
     </section>
   );
 };

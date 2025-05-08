@@ -29,4 +29,4 @@ export interface LessonDetailResponseTypes {
   status: StatusType;
 }
 
-type StatusType = 'OPEN' | 'EXPIRED' | 'OVER_BOOKED';
+export type StatusType = 'OPEN' | 'EXPIRED' | 'OVER_BOOKED';

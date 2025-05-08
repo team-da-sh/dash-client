@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import DancerClassItem from '@/pages/dancer/components/DancerInfo/DancerClassItem/DancerClassItem';
 import * as styles from '@/pages/dancer/components/DancerInfo/dancerInfo.css';
 import type { DancerDetailResponseTypes } from '@/pages/dancer/types/api';
-import { extractUsernameFromUrl } from '@/pages/dancer/utils/url';
+import { extractInstaHandleFromUrl, extractYouTubeHandleFromUrl } from '@/pages/dancer/utils/url';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import IcInstagram20 from '@/shared/assets/svg/IcInstagram20';
 import IcYoutube20 from '@/shared/assets/svg/IcYoutube20';
@@ -14,8 +14,8 @@ import { sprinkles } from '@/shared/styles/sprinkles.css';
 const DancerInfo = ({ dancerData }: { dancerData: DancerDetailResponseTypes }) => {
   const { instagram, youtube, detail, nickname, lessons } = dancerData;
 
-  const instagramHandle = extractUsernameFromUrl(instagram);
-  const youtubeHandle = extractUsernameFromUrl(youtube);
+  const instagramHandle = extractInstaHandleFromUrl(instagram);
+  const youtubeHandle = extractYouTubeHandleFromUrl(youtube);
 
   const navigate = useNavigate();
 
@@ -28,30 +28,31 @@ const DancerInfo = ({ dancerData }: { dancerData: DancerDetailResponseTypes }) =
     <>
       <section
         className={sprinkles({ display: 'flex', flexDirection: 'column', pt: 20, pr: 20, pl: 20, pb: 32, gap: 20 })}>
-        <div className={sprinkles({ display: 'flex', gap: 28 })}>
-          {instagram && (
-            <a href={instagram} target="_blank" rel="noopener noreferrer">
-              <div className={sprinkles({ display: 'flex', flexDirection: 'row', gap: 9 })}>
-                <IcInstagram20 width="2rem" />
-                <Text tag="b2_m" color="gray5" className={styles.linkStyle}>
-                  {instagramHandle}
-                </Text>
-              </div>
-            </a>
-          )}
+        {(instagramHandle || youtubeHandle) && (
+          <div className={sprinkles({ display: 'flex', gap: 28 })}>
+            {instagramHandle && (
+              <a href={instagram} target="_blank" rel="noopener noreferrer">
+                <div className={sprinkles({ display: 'flex', flexDirection: 'row', gap: 9 })}>
+                  <IcInstagram20 width="2rem" />
+                  <Text tag="b2_m" color="gray5" className={styles.linkStyle}>
+                    {instagramHandle}
+                  </Text>
+                </div>
+              </a>
+            )}
 
-          {youtube && (
-            <a href={youtube} target="_blank" rel="noopener noreferrer">
-              <div className={sprinkles({ display: 'flex', flexDirection: 'row', gap: 9 })}>
-                <IcYoutube20 width="2rem" height="2rem" />
-                <Text tag="b2_m" color="gray5" className={styles.linkStyle}>
-                  {youtubeHandle}
-                </Text>
-              </div>
-            </a>
-          )}
-        </div>
-
+            {youtubeHandle && (
+              <a href={youtube} target="_blank" rel="noopener noreferrer">
+                <div className={sprinkles({ display: 'flex', flexDirection: 'row', gap: 9 })}>
+                  <IcYoutube20 width="2rem" height="2rem" />
+                  <Text tag="b2_m" color="gray5" className={styles.linkStyle}>
+                    {youtubeHandle}
+                  </Text>
+                </div>
+              </a>
+            )}
+          </div>
+        )}
         <Text tag="b2_m_long" color="gray8" className={styles.detailStyle}>
           {detail}
         </Text>
