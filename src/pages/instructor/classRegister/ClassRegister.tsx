@@ -1,6 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useQueryClient } from '@tanstack/react-query';
-import { useForm } from 'react-hook-form';
+import { useController, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { useGetLocationList, usePostClassRegisterInfo } from '@/pages/instructor/classRegister/apis/queries';
 import * as styles from '@/pages/instructor/classRegister/classRegister.css';
@@ -23,6 +23,7 @@ import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import { genreEngMapping, levelEngMapping } from '@/shared/constants';
 import { QUERY_KEYS } from '@/shared/constants/queryKey';
 import useBottomSheet from '@/shared/hooks/useBottomSheet';
+import useDebounce from '@/shared/hooks/useDebounce';
 import useImageUploader from '@/shared/hooks/useImageUploader';
 
 const ClassRegister = () => {
@@ -35,6 +36,7 @@ const ClassRegister = () => {
     register,
     watch,
     setValue,
+    control,
     formState: { errors, isValid },
   } = useForm({
     resolver: zodResolver(classRegisterSchema),
@@ -48,10 +50,24 @@ const ClassRegister = () => {
       maxReservationCount: '',
       price: '',
       isUndecidedLocation: false,
+      detailedAddress: '',
     },
   });
 
-  const { className, detail, selectedGenre, selectedLevel, recommendation, maxReservationCount, price } = watch();
+  const {
+    className,
+    detail,
+    selectedGenre,
+    selectedLevel,
+    recommendation,
+    maxReservationCount,
+    price,
+    detailedAddress,
+  } = watch();
+  const { field } = useController({
+    name: 'imageUrls',
+    control,
+  });
 
   const handleTextAreaHeight = (e: React.FormEvent<HTMLTextAreaElement>) => {
     const textArea = e.target as HTMLTextAreaElement;
@@ -88,12 +104,9 @@ const ClassRegister = () => {
 
     isUndecidedLocation,
     defaultPlace,
-    detailPlace,
     selectedLocation,
-    submitDefaultPlace,
 
     setImageUrls,
-    handleImageUploadSuccess,
 
     setStartDate,
     setHour,
@@ -105,8 +118,6 @@ const ClassRegister = () => {
 
     handleNoneLocationCheck,
     handleDefaultPlace,
-    handleSubmitDefaultPlace,
-    handleDetailPlace,
     setSelectedLocation,
 
     isButtonActive,
@@ -129,7 +140,7 @@ const ClassRegister = () => {
         location: !isUndecidedLocation ? (selectedLocation?.location ?? null) : null,
         streetAddress: !isUndecidedLocation ? (selectedLocation?.streetAddress ?? null) : null,
         oldStreetAddress: !isUndecidedLocation ? (selectedLocation?.oldStreetAddress ?? null) : null,
-        detailedAddress: !isUndecidedLocation ? detailPlace : null,
+        detailedAddress: !isUndecidedLocation ? (detailedAddress ?? null) : null,
 
         times: times.map((time) => ({
           startTime: time.startTime,
@@ -144,21 +155,27 @@ const ClassRegister = () => {
         },
         onError: () => {
           navigate(ROUTES_CONFIG.error.path);
-          navigate(ROUTES_CONFIG.error.path);
         },
       });
     }
   };
 
+  const handleImageUploadSuccess = (url: string) => {
+    field.onChange(url);
+  };
+
   const handleDeleteUrl = () => {
     setImageUrls({ imageUrls: '' });
   };
+
   const { imgFile, previewImg, imgRef, handleUploaderClick, uploadImgFile, deleteImgFile } = useImageUploader(
     handleImageUploadSuccess,
     handleDeleteUrl
   );
 
-  const { data: locationList } = useGetLocationList(submitDefaultPlace);
+  const debouncedSearchValue = useDebounce({ value: defaultPlace, delay: 500 });
+
+  const { data: locationList } = useGetLocationList(debouncedSearchValue);
 
   return (
     <>
@@ -180,20 +197,18 @@ const ClassRegister = () => {
           <ClassSchedule openBottomSheet={openBottomSheet} times={times} handleRemoveTime={handleRemoveTime} />
           <ClassPersonnel maxReservationCount={maxReservationCount} register={register} />
           <ClassPlace
+            register={register}
             isUndecidedLocation={isUndecidedLocation}
             handleHasLocation={handleNoneLocationCheck}
             defaultPlace={defaultPlace}
-            detailPlace={detailPlace}
             handleDefaultPlace={handleDefaultPlace}
-            handleDetailPlace={handleDetailPlace}
-            handleSubmitDefaultPlace={handleSubmitDefaultPlace}
             selectedLocation={selectedLocation}
             setSelectedLocation={setSelectedLocation}
             locationList={locationList}
           />
           <ClassAmount price={price} register={register} />
         </div>
-        <div className={buttonContainerStyle}>
+        <div className={styles.buttonContainerStyle}>
           <BoxButton type="submit" disabled={!isButtonActive()}>
             완료
           </BoxButton>

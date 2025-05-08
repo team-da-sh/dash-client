@@ -1,4 +1,5 @@
-import { useEffect, type ChangeEvent } from 'react';
+import { type ChangeEvent } from 'react';
+import type { UseFormRegister } from 'react-hook-form';
 import * as styles from '@/pages/instructor/classRegister/components/ClassPlace/classPlace.css';
 import Description from '@/pages/instructor/classRegister/components/Description';
 import {
@@ -6,46 +7,40 @@ import {
   CLASS_DETAIL_PLACE_PLACEHOLDER,
   CLASS_PLACE_SUBTITLE,
 } from '@/pages/instructor/classRegister/constants/registerSectionText';
+import type { ClassRegisterFormTypes } from '@/pages/instructor/classRegister/types/classRegisterForm';
+import type { LocationsData, LocationTypes } from '@/pages/instructor/classRegister/types/index';
 import BtnCheck from '@/shared/assets/svg/BtnCheck';
 import IcSearchGray from '@/shared/assets/svg/IcSearchGray';
 import IcXCircleGray0424 from '@/shared/assets/svg/IcXCircleGray0424';
 import Input from '@/shared/components/Input/Input';
 import Text from '@/shared/components/Text/Text';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
-import type { LocationsData, LocationTypes } from '../../types';
 
 interface ClassPlacePropTypes {
+  register: UseFormRegister<ClassRegisterFormTypes>;
   isUndecidedLocation: boolean;
   defaultPlace: string;
-  detailPlace: string;
   handleHasLocation: () => void;
   handleDefaultPlace: (e: ChangeEvent<HTMLInputElement>) => void;
-  handleDetailPlace: (e: ChangeEvent<HTMLInputElement>) => void;
-  handleSubmitDefaultPlace: () => void;
   selectedLocation: LocationTypes | null;
   locationList: LocationsData;
   setSelectedLocation: (location: LocationTypes | null) => void;
 }
 
 const ClassPlace = ({
+  register,
   isUndecidedLocation,
   defaultPlace,
-  detailPlace,
   handleHasLocation,
   handleDefaultPlace,
-  handleDetailPlace,
-  handleSubmitDefaultPlace,
   selectedLocation,
   locationList,
   setSelectedLocation,
 }: ClassPlacePropTypes) => {
-  useEffect(() => {
-    console.log(locationList);
-  }, [locationList]);
-
   const shouldShowEmptyMessage = Array.isArray(locationList?.locations) && locationList.locations.length === 0;
-
   const shouldShowLocationList = Array.isArray(locationList?.locations) && locationList.locations.length > 0;
+
+  const { onChange, ref, name } = register('detailedAddress');
 
   return (
     <div
@@ -74,7 +69,7 @@ const ClassPlace = ({
         <div className={sprinkles({ display: 'flex', width: '100%', flexDirection: 'column', gap: 8 })}>
           {selectedLocation ? (
             <div className={styles.selectedLocationContainerStyle}>
-              <Text>{selectedLocation.location}</Text>
+              <Text tag="b2_sb_long">{selectedLocation.location}</Text>
               <IcXCircleGray0424 width={'2.4rem'} onClick={() => setSelectedLocation(null)} />
             </div>
           ) : (
@@ -88,7 +83,7 @@ const ClassPlace = ({
                     e.preventDefault();
                   }
                 }}
-                rightAddOn={<IcSearchGray width={'2.4rem'} onClick={() => handleSubmitDefaultPlace()} />}
+                rightAddOn={<IcSearchGray width={'2.4rem'} />}
               />
 
               {shouldShowEmptyMessage && (
@@ -120,7 +115,7 @@ const ClassPlace = ({
             </>
           )}
 
-          <Input value={detailPlace} onChange={handleDetailPlace} placeholder={CLASS_DETAIL_PLACE_PLACEHOLDER} />
+          <Input onChange={onChange} name={name} ref={ref} placeholder={CLASS_DETAIL_PLACE_PLACEHOLDER} />
         </div>
       )}
     </div>

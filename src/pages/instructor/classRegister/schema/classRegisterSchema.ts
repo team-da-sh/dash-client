@@ -40,7 +40,7 @@ export const classRegisterSchema = z.object({
     }),
     z.null(),
   ]),
-  detailPlace: z.string().optional(),
+  detailedAddress: z.string().optional(),
   times: z
     .array(
       z.object({
