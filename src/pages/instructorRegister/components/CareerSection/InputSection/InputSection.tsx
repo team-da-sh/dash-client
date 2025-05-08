@@ -1,9 +1,9 @@
 import { useRef, useState } from 'react';
 import {
   addButtonStyle,
-  careerFlexStyle,
   checkboxStyle,
-} from '@/pages/instructorRegister/components/InstructorRegisterFunnel/CareerStep/careerStep.css';
+  containerStyle,
+} from '@/pages/instructorRegister/components/CareerSection/careerSection.css';
 import type { InputItemTypes } from '@/pages/instructorRegister/types/inputItemTypes';
 import BtnCheck from '@/shared/assets/svg/BtnCheck';
 import IcPlusGray0524 from '@/shared/assets/svg/IcPlusGray0524';
@@ -15,7 +15,6 @@ import Text from '@/shared/components/Text/Text';
 interface InputSectionPropTypes {
   title: string;
   placeholder: string;
-  icon: React.ReactNode;
   isNoneChecked: boolean;
   onToggleActive: () => void;
   inputItems: InputItemTypes[];
@@ -27,7 +26,6 @@ const PLACEHOLDER_VISIBLE_COUNT = 2;
 const InputSection = ({
   title,
   placeholder,
-  icon,
   isNoneChecked,
   onToggleActive,
   inputItems,
@@ -59,24 +57,21 @@ const InputSection = ({
 
   const renderDeleteIcon = (id: number, value: string) => {
     if (id === 1) {
-      return value && <IcXCircleGray width={'2.4rem'} onClick={() => deleteItem(id)} />;
+      return value && <IcXCircleGray width={'2.4rem'} height={'2.4rem'} onClick={() => deleteItem(id)} />;
     } else {
-      return <IcXCircleGray width={'2.4rem'} onClick={() => deleteItem(id)} />;
+      return <IcXCircleGray width={'2.4rem'} height={'2.4rem'} onClick={() => deleteItem(id)} />;
     }
   };
 
   return (
-    <Flex direction="column" gap="1.2rem" className={careerFlexStyle}>
+    <div className={containerStyle}>
       <Flex justify="spaceBetween" width="100%">
+        <Text tag="b2_sb" color="gray10">
+          {title}
+        </Text>
         <Flex gap="0.8rem" align="center">
-          {icon}
-          <Text tag="b2_sb" color="gray10">
-            {title}
-          </Text>
-        </Flex>
-        <Flex gap="0.8rem" align="center">
-          <Text tag="b3_m" color="gray10">
-            해당 없음
+          <Text tag="b3_m" color="gray6">
+            해당없음
           </Text>
           {isNoneChecked ? (
             <BtnCheck width={'2rem'} onClick={onToggleActive} />
@@ -121,7 +116,7 @@ const InputSection = ({
           </button>
         </Flex>
       )}
-    </Flex>
+    </div>
   );
 };
 

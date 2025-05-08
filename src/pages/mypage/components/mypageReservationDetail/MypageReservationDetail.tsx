@@ -51,7 +51,7 @@ const MyPageReservationDetail = () => {
           </Text>
         </div>
 
-        <ApplicantInfo studentName={data?.name} studentPhoneNumber={data?.phoneNumber} />
+        <ApplicantInfo memberName={data?.name} memberPhoneNumber={data?.phoneNumber} />
 
         <div className={styles.applyDateStyle}>
           <Text tag="c1_r" color="gray9">

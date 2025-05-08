@@ -58,7 +58,7 @@ const Reservation = () => {
 
   const className = data.name;
 
-  const studentName = data.studentName;
+  const studentName = data.memberName;
 
   const handleButtonClick = async () => {
     navigate(ROUTES_CONFIG.payments.path, { state: { lessonId: id, totalPrice, className, studentName } });
@@ -71,7 +71,7 @@ const Reservation = () => {
   return (
     <main
       className={`${sprinkles({ display: 'flex', flexDirection: 'column', width: '100%' })} ${styles.reservationStyle}`}>
-      <section className={sprinkles({ pt: 60 })}>
+      <section>
         <TopInfoContent name={data.name} teacherNickname={data.teacherNickname} imageUrl={data.imageUrl} />
       </section>
       <section
@@ -102,7 +102,7 @@ const Reservation = () => {
           <Text tag="b2_sb" color="gray9">
             신청자 정보
           </Text>
-          <ApplicantInfo {...data} />
+          <ApplicantInfo memberName={data.memberName} memberPhoneNumber={data.memberPhoneNumber} />
         </div>
       </section>
 

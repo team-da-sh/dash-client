@@ -15,7 +15,6 @@ import ClassRegisterBottomSheet from '@/pages/instructor/classRegister/component
 import ClassSchedule from '@/pages/instructor/classRegister/components/ClassSchedule/ClassSchedule';
 import { useClassRegisterForm } from '@/pages/instructor/classRegister/hooks/useClassRegisterForm';
 import type { ClassRegisterInfoTypes } from '@/pages/instructor/classRegister/types/api';
-import { buttonContainerStyle } from '@/pages/instructorRegister/instructorRegister.css';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import { genreEngMapping, levelEngMapping } from '@/shared/constants';
@@ -106,7 +105,7 @@ const ClassRegister = () => {
           navigate(ROUTES_CONFIG.classRegisterCompletion.path);
         },
         onError: () => {
-          // 에러 페이지로 navigate
+          navigate(ROUTES_CONFIG.error.path);
         },
       });
     }
@@ -164,7 +163,7 @@ const ClassRegister = () => {
           <ClassAmount amount={amount} handleAmountChange={handleAmountChange} />
         </div>
 
-        <div className={buttonContainerStyle}>
+        <div className={styles.buttonContainerStyle}>
           <BoxButton type="submit" disabled={!isFormValid()}>
             완료
           </BoxButton>
