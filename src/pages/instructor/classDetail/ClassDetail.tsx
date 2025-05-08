@@ -3,15 +3,16 @@ import { useGetLessonDetail } from '@/pages/instructor/classDetail/apis/queries'
 import * as styles from '@/pages/instructor/classDetail/classDetail.css';
 import StudentCard from '@/pages/instructor/classDetail/components/StudentCard/StudentCard';
 import ClassCard from '@/shared/components/ClassCard/ClassCard';
-import Flex from '@/shared/components/Flex/Flex';
+import Head from '@/shared/components/Head/Head';
 import Text from '@/shared/components/Text/Text';
+import { sprinkles } from '@/shared/styles/sprinkles.css';
 
 const ClassDetail = () => {
   const { id } = useParams<{ id: string }>();
 
   const lessonId = Number(id);
 
-  const { data: lessonDetailData, isLoading, isError } = useGetLessonDetail(lessonId);
+  const { data: lessonData, isLoading, isError } = useGetLessonDetail(lessonId);
 
   if (isLoading) {
     return <></>;
@@ -24,30 +25,40 @@ const ClassDetail = () => {
   return (
     <div className={styles.layoutStyle}>
       <div className={styles.containerStyle}>
-        <Flex tag="section" gap="1.6rem" direction="column" marginBottom="2.8rem">
-          <Text tag="b2_sb" color="gray9">
-            내 클래스 정보
-          </Text>
-          <ClassCard
-            lessonId={lessonDetailData?.id}
-            lessonName={lessonDetailData?.name}
-            lessonImageUrl={lessonDetailData?.imageUrl}
-            lessonGenre={lessonDetailData?.genre}
-            lessonLevel={lessonDetailData?.level}
-            lessonLocation={lessonDetailData?.location}
-            lessonDetailedAddress={lessonDetailData?.detailedAddress}
-            lessonStartDateTime={lessonDetailData?.startDateTime}
-            lessonEndDateTime={lessonDetailData?.endDateTime}
-            isReservation={false}
-          />
-        </Flex>
+        <Head level="h2" tag="h6_sb" color="black">
+          클래스 정보
+        </Head>
+        <section className={sprinkles({ gap: 16 })}>
+          {lessonData && (
+            <ClassCard
+              id={lessonData.id}
+              name={lessonData.name}
+              imageUrl={lessonData.imageUrl}
+              genre={lessonData.genre}
+              level={lessonData.level}
+              location={lessonData.location}
+              detailedAddress={lessonData.detailedAddress}
+              startDateTime={lessonData.startDateTime}
+              endDateTime={lessonData.endDateTime}
+              isReservation={false}
+              applyStatus={lessonData.applyStatus}
+            />
+          )}
+        </section>
 
-        <Flex tag="section" gap="1.6rem" direction="column">
+        <section className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 16 })}>
           <Text tag="b2_sb" color="gray9">
-            신청한 수강생 ( {lessonDetailData?.studentCount} )
+            신청한 수강생 ({lessonData?.studentCount ?? 0})
           </Text>
-          {lessonDetailData?.students.map((students, index) => <StudentCard students={students} index={index} />)}
-        </Flex>
+          <div className={styles.studentCardWrapperStyle}>
+            {(lessonData?.students ?? [])
+              .slice()
+              .reverse()
+              .map((students, index) => (
+                <StudentCard key={index} students={students} index={index} />
+              ))}
+          </div>
+        </section>
       </div>
     </div>
   );

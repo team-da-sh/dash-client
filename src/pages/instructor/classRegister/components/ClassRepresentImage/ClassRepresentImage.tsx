@@ -4,12 +4,14 @@ import {
   previewImgStyle,
 } from '@/pages/instructor/classRegister/components/ClassRepresentImage/classRepresentImage.css';
 import Description from '@/pages/instructor/classRegister/components/Description';
+import { MAX_CLASS_REPRESENT_IMAGE_LENGTH } from '@/pages/instructor/classRegister/constants/formLimit';
+import { CLASS_REPRESENT_IMAGE_SUBTITLE } from '@/pages/instructor/classRegister/constants/registerSectionText';
 import IcPlusGray0524 from '@/shared/assets/svg/IcPlusGray0524';
 import IcXCircleMain0324 from '@/shared/assets/svg/IcXCircleMain0324';
-import Flex from '@/shared/components/Flex/Flex';
 import Text from '@/shared/components/Text/Text';
+import { sprinkles } from '@/shared/styles/sprinkles.css';
 
-interface ClassRepresentImageProps {
+interface ClassRepresentImagePropTypes {
   handleUploaderClick: () => void;
   uploadImgFile: () => void;
   deleteImgFile: (e: React.MouseEvent) => void;
@@ -25,24 +27,21 @@ const ClassRepresentImage = ({
   handleUploaderClick,
   uploadImgFile,
   deleteImgFile,
-}: ClassRepresentImageProps) => {
+}: ClassRepresentImagePropTypes) => {
   return (
-    <Flex tag="section" direction="column" gap="2rem" width="100%" marginBottom="4rem">
-      <Description title="클래스 대표 이미지" subTitle="대표 이미지는 최대 한 장까지 등록 가능해요" />
-      <Flex
-        justify="center"
-        align="center"
-        direction="column"
+    <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 20, width: '100%', mb: 40 })}>
+      <Description title="클래스 대표 이미지" subTitle={CLASS_REPRESENT_IMAGE_SUBTITLE} />
+      <div
         className={previewImgStyle({ hasImage: !!previewImg })}
         style={previewImg ? { backgroundImage: `url(${previewImg})` } : {}}
         onClick={handleUploaderClick}>
         {!previewImg && (
-          <Flex direction="column" align="center">
+          <div className={sprinkles({ display: 'flex', flexDirection: 'column', alignItems: 'center' })}>
             <IcPlusGray0524 width={'2.4rem'} />
             <Text tag="c1_r" color="gray5">
-              1/1
+              1/{MAX_CLASS_REPRESENT_IMAGE_LENGTH}
             </Text>
-          </Flex>
+          </div>
         )}
 
         {imgFile && (
@@ -50,7 +49,7 @@ const ClassRepresentImage = ({
             <IcXCircleMain0324 width={'2.4rem'} />
           </div>
         )}
-      </Flex>
+      </div>
 
       <input
         type="file"
@@ -60,7 +59,7 @@ const ClassRepresentImage = ({
         onChange={uploadImgFile}
         ref={imgRef}
       />
-    </Flex>
+    </div>
   );
 };
 

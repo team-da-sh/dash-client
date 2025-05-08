@@ -3,46 +3,36 @@ import IcClassEndMain0324 from '@/shared/assets/svg/IcClassEndMain0324';
 import IcClassIngMain0324 from '@/shared/assets/svg/IcClassIngMain0324';
 import IcClassSoonMain0324 from '@/shared/assets/svg/IcClassSoonMain0324';
 import * as styles from '@/shared/components/ClassCard/classCard.css';
-import Flex from '@/shared/components/Flex/Flex';
+// sprinkles import
 import Head from '@/shared/components/Head/Head';
 import Tag from '@/shared/components/Tag/Tag';
 import Text from '@/shared/components/Text/Text';
 import { genreMapping, levelMapping } from '@/shared/constants';
+import { sprinkles } from '@/shared/styles/sprinkles.css';
+import type { Lesson } from '@/shared/types/lessonTypes';
 import { formatLessonDateRange, getClassStatus } from '@/shared/utils/timeCalculate';
 
-interface ClassCardPropTypes {
-  lessonId?: number;
-  reservationId?: number;
-  lessonName: string | undefined;
-  lessonImageUrl: string | undefined;
-  lessonGenre: string | undefined;
-  lessonLevel: string | undefined;
-  lessonLocation: string | undefined;
-  lessonDetailedAddress?: string | undefined;
-  lessonStartDateTime: string | undefined;
-  lessonEndDateTime: string | undefined;
+interface ClassCardPropTypes extends Lesson {
   isReservation?: boolean;
   onClick?: () => void;
   children?: React.ReactNode;
 }
 
 const ClassCard = ({
-  lessonName,
-  lessonImageUrl,
-  lessonGenre,
-  lessonLevel,
-  lessonLocation,
-  lessonStartDateTime,
-  lessonDetailedAddress,
-  lessonEndDateTime,
+  name,
+  imageUrl,
+  genre,
+  level,
+  location,
+  detailedAddress,
+  startDateTime,
+  endDateTime,
   isReservation = true,
   children,
   onClick,
 }: ClassCardPropTypes) => {
-  // 클래스 상태 계산
-  const { status, remainingDays } = getClassStatus(lessonStartDateTime, lessonEndDateTime);
+  const { status, remainingDays } = getClassStatus(startDateTime, endDateTime);
 
-  // 상태 한글 번역
   const korstatus = () => {
     if (isReservation) {
       switch (status) {
@@ -60,7 +50,6 @@ const ClassCard = ({
         case 'upcoming':
           return '모집중';
         case 'completed':
-          return '모집완료';
         case 'ongoing':
           return '모집완료';
         default:
@@ -69,8 +58,11 @@ const ClassCard = ({
     }
   };
 
-  // 상태 아이콘 반환
   const statusIcon = () => {
+    if (!isReservation && status === 'upcoming') {
+      return <IcClassIngMain0324 width="1.8rem" />;
+    }
+
     switch (status) {
       case 'upcoming':
         return <IcClassSoonMain0324 width="1.8rem" />;
@@ -83,16 +75,27 @@ const ClassCard = ({
     }
   };
 
-  const handleTextClick = () => {
+  const handleTextClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
     window.open('https://forms.gle/JMYzQGxEdVHVogsE6', '_blank');
   };
 
   return (
     <div className={styles.cardContainerStyle} onClick={onClick}>
-      <Flex justify="spaceBetween" align="center">
-        <Flex align="center" gap="0.3rem" marginBottom="1.2rem">
-          <Flex marginRight="0.5rem">{statusIcon()}</Flex>
-
+      <div
+        className={sprinkles({
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+        })}>
+        <div
+          className={sprinkles({
+            display: 'flex',
+            alignItems: 'center',
+            gap: 3,
+            marginBottom: 12,
+          })}>
+          <div className={sprinkles({ marginRight: 5 })}>{statusIcon()}</div>
           <Text tag="b2_sb" color={status === 'completed' ? 'gray8' : 'black'}>
             {korstatus()}
           </Text>
@@ -101,62 +104,73 @@ const ClassCard = ({
               D - {remainingDays}
             </Text>
           )}
-        </Flex>
+        </div>
 
         {isReservation && (
-          <Flex align="center" gap="0.2rem">
+          <div
+            className={sprinkles({
+              display: 'flex',
+              alignItems: 'center',
+              gap: 2,
+            })}>
             <Text tag="b3_m" color="gray7" onClick={handleTextClick}>
               문의하기
             </Text>
             <IcArrowRightGray0614 width="1.4rem" height="1.4rem" />
-          </Flex>
+          </div>
         )}
-      </Flex>
+      </div>
 
-      <Flex gap="1.2rem" marginBottom="1.6rem">
-        <img src={lessonImageUrl} className={styles.cardImageStyle} alt={`${lessonName} 이미지`} />
-        <Flex direction="column" gap="0.8rem" className={styles.cardContentStyle}>
-          <Flex gap="0.3rem">
+      {/* 이미지/정보 영역 */}
+      <div
+        className={sprinkles({
+          display: 'flex',
+          gap: 12,
+          marginBottom: 16,
+        })}>
+        <img src={imageUrl} className={styles.cardImageStyle} alt={`${name} 이미지`} />
+        <div
+          className={
+            sprinkles({
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 8,
+            }) +
+            ' ' +
+            styles.cardContentStyle
+          }>
+          <div className={sprinkles({ display: 'flex', gap: 3 })}>
             <Tag type="genre" size="small">
-              {lessonGenre && genreMapping[lessonGenre]}
+              {genre && genreMapping[genre]}
             </Tag>
             <Tag type="level" size="small">
-              {lessonLevel && levelMapping[lessonLevel]}
+              {level && levelMapping[level]}
             </Tag>
-          </Flex>
+          </div>
           <Head level="h2" tag="b1_sb" className={styles.lessonNameStyle}>
-            {lessonName}
+            {name}
           </Head>
-          <Flex direction="column" gap="0.4rem">
-            <Flex gap="0.8rem" align="center">
+          <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 4 })}>
+            <div className={sprinkles({ display: 'flex', gap: 8, alignItems: 'center' })}>
               <Text tag="c1_sb" color="gray7">
                 일정
               </Text>
               <Text tag="c1_r" color="gray9">
-                {lessonStartDateTime &&
-                  lessonEndDateTime &&
-                  formatLessonDateRange(lessonStartDateTime, lessonEndDateTime)}
+                {startDateTime && endDateTime && formatLessonDateRange(startDateTime, endDateTime)}
               </Text>
-            </Flex>
-            <Flex gap="0.8rem" align="center">
+            </div>
+            <div className={sprinkles({ display: 'flex', gap: 8, alignItems: 'center' })}>
               <Text tag="c1_sb" color="gray7">
                 장소
               </Text>
               <Text tag="c1_r" color="gray9">
-                {lessonLocation || lessonDetailedAddress ? (
-                  <>
-                    {lessonLocation}&nbsp;
-                    {lessonDetailedAddress}
-                  </>
-                ) : (
-                  '미정'
-                )}
+                {location || detailedAddress ? location : '미정'}
               </Text>
-            </Flex>
-          </Flex>
-        </Flex>
-      </Flex>
-      {children && <Flex gap="0.7rem">{children}</Flex>}
+            </div>
+          </div>
+        </div>
+      </div>
+      {children && <div className={sprinkles({ display: 'flex', gap: 7 })}>{children}</div>}
     </div>
   );
 };

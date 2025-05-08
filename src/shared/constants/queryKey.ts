@@ -4,17 +4,21 @@ export const QUERY_KEYS = {
   AUTH_LOGOUT: 'auth_logout',
 
   MEMBERS_ME: 'members_me',
+  MEMBERS_ME_THUMBNAILS: 'members_me_thumbnails',
   MEMBERS_RESERVATIONS: 'members_reservations',
   MEMBERS_RESERVATION_DETAIL: 'members_reservation_detail',
+  MEMBERS_RESERVATION_STATISTICS: 'members_reservation_statistics',
 
   TEACHERS: 'teachers',
+  TEACHERS_ME: 'teachers_me',
   TEACHER_DETAIL: 'teacher_detail',
+  TEACHER_DETAIL_INTRODUCTION: 'teacher_detail_introduction',
   TEACHERS_POPULAR: 'teachers_popular',
   TEACHERS_SEARCH: 'teachers_search',
 
   LESSONS: 'lessons',
   LESSON_DETAIL: 'lesson_detail',
-  LESSONS_RECOMMENDATIONS: 'lessons_recommendations',
+  LESSONS_LATEST: 'lessons_latest',
   LESSONS_POPULAR_GENRES: 'lessons_popular_genres',
   LESSONS_UPCOMING: 'lessons_upcoming',
   LESSONS_FAVORITES: 'lessons_favorites',

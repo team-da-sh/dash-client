@@ -1,25 +1,45 @@
-import type { ChangeEvent } from 'react';
+import type { UseFormRegister } from 'react-hook-form';
 import Description from '@/pages/instructor/classRegister/components/Description';
-import Flex from '@/shared/components/Flex/Flex';
+import { CLASS_PERSONNEL_SUBTITLE } from '@/pages/instructor/classRegister/constants/registerSectionText';
+import type { ClassRegisterFormTypes } from '@/pages/instructor/classRegister/types/classRegisterForm';
 import Input from '@/shared/components/Input/Input';
 import Text from '@/shared/components/Text/Text';
+import { ONLY_NUMBER } from '@/shared/constants/regex';
+import { sprinkles } from '@/shared/styles/sprinkles.css';
 
-interface ClassPersonnelProps {
-  personnel: string;
-  handlePersonnelChange: (e: ChangeEvent<HTMLInputElement>) => void;
+interface ClassPersonnelPropTypes {
+  maxReservationCount: string;
+  register: UseFormRegister<ClassRegisterFormTypes>;
 }
 
-const ClassPersonnel = ({ personnel, handlePersonnelChange }: ClassPersonnelProps) => {
+const ClassPersonnel = ({ register, maxReservationCount }: ClassPersonnelPropTypes) => {
+  const { name, onChange, ref } = register('maxReservationCount');
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (ONLY_NUMBER.test(e.target.value)) {
+      onChange(e);
+    }
+  };
+
   return (
-    <Flex tag="section" direction="column" gap="2rem" width="100%" marginBottom="4rem">
-      <Description title="모집 인원" subTitle="원활한 클래스 진행을 위해 최대 인원을 알려주세요" />
+    <div
+      className={sprinkles({
+        display: 'flex',
+        flexDirection: 'column',
+        width: '100%',
+        gap: 20,
+        mb: 40,
+      })}>
+      <Description title="모집 인원" subTitle={CLASS_PERSONNEL_SUBTITLE} />
       <Input
+        value={maxReservationCount}
+        name={name}
+        onChange={handleChange}
+        ref={ref}
         placeholder="0"
-        value={personnel}
-        onChange={handlePersonnelChange}
         rightAddOn={<Text tag="b2_sb_long">명</Text>}
       />
-    </Flex>
+    </div>
   );
 };
 

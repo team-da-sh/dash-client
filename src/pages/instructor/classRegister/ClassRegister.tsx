@@ -1,4 +1,6 @@
+import { zodResolver } from '@hookform/resolvers/zod';
 import { useQueryClient } from '@tanstack/react-query';
+import { useController, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { useGetLocationList, usePostClassRegisterInfo } from '@/pages/instructor/classRegister/apis/queries';
 import * as styles from '@/pages/instructor/classRegister/classRegister.css';
@@ -14,85 +16,131 @@ import ClassRepresentImage from '@/pages/instructor/classRegister/components/Cla
 import ClassRegisterBottomSheet from '@/pages/instructor/classRegister/components/ClassSchedule/ClassRegisterBottomSheet/ClassRegisterBottomSheet';
 import ClassSchedule from '@/pages/instructor/classRegister/components/ClassSchedule/ClassSchedule';
 import { useClassRegisterForm } from '@/pages/instructor/classRegister/hooks/useClassRegisterForm';
+import { classRegisterSchema } from '@/pages/instructor/classRegister/schema/classRegisterSchema';
 import type { ClassRegisterInfoTypes } from '@/pages/instructor/classRegister/types/api';
-import { buttonContainerStyle } from '@/pages/instructorRegister/instructorRegister.css';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import { genreEngMapping, levelEngMapping } from '@/shared/constants';
 import { QUERY_KEYS } from '@/shared/constants/queryKey';
 import useBottomSheet from '@/shared/hooks/useBottomSheet';
+import useDebounce from '@/shared/hooks/useDebounce';
 import useImageUploader from '@/shared/hooks/useImageUploader';
 
 const ClassRegister = () => {
-  const { isBottomSheetOpen, openBottomSheet, closeBottomSheet } = useBottomSheet();
-  const navigate = useNavigate();
   const queryClient = useQueryClient();
-
+  const navigate = useNavigate();
   const { mutate: classRegisterMutate } = usePostClassRegisterInfo();
+  const { isBottomSheetOpen, openBottomSheet, closeBottomSheet } = useBottomSheet();
+
   const {
-    explainTextAreaRef,
-    recommendTextAreaRef,
+    register,
+    watch,
+    setValue,
+    control,
+    formState: { errors },
+  } = useForm({
+    resolver: zodResolver(classRegisterSchema),
+    mode: 'onChange',
+    defaultValues: {
+      className: '',
+      detail: '',
+      selectedGenre: '',
+      selectedLevel: '',
+      recommendation: '',
+      maxReservationCount: '',
+      price: '',
+      isUndecidedLocation: false,
+      detailedAddress: '',
+    },
+  });
+
+  const {
     className,
-    explanation,
-    imageUrls,
+    detail,
     selectedGenre,
-    selectedLevelTitle,
-    recommend,
-    personnel,
-    hasLocation,
-    defaultPlace,
-    submitDefaultPlace,
-    detailPlace,
-    amount,
+    selectedLevel,
+    recommendation,
+    maxReservationCount,
+    price,
+    detailedAddress,
+  } = watch();
+  const { field } = useController({
+    name: 'imageUrls',
+    control,
+  });
+
+  const handleTextAreaHeight = (e: React.FormEvent<HTMLTextAreaElement>) => {
+    const textArea = e.target as HTMLTextAreaElement;
+
+    if (textArea) {
+      textArea.style.height = '9.8rem';
+      textArea.style.height = `${textArea.scrollHeight}px`;
+    }
+  };
+
+  const toggleCategory = (category: string) => {
+    setValue('selectedGenre', category === selectedGenre ? '' : category, {
+      shouldValidate: true,
+      shouldDirty: true,
+    });
+  };
+
+  const toggleLevel = (level: string) => {
+    setValue('selectedLevel', level === selectedLevel ? '' : level, {
+      shouldValidate: true,
+      shouldDirty: true,
+    });
+  };
+
+  const {
+    imageUrls,
+
     selectedTime,
     times,
     hour,
     minute,
     ampm,
     startDate,
+
+    isUndecidedLocation,
+    defaultPlace,
     selectedLocation,
-    setStartDate,
-    handleClassNameChange,
-    handlePersonnelChange,
-    handleAmountChange,
+
     setImageUrls,
+
+    setStartDate,
     setHour,
     setMinute,
     setAmpm,
     setSelectedTime,
     handleAddTime,
-    toggleCategory,
-    handleLevelSelect,
-    handleExplainTextArea,
-    handleImageUploadSuccess,
-    handleRecommendChange,
-    handleHasLocation,
-    handleDefaultPlace,
-    handleSubmitDefaultPlace,
-    handleDetailPlace,
     handleRemoveTime,
-    isFormValid,
+
+    handleNoneLocationCheck,
+    handleDefaultPlace,
     setSelectedLocation,
+
+    isButtonActive,
   } = useClassRegisterForm();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (selectedGenre && selectedLevelTitle && selectedTime) {
+    if (selectedGenre && selectedLevel) {
       const updatedInfo: ClassRegisterInfoTypes = {
         imageUrls: [imageUrls.imageUrls],
         name: className,
-        detail: explanation,
+        detail: detail,
         videoUrls: [],
-        maxReservationCount: Number(personnel),
+        maxReservationCount: Number(maxReservationCount),
         genre: genreEngMapping[selectedGenre],
-        level: levelEngMapping[selectedLevelTitle],
-        recommendation: recommend,
-        price: Number(amount),
-        location: hasLocation ? (selectedLocation?.location ?? null) : null,
-        streetAddress: hasLocation ? (selectedLocation?.streetAddress ?? null) : null,
-        oldStreetAddress: hasLocation ? (selectedLocation?.oldStreetAddress ?? null) : null,
-        detailedAddress: hasLocation ? detailPlace : null,
+        level: levelEngMapping[selectedLevel],
+        recommendation: recommendation,
+        price: Number(price),
+        location: !isUndecidedLocation ? (selectedLocation?.location ?? null) : null,
+        streetAddress: !isUndecidedLocation ? (selectedLocation?.streetAddress ?? null) : null,
+        oldStreetAddress: !isUndecidedLocation ? (selectedLocation?.oldStreetAddress ?? null) : null,
+        detailedAddress: !isUndecidedLocation ? (detailedAddress ?? null) : null,
 
         times: times.map((time) => ({
           startTime: time.startTime,
@@ -106,32 +154,35 @@ const ClassRegister = () => {
           navigate(ROUTES_CONFIG.classRegisterCompletion.path);
         },
         onError: () => {
-          // 에러 페이지로 navigate
+          navigate(ROUTES_CONFIG.error.path);
         },
       });
     }
   };
 
+  const handleImageUploadSuccess = (url: string) => {
+    field.onChange(url);
+  };
+
   const handleDeleteUrl = () => {
     setImageUrls({ imageUrls: '' });
   };
+
   const { imgFile, previewImg, imgRef, handleUploaderClick, uploadImgFile, deleteImgFile } = useImageUploader(
     handleImageUploadSuccess,
     handleDeleteUrl
   );
 
-  const { data: locationList } = useGetLocationList(submitDefaultPlace);
+  const debouncedSearchValue = useDebounce({ value: defaultPlace, delay: 500 });
+
+  const { data: locationList } = useGetLocationList(debouncedSearchValue);
 
   return (
     <>
       <form onSubmit={handleSubmit}>
         <div className={styles.containerStyle}>
-          <ClassName className={className} handleClassNameChange={handleClassNameChange} />
-          <ClassDescription
-            ref={explainTextAreaRef}
-            explanation={explanation}
-            handleExplainTextArea={handleExplainTextArea}
-          />
+          <ClassName className={className} register={register} error={errors.className} />
+          <ClassDescription register={register} error={errors.detail} handleTextAreaHeight={handleTextAreaHeight} />
           <ClassRepresentImage
             imgFile={imgFile}
             previewImg={previewImg}
@@ -141,35 +192,29 @@ const ClassRegister = () => {
             deleteImgFile={deleteImgFile}
           />
           <ClassGenre selectedGenre={selectedGenre} toggleCategory={toggleCategory} />
-          <ClassLevel selectedLevelTitle={selectedLevelTitle} handleLevelSelect={handleLevelSelect} />
-          <ClassRecommend
-            ref={recommendTextAreaRef}
-            recommend={recommend}
-            handleRecommendChange={handleRecommendChange}
-          />
+          <ClassLevel selectedLevel={selectedLevel} toggleLevel={toggleLevel} />
+          <ClassRecommend register={register} handleTextAreaHeight={handleTextAreaHeight} />
           <ClassSchedule openBottomSheet={openBottomSheet} times={times} handleRemoveTime={handleRemoveTime} />
-          <ClassPersonnel personnel={personnel} handlePersonnelChange={handlePersonnelChange} />
+          <ClassPersonnel maxReservationCount={maxReservationCount} register={register} />
           <ClassPlace
-            hasLocation={hasLocation}
-            handleHasLocation={handleHasLocation}
+            register={register}
+            isUndecidedLocation={isUndecidedLocation}
+            handleHasLocation={handleNoneLocationCheck}
             defaultPlace={defaultPlace}
-            detailPlace={detailPlace}
             handleDefaultPlace={handleDefaultPlace}
-            handleDetailPlace={handleDetailPlace}
-            handleSubmitDefaultPlace={handleSubmitDefaultPlace}
             selectedLocation={selectedLocation}
             setSelectedLocation={setSelectedLocation}
             locationList={locationList}
           />
-          <ClassAmount amount={amount} handleAmountChange={handleAmountChange} />
+          <ClassAmount price={price} register={register} />
         </div>
-
-        <div className={buttonContainerStyle}>
-          <BoxButton type="submit" disabled={!isFormValid()}>
+        <div className={styles.buttonContainerStyle}>
+          <BoxButton type="submit" disabled={!isButtonActive()}>
             완료
           </BoxButton>
         </div>
       </form>
+
       {isBottomSheetOpen && (
         <ClassRegisterBottomSheet
           onClose={closeBottomSheet}

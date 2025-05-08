@@ -7,12 +7,6 @@ export const getAdvertisements = async () => {
   return data;
 };
 
-export const getMyPage = async () => {
-  const { data } = await instance.get(API_URL.MEMBERS_ME);
-
-  return data;
-};
-
 export const postLogout = async () => {
   const { data } = await instance.post(API_URL.AUTH_LOGOUT);
 
@@ -31,8 +25,8 @@ export const getUpcommingLessons = async () => {
   return data;
 };
 
-export const getRecommendationLessons = async () => {
-  const { data } = await instance.get(API_URL.LESSONS_RECOMMENDATIONS);
+export const getLatestLessons = async () => {
+  const { data } = await instance.get(API_URL.LESSONS_LATEST);
 
   return data;
 };

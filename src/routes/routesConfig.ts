@@ -43,6 +43,14 @@ export const ROUTES_CONFIG = {
     title: 'paymentsFail',
     path: '/reservation/payments/fail',
   },
+  mypage: {
+    title: 'Mypage',
+    path: '/mypage',
+  },
+  editProfile: {
+    title: 'editProfile',
+    path: '/mypage/edit',
+  },
   mypageReservation: {
     title: 'MypageReservation',
     path: '/mypage/reservation',
@@ -62,6 +70,10 @@ export const ROUTES_CONFIG = {
   instructorRegister: {
     title: 'InstructorRegister',
     path: '/mypage/instructor-register',
+  },
+  instructorRegisterCompletion: {
+    title: 'InstructorRegister',
+    path: '/mypage/instructor-register/completion',
   },
   instructorClassList: {
     title: 'instructorClassList',

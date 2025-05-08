@@ -14,10 +14,7 @@ const IcLevelStarter = lazy(() => import('@/shared/assets/svg/IcLevelStarter'));
 const TabLevel = ({ lessonData }: { lessonData: LessonDetailResponseTypes }) => {
   const { level, recommendation } = lessonData;
 
-  // 영 -> 한
-  const translatedLevel = levelMapping[level] || level;
-
-  const levelData = LEVEL.find((item) => item.title === translatedLevel);
+  const levelData = LEVEL.find((item) => item.title === levelMapping[level]);
 
   return (
     <section className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 36 })}>
@@ -27,9 +24,9 @@ const TabLevel = ({ lessonData }: { lessonData: LessonDetailResponseTypes }) => 
           flexDirection: 'column',
           alignItems: 'flex-end',
           width: '100%',
-          gap: 6,
+          gap: 8,
         })}>
-        <Card>
+        <Card className={styles.cardStyle}>
           <div className={sprinkles({ display: 'flex', alignItems: 'center', gap: 8 })}>
             {levelData?.icon || (
               <Suspense fallback={<div>Loading...</div>}>
@@ -37,7 +34,7 @@ const TabLevel = ({ lessonData }: { lessonData: LessonDetailResponseTypes }) => 
               </Suspense>
             )}
             <Head level="h6" tag="b1_sb" className={styles.levelStyle}>
-              {translatedLevel}
+              {levelMapping[level]}
             </Head>
             <Text tag="b3_m_narrow" color="gray8">
               {levelData?.description}
@@ -59,7 +56,7 @@ const TabLevel = ({ lessonData }: { lessonData: LessonDetailResponseTypes }) => 
           </button>
         </div>
       </div>
-      <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 12 })}>
+      <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 17 })}>
         <div className={sprinkles({ display: 'flex', justifyContent: 'flex-start', alignItems: 'center', gap: 4 })}>
           <Suspense fallback={<div>Loading...</div>}>
             <IcSparkleMain20 width={'2.4rem'} />

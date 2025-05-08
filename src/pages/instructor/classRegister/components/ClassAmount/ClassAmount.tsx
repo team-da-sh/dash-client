@@ -1,25 +1,38 @@
-import type { ChangeEvent } from 'react';
+import type { UseFormRegister } from 'react-hook-form';
 import Description from '@/pages/instructor/classRegister/components/Description';
-import Flex from '@/shared/components/Flex/Flex';
+import { CLASS_AMOUNT_SUBTITLE } from '@/pages/instructor/classRegister/constants/registerSectionText';
 import Input from '@/shared/components/Input/Input';
 import Text from '@/shared/components/Text/Text';
+import { ONLY_NUMBER } from '@/shared/constants/regex';
+import { sprinkles } from '@/shared/styles/sprinkles.css';
+import type { ClassRegisterFormTypes } from '../../types/classRegisterForm';
 
-interface ClassAmountProps {
-  amount: string;
-  handleAmountChange: (e: ChangeEvent<HTMLInputElement>) => void;
+interface ClassAmountPropTypes {
+  price: string;
+  register: UseFormRegister<ClassRegisterFormTypes>;
 }
 
-const ClassAmount = ({ amount, handleAmountChange }: ClassAmountProps) => {
+const ClassAmount = ({ price, register }: ClassAmountPropTypes) => {
+  const { name, onChange, ref } = register('price');
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (ONLY_NUMBER.test(e.target.value)) {
+      onChange(e);
+    }
+  };
+
   return (
-    <Flex tag="section" direction="column" gap="2rem" width="100%">
-      <Description title="수강료" subTitle="전체 회차를 포함한 최종 금액을 알려주세요" />
+    <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 20, width: '100%' })}>
+      <Description title="수강료" subTitle={CLASS_AMOUNT_SUBTITLE} />
       <Input
+        name={name}
+        ref={ref}
         placeholder="0"
-        value={amount}
-        onChange={handleAmountChange}
+        value={price}
+        onChange={handleChange}
         rightAddOn={<Text tag="b2_sb_long">원</Text>}
       />
-    </Flex>
+    </div>
   );
 };
 

@@ -3,7 +3,7 @@ import { vars } from '@/shared/styles/theme.css';
 
 export const classImageStyle = style({
   width: '16.4rem',
-  height: '9.1rem',
+  height: '12.3rem',
 
   borderRadius: '4px',
   backgroundColor: vars.colors.gray02,

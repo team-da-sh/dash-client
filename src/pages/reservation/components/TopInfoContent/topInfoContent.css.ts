@@ -4,7 +4,7 @@ import { vars } from '@/shared/styles/theme.css';
 export const topImgStyle = style({
   position: 'relative',
   width: '100%',
-  height: '20.4rem',
+  aspectRatio: '375 / 204',
   background: vars.colors.gray10,
   overflow: 'hidden',
   backgroundSize: 'cover',
@@ -17,8 +17,7 @@ export const gradientOverlayStyle = style({
   left: 0,
 
   width: '100%',
-  height: '16rem',
-
+  aspectRatio: '375 / 160',
   background: 'linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, #000 100%)',
   zIndex: vars.zIndex.one,
 });
@@ -32,5 +31,5 @@ export const textWrapperStyle = style({
   paddingLeft: '2rem',
   paddingRight: '2rem',
   flexDirection: 'column',
-  zIndex: vars.zIndex.two,
+  zIndex: vars.zIndex.one,
 });
