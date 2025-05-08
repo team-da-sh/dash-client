@@ -4,10 +4,13 @@ export const QUERY_KEYS = {
   AUTH_LOGOUT: 'auth_logout',
 
   MEMBERS_ME: 'members_me',
+  MEMBERS_ME_THUMBNAILS: 'members_me_thumbnails',
   MEMBERS_RESERVATIONS: 'members_reservations',
   MEMBERS_RESERVATION_DETAIL: 'members_reservation_detail',
+  MEMBERS_RESERVATION_STATISTICS: 'members_reservation_statistics',
 
   TEACHERS: 'teachers',
+  TEACHERS_ME: 'teachers_me',
   TEACHER_DETAIL: 'teacher_detail',
   TEACHERS_POPULAR: 'teachers_popular',
   TEACHERS_SEARCH: 'teachers_search',
