@@ -1,6 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useQueryClient } from '@tanstack/react-query';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useController, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -83,6 +83,8 @@ const InstructorRegister = () => {
     handlePrizeCheck,
   } = useInstructorRegisterForm();
 
+  const [isVideoNoneChecked, setIsVideoNoneChecked] = useState(false);
+
   // 버튼 활성화 조건 체크 함수
   const hasDetailedInfo = () => detail.trim().length >= MIN_INTRODUCTION_LENGTH;
   const hasImage = () => !!imageUrls;
@@ -98,7 +100,7 @@ const InstructorRegister = () => {
 
     return educationValid && careerValid && prizeValid;
   };
-  const hasVideoUrls = () => videoUrls.some((url) => url.value.trim().length >= MIN_VIDEO_INPUT);
+  const hasVideoUrls = () => isVideoNoneChecked || videoUrls.some((url) => url.value.trim().length >= MIN_VIDEO_INPUT);
 
   const buttonActive = () => {
     return (
@@ -131,7 +133,9 @@ const InstructorRegister = () => {
       prizes: isPrizeNoneChecked ? [] : prizes.filter((prize) => prize.trim() !== ''),
 
       detail: detail.trim(),
-      videoUrls: videoUrls.map((url) => url.value.trim()).filter((value) => value !== ''),
+      videoUrls: isVideoNoneChecked
+        ? ['https://www.youtube.com/']
+        : videoUrls.map((url) => url.value.trim()).filter((value) => value !== ''),
     };
 
     const onSuccess = (response: { data: { accessToken: string; refreshToken: string } }) => {
@@ -151,7 +155,12 @@ const InstructorRegister = () => {
     };
 
     if (storageRole === USER_ROLE.TEACHER) {
-      instructorPatchMutate(updatedInfo, { onError });
+      instructorPatchMutate(updatedInfo, {
+        onSuccess: () => {
+          navigate(ROUTES_CONFIG.mypage.path);
+        },
+        onError,
+      });
     } else {
       instructorRegisterMutate(updatedInfo, { onSuccess, onError });
     }
@@ -220,7 +229,12 @@ const InstructorRegister = () => {
           <Divider direction="horizontal" color="gray1" length={'100%'} thickness={'0.8rem'} />
 
           <div className={styles.sectionWrapperStyle}>
-            <VideoLinkSection control={control} register={register} setFocus={setFocus} />
+            <VideoLinkSection
+              register={register}
+              setValue={setValue}
+              isNoneChecked={isVideoNoneChecked}
+              setIsNoneChecked={setIsVideoNoneChecked}
+            />
           </div>
         </div>
 
