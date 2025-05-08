@@ -20,6 +20,7 @@ const StudentContent = () => {
     <div className={styles.containerStyle}>
       <div className={styles.topContainerStyle}>
         <InfoComponent
+          type="student"
           profileImageUrl={data.profileImageUrl}
           mainText={<Text tag="b1_sb">{data.nickname}</Text>}
           subContent={

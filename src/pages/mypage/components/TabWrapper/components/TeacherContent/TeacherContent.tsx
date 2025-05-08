@@ -73,6 +73,7 @@ const TeacherContent = () => {
     <div className={styles.containerStyle}>
       <div className={styles.topContainerStyle}>
         <InfoComponent
+          type="teacher"
           profileImageUrl={data.profileImage}
           mainText={<Text tag="b1_sb">{data.nickname}</Text>}
           subContent={
