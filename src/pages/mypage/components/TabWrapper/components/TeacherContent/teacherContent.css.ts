@@ -37,3 +37,17 @@ export const classButtonStyle = style({
   borderRadius: '40px',
   backgroundColor: vars.colors.main04,
 });
+
+export const allButtonStyle = style({
+  display: 'flex',
+  padding: '0.6rem 0.8rem',
+  textAlign: 'center',
+
+  borderRadius: '50px',
+  backgroundColor: vars.colors.gray01,
+
+  color: vars.colors.gray08,
+  ...vars.fonts.c1_sb,
+
+  cursor: 'pointer',
+});

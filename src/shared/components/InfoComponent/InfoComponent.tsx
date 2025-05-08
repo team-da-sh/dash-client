@@ -11,6 +11,7 @@ interface InfoComponentPropTypes {
 }
 
 const InfoComponent = ({ profileImageUrl, mainText, subContent }: InfoComponentPropTypes) => {
+  // 강사 정보 수정 뷰 완성되면 선생이면 선생 수정 페이지로 가게 수정해줘야함
   const navigate = useNavigate();
   const handleEditProfileClick = () => {
     navigate(ROUTES_CONFIG.editProfile.path);

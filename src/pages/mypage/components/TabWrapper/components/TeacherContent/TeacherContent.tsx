@@ -1,7 +1,9 @@
 import { useNavigate } from 'react-router-dom';
+import { useGetMyTeacherInfo, useGetMyLessonThumbnails } from '@/pages/mypage/apis/queries';
 import BottomList from '@/pages/mypage/components/BottomList/BottomList';
 import EmptyClassList from '@/pages/mypage/components/TabWrapper/components/TeacherContent/components/EmptyClassList/EmptyClassList';
 import TeacherLessons from '@/pages/mypage/components/TabWrapper/components/TeacherContent/components/TeacherLessons/TeacherLessons';
+import UnregisteredTeacher from '@/pages/mypage/components/TabWrapper/components/TeacherContent/components/UnregisteredTeacher/UnregisteredTeacher';
 import * as styles from '@/pages/mypage/components/TabWrapper/components/TeacherContent/teacherContent.css';
 import { getUserRole } from '@/pages/mypage/utils/storage';
 import { getFullUrl } from '@/pages/mypage/utils/url';
@@ -15,84 +17,95 @@ import Divider from '@/shared/components/Divider/Divider';
 import InfoComponent from '@/shared/components/InfoComponent/InfoComponent';
 import Text from '@/shared/components/Text/Text';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
-import { mockMyTeacherData, mockTeacherLessonData } from '../../mockData';
-import UnregisteredTeacher from './components/UnregisteredTeacher/UnregisteredTeacher';
 
 const TeacherContent = () => {
   const navigate = useNavigate();
-  const data = mockMyTeacherData;
-  const lessonData = mockTeacherLessonData;
   const userRole = getUserRole();
+
+  const { data } = useGetMyTeacherInfo();
+  const { data: lessonData } = useGetMyLessonThumbnails();
+
+  let isRegisteredTeacherProfile = userRole === 'TEACHER';
+
+  if (!isRegisteredTeacherProfile) {
+    return (
+      <div className={styles.containerStyle}>
+        <div className={styles.topContainerStyle}>
+          <UnregisteredTeacher nickname="" />
+          <Divider color="gray1" thickness="0.4rem" />
+        </div>
+        <BottomList />
+      </div>
+    );
+  }
 
   const handleClassButtonClick = () => {
     navigate(ROUTES_CONFIG.classRegister.path);
   };
 
-  let isUnregisteredTeacherProfile = userRole === 'STUDENT';
+  const handleAllButtonClick = () => {
+    navigate(ROUTES_CONFIG.instructorClassList.path);
+  };
+
+  if (!data || !lessonData) {
+    return <div>데이터를 불러오지 못했습니다.</div>;
+  }
 
   return (
     <div className={styles.containerStyle}>
       <div className={styles.topContainerStyle}>
-        {isUnregisteredTeacherProfile ? (
-          <>
-            <UnregisteredTeacher nickname={data.nickname} />
-            <Divider color="gray1" thickness="0.4rem" />
-          </>
-        ) : (
-          <>
-            <InfoComponent
-              profileImageUrl={data.profileImage}
-              mainText={<Text tag="b1_sb">{data.nickname}</Text>}
-              subContent={
-                <div className={sprinkles({ display: 'flex', alignItems: 'center', gap: 4 })}>
-                  <a
-                    href={getFullUrl('instagram', data.instagram)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={sprinkles({ display: 'flex', gap: 4, alignItems: 'center' })}>
-                    <IcInstagram20 width={16} height={12} />
-                    <Text tag="b3_m" color="gray6">
-                      {data.instagram}
-                    </Text>
-                  </a>
-
-                  <Text tag="b3_m" color="gray6">
-                    ·
-                  </Text>
-                  <div>
-                    <a
-                      href={getFullUrl('youtube', data.youtube)}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={sprinkles({ display: 'flex', gap: 4, alignItems: 'center' })}>
-                      <IcYoutube20 width={16} height={12} />
-                      <Text tag="b3_m" color="gray6">
-                        {data.youtube}
-                      </Text>
-                    </a>
-                  </div>
-                </div>
-              }
-            />
-            <section>
-              <div
-                className={sprinkles({
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                  padding: 20,
-                })}>
-                <Text tag="b1_sb" color="black">
-                  내 클래스 목록
+        <InfoComponent
+          profileImageUrl={data.profileImage}
+          mainText={<Text tag="b1_sb">{data.nickname}</Text>}
+          subContent={
+            <div className={sprinkles({ display: 'flex', alignItems: 'center', gap: 4 })}>
+              <a
+                href={getFullUrl('instagram', data.instagram)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={sprinkles({ display: 'flex', gap: 4, alignItems: 'center' })}>
+                <IcInstagram20 width={16} height={12} />
+                <Text tag="b3_m" color="gray6">
+                  {data.instagram}
                 </Text>
-                <p>모두 보기</p>
-              </div>
-              {lessonData.lessons.length > 0 ? <TeacherLessons data={lessonData} /> : <EmptyClassList />}
-            </section>
-          </>
-        )}
-      </div>
+              </a>
 
+              <Text tag="b3_m" color="gray6">
+                ·
+              </Text>
+              <div>
+                <a
+                  href={getFullUrl('youtube', data.youtube)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={sprinkles({ display: 'flex', gap: 4, alignItems: 'center' })}>
+                  <IcYoutube20 width={16} height={12} />
+                  <Text tag="b3_m" color="gray6">
+                    {data.youtube}
+                  </Text>
+                </a>
+              </div>
+            </div>
+          }
+        />
+        <section>
+          <div
+            className={sprinkles({
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              padding: 20,
+            })}>
+            <Text tag="b1_sb" color="black">
+              내 클래스 목록
+            </Text>
+            <button className={styles.allButtonStyle} type="button" onClick={handleAllButtonClick}>
+              모두 보기
+            </button>
+          </div>
+          {lessonData.lessons?.length ? <TeacherLessons data={lessonData} /> : <EmptyClassList />}
+        </section>
+      </div>
       <div className={styles.reviewContainerStyle}>
         <div className={sprinkles({ display: 'flex', alignItems: 'center', gap: 4 })}>
           <IcReview width={24} />
