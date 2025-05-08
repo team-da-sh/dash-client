@@ -62,21 +62,26 @@ const TeacherContent = () => {
           mainText={<Text tag="b1_sb">{data.nickname}</Text>}
           subContent={
             <div className={sprinkles({ display: 'flex', alignItems: 'center', gap: 4 })}>
-              <a
-                href={data.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={sprinkles({ display: 'flex', gap: 4, alignItems: 'center' })}>
-                <IcInstagram20 width={16} height={12} />
-                <Text tag="b3_m" color="gray6">
-                  {extractInstaHandleFromUrl(data.instagram)}
-                </Text>
-              </a>
+              {data.instagram && (
+                <a
+                  href={data.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={sprinkles({ display: 'flex', gap: 4, alignItems: 'center' })}>
+                  <IcInstagram20 width={16} height={12} />
+                  <Text tag="b3_m" color="gray6">
+                    {extractInstaHandleFromUrl(data.instagram)}
+                  </Text>
+                </a>
+              )}
 
-              <Text tag="b3_m" color="gray6">
-                ·
-              </Text>
-              <div>
+              {data.instagram && data.youtube && (
+                <Text tag="b3_m" color="gray6">
+                  ·
+                </Text>
+              )}
+
+              {data.youtube && (
                 <a
                   href={data.youtube}
                   target="_blank"
@@ -87,7 +92,7 @@ const TeacherContent = () => {
                     {extractYouTubeHandleFromUrl(data.youtube)}
                   </Text>
                 </a>
-              </div>
+              )}
             </div>
           }
         />
