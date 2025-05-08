@@ -8,13 +8,17 @@ interface InfoComponentPropTypes {
   profileImageUrl: string;
   mainText: React.ReactNode;
   subContent: React.ReactNode;
+  type: string;
 }
 
-const InfoComponent = ({ profileImageUrl, mainText, subContent }: InfoComponentPropTypes) => {
-  // 강사 정보 수정 뷰 완성되면 선생이면 선생 수정 페이지로 가게 수정해줘야함
+const InfoComponent = ({ type, profileImageUrl, mainText, subContent }: InfoComponentPropTypes) => {
   const navigate = useNavigate();
   const handleEditProfileClick = () => {
-    navigate(ROUTES_CONFIG.editProfile.path);
+    if (type === 'student') {
+      navigate(ROUTES_CONFIG.editProfile.path);
+    } else {
+      navigate(ROUTES_CONFIG.instructorRegister.path);
+    }
   };
 
   return (
