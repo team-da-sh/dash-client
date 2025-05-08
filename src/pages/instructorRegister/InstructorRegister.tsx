@@ -1,6 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useQueryClient } from '@tanstack/react-query';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useController, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -29,10 +29,12 @@ import { QUERY_KEYS } from '@/shared/constants/queryKey';
 import { USER_ROLE } from '@/shared/constants/userRole';
 import useImageUploader from '@/shared/hooks/useImageUploader';
 import { setAccessToken, setRefreshToken } from '@/shared/utils/handleToken';
+import useInstructorRegisterForm from './hooks/useInstructorRegisterForm';
 import { instructorRegisterSchema } from './schema/instructorRegisterSchema';
 
 const InstructorRegister = () => {
   const queryClient = useQueryClient();
+  const navigate = useNavigate();
 
   // 강사 등록
   const { mutate: instructorRegisterMutate } = usePostInstructor();
@@ -41,10 +43,6 @@ const InstructorRegister = () => {
   const storageRole = JSON.parse(localStorage.getItem('userRole') || 'null');
   const { mutate: instructorPatchMutate } = usePatchInstructorRegisterInfo();
   const { data: prevInstructorData } = useGetInstructorRegisterInfo(storageRole);
-
-  console.log('data', prevInstructorData);
-
-  const navigate = useNavigate();
 
   const {
     register,
@@ -69,35 +67,20 @@ const InstructorRegister = () => {
     },
   });
 
-  // useEffect(() => {
-  //   console.log('isDirty', isDirty);
-  // }, [isDirty]);
-
-  // useEffect(() => {
-  //   console.log('userRole', userRole);
-  // }, [userRole]);
-
   const { detail, instagram, youtube, educations, experiences, prizes, videoUrls, imageUrls } = watch();
   const { field } = useController({
     name: 'imageUrls',
     control,
   });
 
-  const [isEduNoneChecked, setEduNoneChecked] = useState(false);
-  const [isCareerNoneChecked, setCareerNoneChecked] = useState(false);
-  const [isPrizeNoneChecked, setPrizeNoneChecked] = useState(false);
-
-  const handleEducationCheck = () => {
-    setEduNoneChecked((prev) => !prev);
-  };
-
-  const handleCareerCheck = () => {
-    setCareerNoneChecked((prev) => !prev);
-  };
-
-  const handlePrizeCheck = () => {
-    setPrizeNoneChecked((prev) => !prev);
-  };
+  const {
+    isEduNoneChecked,
+    isCareerNoneChecked,
+    isPrizeNoneChecked,
+    handleEducationCheck,
+    handleCareerCheck,
+    handlePrizeCheck,
+  } = useInstructorRegisterForm();
 
   // 버튼 활성화 조건 체크 함수
   const hasDetailedInfo = () => detail.trim().length >= MIN_INTRODUCTION_LENGTH;
@@ -122,11 +105,16 @@ const InstructorRegister = () => {
     );
   };
 
+  // 이미지 업로드 관련
   const handleImageUploadSuccess = (url: string) => {
     field.onChange(url);
   };
 
-  const { previewImg, imgRef, handleUploaderClick, uploadImgFile } = useImageUploader(handleImageUploadSuccess);
+  const { previewImg, imgRef, handleUploaderClick, uploadImgFile } = useImageUploader(
+    handleImageUploadSuccess,
+    undefined,
+    prevInstructorData?.profileImage
+  );
 
   // form submit 함수
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -164,7 +152,7 @@ const InstructorRegister = () => {
       instructorRegisterMutate(updatedInfo, { onError });
     }
   };
-  // ✅ 데이터 들어오면 초기값 세팅
+
   useEffect(() => {
     if (!prevInstructorData) return;
 
