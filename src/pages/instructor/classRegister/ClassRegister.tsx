@@ -1,5 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useQueryClient } from '@tanstack/react-query';
+import { useEffect } from 'react';
 import { useController, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { useGetLocationList, usePostClassRegisterInfo } from '@/pages/instructor/classRegister/apis/queries';
@@ -63,11 +64,16 @@ const ClassRegister = () => {
     maxReservationCount,
     price,
     detailedAddress,
+    imageUrls,
   } = watch();
   const { field } = useController({
     name: 'imageUrls',
     control,
   });
+
+  useEffect(() => {
+    console.log('imageUrls', imageUrls);
+  }, [imageUrls]);
 
   const handleTextAreaHeight = (e: React.FormEvent<HTMLTextAreaElement>) => {
     const textArea = e.target as HTMLTextAreaElement;
@@ -93,7 +99,7 @@ const ClassRegister = () => {
   };
 
   const {
-    imageUrls,
+    // imageUrls,
 
     selectedTime,
     times,
@@ -128,7 +134,7 @@ const ClassRegister = () => {
 
     if (selectedGenre && selectedLevel) {
       const updatedInfo: ClassRegisterInfoTypes = {
-        imageUrls: [imageUrls.imageUrls],
+        imageUrls: [imageUrls],
         name: className,
         detail: detail,
         videoUrls: [],
