@@ -120,7 +120,7 @@ const ClassRegister = () => {
     handleDefaultPlace,
     setSelectedLocation,
 
-    isButtonActive,
+    // isButtonActive,
   } = useClassRegisterForm();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
