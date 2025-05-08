@@ -39,6 +39,15 @@ const TeacherContent = () => {
   if (!isRegisteredTeacherProfile && myData) {
     return (
       <div className={styles.containerStyle}>
+        {isFirstVisit && (
+          <>
+            <OverlayPage isVisible={isFirstVisit} />
+            <ToolTip title="강사 탭 이용 안내" isOpen={showToolTip} onClose={() => setShowToopTip(false)}>
+              강사 탭을 열어 프로필을 등록하고
+              <br /> 나만의 클래스를 열어보세요!
+            </ToolTip>
+          </>
+        )}
         <div className={styles.topContainerStyle}>
           <UnregisteredTeacher nickname={myData.nickname} />
           <Divider color="gray1" thickness="0.4rem" />
@@ -63,15 +72,6 @@ const TeacherContent = () => {
   return (
     <div className={styles.containerStyle}>
       <div className={styles.topContainerStyle}>
-        {isFirstVisit && (
-          <>
-            <OverlayPage isVisible={isFirstVisit} />
-            <ToolTip title="강사 탭 이용 안내" isOpen={showToolTip} onClose={() => setShowToopTip(false)}>
-              강사 탭을 열어 프로필을 등록하고
-              <br /> 나만의 클래스를 열어보세요!
-            </ToolTip>
-          </>
-        )}
         <InfoComponent
           profileImageUrl={data.profileImage}
           mainText={<Text tag="b1_sb">{data.nickname}</Text>}

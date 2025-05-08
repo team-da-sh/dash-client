@@ -2,12 +2,12 @@ import { style } from '@vanilla-extract/css';
 import { vars } from '@/shared/styles/theme.css';
 
 export const containerStyle = style({
+  position: 'relative',
   display: 'flex',
   flexDirection: 'column',
 });
 
 export const topContainerStyle = style({
-  position: 'relative',
   display: 'flex',
   flexDirection: 'column',
   gap: '2rem',
@@ -25,9 +25,9 @@ export const reviewContainerStyle = style({
 
 export const classButtonStyle = style({
   position: 'fixed',
-  right: '20px',
+  right: '30%',
   bottom: '36px',
-
+  transform: 'translateX(50%)',
   display: 'flex',
   justifyContent: 'center',
   width: 'max-content',
