@@ -13,6 +13,6 @@ export interface ReservationDetailResponseTypes {
       endDateTime: string;
     }[];
   };
-  studentName: string;
-  studentPhoneNumber: string;
+  memberName: string;
+  memberPhoneNumber: string;
 }

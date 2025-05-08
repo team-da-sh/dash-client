@@ -1,5 +1,5 @@
 import type { ReactElement, ReactNode } from 'react';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
 export interface StepProps {
@@ -46,13 +46,16 @@ export const useFunnel = (totalSteps: number, completePath: string, hasCompleteP
     }
   };
 
-  const Step = ({ children }: StepProps) => <>{children}</>;
+  const Step = useCallback(({ children }: StepProps) => <>{children}</>, []);
 
-  const Funnel = ({ children }: FunnelProps) => {
-    const targetStep = children.find((childStep) => childStep.props.name === String(step));
+  const Funnel = useCallback(
+    ({ children }: FunnelProps) => {
+      const targetStep = children.find((childStep) => childStep.props.name === String(step));
 
-    return <>{targetStep}</>;
-  };
+      return <>{targetStep}</>;
+    },
+    [step]
+  );
 
   return { Funnel, Step, setStep, currentStep };
 };

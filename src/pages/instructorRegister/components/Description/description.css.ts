@@ -1,5 +1,8 @@
 import { style } from '@vanilla-extract/css';
 
 export const flexCustomStyle = style({
-  margin: '4.8rem 0 2.8rem 0',
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '0.8rem',
+  padding: '2rem 0 1.6rem 0 ',
 });

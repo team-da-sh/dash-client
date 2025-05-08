@@ -1,7 +1,4 @@
-import { useState, Suspense } from 'react';
 import { useNavigate } from 'react-router-dom';
-import MyPage from '@/pages/home/components/MyPage/MyPage';
-import { overlayActiveStyle, overlayStyle } from '@/pages/home/home.css';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import IcLogoSmallBlack from '@/shared/assets/svg/IcLogoSmallBlack';
 import IcMypageBlack24 from '@/shared/assets/svg/IcMypageBlack24';
@@ -12,7 +9,6 @@ import { headerStyle } from './header.css';
 
 const Header = () => {
   const navigate = useNavigate();
-  const [showMyPage, setShowMyPage] = useState(false);
 
   const handleLogoClick = () => {
     navigate(ROUTES_CONFIG.home.path);
@@ -27,22 +23,12 @@ const Header = () => {
       navigate(ROUTES_CONFIG.login.path);
       return;
     }
-    setShowMyPage(!showMyPage);
-    // navigate(ROUTES_CONFIG.mypage.path); -> mypage 페이지화 작업되면 적용 예정
-  };
 
-  const handleCloseMyPageClick = () => {
-    setShowMyPage(false);
+    navigate(ROUTES_CONFIG.mypage.path);
   };
 
   return (
     <header className={headerStyle}>
-      <div className={`${overlayStyle} ${showMyPage ? overlayActiveStyle : ''}`} />
-      {showMyPage && (
-        <Suspense fallback={<div />}>
-          <MyPage showMyPage={showMyPage} onClose={handleCloseMyPageClick} />
-        </Suspense>
-      )}
       <button onClick={handleLogoClick} aria-label="홈으로 이동">
         <IcLogoSmallBlack width={58} height={20} />
       </button>
