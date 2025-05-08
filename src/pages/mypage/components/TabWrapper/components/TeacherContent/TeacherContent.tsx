@@ -4,9 +4,11 @@ import { useGetMyTeacherInfo, useGetMyLessonThumbnails, useGetMyPage } from '@/p
 import BottomList from '@/pages/mypage/components/BottomList/BottomList';
 import EmptyClassList from '@/pages/mypage/components/TabWrapper/components/TeacherContent/components/EmptyClassList/EmptyClassList';
 import TeacherLessons from '@/pages/mypage/components/TabWrapper/components/TeacherContent/components/TeacherLessons/TeacherLessons';
+import ToolTip from '@/pages/mypage/components/TabWrapper/components/TeacherContent/components/ToolTip/ToolTip';
 import UnregisteredTeacher from '@/pages/mypage/components/TabWrapper/components/TeacherContent/components/UnregisteredTeacher/UnregisteredTeacher';
 import * as styles from '@/pages/mypage/components/TabWrapper/components/TeacherContent/teacherContent.css';
-import { getUserRole } from '@/pages/mypage/utils/storage';
+import { ROLE_KEY, VISIT_KEY } from '@/pages/mypage/constants/storageKey';
+import { getUser } from '@/pages/mypage/utils/storage';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import IcArrowRightSmallGray0732 from '@/shared/assets/svg/IcArrowRightSmallGray0732';
 import IcInstagram20 from '@/shared/assets/svg/IcInstagram20';
@@ -20,7 +22,9 @@ import { sprinkles } from '@/shared/styles/sprinkles.css';
 
 const TeacherContent = () => {
   const navigate = useNavigate();
-  const userRole = getUserRole();
+
+  const userRole = getUser(ROLE_KEY);
+  const isFirstVisit = getUser(VISIT_KEY) === null;
 
   const { data: myData } = useGetMyPage();
   const { data } = useGetMyTeacherInfo();
@@ -56,6 +60,7 @@ const TeacherContent = () => {
 
   return (
     <div className={styles.containerStyle}>
+      {isFirstVisit && <ToolTip />}
       <div className={styles.topContainerStyle}>
         <InfoComponent
           profileImageUrl={data.profileImage}

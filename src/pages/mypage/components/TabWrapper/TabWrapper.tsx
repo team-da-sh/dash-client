@@ -23,6 +23,7 @@ const TabWrapper = () => {
           ))}
         </TabList>
       </div>
+
       <TabPanel isSelected={selected === 'student'}>
         <StudentContent />
       </TabPanel>

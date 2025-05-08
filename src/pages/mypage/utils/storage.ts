@@ -1,8 +1,8 @@
-export const getUserRole = () => {
-  const storedRole = localStorage.getItem('userRole');
+export const getUser = (storageKey: string) => {
+  const storedRole = localStorage.getItem(storageKey);
   return storedRole ? JSON.parse(storedRole) : null;
 };
 
-export const setUserRole = (role: string) => {
-  localStorage.setItem('userRole', JSON.stringify(role));
+export const setUser = (storageKey: string, data: string | boolean) => {
+  localStorage.setItem(storageKey, JSON.stringify(data));
 };
