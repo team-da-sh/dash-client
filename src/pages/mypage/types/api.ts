@@ -18,7 +18,7 @@ export interface MyTeacherInfoResponseTypes {
   youtube: string;
 }
 
-export interface lessons {
+export interface lessonsResponseTypes {
   id: number;
   name: string;
   imageUrl: string;
@@ -28,5 +28,5 @@ export interface lessons {
 }
 
 export interface LessonThumbnailsResponseTypes {
-  lessons: lessons[];
+  lessons: lessonsResponseTypes[];
 }

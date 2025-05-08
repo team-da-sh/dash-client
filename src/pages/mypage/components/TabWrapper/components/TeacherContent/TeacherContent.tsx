@@ -20,14 +20,14 @@ import { sprinkles } from '@/shared/styles/sprinkles.css';
 
 const TeacherContent = () => {
   const navigate = useNavigate();
-  const { data, isLoading } = useGetMyTeacherInfo();
-  const lessonData = useGetMyLessonThumbnails();
+  const { data } = useGetMyTeacherInfo();
+  const { data: lessonData } = useGetMyLessonThumbnails();
+
+  if (!data || !lessonData) {
+    return <div>데이터를 불러오지 못했습니다.</div>;
+  }
 
   const userRole = getUserRole();
-
-  if (!data || isLoading) {
-    return <></>;
-  }
 
   const handleClassButtonClick = () => {
     navigate(ROUTES_CONFIG.classRegister.path);
@@ -93,7 +93,7 @@ const TeacherContent = () => {
                   모두 보기
                 </button>
               </div>
-              {lessonData.data?.lessons?.length ? <TeacherLessons data={lessonData.data} /> : <EmptyClassList />}
+              {lessonData.lessons?.length ? <TeacherLessons data={lessonData} /> : <EmptyClassList />}
             </section>
           </>
         ) : (

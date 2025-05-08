@@ -1,7 +1,5 @@
 import { useGetMyLessonCounts } from '@/pages/mypage/apis/queries';
 import * as styles from '@/pages/mypage/components/TabWrapper/components/StudentContent/components/ClassProgress/ClassProgress.css';
-import { mockMyLessonData } from '@/pages/mypage/components/TabWrapper/mockData';
-import { LessonCountResponseTypes } from '@/pages/mypage/types/api';
 import SvgIcArrowRightGray0614 from '@/shared/assets/svg/IcArrowRightGray0614';
 import Head from '@/shared/components/Head/Head';
 import Text from '@/shared/components/Text/Text';
