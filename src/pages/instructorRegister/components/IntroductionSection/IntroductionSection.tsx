@@ -42,7 +42,6 @@ const IntroductionSection = ({ detail, register, error }: IntroductionSectionPro
   useEffect(() => {
     const textArea = document.querySelector('#introduction-textarea') as HTMLTextAreaElement | null;
     if (textArea) {
-      textArea.style.height = '5.4rem';
       textArea.style.height = `${textArea.scrollHeight}px`;
     }
   }, [detail]);
