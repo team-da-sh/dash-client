@@ -3,7 +3,11 @@ import { useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
 import { useController, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import { useGetInstructorRegisterInfo, usePostInstructor } from '@/pages/instructorRegister/apis/queries';
+import {
+  useGetInstructorRegisterInfo,
+  usePatchInstructorRegisterInfo,
+  usePostInstructor,
+} from '@/pages/instructorRegister/apis/queries';
 import CareerSection from '@/pages/instructorRegister/components/CareerSection/CareerSection';
 import ImageUploadSection from '@/pages/instructorRegister/components/ImageUploadSection/ImageUploadSection';
 import IntroductionSection from '@/pages/instructorRegister/components/IntroductionSection/IntroductionSection';
@@ -27,10 +31,14 @@ import { setAccessToken, setRefreshToken } from '@/shared/utils/handleToken';
 import { instructorRegisterSchema } from './schema/instructorRegisterSchema';
 
 const InstructorRegister = () => {
-  const userRole = JSON.parse(localStorage.getItem('userRole') || 'null');
-
   const queryClient = useQueryClient();
+
+  // 강사 등록
   const { mutate: instructorRegisterMutate } = usePostInstructor();
+
+  // 강사 수정
+  const userRole = JSON.parse(localStorage.getItem('userRole') || 'null');
+  const { mutate: instructorPatchMutate } = usePatchInstructorRegisterInfo();
   const { data: prevInstructorData } = useGetInstructorRegisterInfo();
 
   console.log('data', prevInstructorData);
@@ -135,19 +143,38 @@ const InstructorRegister = () => {
       videoUrls: videoUrls.map((url) => url.value.trim()).filter((value) => value !== ''),
     };
 
-    instructorRegisterMutate(updatedInfo, {
-      onSuccess: (response) => {
-        const { accessToken, refreshToken } = response.data;
+    const onSuccess = (response: any) => {
+      const { accessToken, refreshToken } = response.data;
 
-        setAccessToken(accessToken);
-        setRefreshToken(refreshToken);
+      setAccessToken(accessToken);
+      setRefreshToken(refreshToken);
 
-        queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.ROLE] });
-      },
-      onError: () => {
-        navigate(ROUTES_CONFIG.error.path);
-      },
-    });
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.ROLE] });
+    };
+
+    const onError = () => {
+      navigate(ROUTES_CONFIG.error.path);
+    };
+
+    // instructorRegisterMutate(updatedInfo, {
+    //   onSuccess: (response) => {
+    //     const { accessToken, refreshToken } = response.data;
+
+    //     setAccessToken(accessToken);
+    //     setRefreshToken(refreshToken);
+
+    //     queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.ROLE] });
+    //   },
+    //   onError: () => {
+    //     navigate(ROUTES_CONFIG.error.path);
+    //   },
+    // });
+
+    if (userRole === 'TEACHER') {
+      instructorPatchMutate(updatedInfo, { onSuccess, onError });
+    } else {
+      instructorRegisterMutate(updatedInfo, { onSuccess, onError });
+    }
   };
 
   return (
