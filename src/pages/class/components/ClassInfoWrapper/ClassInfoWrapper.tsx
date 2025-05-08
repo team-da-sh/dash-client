@@ -7,7 +7,7 @@ import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import Head from '@/shared/components/Head/Head';
 import Tag from '@/shared/components/Tag/Tag';
 import Text from '@/shared/components/Text/Text';
-import { levelMapping } from '@/shared/constants/index';
+import { levelMapping, genreMapping } from '@/shared/constants/index';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
 
 const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetailResponseTypes }) => {
@@ -24,6 +24,7 @@ const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetailResponseType
     level,
   } = lessonData;
 
+  const translatedGenre = genreMapping[genre] || genre;
   const dDay = getDDayLabel(remainingDays);
 
   const navigate = useNavigate();
@@ -35,10 +36,10 @@ const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetailResponseType
 
   return (
     <section className={sprinkles({ flexDirection: 'column', pt: 20, pr: 20, pb: 24, pl: 20 })}>
-      <div className={sprinkles({ display: 'flex', mb: 12, gap: 4 })}>
+      <div className={sprinkles({ display: 'flex', mb: 12, gap: 6 })}>
         <Tag type="genre" size="medium">
           <Text tag="b3_m" color="white">
-            {genre}
+            {translatedGenre}
           </Text>
         </Tag>
         <Tag type="deadline" size="medium">

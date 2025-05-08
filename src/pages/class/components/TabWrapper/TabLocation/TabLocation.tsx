@@ -22,7 +22,7 @@ const TabLocation = ({ lessonData }: { lessonData: LessonDetailResponseTypes }) 
           level="h5"
           tag="b1_sb"
           color="gray9"
-          className={sprinkles({ display: 'flex', justifyContent: 'center', pt: 8 })}>
+          className={sprinkles({ display: 'flex', justifyContent: 'center', pt: 30, pb: 48 })}>
           아직 장소가 등록되지 않은 클래스예요
         </Head>
       ) : (

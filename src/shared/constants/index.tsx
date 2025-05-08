@@ -3,6 +3,7 @@ import TabIntro from '@/pages/class/components/TabWrapper/TabIntro/TabIntro';
 import TabLevel from '@/pages/class/components/TabWrapper/TabLevel/TabLevel';
 import TabLocationInfo from '@/pages/class/components/TabWrapper/TabLocation/TabLocation';
 import TabPeriod from '@/pages/class/components/TabWrapper/TabPeriod/TabPeriod';
+import TabReview from '@/pages/class/components/TabWrapper/TabReview/tabReview';
 import type { LessonDetailResponseTypes } from '@/pages/class/types/api';
 import TabEducation from '@/pages/dancer/components/TabWrapper/TabEducation/TabEducation';
 import TabHistory from '@/pages/dancer/components/TabWrapper/TabExperience/TabExperience';
@@ -96,6 +97,11 @@ export const CLASS_TABS = [
     id: 4,
     label: '위치',
     component: (lessonData: LessonDetailResponseTypes) => <TabLocationInfo lessonData={lessonData} />,
+  },
+  {
+    id: 5,
+    label: '리뷰',
+    component: () => <TabReview />,
   },
 ];
 

@@ -20,8 +20,6 @@ export const SuccessPage = () => {
 
   const { mutate: classReservation } = usePostReservation();
 
-  console.log(lessonId);
-
   const confirmPayment = async () => {
     if (!lessonId) {
       alert('수업 ID가 존재하지 않습니다.');

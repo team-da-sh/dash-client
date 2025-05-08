@@ -5,7 +5,7 @@ export const rowScrollStyle = style({
   flexDirection: 'row',
 
   width: '100%',
-  gap: '0.8rem',
+  gap: '2rem',
   paddingBottom: '3.6rem',
 
   overflowX: 'auto',
