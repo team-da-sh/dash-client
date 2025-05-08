@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import { extractInstaHandleFromUrl, extractYouTubeHandleFromUrl } from '@/pages/dancer/utils/url';
 import { useGetMyTeacherInfo, useGetMyLessonThumbnails, useGetMyPage } from '@/pages/mypage/apis/queries';
 import BottomList from '@/pages/mypage/components/BottomList/BottomList';
 import EmptyClassList from '@/pages/mypage/components/TabWrapper/components/TeacherContent/components/EmptyClassList/EmptyClassList';
@@ -68,7 +69,7 @@ const TeacherContent = () => {
                 className={sprinkles({ display: 'flex', gap: 4, alignItems: 'center' })}>
                 <IcInstagram20 width={16} height={12} />
                 <Text tag="b3_m" color="gray6">
-                  {data.instagram}
+                  {extractInstaHandleFromUrl(data.instagram)}
                 </Text>
               </a>
 
@@ -83,7 +84,7 @@ const TeacherContent = () => {
                   className={sprinkles({ display: 'flex', gap: 4, alignItems: 'center' })}>
                   <IcYoutube20 width={16} height={12} />
                   <Text tag="b3_m" color="gray6">
-                    {data.youtube}
+                    {extractYouTubeHandleFromUrl(data.youtube)}
                   </Text>
                 </a>
               </div>

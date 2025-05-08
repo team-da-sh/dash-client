@@ -12,7 +12,7 @@ const ClassContent = () => {
   const { data } = useGetReservationsDetail(lessonId);
 
   if (!data) {
-    return <div>오류 data 없음 </div>;
+    return <div></div>;
   }
 
   const lessonStartDateTime = data.rounds?.[0]?.startDateTime;
