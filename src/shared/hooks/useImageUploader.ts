@@ -2,7 +2,7 @@ import { useRef, useState } from 'react';
 import { useImageMutation } from '@/shared/apis/queries';
 import { resizeImage } from '@/shared/utils/resizeImage';
 
-const useImageUploader = (onSuccess: (url: string) => void, handleDeleteUrl: () => void) => {
+const useImageUploader = (onSuccess: (url: string) => void, handleDeleteUrl?: () => void) => {
   const [previewImg, setPreviewImg] = useState<string>('');
   const [imgFile, setImgFile] = useState<File | undefined>();
   const imgRef = useRef<HTMLInputElement | null>(null);
@@ -48,7 +48,9 @@ const useImageUploader = (onSuccess: (url: string) => void, handleDeleteUrl: () 
     setImgFile(undefined);
     setPreviewImg('');
 
-    handleDeleteUrl();
+    if (handleDeleteUrl) {
+      handleDeleteUrl();
+    }
 
     if (imgRef.current) {
       imgRef.current.value = '';
