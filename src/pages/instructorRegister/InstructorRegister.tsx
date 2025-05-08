@@ -22,6 +22,8 @@ import {
 } from '@/pages/instructorRegister/constants/registerSection';
 import useInstructorRegisterForm from '@/pages/instructorRegister/hooks/useInstructorRegisterForm';
 import * as styles from '@/pages/instructorRegister/instructorRegister.css';
+import { ROLE_KEY } from '@/pages/mypage/constants/storageKey';
+import { setUser } from '@/pages/mypage/utils/storage';
 import { instructorRegisterSchema } from '@/pages/instructorRegister/schema/instructorRegisterSchema';
 import { setUserRole } from '@/pages/mypage/utils/storage';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
@@ -142,11 +144,15 @@ const InstructorRegister = () => {
 
       setAccessToken(accessToken);
       setRefreshToken(refreshToken);
-      setUserRole(USER_ROLE.TEACHER);
+        setUser(ROLE_KEY, USER_ROLE.TEACHER);
+      },
+      onError: () => {
+        navigate(ROUTES_CONFIG.error.path);
+      },
+    });
 
       navigate(ROUTES_CONFIG.instructorRegisterCompletion.path);
 
-      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.ROLE] });
     };
 
     const onError = () => {
