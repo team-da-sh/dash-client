@@ -75,23 +75,23 @@ const TeacherContent = () => {
                 </a>
               )}
 
-              {data.youtube && (
-                <>
-                  <Text tag="b3_m" color="gray6">
-                    ·
-                  </Text>
+              {data.instagram && data.youtube && (
+                <Text tag="b3_m" color="gray6">
+                  ·
+                </Text>
+              )}
 
-                  <a
-                    href={data.youtube}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={sprinkles({ display: 'flex', gap: 4, alignItems: 'center' })}>
-                    <IcYoutube20 width={16} height={12} />
-                    <Text tag="b3_m" color="gray6">
-                      {extractYouTubeHandleFromUrl(data.youtube)}
-                    </Text>
-                  </a>
-                </>
+              {data.youtube && (
+                <a
+                  href={data.youtube}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={sprinkles({ display: 'flex', gap: 4, alignItems: 'center' })}>
+                  <IcYoutube20 width={16} height={12} />
+                  <Text tag="b3_m" color="gray6">
+                    {extractYouTubeHandleFromUrl(data.youtube)}
+                  </Text>
+                </a>
               )}
             </div>
           }
