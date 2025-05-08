@@ -1,9 +1,15 @@
 import ProfileForm from '@/pages/editProfiles/components/ProfileForm/ProfileForm';
-import { mockMyPageData } from '@/pages/mypage/components/TabWrapper/mockData';
+import { useGetMyPage } from '@/pages/mypage/apis/queries';
 import Head from '@/shared/components/Head/Head';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
 
 const EditProfile = () => {
+  const { data } = useGetMyPage();
+
+  if (!data) {
+    return <></>;
+  }
+
   return (
     <main className={sprinkles({ padding: 20 })}>
       <Head level="h2" tag="h6_sb">
@@ -11,10 +17,10 @@ const EditProfile = () => {
       </Head>
       <ProfileForm
         defaultValues={{
-          nickname: mockMyPageData.nickname,
-          name: mockMyPageData.name,
-          phoneNumber: mockMyPageData.phoneNumber,
-          profileImageUrl: mockMyPageData.profileImageUrl,
+          nickname: data.nickname,
+          name: data.name,
+          phoneNumber: data.phoneNumber,
+          profileImageUrl: data.profileImageUrl,
         }}
       />
     </main>

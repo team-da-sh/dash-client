@@ -120,7 +120,7 @@ const ClassRegister = () => {
     handleDefaultPlace,
     setSelectedLocation,
 
-    isButtonActive,
+    // isButtonActive,
   } = useClassRegisterForm();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -209,7 +209,7 @@ const ClassRegister = () => {
           <ClassAmount price={price} register={register} />
         </div>
         <div className={styles.buttonContainerStyle}>
-          <BoxButton type="submit" disabled={!isButtonActive()}>
+          <BoxButton type="submit" disabled={false}>
             완료
           </BoxButton>
         </div>
