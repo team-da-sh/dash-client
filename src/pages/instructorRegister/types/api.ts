@@ -9,7 +9,7 @@ export interface InstructorRegisterRequestTypes {
 }
 
 export interface InstructorRegisterInfoResponseTypes {
-  imageUrls: string[];
+  profileImage: string;
   instagram: string | null;
   youtube: string | null;
   educations: string[];

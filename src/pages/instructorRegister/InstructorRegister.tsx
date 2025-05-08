@@ -1,6 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useQueryClient } from '@tanstack/react-query';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useController, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -53,6 +53,7 @@ const InstructorRegister = () => {
     setFocus,
     control,
     formState: { errors },
+    reset,
   } = useForm({
     resolver: zodResolver(instructorRegisterSchema),
     mode: 'onChange',
@@ -144,7 +145,7 @@ const InstructorRegister = () => {
       videoUrls: videoUrls.map((url) => url.value.trim()).filter((value) => value !== ''),
     };
 
-    const onSuccess = (response: any) => {
+    const onSuccess = (response: { data: { accessToken: string; refreshToken: string } }) => {
       const { accessToken, refreshToken } = response.data;
 
       setAccessToken(accessToken);
@@ -157,26 +158,30 @@ const InstructorRegister = () => {
       navigate(ROUTES_CONFIG.error.path);
     };
 
-    // instructorRegisterMutate(updatedInfo, {
-    //   onSuccess: (response) => {
-    //     const { accessToken, refreshToken } = response.data;
-
-    //     setAccessToken(accessToken);
-    //     setRefreshToken(refreshToken);
-
-    //     queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.ROLE] });
-    //   },
-    //   onError: () => {
-    //     navigate(ROUTES_CONFIG.error.path);
-    //   },
-    // });
-
     if (storageRole === USER_ROLE.TEACHER) {
       instructorPatchMutate(updatedInfo, { onSuccess, onError });
     } else {
-      instructorRegisterMutate(updatedInfo, { onSuccess, onError });
+      instructorRegisterMutate(updatedInfo, { onError });
     }
   };
+  // ✅ 데이터 들어오면 초기값 세팅
+  useEffect(() => {
+    if (!prevInstructorData) return;
+
+    reset({
+      imageUrls: prevInstructorData.profileImage || '',
+      instagram: prevInstructorData.instagram || '',
+      youtube: prevInstructorData.youtube || '',
+      educations: prevInstructorData.educations?.length ? prevInstructorData.educations : [''],
+      experiences: prevInstructorData.experiences?.length ? prevInstructorData.experiences : [''],
+      prizes: prevInstructorData.prizes?.length ? prevInstructorData.prizes : [''],
+      detail: prevInstructorData.detail || '',
+      videoUrls:
+        prevInstructorData.videoUrls?.length > 0
+          ? prevInstructorData.videoUrls.map((url: string) => ({ value: url }))
+          : [{ value: '' }],
+    });
+  }, [prevInstructorData, reset]);
 
   return (
     <>
