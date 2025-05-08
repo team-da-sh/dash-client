@@ -26,6 +26,7 @@ import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import Divider from '@/shared/components/Divider/Divider';
 import Head from '@/shared/components/Head/Head';
 import { QUERY_KEYS } from '@/shared/constants/queryKey';
+import { USER_ROLE } from '@/shared/constants/userRole';
 import useImageUploader from '@/shared/hooks/useImageUploader';
 import { setAccessToken, setRefreshToken } from '@/shared/utils/handleToken';
 import { instructorRegisterSchema } from './schema/instructorRegisterSchema';
@@ -37,9 +38,9 @@ const InstructorRegister = () => {
   const { mutate: instructorRegisterMutate } = usePostInstructor();
 
   // 강사 수정
-  const userRole = JSON.parse(localStorage.getItem('userRole') || 'null');
+  const storageRole = JSON.parse(localStorage.getItem('userRole') || 'null');
   const { mutate: instructorPatchMutate } = usePatchInstructorRegisterInfo();
-  const { data: prevInstructorData } = useGetInstructorRegisterInfo(userRole);
+  const { data: prevInstructorData } = useGetInstructorRegisterInfo(storageRole);
 
   console.log('data', prevInstructorData);
 
@@ -51,7 +52,7 @@ const InstructorRegister = () => {
     setValue,
     setFocus,
     control,
-    formState: { errors, isDirty },
+    formState: { errors },
   } = useForm({
     resolver: zodResolver(instructorRegisterSchema),
     mode: 'onChange',
@@ -170,7 +171,7 @@ const InstructorRegister = () => {
     //   },
     // });
 
-    if (userRole === 'TEACHER') {
+    if (storageRole === USER_ROLE.TEACHER) {
       instructorPatchMutate(updatedInfo, { onSuccess, onError });
     } else {
       instructorRegisterMutate(updatedInfo, { onSuccess, onError });
@@ -184,7 +185,7 @@ const InstructorRegister = () => {
           <div className={styles.sectionWrapperStyle}>
             <div className={styles.titleStyle}>
               <Head level="h1" tag="h6_sb">
-                {`강사 프로필 ${userRole === 'TEACHER' ? '수정' : '등록'}`}
+                {`강사 프로필 ${storageRole === USER_ROLE.TEACHER ? '수정' : '등록'}`}
               </Head>
             </div>
 
@@ -228,7 +229,7 @@ const InstructorRegister = () => {
 
         <div className={styles.buttonContainerStyle}>
           <BoxButton variant="primary" isDisabled={!buttonActive()} type="submit">
-            등록
+            {storageRole === USER_ROLE.TEACHER ? '저장' : '등록'}
           </BoxButton>
         </div>
       </form>

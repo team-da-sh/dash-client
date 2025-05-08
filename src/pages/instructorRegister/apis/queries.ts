@@ -11,6 +11,7 @@ import type {
   InstructorRegisterRequestTypes,
 } from '@/pages/instructorRegister/types/api';
 import { QUERY_KEYS } from '@/shared/constants/queryKey';
+import { USER_ROLE } from '@/shared/constants/userRole';
 
 export const usePostInstructor = () => {
   return useMutation({
@@ -24,7 +25,7 @@ export const useGetInstructorRegisterInfo = (
   return useQuery({
     queryKey: [QUERY_KEYS.TEACHER_DETAIL_INTRODUCTION],
     queryFn: () => getInstructorRegisterInfo(),
-    enabled: userRole === 'TEACHER',
+    enabled: userRole === USER_ROLE.TEACHER,
   });
 };
 
