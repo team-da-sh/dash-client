@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { extractInstaHandleFromUrl, extractYouTubeHandleFromUrl } from '@/pages/dancer/utils/url';
 import { useGetMyTeacherInfo, useGetMyLessonThumbnails, useGetMyPage } from '@/pages/mypage/apis/queries';
@@ -5,6 +6,7 @@ import BottomList from '@/pages/mypage/components/BottomList/BottomList';
 import EmptyClassList from '@/pages/mypage/components/TabWrapper/components/TeacherContent/components/EmptyClassList/EmptyClassList';
 import TeacherLessons from '@/pages/mypage/components/TabWrapper/components/TeacherContent/components/TeacherLessons/TeacherLessons';
 import ToolTip from '@/pages/mypage/components/TabWrapper/components/TeacherContent/components/ToolTip/ToolTip';
+import OverlayPage from '@/pages/mypage/components/TabWrapper/components/TeacherContent/components/ToolTip/components/OverlayPage';
 import UnregisteredTeacher from '@/pages/mypage/components/TabWrapper/components/TeacherContent/components/UnregisteredTeacher/UnregisteredTeacher';
 import * as styles from '@/pages/mypage/components/TabWrapper/components/TeacherContent/teacherContent.css';
 import { ROLE_KEY, VISIT_KEY } from '@/pages/mypage/constants/storageKey';
@@ -25,10 +27,10 @@ const TeacherContent = () => {
 
   const userRole = getUser(ROLE_KEY);
   const isFirstVisit = getUser(VISIT_KEY) === null;
+  const [showToolTip, setShowToopTip] = useState(isFirstVisit);
 
   const { data: myData } = useGetMyPage();
   const { data } = useGetMyTeacherInfo();
-  console.log(data);
 
   const { data: lessonData } = useGetMyLessonThumbnails();
 
@@ -60,8 +62,16 @@ const TeacherContent = () => {
 
   return (
     <div className={styles.containerStyle}>
-      {isFirstVisit && <ToolTip />}
       <div className={styles.topContainerStyle}>
+        {isFirstVisit && (
+          <>
+            <OverlayPage isVisible={isFirstVisit} />
+            <ToolTip title="강사 탭 이용 안내" isOpen={showToolTip} onClose={() => setShowToopTip(false)}>
+              강사 탭을 열어 프로필을 등록하고
+              <br /> 나만의 클래스를 열어보세요!
+            </ToolTip>
+          </>
+        )}
         <InfoComponent
           profileImageUrl={data.profileImage}
           mainText={<Text tag="b1_sb">{data.nickname}</Text>}

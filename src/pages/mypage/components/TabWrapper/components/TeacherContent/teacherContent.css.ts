@@ -7,6 +7,7 @@ export const containerStyle = style({
 });
 
 export const topContainerStyle = style({
+  position: 'relative',
   display: 'flex',
   flexDirection: 'column',
   gap: '2rem',

@@ -12,15 +12,17 @@ const TabWrapper = () => {
     <section>
       <div className={styles.tabPanelStyle}>
         <TabList>
-          {MYPAGE_TABS.map((tab) => (
-            <TabButton
-              key={tab.key}
-              colorScheme="plain"
-              isSelected={selected === tab.key}
-              onClick={() => setSelected(tab.key)}>
-              {tab.label}
-            </TabButton>
-          ))}
+          {MYPAGE_TABS.map((tab) => {
+            return (
+              <TabButton
+                key={tab.key}
+                colorScheme="plain"
+                isSelected={selected === tab.key}
+                onClick={() => setSelected(tab.key)}>
+                {tab.label}
+              </TabButton>
+            );
+          })}
         </TabList>
       </div>
 
