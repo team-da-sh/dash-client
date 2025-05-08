@@ -139,6 +139,8 @@ const InstructorRegister = () => {
       setAccessToken(accessToken);
       setRefreshToken(refreshToken);
 
+      navigate(ROUTES_CONFIG.instructorRegisterCompletion.path);
+
       queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.ROLE] });
     };
 
@@ -147,9 +149,9 @@ const InstructorRegister = () => {
     };
 
     if (storageRole === USER_ROLE.TEACHER) {
-      instructorPatchMutate(updatedInfo, { onSuccess, onError });
+      instructorPatchMutate(updatedInfo, { onError });
     } else {
-      instructorRegisterMutate(updatedInfo, { onError });
+      instructorRegisterMutate(updatedInfo, { onSuccess, onError });
     }
   };
 
