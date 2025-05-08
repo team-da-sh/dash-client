@@ -1,9 +1,9 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useQueryClient } from '@tanstack/react-query';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useController, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import { usePostInstructor } from '@/pages/instructorRegister/apis/queries';
+import { useGetInstructorRegisterInfo, usePostInstructor } from '@/pages/instructorRegister/apis/queries';
 import CareerSection from '@/pages/instructorRegister/components/CareerSection/CareerSection';
 import ImageUploadSection from '@/pages/instructorRegister/components/ImageUploadSection/ImageUploadSection';
 import IntroductionSection from '@/pages/instructorRegister/components/IntroductionSection/IntroductionSection';
@@ -20,14 +20,21 @@ import * as styles from '@/pages/instructorRegister/instructorRegister.css';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import Divider from '@/shared/components/Divider/Divider';
+import Head from '@/shared/components/Head/Head';
 import { QUERY_KEYS } from '@/shared/constants/queryKey';
 import useImageUploader from '@/shared/hooks/useImageUploader';
 import { setAccessToken, setRefreshToken } from '@/shared/utils/handleToken';
 import { instructorRegisterSchema } from './schema/instructorRegisterSchema';
 
 const InstructorRegister = () => {
+  const userRole = JSON.parse(localStorage.getItem('userRole') || 'null');
+
   const queryClient = useQueryClient();
   const { mutate: instructorRegisterMutate } = usePostInstructor();
+  const { data: prevInstructorData } = useGetInstructorRegisterInfo('1');
+
+  console.log('data', prevInstructorData);
+
   const navigate = useNavigate();
 
   const {
@@ -52,9 +59,13 @@ const InstructorRegister = () => {
     },
   });
 
-  useEffect(() => {
-    console.log('isDirty', isDirty);
-  }, [isDirty]);
+  // useEffect(() => {
+  //   console.log('isDirty', isDirty);
+  // }, [isDirty]);
+
+  // useEffect(() => {
+  //   console.log('userRole', userRole);
+  // }, [userRole]);
 
   const { detail, instagram, youtube, educations, experiences, prizes, videoUrls, imageUrls } = watch();
   const { field } = useController({
@@ -94,10 +105,6 @@ const InstructorRegister = () => {
     return educationValid && careerValid && prizeValid;
   };
   const hasVideoUrls = () => videoUrls.some((url) => url.value.trim().length >= MIN_VIDEO_INPUT);
-
-  useEffect(() => {
-    console.log('videoUrls', videoUrls);
-  }, [videoUrls]);
 
   const buttonActive = () => {
     return (
@@ -148,6 +155,12 @@ const InstructorRegister = () => {
       <form onSubmit={handleSubmit}>
         <div className={styles.containerStyle}>
           <div className={styles.sectionWrapperStyle}>
+            <div className={styles.titleStyle}>
+              <Head level="h1" tag="h6_sb">
+                {`강사 프로필 ${userRole === 'TEACHER' ? '수정' : '등록'}`}
+              </Head>
+            </div>
+
             <ImageUploadSection
               imgRef={imgRef}
               previewImg={previewImg}

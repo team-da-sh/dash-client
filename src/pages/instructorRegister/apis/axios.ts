@@ -7,3 +7,10 @@ export const postInstructorRegisterInfo = async (infoData: InstructorRegisterReq
 
   return response;
 };
+
+export const getInstructorRegisterInfo = async (teacherId: string) => {
+  const url = `${API_URL.TEACHER_DETAIL_INTRODUCTION}/${teacherId}`;
+
+  const { data } = await instance.get(url);
+  return data;
+};
