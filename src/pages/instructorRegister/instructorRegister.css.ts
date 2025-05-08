@@ -9,6 +9,13 @@ export const containerStyle = style({
   paddingBottom: '10.2rem',
 });
 
+export const titleStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '0.8rem',
+  padding: '2rem 0 1.6rem 0 ',
+});
+
 export const sectionWrapperStyle = style({
   display: 'flex',
   flexDirection: 'column',

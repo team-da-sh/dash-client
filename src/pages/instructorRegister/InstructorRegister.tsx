@@ -1,8 +1,13 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useEffect, useState } from 'react';
+import { useQueryClient } from '@tanstack/react-query';
+import { useEffect } from 'react';
 import { useController, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import { usePostInstructor } from '@/pages/instructorRegister/apis/queries';
+import {
+  useGetInstructorRegisterInfo,
+  usePatchInstructorRegisterInfo,
+  usePostInstructor,
+} from '@/pages/instructorRegister/apis/queries';
 import CareerSection from '@/pages/instructorRegister/components/CareerSection/CareerSection';
 import ImageUploadSection from '@/pages/instructorRegister/components/ImageUploadSection/ImageUploadSection';
 import IntroductionSection from '@/pages/instructorRegister/components/IntroductionSection/IntroductionSection';
@@ -15,18 +20,30 @@ import {
   MIN_PRIZE_INPUT_COUNT,
   MIN_VIDEO_INPUT,
 } from '@/pages/instructorRegister/constants/registerSection';
+import useInstructorRegisterForm from '@/pages/instructorRegister/hooks/useInstructorRegisterForm';
 import * as styles from '@/pages/instructorRegister/instructorRegister.css';
+import { instructorRegisterSchema } from '@/pages/instructorRegister/schema/instructorRegisterSchema';
 import { setUserRole } from '@/pages/mypage/utils/storage';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import Divider from '@/shared/components/Divider/Divider';
+import Head from '@/shared/components/Head/Head';
+import { QUERY_KEYS } from '@/shared/constants/queryKey';
+import { USER_ROLE } from '@/shared/constants/userRole';
 import useImageUploader from '@/shared/hooks/useImageUploader';
 import { setAccessToken, setRefreshToken } from '@/shared/utils/handleToken';
-import { instructorRegisterSchema } from './schema/instructorRegisterSchema';
 
 const InstructorRegister = () => {
-  const { mutate: instructorRegisterMutate } = usePostInstructor();
+  const queryClient = useQueryClient();
   const navigate = useNavigate();
+
+  // 강사 등록
+  const { mutate: instructorRegisterMutate } = usePostInstructor();
+
+  // 강사 수정
+  const storageRole = JSON.parse(localStorage.getItem('userRole') || 'null');
+  const { mutate: instructorPatchMutate } = usePatchInstructorRegisterInfo();
+  const { data: prevInstructorData } = useGetInstructorRegisterInfo(storageRole);
 
   const {
     register,
@@ -34,7 +51,8 @@ const InstructorRegister = () => {
     setValue,
     setFocus,
     control,
-    formState: { errors, isDirty },
+    formState: { errors },
+    reset,
   } = useForm({
     resolver: zodResolver(instructorRegisterSchema),
     mode: 'onChange',
@@ -50,31 +68,20 @@ const InstructorRegister = () => {
     },
   });
 
-  useEffect(() => {
-    console.log('isDirty', isDirty);
-  }, [isDirty]);
-
   const { detail, instagram, youtube, educations, experiences, prizes, videoUrls, imageUrls } = watch();
   const { field } = useController({
     name: 'imageUrls',
     control,
   });
 
-  const [isEduNoneChecked, setEduNoneChecked] = useState(false);
-  const [isCareerNoneChecked, setCareerNoneChecked] = useState(false);
-  const [isPrizeNoneChecked, setPrizeNoneChecked] = useState(false);
-
-  const handleEducationCheck = () => {
-    setEduNoneChecked((prev) => !prev);
-  };
-
-  const handleCareerCheck = () => {
-    setCareerNoneChecked((prev) => !prev);
-  };
-
-  const handlePrizeCheck = () => {
-    setPrizeNoneChecked((prev) => !prev);
-  };
+  const {
+    isEduNoneChecked,
+    isCareerNoneChecked,
+    isPrizeNoneChecked,
+    handleEducationCheck,
+    handleCareerCheck,
+    handlePrizeCheck,
+  } = useInstructorRegisterForm();
 
   // 버튼 활성화 조건 체크 함수
   const hasDetailedInfo = () => detail.trim().length >= MIN_INTRODUCTION_LENGTH;
@@ -93,21 +100,22 @@ const InstructorRegister = () => {
   };
   const hasVideoUrls = () => videoUrls.some((url) => url.value.trim().length >= MIN_VIDEO_INPUT);
 
-  useEffect(() => {
-    console.log('videoUrls', videoUrls);
-  }, [videoUrls]);
-
   const buttonActive = () => {
     return (
       !errors.detail && hasImage() && hasSocialId() && hasDancerBackground() && hasVideoUrls() && hasDetailedInfo()
     );
   };
 
+  // 이미지 업로드 관련
   const handleImageUploadSuccess = (url: string) => {
     field.onChange(url);
   };
 
-  const { previewImg, imgRef, handleUploaderClick, uploadImgFile } = useImageUploader(handleImageUploadSuccess);
+  const { previewImg, imgRef, handleUploaderClick, uploadImgFile } = useImageUploader(
+    handleImageUploadSuccess,
+    undefined,
+    prevInstructorData?.profileImage
+  );
 
   // form submit 함수
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -126,26 +134,58 @@ const InstructorRegister = () => {
       videoUrls: videoUrls.map((url) => url.value.trim()).filter((value) => value !== ''),
     };
 
-    instructorRegisterMutate(updatedInfo, {
-      onSuccess: (response) => {
-        const { accessToken, refreshToken } = response.data;
+    const onSuccess = (response: { data: { accessToken: string; refreshToken: string } }) => {
+      const { accessToken, refreshToken } = response.data;
 
-        setAccessToken(accessToken);
-        setRefreshToken(refreshToken);
+      setAccessToken(accessToken);
+      setRefreshToken(refreshToken);
+      setUserRole(USER_ROLE.TEACHER);
 
-        setUserRole('TEACHER');
-      },
-      onError: () => {
-        navigate(ROUTES_CONFIG.error.path);
-      },
-    });
+      navigate(ROUTES_CONFIG.instructorRegisterCompletion.path);
+
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.ROLE] });
+    };
+
+    const onError = () => {
+      navigate(ROUTES_CONFIG.error.path);
+    };
+
+    if (storageRole === USER_ROLE.TEACHER) {
+      instructorPatchMutate(updatedInfo, { onError });
+    } else {
+      instructorRegisterMutate(updatedInfo, { onSuccess, onError });
+    }
   };
+
+  useEffect(() => {
+    if (!prevInstructorData) return;
+
+    reset({
+      imageUrls: prevInstructorData.profileImage || '',
+      instagram: prevInstructorData.instagram || '',
+      youtube: prevInstructorData.youtube || '',
+      educations: prevInstructorData.educations?.length ? prevInstructorData.educations : [''],
+      experiences: prevInstructorData.experiences?.length ? prevInstructorData.experiences : [''],
+      prizes: prevInstructorData.prizes?.length ? prevInstructorData.prizes : [''],
+      detail: prevInstructorData.detail || '',
+      videoUrls:
+        prevInstructorData.videoUrls?.length > 0
+          ? prevInstructorData.videoUrls.map((url: string) => ({ value: url }))
+          : [{ value: '' }],
+    });
+  }, [prevInstructorData, reset]);
 
   return (
     <>
       <form onSubmit={handleSubmit}>
         <div className={styles.containerStyle}>
           <div className={styles.sectionWrapperStyle}>
+            <div className={styles.titleStyle}>
+              <Head level="h1" tag="h6_sb">
+                {`강사 프로필 ${storageRole === USER_ROLE.TEACHER ? '수정' : '등록'}`}
+              </Head>
+            </div>
+
             <ImageUploadSection
               imgRef={imgRef}
               previewImg={previewImg}
@@ -186,7 +226,7 @@ const InstructorRegister = () => {
 
         <div className={styles.buttonContainerStyle}>
           <BoxButton variant="primary" isDisabled={!buttonActive()} type="submit">
-            등록
+            {storageRole === USER_ROLE.TEACHER ? '저장' : '등록'}
           </BoxButton>
         </div>
       </form>

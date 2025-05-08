@@ -1,4 +1,3 @@
-import Description from '@/pages/instructorRegister/components/Description/Description';
 import {
   icCameraStyle,
   inputStyle,
@@ -23,7 +22,6 @@ const ImageUploadSection = ({
 }: ImageUploadSectionPropTypes) => {
   return (
     <section className={sprinkles({ display: 'flex', flexDirection: 'column' })}>
-      <Description title="강사 이미지 등록" />
       <div
         className={previewImgStyle}
         style={previewImg ? { backgroundImage: `url(${previewImg})` } : { backgroundImage: `url(${defaultProfile})` }}
