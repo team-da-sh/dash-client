@@ -1,4 +1,3 @@
-import type { UseQueryOptions } from '@tanstack/react-query';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import queryClient from '@/queryClient';
 import { postImage, postRole } from '@/shared/apis/axios';
@@ -14,10 +13,9 @@ export const useImageMutation = () => {
   });
 };
 
-export const useGetRole = (options?: Partial<UseQueryOptions<RoleNameResponseTypes>>) => {
+export const useGetRole = () => {
   return useQuery<RoleNameResponseTypes>({
     queryKey: [QUERY_KEYS.AUTH_ROLE],
     queryFn: postRole,
-    ...options,
   });
 };

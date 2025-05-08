@@ -18,7 +18,6 @@ import ClassSchedule from '@/pages/instructor/classRegister/components/ClassSche
 import { useClassRegisterForm } from '@/pages/instructor/classRegister/hooks/useClassRegisterForm';
 import { classRegisterSchema } from '@/pages/instructor/classRegister/schema/classRegisterSchema';
 import type { ClassRegisterInfoTypes } from '@/pages/instructor/classRegister/types/api';
-import { buttonContainerStyle } from '@/pages/instructorRegister/instructorRegister.css';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import { genreEngMapping, levelEngMapping } from '@/shared/constants';
@@ -144,6 +143,7 @@ const ClassRegister = () => {
           navigate(ROUTES_CONFIG.classRegisterCompletion.path);
         },
         onError: () => {
+          navigate(ROUTES_CONFIG.error.path);
           navigate(ROUTES_CONFIG.error.path);
         },
       });

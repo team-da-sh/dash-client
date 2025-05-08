@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { usePostOnboard } from '@/pages/onboarding/apis/queries';
 import FinishStep from '@/pages/onboarding/components/FinishStep/FinishStep';
 import InfoStep from '@/pages/onboarding/components/InfoStep/InfoStep';
+import OnboardingHeader from '@/pages/onboarding/components/OnboardingHeader/OnboardingHeader';
 import ProfileStep from '@/pages/onboarding/components/ProfileStep/ProfileStep';
 import SubmitButton from '@/pages/onboarding/components/SubmitButton/SubmitButton';
 import { FINAL_ONBOARDING_STEP } from '@/pages/onboarding/constants';
@@ -65,6 +66,7 @@ const Onboarding = () => {
 
   return (
     <form className={containerStyle} onSubmit={handleOnboardSubmit}>
+      <OnboardingHeader />
       <div className={bodyWrapperStyle}>
         <Funnel>
           <Step name="1">

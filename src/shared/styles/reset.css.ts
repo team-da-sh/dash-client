@@ -29,7 +29,6 @@ globalStyle('html', {
 /* Set default body styles */
 globalStyle('body', {
   lineHeight: '1.5',
-  fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
   textRendering: 'optimizeLegibility',
   WebkitFontSmoothing: 'antialiased',
   MozOsxFontSmoothing: 'grayscale',
