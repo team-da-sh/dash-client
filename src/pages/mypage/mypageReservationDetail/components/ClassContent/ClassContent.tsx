@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import { useGetReservationsDetail } from '@/pages/mypage/mypageReservationDetail/apis/queries';
+import { useGetReservationsDetail } from '@/pages/mypage/components/mypageReservationDetail/apis/queries';
 import ClassInfo from '@/pages/reservation/components/ClassInfo/ClassInfo';
 import Text from '@/shared/components/Text/Text';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
@@ -15,8 +15,8 @@ const ClassContent = () => {
     return <div>오류 data 없음 </div>;
   }
 
-  const lessonStartDateTime = data.rounds[0]?.startDateTime;
-  const lessonEndDateTime = data.rounds[0]?.endDateTime;
+  const lessonStartDateTime = data.rounds?.[0]?.startDateTime;
+  const lessonEndDateTime = data.rounds?.[0]?.endDateTime;
 
   const { status } = getClassStatus(lessonStartDateTime, lessonEndDateTime);
 

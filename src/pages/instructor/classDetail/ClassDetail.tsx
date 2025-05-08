@@ -51,9 +51,12 @@ const ClassDetail = () => {
             신청한 수강생 ({lessonData?.studentCount ?? 0})
           </Text>
           <div className={styles.studentCardWrapperStyle}>
-            {[...(lessonData?.students ?? [])].reverse().map((students, index) => (
-              <StudentCard key={index} students={students} index={index} />
-            ))}
+            {(lessonData?.students ?? [])
+              .slice()
+              .reverse()
+              .map((students, index) => (
+                <StudentCard key={index} students={students} index={index} />
+              ))}
           </div>
         </section>
       </div>
