@@ -20,7 +20,10 @@ import {
   MIN_PRIZE_INPUT_COUNT,
   MIN_VIDEO_INPUT,
 } from '@/pages/instructorRegister/constants/registerSection';
+import useInstructorRegisterForm from '@/pages/instructorRegister/hooks/useInstructorRegisterForm';
 import * as styles from '@/pages/instructorRegister/instructorRegister.css';
+import { instructorRegisterSchema } from '@/pages/instructorRegister/schema/instructorRegisterSchema';
+import { setUserRole } from '@/pages/mypage/utils/storage';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import Divider from '@/shared/components/Divider/Divider';
@@ -29,8 +32,6 @@ import { QUERY_KEYS } from '@/shared/constants/queryKey';
 import { USER_ROLE } from '@/shared/constants/userRole';
 import useImageUploader from '@/shared/hooks/useImageUploader';
 import { setAccessToken, setRefreshToken } from '@/shared/utils/handleToken';
-import useInstructorRegisterForm from './hooks/useInstructorRegisterForm';
-import { instructorRegisterSchema } from './schema/instructorRegisterSchema';
 
 const InstructorRegister = () => {
   const queryClient = useQueryClient();
@@ -138,6 +139,7 @@ const InstructorRegister = () => {
 
       setAccessToken(accessToken);
       setRefreshToken(refreshToken);
+      setUserRole(USER_ROLE.TEACHER);
 
       navigate(ROUTES_CONFIG.instructorRegisterCompletion.path);
 
