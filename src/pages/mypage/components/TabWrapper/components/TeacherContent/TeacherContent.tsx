@@ -1,12 +1,12 @@
 import { useNavigate } from 'react-router-dom';
-import { useGetMyTeacherInfo, useGetMyLessonThumbnails } from '@/pages/mypage/apis/queries';
+import { extractInstaHandleFromUrl, extractYouTubeHandleFromUrl } from '@/pages/dancer/utils/url';
+import { useGetMyTeacherInfo, useGetMyLessonThumbnails, useGetMyPage } from '@/pages/mypage/apis/queries';
 import BottomList from '@/pages/mypage/components/BottomList/BottomList';
 import EmptyClassList from '@/pages/mypage/components/TabWrapper/components/TeacherContent/components/EmptyClassList/EmptyClassList';
 import TeacherLessons from '@/pages/mypage/components/TabWrapper/components/TeacherContent/components/TeacherLessons/TeacherLessons';
 import UnregisteredTeacher from '@/pages/mypage/components/TabWrapper/components/TeacherContent/components/UnregisteredTeacher/UnregisteredTeacher';
 import * as styles from '@/pages/mypage/components/TabWrapper/components/TeacherContent/teacherContent.css';
 import { getUserRole } from '@/pages/mypage/utils/storage';
-import { getFullUrl } from '@/pages/mypage/utils/url';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import IcArrowRightSmallGray0732 from '@/shared/assets/svg/IcArrowRightSmallGray0732';
 import IcInstagram20 from '@/shared/assets/svg/IcInstagram20';
@@ -22,16 +22,19 @@ const TeacherContent = () => {
   const navigate = useNavigate();
   const userRole = getUserRole();
 
+  const { data: myData } = useGetMyPage();
   const { data } = useGetMyTeacherInfo();
+  console.log(data);
+
   const { data: lessonData } = useGetMyLessonThumbnails();
 
   let isRegisteredTeacherProfile = userRole === 'TEACHER';
 
-  if (!isRegisteredTeacherProfile) {
+  if (!isRegisteredTeacherProfile && myData) {
     return (
       <div className={styles.containerStyle}>
         <div className={styles.topContainerStyle}>
-          <UnregisteredTeacher nickname="" />
+          <UnregisteredTeacher nickname={myData.nickname} />
           <Divider color="gray1" thickness="0.4rem" />
         </div>
         <BottomList />
@@ -48,7 +51,7 @@ const TeacherContent = () => {
   };
 
   if (!data || !lessonData) {
-    return <div>데이터를 불러오지 못했습니다.</div>;
+    return <div></div>;
   }
 
   return (
@@ -60,13 +63,13 @@ const TeacherContent = () => {
           subContent={
             <div className={sprinkles({ display: 'flex', alignItems: 'center', gap: 4 })}>
               <a
-                href={getFullUrl('instagram', data.instagram)}
+                href={data.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
                 className={sprinkles({ display: 'flex', gap: 4, alignItems: 'center' })}>
                 <IcInstagram20 width={16} height={12} />
                 <Text tag="b3_m" color="gray6">
-                  {data.instagram}
+                  {extractInstaHandleFromUrl(data.instagram)}
                 </Text>
               </a>
 
@@ -75,13 +78,13 @@ const TeacherContent = () => {
               </Text>
               <div>
                 <a
-                  href={getFullUrl('youtube', data.youtube)}
+                  href={data.youtube}
                   target="_blank"
                   rel="noopener noreferrer"
                   className={sprinkles({ display: 'flex', gap: 4, alignItems: 'center' })}>
                   <IcYoutube20 width={16} height={12} />
                   <Text tag="b3_m" color="gray6">
-                    {data.youtube}
+                    {extractYouTubeHandleFromUrl(data.youtube)}
                   </Text>
                 </a>
               </div>
