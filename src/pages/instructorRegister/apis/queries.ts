@@ -14,11 +14,9 @@ export const usePostInstructor = () => {
   });
 };
 
-export const useGetInstructorRegisterInfo = (
-  teacherId: string
-): UseQueryResult<InstructorRegisterInfoResponseTypes, AxiosError> => {
+export const useGetInstructorRegisterInfo = (): UseQueryResult<InstructorRegisterInfoResponseTypes, AxiosError> => {
   return useQuery({
     queryKey: [QUERY_KEYS.TEACHER_DETAIL_INTRODUCTION],
-    queryFn: () => getInstructorRegisterInfo(teacherId),
+    queryFn: () => getInstructorRegisterInfo(),
   });
 };
