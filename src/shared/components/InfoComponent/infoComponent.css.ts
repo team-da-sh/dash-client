@@ -15,6 +15,7 @@ export const imgStyle = style({
   width: '6rem',
   height: '6rem',
 
+  objectFit: 'cover',
   borderRadius: '68.75px',
   border: `0.833px solid ${vars.colors.gray04}`,
 });

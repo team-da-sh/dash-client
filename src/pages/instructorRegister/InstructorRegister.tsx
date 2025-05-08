@@ -1,5 +1,4 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useQueryClient } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 import { useController, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
@@ -17,16 +16,15 @@ import {
   MIN_VIDEO_INPUT,
 } from '@/pages/instructorRegister/constants/registerSection';
 import * as styles from '@/pages/instructorRegister/instructorRegister.css';
+import { setUserRole } from '@/pages/mypage/utils/storage';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import Divider from '@/shared/components/Divider/Divider';
-import { QUERY_KEYS } from '@/shared/constants/queryKey';
 import useImageUploader from '@/shared/hooks/useImageUploader';
 import { setAccessToken, setRefreshToken } from '@/shared/utils/handleToken';
 import { instructorRegisterSchema } from './schema/instructorRegisterSchema';
 
 const InstructorRegister = () => {
-  const queryClient = useQueryClient();
   const { mutate: instructorRegisterMutate } = usePostInstructor();
   const navigate = useNavigate();
 
@@ -135,7 +133,7 @@ const InstructorRegister = () => {
         setAccessToken(accessToken);
         setRefreshToken(refreshToken);
 
-        queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.ROLE] });
+        setUserRole('TEACHER');
       },
       onError: () => {
         navigate(ROUTES_CONFIG.error.path);

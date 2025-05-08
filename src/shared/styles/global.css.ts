@@ -28,6 +28,7 @@ globalStyle(':root', {
 globalStyle('html, body', {
   minWidth: 'var(--min-width)',
   display: 'flex',
+  fontFamily: `'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif`,
   justifyContent: 'center',
   alignItems: 'center',
   fontSize: '62.5%',

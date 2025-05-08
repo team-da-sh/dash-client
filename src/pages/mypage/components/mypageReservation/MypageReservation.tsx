@@ -13,6 +13,9 @@ const MyPageReservation = () => {
   const navigate = useNavigate();
   const { data: reservationData } = useGetReservations();
 
+  const reservations = reservationData?.reservations || [];
+  const reservationCount = reservations.length;
+
   return (
     <div className={layoutStyle}>
       <div className={containerStyle}>
@@ -22,13 +25,14 @@ const MyPageReservation = () => {
           </Head>
           {reservationData && (
             <Text tag="b2_m" color="gray7">
-              ({reservationData?.reservations.length})
+              ({reservationCount})
             </Text>
           )}
         </div>
-        {reservationData?.reservations?.length && (
+
+        {reservationCount > 0 && (
           <div className={sprinkles({ display: 'flex', gap: 12, marginTop: 16 })}>
-            {reservationData.reservations.map((reservation: Reservation) => (
+            {reservations.map((reservation: Reservation) => (
               <ClassCard
                 key={reservation.reservationId}
                 id={reservation.reservationId}

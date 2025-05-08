@@ -59,6 +59,10 @@ const ClassCard = ({
   };
 
   const statusIcon = () => {
+    if (!isReservation && status === 'upcoming') {
+      return <IcClassIngMain0324 width="1.8rem" />;
+    }
+
     switch (status) {
       case 'upcoming':
         return <IcClassSoonMain0324 width="1.8rem" />;

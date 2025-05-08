@@ -48,12 +48,15 @@ const ClassDetail = () => {
 
         <section className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 16 })}>
           <Text tag="b2_sb" color="gray9">
-            신청한 수강생 ( {lessonData?.studentCount ?? 0} )
+            신청한 수강생 ({lessonData?.studentCount ?? 0})
           </Text>
           <div className={styles.studentCardWrapperStyle}>
-            {lessonData?.students?.map((students, index) => (
-              <StudentCard key={index} students={students} index={index} />
-            ))}
+            {(lessonData?.students ?? [])
+              .slice()
+              .reverse()
+              .map((students, index) => (
+                <StudentCard key={index} students={students} index={index} />
+              ))}
           </div>
         </section>
       </div>
