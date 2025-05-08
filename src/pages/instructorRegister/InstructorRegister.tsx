@@ -39,7 +39,7 @@ const InstructorRegister = () => {
   // 강사 수정
   const userRole = JSON.parse(localStorage.getItem('userRole') || 'null');
   const { mutate: instructorPatchMutate } = usePatchInstructorRegisterInfo();
-  const { data: prevInstructorData } = useGetInstructorRegisterInfo();
+  const { data: prevInstructorData } = useGetInstructorRegisterInfo(userRole);
 
   console.log('data', prevInstructorData);
 
