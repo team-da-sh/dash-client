@@ -25,6 +25,9 @@ export const locationItemContainerStyle = style({
 });
 
 export const locationListContainerStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '1rem',
   width: '100%',
   padding: '1rem 2rem',
   backgroundColor: vars.colors.gray01,
@@ -32,6 +35,9 @@ export const locationListContainerStyle = style({
 });
 
 export const checkboxContainerStyle = style({
+  display: 'flex',
+  alignItems: 'center',
+  gap: '0.8rem',
   alignSelf: 'flex-end',
 });
 
@@ -44,7 +50,25 @@ export const checkboxStyle = style({
 });
 
 export const selectedLocationContainerStyle = style({
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+
+  width: '100%',
   backgroundColor: vars.colors.gray01,
   borderRadius: '4px',
   padding: '1.4rem 2rem',
+});
+
+export const locationEmptyContainerStyle = style({
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+
+  width: '100%',
+  height: '5.2rem ',
+  backgroundColor: vars.colors.gray01,
+  color: vars.colors.gray06,
+  borderRadius: '8px',
+  ...vars.fonts.b2_sb_long,
 });

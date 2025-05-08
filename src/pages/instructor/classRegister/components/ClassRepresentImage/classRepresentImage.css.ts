@@ -4,6 +4,10 @@ import { vars } from '@/shared/styles/theme.css';
 
 export const previewImgStyle = recipe({
   base: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
     width: '8.4rem',
     height: '8.4rem',
     backgroundColor: vars.colors.gray01,
