@@ -40,8 +40,12 @@ const ClassPlace = ({
   setSelectedLocation,
 }: ClassPlacePropTypes) => {
   useEffect(() => {
-    console.log(isUndecidedLocation);
-  }, [isUndecidedLocation]);
+    console.log(locationList);
+  }, [locationList]);
+
+  const shouldShowEmptyMessage = Array.isArray(locationList?.locations) && locationList.locations.length === 0;
+
+  const shouldShowLocationList = Array.isArray(locationList?.locations) && locationList.locations.length > 0;
 
   return (
     <div
@@ -87,7 +91,11 @@ const ClassPlace = ({
                 rightAddOn={<IcSearchGray width={'2.4rem'} onClick={() => handleSubmitDefaultPlace()} />}
               />
 
-              {locationList && (
+              {shouldShowEmptyMessage && (
+                <div className={styles.locationEmptyContainerStyle}>해당 검색어에 대한 검색 결과가 없어요!</div>
+              )}
+
+              {shouldShowLocationList && (
                 <div className={styles.locationListContainerStyle}>
                   <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 10 })}>
                     {locationList.locations.map((item, idx) => (

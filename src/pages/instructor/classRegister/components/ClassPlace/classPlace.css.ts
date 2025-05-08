@@ -59,3 +59,16 @@ export const selectedLocationContainerStyle = style({
   borderRadius: '4px',
   padding: '1.4rem 2rem',
 });
+
+export const locationEmptyContainerStyle = style({
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+
+  width: '100%',
+  height: '5.2rem ',
+  backgroundColor: vars.colors.gray01,
+  color: vars.colors.gray06,
+  borderRadius: '8px',
+  ...vars.fonts.b2_sb_long,
+});
