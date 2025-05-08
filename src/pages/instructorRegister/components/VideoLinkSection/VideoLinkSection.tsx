@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import type { UseFormRegister, UseFormSetValue } from 'react-hook-form';
 import InputSection from '@/pages/instructorRegister/components/CareerSection/InputSection/InputSection';
 import Description from '@/pages/instructorRegister/components/Description/Description';
-import { INFO_KEY, MAX_VIDEO_INPUT } from '@/pages/instructorRegister/constants/registerSection';
+import { INFO_KEY } from '@/pages/instructorRegister/constants/registerSection';
 import type { InputItemTypes } from '@/pages/instructorRegister/types/inputItemTypes';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
 import type { instructorRegisterFormTypes } from '../../types/instructorRegisterForm';

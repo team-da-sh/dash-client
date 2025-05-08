@@ -49,7 +49,6 @@ const InstructorRegister = () => {
     register,
     watch,
     setValue,
-    setFocus,
     control,
     formState: { errors },
     reset,
