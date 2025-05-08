@@ -1,10 +1,3 @@
-export const extractUsernameFromUrl = (url?: string): string => {
-  if (!url) return '';
-
-  const cleanedUrl = url.split('?')[0];
-  return cleanedUrl.split('/').filter(Boolean).pop() || '';
-};
-
 const isValidUrl = (url?: string) => {
   try {
     return url ? new URL(url) : null;
@@ -20,8 +13,10 @@ export const extractYouTubeHandleFromUrl = (url?: string): string => {
   const { hostname, pathname } = parsed;
   if (!hostname.includes('youtube.com')) return '';
 
-  const handle = pathname.trim().slice(1); // remove leading "/"
-  return handle.startsWith('@') && handle.length > 1 ? handle : '';
+  const handle = pathname.trim().slice(1);
+  const decodedHandle = decodeURIComponent(handle);
+
+  return handle.startsWith('@') && decodedHandle.length > 1 ? decodedHandle : '';
 };
 
 export const extractInstaHandleFromUrl = (url?: string): string => {
@@ -32,5 +27,6 @@ export const extractInstaHandleFromUrl = (url?: string): string => {
   if (!hostname.includes('instagram.com')) return '';
 
   const [handle] = pathname.split('/').filter(Boolean);
-  return handle ?? '';
+  const decodedHandle = decodeURIComponent(handle);
+  return decodedHandle ?? '';
 };
