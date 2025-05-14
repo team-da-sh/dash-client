@@ -1,6 +1,6 @@
 import KakaoButton from '@/pages/login/components/KakaoButton/KakaoButton';
 import { containerStyle } from '@/pages/login/login.css';
-import LoginWepm from '@/shared/assets/webm/login.webm';
+import LoginGif from '@/shared/assets/gif/login.gif';
 import Head from '@/shared/components/Head/Head';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
 
@@ -14,9 +14,7 @@ const Login = () => {
         </div>
 
         <div className={sprinkles({ display: 'flex', justifyContent: 'center', width: '100%' })}>
-          <video width={300} autoPlay muted loop>
-            <source src={LoginWepm} type="video/webm" />
-          </video>
+          <img src={LoginGif} width={300} />
         </div>
 
         <KakaoButton />
