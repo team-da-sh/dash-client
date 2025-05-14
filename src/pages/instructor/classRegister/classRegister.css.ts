@@ -6,7 +6,7 @@ export const containerStyle = style({
   flexDirection: 'column',
 
   width: '100%',
-  padding: '8.4rem 2rem 15rem 2rem',
+  padding: '2.4rem 2rem 13.4rem 2rem',
 });
 
 export const buttonContainerStyle = style({

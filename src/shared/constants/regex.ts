@@ -1,7 +1,5 @@
 import { YOUTUBE_URL_REGEX } from '@/shared/constants';
 
-export const ONLY_NUMERIC = /\D/g;
-
 export const ONLY_NUMBER = /^\d*$/;
 
 export const INCLUDE_SPECIAL = /[!@#$%^&*(),.?":{}|<>_\[\]\\\/+=~`'\-]/;

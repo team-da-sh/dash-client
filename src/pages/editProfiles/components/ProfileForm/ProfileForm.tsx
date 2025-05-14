@@ -1,12 +1,14 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
-import FormField from '@/pages/editProfile/components/FormField/FormField.tsx';
-import ProfileImageUpload from '@/pages/editProfile/components/ProfileImageUpload/ProfileImageUpload.tsx';
-import { MAX_NAME_LENGTH, MAX_NICKNAME_LENGTH } from '@/pages/editProfile/constants/limit.ts';
-import { profileSchema, ProfileFormValues } from '@/pages/editProfile/schema/profileSchema.ts';
+import { patchMyProfile } from '@/pages/editProfiles/api/axios.ts';
+import FormField from '@/pages/editProfiles/components/FormField/FormField.tsx';
+import * as styles from '@/pages/editProfiles/components/ProfileForm/profileForm.css';
+import ProfileImageUpload from '@/pages/editProfiles/components/ProfileImageUpload/ProfileImageUpload.tsx';
+import { MAX_NAME_LENGTH, MAX_NICKNAME_LENGTH } from '@/pages/editProfiles/constants/limit.ts';
+import { profileSchema, ProfileFormValues } from '@/pages/editProfiles/schema/profileSchema.ts';
+import { UpdateProfileRequestTypes } from '@/pages/editProfiles/types/api.ts';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import Text from '@/shared/components/Text/Text';
-import * as styles from './profileForm.css.ts';
 
 interface ProfileFormPropTypes {
   defaultValues: {
@@ -40,14 +42,14 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
   const isButtonActive = isDirty && isValid;
 
   const onSubmit = (formData: ProfileFormValues) => {
-    const submitData = new FormData();
-    submitData.append('nickname', formData.nickname);
-    submitData.append('phoneNumber', formData.phoneNumber);
-    submitData.append('name', formData.name);
+    const submitData: UpdateProfileRequestTypes = {
+      nickname: formData.nickname,
+      phoneNumber: formData.phoneNumber,
+      name: formData.name,
+      profileImageUrl: typeof formData.profileImageUrl === 'string' ? formData.profileImageUrl : '',
+    };
 
-    if (formData.profileImageUrl && formData.profileImageUrl.length > 0) {
-      submitData.append('profileImage', formData.profileImageUrl[0]);
-    }
+    patchMyProfile(submitData);
   };
 
   return (
