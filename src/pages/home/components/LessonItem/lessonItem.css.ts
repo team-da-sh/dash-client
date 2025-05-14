@@ -2,8 +2,8 @@ import { style } from '@vanilla-extract/css';
 import { vars } from '@/shared/styles/theme.css';
 
 export const classImageStyle = style({
-  width: '16.4rem',
-  height: '9.1rem',
+  minWidth: '16.4rem',
+  height: '12.3rem',
 
   objectFit: 'cover',
   borderRadius: '4px',

@@ -60,3 +60,15 @@ globalStyle('#root', {
 globalStyle('::-webkit-scrollbar', {
   display: 'none',
 });
+
+globalStyle('.swiper-pagination-bullet', {
+  width: '4px',
+  height: '4px',
+  backgroundColor: vars.colors.white50,
+});
+
+globalStyle('.swiper-pagination-bullet:active', {
+  width: '4px',
+  height: '4px',
+  backgroundColor: vars.colors.white,
+});

@@ -5,10 +5,6 @@ export const containerStyle = style({
   whiteSpace: 'nowrap',
 });
 
-export const carouselContainerStyle = style({
-  minHeight: '37.5rem',
-});
-
 export const rowScrollwrapperStyle = style({
   width: '100%',
 
