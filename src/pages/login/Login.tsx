@@ -8,15 +8,15 @@ const Login = () => {
   return (
     <>
       <div className={containerStyle}>
+        <div className={sprinkles({ display: 'flex', flexDirection: 'column', width: '100%' })}>
+          <Head tag="h3_sb">댄스 클래스로의 첫 걸음,</Head>
+          <Head tag="h3_sb">지금 시작해 보세요</Head>
+        </div>
+
         <div className={sprinkles({ display: 'flex', justifyContent: 'center', width: '100%' })}>
           <video width={300} autoPlay muted loop>
             <source src={LoginWepm} type="video/webm" />
           </video>
-        </div>
-
-        <div className={sprinkles({ display: 'flex', flexDirection: 'column', width: '100%' })}>
-          <Head tag="h3_sb">댄스 클래스로의 첫 걸음,</Head>
-          <Head tag="h3_sb">지금 시작해 보세요</Head>
         </div>
 
         <KakaoButton />
