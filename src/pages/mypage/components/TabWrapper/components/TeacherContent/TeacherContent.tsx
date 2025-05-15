@@ -36,7 +36,7 @@ const TeacherContent = () => {
 
   const isRegisteredTeacherProfile = userRole === 'TEACHER';
 
-  if (isRegisteredTeacherProfile && myData) {
+  if (!isRegisteredTeacherProfile && myData) {
     return (
       <div className={styles.containerStyle}>
         {isFirstVisit && (

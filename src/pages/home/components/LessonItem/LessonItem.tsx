@@ -61,7 +61,9 @@ const LessonItem = ({
       onClick={handleLessonClick}>
       <img src={imageUrl} alt="클래스 섬네일" className={styles.classImage} />
       {remainingDays < 4 && (
-        <Tag type="deadline" size="thumbnail" className={styles.deadlineTag}>{`마감 D-${remainingDays || 'Day'}`}</Tag>
+        <Tag type="deadline" size="thumbnail" className={styles.deadlineTag}>
+          {remainingDays < 0 ? '마감' : `마감 D-${remainingDays || 'Day'}`}
+        </Tag>
       )}
 
       <div className={sprinkles({ display: 'flex', gap: 4 })}>
