@@ -1,16 +1,11 @@
 import { style } from '@vanilla-extract/css';
 import { vars } from '@/shared/styles/theme.css';
 
-export const containerStyle = style({
-  position: 'absolute',
-  top: 0,
-  right: 0,
-  zIndex: vars.zIndex.four,
-});
-
 export const layoutStyle = style({
-  position: 'absolute',
-  right: 25,
+  position: 'relative',
+  left: '8.3rem',
+  zIndex: vars.zIndex.four,
+
   display: 'flex',
   flexDirection: 'column',
   padding: '2rem',

@@ -21,21 +21,19 @@ const ToolTip = ({ title, children, onClose, isOpen }: ToolTipPropTypes) => {
   };
 
   return (
-    <div className={styles.containerStyle}>
-      <div className={styles.layoutStyle}>
-        <div className={styles.arrowStyle}>
-          <IcTriangle width={12} height={12} />
-        </div>
-        <div className={styles.topStyle}>
-          <Text tag="b1_sb_long">{title}</Text>
-          <button className={styles.buttonStyle} type="button" onClick={handleClose}>
-            <IcXBlack width={24} height={24} />
-          </button>
-        </div>
-        <Text tag="b2_m_long" color="gray9">
-          {children}
-        </Text>
+    <div className={styles.layoutStyle}>
+      <div className={styles.arrowStyle}>
+        <IcTriangle width={12} height={12} />
       </div>
+      <div className={styles.topStyle}>
+        <Text tag="b1_sb_long">{title}</Text>
+        <button className={styles.buttonStyle} type="button" onClick={handleClose}>
+          <IcXBlack width={24} height={24} />
+        </button>
+      </div>
+      <Text tag="b2_m_long" color="gray9">
+        {children}
+      </Text>
     </div>
   );
 };
