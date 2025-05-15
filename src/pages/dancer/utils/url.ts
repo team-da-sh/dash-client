@@ -16,7 +16,7 @@ export const extractYouTubeHandleFromUrl = (url?: string): string => {
   const handle = pathname.trim().slice(1);
   const decodedHandle = decodeURIComponent(handle);
 
-  return handle.startsWith('@') && decodedHandle.length > 1 ? decodedHandle : '';
+  return decodedHandle ?? '';
 };
 
 export const extractInstaHandleFromUrl = (url?: string): string => {
