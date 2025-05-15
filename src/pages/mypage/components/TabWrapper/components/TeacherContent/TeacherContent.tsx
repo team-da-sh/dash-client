@@ -130,6 +130,7 @@ const TeacherContent = () => {
           {lessonData.lessons?.length ? <TeacherLessons data={lessonData} /> : <EmptyClassList />}
         </section>
       </div>
+      <Divider color="gray1" thickness="0.4rem" />
       <div className={styles.reviewContainerStyle}>
         <div className={sprinkles({ display: 'flex', alignItems: 'center', gap: 4 })}>
           <IcReview width={24} />
