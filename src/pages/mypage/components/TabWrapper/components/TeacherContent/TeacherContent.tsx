@@ -118,7 +118,7 @@ const TeacherContent = () => {
               display: 'flex',
               justifyContent: 'space-between',
               alignItems: 'center',
-              padding: 20,
+              px: 20,
             })}>
             <Text tag="b1_sb" color="black">
               내 클래스 목록
