@@ -123,9 +123,11 @@ const TeacherContent = () => {
             <Text tag="b1_sb" color="black">
               내 클래스 목록
             </Text>
-            <button className={styles.allButtonStyle} type="button" onClick={handleAllButtonClick}>
-              모두 보기
-            </button>
+            {!!lessonData.lessons?.length && (
+              <button className={styles.allButtonStyle} type="button" onClick={handleAllButtonClick}>
+                모두 보기
+              </button>
+            )}
           </div>
           {lessonData.lessons?.length ? <TeacherLessons data={lessonData} /> : <EmptyClassList />}
         </section>
