@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 import * as styles from '@/pages/mypage/components/TabWrapper/components/TeacherContent/components/ToolTip/tooltip.css';
 import { VISIT_KEY } from '@/pages/mypage/constants/storageKey';
 import { setUser } from '@/pages/mypage/utils/storage';
@@ -28,7 +28,7 @@ const ToolTip = ({ title, children, onClose, isOpen }: ToolTipPropTypes) => {
         </div>
         <div className={styles.topStyle}>
           <Text tag="b1_sb_long">{title}</Text>
-          <button type="button" onClick={handleClose}>
+          <button className={styles.buttonStyle} type="button" onClick={handleClose}>
             <IcXBlack width={24} height={24} />
           </button>
         </div>

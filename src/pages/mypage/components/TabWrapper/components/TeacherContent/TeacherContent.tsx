@@ -34,7 +34,7 @@ const TeacherContent = () => {
 
   const { data: lessonData } = useGetMyLessonThumbnails();
 
-  let isRegisteredTeacherProfile = userRole === 'TEACHER';
+  const isRegisteredTeacherProfile = userRole === 'TEACHER';
 
   if (!isRegisteredTeacherProfile && myData) {
     return (
