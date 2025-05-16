@@ -16,7 +16,6 @@ interface CareerSectionPropTypes {
   handleCareerCheck: () => void;
   handlePrizeCheck: () => void;
 
-  // register: UseFormRegister<instructorRegisterFormTypes>;
   setValue: UseFormSetValue<instructorRegisterFormTypes>;
 }
 
@@ -54,7 +53,7 @@ const CareerSection = ({
 
       <InputSection
         title="경력"
-        placeholder="2018 BATTLE LIINEUP 1등"
+        placeholder="NCT127 단독콘서트 ‘the LINK’ 퍼포먼스 디렉터"
         isNoneChecked={isCareerNoneChecked}
         onToggleActive={handleCareerCheck}
         inputItems={experiences.map((value, id) => ({ id: id + 1, value }))}
