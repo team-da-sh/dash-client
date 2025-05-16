@@ -38,9 +38,6 @@ const ClassRepresentImage = ({
         {!previewImg && (
           <div className={sprinkles({ display: 'flex', flexDirection: 'column', alignItems: 'center' })}>
             <IcPlusGray0524 width={'2.4rem'} />
-            <Text tag="c1_r" color="gray5">
-              1/{MAX_CLASS_REPRESENT_IMAGE_LENGTH}
-            </Text>
           </div>
         )}
 
