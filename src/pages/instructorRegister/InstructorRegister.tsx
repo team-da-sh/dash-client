@@ -52,7 +52,7 @@ const InstructorRegister = () => {
     reset,
   } = useForm({
     resolver: zodResolver(instructorRegisterSchema),
-    mode: 'onChange',
+    mode: 'onTouched',
     defaultValues: {
       imageUrls: '',
       instagram: '',
@@ -211,7 +211,6 @@ const InstructorRegister = () => {
               educations={educations}
               experiences={experiences}
               prizes={prizes}
-              // register={register}
               setValue={setValue}
               isEduNoneChecked={isEduNoneChecked}
               isCareerNoneChecked={isCareerNoneChecked}

@@ -17,9 +17,14 @@ interface IntroductionSectionPropTypes {
 
 const IntroductionSection = ({ detail, register, error }: IntroductionSectionPropTypes) => {
   const [isFocused, setIsFocused] = useState(false);
+  console.log('register', register('detail'));
+  const { name, onBlur, ref, onChange } = register('detail');
 
   const handleFocus = () => setIsFocused(true);
-  const handleBlur = () => setIsFocused(false);
+  const handleBlur = (e: React.FocusEvent<HTMLTextAreaElement>) => {
+    setIsFocused(false);
+    onBlur(e);
+  };
 
   const defineInputState = (error?: boolean, isFocused?: boolean) => {
     if (error) {
@@ -49,15 +54,19 @@ const IntroductionSection = ({ detail, register, error }: IntroductionSectionPro
   return (
     <section className={containerStyle}>
       <Text tag="b2_sb">강사 소개</Text>
-      <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 4 })}>
+      <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 8 })}>
         <textarea
           id="introduction-textarea"
-          {...register('detail')}
+          // {...register('detail')}
+          name={name}
+          ref={ref}
+          onChange={onChange}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
           value={detail}
           placeholder="저는 이런 댄서예요!"
           className={textAreaStyle({ defineInputState: inputState })}
-          onFocus={handleFocus}
-          onBlur={handleBlur}
+          // onBlur={handleBlur}
           maxLength={MAX_INTRODUCTION_LENGTH}
         />
 
