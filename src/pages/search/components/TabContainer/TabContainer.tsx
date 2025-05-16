@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import ClassItem from '@/pages/home/components/LessonItem/LessonItem';
 import type { DefaultSortTagTypes } from '@/pages/home/types/defaultSortTagTypes';
 import DancerList from '@/pages/search/components/TabContainer/DancerList/DancerList';
@@ -48,6 +47,8 @@ interface TabContainerPropTypes {
   error: Error | null;
   selectedLabel: '최신 등록순' | '찜이 많은순' | '마감 임박순';
   setSelectedLabel: (label: '최신 등록순' | '찜이 많은순' | '마감 임박순') => void;
+  selectedTab: number;
+  setSelectedTab: (tab: number) => void;
 }
 
 const TabContainer = ({
@@ -65,9 +66,9 @@ const TabContainer = ({
   classList,
   selectedLabel,
   setSelectedLabel,
+  selectedTab,
+  setSelectedTab,
 }: TabContainerPropTypes) => {
-  const [selectedTab, setSelectedTab] = useState(0);
-
   const handleTagReset = (type: string) => {
     switch (type) {
       case 'genre':
