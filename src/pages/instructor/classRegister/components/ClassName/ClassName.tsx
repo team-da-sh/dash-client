@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import type { FieldError, UseFormRegister } from 'react-hook-form';
 import { nameLengthStyle } from '@/pages/instructor/classRegister/components/ClassName/className.css';
 import Description from '@/pages/instructor/classRegister/components/Description';
@@ -16,6 +17,11 @@ interface ClassNamePropTypes {
 
 const ClassName = ({ register, error, className }: ClassNamePropTypes) => {
   const { name, onChange, ref } = register('className');
+  const [isInputFocused, setIsInputFocused] = useState(false);
+
+  const handleFocusChange = (isFocused: boolean) => {
+    setIsInputFocused(isFocused);
+  };
 
   return (
     <div
@@ -35,12 +41,13 @@ const ClassName = ({ register, error, className }: ClassNamePropTypes) => {
           isError={!!error}
           placeholder="클래스명을 입력해 주세요"
           maxLength={MAX_CLASS_NAME_LENGTH}
+          onFocusChange={handleFocusChange}
         />
         <div className={sprinkles({ display: 'flex', justifyContent: 'space-between' })}>
           <Text tag="b3_r" color="alert3">
             {error && error.message}
           </Text>
-          <Text tag="c1_m" color={className ? 'gray9' : 'gray4'} className={nameLengthStyle}>
+          <Text tag="c1_m" color={className && isInputFocused ? 'main4' : 'gray9'} className={nameLengthStyle}>
             {className.length} / {MAX_CLASS_NAME_LENGTH}
           </Text>
         </div>

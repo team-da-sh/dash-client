@@ -6,16 +6,24 @@ import * as style from '@/shared/components/Input/input.css';
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   isError?: boolean;
   rightAddOn?: ReactNode;
+  onFocusChange?: (isFocused: boolean) => void;
 }
 
 const Input = (
-  { isError, className, value, rightAddOn, ...props }: InputProps,
+  { isError, className, value, rightAddOn, onFocusChange, ...props }: InputProps,
   ref: ForwardedRef<HTMLInputElement>
 ) => {
   const [isFocused, setIsFocused] = useState(false);
 
-  const handleFocus = () => setIsFocused(true);
-  const handleBlur = () => setIsFocused(false);
+  const handleFocus = () => {
+    setIsFocused(true);
+    onFocusChange?.(true);
+  };
+
+  const handleBlur = () => {
+    setIsFocused(false);
+    onFocusChange?.(false);
+  };
 
   const defineInputState = (isError?: boolean, isFocused?: boolean) => {
     if (isError) {
