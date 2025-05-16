@@ -38,7 +38,7 @@ const VideoLinkSection = ({ setValue, isNoneChecked, setIsNoneChecked }: VideoLi
   }, [videoItems, isNoneChecked, setValue]);
 
   return (
-    <section className={sprinkles({ display: 'flex', flexDirection: 'column', width: '100%', pb: 20 })}>
+    <section className={sprinkles({ display: 'flex', flexDirection: 'column', width: '100%', pb: 27 })}>
       <Description title="유튜브 영상 등록" subTitle="나를 대표하는 댄스 영상을 최대 5개 등록해 주세요" />
 
       <InputSection
