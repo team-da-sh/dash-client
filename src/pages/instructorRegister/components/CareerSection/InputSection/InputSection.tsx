@@ -50,9 +50,6 @@ const InputSection = ({
     } else {
       onItemsChange(inputItems.filter((item) => item.id !== id));
     }
-    // Promise.resolve().then(() => {
-    //   lastInputRef.current?.focus();
-    // });
   };
 
   const renderDeleteIcon = (id: number, value: string) => {

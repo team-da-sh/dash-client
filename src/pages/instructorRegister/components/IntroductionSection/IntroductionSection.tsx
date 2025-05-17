@@ -17,7 +17,6 @@ interface IntroductionSectionPropTypes {
 
 const IntroductionSection = ({ detail, register, error }: IntroductionSectionPropTypes) => {
   const [isFocused, setIsFocused] = useState(false);
-  console.log('register', register('detail'));
   const { name, onBlur, ref, onChange } = register('detail');
 
   const handleFocus = () => setIsFocused(true);
@@ -57,7 +56,6 @@ const IntroductionSection = ({ detail, register, error }: IntroductionSectionPro
       <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 8 })}>
         <textarea
           id="introduction-textarea"
-          // {...register('detail')}
           name={name}
           ref={ref}
           onChange={onChange}
@@ -66,7 +64,6 @@ const IntroductionSection = ({ detail, register, error }: IntroductionSectionPro
           value={detail}
           placeholder="저는 이런 댄서예요!"
           className={textAreaStyle({ defineInputState: inputState })}
-          // onBlur={handleBlur}
           maxLength={MAX_INTRODUCTION_LENGTH}
         />
 

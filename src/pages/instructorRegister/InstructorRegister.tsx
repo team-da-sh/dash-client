@@ -1,5 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useController, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -61,7 +61,7 @@ const InstructorRegister = () => {
       experiences: [''],
       prizes: [''],
       detail: '',
-      videoUrls: [{ value: '' }],
+      videoUrls: [''],
     },
   });
 
@@ -75,12 +75,12 @@ const InstructorRegister = () => {
     isEduNoneChecked,
     isCareerNoneChecked,
     isPrizeNoneChecked,
+    isVideoNoneChecked,
     handleEducationCheck,
     handleCareerCheck,
     handlePrizeCheck,
+    handleVideoCheck,
   } = useInstructorRegisterForm();
-
-  const [isVideoNoneChecked, setIsVideoNoneChecked] = useState(false);
 
   // 버튼 활성화 조건 체크 함수
   const hasDetailedInfo = () => detail.trim().length >= MIN_INTRODUCTION_LENGTH;
@@ -97,12 +97,11 @@ const InstructorRegister = () => {
 
     return educationValid && careerValid && prizeValid;
   };
-  const hasVideoUrls = () => isVideoNoneChecked || videoUrls.some((url) => url.value.trim().length >= MIN_VIDEO_INPUT);
+  const hasVideoUrl = videoUrls.some((url) => url.trim().length >= MIN_VIDEO_INPUT);
+  const videoValid = hasVideoUrl || isVideoNoneChecked;
 
   const buttonActive = () => {
-    return (
-      !errors.detail && hasImage() && hasSocialId() && hasDancerBackground() && hasVideoUrls() && hasDetailedInfo()
-    );
+    return !errors.detail && hasImage() && hasSocialId() && hasDancerBackground() && videoValid && hasDetailedInfo();
   };
 
   // 이미지 업로드 관련
@@ -130,9 +129,7 @@ const InstructorRegister = () => {
       prizes: isPrizeNoneChecked ? [] : prizes.filter((prize) => prize.trim() !== ''),
 
       detail: detail.trim(),
-      videoUrls: isVideoNoneChecked
-        ? ['https://www.youtube.com/']
-        : videoUrls.map((url) => url.value.trim()).filter((value) => value !== ''),
+      videoUrls: isVideoNoneChecked ? [] : videoUrls.filter((url) => url.trim() !== ''),
     };
 
     const onSuccess = (response: { data: { accessToken: string; refreshToken: string } }) => {
@@ -172,10 +169,7 @@ const InstructorRegister = () => {
       experiences: prevInstructorData.experiences?.length ? prevInstructorData.experiences : [''],
       prizes: prevInstructorData.prizes?.length ? prevInstructorData.prizes : [''],
       detail: prevInstructorData.detail || '',
-      videoUrls:
-        prevInstructorData.videoUrls?.length > 0
-          ? prevInstructorData.videoUrls.map((url: string) => ({ value: url }))
-          : [{ value: '' }],
+      videoUrls: prevInstructorData.videoUrls?.length ? prevInstructorData.videoUrls : [''],
     });
   }, [prevInstructorData, reset]);
 
@@ -224,10 +218,10 @@ const InstructorRegister = () => {
 
           <div className={styles.sectionWrapperStyle}>
             <VideoLinkSection
-              register={register}
+              videoUrls={videoUrls}
               setValue={setValue}
               isNoneChecked={isVideoNoneChecked}
-              setIsNoneChecked={setIsVideoNoneChecked}
+              handleVideoCheck={handleVideoCheck}
             />
           </div>
         </div>
