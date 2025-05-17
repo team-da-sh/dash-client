@@ -126,7 +126,7 @@ const ClassRegister = () => {
     handleDefaultPlace,
     setSelectedLocation,
 
-    // isButtonActive,
+    isButtonActive,
   } = useClassRegisterForm();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -168,6 +168,7 @@ const ClassRegister = () => {
 
   const handleImageUploadSuccess = (url: string) => {
     field.onChange(url);
+    setImageUrls({ imageUrls: url });
   };
 
   const handleDeleteUrl = () => {
@@ -215,7 +216,7 @@ const ClassRegister = () => {
           <ClassAmount price={price} register={register} />
         </div>
         <div className={styles.buttonContainerStyle}>
-          <BoxButton type="submit" disabled={false}>
+          <BoxButton type="submit" disabled={!isButtonActive()}>
             완료
           </BoxButton>
         </div>
