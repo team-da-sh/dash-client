@@ -71,9 +71,7 @@ const ClassRegister = () => {
     control,
   });
 
-  useEffect(() => {
-    console.log('imageUrls', imageUrls);
-  }, [imageUrls]);
+  useEffect(() => {}, [imageUrls]);
 
   const handleTextAreaHeight = (e: React.FormEvent<HTMLTextAreaElement>) => {
     const textArea = e.target as HTMLTextAreaElement;
