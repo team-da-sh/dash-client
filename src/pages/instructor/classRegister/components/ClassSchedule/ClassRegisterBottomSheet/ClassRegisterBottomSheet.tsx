@@ -1,3 +1,4 @@
+import type { MouseEvent } from 'react';
 import * as styles from '@/pages/instructor/classRegister/components/ClassSchedule/ClassRegisterBottomSheet/classRegisterBottomSheet.css';
 import ClassRegisterFunnel from '@/pages/instructor/classRegister/components/ClassSchedule/ClassRegisterFunnel/ClassRegisterFunnel';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
@@ -40,8 +41,11 @@ const ClassRegisterBottomSheet = ({
     false // 완료 페이지 없음 (false)
   );
 
+  document.body.style.overflow = 'hidden';
+
   const handleSheetComplete = () => {
     setStep(1);
+    document.body.style.overflow = '';
     onClose();
     handleAddTime();
     handleDateAndTimeReset();
@@ -54,9 +58,16 @@ const ClassRegisterBottomSheet = ({
     setAmpm('AM');
   };
 
+  const handleOverlayClick = (e: MouseEvent<HTMLDivElement>) => {
+    if (e.target === e.currentTarget) {
+      document.body.style.overflow = '';
+      onClose();
+    }
+  };
+
   return (
-    <div className={styles.bottomSheetContainerStyle}>
-      <div className={styles.mainWrapperStyle}>
+    <div className={styles.bottomSheetContainerStyle} onClick={handleOverlayClick}>
+      <div className={styles.mainWrapperStyle} onClick={(e) => e.stopPropagation()}>
         <ClassRegisterFunnel
           Funnel={Funnel}
           Step={Step}
