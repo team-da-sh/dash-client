@@ -19,6 +19,7 @@ interface InputSectionPropTypes {
   onToggleActive: () => void;
   inputItems: InputItemTypes[];
   onItemsChange: (updatedItems: InputItemTypes[]) => void;
+  maxInputCount?: number;
 }
 
 const PLACEHOLDER_VISIBLE_COUNT = 2;
@@ -30,12 +31,17 @@ const InputSection = ({
   onToggleActive,
   inputItems,
   onItemsChange,
+  maxInputCount,
 }: InputSectionPropTypes) => {
   const [nextID, setNextID] = useState(inputItems.length + 1);
   const lastInputRef = useRef<HTMLInputElement | null>(null);
 
   const addItem = () => {
     if (inputItems[inputItems.length - 1]?.value.trim() === '') {
+      return;
+    }
+
+    if (maxInputCount && inputItems.length >= maxInputCount) {
       return;
     }
 
@@ -100,17 +106,19 @@ const InputSection = ({
             />
           ))}
 
-          <button
-            type="button"
-            className={addButtonStyle}
-            onClick={() => {
-              addItem();
-              Promise.resolve().then(() => {
-                lastInputRef.current?.focus();
-              });
-            }}>
-            <IcPlusGray0524 width={'2.4rem'} />
-          </button>
+          {(!maxInputCount || inputItems.length < maxInputCount) && (
+            <button
+              type="button"
+              className={addButtonStyle}
+              onClick={() => {
+                addItem();
+                Promise.resolve().then(() => {
+                  lastInputRef.current?.focus();
+                });
+              }}>
+              <IcPlusGray0524 width={'2.4rem'} />
+            </button>
+          )}
         </Flex>
       )}
     </div>

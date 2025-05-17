@@ -1,9 +1,9 @@
 import type { UseFormSetValue } from 'react-hook-form';
 import InputSection from '@/pages/instructorRegister/components/CareerSection/InputSection/InputSection';
 import Description from '@/pages/instructorRegister/components/Description/Description';
+import { INFO_KEY, MAX_VIDEO_INPUT } from '@/pages/instructorRegister/constants/registerSection';
+import type { instructorRegisterFormTypes } from '@/pages/instructorRegister/types/instructorRegisterForm';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
-import { INFO_KEY } from '../../constants/registerSection';
-import type { instructorRegisterFormTypes } from '../../types/instructorRegisterForm';
 
 interface VideoLinkSectionPropTypes {
   videoUrls: string[];
@@ -29,6 +29,7 @@ const VideoLinkSection = ({ videoUrls, setValue, isNoneChecked, handleVideoCheck
             updatedItems.map((item) => item.value)
           );
         }}
+        maxInputCount={MAX_VIDEO_INPUT}
       />
     </section>
   );
