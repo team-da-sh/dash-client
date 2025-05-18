@@ -10,8 +10,6 @@ const EditProfile = () => {
     return <></>;
   }
 
-  console.log(data);
-
   return (
     <main className={sprinkles({ padding: 20, display: 'flex', flexDirection: 'column', gap: 16 })}>
       <Head level="h2" tag="h6_sb">
