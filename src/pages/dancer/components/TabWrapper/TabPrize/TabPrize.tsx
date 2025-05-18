@@ -15,7 +15,7 @@ const TabPrize = ({ dancerData }: { dancerData: DancerDetailResponseTypes }) => 
           tag="b1_sb"
           color="gray9"
           className={sprinkles({ display: 'flex', justifyContent: 'center', pb: 14 })}>
-          아직 등록된 수상이 없어요
+          아직 등록된 수상 이력이 없어요
         </Head>
       ) : (
         prizes?.map((prize, id) => (
