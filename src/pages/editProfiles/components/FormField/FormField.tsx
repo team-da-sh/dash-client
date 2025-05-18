@@ -38,19 +38,20 @@ const FormField = ({
         placeholder={placeholder}
         {...register(name)}
         isError={!!error}
+        maxLength={name === 'phoneNumber' ? 11 : 8}
         readOnly={readOnly}
         isFocused={isFocused}
         onFocus={onFocus}
         onBlur={onBlur}
       />
-      {error && error.message && (
-        <div className={styles.errorMessageStyle}>
+      <div className={styles.errorMessageStyle({ hasError: !!(error && error.message) })}>
+        {error?.message && (
           <Text tag="b3_r" color="alert3">
             {error.message}
-          </Text>
-          {validationMessage}
-        </div>
-      )}
+          </Text> // color 안 씀
+        )}
+        {isFocused && validationMessage}
+      </div>
     </div>
   );
 };

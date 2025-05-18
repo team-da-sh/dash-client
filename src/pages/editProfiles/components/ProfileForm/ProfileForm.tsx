@@ -9,6 +9,7 @@ import { MAX_NAME_LENGTH, MAX_NICKNAME_LENGTH } from '@/pages/editProfiles/const
 import { profileSchema, ProfileFormValues } from '@/pages/editProfiles/schema/profileSchema.ts';
 import { UpdateProfileRequestTypes } from '@/pages/editProfiles/types/api.ts';
 import ImageUploadSection from '@/pages/instructorRegister/components/ImageUploadSection/ImageUploadSection.tsx';
+import { MAX_PHONENUMBER_LENGTH } from '@/pages/onboarding/constants';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import Text from '@/shared/components/Text/Text';
 import useImageUploader from '@/shared/hooks/useImageUploader';
@@ -79,7 +80,7 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
     handleCloseBottomSheet
   );
 
-  const { nickname, name } = watch();
+  const { nickname, name, phoneNumber } = watch();
   const isButtonActive = isDirty && isValid;
 
   const onSubmit = (formData: ProfileFormValues) => {
@@ -126,9 +127,9 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
         onFocus={() => handleFocus('nickname')}
         onBlur={handleBlur}
         validationMessage={
-          <Text tag="b3_r" color="alert3">
-            {`${nickname?.length || 0}/${MAX_NICKNAME_LENGTH}`}
-          </Text>
+          <Text
+            tag="b3_r"
+            color={errors.nickname ? 'alert3' : 'main4'}>{`${nickname?.length || 0}/${MAX_NICKNAME_LENGTH}`}</Text>
         }
       />
 
@@ -142,9 +143,7 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
         onFocus={() => handleFocus('name')}
         onBlur={handleBlur}
         validationMessage={
-          <Text tag="b3_r" color="alert3">
-            {`${name?.length || 0}/${MAX_NAME_LENGTH}`}
-          </Text>
+          <Text tag="b3_r" color={errors.name ? 'alert3' : 'main4'}>{`${name?.length || 0}/${MAX_NAME_LENGTH}`}</Text>
         }
       />
 
@@ -157,6 +156,13 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
         isFocused={focusedField === 'phoneNumber'}
         onFocus={() => handleFocus('phoneNumber')}
         onBlur={handleBlur}
+        validationMessage={
+          <Text
+            tag="b3_r"
+            color={
+              errors.phoneNumber ? 'alert3' : 'main4'
+            }>{`${phoneNumber?.length || 0}/${MAX_PHONENUMBER_LENGTH}`}</Text>
+        }
       />
 
       <div className={styles.buttonWrapperStyle}>

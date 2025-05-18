@@ -28,7 +28,7 @@ export const handleDetailClick = (
 
 export const handleCancelClick = (e: React.MouseEvent) => {
   e.stopPropagation();
-  notify();
+  notify('해당 기능은 추후 구현 예정이에요');
 };
 
 export const handleBoxButtonClick = (

@@ -10,7 +10,7 @@ export const notify = (message: string, icon?: boolean) => {
       <div
         style={{
           display: 'flex',
-          justifyContent: 'flex-start',
+          justifyContent: icon ? 'flex-start' : 'center',
           alignItems: 'center',
           width: '100%',
           gap: icon ? '0.8em' : '0',
