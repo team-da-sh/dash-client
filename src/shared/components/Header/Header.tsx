@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import IcLogoSmallBlack from '@/shared/assets/svg/IcLogoSmallBlack';
+import IcHeaderLogoSmallBlack from '@/shared/assets/svg/IcHeaderLogoSmallBlack';
 import IcMypageBlack24 from '@/shared/assets/svg/IcMypageBlack24';
 import IcSearchBlack24 from '@/shared/assets/svg/IcSearchBlack24';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
@@ -30,7 +30,7 @@ const Header = () => {
   return (
     <header className={headerStyle}>
       <button onClick={handleLogoClick} aria-label="홈으로 이동">
-        <IcLogoSmallBlack width={58} height={20} />
+        <IcHeaderLogoSmallBlack width={58} height={20} />
       </button>
       <div className={sprinkles({ display: 'flex', gap: 20 })}>
         <button onClick={handleSearchClick} aria-label="검색 페이지로 이동">
