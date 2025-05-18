@@ -27,10 +27,10 @@ export const classRegisterSchema = z.object({
   selectedLevel: z.string().min(MIN_CLASS_LEVEL_LENGTH, '레벨을 선택해주세요'),
   recommendation: z
     .string()
-    .min(MIN_RECOMMEND_LENGTH, '추천사항을 입력해주세요')
-    .max(MAX_RECOMMEND_LENGTH, '추천사항은 최대 200자까지 입력 가능합니다'),
-  maxReservationCount: z.string().regex(/^\d+$/, '숫자만 입력해주세요'),
-  price: z.string().regex(/^\d+$/, '숫자만 입력해주세요'),
+    .min(MIN_RECOMMEND_LENGTH, '추천 대상을 입력해주세요')
+    .max(MAX_RECOMMEND_LENGTH, '추천 대상은 최대 200자까지 입력 가능합니다'),
+  maxReservationCount: z.string().regex(/^\d+$/, '인원을 입력해주세요'),
+  price: z.string().regex(/^\d+$/, '수강료를 입력해주세요'),
   isUndecidedLocation: z.boolean(),
   selectedLocation: z.union([
     z.object({

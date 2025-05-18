@@ -73,15 +73,6 @@ const ClassRegister = () => {
 
   useEffect(() => {}, [imageUrls]);
 
-  const handleTextAreaHeight = (e: React.FormEvent<HTMLTextAreaElement>) => {
-    const textArea = e.target as HTMLTextAreaElement;
-
-    if (textArea) {
-      textArea.style.height = '9.8rem';
-      textArea.style.height = `${textArea.scrollHeight}px`;
-    }
-  };
-
   const toggleCategory = (category: string) => {
     setValue('selectedGenre', category === selectedGenre ? '' : category, {
       shouldValidate: true,
@@ -187,7 +178,7 @@ const ClassRegister = () => {
       <form onSubmit={handleSubmit}>
         <div className={styles.containerStyle}>
           <ClassName className={className} register={register} error={errors.className} />
-          <ClassDescription register={register} error={errors.detail} handleTextAreaHeight={handleTextAreaHeight} />
+          <ClassDescription register={register} error={errors.detail} detail={detail} />
           <ClassRepresentImage
             imgFile={imgFile}
             previewImg={previewImg}
@@ -196,11 +187,15 @@ const ClassRegister = () => {
             uploadImgFile={uploadImgFile}
             deleteImgFile={deleteImgFile}
           />
-          <ClassGenre selectedGenre={selectedGenre} toggleCategory={toggleCategory} />
-          <ClassLevel selectedLevel={selectedLevel} toggleLevel={toggleLevel} />
-          <ClassRecommend register={register} handleTextAreaHeight={handleTextAreaHeight} />
+          <ClassGenre selectedGenre={selectedGenre} toggleCategory={toggleCategory} error={errors.selectedGenre} />
+          <ClassLevel selectedLevel={selectedLevel} toggleLevel={toggleLevel} error={errors.selectedLevel} />
+          <ClassRecommend register={register} error={errors.recommendation} recommendation={recommendation} />
           <ClassSchedule openBottomSheet={openBottomSheet} times={times} handleRemoveTime={handleRemoveTime} />
-          <ClassPersonnel maxReservationCount={maxReservationCount} register={register} />
+          <ClassPersonnel
+            maxReservationCount={maxReservationCount}
+            register={register}
+            error={errors.maxReservationCount}
+          />
           <ClassPlace
             register={register}
             isUndecidedLocation={isUndecidedLocation}
@@ -211,10 +206,22 @@ const ClassRegister = () => {
             setSelectedLocation={setSelectedLocation}
             locationList={locationList}
           />
-          <ClassAmount price={price} register={register} />
+          <ClassAmount price={price} register={register} error={errors.price} />
         </div>
         <div className={styles.buttonContainerStyle}>
-          <BoxButton type="submit" disabled={!isButtonActive()}>
+          <BoxButton
+            type="submit"
+            disabled={
+              !isButtonActive({
+                className,
+                detail,
+                selectedGenre,
+                selectedLevel,
+                recommendation,
+                maxReservationCount,
+                price,
+              })
+            }>
             완료
           </BoxButton>
         </div>

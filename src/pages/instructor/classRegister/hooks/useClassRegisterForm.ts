@@ -59,12 +59,30 @@ export const useClassRegisterForm = () => {
     setDetailPlace(e.target.value);
   };
 
-  const isButtonActive = () => {
-    if (isUndecidedLocation) {
-      return imageUrls.imageUrls.length > 0 && selectedTime && times.length > 0;
-    }
+  const isButtonActive = (externalFormFields?: {
+    className?: string;
+    detail?: string;
+    selectedGenre?: string;
+    selectedLevel?: string;
+    recommendation?: string;
+    maxReservationCount?: string;
+    price?: string;
+  }) => {
+    const isExternalFieldsValid = externalFormFields
+      ? !!externalFormFields.className &&
+        !!externalFormFields.detail &&
+        !!externalFormFields.selectedGenre &&
+        !!externalFormFields.selectedLevel &&
+        !!externalFormFields.recommendation &&
+        !!externalFormFields.maxReservationCount &&
+        !!externalFormFields.price
+      : true;
 
-    return imageUrls.imageUrls.length > 0 && selectedTime && selectedLocation && times.length > 0;
+    const isInternalFieldsValid = imageUrls.imageUrls.length > 0 && selectedTime !== null && times.length > 0;
+
+    const isLocationValid = isUndecidedLocation || selectedLocation !== null;
+
+    return isExternalFieldsValid && isInternalFieldsValid && isLocationValid;
   };
 
   return {
