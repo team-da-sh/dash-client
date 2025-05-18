@@ -95,7 +95,7 @@ const ClassCard = ({
             gap: 3,
             marginBottom: 12,
           })}>
-          <div className={sprinkles({ marginRight: 5 })}>{statusIcon()}</div>
+          <div className={sprinkles({ marginRight: 5, display: 'flex', alignItems: 'center' })}>{statusIcon()}</div>
           <Text tag="b2_sb" color={status === 'completed' ? 'gray8' : 'black'}>
             {korstatus()}
           </Text>
