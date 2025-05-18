@@ -1,14 +1,15 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
+import { useForm, useController } from 'react-hook-form';
 import { patchMyProfile } from '@/pages/editProfiles/api/axios.ts';
 import FormField from '@/pages/editProfiles/components/FormField/FormField.tsx';
 import * as styles from '@/pages/editProfiles/components/ProfileForm/profileForm.css';
-import ProfileImageUpload from '@/pages/editProfiles/components/ProfileImageUpload/ProfileImageUpload.tsx';
 import { MAX_NAME_LENGTH, MAX_NICKNAME_LENGTH } from '@/pages/editProfiles/constants/limit.ts';
 import { profileSchema, ProfileFormValues } from '@/pages/editProfiles/schema/profileSchema.ts';
 import { UpdateProfileRequestTypes } from '@/pages/editProfiles/types/api.ts';
+import ImageUploadSection from '@/pages/instructorRegister/components/ImageUploadSection/ImageUploadSection.tsx';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import Text from '@/shared/components/Text/Text';
+import useImageUploader from '@/shared/hooks/useImageUploader';
 
 interface ProfileFormPropTypes {
   defaultValues: {
@@ -28,17 +29,26 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
     watch,
   } = useForm<ProfileFormValues>({
     resolver: zodResolver(profileSchema),
-    defaultValues: {
-      nickname: defaultValues.nickname,
-      phoneNumber: defaultValues.phoneNumber,
-      name: defaultValues.name,
-      profileImageUrl: defaultValues.profileImageUrl,
-    },
+    defaultValues,
     mode: 'onChange',
   });
 
-  const { nickname, name } = watch();
+  const { field } = useController({
+    name: 'profileImageUrl',
+    control,
+  });
 
+  const handleSuccess = (url: string) => {
+    field.onChange(url);
+  };
+
+  const handleDelete = () => {
+    field.onChange('');
+  };
+
+  const { previewImg, imgRef, handleUploaderClick, uploadImgFile } = useImageUploader(handleSuccess, handleDelete);
+
+  const { nickname, name } = watch();
   const isButtonActive = isDirty && isValid;
 
   const onSubmit = (formData: ProfileFormValues) => {
@@ -54,7 +64,12 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <ProfileImageUpload defaultImageUrl={defaultValues.profileImageUrl} control={control} />
+      <ImageUploadSection
+        previewImg={previewImg || defaultValues.profileImageUrl}
+        handleUploaderClick={handleUploaderClick}
+        uploadImgFile={uploadImgFile}
+        imgRef={imgRef}
+      />
 
       <FormField
         label="댄서네임"

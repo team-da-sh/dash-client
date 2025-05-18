@@ -1,7 +1,8 @@
 import type { Control } from 'react-hook-form';
 import { useController } from 'react-hook-form';
+import * as styles from '@/pages/editProfiles/components/ProfileImageUpload/profileImageUpload.css';
 import type { ProfileFormValues } from '@/pages/editProfiles/schema/profileSchema';
-import Text from '@/shared/components/Text/Text';
+import IcCameraMain0624 from '@/shared/assets/svg/IcCameraMain0624';
 import useImageUploader from '@/shared/hooks/useImageUploader';
 
 interface ProfileImageUploadPropTypes {
@@ -28,11 +29,9 @@ const ProfileImageUpload = ({ defaultImageUrl, control }: ProfileImageUploadProp
     <div className={styles.containerStyle}>
       <div className={styles.imgWrapperStyle} onClick={handleUploaderClick}>
         <img src={previewImg || defaultImageUrl} alt="프로필 이미지" />
-
-        <Text tag="c1_sb" color="white" className={styles.overlayStyle}>
-          수정
-        </Text>
+        <IcCameraMain0624 width={24} height={24} className={styles.icCameraStyle} />
       </div>
+
       <input
         id="file-input"
         type="file"

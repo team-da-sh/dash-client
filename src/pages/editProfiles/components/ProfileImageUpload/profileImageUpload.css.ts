@@ -35,3 +35,9 @@ export const overlayStyle = style({
 
   backgroundColor: vars.colors.black70,
 });
+
+export const icCameraStyle = style({
+  position: 'absolute',
+  bottom: '0.6rem',
+  right: '0.6rem',
+});
