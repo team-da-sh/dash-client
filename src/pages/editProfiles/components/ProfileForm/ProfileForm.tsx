@@ -1,7 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
 import { useForm, useController } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
 import { usePatchMyProfile } from '@/pages/editProfiles/api/queries';
 import FormField from '@/pages/editProfiles/components/FormField/FormField.tsx';
 import * as styles from '@/pages/editProfiles/components/ProfileForm/profileForm.css';
@@ -9,10 +8,8 @@ import { MAX_NAME_LENGTH, MAX_NICKNAME_LENGTH } from '@/pages/editProfiles/const
 import { profileSchema, ProfileFormValues } from '@/pages/editProfiles/schema/profileSchema.ts';
 import { UpdateProfileRequestTypes } from '@/pages/editProfiles/types/api.ts';
 import ImageUploadSection from '@/pages/instructorRegister/components/ImageUploadSection/ImageUploadSection.tsx';
-import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import Text from '@/shared/components/Text/Text';
-import { notify } from '@/shared/components/Toast/Toast';
 import useImageUploader from '@/shared/hooks/useImageUploader';
 
 interface ProfileFormPropTypes {
@@ -25,7 +22,7 @@ interface ProfileFormPropTypes {
 }
 
 const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
-  const navigate = useNavigate();
+  const mutation = usePatchMyProfile();
 
   const [focusedField, setFocusedField] = useState<string | null>(null);
 
@@ -36,15 +33,6 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
   const handleBlur = () => {
     setFocusedField(null);
   };
-
-  const mutation = usePatchMyProfile({
-    onSuccess: () => {
-      navigate(ROUTES_CONFIG.mypage.path);
-    },
-    onError: () => {
-      notify('프로필 업데이트에 실패했습니다. 다시 시도해주세요');
-    },
-  });
 
   const {
     register,
