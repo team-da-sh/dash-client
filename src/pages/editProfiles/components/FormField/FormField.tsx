@@ -12,8 +12,9 @@ interface FormFieldPropTypes {
   error?: { message?: string };
   readOnly?: boolean;
   validationMessage?: React.ReactNode;
-  onFocus?: React.FocusEventHandler<HTMLInputElement>;
-  onBlur?: React.FocusEventHandler<HTMLInputElement>;
+  isFocused?: boolean;
+  onFocus?: () => void;
+  onBlur?: () => void;
 }
 
 const FormField = ({
@@ -24,6 +25,7 @@ const FormField = ({
   error,
   readOnly = false,
   validationMessage,
+  isFocused,
   onFocus,
   onBlur,
 }: FormFieldPropTypes) => {
@@ -37,6 +39,7 @@ const FormField = ({
         {...register(name)}
         isError={!!error}
         readOnly={readOnly}
+        isFocused={isFocused}
         onFocus={onFocus}
         onBlur={onBlur}
       />

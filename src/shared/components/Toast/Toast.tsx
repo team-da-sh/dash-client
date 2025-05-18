@@ -1,10 +1,10 @@
 import toast from 'react-hot-toast';
 import { vars } from '@/shared/styles/theme.css';
 
-export const notify = () => {
+export const notify = (text: string) => {
   toast.dismiss();
 
-  toast('해당 기능은 추후 업데이트 될 예정이에요 ', {
+  toast(text, {
     duration: 1500,
     position: 'bottom-center',
     style: {

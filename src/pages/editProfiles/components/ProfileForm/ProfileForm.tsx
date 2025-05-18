@@ -1,15 +1,18 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
 import { useForm, useController } from 'react-hook-form';
-import { patchMyProfile } from '@/pages/editProfiles/api/axios.ts';
+import { useNavigate } from 'react-router-dom';
+import { usePatchMyProfile } from '@/pages/editProfiles/api/queries';
 import FormField from '@/pages/editProfiles/components/FormField/FormField.tsx';
 import * as styles from '@/pages/editProfiles/components/ProfileForm/profileForm.css';
 import { MAX_NAME_LENGTH, MAX_NICKNAME_LENGTH } from '@/pages/editProfiles/constants/limit.ts';
 import { profileSchema, ProfileFormValues } from '@/pages/editProfiles/schema/profileSchema.ts';
 import { UpdateProfileRequestTypes } from '@/pages/editProfiles/types/api.ts';
 import ImageUploadSection from '@/pages/instructorRegister/components/ImageUploadSection/ImageUploadSection.tsx';
+import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import Text from '@/shared/components/Text/Text';
+import { notify } from '@/shared/components/Toast/Toast';
 import useImageUploader from '@/shared/hooks/useImageUploader';
 
 interface ProfileFormPropTypes {
@@ -22,7 +25,26 @@ interface ProfileFormPropTypes {
 }
 
 const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
-  const [focusedFieid, setFocusedField] = useState<string | null>(null);
+  const navigate = useNavigate();
+
+  const [focusedField, setFocusedField] = useState<string | null>(null);
+
+  const handleFocus = (fieldName: string) => {
+    setFocusedField(fieldName);
+  };
+
+  const handleBlur = () => {
+    setFocusedField(null);
+  };
+
+  const mutation = usePatchMyProfile({
+    onSuccess: () => {
+      navigate(ROUTES_CONFIG.mypage.path);
+    },
+    onError: () => {
+      notify('프로필 업데이트에 실패했습니다. 다시 시도해주세요');
+    },
+  });
 
   const {
     register,
@@ -62,7 +84,7 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
       profileImageUrl: typeof formData.profileImageUrl === 'string' ? formData.profileImageUrl : '',
     };
 
-    patchMyProfile(submitData);
+    mutation.mutate(submitData);
   };
 
   return (
@@ -80,8 +102,9 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
         placeholder="댄서네임을 입력해주세요"
         register={register}
         error={errors.nickname}
-        onFocus={() => setFocusedField('nickname')}
-        onBlur={() => setFocusedField(null)}
+        isFocused={focusedField === 'nickname'}
+        onFocus={() => handleFocus('nickname')}
+        onBlur={handleBlur}
         validationMessage={
           <Text tag="b3_r" color="alert3">
             {`${nickname?.length || 0}/${MAX_NICKNAME_LENGTH}`}
@@ -95,8 +118,9 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
         register={register}
         placeholder="이름을 입력해주세요"
         error={errors.name}
-        onFocus={() => setFocusedField('name')}
-        onBlur={() => setFocusedField(null)}
+        isFocused={focusedField === 'name'}
+        onFocus={() => handleFocus('name')}
+        onBlur={handleBlur}
         validationMessage={
           <Text tag="b3_r" color="alert3">
             {`${name?.length || 0}/${MAX_NAME_LENGTH}`}
@@ -108,10 +132,11 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
         label="전화번호"
         name="phoneNumber"
         placeholder="전화번호를 입력해주세요"
-        onFocus={() => setFocusedField('phoneNumber')}
-        onBlur={() => setFocusedField(null)}
         register={register}
         error={errors.phoneNumber}
+        isFocused={focusedField === 'phoneNumber'}
+        onFocus={() => handleFocus('phoneNumber')}
+        onBlur={handleBlur}
       />
 
       <div className={styles.buttonWrapperStyle}>
