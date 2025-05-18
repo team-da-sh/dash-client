@@ -2,6 +2,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
 import { useForm, useController } from 'react-hook-form';
 import { usePatchMyProfile } from '@/pages/editProfiles/api/queries';
+import BottomSheet from '@/pages/editProfiles/components/BottomSheet/BottomSheet';
 import FormField from '@/pages/editProfiles/components/FormField/FormField.tsx';
 import * as styles from '@/pages/editProfiles/components/ProfileForm/profileForm.css';
 import { MAX_NAME_LENGTH, MAX_NICKNAME_LENGTH } from '@/pages/editProfiles/constants/limit.ts';
@@ -25,14 +26,7 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
   const mutation = usePatchMyProfile();
 
   const [focusedField, setFocusedField] = useState<string | null>(null);
-
-  const handleFocus = (fieldName: string) => {
-    setFocusedField(fieldName);
-  };
-
-  const handleBlur = () => {
-    setFocusedField(null);
-  };
+  const [isImageClick, setIsImageClick] = useState(false);
 
   const {
     register,
@@ -45,6 +39,14 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
     defaultValues,
     mode: 'onChange',
   });
+
+  const handleFocus = (fieldName: string) => {
+    setFocusedField(fieldName);
+  };
+
+  const handleBlur = () => {
+    setFocusedField(null);
+  };
 
   const { field } = useController({
     name: 'profileImageUrl',
@@ -75,13 +77,26 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
     mutation.mutate(submitData);
   };
 
+  const handleImageFormClick = () => {
+    setIsImageClick(true);
+  };
+
+  const handleCloseBottomSheet = () => {
+    setIsImageClick(false);
+  };
+
+  const handleSelectImage = () => {
+    handleUploaderClick();
+  };
+
+  const handleDeleteImage = () => {};
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <ImageUploadSection
         previewImg={previewImg || defaultValues.profileImageUrl}
-        handleUploaderClick={handleUploaderClick}
         uploadImgFile={uploadImgFile}
         imgRef={imgRef}
+        onClick={handleImageFormClick}
       />
 
       <FormField
@@ -132,6 +147,14 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
           확인
         </BoxButton>
       </div>
+      {isImageClick && (
+        <BottomSheet
+          isVisible={isImageClick}
+          onClose={handleCloseBottomSheet}
+          onSelectImage={handleSelectImage}
+          onDeleteImage={handleDeleteImage}
+        />
+      )}
     </form>
   );
 };
