@@ -1,4 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useState } from 'react';
 import { useForm, useController } from 'react-hook-form';
 import { patchMyProfile } from '@/pages/editProfiles/api/axios.ts';
 import FormField from '@/pages/editProfiles/components/FormField/FormField.tsx';
@@ -21,6 +22,8 @@ interface ProfileFormPropTypes {
 }
 
 const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
+  const [focusedFieid, setFocusedField] = useState<string | null>(null);
+
   const {
     register,
     handleSubmit,
@@ -77,6 +80,8 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
         placeholder="댄서네임을 입력해주세요"
         register={register}
         error={errors.nickname}
+        onFocus={() => setFocusedField('nickname')}
+        onBlur={() => setFocusedField(null)}
         validationMessage={
           <Text tag="b3_r" color="alert3">
             {`${nickname?.length || 0}/${MAX_NICKNAME_LENGTH}`}
@@ -90,6 +95,8 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
         register={register}
         placeholder="이름을 입력해주세요"
         error={errors.name}
+        onFocus={() => setFocusedField('name')}
+        onBlur={() => setFocusedField(null)}
         validationMessage={
           <Text tag="b3_r" color="alert3">
             {`${name?.length || 0}/${MAX_NAME_LENGTH}`}
@@ -101,6 +108,8 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
         label="전화번호"
         name="phoneNumber"
         placeholder="전화번호를 입력해주세요"
+        onFocus={() => setFocusedField('phoneNumber')}
+        onBlur={() => setFocusedField(null)}
         register={register}
         error={errors.phoneNumber}
       />

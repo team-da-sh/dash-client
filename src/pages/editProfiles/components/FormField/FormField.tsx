@@ -12,6 +12,8 @@ interface FormFieldPropTypes {
   error?: { message?: string };
   readOnly?: boolean;
   validationMessage?: React.ReactNode;
+  onFocus?: React.FocusEventHandler<HTMLInputElement>;
+  onBlur?: React.FocusEventHandler<HTMLInputElement>;
 }
 
 const FormField = ({
@@ -22,13 +24,22 @@ const FormField = ({
   error,
   readOnly = false,
   validationMessage,
+  onFocus,
+  onBlur,
 }: FormFieldPropTypes) => {
   return (
     <div className={styles.fieldWrapperStyle}>
       <label>
         <Text tag="b2_sb">{label}</Text>
       </label>
-      <Input placeholder={placeholder} {...register(name)} isError={!!error} readOnly={readOnly} />
+      <Input
+        placeholder={placeholder}
+        {...register(name)}
+        isError={!!error}
+        readOnly={readOnly}
+        onFocus={onFocus}
+        onBlur={onBlur}
+      />
       {error && error.message && (
         <div className={styles.errorMessageStyle}>
           <Text tag="b3_r" color="alert3">

@@ -9,13 +9,20 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 const Input = (
-  { isError, className, value, rightAddOn, ...props }: InputProps,
+  { isError, className, value, rightAddOn, onFocus, onBlur, ...props }: InputProps,
   ref: ForwardedRef<HTMLInputElement>
 ) => {
   const [isFocused, setIsFocused] = useState(false);
 
-  const handleFocus = () => setIsFocused(true);
-  const handleBlur = () => setIsFocused(false);
+  const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+    setIsFocused(true);
+    if (onFocus) onFocus(e);
+  };
+
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    setIsFocused(false);
+    if (onBlur) onBlur(e);
+  };
 
   const defineInputState = (isError?: boolean, isFocused?: boolean) => {
     if (isError) {
