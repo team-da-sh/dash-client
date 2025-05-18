@@ -85,7 +85,7 @@ const TeacherContent = () => {
                   rel="noopener noreferrer"
                   className={sprinkles({ display: 'flex', gap: 4, alignItems: 'center' })}>
                   <IcInstagram20 width={16} height={12} />
-                  <Text tag="b3_m" color="gray6">
+                  <Text tag="b3_m" color="gray6" className={styles.snsUrlStyle}>
                     {extractInstaHandleFromUrl(data.instagram)}
                   </Text>
                 </a>
@@ -104,7 +104,7 @@ const TeacherContent = () => {
                   rel="noopener noreferrer"
                   className={sprinkles({ display: 'flex', gap: 4, alignItems: 'center' })}>
                   <IcYoutube20 width={16} height={12} />
-                  <Text tag="b3_m" color="gray6">
+                  <Text tag="b3_m" color="gray6" className={styles.snsUrlStyle}>
                     {extractYouTubeHandleFromUrl(data.youtube)}
                   </Text>
                 </a>

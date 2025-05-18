@@ -53,3 +53,10 @@ export const allButtonStyle = style({
 
   cursor: 'pointer',
 });
+
+export const snsUrlStyle = style({
+  maxWidth: '8.8rem',
+  whiteSpace: 'nowrap',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+});
