@@ -61,7 +61,10 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
     field.onChange('');
   };
 
-  const { previewImg, imgRef, handleUploaderClick, uploadImgFile } = useImageUploader(handleSuccess, handleDelete);
+  const { previewImg, imgRef, handleUploaderClick, deleteImgFile, uploadImgFile } = useImageUploader(
+    handleSuccess,
+    handleDelete
+  );
 
   const { nickname, name } = watch();
   const isButtonActive = isDirty && isValid;
@@ -89,7 +92,11 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
     handleUploaderClick();
   };
 
-  const handleDeleteImage = () => {};
+  const handleDeleteImage = () => {
+    deleteImgFile();
+    handleCloseBottomSheet();
+  };
+
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <ImageUploadSection

@@ -31,12 +31,12 @@ const BottomSheet = ({ onClose, onSelectImage, onDeleteImage, isVisible }: Botto
           </button>
         </div>
         <div className={styles.textWrapper}>
-          <button onClick={onSelectImage}>
+          <button onClick={onSelectImage} type="button">
             <Text tag="b2_m" color="gray9" className={styles.text}>
               앨범에서 사진 선택
             </Text>
           </button>
-          <button onClick={onDeleteImage}>
+          <button onClick={onDeleteImage} type="button">
             <Text tag="b2_m" color="alert1" className={styles.text}>
               현재 사진 삭제
             </Text>

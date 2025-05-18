@@ -48,9 +48,10 @@ const useImageUploader = (onSuccess: (url: string) => void, handleDeleteUrl?: ()
     };
   };
 
-  const deleteImgFile = (e: React.MouseEvent) => {
-    e.stopPropagation();
-
+  const deleteImgFile = (e?: React.MouseEvent) => {
+    if (e) {
+      e.stopPropagation();
+    }
     setImgFile(undefined);
     setPreviewImg('');
 
