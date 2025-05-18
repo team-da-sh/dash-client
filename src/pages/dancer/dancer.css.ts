@@ -28,10 +28,10 @@ export const textWrapperStyle = style({
   display: 'flex',
   flexDirection: 'column',
   position: 'relative',
-  
+
   gap: '0.8rem',
   paddingTop: '28.9rem',
   paddingLeft: '2rem',
 
-  zIndex: 2,
+  zIndex: 1,
 });
