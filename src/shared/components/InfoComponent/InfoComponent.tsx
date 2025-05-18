@@ -24,7 +24,11 @@ const InfoComponent = ({ type, profileImageUrl, mainText, subContent }: InfoComp
   return (
     <section className={styles.infoContainerStyle}>
       <div className={sprinkles({ display: 'flex', gap: 12, alignItems: 'center' })}>
-        <img src={profileImageUrl} alt="프로필 이미지" className={styles.imgStyle} />
+        <img
+          src={profileImageUrl || 'images/image_profile_basic.png'}
+          alt="프로필 이미지"
+          className={styles.imgStyle}
+        />
         <div className={styles.wrapperStyle}>
           <div className={styles.textWrapperStyle}>{mainText}</div>
           <div>{subContent}</div>

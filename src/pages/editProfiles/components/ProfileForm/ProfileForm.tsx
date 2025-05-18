@@ -59,25 +59,9 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
 
   const handleDelete = () => {
     field.onChange('');
-  };
-
-  const { previewImg, imgRef, handleUploaderClick, deleteImgFile, uploadImgFile } = useImageUploader(
-    handleSuccess,
-    handleDelete
-  );
-
-  const { nickname, name } = watch();
-  const isButtonActive = isDirty && isValid;
-
-  const onSubmit = (formData: ProfileFormValues) => {
-    const submitData: UpdateProfileRequestTypes = {
-      nickname: formData.nickname,
-      phoneNumber: formData.phoneNumber,
-      name: formData.name,
-      profileImageUrl: typeof formData.profileImageUrl === 'string' ? formData.profileImageUrl : '',
-    };
-
-    mutation.mutate(submitData);
+    if (imgRef.current) {
+      imgRef.current.value = '';
+    }
   };
 
   const handleImageFormClick = () => {
@@ -88,19 +72,45 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
     setIsImageClick(false);
   };
 
-  const handleSelectImage = () => {
-    handleUploaderClick();
+  const { previewImg, imgRef, handleUploaderClick, deleteImgFile, uploadImgFile } = useImageUploader(
+    handleSuccess,
+    handleDelete,
+    defaultValues.profileImageUrl,
+    handleCloseBottomSheet
+  );
+
+  const { nickname, name } = watch();
+  const isButtonActive = isDirty && isValid;
+
+  const onSubmit = (formData: ProfileFormValues) => {
+    let profileImageUrl: string | null = null;
+
+    if (typeof formData.profileImageUrl === 'string') {
+      profileImageUrl = formData.profileImageUrl.trim() !== '' ? formData.profileImageUrl : null;
+    } else if (formData.profileImageUrl instanceof FileList) {
+      profileImageUrl = null;
+    } else {
+      profileImageUrl = null;
+    }
+
+    const submitData: UpdateProfileRequestTypes = {
+      nickname: formData.nickname,
+      phoneNumber: formData.phoneNumber,
+      name: formData.name,
+      profileImageUrl,
+    };
+
+    mutation.mutate(submitData);
   };
 
-  const handleDeleteImage = () => {
-    deleteImgFile();
-    handleCloseBottomSheet();
+  const handleSelectImage = () => {
+    handleUploaderClick();
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <ImageUploadSection
-        previewImg={previewImg || defaultValues.profileImageUrl}
+        previewImg={previewImg}
         uploadImgFile={uploadImgFile}
         imgRef={imgRef}
         onClick={handleImageFormClick}
@@ -159,7 +169,7 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
           isVisible={isImageClick}
           onClose={handleCloseBottomSheet}
           onSelectImage={handleSelectImage}
-          onDeleteImage={handleDeleteImage}
+          onDeleteImage={deleteImgFile}
         />
       )}
     </form>
