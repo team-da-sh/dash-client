@@ -3,7 +3,6 @@ import { useController } from 'react-hook-form';
 import type { ProfileFormValues } from '@/pages/editProfiles/schema/profileSchema';
 import Text from '@/shared/components/Text/Text';
 import useImageUploader from '@/shared/hooks/useImageUploader';
-import * as styles from './profileImageUpload.css';
 
 interface ProfileImageUploadPropTypes {
   defaultImageUrl: string;
