@@ -19,6 +19,7 @@ interface InputSectionPropTypes {
   onToggleActive: () => void;
   inputItems: InputItemTypes[];
   onItemsChange: (updatedItems: InputItemTypes[]) => void;
+  maxInputLength?: number;
   maxInputCount?: number;
 }
 
@@ -31,6 +32,7 @@ const InputSection = ({
   onToggleActive,
   inputItems,
   onItemsChange,
+  maxInputLength,
   maxInputCount,
 }: InputSectionPropTypes) => {
   const [nextID, setNextID] = useState(inputItems.length + 1);
@@ -103,6 +105,7 @@ const InputSection = ({
                 onItemsChange(updatedItems);
               }}
               rightAddOn={renderDeleteIcon(id, value)}
+              maxLength={maxInputLength}
             />
           ))}
 

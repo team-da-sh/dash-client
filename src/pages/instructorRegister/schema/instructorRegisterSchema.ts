@@ -1,8 +1,9 @@
 import { z } from 'zod';
+import { INTRODUCTION_LENGTH_ERROR_MSG } from '@/pages/instructorRegister/constants/registerSection';
 
 export const instructorRegisterSchema = z
   .object({
-    detail: z.string().min(30, '최소 30자').max(500, '자기소개는 500자 이내로 작성해주세요.'),
+    detail: z.string().min(30, INTRODUCTION_LENGTH_ERROR_MSG).max(500),
     instagram: z.string().optional(),
     youtube: z.string().optional(),
 

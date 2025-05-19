@@ -1,9 +1,9 @@
 import type { UseFormSetValue } from 'react-hook-form';
 import InputSection from '@/pages/instructorRegister/components/CareerSection/InputSection/InputSection';
 import Description from '@/pages/instructorRegister/components/Description/Description';
-import { INFO_KEY } from '@/pages/instructorRegister/constants/registerSection';
+import { INFO_KEY, MAX_CAREER_INPUT_LENGTH } from '@/pages/instructorRegister/constants/registerSection';
+import type { instructorRegisterFormTypes } from '@/pages/instructorRegister/types/instructorRegisterForm';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
-import type { instructorRegisterFormTypes } from '../../types/instructorRegisterForm';
 
 interface CareerSectionPropTypes {
   educations: string[];
@@ -48,6 +48,7 @@ const CareerSection = ({
             updatedItems.map((item) => item.value)
           )
         }
+        maxInputLength={MAX_CAREER_INPUT_LENGTH}
         key={INFO_KEY.EDUCATIONS}
       />
 
@@ -63,6 +64,7 @@ const CareerSection = ({
             updatedItems.map((item) => item.value)
           )
         }
+        maxInputLength={MAX_CAREER_INPUT_LENGTH}
         key={INFO_KEY.EXPERIENCES}
       />
 
@@ -78,6 +80,7 @@ const CareerSection = ({
             updatedItems.map((item) => item.value)
           )
         }
+        maxInputLength={MAX_CAREER_INPUT_LENGTH}
         key={INFO_KEY.PRIZES}
       />
     </div>

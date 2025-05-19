@@ -17,7 +17,7 @@ import {
   MIN_EDUCATION_INPUT_COUNT,
   MIN_INTRODUCTION_LENGTH,
   MIN_PRIZE_INPUT_COUNT,
-  MIN_VIDEO_INPUT,
+  MIN_VIDEO_INPUT_COUNT,
 } from '@/pages/instructorRegister/constants/registerSection';
 import useInstructorRegisterForm from '@/pages/instructorRegister/hooks/useInstructorRegisterForm';
 import * as styles from '@/pages/instructorRegister/instructorRegister.css';
@@ -97,7 +97,7 @@ const InstructorRegister = () => {
 
     return educationValid && careerValid && prizeValid;
   };
-  const hasVideoUrl = videoUrls.some((url) => url.trim().length >= MIN_VIDEO_INPUT);
+  const hasVideoUrl = videoUrls.some((url) => url.trim().length >= MIN_VIDEO_INPUT_COUNT);
   const videoValid = hasVideoUrl || isVideoNoneChecked;
 
   const buttonActive = () => {
