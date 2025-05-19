@@ -104,8 +104,8 @@ const InstructorRegister = () => {
       imageUrls: [imageUrls],
       detail: detail.trim(),
 
-      instagram: instagram?.trim() === '' ? null : `https://www.instagram.com/${instagram?.trim()}`,
-      youtube: youtube?.trim() === '' ? null : `https://www.youtube.com/@${youtube?.trim()}`,
+      instagram: instagram?.trim() === '' ? null : `${instagram?.trim()}`,
+      youtube: youtube?.trim() === '' ? null : `${youtube?.trim()}`,
 
       educations: isEduNoneChecked ? [] : educations.filter((education) => education.trim() !== ''),
       experiences: isCareerNoneChecked ? [] : experiences.filter((experience) => experience.trim() !== ''),
@@ -114,7 +114,8 @@ const InstructorRegister = () => {
       videoUrls: isVideoNoneChecked ? [] : videoUrls.filter((url) => url.trim() !== ''),
     };
 
-    const onSuccess = (response: { data: { accessToken: string; refreshToken: string } }) => {
+    // 강사 수정 성공 함수
+    const onSuccessEdit = (response: { data: { accessToken: string; refreshToken: string } }) => {
       const { accessToken, refreshToken } = response.data;
 
       setAccessToken(accessToken);
@@ -129,6 +130,7 @@ const InstructorRegister = () => {
       navigate(ROUTES_CONFIG.error.path);
     };
 
+    // 강사 수정 (이미 강사 등록된 경우)
     if (userRole === USER_ROLE.TEACHER) {
       instructorPatchMutate(updatedInfo, {
         onSuccess: () => {
@@ -137,7 +139,7 @@ const InstructorRegister = () => {
         onError,
       });
     } else {
-      instructorRegisterMutate(updatedInfo, { onSuccess, onError });
+      instructorRegisterMutate(updatedInfo, { onSuccess: onSuccessEdit, onError });
     }
   };
 
