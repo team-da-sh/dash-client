@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { FieldError, UseFormRegister } from 'react-hook-form';
 import {
   containerStyle,
@@ -17,12 +17,25 @@ interface IntroductionSectionPropTypes {
 
 const IntroductionSection = ({ detail, register, error }: IntroductionSectionPropTypes) => {
   const [isFocused, setIsFocused] = useState(false);
+  const textAreaRef = useRef<HTMLTextAreaElement | null>(null);
   const { name, onBlur, ref, onChange } = register('detail');
 
   const handleFocus = () => setIsFocused(true);
   const handleBlur = (e: React.FocusEvent<HTMLTextAreaElement>) => {
     setIsFocused(false);
     onBlur(e);
+  };
+
+  const handleResizeHeight = () => {
+    if (textAreaRef.current) {
+      textAreaRef.current.style.height = 'auto';
+      textAreaRef.current.style.height = `${textAreaRef.current.scrollHeight}px`;
+    }
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    handleResizeHeight();
+    onChange(e);
   };
 
   const defineInputState = (error?: boolean, isFocused?: boolean) => {
@@ -44,11 +57,8 @@ const IntroductionSection = ({ detail, register, error }: IntroductionSectionPro
   const counterColor = getCounterColor(!!error, isFocused, !!detail);
 
   useEffect(() => {
-    const textArea = document.querySelector('#introduction-textarea') as HTMLTextAreaElement | null;
-    if (textArea) {
-      textArea.style.height = `${textArea.scrollHeight}px`;
-    }
-  }, [detail]);
+    handleResizeHeight();
+  }, []);
 
   return (
     <section className={containerStyle}>
@@ -57,8 +67,11 @@ const IntroductionSection = ({ detail, register, error }: IntroductionSectionPro
         <textarea
           id="introduction-textarea"
           name={name}
-          ref={ref}
-          onChange={onChange}
+          ref={(e) => {
+            ref(e);
+            textAreaRef.current = e;
+          }}
+          onChange={handleChange}
           onFocus={handleFocus}
           onBlur={handleBlur}
           value={detail}
