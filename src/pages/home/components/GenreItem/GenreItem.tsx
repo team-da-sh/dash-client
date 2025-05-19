@@ -1,4 +1,5 @@
 import { containerStyle, dummyStyle, genreStyle, medalStyle } from '@/pages/home/components/GenreItem/genreItem.css';
+import { DUMMY } from '@/pages/home/constants';
 import Text from '@/shared/components/Text/Text';
 
 interface GenreItemPropTypes {
@@ -8,7 +9,7 @@ interface GenreItemPropTypes {
 }
 
 const GenreItem = ({ medalIcon, genre, onClick }: GenreItemPropTypes) => {
-  if (genre === 'DUMMY') {
+  if (genre === DUMMY) {
     return <li className={dummyStyle} />;
   }
 
