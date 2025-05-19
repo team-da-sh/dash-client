@@ -82,7 +82,7 @@ export const useClassRegisterForm = () => {
         !!externalFormFields.price
       : true;
 
-    const isInternalFieldsValid = imageUrls.imageUrls.length > 0 && selectedTime !== null && times.length > 0;
+    const isInternalFieldsValid = imageUrls.imageUrls.length > 0 && times.length > 0;
 
     const isLocationValid = isUndecidedLocation || selectedLocation !== null;
 
