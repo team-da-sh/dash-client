@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useLayoutEffect, useRef, useState } from 'react';
 import type { FieldError, UseFormRegister } from 'react-hook-form';
 import {
   containerStyle,
@@ -26,17 +26,13 @@ const IntroductionSection = ({ detail, register, error }: IntroductionSectionPro
     onBlur(e);
   };
 
-  const handleResizeHeight = () => {
+  // textarea 높이 자동으로 조절
+  useLayoutEffect(() => {
     if (textAreaRef.current) {
       textAreaRef.current.style.height = 'auto';
       textAreaRef.current.style.height = `${textAreaRef.current.scrollHeight}px`;
     }
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    handleResizeHeight();
-    onChange(e);
-  };
+  }, [detail]);
 
   const defineInputState = (error?: boolean, isFocused?: boolean) => {
     if (error) {
@@ -56,10 +52,6 @@ const IntroductionSection = ({ detail, register, error }: IntroductionSectionPro
   const inputState = defineInputState(!!error, isFocused);
   const counterColor = getCounterColor(!!error, isFocused, !!detail);
 
-  useEffect(() => {
-    handleResizeHeight();
-  }, []);
-
   return (
     <section className={containerStyle}>
       <Text tag="b2_sb">강사 소개</Text>
@@ -71,13 +63,14 @@ const IntroductionSection = ({ detail, register, error }: IntroductionSectionPro
             ref(e);
             textAreaRef.current = e;
           }}
-          onChange={handleChange}
+          onChange={onChange}
           onFocus={handleFocus}
           onBlur={handleBlur}
           value={detail}
           placeholder="저는 이런 댄서예요!"
           className={textAreaStyle({ defineInputState: inputState })}
           maxLength={MAX_INTRODUCTION_LENGTH}
+          rows={1}
         />
 
         <div className={sprinkles({ display: 'flex', justifyContent: 'space-between' })}>

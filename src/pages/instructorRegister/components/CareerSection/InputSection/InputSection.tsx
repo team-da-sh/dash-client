@@ -69,10 +69,6 @@ const InputSection = ({
     }
   };
 
-  const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.checked);
-  };
-
   return (
     <div className={containerStyle}>
       <Flex justify="spaceBetween" width="100%">
@@ -84,12 +80,7 @@ const InputSection = ({
             해당없음
           </Text>
           <label style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', cursor: 'pointer' }}>
-            <input
-              onChange={handleCheckboxChange}
-              onClick={onToggleActive}
-              type="checkbox"
-              className={hiddenCheckboxStyle}
-            />
+            <input onClick={onToggleActive} type="checkbox" className={hiddenCheckboxStyle} />
 
             {isNoneChecked ? <BtnCheck width="2rem" /> : <div className={checkboxStyle} />}
           </label>
