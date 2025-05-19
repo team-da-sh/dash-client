@@ -21,7 +21,7 @@ export const gradientOverlayStyle = style({
   height: '16rem',
 
   background: 'linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, #000 100%)',
-  zIndex: 1,
+  zIndex: vars.zIndex.one,
 });
 
 export const textWrapperStyle = style({
@@ -33,5 +33,5 @@ export const textWrapperStyle = style({
   paddingTop: '28.9rem',
   paddingLeft: '2rem',
 
-  zIndex: 1,
+  zIndex: vars.zIndex.one,
 });
