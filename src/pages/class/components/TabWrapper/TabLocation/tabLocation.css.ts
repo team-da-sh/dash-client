@@ -3,8 +3,8 @@ import { vars } from '@/shared/styles/theme.css';
 
 export const streetAddressStyle = style({
   whiteSpace: 'pre-line',
-  wordBreak: 'break-word',
   overflowWrap: 'break-word',
+  wordBreak: 'break-all',
 });
 
 export const addressTitleStyle = style({
