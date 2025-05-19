@@ -27,21 +27,28 @@ const ClassLevel = ({ selectedLevel, toggleLevel, error }: ClassLevelPropTypes) 
         className={sprinkles({
           display: 'flex',
           flexDirection: 'column',
-          gap: 8,
           width: '100%',
           mt: 20,
         })}>
-        {LEVEL.map((level) => (
-          <LevelButton
-            key={level.title}
-            level={level}
-            isSelected={selectedLevel === level.title}
-            onClick={() => toggleLevel(level.title)}
-            isError={!!error}
-          />
-        ))}
+        <div
+          className={sprinkles({
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 8,
+            width: '100%',
+          })}>
+          {LEVEL.map((level) => (
+            <LevelButton
+              key={level.title}
+              level={level}
+              isSelected={selectedLevel === level.title}
+              onClick={() => toggleLevel(level.title)}
+              isError={!!error}
+            />
+          ))}
+        </div>
         {error && (
-          <div className={sprinkles({ mt: 8 })}>
+          <div className={sprinkles({ mt: 4 })}>
             <Text tag="b3_r" color="alert3">
               {error.message}
             </Text>

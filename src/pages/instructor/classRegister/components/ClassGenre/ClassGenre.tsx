@@ -38,7 +38,7 @@ const ClassGenre = ({ selectedGenre, toggleCategory, error }: ClassGenrePropType
       </div>
 
       {error && (
-        <div className={sprinkles({ mt: 8 })}>
+        <div className={sprinkles({ mt: 4 })}>
           <Text tag="b3_r" color="alert3">
             {error.message}
           </Text>
