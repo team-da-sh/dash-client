@@ -12,14 +12,6 @@ import ImageUploadSection from '@/pages/instructorRegister/components/ImageUploa
 import IntroductionSection from '@/pages/instructorRegister/components/IntroductionSection/IntroductionSection';
 import PersonalSNSSection from '@/pages/instructorRegister/components/PersonalSNSSection/PersonalSNSSection';
 import VideoLinkSection from '@/pages/instructorRegister/components/VideoLinkSection/VideoLinkSection';
-import {
-  MIN_CAREER_INPUT_COUNT,
-  MIN_EDUCATION_INPUT_COUNT,
-  MIN_INTRODUCTION_LENGTH,
-  MIN_PRIZE_INPUT_COUNT,
-  MIN_VIDEO_INPUT_COUNT,
-} from '@/pages/instructorRegister/constants/registerSection';
-import useInstructorRegisterForm from '@/pages/instructorRegister/hooks/useInstructorRegisterForm';
 import * as styles from '@/pages/instructorRegister/instructorRegister.css';
 import { instructorRegisterSchema } from '@/pages/instructorRegister/schema/instructorRegisterSchema';
 import { setUser } from '@/pages/mypage/utils/storage';
@@ -48,61 +40,46 @@ const InstructorRegister = () => {
     watch,
     setValue,
     control,
-    formState: { errors },
+    formState: { errors, isValid },
     reset,
   } = useForm({
     resolver: zodResolver(instructorRegisterSchema),
     mode: 'onTouched',
     defaultValues: {
-      imageUrls: '',
+      detail: '',
       instagram: '',
       youtube: '',
+      imageUrls: '',
       educations: [''],
       experiences: [''],
       prizes: [''],
-      detail: '',
       videoUrls: [''],
+      isEduNoneChecked: false,
+      isCareerNoneChecked: false,
+      isPrizeNoneChecked: false,
+      isVideoNoneChecked: false,
     },
   });
 
-  const { detail, instagram, youtube, educations, experiences, prizes, videoUrls, imageUrls } = watch();
+  const {
+    detail,
+    instagram,
+    youtube,
+    educations,
+    experiences,
+    prizes,
+    videoUrls,
+    imageUrls,
+    isCareerNoneChecked,
+    isEduNoneChecked,
+    isPrizeNoneChecked,
+    isVideoNoneChecked,
+  } = watch();
+
   const { field } = useController({
     name: 'imageUrls',
     control,
   });
-
-  const {
-    isEduNoneChecked,
-    isCareerNoneChecked,
-    isPrizeNoneChecked,
-    isVideoNoneChecked,
-    handleEducationCheck,
-    handleCareerCheck,
-    handlePrizeCheck,
-    handleVideoCheck,
-  } = useInstructorRegisterForm();
-
-  // 버튼 활성화 조건 체크 함수
-  const hasDetailedInfo = () => detail.trim().length >= MIN_INTRODUCTION_LENGTH;
-  const hasImage = () => !!imageUrls;
-  const hasSocialId = () => !!instagram || !!youtube;
-  const hasDancerBackground = () => {
-    const hasEducation = educations.some((edu) => edu.trim().length >= MIN_EDUCATION_INPUT_COUNT);
-    const hasCareer = experiences.some((exp) => exp.trim().length >= MIN_CAREER_INPUT_COUNT);
-    const hasPrize = prizes.some((prize) => prize.trim().length >= MIN_PRIZE_INPUT_COUNT);
-
-    const educationValid = hasEducation || isEduNoneChecked;
-    const careerValid = hasCareer || isCareerNoneChecked;
-    const prizeValid = hasPrize || isPrizeNoneChecked;
-
-    return educationValid && careerValid && prizeValid;
-  };
-  const hasVideoUrl = videoUrls.some((url) => url.trim().length >= MIN_VIDEO_INPUT_COUNT);
-  const videoValid = hasVideoUrl || isVideoNoneChecked;
-
-  const buttonActive = () => {
-    return !errors.detail && hasImage() && hasSocialId() && hasDancerBackground() && videoValid && hasDetailedInfo();
-  };
 
   // 이미지 업로드 관련
   const handleImageUploadSuccess = (url: string) => {
@@ -121,6 +98,8 @@ const InstructorRegister = () => {
 
     const updatedInfo = {
       imageUrls: [imageUrls],
+      detail: detail.trim(),
+
       instagram: instagram?.trim() === '' ? null : `https://www.instagram.com/${instagram?.trim()}`,
       youtube: youtube?.trim() === '' ? null : `https://www.youtube.com/@${youtube?.trim()}`,
 
@@ -128,7 +107,6 @@ const InstructorRegister = () => {
       experiences: isCareerNoneChecked ? [] : experiences.filter((experience) => experience.trim() !== ''),
       prizes: isPrizeNoneChecked ? [] : prizes.filter((prize) => prize.trim() !== ''),
 
-      detail: detail.trim(),
       videoUrls: isVideoNoneChecked ? [] : videoUrls.filter((url) => url.trim() !== ''),
     };
 
@@ -209,25 +187,17 @@ const InstructorRegister = () => {
               isEduNoneChecked={isEduNoneChecked}
               isCareerNoneChecked={isCareerNoneChecked}
               isPrizeNoneChecked={isPrizeNoneChecked}
-              handleEducationCheck={handleEducationCheck}
-              handleCareerCheck={handleCareerCheck}
-              handlePrizeCheck={handlePrizeCheck}
             />
           </div>
           <Divider direction="horizontal" color="gray1" length={'100%'} thickness={'0.8rem'} />
 
           <div className={styles.sectionWrapperStyle}>
-            <VideoLinkSection
-              videoUrls={videoUrls}
-              setValue={setValue}
-              isNoneChecked={isVideoNoneChecked}
-              handleVideoCheck={handleVideoCheck}
-            />
+            <VideoLinkSection videoUrls={videoUrls} setValue={setValue} isNoneChecked={isVideoNoneChecked} />
           </div>
         </div>
 
         <div className={styles.buttonContainerStyle}>
-          <BoxButton variant="primary" isDisabled={!buttonActive()} type="submit">
+          <BoxButton variant="primary" isDisabled={!isValid} type="submit">
             {storageRole === USER_ROLE.TEACHER ? '저장' : '등록'}
           </BoxButton>
         </div>

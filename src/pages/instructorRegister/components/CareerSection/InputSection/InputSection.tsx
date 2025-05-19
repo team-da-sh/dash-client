@@ -3,6 +3,7 @@ import {
   addButtonStyle,
   checkboxStyle,
   containerStyle,
+  hiddenCheckboxStyle,
 } from '@/pages/instructorRegister/components/CareerSection/careerSection.css';
 import type { InputItemTypes } from '@/pages/instructorRegister/types/inputItemTypes';
 import BtnCheck from '@/shared/assets/svg/BtnCheck';
@@ -68,6 +69,10 @@ const InputSection = ({
     }
   };
 
+  const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(e.target.checked);
+  };
+
   return (
     <div className={containerStyle}>
       <Flex justify="spaceBetween" width="100%">
@@ -78,11 +83,16 @@ const InputSection = ({
           <Text tag="b3_m" color="gray6">
             해당없음
           </Text>
-          {isNoneChecked ? (
-            <BtnCheck width={'2rem'} onClick={onToggleActive} />
-          ) : (
-            <div className={checkboxStyle} onClick={onToggleActive} />
-          )}
+          <label style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', cursor: 'pointer' }}>
+            <input
+              onChange={handleCheckboxChange}
+              onClick={onToggleActive}
+              type="checkbox"
+              className={hiddenCheckboxStyle}
+            />
+
+            {isNoneChecked ? <BtnCheck width="2rem" /> : <div className={checkboxStyle} />}
+          </label>
         </Flex>
       </Flex>
 

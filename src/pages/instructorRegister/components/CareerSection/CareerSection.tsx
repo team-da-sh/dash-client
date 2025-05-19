@@ -12,10 +12,6 @@ interface CareerSectionPropTypes {
   isEduNoneChecked: boolean;
   isCareerNoneChecked: boolean;
   isPrizeNoneChecked: boolean;
-  handleEducationCheck: () => void;
-  handleCareerCheck: () => void;
-  handlePrizeCheck: () => void;
-
   setValue: UseFormSetValue<instructorRegisterFormTypes>;
 }
 
@@ -28,9 +24,6 @@ const CareerSection = ({
   isEduNoneChecked,
   isCareerNoneChecked,
   isPrizeNoneChecked,
-  handleEducationCheck,
-  handleCareerCheck,
-  handlePrizeCheck,
 }: CareerSectionPropTypes) => {
   return (
     <div className={sprinkles({ display: 'flex', flexDirection: 'column', width: '100%', pb: 20 })}>
@@ -40,12 +33,15 @@ const CareerSection = ({
         title="학력"
         placeholder="대쉬대학교 실용무용학과 졸업"
         isNoneChecked={isEduNoneChecked}
-        onToggleActive={handleEducationCheck}
+        onToggleActive={() => {
+          setValue('isEduNoneChecked', !isEduNoneChecked, { shouldValidate: true, shouldTouch: true });
+        }}
         inputItems={educations.map((value, id) => ({ id: id + 1, value }))}
         onItemsChange={(updatedItems) =>
           setValue(
             INFO_KEY.EDUCATIONS,
-            updatedItems.map((item) => item.value)
+            updatedItems.map((item) => item.value),
+            { shouldValidate: true, shouldTouch: true }
           )
         }
         maxInputLength={MAX_CAREER_INPUT_LENGTH}
@@ -56,12 +52,15 @@ const CareerSection = ({
         title="경력"
         placeholder="NCT127 단독콘서트 ‘the LINK’ 퍼포먼스 디렉터"
         isNoneChecked={isCareerNoneChecked}
-        onToggleActive={handleCareerCheck}
+        onToggleActive={() => {
+          setValue('isCareerNoneChecked', !isCareerNoneChecked, { shouldValidate: true, shouldTouch: true });
+        }}
         inputItems={experiences.map((value, id) => ({ id: id + 1, value }))}
         onItemsChange={(updatedItems) =>
           setValue(
             INFO_KEY.EXPERIENCES,
-            updatedItems.map((item) => item.value)
+            updatedItems.map((item) => item.value),
+            { shouldValidate: true, shouldTouch: true }
           )
         }
         maxInputLength={MAX_CAREER_INPUT_LENGTH}
@@ -72,12 +71,15 @@ const CareerSection = ({
         title="수상"
         placeholder="2018 BATTLE LIINEUP 1등"
         isNoneChecked={isPrizeNoneChecked}
-        onToggleActive={handlePrizeCheck}
+        onToggleActive={() => {
+          setValue('isPrizeNoneChecked', !isPrizeNoneChecked, { shouldValidate: true, shouldTouch: true });
+        }}
         inputItems={prizes.map((value, id) => ({ id: id + 1, value }))}
         onItemsChange={(updatedItems) =>
           setValue(
             INFO_KEY.PRIZES,
-            updatedItems.map((item) => item.value)
+            updatedItems.map((item) => item.value),
+            { shouldValidate: true, shouldTouch: true }
           )
         }
         maxInputLength={MAX_CAREER_INPUT_LENGTH}
