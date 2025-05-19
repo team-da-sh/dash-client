@@ -88,35 +88,38 @@ const ClassRegister = () => {
   };
 
   const {
-    // imageUrls,
-
     selectedTime,
     times,
     hour,
     minute,
     ampm,
     startDate,
-
     isUndecidedLocation,
     defaultPlace,
     selectedLocation,
-
     setImageUrls,
-
     setStartDate,
     setHour,
     setMinute,
     setAmpm,
     setSelectedTime,
-    handleAddTime,
-    handleRemoveTime,
-
+    handleAddTime: originalHandleAddTime,
+    handleRemoveTime: originalHandleRemoveTime,
     handleNoneLocationCheck,
     handleDefaultPlace,
     setSelectedLocation,
-
     isButtonActive,
   } = useClassRegisterForm();
+
+  const handleAddTime = () => {
+    const newTimes = originalHandleAddTime();
+    setValue('times', newTimes, { shouldValidate: true });
+  };
+
+  const handleRemoveTime = (idx: number) => {
+    const newTimes = originalHandleRemoveTime(idx);
+    setValue('times', newTimes, { shouldValidate: true });
+  };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -161,6 +164,7 @@ const ClassRegister = () => {
   };
 
   const handleDeleteUrl = () => {
+    field.onChange('');
     setImageUrls({ imageUrls: '' });
   };
 
@@ -172,6 +176,16 @@ const ClassRegister = () => {
   const debouncedSearchValue = useDebounce({ value: defaultPlace, delay: 500 });
 
   const { data: locationList } = useGetLocationList(debouncedSearchValue);
+
+  const handleRemoveLocation = () => {
+    setSelectedLocation(null);
+    setValue('selectedLocation', null, { shouldValidate: true });
+  };
+
+  const handleSelectLocation = (item: any) => {
+    setSelectedLocation(item);
+    setValue('selectedLocation', item, { shouldValidate: true });
+  };
 
   return (
     <>
@@ -186,11 +200,17 @@ const ClassRegister = () => {
             handleUploaderClick={handleUploaderClick}
             uploadImgFile={uploadImgFile}
             deleteImgFile={deleteImgFile}
+            error={errors.imageUrls}
           />
           <ClassGenre selectedGenre={selectedGenre} toggleCategory={toggleCategory} error={errors.selectedGenre} />
           <ClassLevel selectedLevel={selectedLevel} toggleLevel={toggleLevel} error={errors.selectedLevel} />
           <ClassRecommend register={register} error={errors.recommendation} recommendation={recommendation} />
-          <ClassSchedule openBottomSheet={openBottomSheet} times={times} handleRemoveTime={handleRemoveTime} />
+          <ClassSchedule
+            openBottomSheet={openBottomSheet}
+            times={times}
+            handleRemoveTime={handleRemoveTime}
+            error={errors.times}
+          />
           <ClassPersonnel
             maxReservationCount={maxReservationCount}
             register={register}
@@ -203,8 +223,10 @@ const ClassRegister = () => {
             defaultPlace={defaultPlace}
             handleDefaultPlace={handleDefaultPlace}
             selectedLocation={selectedLocation}
-            setSelectedLocation={setSelectedLocation}
+            setSelectedLocation={handleSelectLocation}
+            handleRemoveLocation={handleRemoveLocation}
             locationList={locationList}
+            error={errors.selectedLocation}
           />
           <ClassAmount price={price} register={register} error={errors.price} />
         </div>

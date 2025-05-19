@@ -46,13 +46,17 @@ export const useClassRegisterForm = () => {
         duration: selectedTime,
       };
 
-      setTimes([...times, newTime]);
+      const newTimes = [...times, newTime];
+      setTimes(newTimes);
+      return newTimes;
     }
+    return times;
   };
 
   const handleRemoveTime = (index: number) => {
     const updatedTimes = times.filter((_, idx) => idx !== index);
     setTimes(updatedTimes);
+    return updatedTimes;
   };
 
   const handleDetailPlace = (e: ChangeEvent<HTMLInputElement>) => {
