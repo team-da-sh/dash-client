@@ -1,6 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useQueryClient } from '@tanstack/react-query';
-import { useEffect } from 'react';
 import { useController, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { useGetLocationList, usePostClassRegisterInfo } from '@/pages/instructor/classRegister/apis/queries';
@@ -19,6 +18,7 @@ import ClassSchedule from '@/pages/instructor/classRegister/components/ClassSche
 import { useClassRegisterForm } from '@/pages/instructor/classRegister/hooks/useClassRegisterForm';
 import { classRegisterSchema } from '@/pages/instructor/classRegister/schema/classRegisterSchema';
 import type { ClassRegisterInfoTypes } from '@/pages/instructor/classRegister/types/api';
+import type { LocationTypes } from '@/pages/instructor/classRegister/types/index';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import { genreEngMapping, levelEngMapping } from '@/shared/constants';
@@ -71,8 +71,6 @@ const ClassRegister = () => {
     control,
   });
 
-  useEffect(() => {}, [imageUrls]);
-
   const toggleCategory = (category: string) => {
     setValue('selectedGenre', category === selectedGenre ? '' : category, {
       shouldValidate: true,
@@ -121,7 +119,7 @@ const ClassRegister = () => {
     setValue('times', newTimes, { shouldValidate: true });
   };
 
-  const customOpenBottomSheet = () => {
+  const initTimeAndOpenBottomSheet = () => {
     if (startDate) {
       let latestEndTime: Date | null = null;
 
@@ -215,9 +213,9 @@ const ClassRegister = () => {
     setValue('selectedLocation', null, { shouldValidate: true });
   };
 
-  const handleSelectLocation = (item: any) => {
-    setSelectedLocation(item);
-    setValue('selectedLocation', item, { shouldValidate: true });
+  const handleSelectLocation = (location: LocationTypes | null) => {
+    setSelectedLocation(location);
+    setValue('selectedLocation', location, { shouldValidate: true });
   };
 
   return (
@@ -239,7 +237,7 @@ const ClassRegister = () => {
           <ClassLevel selectedLevel={selectedLevel} toggleLevel={toggleLevel} error={errors.selectedLevel} />
           <ClassRecommend register={register} error={errors.recommendation} recommendation={recommendation} />
           <ClassSchedule
-            openBottomSheet={customOpenBottomSheet}
+            openBottomSheet={initTimeAndOpenBottomSheet}
             times={times}
             handleRemoveTime={handleRemoveTime}
             error={errors.times}
