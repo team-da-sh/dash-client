@@ -40,7 +40,7 @@ const ClassRecommend = ({ register, error, recommendation = '' }: ClassRecommend
         <textarea
           {...register('recommendation')}
           placeholder={CLASS_RECOMMEND_PLACEHOLDER}
-          className={clsx(textareaStyle, error && textareaErrorStyle)}
+          className={error ? textareaErrorStyle : textareaStyle}
           maxLength={MAX_RECOMMEND_LENGTH}
           onFocus={() => setIsInputFocused(true)}
           onBlur={() => setIsInputFocused(false)}

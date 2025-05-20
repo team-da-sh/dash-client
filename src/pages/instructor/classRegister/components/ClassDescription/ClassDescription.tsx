@@ -42,7 +42,7 @@ const ClassDescription = ({ register, error, handleTextAreaHeight, detail = '' }
             onChange: handleTextAreaHeight,
           })}
           placeholder={CLASS_DESCRIPTION_PLACEHOLDER}
-          className={clsx(textareaStyle, error && textareaErrorStyle)}
+          className={error ? textareaErrorStyle : textareaStyle}
           maxLength={MAX_CLASS_DESCRIPTION_LENGTH}
           onFocus={() => setIsInputFocused(true)}
           onBlur={() => setIsInputFocused(false)}

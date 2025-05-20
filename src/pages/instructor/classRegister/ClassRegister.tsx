@@ -1,5 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useQueryClient } from '@tanstack/react-query';
+import type { FormEvent } from 'react';
 import { useController, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { useGetLocationList, usePostClassRegisterInfo } from '@/pages/instructor/classRegister/apis/queries';
@@ -71,7 +72,7 @@ const ClassRegister = () => {
     control,
   });
 
-  const handleTextAreaHeight = (e: React.FormEvent<HTMLTextAreaElement>) => {
+  const handleTextAreaHeight = (e: FormEvent<HTMLTextAreaElement>) => {
     const textArea = e.target as HTMLTextAreaElement;
 
     if (textArea) {
@@ -161,7 +162,7 @@ const ClassRegister = () => {
     openBottomSheet();
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (selectedGenre && selectedLevel) {
