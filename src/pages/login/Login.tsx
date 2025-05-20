@@ -1,6 +1,7 @@
+import { buttonContainerStyle } from '@/pages/instructorRegister/instructorRegister.css';
 import KakaoButton from '@/pages/login/components/KakaoButton/KakaoButton';
 import { containerStyle } from '@/pages/login/login.css';
-import LoginGif from '@/shared/assets/gif/login.gif';
+import LoginWepm from '@/shared/assets/webm/login.webm';
 import Head from '@/shared/components/Head/Head';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
 
@@ -14,9 +15,12 @@ const Login = () => {
         </div>
 
         <div className={sprinkles({ display: 'flex', justifyContent: 'center', width: '100%' })}>
-          <img src={LoginGif} width={300} />
+          <video width={300} autoPlay muted loop playsInline>
+            <source src={LoginWepm} type="video/webm" />
+          </video>
         </div>
-
+      </div>
+      <div className={buttonContainerStyle}>
         <KakaoButton />
       </div>
     </>
