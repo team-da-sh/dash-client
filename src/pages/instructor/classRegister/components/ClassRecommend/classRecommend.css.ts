@@ -20,3 +20,7 @@ export const textareaStyle = style({
     outline: `1px solid ${vars.colors.main04}`,
   },
 });
+
+export const textareaErrorStyle = style({
+  outline: `1px solid ${vars.colors.alert03} !important`,
+});

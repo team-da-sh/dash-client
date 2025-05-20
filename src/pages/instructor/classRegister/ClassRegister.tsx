@@ -71,6 +71,15 @@ const ClassRegister = () => {
     control,
   });
 
+  const handleTextAreaHeight = (e: React.FormEvent<HTMLTextAreaElement>) => {
+    const textArea = e.target as HTMLTextAreaElement;
+
+    if (textArea) {
+      textArea.style.height = '9.8rem';
+      textArea.style.height = `${textArea.scrollHeight}px`;
+    }
+  };
+
   const toggleCategory = (category: string) => {
     setValue('selectedGenre', category === selectedGenre ? '' : category, {
       shouldValidate: true,
@@ -223,7 +232,12 @@ const ClassRegister = () => {
       <form onSubmit={handleSubmit}>
         <div className={styles.containerStyle}>
           <ClassName className={className} register={register} error={errors.className} />
-          <ClassDescription register={register} error={errors.detail} detail={detail} />
+          <ClassDescription
+            register={register}
+            error={errors.detail}
+            detail={detail}
+            handleTextAreaHeight={handleTextAreaHeight}
+          />
           <ClassRepresentImage
             imgFile={imgFile}
             previewImg={previewImg}
