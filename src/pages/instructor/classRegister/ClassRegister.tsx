@@ -121,6 +121,39 @@ const ClassRegister = () => {
     setValue('times', newTimes, { shouldValidate: true });
   };
 
+  const customOpenBottomSheet = () => {
+    if (startDate) {
+      let latestEndTime: Date | null = null;
+
+      for (const time of times) {
+        const existingEndTime = new Date(time.endTime);
+
+        const endTimeDate = existingEndTime.toDateString();
+        const selectedDateObj = new Date(startDate);
+        const selectedDateStr = selectedDateObj.toDateString();
+
+        if (endTimeDate === selectedDateStr) {
+          if (latestEndTime === null || existingEndTime > latestEndTime) {
+            latestEndTime = existingEndTime;
+          }
+        }
+      }
+
+      if (latestEndTime) {
+        const endHour = latestEndTime.getHours();
+        const endMinute = latestEndTime.getMinutes();
+        const endAmpm = endHour >= 12 ? 'PM' : 'AM';
+        const display12Hour = endHour > 12 ? endHour - 12 : endHour === 0 ? 12 : endHour;
+
+        setHour(display12Hour);
+        setMinute(endMinute);
+        setAmpm(endAmpm);
+      }
+    }
+
+    openBottomSheet();
+  };
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -206,7 +239,7 @@ const ClassRegister = () => {
           <ClassLevel selectedLevel={selectedLevel} toggleLevel={toggleLevel} error={errors.selectedLevel} />
           <ClassRecommend register={register} error={errors.recommendation} recommendation={recommendation} />
           <ClassSchedule
-            openBottomSheet={openBottomSheet}
+            openBottomSheet={customOpenBottomSheet}
             times={times}
             handleRemoveTime={handleRemoveTime}
             error={errors.times}
@@ -263,6 +296,7 @@ const ClassRegister = () => {
           setSelectedTime={setSelectedTime}
           selectedTime={selectedTime}
           handleAddTime={handleAddTime}
+          times={times}
         />
       )}
     </>

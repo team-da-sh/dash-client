@@ -10,9 +10,17 @@ interface CalendarCustomPropTypes {
   setStartDate: (date: string) => void;
   setEndDate?: (date: string) => void;
   isSearch: boolean;
+  minCustomDate?: Date;
 }
 
-const CalendarCustom = ({ startDate, endDate, setStartDate, setEndDate, isSearch }: CalendarCustomPropTypes) => {
+const CalendarCustom = ({
+  startDate,
+  endDate,
+  setStartDate,
+  setEndDate,
+  isSearch,
+  minCustomDate,
+}: CalendarCustomPropTypes) => {
   const dateChangeHandler = (value: Value | Range<Value>) => {
     // 시작과 끝 날짜 모두 선택한 경우
     if (Array.isArray(value)) {
@@ -44,7 +52,7 @@ const CalendarCustom = ({ startDate, endDate, setStartDate, setEndDate, isSearch
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
-  const minDate = isSearch ? undefined : today;
+  const minDate = minCustomDate ? minCustomDate : isSearch ? undefined : today;
 
   const tileClassName = ({ date }: { date: Date }) => {
     if (minDate && date < minDate) {
@@ -65,7 +73,7 @@ const CalendarCustom = ({ startDate, endDate, setStartDate, setEndDate, isSearch
         defaultValue={
           startDate ? (endDate ? [new Date(startDate), new Date(endDate)] : new Date(startDate)) : undefined
         }
-        minDate={isSearch ? undefined : today}
+        minDate={minDate}
         tileClassName={tileClassName}
       />
     </div>

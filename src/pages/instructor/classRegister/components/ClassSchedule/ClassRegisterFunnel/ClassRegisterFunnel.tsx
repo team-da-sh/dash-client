@@ -19,6 +19,7 @@ interface ClassRegisterBottomSheetProps {
   setAmpm: (value: string) => void;
   setSelectedTime: (value: number | null) => void;
   selectedTime: number | null;
+  times?: { startTime: string; endTime: string; date: string; duration: number }[];
 }
 
 const ClassRegisterFunnel = ({
@@ -34,12 +35,13 @@ const ClassRegisterFunnel = ({
   setAmpm,
   setSelectedTime,
   selectedTime,
+  times = [],
 }: ClassRegisterBottomSheetProps) => {
   return (
     <div className={funnelContainerStyle}>
       <Funnel>
         <Step name="1">
-          <DateStep startDate={startDate} setStartDate={setStartDate} />
+          <DateStep startDate={startDate} setStartDate={setStartDate} times={times} />
         </Step>
         <Step name="2">
           <TimeStep
@@ -51,6 +53,8 @@ const ClassRegisterFunnel = ({
             setAmpm={setAmpm}
             setSelectedTime={setSelectedTime}
             selectedTime={selectedTime}
+            times={times}
+            startDate={startDate}
           />
         </Step>
       </Funnel>

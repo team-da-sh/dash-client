@@ -18,6 +18,7 @@ interface ClassRegisterBottomSheetPropTypes {
   setSelectedTime: (value: number | null) => void;
   selectedTime: number | null;
   handleAddTime: () => void;
+  times: { startTime: string; endTime: string; date: string; duration: number }[];
 }
 
 const ClassRegisterBottomSheet = ({
@@ -33,6 +34,7 @@ const ClassRegisterBottomSheet = ({
   setSelectedTime,
   selectedTime,
   handleAddTime,
+  times,
 }: ClassRegisterBottomSheetPropTypes) => {
   const { Funnel, Step, currentStep, setStep } = useLocalFunnel(CLASS_REGISTER_TOTAL_STEP);
 
@@ -82,6 +84,7 @@ const ClassRegisterBottomSheet = ({
           setAmpm={setAmpm}
           setSelectedTime={setSelectedTime}
           selectedTime={selectedTime}
+          times={times}
         />
 
         <div className={styles.buttonWrapperStyle}>
