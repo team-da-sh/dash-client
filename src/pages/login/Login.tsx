@@ -14,7 +14,7 @@ const Login = () => {
           <Head tag="h3_sb">지금 시작해 보세요</Head>
         </div>
 
-        <div className={sprinkles({ display: 'flex', justifyContent: 'center', width: '100%' })}>
+        <div className={sprinkles({ display: 'flex', justifyContent: 'center', width: '100%', mt: 16 })}>
           <video width={300} autoPlay muted loop playsInline>
             <source src={LoginWepm} type="video/webm" />
           </video>
