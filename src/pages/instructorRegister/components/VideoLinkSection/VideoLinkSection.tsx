@@ -1,7 +1,10 @@
 import type { UseFormSetValue } from 'react-hook-form';
 import InputSection from '@/pages/instructorRegister/components/CareerSection/InputSection/InputSection';
 import Description from '@/pages/instructorRegister/components/Description/Description';
-import { INFO_KEY, MAX_VIDEO_INPUT_COUNT } from '@/pages/instructorRegister/constants/registerSection';
+import {
+  INSTRUCTOR_REGISTER_FORM_KEY,
+  MAX_VIDEO_INPUT_COUNT,
+} from '@/pages/instructorRegister/constants/registerSection';
 import type { instructorRegisterFormTypes } from '@/pages/instructorRegister/types/instructorRegisterForm';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
 
@@ -21,16 +24,15 @@ const VideoLinkSection = ({ videoUrls, setValue, isNoneChecked }: VideoLinkSecti
         placeholder="https://www.youtube.com/watch?v=LPh1c0pGIi"
         isNoneChecked={isNoneChecked}
         onToggleActive={() => {
-          setValue('isVideoNoneChecked', !isNoneChecked, {
+          setValue(INSTRUCTOR_REGISTER_FORM_KEY.IS_VIDEO_NONE_CHECKED, !isNoneChecked, {
             shouldValidate: true,
-            shouldTouch: true,
             shouldDirty: true,
           });
         }}
         inputItems={videoUrls.map((value, id) => ({ id: id + 1, value }))}
         onItemsChange={(updatedItems) => {
           setValue(
-            INFO_KEY.VIDEO_URLS,
+            INSTRUCTOR_REGISTER_FORM_KEY.VIDEO_URLS,
             updatedItems.map((item) => item.value),
             { shouldValidate: true, shouldTouch: true, shouldDirty: true }
           );

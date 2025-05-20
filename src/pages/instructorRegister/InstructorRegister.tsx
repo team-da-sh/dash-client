@@ -74,8 +74,8 @@ const InstructorRegister = () => {
     prizes,
     videoUrls,
     imageUrls,
-    isCareerNoneChecked,
     isEduNoneChecked,
+    isCareerNoneChecked,
     isPrizeNoneChecked,
     isVideoNoneChecked,
   } = watch();
@@ -86,7 +86,6 @@ const InstructorRegister = () => {
   });
 
   const isEditMode = userRole === USER_ROLE.TEACHER;
-
   const isButtonActive = isEditMode ? isDirty && isValid : isValid;
 
   // 이미지 업로드 관련
@@ -162,10 +161,10 @@ const InstructorRegister = () => {
 
       isEduNoneChecked: !(prevInstructorData.educations?.length > 0),
       isCareerNoneChecked: !(prevInstructorData.experiences?.length > 0),
-      isPrizeNoneChecked: !(prevInstructorData.prizes?.length > 0),
+      isPrizeNoneChecked: !(prevInstructorData.prizes?.length > 1),
       isVideoNoneChecked: !(prevInstructorData.videoUrls?.length > 0),
     });
-  }, [prevInstructorData, reset, setValue]);
+  }, [prevInstructorData, reset]);
 
   return (
     <>

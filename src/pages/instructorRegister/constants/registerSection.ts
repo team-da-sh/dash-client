@@ -1,4 +1,4 @@
-export const INFO_KEY = {
+export const INSTRUCTOR_REGISTER_FORM_KEY = {
   IMAGE_URLS: 'imageUrls',
   INSTAGRAM: 'instagram',
   YOUTUBE: 'youtube',
@@ -7,6 +7,11 @@ export const INFO_KEY = {
   PRIZES: 'prizes',
   DETAIL: 'detail',
   VIDEO_URLS: 'videoUrls',
+
+  IS_EDU_NONE_CHECKED: 'isEduNoneChecked',
+  IS_CAREER_NONE_CHECKED: 'isCareerNoneChecked',
+  IS_PRIZE_NONE_CHECKED: 'isPrizeNoneChecked',
+  IS_VIDEO_NONE_CHECKED: 'isVideoNoneChecked',
 } as const;
 
 export const MIN_INTRODUCTION_LENGTH = 30;
