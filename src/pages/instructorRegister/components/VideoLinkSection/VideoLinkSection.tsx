@@ -21,14 +21,18 @@ const VideoLinkSection = ({ videoUrls, setValue, isNoneChecked }: VideoLinkSecti
         placeholder="https://www.youtube.com/watch?v=LPh1c0pGIi"
         isNoneChecked={isNoneChecked}
         onToggleActive={() => {
-          setValue('isVideoNoneChecked', !isNoneChecked, { shouldValidate: true, shouldTouch: true });
+          setValue('isVideoNoneChecked', !isNoneChecked, {
+            shouldValidate: true,
+            shouldTouch: true,
+            shouldDirty: true,
+          });
         }}
         inputItems={videoUrls.map((value, id) => ({ id: id + 1, value }))}
         onItemsChange={(updatedItems) => {
           setValue(
             INFO_KEY.VIDEO_URLS,
             updatedItems.map((item) => item.value),
-            { shouldValidate: true, shouldTouch: true }
+            { shouldValidate: true, shouldTouch: true, shouldDirty: true }
           );
         }}
         maxInputCount={MAX_VIDEO_INPUT_COUNT}

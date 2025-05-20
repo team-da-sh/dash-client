@@ -44,7 +44,7 @@ const InstructorRegister = () => {
     watch,
     setValue,
     control,
-    formState: { errors, isValid },
+    formState: { errors, isValid, isDirty },
     reset,
   } = useForm({
     resolver: zodResolver(instructorRegisterSchema),
@@ -84,6 +84,10 @@ const InstructorRegister = () => {
     name: 'imageUrls',
     control,
   });
+
+  const isEditMode = userRole === USER_ROLE.TEACHER;
+
+  const isButtonActive = isEditMode ? isDirty && isValid : isValid;
 
   // 이미지 업로드 관련
   const handleImageUploadSuccess = (url: string) => {
@@ -131,7 +135,7 @@ const InstructorRegister = () => {
     };
 
     // 강사 수정 (이미 강사 등록된 경우)
-    if (userRole === USER_ROLE.TEACHER) {
+    if (isEditMode) {
       instructorPatchMutate(updatedInfo, {
         onSuccess: () => {
           navigate(ROUTES_CONFIG.mypage.path);
@@ -155,8 +159,13 @@ const InstructorRegister = () => {
       prizes: prevInstructorData.prizes?.length ? prevInstructorData.prizes : [''],
       detail: prevInstructorData.detail || '',
       videoUrls: prevInstructorData.videoUrls?.length ? prevInstructorData.videoUrls : [''],
+
+      isEduNoneChecked: !(prevInstructorData.educations?.length > 0),
+      isCareerNoneChecked: !(prevInstructorData.experiences?.length > 0),
+      isPrizeNoneChecked: !(prevInstructorData.prizes?.length > 0),
+      isVideoNoneChecked: !(prevInstructorData.videoUrls?.length > 0),
     });
-  }, [prevInstructorData, reset]);
+  }, [prevInstructorData, reset, setValue]);
 
   return (
     <>
@@ -165,7 +174,7 @@ const InstructorRegister = () => {
           <div className={styles.sectionWrapperStyle}>
             <div className={styles.titleStyle}>
               <Head level="h1" tag="h6_sb">
-                {`강사 프로필 ${userRole === USER_ROLE.TEACHER ? '수정' : '등록'}`}
+                {`강사 프로필 ${isEditMode ? '수정' : '등록'}`}
               </Head>
             </div>
 
@@ -204,8 +213,8 @@ const InstructorRegister = () => {
         </div>
 
         <div className={styles.buttonContainerStyle}>
-          <BoxButton variant="primary" isDisabled={!isValid} type="submit">
-            {userRole === USER_ROLE.TEACHER ? '저장' : '등록'}
+          <BoxButton variant="primary" isDisabled={!isButtonActive} type="submit">
+            {isEditMode ? '저장' : '등록'}
           </BoxButton>
         </div>
       </form>

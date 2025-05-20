@@ -34,14 +34,18 @@ const CareerSection = ({
         placeholder="대쉬대학교 실용무용학과 졸업"
         isNoneChecked={isEduNoneChecked}
         onToggleActive={() => {
-          setValue('isEduNoneChecked', !isEduNoneChecked, { shouldValidate: true, shouldTouch: true });
+          setValue('isEduNoneChecked', !isEduNoneChecked, {
+            shouldValidate: true,
+            shouldTouch: true,
+            shouldDirty: true,
+          });
         }}
         inputItems={educations.map((value, id) => ({ id: id + 1, value }))}
         onItemsChange={(updatedItems) =>
           setValue(
             INFO_KEY.EDUCATIONS,
             updatedItems.map((item) => item.value),
-            { shouldValidate: true, shouldTouch: true }
+            { shouldValidate: true, shouldTouch: true, shouldDirty: true }
           )
         }
         maxInputLength={MAX_CAREER_INPUT_LENGTH}
@@ -53,14 +57,18 @@ const CareerSection = ({
         placeholder="NCT127 단독콘서트 ‘the LINK’ 퍼포먼스 디렉터"
         isNoneChecked={isCareerNoneChecked}
         onToggleActive={() => {
-          setValue('isCareerNoneChecked', !isCareerNoneChecked, { shouldValidate: true, shouldTouch: true });
+          setValue('isCareerNoneChecked', !isCareerNoneChecked, {
+            shouldValidate: true,
+            shouldTouch: true,
+            shouldDirty: true,
+          });
         }}
         inputItems={experiences.map((value, id) => ({ id: id + 1, value }))}
         onItemsChange={(updatedItems) =>
           setValue(
             INFO_KEY.EXPERIENCES,
             updatedItems.map((item) => item.value),
-            { shouldValidate: true, shouldTouch: true }
+            { shouldValidate: true, shouldTouch: true, shouldDirty: true }
           )
         }
         maxInputLength={MAX_CAREER_INPUT_LENGTH}
@@ -79,7 +87,7 @@ const CareerSection = ({
           setValue(
             INFO_KEY.PRIZES,
             updatedItems.map((item) => item.value),
-            { shouldValidate: true, shouldTouch: true }
+            { shouldValidate: true, shouldTouch: true, shouldDirty: true }
           )
         }
         maxInputLength={MAX_CAREER_INPUT_LENGTH}
