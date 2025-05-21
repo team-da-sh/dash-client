@@ -161,7 +161,7 @@ const InstructorRegister = () => {
 
       isEduNoneChecked: !(prevInstructorData.educations?.length > 0),
       isCareerNoneChecked: !(prevInstructorData.experiences?.length > 0),
-      isPrizeNoneChecked: !(prevInstructorData.prizes?.length > 1),
+      isPrizeNoneChecked: !(prevInstructorData.prizes?.length > 0),
       isVideoNoneChecked: !(prevInstructorData.videoUrls?.length > 0),
     });
   }, [prevInstructorData, reset]);
