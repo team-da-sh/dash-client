@@ -40,15 +40,7 @@ const ClassRegisterBottomSheet = ({
 
   document.body.style.overflow = 'hidden';
 
-  const handleSheetComplete = () => {
-    setStep(-currentStep + 1);
-    document.body.style.overflow = '';
-    onClose();
-    handleAddTime();
-    handleDateAndTimeReset();
-  };
-
-  const handleDateAndTimeReset = () => {
+  const resetDateAndTime = () => {
     setStartDate('');
     setHour(12);
     setMinute(0);
@@ -56,15 +48,19 @@ const ClassRegisterBottomSheet = ({
     setSelectedTime(null);
   };
 
+  const handleSheetComplete = () => {
+    setStep(-currentStep + 1);
+    document.body.style.overflow = '';
+    onClose();
+    handleAddTime();
+    resetDateAndTime();
+  };
+
   const handleOverlayClick = (e: MouseEvent<HTMLDivElement>) => {
     if (e.target === e.currentTarget) {
       document.body.style.overflow = '';
       onClose();
-      setStartDate('');
-      setHour(12);
-      setMinute(0);
-      setAmpm('AM');
-      setSelectedTime(null);
+      resetDateAndTime();
     }
   };
 

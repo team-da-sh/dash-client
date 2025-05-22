@@ -13,9 +13,12 @@ const DateStep = ({ startDate, setStartDate, times = [] }: DateStepProps) => {
 
   // 최소 선택 가능 날짜 계산
   const minSelectableDate = useMemo(() => {
+    // 오늘 날짜를 한 번만 계산
+    const today = getDateWithoutTime(new Date());
+
     // 일정이 없으면 오늘 날짜 반환
     if (times.length === 0) {
-      return getDateWithoutTime(new Date());
+      return today;
     }
 
     // 각 일정의 종료 날짜들 중 가장 늦은 날짜 찾기
@@ -25,7 +28,6 @@ const DateStep = ({ startDate, setStartDate, times = [] }: DateStepProps) => {
     }, new Date(0));
 
     // 오늘보다 이전 날짜면 오늘을 반환, 아니면 찾은 최신 날짜 반환
-    const today = getDateWithoutTime(new Date());
     return latestEndDate < today ? today : latestEndDate;
   }, [times]);
 

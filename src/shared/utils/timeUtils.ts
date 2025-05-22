@@ -66,12 +66,7 @@ export const convertToMinutes = (hour: number, minute: number, ampm: string): nu
 
 // 시간 간격(분)이 겹치는지 확인
 export const isTimeOverlapping = (startTime1: Date, endTime1: Date, startTime2: Date, endTime2: Date): boolean => {
-  return (
-    (startTime1 >= startTime2 && startTime1 < endTime2) ||
-    (endTime1 > startTime2 && endTime1 <= endTime2) ||
-    (startTime1 <= startTime2 && endTime1 >= endTime2) ||
-    (startTime2 <= startTime1 && endTime2 >= endTime1)
-  );
+  return startTime1 < endTime2 && endTime1 > startTime2;
 };
 
 // 시간을 읽기 쉬운 형식으로 포맷팅

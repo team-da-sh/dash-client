@@ -46,26 +46,23 @@ const TimeStep = ({
   const latestEndTime = useMemo(() => {
     if (times.length === 0) return null;
 
+    // 선택된 날짜 정보를 반복문 밖에서 한 번만 계산
+    const selectedDateObj = new Date(startDate);
+    const selectedDateStr = selectedDateObj.toDateString();
+
     let latest: Date | null = null;
 
     // 모든 일정 검사
     for (const time of times) {
       const existingEndTime = new Date(time.endTime);
-
-      // 종료 날짜가 현재 선택된 날짜와 같거나
-      // 시작 날짜는 이전이고 종료 날짜는 현재 선택된 날짜인 경우 (날짜를 넘어가는 경우)
       const endTimeDate = existingEndTime.toDateString();
-      const selectedDateObj = new Date(startDate);
-      const selectedDateStr = selectedDateObj.toDateString();
 
-      // 다음 조건에 해당하는 회차의 종료 시간을 고려:
-      // 1. 종료 시간의 날짜가 현재 선택된 날짜와 같은 경우
-      // 2. 시작 날짜와 종료 날짜가 다른 경우(날짜를 넘어가는 경우),
-      //    종료 날짜가 현재 선택된 날짜와 같은 경우
-      if (endTimeDate === selectedDateStr) {
-        if (latest === null || existingEndTime > latest) {
-          latest = existingEndTime;
-        }
+      // 종료 날짜가 선택된 날짜와 다르면 건너뜀
+      if (endTimeDate !== selectedDateStr) continue;
+
+      // 최신 종료 시간 업데이트
+      if (latest === null || existingEndTime > latest) {
+        latest = existingEndTime;
       }
     }
 
@@ -79,7 +76,7 @@ const TimeStep = ({
     const minHour = latestEndTime.getHours();
     const minMinute = latestEndTime.getMinutes();
     const minAmpm = minHour >= 12 ? 'PM' : 'AM';
-    const display12Hour = minHour > 12 ? minHour - 12 : minHour === 0 ? 12 : minHour;
+    const display12Hour = minHour % 12 === 0 ? 12 : minHour % 12;
 
     return {
       hour: display12Hour,

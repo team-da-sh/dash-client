@@ -247,7 +247,11 @@ const ClassRegister = () => {
             />
             <ClassGenre selectedGenre={selectedGenre} toggleCategory={toggleCategory} />
             <ClassLevel selectedLevel={selectedLevel} toggleLevel={toggleLevel} />
-            <ClassRecommend register={register} recommendation={recommendation} />
+            <ClassRecommend
+              register={register}
+              recommendation={recommendation}
+              handleTextAreaHeight={handleTextAreaHeight}
+            />
             <ClassSchedule
               openBottomSheet={initTimeAndOpenBottomSheet}
               times={times}

@@ -12,10 +12,9 @@ import type { ClassRegisterFormTypes } from '../../types/classRegisterForm';
 interface ClassAmountPropTypes {
   price: string;
   register: UseFormRegister<ClassRegisterFormTypes>;
-  onPriceChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
-const ClassAmount = ({ price, register, onPriceChange }: ClassAmountPropTypes) => {
+const ClassAmount = ({ price, register }: ClassAmountPropTypes) => {
   const { name, onChange, ref } = register('price');
   const {
     formState: { errors },
@@ -25,7 +24,6 @@ const ClassAmount = ({ price, register, onPriceChange }: ClassAmountPropTypes) =
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (ONLY_NUMBER.test(e.target.value)) {
       onChange(e);
-      onPriceChange?.(e);
     }
   };
 

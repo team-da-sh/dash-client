@@ -54,7 +54,7 @@ const ClassDescription = ({ register, handleTextAreaHeight, detail = '' }: Class
           <Text tag="b3_r" color="alert3">
             {error && error.message}
           </Text>
-          <Text tag="c1_m" color={detail && isInputFocused ? 'main4' : 'gray9'}>
+          <Text tag="c1_m" color={error ? 'alert3' : detail && isInputFocused ? 'main4' : 'gray9'}>
             {detail?.length || 0} / {MAX_CLASS_DESCRIPTION_LENGTH}
           </Text>
         </div>

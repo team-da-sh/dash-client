@@ -51,7 +51,10 @@ const ClassName = ({ register, className }: ClassNamePropTypes) => {
           <Text tag="b3_r" color="alert3">
             {error && error.message}
           </Text>
-          <Text tag="c1_m" color={className && isInputFocused ? 'main4' : 'gray9'} className={nameLengthStyle}>
+          <Text
+            tag="c1_m"
+            color={error ? 'alert3' : className && isInputFocused ? 'main4' : 'gray9'}
+            className={nameLengthStyle}>
             {className.length} / {MAX_CLASS_NAME_LENGTH}
           </Text>
         </div>
