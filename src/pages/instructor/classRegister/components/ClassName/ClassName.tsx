@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import type { FieldError, UseFormRegister } from 'react-hook-form';
+import { useFormContext } from 'react-hook-form';
 import { nameLengthStyle } from '@/pages/instructor/classRegister/components/ClassName/className.css';
 import Description from '@/pages/instructor/classRegister/components/Description';
 import { MAX_CLASS_NAME_LENGTH } from '@/pages/instructor/classRegister/constants/formLimit';
@@ -12,12 +13,15 @@ import { sprinkles } from '@/shared/styles/sprinkles.css';
 interface ClassNamePropTypes {
   className: string;
   register: UseFormRegister<ClassRegisterFormTypes>;
-  error: FieldError | undefined;
 }
 
-const ClassName = ({ register, error, className }: ClassNamePropTypes) => {
+const ClassName = ({ register, className }: ClassNamePropTypes) => {
   const { name, onChange, ref } = register('className');
   const [isInputFocused, setIsInputFocused] = useState(false);
+  const {
+    formState: { errors },
+  } = useFormContext();
+  const error = errors.className as FieldError | undefined;
 
   const handleFocusChange = (isFocused: boolean) => {
     setIsInputFocused(isFocused);

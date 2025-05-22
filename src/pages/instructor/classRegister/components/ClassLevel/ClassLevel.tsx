@@ -1,4 +1,5 @@
 import type { FieldError } from 'react-hook-form';
+import { useFormContext } from 'react-hook-form';
 import Description from '@/pages/instructor/classRegister/components/Description';
 import { CLASS_LEVEL_SUBTITLE } from '@/pages/instructor/classRegister/constants/registerSectionText';
 import LevelButton from '@/shared/components/LevelButton/LevelButton';
@@ -9,10 +10,14 @@ import { sprinkles } from '@/shared/styles/sprinkles.css';
 interface ClassLevelPropTypes {
   selectedLevel: string | null;
   toggleLevel: (title: string) => void;
-  error?: FieldError;
 }
 
-const ClassLevel = ({ selectedLevel, toggleLevel, error }: ClassLevelPropTypes) => {
+const ClassLevel = ({ selectedLevel, toggleLevel }: ClassLevelPropTypes) => {
+  const {
+    formState: { errors },
+  } = useFormContext();
+  const error = errors.selectedLevel as FieldError | undefined;
+
   return (
     <div
       className={sprinkles({

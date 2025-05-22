@@ -1,4 +1,5 @@
 import type { FieldError, UseFormRegister } from 'react-hook-form';
+import { useFormContext } from 'react-hook-form';
 import Description from '@/pages/instructor/classRegister/components/Description';
 import { CLASS_PERSONNEL_SUBTITLE } from '@/pages/instructor/classRegister/constants/registerSectionText';
 import type { ClassRegisterFormTypes } from '@/pages/instructor/classRegister/types/classRegisterForm';
@@ -10,11 +11,14 @@ import { sprinkles } from '@/shared/styles/sprinkles.css';
 interface ClassPersonnelPropTypes {
   maxReservationCount: string;
   register: UseFormRegister<ClassRegisterFormTypes>;
-  error?: FieldError;
 }
 
-const ClassPersonnel = ({ register, maxReservationCount, error }: ClassPersonnelPropTypes) => {
+const ClassPersonnel = ({ register, maxReservationCount }: ClassPersonnelPropTypes) => {
   const { name, onChange, ref } = register('maxReservationCount');
+  const {
+    formState: { errors },
+  } = useFormContext();
+  const error = errors.maxReservationCount as FieldError | undefined;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (ONLY_NUMBER.test(e.target.value)) {

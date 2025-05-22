@@ -1,5 +1,6 @@
 import { type ChangeEvent } from 'react';
 import type { UseFormRegister } from 'react-hook-form';
+import { useFormContext } from 'react-hook-form';
 import * as styles from '@/pages/instructor/classRegister/components/ClassPlace/classPlace.css';
 import Description from '@/pages/instructor/classRegister/components/Description';
 import {
@@ -25,7 +26,6 @@ interface ClassPlacePropTypes {
   selectedLocation: LocationTypes | null;
   locationList: LocationsData;
   setSelectedLocation: (location: LocationTypes | null) => void;
-  error?: { message?: string };
   handleRemoveLocation: () => void;
 }
 
@@ -38,11 +38,14 @@ const ClassPlace = ({
   selectedLocation,
   locationList,
   setSelectedLocation,
-  error,
   handleRemoveLocation,
 }: ClassPlacePropTypes) => {
   const shouldShowEmptyMessage = Array.isArray(locationList?.locations) && locationList.locations.length === 0;
   const shouldShowLocationList = Array.isArray(locationList?.locations) && locationList.locations.length > 0;
+  const {
+    formState: { errors },
+  } = useFormContext();
+  const error = errors.selectedLocation as { message?: string } | undefined;
 
   const { onChange, ref, name } = register('detailedAddress');
 
@@ -97,18 +100,18 @@ const ClassPlace = ({
                 {shouldShowLocationList && (
                   <div className={styles.locationListContainerStyle}>
                     <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 10 })}>
-                      {locationList.locations.map((item, idx) => (
+                      {locationList.locations.map((location, idx) => (
                         <div
                           key={idx}
-                          onClick={() => setSelectedLocation(item)}
+                          onClick={() => setSelectedLocation(location)}
                           className={styles.locationItemContainerStyle}>
                           {idx !== 0 && <div className={styles.dividerStyle} />}
                           <div className={sprinkles({ display: 'flex', flexDirection: 'column', width: '100%' })}>
                             <Text tag="b2_sb_long" color="gray10">
-                              {item.location}
+                              {location.location}
                             </Text>
                             <Text tag="b3_sb" color="gray5">
-                              {item.streetAddress}
+                              {location.streetAddress}
                             </Text>
                           </div>
                         </div>

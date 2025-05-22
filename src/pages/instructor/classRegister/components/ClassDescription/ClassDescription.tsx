@@ -1,6 +1,7 @@
 import type { ChangeEvent } from 'react';
 import { useState } from 'react';
 import type { FieldError, UseFormRegister } from 'react-hook-form';
+import { useFormContext } from 'react-hook-form';
 import {
   textareaStyle,
   textareaErrorStyle,
@@ -17,13 +18,16 @@ import { sprinkles } from '@/shared/styles/sprinkles.css';
 
 interface ClassDescriptionPropTypes {
   register: UseFormRegister<ClassRegisterFormTypes>;
-  error: FieldError | undefined;
   handleTextAreaHeight?: (event: ChangeEvent<HTMLTextAreaElement>) => void;
   detail?: string;
 }
 
-const ClassDescription = ({ register, error, handleTextAreaHeight, detail = '' }: ClassDescriptionPropTypes) => {
+const ClassDescription = ({ register, handleTextAreaHeight, detail = '' }: ClassDescriptionPropTypes) => {
   const [isInputFocused, setIsInputFocused] = useState(false);
+  const {
+    formState: { errors },
+  } = useFormContext();
+  const error = errors.detail as FieldError | undefined;
 
   return (
     <div

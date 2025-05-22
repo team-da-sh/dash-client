@@ -1,5 +1,6 @@
 import type { ChangeEvent } from 'react';
 import type { FieldError, UseFormRegister } from 'react-hook-form';
+import { useFormContext } from 'react-hook-form';
 import Description from '@/pages/instructor/classRegister/components/Description';
 import { CLASS_AMOUNT_SUBTITLE } from '@/pages/instructor/classRegister/constants/registerSectionText';
 import Input from '@/shared/components/Input/Input';
@@ -11,12 +12,15 @@ import type { ClassRegisterFormTypes } from '../../types/classRegisterForm';
 interface ClassAmountPropTypes {
   price: string;
   register: UseFormRegister<ClassRegisterFormTypes>;
-  error?: FieldError;
   onPriceChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
-const ClassAmount = ({ price, register, error, onPriceChange }: ClassAmountPropTypes) => {
+const ClassAmount = ({ price, register, onPriceChange }: ClassAmountPropTypes) => {
   const { name, onChange, ref } = register('price');
+  const {
+    formState: { errors },
+  } = useFormContext();
+  const error = errors.price as FieldError | undefined;
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (ONLY_NUMBER.test(e.target.value)) {

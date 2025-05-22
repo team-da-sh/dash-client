@@ -1,3 +1,4 @@
+import { useFormContext } from 'react-hook-form';
 import * as styles from '@/pages/instructor/classRegister/components/ClassSchedule/classSchedule.css';
 import Description from '@/pages/instructor/classRegister/components/Description';
 import { CLASS_SCHEDULE_SUBTITLE } from '@/pages/instructor/classRegister/constants/registerSectionText';
@@ -12,10 +13,14 @@ interface ClassSchedulePropTypes {
   openBottomSheet: () => void;
   times: TimesTypes[];
   handleRemoveTime: (idx: number) => void;
-  error?: { message?: string };
 }
 
-const ClassSchedule = ({ openBottomSheet, times, handleRemoveTime, error }: ClassSchedulePropTypes) => {
+const ClassSchedule = ({ openBottomSheet, times, handleRemoveTime }: ClassSchedulePropTypes) => {
+  const {
+    formState: { errors },
+  } = useFormContext();
+  const error = errors.times as { message?: string } | undefined;
+
   return (
     <div
       className={sprinkles({

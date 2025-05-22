@@ -1,7 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useQueryClient } from '@tanstack/react-query';
 import type { FormEvent } from 'react';
-import { useController, useForm } from 'react-hook-form';
+import { useController, useForm, FormProvider } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { useGetLocationList, usePostClassRegisterInfo } from '@/pages/instructor/classRegister/apis/queries';
 import * as styles from '@/pages/instructor/classRegister/classRegister.css';
@@ -34,13 +34,7 @@ const ClassRegister = () => {
   const { mutate: classRegisterMutate } = usePostClassRegisterInfo();
   const { isBottomSheetOpen, openBottomSheet, closeBottomSheet } = useBottomSheet();
 
-  const {
-    register,
-    watch,
-    setValue,
-    control,
-    formState: { errors },
-  } = useForm({
+  const methods = useForm({
     resolver: zodResolver(classRegisterSchema),
     mode: 'onChange',
     defaultValues: {
@@ -55,6 +49,14 @@ const ClassRegister = () => {
       detailedAddress: '',
     },
   });
+
+  const {
+    register,
+    watch,
+    setValue,
+    control,
+    formState: { errors },
+  } = methods;
 
   const {
     className,
@@ -230,70 +232,60 @@ const ClassRegister = () => {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <div className={styles.containerStyle}>
-          <ClassName className={className} register={register} error={errors.className} />
-          <ClassDescription
-            register={register}
-            error={errors.detail}
-            detail={detail}
-            handleTextAreaHeight={handleTextAreaHeight}
-          />
-          <ClassRepresentImage
-            imgFile={imgFile}
-            previewImg={previewImg}
-            imgRef={imgRef}
-            handleUploaderClick={handleUploaderClick}
-            uploadImgFile={uploadImgFile}
-            deleteImgFile={deleteImgFile}
-            error={errors.imageUrls}
-          />
-          <ClassGenre selectedGenre={selectedGenre} toggleCategory={toggleCategory} error={errors.selectedGenre} />
-          <ClassLevel selectedLevel={selectedLevel} toggleLevel={toggleLevel} error={errors.selectedLevel} />
-          <ClassRecommend register={register} error={errors.recommendation} recommendation={recommendation} />
-          <ClassSchedule
-            openBottomSheet={initTimeAndOpenBottomSheet}
-            times={times}
-            handleRemoveTime={handleRemoveTime}
-            error={errors.times}
-          />
-          <ClassPersonnel
-            maxReservationCount={maxReservationCount}
-            register={register}
-            error={errors.maxReservationCount}
-          />
-          <ClassPlace
-            register={register}
-            isUndecidedLocation={isUndecidedLocation}
-            handleHasLocation={handleNoneLocationCheck}
-            defaultPlace={defaultPlace}
-            handleDefaultPlace={handleDefaultPlace}
-            selectedLocation={selectedLocation}
-            setSelectedLocation={handleSelectLocation}
-            handleRemoveLocation={handleRemoveLocation}
-            locationList={locationList}
-            error={errors.selectedLocation}
-          />
-          <ClassAmount price={price} register={register} error={errors.price} />
-        </div>
-        <div className={styles.buttonContainerStyle}>
-          <BoxButton
-            type="submit"
-            disabled={
-              !isButtonActive({
-                className,
-                detail,
-                selectedGenre,
-                selectedLevel,
-                recommendation,
-                maxReservationCount,
-                price,
-              })
-            }>
-            완료
-          </BoxButton>
-        </div>
-      </form>
+      <FormProvider {...methods}>
+        <form onSubmit={handleSubmit}>
+          <div className={styles.containerStyle}>
+            <ClassName className={className} register={register} />
+            <ClassDescription register={register} detail={detail} handleTextAreaHeight={handleTextAreaHeight} />
+            <ClassRepresentImage
+              imgFile={imgFile}
+              previewImg={previewImg}
+              imgRef={imgRef}
+              handleUploaderClick={handleUploaderClick}
+              uploadImgFile={uploadImgFile}
+              deleteImgFile={deleteImgFile}
+            />
+            <ClassGenre selectedGenre={selectedGenre} toggleCategory={toggleCategory} />
+            <ClassLevel selectedLevel={selectedLevel} toggleLevel={toggleLevel} />
+            <ClassRecommend register={register} recommendation={recommendation} />
+            <ClassSchedule
+              openBottomSheet={initTimeAndOpenBottomSheet}
+              times={times}
+              handleRemoveTime={handleRemoveTime}
+            />
+            <ClassPersonnel maxReservationCount={maxReservationCount} register={register} />
+            <ClassPlace
+              register={register}
+              isUndecidedLocation={isUndecidedLocation}
+              handleHasLocation={handleNoneLocationCheck}
+              defaultPlace={defaultPlace}
+              handleDefaultPlace={handleDefaultPlace}
+              selectedLocation={selectedLocation}
+              setSelectedLocation={handleSelectLocation}
+              handleRemoveLocation={handleRemoveLocation}
+              locationList={locationList}
+            />
+            <ClassAmount price={price} register={register} />
+          </div>
+          <div className={styles.buttonContainerStyle}>
+            <BoxButton
+              type="submit"
+              disabled={
+                !isButtonActive({
+                  className,
+                  detail,
+                  selectedGenre,
+                  selectedLevel,
+                  recommendation,
+                  maxReservationCount,
+                  price,
+                })
+              }>
+              완료
+            </BoxButton>
+          </div>
+        </form>
+      </FormProvider>
 
       {isBottomSheetOpen && (
         <ClassRegisterBottomSheet

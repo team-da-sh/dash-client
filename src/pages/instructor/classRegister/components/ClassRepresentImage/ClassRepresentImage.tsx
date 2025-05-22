@@ -1,4 +1,5 @@
 import type { FieldError } from 'react-hook-form';
+import { useFormContext } from 'react-hook-form';
 import {
   closeIconStyle,
   inputStyle,
@@ -18,7 +19,6 @@ interface ClassRepresentImagePropTypes {
   previewImg: string;
   imgFile: File | undefined;
   imgRef: React.MutableRefObject<HTMLInputElement | null>;
-  error?: FieldError;
 }
 
 const ClassRepresentImage = ({
@@ -28,8 +28,12 @@ const ClassRepresentImage = ({
   handleUploaderClick,
   uploadImgFile,
   deleteImgFile,
-  error,
 }: ClassRepresentImagePropTypes) => {
+  const {
+    formState: { errors },
+  } = useFormContext();
+  const error = errors.imageUrls as FieldError | undefined;
+
   return (
     <div className={sprinkles({ display: 'flex', flexDirection: 'column', width: '100%', mb: 40 })}>
       <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 20 })}>

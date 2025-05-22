@@ -1,6 +1,7 @@
 import type { ChangeEvent } from 'react';
 import { useState } from 'react';
 import type { FieldError, UseFormRegister } from 'react-hook-form';
+import { useFormContext } from 'react-hook-form';
 import {
   textareaStyle,
   textareaErrorStyle,
@@ -18,12 +19,15 @@ import type { ClassRegisterFormTypes } from '../../types/classRegisterForm';
 interface ClassRecommendPropTypes {
   register: UseFormRegister<ClassRegisterFormTypes>;
   handleTextAreaHeight?: (event: ChangeEvent<HTMLTextAreaElement>) => void;
-  error?: FieldError;
   recommendation?: string;
 }
 
-const ClassRecommend = ({ register, error, recommendation = '' }: ClassRecommendPropTypes) => {
+const ClassRecommend = ({ register, recommendation = '' }: ClassRecommendPropTypes) => {
   const [isInputFocused, setIsInputFocused] = useState(false);
+  const {
+    formState: { errors },
+  } = useFormContext();
+  const error = errors.recommendation as FieldError | undefined;
 
   return (
     <div
