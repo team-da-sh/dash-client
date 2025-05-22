@@ -54,10 +54,11 @@ const DancerClassItem = ({ imageUrl, remainingDays, genre, level, name }: ClassI
           {translatedLevel}
         </Tag>
       </div>
-
-      <Head level="h5" tag="b1_sb_long">
-        {name}
-      </Head>
+      <span className={styles.lessonNameStyle}>
+        <Head level="h5" tag="b1_sb_long">
+          {name}
+        </Head>
+      </span>
     </section>
   );
 };
