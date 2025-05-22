@@ -9,9 +9,10 @@ import ToolTip from '@/pages/mypage/components/TabWrapper/components/TeacherCont
 import OverlayPage from '@/pages/mypage/components/TabWrapper/components/TeacherContent/components/ToolTip/components/OverlayPage';
 import UnregisteredTeacher from '@/pages/mypage/components/TabWrapper/components/TeacherContent/components/UnregisteredTeacher/UnregisteredTeacher';
 import * as styles from '@/pages/mypage/components/TabWrapper/components/TeacherContent/teacherContent.css';
-import { ROLE_KEY, VISIT_KEY } from '@/pages/mypage/constants/storageKey';
+import { VISIT_KEY } from '@/pages/mypage/constants/storageKey';
 import { getUser } from '@/pages/mypage/utils/storage';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
+import { useGetRole } from '@/shared/apis/queries';
 import IcArrowRightSmallGray0732 from '@/shared/assets/svg/IcArrowRightSmallGray0732';
 import IcInstagram20 from '@/shared/assets/svg/IcInstagram20';
 import IcPlusWhite24 from '@/shared/assets/svg/IcPlusWhite24';
@@ -25,16 +26,21 @@ import { sprinkles } from '@/shared/styles/sprinkles.css';
 const TeacherContent = () => {
   const navigate = useNavigate();
 
-  const userRole = getUser(ROLE_KEY);
   const isFirstVisit = getUser(VISIT_KEY) === null;
   const [showToolTip, setShowToopTip] = useState(isFirstVisit);
 
-  const { data: myData } = useGetMyPage();
-  const { data } = useGetMyTeacherInfo();
+  const { data: role, isLoading: isGetRoleLoading } = useGetRole();
+  const userRole = role?.role;
 
-  const { data: lessonData } = useGetMyLessonThumbnails();
+  const { data } = useGetMyTeacherInfo(userRole);
+  const { data: lessonData } = useGetMyLessonThumbnails(userRole);
+  const { data: myData } = useGetMyPage();
 
   const isRegisteredTeacherProfile = userRole === 'TEACHER';
+
+  if (isGetRoleLoading) {
+    return <div></div>;
+  }
 
   if (!isRegisteredTeacherProfile && myData) {
     return (

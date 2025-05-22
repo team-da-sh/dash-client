@@ -7,3 +7,7 @@ export const GENRE_ICONS = [
   <IcAssetTop2 width={44} height={44} />,
   <IcAssetTop3 width={44} height={44} />,
 ];
+
+export const MAX_POPULAR_GENRE_COUNT = 3;
+
+export const DUMMY = 'DUMMY';
