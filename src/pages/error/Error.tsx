@@ -6,7 +6,6 @@ import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import Head from '@/shared/components/Head/Head';
 import Text from '@/shared/components/Text/Text';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
-import { flex } from '../reservation/components/TossPayments/tossPayments.css';
 
 const IcError = lazy(() => import('@/shared/assets/svg/IcError'));
 
