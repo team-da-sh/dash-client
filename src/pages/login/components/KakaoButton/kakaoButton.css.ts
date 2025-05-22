@@ -3,7 +3,7 @@ import { vars } from '@/shared/styles/theme.css';
 
 export const kakaoButtonStyle = style({
   width: '100%',
-  padding: '1.6rem 9.5rem 1.6rem 9.5rem',
+  padding: '1.6rem 9.5rem',
 
   backgroundColor: vars.colors.kakao01,
   borderRadius: '4px',

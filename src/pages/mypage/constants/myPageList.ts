@@ -6,9 +6,9 @@ import IcWish from '@/shared/assets/svg/IcWish';
 
 export const LIST_DATA = [
   { label: '자주 묻는 질문', id: 1, inActive: true },
-  { label: '고객 센터', id: 2, hasDivider: true, inActive: true },
+  { label: '고객 센터', id: 2, hasDivider: true, isNavigate: true },
   { label: '로그아웃', id: 3 },
-  { label: '회원 탈퇴', id: 4 },
+  { label: '회원 탈퇴', id: 4, inActive: true },
 ];
 
 export const MENU_LIST = [

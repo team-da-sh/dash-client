@@ -16,31 +16,33 @@ const ClassProgress = () => {
 
   return (
     <div className={styles.containerStyle}>
-      <div className={styles.wrapperStyle}>
-        <Text tag="b3_r" color="gray8">
-          수강 전
-        </Text>
-        <Head level="h3" tag="h6_sb" color={isAllZero ? 'gray5' : 'gray10'}>
-          {data.beforeLessonCount}
-        </Head>
-      </div>
-      <SvgIcArrowRightGray0614 className={sprinkles({ width: 14, height: 14 })} />
-      <div className={styles.wrapperStyle}>
-        <Text tag="b3_r" color="gray8">
-          수강 중
-        </Text>
-        <Head level="h3" tag="h6_sb" color={isAllZero ? 'gray5' : 'gray10'}>
-          {data.duringLessonCount}
-        </Head>
-      </div>
-      <SvgIcArrowRightGray0614 className={sprinkles({ width: 14, height: 14 })} />
-      <div className={styles.wrapperStyle}>
-        <Text tag="b3_r" color="gray8">
-          수강 완료
-        </Text>
-        <Head level="h3" tag="h6_sb" color={isAllZero ? 'gray5' : 'gray10'}>
-          {data.afterLessonCount}
-        </Head>
+      <div className={styles.progressStyle}>
+        <div className={styles.wrapperStyle}>
+          <Text tag="b3_r" color="gray8">
+            수강 전
+          </Text>
+          <Head level="h3" tag="h6_sb" color={isAllZero ? 'gray5' : 'gray10'}>
+            {data.beforeLessonCount}
+          </Head>
+        </div>
+        <SvgIcArrowRightGray0614 className={sprinkles({ width: 14, height: 14 })} />
+        <div className={styles.wrapperStyle}>
+          <Text tag="b3_r" color="gray8">
+            수강 중
+          </Text>
+          <Head level="h3" tag="h6_sb" color={isAllZero ? 'gray5' : 'gray10'}>
+            {data.duringLessonCount}
+          </Head>
+        </div>
+        <SvgIcArrowRightGray0614 className={sprinkles({ width: 14, height: 14 })} />
+        <div className={styles.wrapperStyle}>
+          <Text tag="b3_r" color="gray8">
+            수강 완료
+          </Text>
+          <Head level="h3" tag="h6_sb" color={isAllZero ? 'gray5' : 'gray10'}>
+            {data.afterLessonCount}
+          </Head>
+        </div>
       </div>
     </div>
   );

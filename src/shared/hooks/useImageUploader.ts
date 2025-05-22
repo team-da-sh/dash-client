@@ -2,7 +2,12 @@ import { useEffect, useRef, useState } from 'react';
 import { useImageMutation } from '@/shared/apis/queries';
 import { resizeImage } from '@/shared/utils/resizeImage';
 
-const useImageUploader = (onSuccess: (url: string) => void, handleDeleteUrl?: () => void, initialImageUrl?: string) => {
+const useImageUploader = (
+  onSuccess: (url: string) => void,
+  handleDeleteUrl?: () => void,
+  initialImageUrl?: string,
+  handleCloseBottomSheet?: () => void
+) => {
   const [previewImg, setPreviewImg] = useState<string>(initialImageUrl || '');
   const [imgFile, setImgFile] = useState<File | undefined>();
   const imgRef = useRef<HTMLInputElement | null>(null);
@@ -33,6 +38,7 @@ const useImageUploader = (onSuccess: (url: string) => void, handleDeleteUrl?: ()
       onSuccess: (data) => {
         if (data?.imageUrl) {
           onSuccess(data.imageUrl);
+          handleCloseBottomSheet?.();
         }
       },
     });
@@ -48,15 +54,17 @@ const useImageUploader = (onSuccess: (url: string) => void, handleDeleteUrl?: ()
     };
   };
 
-  const deleteImgFile = (e: React.MouseEvent) => {
-    e.stopPropagation();
-
+  const deleteImgFile = (e?: React.MouseEvent) => {
+    if (e) {
+      e.stopPropagation();
+    }
     setImgFile(undefined);
     setPreviewImg('');
 
     if (handleDeleteUrl) {
       handleDeleteUrl();
     }
+    handleCloseBottomSheet?.();
 
     if (imgRef.current) {
       imgRef.current.value = '';
