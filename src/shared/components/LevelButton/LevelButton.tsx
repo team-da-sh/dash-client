@@ -14,12 +14,15 @@ interface LevelButtonProps {
   };
   isSelected: boolean | null;
   onClick: () => void;
+  isError?: boolean;
 }
 
-const LevelButton = ({ level, isSelected, onClick }: LevelButtonProps) => {
+const LevelButton = ({ level, isSelected, onClick, isError = false }: LevelButtonProps) => {
   return (
     <button
-      className={isSelected === null ? onboardingLevelButtonStyle : levelButtonStyle({ selected: isSelected })}
+      className={
+        isSelected === null ? onboardingLevelButtonStyle : levelButtonStyle({ selected: isSelected, error: isError })
+      }
       onClick={onClick}
       type="button">
       {level.icon}

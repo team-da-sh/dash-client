@@ -41,6 +41,39 @@ export const decreaseMinute = ({
 // AM/PM 토글
 export const toggleAmpm = (currentAmpm: string): string => (currentAmpm === 'AM' ? 'PM' : 'AM');
 
+// 날짜에서 시간 정보를 제거 (00:00:00으로 설정)
+export const getDateWithoutTime = (date: Date): Date => {
+  const newDate = new Date(date);
+  newDate.setHours(0, 0, 0, 0);
+  return newDate;
+};
+
+// 12시간 형식에서 24시간 형식으로 변환
+export const convertTo24HourFormat = (hour: number, ampm: string): number => {
+  if (ampm === 'PM' && hour !== 12) {
+    return hour + 12;
+  } else if (ampm === 'AM' && hour === 12) {
+    return 0;
+  }
+  return hour;
+};
+
+// 시간과 분을 분 단위로 변환
+export const convertToMinutes = (hour: number, minute: number, ampm: string): number => {
+  const hour24 = convertTo24HourFormat(hour, ampm);
+  return hour24 * 60 + minute;
+};
+
+// 시간 간격(분)이 겹치는지 확인
+export const isTimeOverlapping = (startTime1: Date, endTime1: Date, startTime2: Date, endTime2: Date): boolean => {
+  return startTime1 < endTime2 && endTime1 > startTime2;
+};
+
+// 시간을 읽기 쉬운 형식으로 포맷팅
+export const formatTimeDisplay = (hour: number, minute: number, ampm: string): string => {
+  return `${hour}:${minute === 0 ? '00' : minute} ${ampm}`;
+};
+
 export const formatToISOString = (date: string, hour: number, minute: number, ampm: string, selectedTime: number) => {
   let adjustedHour = hour;
   if (ampm === 'PM' && hour !== 12) {

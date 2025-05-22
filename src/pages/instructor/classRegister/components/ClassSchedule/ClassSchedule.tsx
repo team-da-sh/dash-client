@@ -1,3 +1,4 @@
+import { useFormContext } from 'react-hook-form';
 import * as styles from '@/pages/instructor/classRegister/components/ClassSchedule/classSchedule.css';
 import Description from '@/pages/instructor/classRegister/components/Description';
 import { CLASS_SCHEDULE_SUBTITLE } from '@/pages/instructor/classRegister/constants/registerSectionText';
@@ -15,40 +16,53 @@ interface ClassSchedulePropTypes {
 }
 
 const ClassSchedule = ({ openBottomSheet, times, handleRemoveTime }: ClassSchedulePropTypes) => {
+  const {
+    formState: { errors },
+  } = useFormContext();
+  const error = errors.times as { message?: string } | undefined;
+
   return (
     <div
       className={sprinkles({
         display: 'flex',
         flexDirection: 'column',
-        gap: 20,
-        mb: 50,
         width: '100%',
+        mb: 50,
       })}>
-      <Description title="클래스 일정" subTitle={CLASS_SCHEDULE_SUBTITLE} />
+      <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 20 })}>
+        <Description title="클래스 일정" subTitle={CLASS_SCHEDULE_SUBTITLE} />
 
-      <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 8, width: '100%' })}>
-        {times.map((time, idx) => (
-          <div className={styles.scheduleItemContainerStyle}>
-            <div className={sprinkles({ display: 'flex', gap: 16, alignItems: 'center' })}>
-              <div className={styles.tagStyle}>{idx + 1}회차</div>
-              <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 4 })}>
-                <Text tag="b2_sb"> {formatDate(time.date)}</Text>
-                <Text tag="b3_m" color="gray7">
-                  {`${calculatePeriod(time.startTime, time.endTime).startTime} ~ ${
-                    calculatePeriod(time.startTime, time.endTime).formattedEndTime
-                  }`}{' '}
-                  (총 {time.duration} 시간)
-                </Text>
+        <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 8, width: '100%' })}>
+          {times.map((time, idx) => (
+            <div key={idx} className={styles.scheduleItemContainerStyle}>
+              <div className={sprinkles({ display: 'flex', gap: 16, alignItems: 'center' })}>
+                <div className={styles.tagStyle}>{idx + 1}회차</div>
+                <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 4 })}>
+                  <Text tag="b2_sb"> {formatDate(time.date)}</Text>
+                  <Text tag="b3_m" color="gray7">
+                    {`${calculatePeriod(time.startTime, time.endTime).startTime} ~ ${
+                      calculatePeriod(time.startTime, time.endTime).formattedEndTime
+                    }`}{' '}
+                    (총 {time.duration} 시간)
+                  </Text>
+                </div>
               </div>
+              <IcXCircleGray0424 width={'2.4rem'} onClick={() => handleRemoveTime(idx)} />
             </div>
-            <IcXCircleGray0424 width={'2.4rem'} onClick={() => handleRemoveTime(idx)} />
-          </div>
-        ))}
+          ))}
 
-        <div className={styles.addInputBoxStyle} onClick={openBottomSheet}>
-          <IcPlusGray0524 width={'2.4rem'} />
+          <div className={styles.addInputBoxStyle} onClick={openBottomSheet}>
+            <IcPlusGray0524 width={'2.4rem'} />
+          </div>
         </div>
       </div>
+      {error?.message && (
+        <div className={sprinkles({ mt: 4 })}>
+          <Text tag="b3_r" color="alert3">
+            {error.message}
+          </Text>
+        </div>
+      )}
     </div>
   );
 };

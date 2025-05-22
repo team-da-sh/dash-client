@@ -1,4 +1,5 @@
-import type { UseFormRegister } from 'react-hook-form';
+import type { FieldError, UseFormRegister } from 'react-hook-form';
+import { useFormContext } from 'react-hook-form';
 import Description from '@/pages/instructor/classRegister/components/Description';
 import { CLASS_PERSONNEL_SUBTITLE } from '@/pages/instructor/classRegister/constants/registerSectionText';
 import type { ClassRegisterFormTypes } from '@/pages/instructor/classRegister/types/classRegisterForm';
@@ -14,6 +15,10 @@ interface ClassPersonnelPropTypes {
 
 const ClassPersonnel = ({ register, maxReservationCount }: ClassPersonnelPropTypes) => {
   const { name, onChange, ref } = register('maxReservationCount');
+  const {
+    formState: { errors },
+  } = useFormContext();
+  const error = errors.maxReservationCount as FieldError | undefined;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (ONLY_NUMBER.test(e.target.value)) {
@@ -31,14 +36,22 @@ const ClassPersonnel = ({ register, maxReservationCount }: ClassPersonnelPropTyp
         mb: 40,
       })}>
       <Description title="모집 인원" subTitle={CLASS_PERSONNEL_SUBTITLE} />
-      <Input
-        value={maxReservationCount}
-        name={name}
-        onChange={handleChange}
-        ref={ref}
-        placeholder="0"
-        rightAddOn={<Text tag="b2_sb_long">명</Text>}
-      />
+      <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 4 })}>
+        <Input
+          value={maxReservationCount}
+          name={name}
+          onChange={handleChange}
+          ref={ref}
+          placeholder="0"
+          rightAddOn={<Text tag="b2_sb_long">명</Text>}
+          isError={!!error}
+        />
+        {error && (
+          <Text tag="b3_r" color="alert3">
+            {error.message}
+          </Text>
+        )}
+      </div>
     </div>
   );
 };

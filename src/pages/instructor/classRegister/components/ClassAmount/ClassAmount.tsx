@@ -1,4 +1,6 @@
-import type { UseFormRegister } from 'react-hook-form';
+import type { ChangeEvent } from 'react';
+import type { FieldError, UseFormRegister } from 'react-hook-form';
+import { useFormContext } from 'react-hook-form';
 import Description from '@/pages/instructor/classRegister/components/Description';
 import { CLASS_AMOUNT_SUBTITLE } from '@/pages/instructor/classRegister/constants/registerSectionText';
 import Input from '@/shared/components/Input/Input';
@@ -14,8 +16,12 @@ interface ClassAmountPropTypes {
 
 const ClassAmount = ({ price, register }: ClassAmountPropTypes) => {
   const { name, onChange, ref } = register('price');
+  const {
+    formState: { errors },
+  } = useFormContext();
+  const error = errors.price as FieldError | undefined;
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (ONLY_NUMBER.test(e.target.value)) {
       onChange(e);
     }
@@ -24,14 +30,22 @@ const ClassAmount = ({ price, register }: ClassAmountPropTypes) => {
   return (
     <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 20, width: '100%' })}>
       <Description title="수강료" subTitle={CLASS_AMOUNT_SUBTITLE} />
-      <Input
-        name={name}
-        ref={ref}
-        placeholder="0"
-        value={price}
-        onChange={handleChange}
-        rightAddOn={<Text tag="b2_sb_long">원</Text>}
-      />
+      <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 4 })}>
+        <Input
+          name={name}
+          ref={ref}
+          placeholder="0"
+          value={price}
+          onChange={handleChange}
+          rightAddOn={<Text tag="b2_sb_long">원</Text>}
+          isError={!!error}
+        />
+        {error && (
+          <Text tag="b3_r" color="alert3">
+            {error.message}
+          </Text>
+        )}
+      </div>
     </div>
   );
 };

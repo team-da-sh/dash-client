@@ -23,9 +23,15 @@ export const levelButtonStyle = recipe({
         backgroundColor: vars.colors.gray01,
       },
     },
+    error: {
+      false: {
+        border: 'none',
+      },
+    },
   },
   defaultVariants: {
     selected: false,
+    error: false,
   },
 });
 
