@@ -2,7 +2,7 @@ import { style } from '@vanilla-extract/css';
 import { vars } from '@/shared/styles/theme.css';
 
 export const layoutStyle = style({
-  position: 'relative',
+  position: 'absolute',
   left: '8.3rem',
   zIndex: vars.zIndex.four,
 
