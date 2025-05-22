@@ -10,7 +10,7 @@ interface DescriptionProps {
 
 const Description = ({ title, subTitle }: DescriptionProps) => {
   return (
-    <Flex direction="column" gap="0.8rem">
+    <Flex direction="column" gap="0.4rem">
       <Flex gap="0.8rem">
         <Head level="h2" tag="h5_sb">
           {title}

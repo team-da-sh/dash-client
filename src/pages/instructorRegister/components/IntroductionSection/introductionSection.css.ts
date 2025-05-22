@@ -14,7 +14,7 @@ export const textAreaStyle = recipe({
   base: {
     width: '100%',
     padding: '1.6rem 1.8rem',
-    height: '5.4rem',
+    height: '5.2rem',
     resize: 'none',
     borderRadius: '4px',
     backgroundColor: vars.colors.gray01,

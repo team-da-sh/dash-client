@@ -9,10 +9,16 @@ interface TimeControlProps {
   value: number | string;
   onIncrease: () => void;
   onDecrease: () => void;
+  disableIncrease?: boolean;
+  disableDecrease?: boolean;
 }
-const TimeControl = ({ label, value, onIncrease, onDecrease }: TimeControlProps) => (
+const TimeControl = ({ label, value, onIncrease, onDecrease, disableIncrease, disableDecrease }: TimeControlProps) => (
   <Flex direction="column" width="100%" align="center" gap="0.4rem">
-    <button onClick={onIncrease} className={styles.buttonStyle}>
+    <button
+      onClick={onIncrease}
+      className={styles.buttonStyle}
+      disabled={disableIncrease}
+      style={disableIncrease ? { opacity: 0.5, cursor: 'not-allowed' } : undefined}>
       <IcArrowUpGray1032 width={'3.2rem'} />
     </button>
     <div className={styles.timeValueWrapperStyle}>
@@ -20,7 +26,11 @@ const TimeControl = ({ label, value, onIncrease, onDecrease }: TimeControlProps)
         {label === 'minute' ? (value === 0 ? '00' : '30') : value}
       </Head>
     </div>
-    <button onClick={onDecrease} className={styles.buttonStyle}>
+    <button
+      onClick={onDecrease}
+      className={styles.buttonStyle}
+      disabled={disableDecrease}
+      style={disableDecrease ? { opacity: 0.5, cursor: 'not-allowed' } : undefined}>
       <IcArrowDownGray1032 width={'3.2rem'} />
     </button>
   </Flex>

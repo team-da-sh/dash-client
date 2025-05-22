@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { extractInstaHandleFromUrl, extractYouTubeHandleFromUrl } from '@/pages/dancer/utils/url';
-import { useGetMyTeacherInfo, useGetMyLessonThumbnails, useGetMyPage } from '@/pages/mypage/apis/queries';
+import { expandInstagramUrl, expandYouTubeUrl } from '@/pages/dancer/utils/url';
+import { useGetMyLessonThumbnails, useGetMyPage, useGetMyTeacherInfo } from '@/pages/mypage/apis/queries';
 import BottomList from '@/pages/mypage/components/BottomList/BottomList';
 import EmptyClassList from '@/pages/mypage/components/TabWrapper/components/TeacherContent/components/EmptyClassList/EmptyClassList';
 import TeacherLessons from '@/pages/mypage/components/TabWrapper/components/TeacherContent/components/TeacherLessons/TeacherLessons';
@@ -86,13 +86,13 @@ const TeacherContent = () => {
             <div className={sprinkles({ display: 'flex', alignItems: 'center', gap: 4 })}>
               {data.instagram && (
                 <a
-                  href={data.instagram}
+                  href={expandInstagramUrl(data.instagram)}
                   target="_blank"
                   rel="noopener noreferrer"
                   className={sprinkles({ display: 'flex', gap: 4, alignItems: 'center' })}>
                   <IcInstagram20 width={16} height={12} />
                   <Text tag="b3_m" color="gray6" className={styles.snsUrlStyle}>
-                    {extractInstaHandleFromUrl(data.instagram)}
+                    {data.instagram}
                   </Text>
                 </a>
               )}
@@ -105,13 +105,13 @@ const TeacherContent = () => {
 
               {data.youtube && (
                 <a
-                  href={data.youtube}
+                  href={expandYouTubeUrl(data.youtube)}
                   target="_blank"
                   rel="noopener noreferrer"
                   className={sprinkles({ display: 'flex', gap: 4, alignItems: 'center' })}>
                   <IcYoutube20 width={16} height={12} />
                   <Text tag="b3_m" color="gray6" className={styles.snsUrlStyle}>
-                    {extractYouTubeHandleFromUrl(data.youtube)}
+                    {data.youtube}
                   </Text>
                 </a>
               )}

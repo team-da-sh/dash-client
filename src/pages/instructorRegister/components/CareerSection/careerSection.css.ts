@@ -27,9 +27,16 @@ export const checkboxStyle = style({
   height: '2rem',
   outline: `1px solid ${vars.colors.gray06}`,
   borderRadius: '0.2rem',
-  cursor: 'pointer',
+  backgroundColor: vars.colors.white,
 });
 
+export const hiddenCheckboxStyle = style({
+  position: 'absolute',
+  opacity: 0,
+  width: 0,
+  height: 0,
+  pointerEvents: 'none',
+});
 export const inputContainerStyle = style({
   width: '100%',
   position: 'relative',

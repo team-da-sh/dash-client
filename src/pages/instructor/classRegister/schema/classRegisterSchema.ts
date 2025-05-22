@@ -22,24 +22,29 @@ export const classRegisterSchema = z.object({
     .string()
     .min(MIN_CLASS_DESCRIPTION_LENGTH, '설명을 입력해주세요')
     .max(MAX_CLASS_DESCRIPTION_LENGTH, '설명은 최대 300자까지 입력 가능합니다'),
-  imageUrls: z.string().url('유효한 이미지 URL이 아닙니다'),
+  imageUrls: z.string().url('대표 이미지를 등록해주세요'),
   selectedGenre: z.string().min(MIN_CLASS_GENRE_LENGTH, '장르를 선택해주세요'),
   selectedLevel: z.string().min(MIN_CLASS_LEVEL_LENGTH, '레벨을 선택해주세요'),
   recommendation: z
     .string()
-    .min(MIN_RECOMMEND_LENGTH, '추천사항을 입력해주세요')
-    .max(MAX_RECOMMEND_LENGTH, '추천사항은 최대 200자까지 입력 가능합니다'),
-  maxReservationCount: z.string().regex(/^\d+$/, '숫자만 입력해주세요'),
-  price: z.string().regex(/^\d+$/, '숫자만 입력해주세요'),
+    .min(MIN_RECOMMEND_LENGTH, '추천 대상을 입력해주세요')
+    .max(MAX_RECOMMEND_LENGTH, '추천 대상은 최대 200자까지 입력 가능합니다'),
+  maxReservationCount: z.string().regex(/^\d+$/, '인원을 입력해주세요'),
+  price: z.string().regex(/^\d+$/, '수강료를 입력해주세요'),
   isUndecidedLocation: z.boolean(),
-  selectedLocation: z.union([
-    z.object({
-      location: z.string(),
-      streetAddress: z.string().nullable(),
-      oldStreetAddress: z.string().nullable(),
-    }),
-    z.null(),
-  ]),
+  selectedLocation: z
+    .union([
+      z.object({
+        location: z.string(),
+        streetAddress: z.string().nullable(),
+        oldStreetAddress: z.string().nullable(),
+      }),
+      z.null(),
+    ])
+    .refine((val) => {
+      if (val === null) return false;
+      return val.location !== '';
+    }, '장소를 입력해주세요'),
   detailedAddress: z.string().optional(),
   times: z
     .array(
@@ -48,5 +53,5 @@ export const classRegisterSchema = z.object({
         endTime: z.string(),
       })
     )
-    .min(MIN_TIMES_LENGTH, '수업 시간을 추가해주세요'),
+    .min(MIN_TIMES_LENGTH, '일정을 추가해주세요'),
 });

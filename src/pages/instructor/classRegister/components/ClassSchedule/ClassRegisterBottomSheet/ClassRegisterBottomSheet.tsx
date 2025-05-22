@@ -1,9 +1,9 @@
+import type { MouseEvent } from 'react';
 import * as styles from '@/pages/instructor/classRegister/components/ClassSchedule/ClassRegisterBottomSheet/classRegisterBottomSheet.css';
 import ClassRegisterFunnel from '@/pages/instructor/classRegister/components/ClassSchedule/ClassRegisterFunnel/ClassRegisterFunnel';
-import { ROUTES_CONFIG } from '@/routes/routesConfig';
+import { useLocalFunnel } from '@/pages/instructor/classRegister/hooks/useLocalFunnel';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import { CLASS_REGISTER_TOTAL_STEP } from '@/shared/constants';
-import { useFunnel } from '@/shared/hooks/useFunnel';
 
 interface ClassRegisterBottomSheetPropTypes {
   onClose: () => void;
@@ -18,6 +18,7 @@ interface ClassRegisterBottomSheetPropTypes {
   setSelectedTime: (value: number | null) => void;
   selectedTime: number | null;
   handleAddTime: () => void;
+  times: { startTime: string; endTime: string; date: string; duration: number }[];
 }
 
 const ClassRegisterBottomSheet = ({
@@ -33,30 +34,39 @@ const ClassRegisterBottomSheet = ({
   setSelectedTime,
   selectedTime,
   handleAddTime,
+  times,
 }: ClassRegisterBottomSheetPropTypes) => {
-  const { Funnel, Step, currentStep, setStep } = useFunnel(
-    CLASS_REGISTER_TOTAL_STEP,
-    `${ROUTES_CONFIG.classRegister}`,
-    false // 완료 페이지 없음 (false)
-  );
+  const { Funnel, Step, currentStep, setStep } = useLocalFunnel(CLASS_REGISTER_TOTAL_STEP);
 
-  const handleSheetComplete = () => {
-    setStep(1);
-    onClose();
-    handleAddTime();
-    handleDateAndTimeReset();
-  };
+  document.body.style.overflow = 'hidden';
 
-  const handleDateAndTimeReset = () => {
+  const resetDateAndTime = () => {
     setStartDate('');
     setHour(12);
     setMinute(0);
     setAmpm('AM');
+    setSelectedTime(null);
+  };
+
+  const handleSheetComplete = () => {
+    setStep(-currentStep + 1);
+    document.body.style.overflow = '';
+    onClose();
+    handleAddTime();
+    resetDateAndTime();
+  };
+
+  const handleOverlayClick = (e: MouseEvent<HTMLDivElement>) => {
+    if (e.target === e.currentTarget) {
+      document.body.style.overflow = '';
+      onClose();
+      resetDateAndTime();
+    }
   };
 
   return (
-    <div className={styles.bottomSheetContainerStyle}>
-      <div className={styles.mainWrapperStyle}>
+    <div className={styles.bottomSheetContainerStyle} onClick={handleOverlayClick}>
+      <div className={styles.mainWrapperStyle} onClick={(e) => e.stopPropagation()}>
         <ClassRegisterFunnel
           Funnel={Funnel}
           Step={Step}
@@ -70,6 +80,7 @@ const ClassRegisterBottomSheet = ({
           setAmpm={setAmpm}
           setSelectedTime={setSelectedTime}
           selectedTime={selectedTime}
+          times={times}
         />
 
         <div className={styles.buttonWrapperStyle}>
