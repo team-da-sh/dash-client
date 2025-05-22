@@ -50,13 +50,7 @@ const ClassRegister = () => {
     },
   });
 
-  const {
-    register,
-    watch,
-    setValue,
-    control,
-    formState: { errors },
-  } = methods;
+  const { register, watch, setValue, control } = methods;
 
   const {
     className,
