@@ -11,7 +11,7 @@ const EditProfile = () => {
   }
 
   return (
-    <main className={sprinkles({ padding: 20 })}>
+    <main className={sprinkles({ padding: 20, display: 'flex', flexDirection: 'column', gap: 16 })}>
       <Head level="h2" tag="h6_sb">
         내 정보 수정
       </Head>

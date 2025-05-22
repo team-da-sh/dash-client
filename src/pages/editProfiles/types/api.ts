@@ -1,5 +1,5 @@
 export interface UpdateProfileRequestTypes {
-  profileImageUrl: string;
+  profileImageUrl: string | null;
   nickname: string;
   phoneNumber: string;
   name: string;

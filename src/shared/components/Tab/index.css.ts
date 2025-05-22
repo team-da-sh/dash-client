@@ -102,6 +102,8 @@ export const tabButtonStyle = recipe({
         state: 'active',
       },
       style: {
+        padding: 0,
+
         color: vars.colors.black,
         ...vars.fonts.h5_sb,
         border: 'none',
@@ -113,6 +115,8 @@ export const tabButtonStyle = recipe({
         state: 'inactive',
       },
       style: {
+        padding: 0,
+
         color: vars.colors.gray04,
         ...vars.fonts.h5_sb,
         border: 'none',

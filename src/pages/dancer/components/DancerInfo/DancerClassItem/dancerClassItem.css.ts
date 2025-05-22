@@ -12,6 +12,10 @@ export const classImageStyle = style({
 
 export const deadlineTagStyle = style({
   position: 'absolute',
-
   top: '0.8rem',
+});
+
+export const lessonNameStyle = style({
+  overflowWrap: 'break-word',
+  wordBreak: 'break-all',
 });
