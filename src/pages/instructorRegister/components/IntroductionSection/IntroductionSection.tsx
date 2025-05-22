@@ -1,13 +1,16 @@
-import { useEffect, useState } from 'react';
+import { useLayoutEffect, useRef, useState } from 'react';
 import type { FieldError, UseFormRegister } from 'react-hook-form';
 import {
   containerStyle,
   textAreaStyle,
 } from '@/pages/instructorRegister/components/IntroductionSection/introductionSection.css';
-import { MAX_INTRODUCTION_LENGTH } from '@/pages/instructorRegister/constants/registerSection';
+import {
+  INSTRUCTOR_REGISTER_PLACEHOLDER,
+  MAX_INTRODUCTION_LENGTH,
+} from '@/pages/instructorRegister/constants/registerSection';
+import type { instructorRegisterFormTypes } from '@/pages/instructorRegister/types/instructorRegisterForm';
 import Text from '@/shared/components/Text/Text';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
-import type { instructorRegisterFormTypes } from '../../types/instructorRegisterForm';
 
 interface IntroductionSectionPropTypes {
   detail: string;
@@ -17,9 +20,22 @@ interface IntroductionSectionPropTypes {
 
 const IntroductionSection = ({ detail, register, error }: IntroductionSectionPropTypes) => {
   const [isFocused, setIsFocused] = useState(false);
+  const textAreaRef = useRef<HTMLTextAreaElement | null>(null);
+  const { name, onBlur, ref, onChange } = register('detail');
 
   const handleFocus = () => setIsFocused(true);
-  const handleBlur = () => setIsFocused(false);
+  const handleBlur = (e: React.FocusEvent<HTMLTextAreaElement>) => {
+    setIsFocused(false);
+    onBlur(e);
+  };
+
+  // textarea 높이 자동으로 조절
+  useLayoutEffect(() => {
+    if (textAreaRef.current) {
+      textAreaRef.current.style.height = 'auto';
+      textAreaRef.current.style.height = `${textAreaRef.current.scrollHeight}px`;
+    }
+  }, [detail]);
 
   const defineInputState = (error?: boolean, isFocused?: boolean) => {
     if (error) {
@@ -39,26 +55,25 @@ const IntroductionSection = ({ detail, register, error }: IntroductionSectionPro
   const inputState = defineInputState(!!error, isFocused);
   const counterColor = getCounterColor(!!error, isFocused, !!detail);
 
-  useEffect(() => {
-    const textArea = document.querySelector('#introduction-textarea') as HTMLTextAreaElement | null;
-    if (textArea) {
-      textArea.style.height = `${textArea.scrollHeight}px`;
-    }
-  }, [detail]);
-
   return (
     <section className={containerStyle}>
       <Text tag="b2_sb">강사 소개</Text>
-      <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 4 })}>
+      <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 8 })}>
         <textarea
           id="introduction-textarea"
-          {...register('detail')}
-          value={detail}
-          placeholder="저는 이런 댄서예요!"
-          className={textAreaStyle({ defineInputState: inputState })}
+          name={name}
+          ref={(e) => {
+            ref(e);
+            textAreaRef.current = e;
+          }}
+          onChange={onChange}
           onFocus={handleFocus}
           onBlur={handleBlur}
+          value={detail}
+          placeholder={INSTRUCTOR_REGISTER_PLACEHOLDER.INTRODUCTION}
+          className={textAreaStyle({ defineInputState: inputState })}
           maxLength={MAX_INTRODUCTION_LENGTH}
+          rows={1}
         />
 
         <div className={sprinkles({ display: 'flex', justifyContent: 'space-between' })}>

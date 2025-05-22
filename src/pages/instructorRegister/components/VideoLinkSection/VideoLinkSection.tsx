@@ -1,53 +1,44 @@
-import { useEffect, useState } from 'react';
-import type { UseFormRegister, UseFormSetValue } from 'react-hook-form';
+import type { UseFormSetValue } from 'react-hook-form';
 import InputSection from '@/pages/instructorRegister/components/CareerSection/InputSection/InputSection';
 import Description from '@/pages/instructorRegister/components/Description/Description';
-import { INFO_KEY } from '@/pages/instructorRegister/constants/registerSection';
-import type { InputItemTypes } from '@/pages/instructorRegister/types/inputItemTypes';
+import {
+  INSTRUCTOR_REGISTER_FORM_KEY,
+  INSTRUCTOR_REGISTER_PLACEHOLDER,
+  MAX_VIDEO_INPUT_COUNT,
+} from '@/pages/instructorRegister/constants/registerSection';
+import type { instructorRegisterFormTypes } from '@/pages/instructorRegister/types/instructorRegisterForm';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
-import type { instructorRegisterFormTypes } from '../../types/instructorRegisterForm';
 
 interface VideoLinkSectionPropTypes {
-  register: UseFormRegister<instructorRegisterFormTypes>;
+  videoUrls: string[];
   setValue: UseFormSetValue<instructorRegisterFormTypes>;
   isNoneChecked: boolean;
-  setIsNoneChecked: (value: boolean) => void;
 }
 
-const VideoLinkSection = ({ setValue, isNoneChecked, setIsNoneChecked }: VideoLinkSectionPropTypes) => {
-  const [videoItems, setVideoItems] = useState<InputItemTypes[]>([{ id: 1, value: '' }]);
-
-  // 폼 필드 값 변경 시 상태 업데이트
-  const handleVideoItemsChange = (updatedItems: InputItemTypes[]) => {
-    setVideoItems(updatedItems);
-  };
-
-  // 해당없음 토글
-  const handleToggleNone = () => {
-    setIsNoneChecked(!isNoneChecked);
-  };
-
-  // videoItems 변경 시 폼 데이터 업데이트
-  useEffect(() => {
-    // 컨트롤러를 통해 폼 값 업데이트
-    const formValues = isNoneChecked
-      ? []
-      : videoItems.map((item) => ({ value: item.value })).filter((item) => item.value.trim() !== '');
-
-    setValue(INFO_KEY.VIDEO_URLS, formValues);
-  }, [videoItems, isNoneChecked, setValue]);
-
+const VideoLinkSection = ({ videoUrls, setValue, isNoneChecked }: VideoLinkSectionPropTypes) => {
   return (
-    <section className={sprinkles({ display: 'flex', flexDirection: 'column', width: '100%', pb: 20 })}>
+    <section className={sprinkles({ display: 'flex', flexDirection: 'column', width: '100%', pb: 27 })}>
       <Description title="유튜브 영상 등록" subTitle="나를 대표하는 댄스 영상을 최대 5개 등록해 주세요" />
 
       <InputSection
         title="링크"
-        placeholder="https://www.youtube.com/watch?v=LPh1c0pGIi"
+        placeholder={INSTRUCTOR_REGISTER_PLACEHOLDER.VIDEO}
         isNoneChecked={isNoneChecked}
-        onToggleActive={handleToggleNone}
-        inputItems={videoItems}
-        onItemsChange={handleVideoItemsChange}
+        onToggleActive={() => {
+          setValue(INSTRUCTOR_REGISTER_FORM_KEY.IS_VIDEO_NONE_CHECKED, !isNoneChecked, {
+            shouldValidate: true,
+            shouldDirty: true,
+          });
+        }}
+        inputItems={videoUrls.map((value, id) => ({ id: id + 1, value }))}
+        onItemsChange={(updatedItems) => {
+          setValue(
+            INSTRUCTOR_REGISTER_FORM_KEY.VIDEO_URLS,
+            updatedItems.map((item) => item.value),
+            { shouldValidate: true, shouldTouch: true, shouldDirty: true }
+          );
+        }}
+        maxInputCount={MAX_VIDEO_INPUT_COUNT}
       />
     </section>
   );

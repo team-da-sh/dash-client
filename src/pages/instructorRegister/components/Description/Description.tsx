@@ -13,7 +13,7 @@ const Description = ({ title, subTitle }: DescriptionProps) => {
       <Head level="h1" tag="h6_sb">
         {title}
       </Head>
-      <Text tag="b3_m" color="gray7">
+      <Text tag="b3_m" color="gray6">
         {subTitle}
       </Text>
     </div>

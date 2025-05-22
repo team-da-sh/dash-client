@@ -3,6 +3,7 @@ import {
   addButtonStyle,
   checkboxStyle,
   containerStyle,
+  hiddenCheckboxStyle,
 } from '@/pages/instructorRegister/components/CareerSection/careerSection.css';
 import type { InputItemTypes } from '@/pages/instructorRegister/types/inputItemTypes';
 import BtnCheck from '@/shared/assets/svg/BtnCheck';
@@ -19,6 +20,8 @@ interface InputSectionPropTypes {
   onToggleActive: () => void;
   inputItems: InputItemTypes[];
   onItemsChange: (updatedItems: InputItemTypes[]) => void;
+  maxInputLength?: number;
+  maxInputCount?: number;
 }
 
 const PLACEHOLDER_VISIBLE_COUNT = 2;
@@ -30,12 +33,18 @@ const InputSection = ({
   onToggleActive,
   inputItems,
   onItemsChange,
+  maxInputLength,
+  maxInputCount,
 }: InputSectionPropTypes) => {
   const [nextID, setNextID] = useState(inputItems.length + 1);
   const lastInputRef = useRef<HTMLInputElement | null>(null);
 
   const addItem = () => {
     if (inputItems[inputItems.length - 1]?.value.trim() === '') {
+      return;
+    }
+
+    if (maxInputCount && inputItems.length >= maxInputCount) {
       return;
     }
 
@@ -50,9 +59,6 @@ const InputSection = ({
     } else {
       onItemsChange(inputItems.filter((item) => item.id !== id));
     }
-    Promise.resolve().then(() => {
-      lastInputRef.current?.focus();
-    });
   };
 
   const renderDeleteIcon = (id: number, value: string) => {
@@ -73,11 +79,11 @@ const InputSection = ({
           <Text tag="b3_m" color="gray6">
             해당없음
           </Text>
-          {isNoneChecked ? (
-            <BtnCheck width={'2rem'} onClick={onToggleActive} />
-          ) : (
-            <div className={checkboxStyle} onClick={onToggleActive} />
-          )}
+          <label style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', cursor: 'pointer' }}>
+            <input onClick={onToggleActive} type="checkbox" className={hiddenCheckboxStyle} />
+
+            {isNoneChecked ? <BtnCheck width="2rem" /> : <div className={checkboxStyle} />}
+          </label>
         </Flex>
       </Flex>
 
@@ -100,20 +106,23 @@ const InputSection = ({
                 onItemsChange(updatedItems);
               }}
               rightAddOn={renderDeleteIcon(id, value)}
+              maxLength={maxInputLength}
             />
           ))}
 
-          <button
-            type="button"
-            className={addButtonStyle}
-            onClick={() => {
-              addItem();
-              Promise.resolve().then(() => {
-                lastInputRef.current?.focus();
-              });
-            }}>
-            <IcPlusGray0524 width={'2.4rem'} />
-          </button>
+          {(!maxInputCount || inputItems.length < maxInputCount) && (
+            <button
+              type="button"
+              className={addButtonStyle}
+              onClick={() => {
+                addItem();
+                Promise.resolve().then(() => {
+                  lastInputRef.current?.focus();
+                });
+              }}>
+              <IcPlusGray0524 width={'2.4rem'} />
+            </button>
+          )}
         </Flex>
       )}
     </div>
