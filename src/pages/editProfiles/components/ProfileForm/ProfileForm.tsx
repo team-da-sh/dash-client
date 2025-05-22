@@ -104,12 +104,14 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <ImageUploadSection
-        previewImg={previewImg}
-        uploadImgFile={uploadImgFile}
-        imgRef={imgRef}
-        onClick={handleImageFormClick}
-      />
+      <div className={styles.imageWrapperStyle}>
+        <ImageUploadSection
+          previewImg={previewImg}
+          uploadImgFile={uploadImgFile}
+          imgRef={imgRef}
+          onClick={handleImageFormClick}
+        />
+      </div>
 
       <FormField
         label="댄서네임"
