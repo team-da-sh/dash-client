@@ -1,6 +1,5 @@
 import * as styles from '@/pages/instructorRegister/components/ImageUploadSection/imageUploadSection.css';
 import IcCameraMain0624 from '@/shared/assets/svg/IcCameraMain0624';
-import { sprinkles } from '@/shared/styles/sprinkles.css';
 import defaultProfile from '/images/image_profile_basic.png';
 
 interface ImageUploadSectionPropTypes {
