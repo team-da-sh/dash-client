@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import SvgIcArrowRightGray0614 from '@/shared/assets/svg/IcArrowRightGray0614';
+import IcArrowRightGray0614 from '@/shared/assets/svg/IcArrowRightGray0614';
 import * as styles from '@/shared/components/InfoComponent/infoComponent.css';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
 
@@ -24,7 +24,11 @@ const InfoComponent = ({ type, profileImageUrl, mainText, subContent }: InfoComp
   return (
     <section className={styles.infoContainerStyle}>
       <div className={sprinkles({ display: 'flex', gap: 12, alignItems: 'center' })}>
-        <img src={profileImageUrl} alt="프로필 이미지" className={styles.imgStyle} />
+        <img
+          src={profileImageUrl || 'images/image_profile_basic.png'}
+          alt="프로필 이미지"
+          className={styles.imgStyle}
+        />
         <div className={styles.wrapperStyle}>
           <div className={styles.textWrapperStyle}>{mainText}</div>
           <div>{subContent}</div>
@@ -32,7 +36,7 @@ const InfoComponent = ({ type, profileImageUrl, mainText, subContent }: InfoComp
       </div>
 
       <button type="button" onClick={handleEditProfileClick}>
-        <SvgIcArrowRightGray0614 className={sprinkles({ width: 24, height: 24 })} />
+        <IcArrowRightGray0614 className={sprinkles({ width: 24, height: 24 })} />
       </button>
     </section>
   );

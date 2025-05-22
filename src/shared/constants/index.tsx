@@ -7,6 +7,7 @@ import TabReview from '@/pages/class/components/TabWrapper/TabReview/tabReview';
 import type { LessonDetailResponseTypes } from '@/pages/class/types/api';
 import TabEducation from '@/pages/dancer/components/TabWrapper/TabEducation/TabEducation';
 import TabHistory from '@/pages/dancer/components/TabWrapper/TabExperience/TabExperience';
+import TabPrize from '@/pages/dancer/components/TabWrapper/TabPrize/TabPrize';
 import TabVideo from '@/pages/dancer/components/TabWrapper/TabVideo/TabVideo';
 import type { DancerDetailResponseTypes } from '@/pages/dancer/types/api';
 
@@ -82,7 +83,12 @@ export const DANCER_TABS = [
     label: '경력',
     component: (dancerData: DancerDetailResponseTypes) => <TabHistory dancerData={dancerData} />,
   },
-  { id: 3, label: '영상', component: (dancerData: DancerDetailResponseTypes) => <TabVideo dancerData={dancerData} /> },
+  {
+    id: 3,
+    label: '수상',
+    component: (dancerData: DancerDetailResponseTypes) => <TabPrize dancerData={dancerData} />,
+  },
+  { id: 4, label: '영상', component: (dancerData: DancerDetailResponseTypes) => <TabVideo dancerData={dancerData} /> },
 ];
 
 export const CLASS_TABS = [

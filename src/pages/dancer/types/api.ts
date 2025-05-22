@@ -9,6 +9,7 @@ export interface DancerDetailResponseTypes {
   videoUrls: string[];
   genres: string[];
   lessons: ClassItemPropTypes[];
+  prizes: string[];
 }
 
 export interface ClassItemPropTypes {

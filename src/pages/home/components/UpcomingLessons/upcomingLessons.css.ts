@@ -26,5 +26,5 @@ export const titleStyle = style({
 export const deadlineLessonWrapperStyle = style({
   width: '100%',
 
-  marginTop: '6.1rem',
+  marginTop: '3.2rem',
 });

@@ -4,10 +4,10 @@ import ClassProgress from '@/pages/mypage/components/TabWrapper/components/Stude
 import MenuButton from '@/pages/mypage/components/TabWrapper/components/StudentContent/components/MenuButton/MenuButton';
 import * as styles from '@/pages/mypage/components/TabWrapper/components/StudentContent/studentContent.css';
 import { MENU_LIST } from '@/pages/mypage/constants/myPageList';
-import { formatPhoneNumber } from '@/pages/mypage/utils/format';
 import Divider from '@/shared/components/Divider/Divider';
 import InfoComponent from '@/shared/components/InfoComponent/InfoComponent';
 import Text from '@/shared/components/Text/Text';
+import { formatPhoneNumberNoSpace } from '@/shared/utils/formatPhoneNumber';
 
 const StudentContent = () => {
   const { data, isLoading } = useGetMyPage();
@@ -24,8 +24,8 @@ const StudentContent = () => {
           profileImageUrl={data.profileImageUrl}
           mainText={<Text tag="b1_sb">{data.nickname}</Text>}
           subContent={
-            <Text tag="b3_m" color="gray6">
-              {data.name} · {formatPhoneNumber(data.phoneNumber)}
+            <Text tag="b3_r" color="gray6">
+              {data.name} · {formatPhoneNumberNoSpace(data.phoneNumber)}
             </Text>
           }
         />

@@ -126,6 +126,8 @@ const InstructorRegister = () => {
 
       queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.AUTH_ROLE] });
 
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.AUTH_ROLE] });
+
       navigate(ROUTES_CONFIG.instructorRegisterCompletion.path);
     };
 
