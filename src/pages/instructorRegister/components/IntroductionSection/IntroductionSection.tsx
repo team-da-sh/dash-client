@@ -4,10 +4,13 @@ import {
   containerStyle,
   textAreaStyle,
 } from '@/pages/instructorRegister/components/IntroductionSection/introductionSection.css';
-import { MAX_INTRODUCTION_LENGTH } from '@/pages/instructorRegister/constants/registerSection';
+import {
+  INSTRUCTOR_REGISTER_PLACEHOLDER,
+  MAX_INTRODUCTION_LENGTH,
+} from '@/pages/instructorRegister/constants/registerSection';
+import type { instructorRegisterFormTypes } from '@/pages/instructorRegister/types/instructorRegisterForm';
 import Text from '@/shared/components/Text/Text';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
-import type { instructorRegisterFormTypes } from '../../types/instructorRegisterForm';
 
 interface IntroductionSectionPropTypes {
   detail: string;
@@ -67,7 +70,7 @@ const IntroductionSection = ({ detail, register, error }: IntroductionSectionPro
           onFocus={handleFocus}
           onBlur={handleBlur}
           value={detail}
-          placeholder="저는 이런 댄서예요!"
+          placeholder={INSTRUCTOR_REGISTER_PLACEHOLDER.INTRODUCTION}
           className={textAreaStyle({ defineInputState: inputState })}
           maxLength={MAX_INTRODUCTION_LENGTH}
           rows={1}

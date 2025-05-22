@@ -3,6 +3,7 @@ import InputSection from '@/pages/instructorRegister/components/CareerSection/In
 import Description from '@/pages/instructorRegister/components/Description/Description';
 import {
   INSTRUCTOR_REGISTER_FORM_KEY,
+  INSTRUCTOR_REGISTER_PLACEHOLDER,
   MAX_CAREER_INPUT_LENGTH,
 } from '@/pages/instructorRegister/constants/registerSection';
 import type { instructorRegisterFormTypes } from '@/pages/instructorRegister/types/instructorRegisterForm';
@@ -40,7 +41,7 @@ const CareerSection = ({
 
       <InputSection
         title="학력"
-        placeholder="대쉬대학교 실용무용학과 졸업"
+        placeholder={INSTRUCTOR_REGISTER_PLACEHOLDER.EDUCATION}
         isNoneChecked={isEduNoneChecked}
         onToggleActive={() => {
           setValue(INSTRUCTOR_REGISTER_FORM_KEY.IS_EDU_NONE_CHECKED, !isEduNoneChecked, {
@@ -62,7 +63,7 @@ const CareerSection = ({
 
       <InputSection
         title="경력"
-        placeholder="NCT127 단독콘서트 ‘the LINK’ 퍼포먼스 디렉터"
+        placeholder={INSTRUCTOR_REGISTER_PLACEHOLDER.CAREER}
         isNoneChecked={isCareerNoneChecked}
         onToggleActive={() => {
           setValue(INSTRUCTOR_REGISTER_FORM_KEY.IS_CAREER_NONE_CHECKED, !isCareerNoneChecked, {
@@ -84,7 +85,7 @@ const CareerSection = ({
 
       <InputSection
         title="수상"
-        placeholder="2018 BATTLE LIINEUP 1등"
+        placeholder={INSTRUCTOR_REGISTER_PLACEHOLDER.PRIZE}
         isNoneChecked={isPrizeNoneChecked}
         onToggleActive={() => {
           setValue(INSTRUCTOR_REGISTER_FORM_KEY.IS_PRIZE_NONE_CHECKED, !isPrizeNoneChecked, {

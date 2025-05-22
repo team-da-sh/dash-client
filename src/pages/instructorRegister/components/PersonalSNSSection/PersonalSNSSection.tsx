@@ -2,11 +2,12 @@ import { useState } from 'react';
 import type { UseFormRegister } from 'react-hook-form';
 import Description from '@/pages/instructorRegister/components/Description/Description';
 import * as styles from '@/pages/instructorRegister/components/PersonalSNSSection/personalSNSSection.css';
+import type { instructorRegisterFormTypes } from '@/pages/instructorRegister/types/instructorRegisterForm';
 import SvgIcAt12 from '@/assets/svg/IcAt12';
 import Text from '@/shared/components/Text/Text';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
 import { vars } from '@/shared/styles/theme.css';
-import type { instructorRegisterFormTypes } from '../../types/instructorRegisterForm';
+import { INSTRUCTOR_REGISTER_PLACEHOLDER } from '../../constants/registerSection';
 
 interface PersonalSNSSectionPropTypes {
   instagram?: string;
@@ -51,7 +52,7 @@ const PersonalSNSSection = ({ instagram, youtube, register }: PersonalSNSSection
               onFocus={handleInstagramFocus}
               onBlur={handleInstagramBlur}
               value={instagram}
-              placeholder={'dashdash.kr'}
+              placeholder={INSTRUCTOR_REGISTER_PLACEHOLDER.INSTAGRAM}
             />
           </div>
         </div>
@@ -77,7 +78,7 @@ const PersonalSNSSection = ({ instagram, youtube, register }: PersonalSNSSection
               onFocus={handleYoutubeFocus}
               onBlur={handleYoutubeBlur}
               value={youtube}
-              placeholder={'dashofficial'}
+              placeholder={INSTRUCTOR_REGISTER_PLACEHOLDER.YOUTUBE}
             />
           </div>
         </div>

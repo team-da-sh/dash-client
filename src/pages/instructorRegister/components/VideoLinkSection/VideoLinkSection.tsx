@@ -3,6 +3,7 @@ import InputSection from '@/pages/instructorRegister/components/CareerSection/In
 import Description from '@/pages/instructorRegister/components/Description/Description';
 import {
   INSTRUCTOR_REGISTER_FORM_KEY,
+  INSTRUCTOR_REGISTER_PLACEHOLDER,
   MAX_VIDEO_INPUT_COUNT,
 } from '@/pages/instructorRegister/constants/registerSection';
 import type { instructorRegisterFormTypes } from '@/pages/instructorRegister/types/instructorRegisterForm';
@@ -21,7 +22,7 @@ const VideoLinkSection = ({ videoUrls, setValue, isNoneChecked }: VideoLinkSecti
 
       <InputSection
         title="링크"
-        placeholder="https://www.youtube.com/watch?v=LPh1c0pGIi"
+        placeholder={INSTRUCTOR_REGISTER_PLACEHOLDER.VIDEO}
         isNoneChecked={isNoneChecked}
         onToggleActive={() => {
           setValue(INSTRUCTOR_REGISTER_FORM_KEY.IS_VIDEO_NONE_CHECKED, !isNoneChecked, {

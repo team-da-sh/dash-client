@@ -14,6 +14,16 @@ export const INSTRUCTOR_REGISTER_FORM_KEY = {
   IS_VIDEO_NONE_CHECKED: 'isVideoNoneChecked',
 } as const;
 
+export const INSTRUCTOR_REGISTER_PLACEHOLDER = {
+  INTRODUCTION: '저는 이런 댄서예요!',
+  INSTAGRAM: 'dashdash.kr',
+  YOUTUBE: 'dashofficial',
+  EDUCATION: '대쉬대학교 실용무용학과 졸업',
+  CAREER: 'NCT127 단독콘서트 ‘the LINK’ 퍼포먼스 디렉터',
+  PRIZE: '2018 BATTLE LIINEUP 1등',
+  VIDEO: 'https://www.youtube.com/watch?v=LPh1c0pGIi',
+};
+
 export const MIN_INTRODUCTION_LENGTH = 30;
 export const MAX_INTRODUCTION_LENGTH = 500;
 
