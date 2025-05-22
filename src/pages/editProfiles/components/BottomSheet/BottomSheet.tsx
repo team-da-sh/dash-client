@@ -11,6 +11,8 @@ interface BottomSheetPropTypes {
 }
 
 const BottomSheet = ({ onClose, onSelectImage, onDeleteImage, isVisible }: BottomSheetPropTypes) => {
+  if (isVisible) document.body.style.overflow = 'hidden';
+
   return (
     <section>
       <div

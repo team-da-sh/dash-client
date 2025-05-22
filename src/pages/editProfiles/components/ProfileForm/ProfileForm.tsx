@@ -70,6 +70,7 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
   };
 
   const handleCloseBottomSheet = () => {
+    document.body.style.overflow = '';
     setIsImageClick(false);
   };
 
