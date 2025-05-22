@@ -24,7 +24,7 @@ interface ProfileFormPropTypes {
 }
 
 const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
-  const mutation = usePatchMyProfile();
+  const { mutate: editMyProfile } = usePatchMyProfile();
 
   const [focusedField, setFocusedField] = useState<string | null>(null);
   const [isImageClick, setIsImageClick] = useState(false);
@@ -84,15 +84,8 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
   const isButtonActive = isDirty && isValid;
 
   const onSubmit = (formData: ProfileFormValues) => {
-    let profileImageUrl: string | null = null;
-
-    if (typeof formData.profileImageUrl === 'string') {
-      profileImageUrl = formData.profileImageUrl.trim() !== '' ? formData.profileImageUrl : null;
-    } else if (formData.profileImageUrl instanceof FileList) {
-      profileImageUrl = null;
-    } else {
-      profileImageUrl = null;
-    }
+    const value = formData.profileImageUrl;
+    const profileImageUrl = typeof value === 'string' && value.trim() !== '' ? value : null;
 
     const submitData: UpdateProfileRequestTypes = {
       nickname: formData.nickname,
@@ -101,7 +94,7 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
       profileImageUrl,
     };
 
-    mutation.mutate(submitData);
+    editMyProfile(submitData);
   };
 
   const handleSelectImage = () => {

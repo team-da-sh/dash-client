@@ -3,14 +3,14 @@ import IcCloseBlack24 from '@/shared/assets/svg/IcCloseBlack24';
 import Head from '@/shared/components/Head/Head';
 import Text from '@/shared/components/Text/Text';
 
-interface BottomSheetProps {
+interface BottomSheetPropTypes {
   onClose: () => void;
   onSelectImage: () => void;
   onDeleteImage: () => void;
   isVisible: boolean;
 }
 
-const BottomSheet = ({ onClose, onSelectImage, onDeleteImage, isVisible }: BottomSheetProps) => {
+const BottomSheet = ({ onClose, onSelectImage, onDeleteImage, isVisible }: BottomSheetPropTypes) => {
   return (
     <section>
       <div

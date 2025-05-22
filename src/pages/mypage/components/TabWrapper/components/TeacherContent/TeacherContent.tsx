@@ -29,13 +29,18 @@ const TeacherContent = () => {
   const isFirstVisit = getUser(VISIT_KEY) === null;
   const [showToolTip, setShowToopTip] = useState(isFirstVisit);
 
-  const { data: role } = useGetRole();
+  const { data: role, isLoading: isGetRoleLoading } = useGetRole();
   const userRole = role?.role;
+
   const { data } = useGetMyTeacherInfo(userRole);
   const { data: lessonData } = useGetMyLessonThumbnails(userRole);
   const { data: myData } = useGetMyPage();
 
-  let isRegisteredTeacherProfile = userRole === 'TEACHER';
+  const isRegisteredTeacherProfile = userRole === 'TEACHER';
+
+  if (isGetRoleLoading) {
+    return <div></div>;
+  }
 
   if (!isRegisteredTeacherProfile && myData) {
     return (

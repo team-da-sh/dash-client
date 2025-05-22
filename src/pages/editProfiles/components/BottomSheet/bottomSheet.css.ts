@@ -38,6 +38,7 @@ export const overlayStyle = style({
   bottom: 0,
   height: '100vh',
   width: '100%',
+
   background: vars.colors.black70,
   zIndex: vars.zIndex.two,
   cursor: 'pointer',
@@ -80,6 +81,7 @@ export const container = style({
   gap: '2.7rem',
   padding: '2.8rem 2rem',
 
+  width: '100%',
   height: '17rem',
 
   borderRadius: '16px 16px 0 0',

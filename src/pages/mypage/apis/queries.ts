@@ -1,7 +1,7 @@
 import { useQuery, type UseQueryResult } from '@tanstack/react-query';
 import type { AxiosError } from 'axios';
 import { getMyPage, getMyLessons, getMyTeacherInfo, getMyLessonThumbnails } from '@/pages/mypage/apis/axios';
-import {
+import type {
   MyPageResponseTypes,
   LessonCountResponseTypes,
   MyTeacherInfoResponseTypes,

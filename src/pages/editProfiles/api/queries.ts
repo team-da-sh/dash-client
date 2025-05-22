@@ -1,14 +1,15 @@
 import { useMutation } from '@tanstack/react-query';
+import { useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { patchMyProfile } from '@/pages/editProfiles/api/axios';
 import { UpdateProfileRequestTypes } from '@/pages/editProfiles/types/api';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import queryClient from '@/queryClient';
 import { notify } from '@/shared/components/Toast/Toast';
 import { QUERY_KEYS } from '@/shared/constants/queryKey';
 
 export const usePatchMyProfile = () => {
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: (profileData: UpdateProfileRequestTypes) => patchMyProfile(profileData),

@@ -63,7 +63,6 @@ const useImageUploader = (
 
     if (handleDeleteUrl) {
       handleDeleteUrl();
-      console.log('삭제');
     }
     handleCloseBottomSheet?.();
 

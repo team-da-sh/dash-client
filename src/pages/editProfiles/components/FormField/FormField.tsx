@@ -1,6 +1,7 @@
 import type { UseFormRegister } from 'react-hook-form';
 import * as styles from '@/pages/editProfiles/components/FormField/formField.css';
 import type { ProfileFormValues } from '@/pages/editProfiles/schema/profileSchema';
+import { MAX_PHONENUMBER_LENGTH, MAX_NAME_LENGTH } from '@/pages/onboarding/constants';
 import Input from '@/shared/components/Input/Input';
 import Text from '@/shared/components/Text/Text';
 
@@ -38,7 +39,7 @@ const FormField = ({
         placeholder={placeholder}
         {...register(name)}
         isError={!!error}
-        maxLength={name === 'phoneNumber' ? 11 : 8}
+        maxLength={name === 'phoneNumber' ? MAX_PHONENUMBER_LENGTH : MAX_NAME_LENGTH}
         readOnly={readOnly}
         isFocused={isFocused}
         onFocus={onFocus}
@@ -48,7 +49,7 @@ const FormField = ({
         {error?.message && (
           <Text tag="b3_r" color="alert3">
             {error.message}
-          </Text> // color 안 씀
+          </Text>
         )}
         {isFocused && validationMessage}
       </div>

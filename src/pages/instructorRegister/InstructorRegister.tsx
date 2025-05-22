@@ -1,5 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { QueryClient } from '@tanstack/react-query';
+import { useQueryClient } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 import { useController, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
@@ -35,7 +35,7 @@ import { setAccessToken, setRefreshToken } from '@/shared/utils/handleToken';
 
 const InstructorRegister = () => {
   const navigate = useNavigate();
-  const queryClient = new QueryClient();
+  const queryClient = useQueryClient();
 
   // 강사 등록
   const { mutate: instructorRegisterMutate } = usePostInstructor();
