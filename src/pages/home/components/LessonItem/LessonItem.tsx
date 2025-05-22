@@ -11,6 +11,8 @@ import {
   newClassImageStyle,
   newDeadlineTagStyle,
   newTeacherImageStyle,
+  myPageWrapperStyle,
+  myPageImageStyle,
   newWrapperStyle,
 } from '@/pages/home/components/LessonItem/newLessonItem.css';
 import type { LessonTypes } from '@/pages/home/types/classTypes';
@@ -29,10 +31,10 @@ const LessonItem = ({
   imageUrl,
   teacherProfileImage,
   teacherName,
-
   remainingDays,
   useNewStyles = false,
-}: Omit<LessonTypes, 'location'> & { useNewStyles?: boolean }) => {
+  isMyPage = false,
+}: Omit<LessonTypes, 'location'> & { useNewStyles?: boolean; isMyPage?: boolean }) => {
   const navigate = useNavigate();
 
   const styles = useNewStyles
@@ -43,9 +45,9 @@ const LessonItem = ({
         deadlineTag: newDeadlineTagStyle,
       }
     : {
-        classImage: classImageStyle,
+        classImage: isMyPage ? myPageImageStyle : classImageStyle,
         teacherImage: teacherImageStyle,
-        wrapper: wrapperStyle,
+        wrapper: isMyPage ? myPageWrapperStyle : wrapperStyle,
         deadlineTag: deadlineTagStyle,
       };
 
