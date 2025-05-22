@@ -41,18 +41,9 @@ const TabLocation = ({ lessonData }: { lessonData: LessonDetailResponseTypes }) 
                         주소
                       </Text>
                     </div>
-                    <div className={sprinkles({ flexDirection: 'column' })}>
-                      {streetAddress && (
-                        <Text tag="b3_m" color="gray7" className={styles.streetAddressStyle}>
-                          {streetAddress}
-                        </Text>
-                      )}
-                      {streetDetailAddress && (
-                        <Text tag="b3_m" color="gray7" className={styles.streetAddressStyle}>
-                          {streetDetailAddress}
-                        </Text>
-                      )}
-                    </div>
+                    <Text tag="b3_m" color="gray7" className={styles.streetAddressStyle}>
+                      {[streetAddress, streetDetailAddress].filter(Boolean).join(' ')}
+                    </Text>
                   </div>
                 )}
 
