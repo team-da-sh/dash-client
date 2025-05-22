@@ -5,6 +5,7 @@ import EmptyView from '@/pages/search/components/TabContainer/EmptyView/EmptyVie
 import Dropdown from '@/pages/search/components/TabContainer/TagSection/Dropdown';
 import TagSection from '@/pages/search/components/TabContainer/TagSection/TagSection';
 import * as styles from '@/pages/search/components/TabContainer/tabContainer.css';
+import { TAB } from '@/pages/search/constants';
 import type { ClassListResponseTypes, DancerListResponseTypes } from '@/pages/search/types/api';
 import IcArrowUnderGray from '@/shared/assets/svg/IcArrowUnderGray';
 import IcXMain04 from '@/shared/assets/svg/IcXMain04';
@@ -47,8 +48,8 @@ interface TabContainerPropTypes {
   error: Error | null;
   selectedLabel: '최신 등록순' | '찜이 많은순' | '마감 임박순';
   setSelectedLabel: (label: '최신 등록순' | '찜이 많은순' | '마감 임박순') => void;
-  selectedTab: number;
-  setSelectedTab: (tab: number) => void;
+  selectedTab: string;
+  setSelectedTab: (tab: string) => void;
 }
 
 const TabContainer = ({
@@ -138,10 +139,16 @@ const TabContainer = ({
         <TabRoot>
           <div className={sprinkles({ display: 'flex', justifyContent: 'space-between' })}>
             <TabList>
-              <TabButton isSelected={selectedTab === 0} onClick={() => setSelectedTab(0)} colorScheme="primary">
+              <TabButton
+                isSelected={selectedTab === TAB.CLASS}
+                onClick={() => setSelectedTab(TAB.CLASS)}
+                colorScheme="primary">
                 클래스
               </TabButton>
-              <TabButton isSelected={selectedTab === 1} onClick={() => setSelectedTab(1)} colorScheme="primary">
+              <TabButton
+                isSelected={selectedTab === TAB.DANCER}
+                onClick={() => setSelectedTab(TAB.DANCER)}
+                colorScheme="primary">
                 댄서
               </TabButton>
             </TabList>
@@ -162,7 +169,7 @@ const TabContainer = ({
             </Dropdown.Root>
           </div>
 
-          <TabPanel isSelected={selectedTab === 0}>
+          <TabPanel isSelected={selectedTab === TAB.CLASS}>
             <TagSection
               displayTags={displayTags}
               activeTags={activeTags}
@@ -185,7 +192,7 @@ const TabContainer = ({
               )}
             </div>
           </TabPanel>
-          <TabPanel isSelected={selectedTab === 1}>
+          <TabPanel isSelected={selectedTab === TAB.DANCER}>
             {error && <div>Error: {error.message}</div>}
             {dancerList && dancerList.teachers && dancerList.teachers.length > 0 ? (
               <DancerList dancers={dancerList.teachers} />

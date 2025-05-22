@@ -12,3 +12,8 @@ export const SORT_LABELS = {
   MOST_LIKED: '찜이 많은순',
   CLOSING_SOON: '마감 임박순',
 } as const;
+
+export const TAB = {
+  CLASS: 'class',
+  DANCER: 'dancer',
+};
