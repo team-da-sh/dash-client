@@ -33,7 +33,7 @@ const StudentContent = () => {
       </div>
       <div className={styles.menuButtonContainerStyle}>
         {MENU_LIST.map((menu) => (
-          <MenuButton key={menu.label} {...menu} />
+          <MenuButton key={menu.label} path={menu.path} icon={menu.icon} label={menu.label} inActive={menu.inActive} />
         ))}
       </div>
       <Divider color="gray1" thickness="0.4rem" />
