@@ -1,4 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useQueryClient } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 import { useController, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
@@ -22,26 +23,29 @@ import {
 import useInstructorRegisterForm from '@/pages/instructorRegister/hooks/useInstructorRegisterForm';
 import * as styles from '@/pages/instructorRegister/instructorRegister.css';
 import { instructorRegisterSchema } from '@/pages/instructorRegister/schema/instructorRegisterSchema';
-import { setUser } from '@/pages/mypage/utils/storage';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
+import { useGetRole } from '@/shared/apis/queries';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import Divider from '@/shared/components/Divider/Divider';
 import Head from '@/shared/components/Head/Head';
+import { QUERY_KEYS } from '@/shared/constants/queryKey';
 import { USER_ROLE } from '@/shared/constants/userRole';
 import useImageUploader from '@/shared/hooks/useImageUploader';
 import { setAccessToken, setRefreshToken } from '@/shared/utils/handleToken';
-import { ROLE_KEY } from '../mypage/constants/storageKey';
 
 const InstructorRegister = () => {
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
   // 강사 등록
   const { mutate: instructorRegisterMutate } = usePostInstructor();
 
   // 강사 수정
-  const storageRole = JSON.parse(localStorage.getItem('userRole') || 'null');
+  const { data } = useGetRole();
+  const userRole = data?.role;
+
   const { mutate: instructorPatchMutate } = usePatchInstructorRegisterInfo();
-  const { data: prevInstructorData } = useGetInstructorRegisterInfo(storageRole);
+  const { data: prevInstructorData } = useGetInstructorRegisterInfo(userRole ?? '');
 
   const {
     register,
@@ -140,7 +144,8 @@ const InstructorRegister = () => {
 
       setAccessToken(accessToken);
       setRefreshToken(refreshToken);
-      setUser(ROLE_KEY, USER_ROLE.TEACHER);
+
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.AUTH_ROLE] });
 
       navigate(ROUTES_CONFIG.instructorRegisterCompletion.path);
     };
@@ -149,7 +154,7 @@ const InstructorRegister = () => {
       navigate(ROUTES_CONFIG.error.path);
     };
 
-    if (storageRole === USER_ROLE.TEACHER) {
+    if (userRole === USER_ROLE.TEACHER) {
       instructorPatchMutate(updatedInfo, {
         onSuccess: () => {
           navigate(ROUTES_CONFIG.mypage.path);
@@ -186,7 +191,7 @@ const InstructorRegister = () => {
           <div className={styles.sectionWrapperStyle}>
             <div className={styles.titleStyle}>
               <Head level="h1" tag="h6_sb">
-                {`강사 프로필 ${storageRole === USER_ROLE.TEACHER ? '수정' : '등록'}`}
+                {`강사 프로필 ${userRole === USER_ROLE.TEACHER ? '수정' : '등록'}`}
               </Head>
             </div>
 
@@ -235,7 +240,7 @@ const InstructorRegister = () => {
 
         <div className={styles.buttonContainerStyle}>
           <BoxButton variant="primary" isDisabled={!buttonActive()} type="submit">
-            {storageRole === USER_ROLE.TEACHER ? '저장' : '등록'}
+            {userRole === USER_ROLE.TEACHER ? '저장' : '등록'}
           </BoxButton>
         </div>
       </form>

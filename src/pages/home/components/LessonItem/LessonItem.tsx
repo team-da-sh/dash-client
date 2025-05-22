@@ -20,7 +20,6 @@ import Tag from '@/shared/components/Tag/Tag';
 import Text from '@/shared/components/Text/Text';
 import { genreMapping, levelMapping } from '@/shared/constants';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
-import { transformDateToDotFormat } from '@/shared/utils/transformDateToDotFormat';
 
 const LessonItem = ({
   id,
@@ -30,8 +29,7 @@ const LessonItem = ({
   imageUrl,
   teacherProfileImage,
   teacherName,
-  startDate,
-  endDate,
+
   remainingDays,
   useNewStyles = false,
 }: Omit<LessonTypes, 'location'> & { useNewStyles?: boolean }) => {
@@ -61,7 +59,9 @@ const LessonItem = ({
       onClick={handleLessonClick}>
       <img src={imageUrl} alt="클래스 섬네일" className={styles.classImage} />
       {remainingDays < 4 && (
-        <Tag type="deadline" size="thumbnail" className={styles.deadlineTag}>{`마감 D-${remainingDays || 'Day'}`}</Tag>
+        <Tag type="deadline" size="thumbnail" className={styles.deadlineTag}>
+          {remainingDays < 0 ? '마감' : `마감 D-${remainingDays || 'Day'}`}
+        </Tag>
       )}
 
       <div className={sprinkles({ display: 'flex', gap: 4 })}>
@@ -82,14 +82,6 @@ const LessonItem = ({
           <div className={sprinkles({ display: 'flex', gap: 6, alignItems: 'center' })}>
             <img src={teacherProfileImage} alt="강사" className={styles.teacherImage} />
             <Text tag="b3_m">{teacherName}</Text>
-          </div>
-        )}
-
-        {startDate && endDate && (
-          <div className={sprinkles({ display: 'flex', gap: 4, alignItems: 'center' })}>
-            <Text tag="c1_r_narrow" color="gray5">
-              {transformDateToDotFormat(startDate)} - {transformDateToDotFormat(endDate)}
-            </Text>
           </div>
         )}
       </div>

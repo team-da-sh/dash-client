@@ -13,7 +13,14 @@ const BottomList = () => {
   const { mutate: logout } = usePostLogout();
 
   const handleItemClick = (item: (typeof LIST_DATA)[number]) => {
-    if (item.inActive) return notify();
+    if (item.inActive) return notify('해당 기능은 추후 구현 예정이에요');
+    if (item.isNavigate) {
+      window.open(
+        'https://docs.google.com/forms/d/e/1FAIpQLSfJGVuf29hHNhBP_tMPxwhPQ4x-9Qj7go_nz0FNKey6FFAplQ/viewform',
+        '_blank'
+      );
+      return;
+    }
     if (item.label === '로그아웃') {
       logout();
       return navigate(ROUTES_CONFIG.home.path);

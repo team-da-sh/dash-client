@@ -1,5 +1,5 @@
 import MypageLessonItem from '@/pages/mypage/components/MypageLessonItem/MypageLessonItem';
-import {
+import type {
   lessonResponseTypes,
   LessonDataResponseTypes,
 } from '@/pages/mypage/components/TabWrapper/components/TeacherContent/types/api';
