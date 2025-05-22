@@ -91,7 +91,7 @@ const TeacherContent = () => {
                   rel="noopener noreferrer"
                   className={sprinkles({ display: 'flex', gap: 4, alignItems: 'center' })}>
                   <IcInstagram20 width={16} height={12} />
-                  <Text tag="b3_m" color="gray6">
+                  <Text tag="b3_m" color="gray6" className={styles.snsUrlStyle}>
                     {extractInstaHandleFromUrl(data.instagram)}
                   </Text>
                 </a>
@@ -110,7 +110,7 @@ const TeacherContent = () => {
                   rel="noopener noreferrer"
                   className={sprinkles({ display: 'flex', gap: 4, alignItems: 'center' })}>
                   <IcYoutube20 width={16} height={12} />
-                  <Text tag="b3_m" color="gray6">
+                  <Text tag="b3_m" color="gray6" className={styles.snsUrlStyle}>
                     {extractYouTubeHandleFromUrl(data.youtube)}
                   </Text>
                 </a>
@@ -124,18 +124,21 @@ const TeacherContent = () => {
               display: 'flex',
               justifyContent: 'space-between',
               alignItems: 'center',
-              padding: 20,
+              px: 20,
             })}>
             <Text tag="b1_sb" color="black">
               내 클래스 목록
             </Text>
-            <button className={styles.allButtonStyle} type="button" onClick={handleAllButtonClick}>
-              모두 보기
-            </button>
+            {!!lessonData.lessons?.length && (
+              <button className={styles.allButtonStyle} type="button" onClick={handleAllButtonClick}>
+                모두 보기
+              </button>
+            )}
           </div>
           {lessonData.lessons?.length ? <TeacherLessons data={lessonData} /> : <EmptyClassList />}
         </section>
       </div>
+      <Divider color="gray1" thickness="0.4rem" />
       <div className={styles.reviewContainerStyle}>
         <div className={sprinkles({ display: 'flex', alignItems: 'center', gap: 4 })}>
           <IcReview width={24} />
