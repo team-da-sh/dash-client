@@ -11,10 +11,12 @@ import Flex from '@/shared/components/Flex/Flex';
 import { genreEngMapping, labelToSortOptionMap, levelEngMapping } from '@/shared/constants';
 import useDebounce from '@/shared/hooks/useDebounce';
 import SearchHeader from './components/SearchHeader/SearchHeader';
+import { useTabNavigation } from './hooks/useTabNavigation';
 
 const Search = () => {
   const location = useLocation();
   const navigate = useNavigate();
+
   const [genre, setGenre] = useState<string | null>(location.state?.genre || null);
 
   if (location.state?.genre) {
@@ -22,6 +24,8 @@ const Search = () => {
   }
 
   const [searchValue, setSearchValue] = useState('');
+
+  const { selectedTab, setSelectedTab } = useTabNavigation();
 
   const [level, setLevel] = useState<string | null>(null);
   const [startDate, setStartDate] = useState('');
@@ -67,6 +71,8 @@ const Search = () => {
         error={error}
         selectedLabel={selectedLabel}
         setSelectedLabel={setSelectedLabel}
+        selectedTab={selectedTab}
+        setSelectedTab={setSelectedTab}
       />
     </Flex>
   );

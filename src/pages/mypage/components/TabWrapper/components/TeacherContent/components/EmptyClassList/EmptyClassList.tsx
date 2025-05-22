@@ -1,10 +1,11 @@
+import IcMyEmpty from '@/assets/svg/IcMyEmpty';
 import Head from '@/shared/components/Head/Head';
 import * as styles from './EmptyClassList.css';
 
 const EmptyClassList = () => {
   return (
     <section className={styles.layoutStyle}>
-      <img src="images/asset_my_empty.png" />
+      <IcMyEmpty width={66} height={88} />
       <Head level="h3" tag="h6_sb" color="gray6">
         개설된 클래스가 없어요
       </Head>

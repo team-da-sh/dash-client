@@ -18,7 +18,9 @@ const MenuButton = ({ path, icon: Icon, label }: MenuButtonPropTypes) => {
       onClick={handleClick}
       className={sprinkles({ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 12 })}>
       <Icon width={36} height={36} />
-      <Text tag="b2_m_long">{label}</Text>
+      <Text tag="b2_m_long" color="gray10">
+        {label}
+      </Text>
     </div>
   );
 };

@@ -8,10 +8,11 @@ import { sprinkles } from '@/shared/styles/sprinkles.css';
 import defaultProfile from '/images/image_profile_basic.png';
 
 interface ImageUploadSectionPropTypes {
-  handleUploaderClick: () => void;
+  handleUploaderClick?: () => void;
   uploadImgFile: () => void;
   previewImg: string;
   imgRef: React.MutableRefObject<HTMLInputElement | null>;
+  onClick?: () => void;
 }
 
 const ImageUploadSection = ({
@@ -19,9 +20,10 @@ const ImageUploadSection = ({
   previewImg,
   uploadImgFile,
   handleUploaderClick,
+  onClick,
 }: ImageUploadSectionPropTypes) => {
   return (
-    <section className={sprinkles({ display: 'flex', flexDirection: 'column' })}>
+    <section className={sprinkles({ display: 'flex', flexDirection: 'column' })} onClick={onClick}>
       <div
         className={previewImgStyle}
         style={previewImg ? { backgroundImage: `url(${previewImg})` } : { backgroundImage: `url(${defaultProfile})` }}

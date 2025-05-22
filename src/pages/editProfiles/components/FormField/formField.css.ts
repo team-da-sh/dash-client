@@ -1,4 +1,5 @@
 import { style } from '@vanilla-extract/css';
+import { recipe } from '@vanilla-extract/recipes';
 
 export const fieldWrapperStyle = style({
   display: 'flex',
@@ -8,7 +9,21 @@ export const fieldWrapperStyle = style({
   padding: '1.2rem 0',
 });
 
-export const errorMessageStyle = style({
-  display: 'flex',
-  justifyContent: 'space-between',
+export const errorMessageStyle = recipe({
+  base: {
+    display: 'flex',
+  },
+  variants: {
+    hasError: {
+      true: {
+        justifyContent: 'space-between',
+      },
+      false: {
+        justifyContent: 'end',
+      },
+    },
+  },
+  defaultVariants: {
+    hasError: false,
+  },
 });
