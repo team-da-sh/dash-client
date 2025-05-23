@@ -1,7 +1,5 @@
 export const QUERY_KEYS = {
-  AUTH_LOGIN: 'auth_login',
   AUTH_REISSUE: 'auth_reissue',
-  AUTH_LOGOUT: 'auth_logout',
 
   MEMBERS_ME: 'members_me',
   MEMBERS_ME_THUMBNAILS: 'members_me_thumbnails',
@@ -13,7 +11,6 @@ export const QUERY_KEYS = {
   TEACHERS_ME: 'teachers_me',
   TEACHER_DETAIL: 'teacher_detail',
   TEACHER_DETAIL_INTRODUCTION: 'teacher_detail_introduction',
-  TEACHERS_POPULAR: 'teachers_popular',
   TEACHERS_SEARCH: 'teachers_search',
 
   LESSONS: 'lessons',
@@ -37,7 +34,70 @@ export const QUERY_KEYS = {
 
   AUTH_ROLE: 'auth_role',
 
-  IMAGES: 'images',
+  // IMAGES: 'images',
+};
 
-  ROLE: 'role',
+interface lessonSearchTypes {
+  genre: string;
+  level: string;
+  startDate: string | Date;
+  endDate: string | Date;
+  sortOption: string;
+  keyword: string;
+}
+
+export const lessonKeys = {
+  all: ['lessons'] as const,
+  search: ({ genre, level, startDate, endDate, sortOption, keyword }: lessonSearchTypes) => [
+    ...lessonKeys.all,
+    genre,
+    level,
+    startDate,
+    endDate,
+    sortOption,
+    keyword,
+  ],
+  detail: (lessonId: number) => [...lessonKeys.all, lessonId],
+  reserve_progress: (lessonId: number) => [...lessonKeys.detail(lessonId), 'reserve-progress'],
+  latest: () => [...lessonKeys.all, 'latest'],
+  popular_genre: () => [...lessonKeys.all, 'popular'],
+  upcoming: () => [...lessonKeys.all, 'upcoming'],
+};
+
+export const memberKeys = {
+  all: ['members'] as const,
+  me: () => [memberKeys.all, 'me'],
+  lessons: () => [...memberKeys.me(), 'lessons'],
+  thumbnails: () => [...memberKeys.lessons(), 'thumbnails'],
+  reservations: () => [...memberKeys.me(), 'reservations'],
+  reservations_detail: (reservationId: number) => [...memberKeys.reservations(), reservationId],
+  statistics: () => [memberKeys.reservations, 'statistics'],
+};
+
+export const teacherKeys = {
+  all: ['teachers'] as const,
+  search: (keyword: string) => [teacherKeys.all, keyword],
+  profile: (teacherId: number) => [...teacherKeys.all, teacherId],
+  me: () => [...teacherKeys.all, 'me'],
+  detail: () => [...teacherKeys.me(), 'detail'],
+};
+
+export const myPageKeys = {
+  all: ['myPage'] as const,
+  favorites: () => [...myPageKeys.all, 'favorites'],
+};
+
+export const advertisementKeys = {
+  all: ['advertisements'] as const,
+};
+
+export const locationKeys = {
+  all: ['locations'] as const,
+  search: (keyword: string) => [...locationKeys.all, keyword],
+};
+
+export const authKeys = {
+  all: ['auth'] as const,
+  reissue: () => [...authKeys.all, 'reissue'],
+  role: () => [...authKeys.all, 'role'],
 };

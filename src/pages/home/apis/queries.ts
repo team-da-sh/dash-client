@@ -1,16 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
 import '@/pages/home/apis/axios';
-import {
-  getAdvertisements,
-  getLatestLessons,
-  getPopularDancers,
-  getPopularGenres,
-  getUpcommingLessons,
-} from '@/pages/home/apis/axios';
+import { getAdvertisements, getLatestLessons, getPopularGenres, getUpcommingLessons } from '@/pages/home/apis/axios';
 import { MAX_POPULAR_GENRE_COUNT } from '@/pages/home/constants';
 import type {
   AdvertisementResponseTypes,
-  PopularDancersResponseTypes,
   PopularGenreResponseTypes,
   LatestLessonsResponseTypes,
   UpcomingLessonsResponseTypes,
@@ -53,12 +46,5 @@ export const useGetLatestLessons = () => {
   return useQuery<LatestLessonsResponseTypes>({
     queryKey: [QUERY_KEYS.LESSONS_LATEST],
     queryFn: () => getLatestLessons(),
-  });
-};
-
-export const useGetPopularDancers = () => {
-  return useQuery<PopularDancersResponseTypes>({
-    queryKey: [QUERY_KEYS.TEACHERS_POPULAR],
-    queryFn: () => getPopularDancers(),
   });
 };
