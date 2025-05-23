@@ -16,7 +16,7 @@ const TabWrapper = ({ colorScheme, dancerData }: TabWrapperPropTypes) => {
   return (
     <TabRoot>
       <div className={sprinkles({ display: 'flex', pt: 24, justifyContent: 'center' })}>
-        <TabList>
+        <TabList gap="responsive">
           {DANCER_TABS.map((tab) => (
             <TabButton
               key={tab.id}
