@@ -8,11 +8,11 @@ import type {
   LatestLessonsResponseTypes,
   UpcomingLessonsResponseTypes,
 } from '@/pages/home/types/api';
-import { QUERY_KEYS } from '@/shared/constants/queryKey';
+import { advertisementKeys, lessonKeys } from '@/shared/constants/queryKey';
 
 export const useGetAdvertisements = () => {
   return useQuery<AdvertisementResponseTypes>({
-    queryKey: [QUERY_KEYS.ADVERTISEMENTS],
+    queryKey: advertisementKeys.all,
     queryFn: getAdvertisements,
   });
 };
@@ -29,7 +29,7 @@ export const useGetPopularGenres = () => {
   };
 
   return useQuery<PopularGenreResponseTypes>({
-    queryKey: [QUERY_KEYS.LESSONS_POPULAR_GENRES],
+    queryKey: lessonKeys.popular_genre(),
     queryFn: () => getPopularGenres(),
     select: transformGenres,
   });
@@ -37,14 +37,14 @@ export const useGetPopularGenres = () => {
 
 export const useGetUpcomingLessons = () => {
   return useQuery<UpcomingLessonsResponseTypes>({
-    queryKey: [QUERY_KEYS.LESSONS_UPCOMING],
+    queryKey: lessonKeys.upcoming(),
     queryFn: () => getUpcommingLessons(),
   });
 };
 
 export const useGetLatestLessons = () => {
   return useQuery<LatestLessonsResponseTypes>({
-    queryKey: [QUERY_KEYS.LESSONS_LATEST],
+    queryKey: lessonKeys.latest(),
     queryFn: () => getLatestLessons(),
   });
 };

@@ -2,10 +2,10 @@ import { useMutation } from '@tanstack/react-query';
 import { useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { patchMyProfile } from '@/pages/editProfiles/api/axios';
-import { UpdateProfileRequestTypes } from '@/pages/editProfiles/types/api';
+import type { UpdateProfileRequestTypes } from '@/pages/editProfiles/types/api';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { notify } from '@/shared/components/Toast/Toast';
-import { QUERY_KEYS } from '@/shared/constants/queryKey';
+import { memberKeys } from '@/shared/constants/queryKey';
 
 export const usePatchMyProfile = () => {
   const navigate = useNavigate();
@@ -14,7 +14,7 @@ export const usePatchMyProfile = () => {
   return useMutation({
     mutationFn: (profileData: UpdateProfileRequestTypes) => patchMyProfile(profileData),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.MEMBERS_ME] });
+      queryClient.invalidateQueries({ queryKey: memberKeys.me() });
       navigate(ROUTES_CONFIG.mypage.path);
 
       notify('프로필 수정이 완료되었어요!', true);

@@ -7,25 +7,25 @@ import type {
   MyTeacherInfoResponseTypes,
   LessonThumbnailsResponseTypes,
 } from '@/pages/mypage/types/api';
-import { QUERY_KEYS } from '@/shared/constants/queryKey';
+import { memberKeys, teacherKeys } from '@/shared/constants/queryKey';
 
 export const useGetMyPage = (): UseQueryResult<MyPageResponseTypes, AxiosError> => {
   return useQuery<MyPageResponseTypes, AxiosError>({
-    queryKey: [QUERY_KEYS.MEMBERS_ME],
+    queryKey: memberKeys.me(),
     queryFn: getMyPage,
   });
 };
 
 export const useGetMyLessonCounts = (): UseQueryResult<LessonCountResponseTypes, AxiosError> => {
   return useQuery<LessonCountResponseTypes, AxiosError>({
-    queryKey: [QUERY_KEYS.MEMBERS_RESERVATION_STATISTICS],
+    queryKey: memberKeys.statistics(),
     queryFn: getMyLessons,
   });
 };
 
 export const useGetMyTeacherInfo = (currentRole?: string): UseQueryResult<MyTeacherInfoResponseTypes, AxiosError> => {
   return useQuery<MyTeacherInfoResponseTypes, AxiosError>({
-    queryKey: [QUERY_KEYS.TEACHERS_ME],
+    queryKey: teacherKeys.me(),
     queryFn: getMyTeacherInfo,
     enabled: currentRole === 'TEACHER',
   });
@@ -35,7 +35,7 @@ export const useGetMyLessonThumbnails = (
   currentRole?: string
 ): UseQueryResult<LessonThumbnailsResponseTypes, AxiosError> => {
   return useQuery<LessonThumbnailsResponseTypes, AxiosError>({
-    queryKey: [QUERY_KEYS.MEMBERS_ME_THUMBNAILS],
+    queryKey: memberKeys.thumbnails(),
     queryFn: getMyLessonThumbnails,
     enabled: currentRole === 'TEACHER',
   });

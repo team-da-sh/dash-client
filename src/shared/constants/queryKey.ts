@@ -1,41 +1,39 @@
-export const QUERY_KEYS = {
-  AUTH_REISSUE: 'auth_reissue',
+// export const QUERY_KEYS = {
+//   AUTH_REISSUE: 'auth_reissue',
 
-  MEMBERS_ME: 'members_me',
-  MEMBERS_ME_THUMBNAILS: 'members_me_thumbnails',
-  MEMBERS_RESERVATIONS: 'members_reservations',
-  MEMBERS_RESERVATION_DETAIL: 'members_reservation_detail',
-  MEMBERS_RESERVATION_STATISTICS: 'members_reservation_statistics',
+//   MEMBERS_ME: 'members_me',
+//   MEMBERS_ME_THUMBNAILS: 'members_me_thumbnails',
+//   MEMBERS_RESERVATIONS: 'members_reservations',
+//   MEMBERS_RESERVATION_DETAIL: 'members_reservation_detail',
+//   MEMBERS_RESERVATION_STATISTICS: 'members_reservation_statistics',
 
-  TEACHERS: 'teachers',
-  TEACHERS_ME: 'teachers_me',
-  TEACHER_DETAIL: 'teacher_detail',
-  TEACHER_DETAIL_INTRODUCTION: 'teacher_detail_introduction',
-  TEACHERS_SEARCH: 'teachers_search',
+//   TEACHERS: 'teachers',
+//   TEACHERS_ME: 'teachers_me',
+//   TEACHER_DETAIL: 'teacher_detail',
+//   TEACHER_DETAIL_INTRODUCTION: 'teacher_detail_introduction',
+//   TEACHERS_SEARCH: 'teachers_search',
 
-  LESSONS: 'lessons',
-  LESSON_DETAIL: 'lesson_detail',
-  LESSONS_LATEST: 'lessons_latest',
-  LESSONS_POPULAR_GENRES: 'lessons_popular_genres',
-  LESSONS_UPCOMING: 'lessons_upcoming',
-  LESSONS_FAVORITES: 'lessons_favorites',
-  LESSON_RESERVE_PROGRESS: 'lesson_reserve_progress',
-  LESSON_RESERVATION: 'lesson_reservation',
+//   LESSONS: 'lessons',
+//   LESSON_DETAIL: 'lesson_detail',
+//   LESSONS_LATEST: 'lessons_latest',
+//   LESSONS_POPULAR_GENRES: 'lessons_popular_genres',
+//   LESSONS_UPCOMING: 'lessons_upcoming',
+//   LESSONS_FAVORITES: 'lessons_favorites',
+//   LESSON_RESERVE_PROGRESS: 'lesson_reserve_progress',
+//   LESSON_RESERVATION: 'lesson_reservation',
 
-  MY_PAGE_FAVORITES: 'my_page_favorites',
-  MY_PAGE_LESSONS: 'my_page_lessons',
-  MY_PAGE_LESSON_DETAIL: 'my_page_lesson_detail',
+//   MY_PAGE_FAVORITES: 'my_page_favorites',
+//   MY_PAGE_LESSONS: 'my_page_lessons',
+//   MY_PAGE_LESSON_DETAIL: 'my_page_lesson_detail',
 
-  ADVERTISEMENTS: 'advertisements',
+//   ADVERTISEMENTS: 'advertisements',
 
-  SEARCH_LESSONS: 'search_lessons',
+//   SEARCH_LESSONS: 'search_lessons',
 
-  LOCATIONS: 'locations',
+//   LOCATIONS: 'locations',
 
-  AUTH_ROLE: 'auth_role',
-
-  // IMAGES: 'images',
-};
+//   AUTH_ROLE: 'auth_role',
+// };
 
 interface lessonSearchTypes {
   genre: string;

@@ -20,7 +20,7 @@ import { useGetRole } from '@/shared/apis/queries';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import Divider from '@/shared/components/Divider/Divider';
 import Head from '@/shared/components/Head/Head';
-import { QUERY_KEYS } from '@/shared/constants/queryKey';
+import { authKeys } from '@/shared/constants/queryKey';
 import { USER_ROLE } from '@/shared/constants/userRole';
 import useImageUploader from '@/shared/hooks/useImageUploader';
 import { setAccessToken, setRefreshToken } from '@/shared/utils/handleToken';
@@ -124,9 +124,7 @@ const InstructorRegister = () => {
       setAccessToken(accessToken);
       setRefreshToken(refreshToken);
 
-      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.AUTH_ROLE] });
-
-      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.AUTH_ROLE] });
+      queryClient.invalidateQueries({ queryKey: authKeys.role() });
 
       navigate(ROUTES_CONFIG.instructorRegisterCompletion.path);
     };
