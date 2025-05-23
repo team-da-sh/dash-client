@@ -6,7 +6,11 @@ export const containerStyle = style({
   flexDirection: 'column',
 
   width: '100%',
-  // paddingBottom: '10.2rem',
+});
+
+export const imageWrapperStyle = style({
+  display: 'flex',
+  justifyContent: 'center',
 });
 
 export const titleStyle = style({
