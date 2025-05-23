@@ -16,7 +16,7 @@ const TabWrapper = ({ colorScheme, lessonData }: TabWrapperPropTypes) => {
   return (
     <TabRoot>
       <div className={sprinkles({ display: 'flex', pt: 24, justifyContent: 'center' })}>
-        <TabList>
+        <TabList gap="responsive">
           {CLASS_TABS.map((tab) => (
             <TabButton
               key={tab.id}

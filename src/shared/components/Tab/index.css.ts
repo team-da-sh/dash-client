@@ -9,6 +9,7 @@ export const tabButtonStyle = recipe({
     border: 'none',
     position: 'relative',
     transition: 'color 0.3s ease',
+    whiteSpace: 'nowrap',
   },
   variants: {
     colorScheme: {
@@ -129,10 +130,25 @@ export const tabButtonStyle = recipe({
   },
 });
 
-export const tabListStyle = style({
-  display: 'flex',
-  gap: '2.4rem',
-  borderBottom: 'none',
+export const tabListStyle = recipe({
+  base: {
+    display: 'flex',
+    borderBottom: 'none',
+  },
+  variants: {
+    gap: {
+      fixed: {
+        gap: '2.4rem',
+      },
+      responsive: {
+        justifyContent: 'center',
+        gap: 'clamp(2.4rem, 10vw, 4.8rem)',
+      },
+    },
+  },
+  defaultVariants: {
+    gap: 'fixed',
+  },
 });
 
 export const tabRootStyle = style({
