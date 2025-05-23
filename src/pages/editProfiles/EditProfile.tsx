@@ -1,7 +1,7 @@
 import ProfileForm from '@/pages/editProfiles/components/ProfileForm/ProfileForm';
+import { containerStyle } from '@/pages/editProfiles/editProfile.css';
 import { useGetMyPage } from '@/pages/mypage/apis/queries';
 import Head from '@/shared/components/Head/Head';
-import { sprinkles } from '@/shared/styles/sprinkles.css';
 
 const EditProfile = () => {
   const { data } = useGetMyPage();
@@ -11,7 +11,7 @@ const EditProfile = () => {
   }
 
   return (
-    <main className={sprinkles({ padding: 20, display: 'flex', flexDirection: 'column', gap: 16 })}>
+    <main className={containerStyle}>
       <Head level="h2" tag="h6_sb">
         내 정보 수정
       </Head>

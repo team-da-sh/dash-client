@@ -117,8 +117,8 @@ const InstructorRegister = () => {
       videoUrls: isVideoNoneChecked ? [] : videoUrls.filter((url) => url.trim() !== ''),
     };
 
-    // 강사 수정 성공 함수
-    const onSuccessEdit = (response: { data: { accessToken: string; refreshToken: string } }) => {
+    // 강사 등록 성공 함수
+    const onSuccessRegister = (response: { data: { accessToken: string; refreshToken: string } }) => {
       const { accessToken, refreshToken } = response.data;
 
       setAccessToken(accessToken);
@@ -126,25 +126,37 @@ const InstructorRegister = () => {
 
       queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.AUTH_ROLE] });
 
-      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.AUTH_ROLE] });
-
       navigate(ROUTES_CONFIG.instructorRegisterCompletion.path);
+    };
+
+    // 강사 수정 성공 함수
+    const onSuccessEdit = () => {
+      // 강사 수정용 조회 API invalidate
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.TEACHER_DETAIL_INTRODUCTION] });
+      // 마이페이지 강사 조회 API invalidate
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.TEACHERS_ME] });
+      // 댄서 조회 API invalidate
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.TEACHER_DETAIL] });
+
+      navigate(ROUTES_CONFIG.mypage.path);
     };
 
     const onError = () => {
       navigate(ROUTES_CONFIG.error.path);
     };
 
-    // 강사 수정 (이미 강사 등록된 경우)
     if (isEditMode) {
+      // 강사 수정 (이미 강사 등록된 경우)
       instructorPatchMutate(updatedInfo, {
-        onSuccess: () => {
-          navigate(ROUTES_CONFIG.mypage.path);
-        },
+        onSuccess: onSuccessEdit,
         onError,
       });
     } else {
-      instructorRegisterMutate(updatedInfo, { onSuccess: onSuccessEdit, onError });
+      // 강사 등록 (아직 강사 등록 안된 경우)
+      instructorRegisterMutate(updatedInfo, {
+        onSuccess: onSuccessRegister,
+        onError,
+      });
     }
   };
 

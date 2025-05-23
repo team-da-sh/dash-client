@@ -103,61 +103,65 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <ImageUploadSection
-        previewImg={previewImg}
-        uploadImgFile={uploadImgFile}
-        imgRef={imgRef}
-        onClick={handleImageFormClick}
-      />
+    <form onSubmit={handleSubmit(onSubmit)} className={styles.formWrapper}>
+      <div>
+        <div className={styles.imageWrapperStyle}>
+          <ImageUploadSection
+            previewImg={previewImg}
+            uploadImgFile={uploadImgFile}
+            imgRef={imgRef}
+            onClick={handleImageFormClick}
+          />
+        </div>
 
-      <FormField
-        label="댄서네임"
-        name="nickname"
-        placeholder="댄서네임을 입력해주세요"
-        register={register}
-        error={errors.nickname}
-        isFocused={focusedField === 'nickname'}
-        onFocus={() => handleFocus('nickname')}
-        onBlur={handleBlur}
-        validationMessage={
-          <Text
-            tag="b3_r"
-            color={errors.nickname ? 'alert3' : 'main4'}>{`${nickname?.length || 0}/${MAX_NICKNAME_LENGTH}`}</Text>
-        }
-      />
+        <FormField
+          label="댄서네임"
+          name="nickname"
+          placeholder="댄서네임을 입력해주세요"
+          register={register}
+          error={errors.nickname}
+          isFocused={focusedField === 'nickname'}
+          onFocus={() => handleFocus('nickname')}
+          onBlur={handleBlur}
+          validationMessage={
+            <Text
+              tag="b3_r"
+              color={errors.nickname ? 'alert3' : 'main4'}>{`${nickname?.length || 0}/${MAX_NICKNAME_LENGTH}`}</Text>
+          }
+        />
 
-      <FormField
-        label="이름"
-        name="name"
-        register={register}
-        placeholder="이름을 입력해주세요"
-        error={errors.name}
-        isFocused={focusedField === 'name'}
-        onFocus={() => handleFocus('name')}
-        onBlur={handleBlur}
-        validationMessage={
-          <Text tag="b3_r" color={errors.name ? 'alert3' : 'main4'}>{`${name?.length || 0}/${MAX_NAME_LENGTH}`}</Text>
-        }
-      />
+        <FormField
+          label="이름"
+          name="name"
+          register={register}
+          placeholder="이름을 입력해주세요"
+          error={errors.name}
+          isFocused={focusedField === 'name'}
+          onFocus={() => handleFocus('name')}
+          onBlur={handleBlur}
+          validationMessage={
+            <Text tag="b3_r" color={errors.name ? 'alert3' : 'main4'}>{`${name?.length || 0}/${MAX_NAME_LENGTH}`}</Text>
+          }
+        />
 
-      <FormField
-        label="전화번호"
-        name="phoneNumber"
-        placeholder="전화번호를 입력해주세요"
-        register={register}
-        error={errors.phoneNumber}
-        isFocused={focusedField === 'phoneNumber'}
-        onFocus={() => handleFocus('phoneNumber')}
-        onBlur={handleBlur}
-        validationMessage={
-          <Text
-            tag="b3_r"
-            color={
-              errors.phoneNumber ? 'alert3' : 'main4'
-            }>{`${phoneNumber?.length || 0}/${MAX_PHONENUMBER_LENGTH}`}</Text>
-        }
-      />
+        <FormField
+          label="전화번호"
+          name="phoneNumber"
+          placeholder="전화번호를 입력해주세요"
+          register={register}
+          error={errors.phoneNumber}
+          isFocused={focusedField === 'phoneNumber'}
+          onFocus={() => handleFocus('phoneNumber')}
+          onBlur={handleBlur}
+          validationMessage={
+            <Text
+              tag="b3_r"
+              color={
+                errors.phoneNumber ? 'alert3' : 'main4'
+              }>{`${phoneNumber?.length || 0}/${MAX_PHONENUMBER_LENGTH}`}</Text>
+          }
+        />
+      </div>
 
       <div className={styles.buttonWrapperStyle}>
         <BoxButton variant="primary" isDisabled={!isButtonActive} type="submit">
