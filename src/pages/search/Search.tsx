@@ -32,7 +32,7 @@ const Search = () => {
   const [endDate, setEndDate] = useState('');
   const [selectedLabel, setSelectedLabel] = useState<keyof typeof labelToSortOptionMap>(SORT_LABELS.LATEST);
 
-  const debouncedSearchValue = useDebounce({ value: searchValue, delay: 500 });
+  const debouncedSearchValue = useDebounce({ value: searchValue, delay: 300 });
 
   const sortOption = labelToSortOptionMap[selectedLabel];
 
