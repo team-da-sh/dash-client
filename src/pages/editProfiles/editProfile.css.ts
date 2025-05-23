@@ -6,5 +6,5 @@ export const containerStyle = style({
   gap: 16,
 
   height: 'calc(100dvh - 6rem)',
-  padding: 20,
+  padding: '2rem 2rem 0 2rem',
 });
