@@ -4,6 +4,7 @@ const useInstructorRegisterForm = () => {
   const [isEduNoneChecked, setEduNoneChecked] = useState(false);
   const [isCareerNoneChecked, setCareerNoneChecked] = useState(false);
   const [isPrizeNoneChecked, setPrizeNoneChecked] = useState(false);
+  const [isVideoNoneChecked, setIsVideoNoneChecked] = useState(false);
 
   const handleEducationCheck = () => {
     setEduNoneChecked((prev) => !prev);
@@ -17,13 +18,19 @@ const useInstructorRegisterForm = () => {
     setPrizeNoneChecked((prev) => !prev);
   };
 
+  const handleVideoCheck = () => {
+    setIsVideoNoneChecked((prev) => !prev);
+  };
+
   return {
     isEduNoneChecked,
     isCareerNoneChecked,
     isPrizeNoneChecked,
+    isVideoNoneChecked,
     handleEducationCheck,
     handleCareerCheck,
     handlePrizeCheck,
+    handleVideoCheck,
   };
 };
 

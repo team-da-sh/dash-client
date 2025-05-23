@@ -6,7 +6,7 @@ export const containerStyle = style({
   flexDirection: 'column',
 
   width: '100%',
-  paddingBottom: '10.2rem',
+  // paddingBottom: '10.2rem',
 });
 
 export const titleStyle = style({
@@ -26,7 +26,7 @@ export const sectionWrapperStyle = style({
 
 export const buttonContainerStyle = style({
   width: '100%',
-  position: 'fixed',
+  position: 'sticky',
   bottom: '0',
   padding: '2.4rem 2rem',
   backgroundColor: vars.colors.white,

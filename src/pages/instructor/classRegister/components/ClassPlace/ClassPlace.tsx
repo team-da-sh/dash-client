@@ -1,5 +1,6 @@
 import { type ChangeEvent } from 'react';
 import type { UseFormRegister } from 'react-hook-form';
+import { useFormContext } from 'react-hook-form';
 import * as styles from '@/pages/instructor/classRegister/components/ClassPlace/classPlace.css';
 import Description from '@/pages/instructor/classRegister/components/Description';
 import {
@@ -25,6 +26,7 @@ interface ClassPlacePropTypes {
   selectedLocation: LocationTypes | null;
   locationList: LocationsData;
   setSelectedLocation: (location: LocationTypes | null) => void;
+  handleRemoveLocation: () => void;
 }
 
 const ClassPlace = ({
@@ -36,9 +38,14 @@ const ClassPlace = ({
   selectedLocation,
   locationList,
   setSelectedLocation,
+  handleRemoveLocation,
 }: ClassPlacePropTypes) => {
   const shouldShowEmptyMessage = Array.isArray(locationList?.locations) && locationList.locations.length === 0;
   const shouldShowLocationList = Array.isArray(locationList?.locations) && locationList.locations.length > 0;
+  const {
+    formState: { errors },
+  } = useFormContext();
+  const error = errors.selectedLocation as { message?: string } | undefined;
 
   const { onChange, ref, name } = register('detailedAddress');
 
@@ -48,74 +55,82 @@ const ClassPlace = ({
         display: 'flex',
         flexDirection: 'column',
         width: '100%',
-        gap: 20,
         mb: 40,
       })}>
-      <div className={sprinkles({ display: 'flex', width: '100%', justifyContent: 'space-between' })}>
-        <Description title="클래스 장소" subTitle={CLASS_PLACE_SUBTITLE} />
-        <div className={styles.checkboxContainerStyle}>
-          <Text tag="b3_m" color="gray8">
-            장소 미정
-          </Text>
-          {isUndecidedLocation ? (
-            <BtnCheck width={'2rem'} onClick={handleHasLocation} />
-          ) : (
-            <div className={styles.checkboxStyle} onClick={handleHasLocation} />
-          )}
+      <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 20 })}>
+        <div className={sprinkles({ display: 'flex', width: '100%', justifyContent: 'space-between' })}>
+          <Description title="클래스 장소" subTitle={CLASS_PLACE_SUBTITLE} />
+          <div className={styles.checkboxContainerStyle}>
+            <Text tag="b3_m" color="gray8">
+              장소 미정
+            </Text>
+            {isUndecidedLocation ? (
+              <BtnCheck width={'2rem'} onClick={handleHasLocation} />
+            ) : (
+              <div className={styles.checkboxStyle} onClick={handleHasLocation} />
+            )}
+          </div>
         </div>
-      </div>
 
-      {!isUndecidedLocation && (
-        <div className={sprinkles({ display: 'flex', width: '100%', flexDirection: 'column', gap: 8 })}>
-          {selectedLocation ? (
-            <div className={styles.selectedLocationContainerStyle}>
-              <Text tag="b2_sb_long">{selectedLocation.location}</Text>
-              <IcXCircleGray0424 width={'2.4rem'} onClick={() => setSelectedLocation(null)} />
-            </div>
-          ) : (
-            <>
-              <Input
-                value={defaultPlace}
-                onChange={handleDefaultPlace}
-                placeholder={CLASS_DEFAULT_PLACE_PLACEHOLDER}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter') {
-                    e.preventDefault();
-                  }
-                }}
-                rightAddOn={<IcSearchGray width={'2.4rem'} />}
-              />
+        {!isUndecidedLocation && (
+          <div className={sprinkles({ display: 'flex', width: '100%', flexDirection: 'column', gap: 8 })}>
+            {selectedLocation ? (
+              <div className={styles.selectedLocationContainerStyle}>
+                <Text tag="b2_sb_long">{selectedLocation.location}</Text>
+                <IcXCircleGray0424 width={'2.4rem'} onClick={handleRemoveLocation} />
+              </div>
+            ) : (
+              <>
+                <Input
+                  value={defaultPlace}
+                  onChange={handleDefaultPlace}
+                  placeholder={CLASS_DEFAULT_PLACE_PLACEHOLDER}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                      e.preventDefault();
+                    }
+                  }}
+                  rightAddOn={<IcSearchGray width={'2.4rem'} />}
+                />
 
-              {shouldShowEmptyMessage && (
-                <div className={styles.locationEmptyContainerStyle}>해당 검색어에 대한 검색 결과가 없어요!</div>
-              )}
+                {shouldShowEmptyMessage && (
+                  <div className={styles.locationEmptyContainerStyle}>해당 검색어에 대한 검색 결과가 없어요!</div>
+                )}
 
-              {shouldShowLocationList && (
-                <div className={styles.locationListContainerStyle}>
-                  <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 10 })}>
-                    {locationList.locations.map((item, idx) => (
-                      <div
-                        key={idx}
-                        onClick={() => setSelectedLocation(item)}
-                        className={styles.locationItemContainerStyle}>
-                        {idx !== 0 && <div className={styles.dividerStyle} />}
-                        <div className={sprinkles({ display: 'flex', flexDirection: 'column', width: '100%' })}>
-                          <Text tag="b2_sb_long" color="gray10">
-                            {item.location}
-                          </Text>
-                          <Text tag="b3_sb" color="gray5">
-                            {item.streetAddress}
-                          </Text>
+                {shouldShowLocationList && (
+                  <div className={styles.locationListContainerStyle}>
+                    <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 10 })}>
+                      {locationList.locations.map((location, idx) => (
+                        <div
+                          key={idx}
+                          onClick={() => setSelectedLocation(location)}
+                          className={styles.locationItemContainerStyle}>
+                          {idx !== 0 && <div className={styles.dividerStyle} />}
+                          <div className={sprinkles({ display: 'flex', flexDirection: 'column', width: '100%' })}>
+                            <Text tag="b2_sb_long" color="gray10">
+                              {location.location}
+                            </Text>
+                            <Text tag="b3_sb" color="gray5">
+                              {location.streetAddress}
+                            </Text>
+                          </div>
                         </div>
-                      </div>
-                    ))}
+                      ))}
+                    </div>
                   </div>
-                </div>
-              )}
-            </>
-          )}
+                )}
+              </>
+            )}
 
-          <Input onChange={onChange} name={name} ref={ref} placeholder={CLASS_DETAIL_PLACE_PLACEHOLDER} />
+            <Input onChange={onChange} name={name} ref={ref} placeholder={CLASS_DETAIL_PLACE_PLACEHOLDER} />
+          </div>
+        )}
+      </div>
+      {error?.message && (
+        <div className={sprinkles({ mt: 4 })}>
+          <Text tag="b3_r" color="alert3">
+            {error.message}
+          </Text>
         </div>
       )}
     </div>

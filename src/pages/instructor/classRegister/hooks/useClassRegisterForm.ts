@@ -46,25 +46,47 @@ export const useClassRegisterForm = () => {
         duration: selectedTime,
       };
 
-      setTimes([...times, newTime]);
+      const newTimes = [...times, newTime];
+      setTimes(newTimes);
+      return newTimes;
     }
+    return times;
   };
 
   const handleRemoveTime = (index: number) => {
     const updatedTimes = times.filter((_, idx) => idx !== index);
     setTimes(updatedTimes);
+    return updatedTimes;
   };
 
   const handleDetailPlace = (e: ChangeEvent<HTMLInputElement>) => {
     setDetailPlace(e.target.value);
   };
 
-  const isButtonActive = () => {
-    if (isUndecidedLocation) {
-      return imageUrls.imageUrls.length > 0 && selectedTime && times.length > 0;
-    }
+  const isButtonActive = (externalFormFields?: {
+    className?: string;
+    detail?: string;
+    selectedGenre?: string;
+    selectedLevel?: string;
+    recommendation?: string;
+    maxReservationCount?: string;
+    price?: string;
+  }) => {
+    const isExternalFieldsValid = externalFormFields
+      ? !!externalFormFields.className &&
+        !!externalFormFields.detail &&
+        !!externalFormFields.selectedGenre &&
+        !!externalFormFields.selectedLevel &&
+        !!externalFormFields.recommendation &&
+        !!externalFormFields.maxReservationCount &&
+        !!externalFormFields.price
+      : true;
 
-    return imageUrls.imageUrls.length > 0 && selectedTime && selectedLocation && times.length > 0;
+    const isInternalFieldsValid = imageUrls.imageUrls.length > 0 && times.length > 0;
+
+    const isLocationValid = isUndecidedLocation || selectedLocation !== null;
+
+    return isExternalFieldsValid && isInternalFieldsValid && isLocationValid;
   };
 
   return {
