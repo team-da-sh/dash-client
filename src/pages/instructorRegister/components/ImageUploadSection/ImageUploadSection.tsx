@@ -1,10 +1,5 @@
-import {
-  icCameraStyle,
-  inputStyle,
-  previewImgStyle,
-} from '@/pages/instructorRegister/components/ImageUploadSection/imageUploadSection.css';
+import * as styles from '@/pages/instructorRegister/components/ImageUploadSection/imageUploadSection.css';
 import IcCameraMain0624 from '@/shared/assets/svg/IcCameraMain0624';
-import { sprinkles } from '@/shared/styles/sprinkles.css';
 import defaultProfile from '/images/image_profile_basic.png';
 
 interface ImageUploadSectionPropTypes {
@@ -23,19 +18,19 @@ const ImageUploadSection = ({
   onClick,
 }: ImageUploadSectionPropTypes) => {
   return (
-    <section className={sprinkles({ display: 'flex', flexDirection: 'column' })} onClick={onClick}>
+    <section className={styles.containerStyle} onClick={onClick}>
       <div
-        className={previewImgStyle}
+        className={styles.previewImgStyle}
         style={previewImg ? { backgroundImage: `url(${previewImg})` } : { backgroundImage: `url(${defaultProfile})` }}
         onClick={handleUploaderClick}>
-        <IcCameraMain0624 width={24} height={24} className={icCameraStyle} />
+        <IcCameraMain0624 width={24} height={24} className={styles.icCameraStyle} />
       </div>
 
       <input
         type="file"
         accept="image/*"
         id="profileImg"
-        className={inputStyle}
+        className={styles.inputStyle}
         onChange={uploadImgFile}
         ref={imgRef}
       />

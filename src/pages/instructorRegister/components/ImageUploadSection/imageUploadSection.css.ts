@@ -1,15 +1,24 @@
 import { style } from '@vanilla-extract/css';
 import { vars } from '@/shared/styles/theme.css';
 
+export const containerStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+
+  width: '9.6rem',
+  height: '9.6rem',
+  borderRadius: '100%',
+});
+
 export const previewImgStyle = style({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
 
+  width: '100%',
+  height: '100%',
   position: 'relative',
 
-  width: '9.6rem',
-  height: '9.6rem',
   margin: '0 auto',
   backgroundColor: vars.colors.gray01,
   backgroundSize: 'cover',

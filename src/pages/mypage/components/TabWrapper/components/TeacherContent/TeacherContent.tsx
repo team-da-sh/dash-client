@@ -21,6 +21,7 @@ import IcYoutube20 from '@/shared/assets/svg/IcYoutube20';
 import Divider from '@/shared/components/Divider/Divider';
 import InfoComponent from '@/shared/components/InfoComponent/InfoComponent';
 import Text from '@/shared/components/Text/Text';
+import { notify } from '@/shared/components/Toast/Toast';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
 
 const TeacherContent = () => {
@@ -139,7 +140,7 @@ const TeacherContent = () => {
         </section>
       </div>
       <Divider color="gray1" thickness="0.4rem" />
-      <div className={styles.reviewContainerStyle}>
+      <div className={styles.reviewContainerStyle} onClick={() => notify('해당 기능은 추후 구현 예정이에요')}>
         <div className={sprinkles({ display: 'flex', alignItems: 'center', gap: 4 })}>
           <IcReview width={24} />
           <Text tag="b2_sb" color="gray11">
