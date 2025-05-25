@@ -1,5 +1,5 @@
 import { containerStyle } from '@/pages/home/components/Footer/footer.css';
-import IcLogoSmallBlack from '@/shared/assets/svg/IcLogoSmallBlack';
+import IcHeaderLogoSmallBlack from '@/shared/assets/svg/IcHeaderLogoSmallBlack';
 import Divider from '@/shared/components/Divider/Divider';
 import Text from '@/shared/components/Text/Text';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
@@ -7,7 +7,7 @@ import { sprinkles } from '@/shared/styles/sprinkles.css';
 const Footer = () => {
   return (
     <div className={containerStyle}>
-      <IcLogoSmallBlack width={53.3} height={18} />
+      <IcHeaderLogoSmallBlack width={53.3} height={18} />
 
       <div className={sprinkles({ display: 'flex', gap: 12, alignItems: 'center', marginTop: 14, marginBottom: 12 })}>
         <a href="https://pastoral-can-e04.notion.site/ed5a3a0e3cc74fce908030819a98dc89">
