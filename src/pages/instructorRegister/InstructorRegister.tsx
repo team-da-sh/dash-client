@@ -20,6 +20,7 @@ import { useGetRole } from '@/shared/apis/queries';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import Divider from '@/shared/components/Divider/Divider';
 import Head from '@/shared/components/Head/Head';
+import { notify } from '@/shared/components/Toast/Toast';
 import { QUERY_KEYS } from '@/shared/constants/queryKey';
 import { USER_ROLE } from '@/shared/constants/userRole';
 import useImageUploader from '@/shared/hooks/useImageUploader';
@@ -139,6 +140,7 @@ const InstructorRegister = () => {
       queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.TEACHER_DETAIL] });
 
       navigate(ROUTES_CONFIG.mypage.path);
+      notify('수정이 완료되었어요.', true);
     };
 
     const onError = () => {
