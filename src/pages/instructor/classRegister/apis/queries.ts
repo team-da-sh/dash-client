@@ -10,6 +10,7 @@ export const useGetLocationList = (query: string) => {
       return await getLocationList(query);
     },
     placeholderData: (prev) => prev,
+    retry: 0,
   });
 };
 
