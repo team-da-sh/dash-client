@@ -51,6 +51,7 @@ globalStyle('select', {
 
 // #root 스타일
 globalStyle('#root', {
+  position: 'relative',
   width: '100%',
   minHeight: '100dvh',
   backgroundColor: '#fff',
