@@ -27,9 +27,9 @@ const FormField = ({
   error,
   readOnly = false,
   validationMessage,
-  isFocused,
   onFocus,
   onBlur,
+  isFocused,
 }: FormFieldPropTypes) => {
   const isPhoneNumber = name === 'phoneNumber';
 
@@ -44,6 +44,7 @@ const FormField = ({
         isError={!!error}
         maxLength={name === 'phoneNumber' ? MAX_PHONENUMBER_LENGTH : MAX_NAME_LENGTH}
         readOnly={readOnly}
+        isFocused={isFocused}
         onFocus={onFocus}
         onBlur={onBlur}
         {...(isPhoneNumber && { inputMode: 'numeric', onKeyDown: allowOnlyNumberKey, onPaste: allowOnlyNumberPaste })}
@@ -54,7 +55,7 @@ const FormField = ({
             {error.message}
           </Text>
         )}
-        {isFocused && validationMessage}
+        {validationMessage}
       </div>
     </div>
   );
