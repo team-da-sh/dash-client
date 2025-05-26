@@ -67,7 +67,7 @@ const Search = () => {
         selectedLabel={selectedLabel}
         setSelectedLabel={setSelectedLabel}
         selectedTab={selectedTab}
-        setSelectedTab={(tab: string) => setSelectedTab(tab)}
+        setSelectedTab={setSelectedTab}
       />
     </Flex>
   );
