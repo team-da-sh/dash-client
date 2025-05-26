@@ -108,3 +108,14 @@ export const formatToISOString = (date: string, hour: number, minute: number, am
     endTime: formatTime(endDate),
   };
 };
+
+export const formatDuration = (duration: number) => {
+  const hours = Math.floor(duration);
+  const minutes = Math.round((duration - hours) * 60);
+
+  if (minutes === 0) {
+    return `총 ${hours}시간`;
+  } else {
+    return `총 ${hours}시간 ${minutes}분`;
+  }
+};
