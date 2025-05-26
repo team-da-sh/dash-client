@@ -113,9 +113,5 @@ export const formatDuration = (duration: number) => {
   const hours = Math.floor(duration);
   const minutes = Math.round((duration - hours) * 60);
 
-  if (minutes === 0) {
-    return `총 ${hours}시간`;
-  } else {
-    return `총 ${hours}시간 ${minutes}분`;
-  }
+  return minutes === 0 ? `총 ${hours}시간` : `총 ${hours}시간 ${minutes}분`;
 };
