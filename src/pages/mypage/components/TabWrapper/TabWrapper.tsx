@@ -1,12 +1,12 @@
-import { useState } from 'react';
 import StudentContent from '@/pages/mypage/components/TabWrapper/components/StudentContent/StudentContent';
 import TeacherContent from '@/pages/mypage/components/TabWrapper/components/TeacherContent/TeacherContent';
 import * as styles from '@/pages/mypage/components/TabWrapper/tabWrapper.css';
 import { MYPAGE_TABS } from '@/pages/mypage/constants/tabs';
-import { TabList, TabButton, TabPanel } from '@/shared/components/Tab';
+import { TabButton, TabList, TabPanel } from '@/shared/components/Tab';
+import { useTabNavigation } from '@/shared/hooks/useTabNavigation';
 
 const TabWrapper = () => {
-  const [selected, setSelected] = useState('student');
+  const { selectedTab, setSelectedTab } = useTabNavigation('student');
 
   return (
     <section>
@@ -17,8 +17,8 @@ const TabWrapper = () => {
               <TabButton
                 key={tab.key}
                 colorScheme="plain"
-                isSelected={selected === tab.key}
-                onClick={() => setSelected(tab.key)}>
+                isSelected={selectedTab === tab.key}
+                onClick={() => setSelectedTab(tab.key)}>
                 {tab.label}
               </TabButton>
             );
@@ -26,10 +26,10 @@ const TabWrapper = () => {
         </TabList>
       </div>
 
-      <TabPanel isSelected={selected === 'student'}>
+      <TabPanel isSelected={selectedTab === 'student'}>
         <StudentContent />
       </TabPanel>
-      <TabPanel isSelected={selected === 'teacher'}>
+      <TabPanel isSelected={selectedTab === 'teacher'}>
         <TeacherContent />
       </TabPanel>
     </section>

@@ -46,6 +46,7 @@ export const ROUTES_CONFIG = {
   mypage: {
     title: 'Mypage',
     path: '/mypage',
+    withTab: (tab: string) => `/mypage?tab=${tab}`,
   },
   editProfile: {
     title: 'editProfile',

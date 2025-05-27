@@ -98,10 +98,10 @@ export const CLASS_TABS = [
     label: '난이도',
     component: (lessonData: LessonDetailResponseTypes) => <TabLevel lessonData={lessonData} />,
   },
-  { id: 3, label: '기간', component: (lessonData: LessonDetailResponseTypes) => <TabPeriod lessonData={lessonData} /> },
+  { id: 3, label: '일정', component: (lessonData: LessonDetailResponseTypes) => <TabPeriod lessonData={lessonData} /> },
   {
     id: 4,
-    label: '위치',
+    label: '장소',
     component: (lessonData: LessonDetailResponseTypes) => <TabLocationInfo lessonData={lessonData} />,
   },
   {

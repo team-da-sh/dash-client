@@ -4,22 +4,21 @@ enable:
 
 labels:
   '🎸 Chore':
-    - '^Chore/'
+    - '^\[Chore\]'
   '🔗 CI/CD':
-    - '^Ci/'
+    - '^\[Ci\]'
   '🎨 Design':
-    - '^Design/'
+    - '^\[Design\]'
   '📃 Docs':
-    - '^Docs/'
+    - '^\[Docs\]'
   '🛠️ Feature':
-    - '^Feat/'
+    - '^\[Feat\]'
   '🔧 Fix':
-    - '^Fix/'
+    - '^\[Fix\]'
   '🪄 Refactor':
-    - '^Refactor/'
+    - '^\[Refactor\]'
   '⚙️ Setting':
-    - '^Setting/'
+    - '^\[Setting\]'
   '🌈 Deploy':
-    - '^Deploy/'
+    - '^\[Deploy\]'
   '🧩 Test':
-    - '^Test/'

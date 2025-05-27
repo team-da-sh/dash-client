@@ -20,6 +20,7 @@ import { useGetRole } from '@/shared/apis/queries';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import Divider from '@/shared/components/Divider/Divider';
 import Head from '@/shared/components/Head/Head';
+import { notify } from '@/shared/components/Toast/Toast';
 import { QUERY_KEYS } from '@/shared/constants/queryKey';
 import { USER_ROLE } from '@/shared/constants/userRole';
 import useImageUploader from '@/shared/hooks/useImageUploader';
@@ -138,7 +139,8 @@ const InstructorRegister = () => {
       // 댄서 조회 API invalidate
       queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.TEACHER_DETAIL] });
 
-      navigate(ROUTES_CONFIG.mypage.path);
+      navigate(ROUTES_CONFIG.mypage.withTab('teacher'));
+      notify('수정이 완료되었어요.', true);
     };
 
     const onError = () => {
@@ -191,12 +193,14 @@ const InstructorRegister = () => {
               </Head>
             </div>
 
-            <ImageUploadSection
-              imgRef={imgRef}
-              previewImg={previewImg}
-              uploadImgFile={uploadImgFile}
-              handleUploaderClick={handleUploaderClick}
-            />
+            <div className={styles.profileImageWrapperStyle}>
+              <ImageUploadSection
+                imgRef={imgRef}
+                previewImg={previewImg}
+                uploadImgFile={uploadImgFile}
+                handleUploaderClick={handleUploaderClick}
+              />
+            </div>
 
             <IntroductionSection register={register} error={errors.detail} detail={detail} />
           </div>

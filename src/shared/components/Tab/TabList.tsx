@@ -2,13 +2,14 @@ import clsx from 'clsx';
 import type { ReactNode } from 'react';
 import { tabListStyle } from '@/shared/components/Tab/index.css';
 
-interface TabListProps {
+interface TabListPropTypes {
   children: ReactNode;
   className?: string;
+  gap?: 'fixed' | 'responsive';
 }
 
-const TabList = ({ children, className }: TabListProps) => {
-  return <div className={clsx(tabListStyle, className)}>{children}</div>;
+const TabList = ({ children, className, gap = 'fixed' }: TabListPropTypes) => {
+  return <div className={clsx(tabListStyle({ gap }), className)}>{children}</div>;
 };
 
 export default TabList;

@@ -2,7 +2,6 @@ import { style } from '@vanilla-extract/css';
 import { vars } from '@/shared/styles/theme.css';
 
 export const containerStyle = style({
-  position: 'relative',
   display: 'flex',
   flexDirection: 'column',
 });
@@ -29,7 +28,7 @@ export const classButtonStyle = style({
   alignItems: 'center',
   gap: '0.2rem',
 
-  position: 'fixed',
+  position: 'absolute',
   right: '2rem',
   bottom: '36px',
 
