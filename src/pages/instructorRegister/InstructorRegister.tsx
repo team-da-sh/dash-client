@@ -139,7 +139,7 @@ const InstructorRegister = () => {
       // 댄서 조회 API invalidate
       queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.TEACHER_DETAIL] });
 
-      navigate(ROUTES_CONFIG.mypage.path);
+      navigate(ROUTES_CONFIG.mypage.withTab('teacher'));
       notify('수정이 완료되었어요.', true);
     };
 
