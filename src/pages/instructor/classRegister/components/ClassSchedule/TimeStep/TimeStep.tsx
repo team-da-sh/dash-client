@@ -16,6 +16,7 @@ import {
   isTimeOverlapping,
   formatTimeDisplay,
   getDateWithoutTime,
+  HOURS_IN_HALF_DAY,
 } from '@/shared/utils/timeUtils';
 
 interface TimeStepProps {
@@ -71,8 +72,8 @@ const TimeStep = ({
       nextHour = currentHour + 1;
     }
 
-    const display12Hour = nextHour % 12 === 0 ? 12 : nextHour % 12;
-    const nextAmpm = nextHour >= 12 ? 'PM' : 'AM';
+    const display12Hour = nextHour % HOURS_IN_HALF_DAY === 0 ? HOURS_IN_HALF_DAY : nextHour % HOURS_IN_HALF_DAY;
+    const nextAmpm = nextHour >= HOURS_IN_HALF_DAY ? 'PM' : 'AM';
 
     return {
       hour: display12Hour,
@@ -115,8 +116,8 @@ const TimeStep = ({
     if (latestEndTime) {
       const minHour = latestEndTime.getHours();
       const minMinute = latestEndTime.getMinutes();
-      const minAmpm = minHour >= 12 ? 'PM' : 'AM';
-      const display12Hour = minHour % 12 === 0 ? 12 : minHour % 12;
+      const minAmpm = minHour >= HOURS_IN_HALF_DAY ? 'PM' : 'AM';
+      const display12Hour = minHour % HOURS_IN_HALF_DAY === 0 ? HOURS_IN_HALF_DAY : minHour % HOURS_IN_HALF_DAY;
 
       existingConstraint = {
         hour: display12Hour,
