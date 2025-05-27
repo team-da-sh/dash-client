@@ -1,11 +1,11 @@
 import { useRef } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
-export const useTabNavigation = () => {
+export const useTabNavigation = (defaultTab: string) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const visitedTabsRef = useRef<Set<string>>(new Set());
 
-  const selectedTab = searchParams.get('tab') || 'student';
+  const selectedTab = searchParams.get('tab') || defaultTab;
 
   const setSelectedTab = (tab: string) => {
     if (selectedTab === tab) return;

@@ -10,17 +10,16 @@ import { handleSearchChange } from '@/pages/search/utils/searchHandlers';
 import Flex from '@/shared/components/Flex/Flex';
 import { genreEngMapping, labelToSortOptionMap, levelEngMapping } from '@/shared/constants';
 import useDebounce from '@/shared/hooks/useDebounce';
+import { useTabNavigation } from '@/shared/hooks/useTabNavigation';
 import SearchHeader from './components/SearchHeader/SearchHeader';
-import { useTabNavigation } from './hooks/useTabNavigation';
 
 const Search = () => {
   const location = useLocation();
+  const { selectedTab, setSelectedTab } = useTabNavigation('class');
 
   const [genre, setGenre] = useState<string | null>(location.state?.genre || null);
 
   const [searchValue, setSearchValue] = useState('');
-
-  const { selectedTab, setSelectedTab } = useTabNavigation();
 
   const [level, setLevel] = useState<string | null>(null);
   const [startDate, setStartDate] = useState('');
