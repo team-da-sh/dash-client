@@ -1,0 +1,36 @@
+enable:
+  issues: true
+  prs: true
+
+labels:
+  '🎸 Chore':
+    include:
+      - '^chore\/'
+  '🔗 CI/CD':
+    include:
+      - '^ci\/'
+      - '^cd\/'
+  '🎨 Design':
+    include:
+      - '^design\/'
+  '📃 Docs':
+    include:
+      - '^docs\/'
+  '🛠️ Feature':
+    include:
+      - '^feat\/'
+  '🔧 Fix':
+    include:
+      - '^fix\/'
+  '🪄 Refactor':
+    include:
+      - '^refactor\/'
+  '⚙️ Setting':
+    include:
+      - '^setting\/'
+  '🌈 Deploy':
+    include:
+      - '^deploy\/'
+  '🧩 Test':
+    include:
+      - '^test\/'
