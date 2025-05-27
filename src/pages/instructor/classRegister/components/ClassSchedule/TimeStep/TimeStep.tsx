@@ -45,11 +45,9 @@ const TimeStep = ({
   startDate,
 }: TimeStepProps) => {
   // 오늘 날짜와 현재 시간 체크
-  const isToday = useMemo(() => {
-    const today = getDateWithoutTime(new Date());
-    const selectedDate = getDateWithoutTime(new Date(startDate));
-    return today.getTime() === selectedDate.getTime();
-  }, [startDate]);
+  const today = getDateWithoutTime(new Date());
+  const selectedDate = getDateWithoutTime(new Date(startDate));
+  const isToday = today.getTime() === selectedDate.getTime();
 
   // 현재 시간 제약 계산 (오늘인 경우)
   const currentTimeConstraints = useMemo(() => {
