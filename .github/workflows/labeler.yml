@@ -19,6 +19,7 @@ jobs:
         uses: jimschubert/labeler-action@v2
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          config_path: ./github/labeler.yml
 
       - name: Label and assign by author
         uses: actions/github-script@v7
