@@ -11,6 +11,8 @@ import {
   newClassImageStyle,
   newDeadlineTagStyle,
   newTeacherImageStyle,
+  myPageWrapperStyle,
+  myPageImageStyle,
   newWrapperStyle,
 } from '@/pages/home/components/LessonItem/newLessonItem.css';
 import type { LessonTypes } from '@/pages/home/types/classTypes';
@@ -20,6 +22,7 @@ import Tag from '@/shared/components/Tag/Tag';
 import Text from '@/shared/components/Text/Text';
 import { genreMapping, levelMapping } from '@/shared/constants';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
+import { calculateRemainingDate } from '@/shared/utils/dateCalculate';
 
 const LessonItem = ({
   id,
@@ -29,10 +32,11 @@ const LessonItem = ({
   imageUrl,
   teacherProfileImage,
   teacherName,
-
   remainingDays,
+  startDate,
   useNewStyles = false,
-}: Omit<LessonTypes, 'location'> & { useNewStyles?: boolean }) => {
+  isMyPage = false,
+}: Omit<LessonTypes, 'location'> & { useNewStyles?: boolean; isMyPage?: boolean }) => {
   const navigate = useNavigate();
 
   const styles = useNewStyles
@@ -43,9 +47,9 @@ const LessonItem = ({
         deadlineTag: newDeadlineTagStyle,
       }
     : {
-        classImage: classImageStyle,
+        classImage: isMyPage ? myPageImageStyle : classImageStyle,
         teacherImage: teacherImageStyle,
-        wrapper: wrapperStyle,
+        wrapper: isMyPage ? myPageWrapperStyle : wrapperStyle,
         deadlineTag: deadlineTagStyle,
       };
 
@@ -60,7 +64,7 @@ const LessonItem = ({
       <img src={imageUrl} alt="클래스 섬네일" className={styles.classImage} />
       {remainingDays < 4 && (
         <Tag type="deadline" size="thumbnail" className={styles.deadlineTag}>
-          {remainingDays < 0 ? '마감' : `마감 D-${remainingDays || 'Day'}`}
+          {calculateRemainingDate(startDate, remainingDays)}
         </Tag>
       )}
 

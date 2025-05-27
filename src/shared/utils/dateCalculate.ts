@@ -36,3 +36,15 @@ export const formatSimpleDate = (dateString: string) => {
   const days = ['일', '월', '화', '수', '목', '금', '토'];
   return `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일 (${days[date.getDay()]})`;
 };
+
+// 현재를 기준으로 마감이 언젠지 계산
+export const calculateRemainingDate = (startDate: string, remainingDays: number) => {
+  if (remainingDays > 0) {
+    return `마감 D-${remainingDays}`;
+  }
+
+  const startTime = new Date(startDate);
+  const currentTime = new Date();
+
+  return startTime < currentTime ? '마감' : 'D-Day';
+};

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { useGetClassList, useGetDancerList } from '@/pages/search/apis/queries';
 import SearchBar from '@/pages/search/components/SearchBar/SearchBar';
 import TabContainer from '@/pages/search/components/TabContainer/TabContainer';
@@ -15,13 +15,8 @@ import { useTabNavigation } from './hooks/useTabNavigation';
 
 const Search = () => {
   const location = useLocation();
-  const navigate = useNavigate();
 
   const [genre, setGenre] = useState<string | null>(location.state?.genre || null);
-
-  if (location.state?.genre) {
-    navigate(location.pathname, { replace: true });
-  }
 
   const [searchValue, setSearchValue] = useState('');
 
@@ -32,7 +27,7 @@ const Search = () => {
   const [endDate, setEndDate] = useState('');
   const [selectedLabel, setSelectedLabel] = useState<keyof typeof labelToSortOptionMap>(SORT_LABELS.LATEST);
 
-  const debouncedSearchValue = useDebounce({ value: searchValue, delay: 500 });
+  const debouncedSearchValue = useDebounce({ value: searchValue, delay: 300 });
 
   const sortOption = labelToSortOptionMap[selectedLabel];
 

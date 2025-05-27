@@ -37,3 +37,19 @@ export const newGenreWrapperStyle = style({
 
   backgroundColor: vars.colors.gray01,
 });
+
+export const myPageWrapperStyle = style({
+  position: 'relative',
+  width: '12.3rem',
+
+  padding: '0.35rem',
+  paddingBottom: '2rem',
+});
+
+export const myPageImageStyle = style({
+  width: '12.3rem',
+  height: '9.225rem',
+  borderRadius: '3px',
+
+  objectFit: 'cover',
+});

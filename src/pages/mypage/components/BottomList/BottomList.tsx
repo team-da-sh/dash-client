@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { usePostLogout } from '@/pages/auth/apis/queries';
 import * as styles from '@/pages/mypage/components/BottomList/bottomList.css';
+import { GOOGLE_FORM_LINK } from '@/pages/mypage/constants/link';
 import { LIST_DATA } from '@/pages/mypage/constants/myPageList';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import IcArrowRightSmallGray0732 from '@/shared/assets/svg/IcArrowRightSmallGray0732';
@@ -15,10 +16,7 @@ const BottomList = () => {
   const handleItemClick = (item: (typeof LIST_DATA)[number]) => {
     if (item.inActive) return notify('해당 기능은 추후 구현 예정이에요');
     if (item.isNavigate) {
-      window.open(
-        'https://docs.google.com/forms/d/e/1FAIpQLSfJGVuf29hHNhBP_tMPxwhPQ4x-9Qj7go_nz0FNKey6FFAplQ/viewform',
-        '_blank'
-      );
+      window.open(GOOGLE_FORM_LINK, '_blank');
       return;
     }
     if (item.label === '로그아웃') {

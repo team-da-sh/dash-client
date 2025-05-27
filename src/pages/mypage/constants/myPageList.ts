@@ -20,16 +20,16 @@ export const MENU_LIST = [
   {
     icon: IcWish,
     label: '관심 목록',
-    path: '/favorites',
+    inActive: true,
   },
   {
     icon: IcRecent,
     label: '최근 본',
-    path: '/recent',
+    inActive: true,
   },
   {
     icon: IcReview,
     label: '리뷰 작성',
-    path: '/review',
+    inActive: true,
   },
 ];
