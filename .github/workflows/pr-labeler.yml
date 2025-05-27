@@ -12,8 +12,19 @@ jobs:
       pull-requests: write
 
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
+
+      - name: Print working directory
+        run: pwd
+
+      - name: List files in current directory
+        run: ls -la
+
+      - name: List .github directory
+        run: ls -la .github || echo ".github folder not found"
+
+      - name: List files in .github
+        run: ls -la .github || echo ".github folder not found"
 
       - name: Label by branch name (labeler-action)
         uses: jimschubert/labeler-action@v1
