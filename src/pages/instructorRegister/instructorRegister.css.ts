@@ -6,7 +6,6 @@ export const containerStyle = style({
   flexDirection: 'column',
 
   width: '100%',
-  // paddingBottom: '10.2rem',
 });
 
 export const titleStyle = style({
@@ -30,4 +29,10 @@ export const buttonContainerStyle = style({
   bottom: '0',
   padding: '2.4rem 2rem',
   backgroundColor: vars.colors.white,
+});
+
+export const profileImageWrapperStyle = style({
+  display: 'flex',
+  justifyContent: 'center',
+  width: '100%',
 });

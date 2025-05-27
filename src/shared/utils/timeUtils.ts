@@ -1,8 +1,15 @@
+// 시간 관련 상수
+export const HOURS_IN_HALF_DAY = 12;
+export const MINUTES_IN_HALF_HOUR = 30;
+export const FIRST_HOUR = 1;
+
 // 시간 증가
-export const increaseHour = (currentHour: number): number => (currentHour === 12 ? 1 : currentHour + 1);
+export const increaseHour = (currentHour: number): number =>
+  currentHour === HOURS_IN_HALF_DAY ? FIRST_HOUR : currentHour + 1;
 
 // 시간 감소
-export const decreaseHour = (currentHour: number): number => (currentHour === 1 ? 12 : currentHour - 1);
+export const decreaseHour = (currentHour: number): number =>
+  currentHour === FIRST_HOUR ? HOURS_IN_HALF_DAY : currentHour - 1;
 
 // 분 증가 (30분 단위)
 export const increaseMinute = ({
@@ -13,9 +20,9 @@ export const increaseMinute = ({
   setHour: React.Dispatch<React.SetStateAction<number>>;
 }): number => {
   if (currentMinute === 0) {
-    return 30;
-  } else if (currentMinute === 30) {
-    setHour((prevHour) => (prevHour === 12 ? 1 : prevHour + 1));
+    return MINUTES_IN_HALF_HOUR;
+  } else if (currentMinute === MINUTES_IN_HALF_HOUR) {
+    setHour((prevHour) => (prevHour === HOURS_IN_HALF_DAY ? FIRST_HOUR : prevHour + 1));
     return 0;
   }
   return currentMinute;
@@ -29,11 +36,11 @@ export const decreaseMinute = ({
   currentMinute: number;
   setHour: React.Dispatch<React.SetStateAction<number>>;
 }): number => {
-  if (currentMinute === 30) {
+  if (currentMinute === MINUTES_IN_HALF_HOUR) {
     return 0;
   } else if (currentMinute === 0) {
-    setHour((prevHour) => (prevHour === 1 ? 12 : prevHour - 1));
-    return 30;
+    setHour((prevHour) => (prevHour === FIRST_HOUR ? HOURS_IN_HALF_DAY : prevHour - 1));
+    return MINUTES_IN_HALF_HOUR;
   }
   return currentMinute;
 };
@@ -50,9 +57,9 @@ export const getDateWithoutTime = (date: Date): Date => {
 
 // 12시간 형식에서 24시간 형식으로 변환
 export const convertTo24HourFormat = (hour: number, ampm: string): number => {
-  if (ampm === 'PM' && hour !== 12) {
-    return hour + 12;
-  } else if (ampm === 'AM' && hour === 12) {
+  if (ampm === 'PM' && hour !== HOURS_IN_HALF_DAY) {
+    return hour + HOURS_IN_HALF_DAY;
+  } else if (ampm === 'AM' && hour === HOURS_IN_HALF_DAY) {
     return 0;
   }
   return hour;
@@ -76,9 +83,9 @@ export const formatTimeDisplay = (hour: number, minute: number, ampm: string): s
 
 export const formatToISOString = (date: string, hour: number, minute: number, ampm: string, selectedTime: number) => {
   let adjustedHour = hour;
-  if (ampm === 'PM' && hour !== 12) {
-    adjustedHour += 12;
-  } else if (ampm === 'AM' && hour === 12) {
+  if (ampm === 'PM' && hour !== HOURS_IN_HALF_DAY) {
+    adjustedHour += HOURS_IN_HALF_DAY;
+  } else if (ampm === 'AM' && hour === HOURS_IN_HALF_DAY) {
     adjustedHour = 0;
   }
 
@@ -107,4 +114,11 @@ export const formatToISOString = (date: string, hour: number, minute: number, am
     startTime: formatTime(startDate),
     endTime: formatTime(endDate),
   };
+};
+
+export const formatDuration = (duration: number) => {
+  const hours = Math.floor(duration);
+  const minutes = Math.round((duration - hours) * 60);
+
+  return minutes === 0 ? `총 ${hours}시간` : `총 ${hours}시간 ${minutes}분`;
 };

@@ -5,12 +5,12 @@ import { vars } from '@/shared/styles/theme.css';
 export const headerRootStyle = recipe({
   base: {
     position: 'fixed',
-    display: 'grid',
-    gridTemplateColumns: '1fr auto 1fr',
+    display: 'flex',
+    gap: '1.2rem',
     alignItems: 'center',
     width: '100%',
     height: '6rem',
-    padding: '1.8rem 2rem',
+    padding: '0.8rem 2rem',
     transition: 'background-color 0.3s ease',
     zIndex: vars.zIndex.two,
   },

@@ -22,6 +22,7 @@ import Tag from '@/shared/components/Tag/Tag';
 import Text from '@/shared/components/Text/Text';
 import { genreMapping, levelMapping } from '@/shared/constants';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
+import { calculateRemainingDate } from '@/shared/utils/dateCalculate';
 
 const LessonItem = ({
   id,
@@ -32,6 +33,7 @@ const LessonItem = ({
   teacherProfileImage,
   teacherName,
   remainingDays,
+  startDate,
   useNewStyles = false,
   isMyPage = false,
 }: Omit<LessonTypes, 'location'> & { useNewStyles?: boolean; isMyPage?: boolean }) => {
@@ -62,7 +64,7 @@ const LessonItem = ({
       <img src={imageUrl} alt="클래스 섬네일" className={styles.classImage} />
       {remainingDays < 4 && (
         <Tag type="deadline" size="thumbnail" className={styles.deadlineTag}>
-          {remainingDays < 0 ? '마감' : `마감 D-${remainingDays || 'Day'}`}
+          {calculateRemainingDate(startDate, remainingDays)}
         </Tag>
       )}
 

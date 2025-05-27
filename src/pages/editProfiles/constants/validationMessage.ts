@@ -7,13 +7,13 @@ export const PROFILE_IMAGE_ERRORS = {
 export const NICKNAME_ERRORS = {
   REQUIRED: '댄서네임을 입력해주세요',
   TOO_LONG: '최대 8자까지 입력 가능합니다',
-  INVALID: '특수기호/띄어쓰기는 입력할 수 없어요',
+  INVALID: '특수기호, 띄어쓰기는 입력할 수 없어요',
 };
 
 export const NAME_ERRORS = {
   REQUIRED: '이름을 입력해주세요',
   TOO_LONG: '최대 8자까지 입력 가능합니다',
-  INVALID: '특수기호/띄어쓰기는 입력할 수 없어요',
+  INVALID: '특수기호, 띄어쓰기는 입력할 수 없어요',
 };
 
 export const PHONE_NUMBER_ERRORS = {
