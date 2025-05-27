@@ -1,0 +1,62 @@
+name: PR Labeler
+
+on:
+  pull_request:
+    types: [opened]
+
+jobs:
+  labeler:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+
+    steps:
+      # ✅ 작업 유형에 따른 라벨 자동화
+      - name: Label by branch name (labeler-action)
+        uses: jimschubert/labeler-action@v1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # ✅ 작성자에 따른 라벨 자동화
+      - name: Label and assign by author
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const author = context.payload.pull_request.user.login;
+
+            const labelsByAuthor = {
+                'heesunee': '희선',
+                'constantly-dev': '진혁',
+                'hansoojeongsj': '수정',
+                'KIMGEONHWI': '건휘',
+                'rtttr1': '규홍'
+            };
+
+            const label = labelsByAuthor[author];
+            if (label) {
+              await github.rest.issues.addLabels({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                labels: [label],
+              });
+            }
+
+            const data = config[author];
+            if (data) {
+
+              await github.rest.issues.addLabels({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                labels: [data.label],
+              });
+
+              await github.rest.issues.addAssignees({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                assignees: [data.assign],
+              });
+            }
