@@ -19,7 +19,7 @@ import {
   HOURS_IN_HALF_DAY,
 } from '@/shared/utils/timeUtils';
 
-interface TimeStepProps {
+interface TimeStepPropTypes {
   hour: number;
   minute: number;
   ampm: string;
@@ -43,7 +43,7 @@ const TimeStep = ({
   selectedTime,
   times = [],
   startDate,
-}: TimeStepProps) => {
+}: TimeStepPropTypes) => {
   // 오늘 날짜와 현재 시간 체크
   const today = getDateWithoutTime(new Date());
   const selectedDate = getDateWithoutTime(new Date(startDate));
