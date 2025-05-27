@@ -39,7 +39,7 @@ const App = () => {
           <RouterProvider router={router} />
         </Suspense>
       </ErrorBoundary>
-      <Toaster containerStyle={{ position: 'absolute' }} />
+      <Toaster containerStyle={{ margin: '0 auto' }} />
     </QueryClientProvider>
   );
 };
