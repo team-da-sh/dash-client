@@ -4,33 +4,23 @@ enable:
 
 labels:
   '🎸 Chore':
-    include:
-      - '^chore\/'
+    - '^chore/'
   '🔗 CI/CD':
-    include:
-      - '^ci\/'
-      - '^cd\/'
+    - '^ci/'
+    - '^cd/'
   '🎨 Design':
-    include:
-      - '^design\/'
+    - '^design/'
   '📃 Docs':
-    include:
-      - '^docs\/'
+    - '^docs/'
   '🛠️ Feature':
-    include:
-      - '^feat\/'
+    - '^feat/'
   '🔧 Fix':
-    include:
-      - '^fix\/'
+    - '^fix/'
   '🪄 Refactor':
-    include:
-      - '^refactor\/'
+    - '^refactor/'
   '⚙️ Setting':
-    include:
-      - '^setting\/'
+    - '^setting/'
   '🌈 Deploy':
-    include:
-      - '^deploy\/'
+    - '^deploy/'
   '🧩 Test':
-    include:
-      - '^test\/'
+    - '^test/'
