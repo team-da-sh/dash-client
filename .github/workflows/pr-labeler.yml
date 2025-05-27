@@ -18,34 +18,23 @@ jobs:
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # ✅ 작성자에 따른 라벨 자동화
+      # ✅ 작성자에 따른 라벨 및 자동 Assignee
       - name: Label and assign by author
         uses: actions/github-script@v7
         with:
           script: |
             const author = context.payload.pull_request.user.login;
 
-            const labelsByAuthor = {
-                'heesunee': '희선',
-                'constantly-dev': '진혁',
-                'hansoojeongsj': '수정',
-                'KIMGEONHWI': '건휘',
-                'rtttr1': '규홍'
+            const config = {
+              'heesunee': { label: '희선', assign: 'heesunee' },
+              'constantly-dev': { label: '진혁', assign: 'constantly-dev' },
+              'hansoojeongsj': { label: '수정', assign: 'hansoojeongsj' },
+              'KIMGEONHWI': { label: '건휘', assign: 'KIMGEONHWI' },
+              'rtttr1': { label: '규홍', assign: 'rtttr1' }
             };
-
-            const label = labelsByAuthor[author];
-            if (label) {
-              await github.rest.issues.addLabels({
-                issue_number: context.issue.number,
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                labels: [label],
-              });
-            }
 
             const data = config[author];
             if (data) {
-
               await github.rest.issues.addLabels({
                 issue_number: context.issue.number,
                 owner: context.repo.owner,
