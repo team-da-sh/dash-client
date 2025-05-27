@@ -12,8 +12,14 @@ jobs:
       pull-requests: write
 
     steps:
+      - name: Print current directory
+        run: pwd
+
+      - name: List current directory files
+        run: ls -l
+
       - name: List .github directory
-        run: ls -l .github
+        run: ls -l .github || echo ".github not found"
 
       - name: Label by branch name (labeler-action)
         uses: jimschubert/labeler-action@v1
