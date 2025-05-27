@@ -3,7 +3,7 @@ import type { ForwardedRef, InputHTMLAttributes, ReactNode } from 'react';
 import { forwardRef } from 'react';
 import * as style from '@/shared/components/Input/input.css';
 
-interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+interface InputPropTypes extends InputHTMLAttributes<HTMLInputElement> {
   isError?: boolean;
   isFocused?: boolean;
   rightAddOn?: ReactNode;
@@ -11,7 +11,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 const Input = (
-  { isError, className, value, rightAddOn, isFocused, onFocusChange, ...props }: InputProps,
+  { isError, className, value, rightAddOn, isFocused, onFocusChange, ...props }: InputPropTypes,
   ref: ForwardedRef<HTMLInputElement>
 ) => {
   const defineInputState = (isError?: boolean, isFocused?: boolean) => {
