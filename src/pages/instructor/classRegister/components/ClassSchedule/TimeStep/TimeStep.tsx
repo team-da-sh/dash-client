@@ -15,9 +15,11 @@ import {
   convertToMinutes,
   isTimeOverlapping,
   formatTimeDisplay,
+  getDateWithoutTime,
+  HOURS_IN_HALF_DAY,
 } from '@/shared/utils/timeUtils';
 
-interface TimeStepProps {
+interface TimeStepPropTypes {
   hour: number;
   minute: number;
   ampm: string;
@@ -41,7 +43,43 @@ const TimeStep = ({
   selectedTime,
   times = [],
   startDate,
-}: TimeStepProps) => {
+}: TimeStepPropTypes) => {
+  // 오늘 날짜와 현재 시간 체크
+  const today = getDateWithoutTime(new Date());
+  const selectedDate = getDateWithoutTime(new Date(startDate));
+  const isToday = today.getTime() === selectedDate.getTime();
+
+  // 현재 시간 제약 계산 (오늘인 경우)
+  const currentTimeConstraints = useMemo(() => {
+    if (!isToday) return null;
+
+    const now = new Date();
+    // 현재 시간 기준으로 계산
+    const currentHour = now.getHours();
+    const currentMinute = now.getMinutes();
+
+    // 가장 가까운 30분 단위로 계산
+    let nextHour = currentHour;
+    let nextMinute = 0;
+
+    if (currentMinute < 30) {
+      // 30분 미만이면 같은 시간의 30분으로 설정
+      nextMinute = 30;
+    } else {
+      // 30분 이상이면 다음 시간의 00분으로 설정
+      nextHour = currentHour + 1;
+    }
+
+    const display12Hour = nextHour % HOURS_IN_HALF_DAY === 0 ? HOURS_IN_HALF_DAY : nextHour % HOURS_IN_HALF_DAY;
+    const nextAmpm = nextHour >= HOURS_IN_HALF_DAY ? 'PM' : 'AM';
+
+    return {
+      hour: display12Hour,
+      minute: nextMinute,
+      ampm: nextAmpm,
+    };
+  }, [isToday]);
+
   // 선택된 날짜에 영향을 미치는 회차의 가장 늦은 종료 시간 찾기
   const latestEndTime = useMemo(() => {
     if (times.length === 0) return null;
@@ -69,25 +107,48 @@ const TimeStep = ({
     return latest;
   }, [times, startDate]);
 
-  // 최소 선택 가능 시간 계산
+  // 최소 선택 가능 시간 계산 (기존 일정 종료 시간과 현재 시간 중 더 늦은 시간)
   const minTimeConstraints = useMemo(() => {
-    if (!latestEndTime) return null;
+    // 가장 늦은 종료 시간 기반 제약
+    let existingConstraint = null;
+    if (latestEndTime) {
+      const minHour = latestEndTime.getHours();
+      const minMinute = latestEndTime.getMinutes();
+      const minAmpm = minHour >= HOURS_IN_HALF_DAY ? 'PM' : 'AM';
+      const display12Hour = minHour % HOURS_IN_HALF_DAY === 0 ? HOURS_IN_HALF_DAY : minHour % HOURS_IN_HALF_DAY;
 
-    const minHour = latestEndTime.getHours();
-    const minMinute = latestEndTime.getMinutes();
-    const minAmpm = minHour >= 12 ? 'PM' : 'AM';
-    const display12Hour = minHour % 12 === 0 ? 12 : minHour % 12;
+      existingConstraint = {
+        hour: display12Hour,
+        minute: minMinute,
+        ampm: minAmpm,
+      };
+    }
 
-    return {
-      hour: display12Hour,
-      minute: minMinute,
-      ampm: minAmpm,
-    };
-  }, [latestEndTime]);
+    // 현재 시간 제약이 없으면 기존 제약만 반환
+    if (!currentTimeConstraints) return existingConstraint;
+
+    // 기존 제약이 없으면 현재 시간 제약만 반환
+    if (!existingConstraint) return currentTimeConstraints;
+
+    // 두 제약 조건 중 더 늦은 시간 선택
+    const existingMinutes = convertToMinutes(
+      existingConstraint.hour,
+      existingConstraint.minute,
+      existingConstraint.ampm
+    );
+
+    const currentMinutes = convertToMinutes(
+      currentTimeConstraints.hour,
+      currentTimeConstraints.minute,
+      currentTimeConstraints.ampm
+    );
+
+    return existingMinutes > currentMinutes ? existingConstraint : currentTimeConstraints;
+  }, [latestEndTime, currentTimeConstraints]);
 
   // 현재 시간이 최소 제한 시간보다 이전인지 확인하고 필요시 조정
   const checkAndAdjustTime = () => {
-    if (minTimeConstraints && latestEndTime !== null) {
+    if (minTimeConstraints) {
       // 시간을 분으로 변환하여 비교
       const currentTotalMinutes = convertToMinutes(hour, minute, ampm);
       const minTotalMinutes = convertToMinutes(
@@ -109,7 +170,7 @@ const TimeStep = ({
 
   // 시간 제약 조건이 변경될 때 자동으로 시간 조정
   // 주의: 이 방식은 렌더링마다 실행되지만 조건을 충족할 때만 상태를 변경함
-  if (minTimeConstraints && latestEndTime !== null) {
+  if (minTimeConstraints) {
     checkAndAdjustTime();
   }
 
@@ -161,7 +222,7 @@ const TimeStep = ({
 
   // 시간이 최소 제한 시간보다 이전인지 확인
   const isBeforeMinTime = (newHour: number, newMinute: number, newAmpm: string) => {
-    if (!minTimeConstraints || latestEndTime === null) return false;
+    if (!minTimeConstraints) return false;
 
     // convertToMinutes 함수 사용하여 시간 비교
     const selectedTotalMinutes = convertToMinutes(newHour, newMinute, newAmpm);
@@ -238,16 +299,30 @@ const TimeStep = ({
     ? formatTimeDisplay(minTimeConstraints.hour, minTimeConstraints.minute, minTimeConstraints.ampm)
     : null;
 
+  // 제약 사유 메시지 결정
+  const getConstraintMessage = () => {
+    if (!minTimeConstraints) return null;
+
+    // 기존 일정 제약이 적용된 경우만 메시지 표시
+    if (latestEndTime) {
+      return `이전 회차 종료 시간(${minTimeDisplay}) 이후로만 등록 가능합니다.`;
+    }
+
+    // 현재 시간 제약만 있는 경우 메시지 표시 안함
+    return null;
+  };
+
   return (
     <Flex direction="column">
       <Head level="h2" tag="b1_sb">
         클래스 시작 시간
       </Head>
 
-      {latestEndTime !== null && minTimeDisplay && (
+      {/* 메시지가 있을 경우에만 표시 */}
+      {minTimeConstraints && minTimeDisplay && getConstraintMessage() && (
         <Flex paddingTop="0.8rem">
           <Text tag="b3_r" color="main3">
-            이전 회차 종료 시간({minTimeDisplay}) 이후로만 등록 가능합니다.
+            {getConstraintMessage()}
           </Text>
         </Flex>
       )}
