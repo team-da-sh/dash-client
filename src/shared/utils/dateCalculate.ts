@@ -40,15 +40,11 @@ export const formatSimpleDate = (dateString: string) => {
 // 현재를 기준으로 마감이 언젠지 계산
 export const calculateRemainingDate = (startDate: string, remainingDays: number) => {
   if (remainingDays > 0) {
-    return `마감 D-${remainingDays || 'Day'}`;
+    return `마감 D-${remainingDays}`;
   }
 
   const startTime = new Date(startDate);
   const currentTime = new Date();
 
-  if (startTime < currentTime) {
-    return '마감';
-  } else {
-    return 'D-Day';
-  }
+  return startTime < currentTime ? '마감' : 'D-Day';
 };
