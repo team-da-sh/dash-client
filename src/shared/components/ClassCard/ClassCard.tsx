@@ -101,7 +101,7 @@ const ClassCard = ({
           </Text>
           {isReservation && status === 'upcoming' && remainingDays !== undefined && (
             <Text tag="b3_m" color="main4">
-              D - {remainingDays}
+              D-{remainingDays}
             </Text>
           )}
         </div>

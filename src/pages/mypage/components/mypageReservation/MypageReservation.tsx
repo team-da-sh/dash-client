@@ -31,7 +31,7 @@ const MyPageReservation = () => {
         </div>
 
         {reservationCount > 0 && (
-          <div className={sprinkles({ display: 'flex', gap: 12, marginTop: 16 })}>
+          <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 12, marginTop: 16 })}>
             {reservations.map((reservation: Reservation) => (
               <ClassCard
                 key={reservation.reservationId}
