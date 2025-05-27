@@ -18,7 +18,7 @@ const Error = () => {
   };
 
   return (
-    <>
+    <main>
       <div className={style.containerStyle}>
         <header
           className={sprinkles({
@@ -49,7 +49,7 @@ const Error = () => {
       <div className={style.buttonContainerStyle}>
         <BoxButton onClick={handleHomeNavigation}>홈으로 이동</BoxButton>
       </div>
-    </>
+    </main>
   );
 };
 
