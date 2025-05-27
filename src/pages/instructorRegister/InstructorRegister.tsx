@@ -193,14 +193,12 @@ const InstructorRegister = () => {
               </Head>
             </div>
 
-            <div className={styles.imageWrapperStyle}>
-              <ImageUploadSection
-                imgRef={imgRef}
-                previewImg={previewImg}
-                uploadImgFile={uploadImgFile}
-                handleUploaderClick={handleUploaderClick}
-              />
-            </div>
+            <ImageUploadSection
+              imgRef={imgRef}
+              previewImg={previewImg}
+              uploadImgFile={uploadImgFile}
+              handleUploaderClick={handleUploaderClick}
+            />
 
             <IntroductionSection register={register} error={errors.detail} detail={detail} />
           </div>

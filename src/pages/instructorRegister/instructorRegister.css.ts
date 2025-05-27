@@ -8,11 +8,6 @@ export const containerStyle = style({
   width: '100%',
 });
 
-export const imageWrapperStyle = style({
-  display: 'flex',
-  justifyContent: 'center',
-});
-
 export const titleStyle = style({
   display: 'flex',
   flexDirection: 'column',
