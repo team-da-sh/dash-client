@@ -4,23 +4,21 @@ import { useGetClassList, useGetDancerList } from '@/pages/search/apis/queries';
 import SearchBar from '@/pages/search/components/SearchBar/SearchBar';
 import TabContainer from '@/pages/search/components/TabContainer/TabContainer';
 import { DEFAULT_SORT_TAGS, SORT_LABELS } from '@/pages/search/constants/index';
-import { headerRootCutomStyle } from '@/pages/search/search.css';
 import { formatDateEndTime, formatDateStartTime } from '@/pages/search/utils/formatDate';
 import { handleSearchChange } from '@/pages/search/utils/searchHandlers';
 import Flex from '@/shared/components/Flex/Flex';
 import { genreEngMapping, labelToSortOptionMap, levelEngMapping } from '@/shared/constants';
 import useDebounce from '@/shared/hooks/useDebounce';
+import { useTabNavigation } from '@/shared/hooks/useTabNavigation';
 import SearchHeader from './components/SearchHeader/SearchHeader';
-import { useTabNavigation } from './hooks/useTabNavigation';
 
 const Search = () => {
   const location = useLocation();
+  const { selectedTab, setSelectedTab } = useTabNavigation('class');
 
   const [genre, setGenre] = useState<string | null>(location.state?.genre || null);
 
   const [searchValue, setSearchValue] = useState('');
-
-  const { selectedTab, setSelectedTab } = useTabNavigation();
 
   const [level, setLevel] = useState<string | null>(null);
   const [startDate, setStartDate] = useState('');
@@ -46,7 +44,7 @@ const Search = () => {
 
   return (
     <Flex>
-      <SearchHeader.Root className={headerRootCutomStyle}>
+      <SearchHeader.Root>
         <SearchHeader.BackIcon />
         <SearchBar searchValue={searchValue} handleSearchChange={handleSearchChange(setSearchValue)} />
       </SearchHeader.Root>

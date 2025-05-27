@@ -8,6 +8,7 @@ import IcXCircleGray0424 from '@/shared/assets/svg/IcXCircleGray0424';
 import Text from '@/shared/components/Text/Text';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
 import { calculatePeriod, formatDate } from '@/shared/utils/dateCalculate';
+import { formatDuration } from '@/shared/utils/timeUtils';
 
 interface ClassSchedulePropTypes {
   openBottomSheet: () => void;
@@ -43,7 +44,7 @@ const ClassSchedule = ({ openBottomSheet, times, handleRemoveTime }: ClassSchedu
                     {`${calculatePeriod(time.startTime, time.endTime).startTime} ~ ${
                       calculatePeriod(time.startTime, time.endTime).formattedEndTime
                     }`}{' '}
-                    (총 {time.duration} 시간)
+                    ({formatDuration(time.duration)})
                   </Text>
                 </div>
               </div>

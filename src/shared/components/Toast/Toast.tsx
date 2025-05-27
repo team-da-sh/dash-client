@@ -24,7 +24,9 @@ export const notify = (message: string, icon?: boolean) => {
       position: 'bottom-center',
       style: {
         width: '100%',
-        marginBottom: '2.4rem',
+        bottom: '2.4rem',
+        left: '50%',
+        transform: 'translateX(-50%)',
         backgroundColor: vars.colors.gray10,
         color: vars.colors.white,
         ...vars.fonts.b2_m,

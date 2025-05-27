@@ -20,7 +20,7 @@ export const getMyTeacherInfo = async () => {
 };
 
 export const getMyLessonThumbnails = async () => {
-  const { data } = await instance.get(API_URL.MEMBERS_ME_THUMBNAILS);
+  const { data } = await instance.get(API_URL.TEACHER_ME_THUMBNAILS);
 
   return data;
 };

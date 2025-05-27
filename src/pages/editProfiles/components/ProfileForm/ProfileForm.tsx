@@ -1,13 +1,14 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
-import { useForm, useController } from 'react-hook-form';
+import { useController, useForm } from 'react-hook-form';
 import { usePatchMyProfile } from '@/pages/editProfiles/api/queries';
 import BottomSheet from '@/pages/editProfiles/components/BottomSheet/BottomSheet';
 import FormField from '@/pages/editProfiles/components/FormField/FormField.tsx';
 import * as styles from '@/pages/editProfiles/components/ProfileForm/profileForm.css';
 import { MAX_NAME_LENGTH, MAX_NICKNAME_LENGTH } from '@/pages/editProfiles/constants/limit.ts';
-import { profileSchema, ProfileFormValues } from '@/pages/editProfiles/schema/profileSchema.ts';
-import { UpdateProfileRequestTypes } from '@/pages/editProfiles/types/api.ts';
+import type { ProfileFormValues } from '@/pages/editProfiles/schema/profileSchema.ts';
+import { profileSchema } from '@/pages/editProfiles/schema/profileSchema.ts';
+import type { UpdateProfileRequestTypes } from '@/pages/editProfiles/types/api.ts';
 import ImageUploadSection from '@/pages/instructorRegister/components/ImageUploadSection/ImageUploadSection.tsx';
 import { MAX_PHONENUMBER_LENGTH } from '@/pages/onboarding/constants';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';

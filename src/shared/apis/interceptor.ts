@@ -67,7 +67,7 @@ export const onErrorResponse = async (error: AxiosError) => {
       failedRequests = [];
 
       window.location.replace(ROUTES_CONFIG.login.path);
-      alert('에러가 발생하였습니다. 다시 로그인해주세요.');
+
       clearStorage();
     } finally {
       // 요청 완료 후 상태 초기화
