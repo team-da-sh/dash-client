@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import { useEffect, type ReactNode } from 'react';
 import * as styles from '@/pages/mypage/components/TabWrapper/components/TeacherContent/components/ToolTip/tooltip.css';
 import { VISIT_KEY } from '@/pages/mypage/constants/storageKey';
 import { setUser } from '@/pages/mypage/utils/storage';
@@ -13,6 +13,14 @@ interface ToolTipPropTypes {
   isOpen: boolean;
 }
 const ToolTip = ({ title, children, onClose, isOpen }: ToolTipPropTypes) => {
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, []);
+
   if (!isOpen) return null;
 
   const handleClose = () => {
