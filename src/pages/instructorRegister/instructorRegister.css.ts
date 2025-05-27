@@ -31,3 +31,9 @@ export const buttonContainerStyle = style({
   padding: '2.4rem 2rem',
   backgroundColor: vars.colors.white,
 });
+
+export const profileImageWrapperStyle = style({
+  display: 'flex',
+  justifyContent: 'center',
+  width: '100%',
+});

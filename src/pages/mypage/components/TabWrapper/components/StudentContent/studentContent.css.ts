@@ -25,3 +25,16 @@ export const menuButtonContainerStyle = style({
 
   backgroundColor: vars.colors.white,
 });
+
+export const noUnderlineStyle = style({
+  textDecoration: 'none',
+  color: 'inherit',
+  pointerEvents: 'none',
+  cursor: 'default',
+
+  selectors: {
+    '&::-webkit-any-link': {
+      textDecoration: 'none',
+    },
+  },
+});

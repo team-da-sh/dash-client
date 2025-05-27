@@ -41,14 +41,6 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
     mode: 'onChange',
   });
 
-  const handleFocus = (fieldName: string) => {
-    setFocusedField(fieldName);
-  };
-
-  const handleBlur = () => {
-    setFocusedField(null);
-  };
-
   const { field } = useController({
     name: 'profileImageUrl',
     control,
@@ -98,6 +90,14 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
     editMyProfile(submitData);
   };
 
+  const handleFocus = (fieldName: string) => {
+    setFocusedField(fieldName);
+  };
+
+  const handleBlur = () => {
+    setFocusedField(null);
+  };
+
   const handleSelectImage = () => {
     handleUploaderClick();
   };
@@ -124,9 +124,9 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
           onFocus={() => handleFocus('nickname')}
           onBlur={handleBlur}
           validationMessage={
-            <Text
-              tag="b3_r"
-              color={errors.nickname ? 'alert3' : 'main4'}>{`${nickname?.length || 0}/${MAX_NICKNAME_LENGTH}`}</Text>
+            <Text tag="c1_m" color={errors.nickname ? 'alert3' : focusedField === 'nickname' ? 'main4' : 'gray9'}>
+              {`${nickname?.length || 0}/${MAX_NICKNAME_LENGTH}`}
+            </Text>
           }
         />
 
@@ -140,7 +140,9 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
           onFocus={() => handleFocus('name')}
           onBlur={handleBlur}
           validationMessage={
-            <Text tag="b3_r" color={errors.name ? 'alert3' : 'main4'}>{`${name?.length || 0}/${MAX_NAME_LENGTH}`}</Text>
+            <Text tag="c1_m" color={errors.name ? 'alert3' : focusedField === 'name' ? 'main4' : 'gray9'}>
+              {`${name?.length || 0}/${MAX_NAME_LENGTH}`}
+            </Text>
           }
         />
 
@@ -154,11 +156,9 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
           onFocus={() => handleFocus('phoneNumber')}
           onBlur={handleBlur}
           validationMessage={
-            <Text
-              tag="b3_r"
-              color={
-                errors.phoneNumber ? 'alert3' : 'main4'
-              }>{`${phoneNumber?.length || 0}/${MAX_PHONENUMBER_LENGTH}`}</Text>
+            <Text tag="c1_m" color={errors.phoneNumber ? 'alert3' : focusedField === 'phoneNumber' ? 'main4' : 'gray9'}>
+              {`${phoneNumber?.length || 0}/${MAX_PHONENUMBER_LENGTH}`}
+            </Text>
           }
         />
       </div>

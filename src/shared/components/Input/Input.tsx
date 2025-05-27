@@ -1,36 +1,23 @@
 import clsx from 'clsx';
 import type { ForwardedRef, InputHTMLAttributes, ReactNode } from 'react';
-import { forwardRef, useState } from 'react';
+import { forwardRef } from 'react';
 import * as style from '@/shared/components/Input/input.css';
 
-interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+interface InputPropTypes extends InputHTMLAttributes<HTMLInputElement> {
   isError?: boolean;
+  isFocused?: boolean;
   rightAddOn?: ReactNode;
   onFocusChange?: (isFocused: boolean) => void;
 }
 
 const Input = (
-  { isError, className, value, rightAddOn, onFocusChange, ...props }: InputProps,
+  { isError, className, value, rightAddOn, isFocused, onFocusChange, ...props }: InputPropTypes,
   ref: ForwardedRef<HTMLInputElement>
 ) => {
-  const [isFocused, setIsFocused] = useState(false);
-
-  const handleFocus = () => {
-    setIsFocused(true);
-    onFocusChange?.(true);
-  };
-
-  const handleBlur = () => {
-    setIsFocused(false);
-    onFocusChange?.(false);
-  };
-
   const defineInputState = (isError?: boolean, isFocused?: boolean) => {
-    if (isError) {
-      return 'error';
-    } else if (isFocused) {
-      return 'focus';
-    }
+    if (isError) return 'error';
+    if (isFocused) return 'focus';
+    return undefined;
   };
 
   const inputState = defineInputState(isError, isFocused);
@@ -41,8 +28,6 @@ const Input = (
         ref={ref}
         type="text"
         className={clsx(className, style.inputStyle)}
-        onFocus={handleFocus}
-        onBlur={handleBlur}
         value={value}
         {...props}
         aria-invalid={isError ? 'true' : 'false'}
