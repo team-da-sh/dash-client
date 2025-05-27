@@ -9,8 +9,12 @@ interface lessonSearchTypes {
 
 export const lessonKeys = {
   all: ['lessons'] as const,
+  list: () => [...lessonKeys.all, 'list'],
+  latest: () => [...lessonKeys.list(), 'latest'],
+  popular_genre: () => [...lessonKeys.list(), 'popular'],
+  upcoming: () => [...lessonKeys.list(), 'upcoming'],
   search: ({ genre, level, startDate, endDate, sortOption, keyword }: lessonSearchTypes) => [
-    ...lessonKeys.all,
+    ...lessonKeys.list(),
     genre,
     level,
     startDate,
@@ -19,9 +23,6 @@ export const lessonKeys = {
     keyword,
   ],
   detail: (lessonId: number) => [...lessonKeys.all, lessonId],
-  latest: () => [...lessonKeys.all, 'latest'],
-  popular_genre: () => [...lessonKeys.all, 'popular'],
-  upcoming: () => [...lessonKeys.all, 'upcoming'],
   reserve_progress: (lessonId: number) => [...lessonKeys.detail(lessonId), 'reserve-progress'],
 };
 
@@ -29,8 +30,9 @@ export const memberKeys = {
   all: ['members'] as const,
   me: () => [memberKeys.all, 'me'],
   lessons: () => [...memberKeys.me(), 'lessons'],
+  lessons_thumbnails: () => [...memberKeys.lessons(), 'thumbnails'],
   reservations: () => [...memberKeys.me(), 'reservations'],
-  thumbnails: () => [...memberKeys.lessons(), 'thumbnails'],
+  reservations_list: () => [...memberKeys.reservations(), 'list'],
   reservations_detail: (reservationId: number) => [...memberKeys.reservations(), reservationId],
   statistics: () => [memberKeys.reservations, 'statistics'],
 };
