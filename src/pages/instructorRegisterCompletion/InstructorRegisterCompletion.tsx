@@ -15,7 +15,7 @@ const InstructorRegisterCompletion = () => {
   };
 
   return (
-    <>
+    <main>
       <div className={style.containerStyle}>
         <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 8 })}>
           <Head level="h1" tag="h3_sb">
@@ -32,7 +32,7 @@ const InstructorRegisterCompletion = () => {
       <div className={style.buttonContainerStyle}>
         <BoxButton onClick={handleComplete}>홈으로 이동</BoxButton>
       </div>
-    </>
+    </main>
   );
 };
 

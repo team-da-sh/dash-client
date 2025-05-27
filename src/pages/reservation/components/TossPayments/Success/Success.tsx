@@ -57,7 +57,6 @@ export const SuccessPage = () => {
             className={sprinkles({
               display: 'flex',
               flexDirection: 'column',
-              pt: 5,
               pl: 20,
               pr: 20,
               width: '100%',
@@ -68,6 +67,8 @@ export const SuccessPage = () => {
               subTitle="함께 리듬 탈 준비 됐나요?"
               description="신청 내역은 마이페이지의클래스 신청 내역에서 확인할 수 있어요"
             />
+          </div>
+          <div className={styles.successButtonContainer}>
             <BoxButton onClick={handleNavigate}>신청 내역으로 이동</BoxButton>
           </div>
         </div>

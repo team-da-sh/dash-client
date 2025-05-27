@@ -1,12 +1,15 @@
 import { style } from '@vanilla-extract/css';
 
 export const flexCustomStyle = style({
-  margin: '4.8rem 0 2.8rem 0',
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '0.6rem',
+  margin: '4.4rem 0 3.2rem 0',
 });
 
 export const clearStyle = style({
   width: '24.4rem',
   height: '24.4rem',
   alignSelf: 'center',
-  marginTop: '6.7rem',
+  marginTop: '3.7rem',
 });

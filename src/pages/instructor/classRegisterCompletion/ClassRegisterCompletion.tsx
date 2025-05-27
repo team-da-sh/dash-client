@@ -15,7 +15,7 @@ const ClassRegisterCompletion = () => {
   };
 
   return (
-    <>
+    <main>
       <div className={sprinkles({ pr: 20, pl: 20 })}>
         <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 8, width: '100%', mt: 44 })}>
           <div className={sprinkles({ display: 'flex', flexDirection: 'column' })}>
@@ -33,7 +33,7 @@ const ClassRegisterCompletion = () => {
       <div className={styles.buttonContainerStyle}>
         <BoxButton onClick={handleComplete}>완료</BoxButton>
       </div>
-    </>
+    </main>
   );
 };
 
