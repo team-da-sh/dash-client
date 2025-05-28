@@ -79,7 +79,6 @@ export const flexCustomStyle = style({
   justifyContent: 'center',
   alignItems: 'center',
   width: '100%',
-  height: '100vh',
 });
 
 export const confirmSuccess = style({
@@ -140,4 +139,11 @@ export const colorGrey = style({
 globalStyle('a', {
   textDecoration: 'none',
   textAlign: 'center',
+});
+
+export const successButtonContainer = style({
+  position: 'fixed',
+  bottom: '0',
+  padding: '2.4rem 2rem',
+  width: '100%',
 });

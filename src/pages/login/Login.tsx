@@ -6,7 +6,7 @@ import { sprinkles } from '@/shared/styles/sprinkles.css';
 
 const Login = () => {
   return (
-    <>
+    <main>
       <div className={styles.containerStyle}>
         <div className={sprinkles({ display: 'flex', flexDirection: 'column', width: '100%' })}>
           <Head tag="h3_sb">댄스 클래스로의 첫 걸음,</Head>
@@ -23,7 +23,7 @@ const Login = () => {
       <div className={styles.buttonContainerStyle}>
         <KakaoButton />
       </div>
-    </>
+    </main>
   );
 };
 
