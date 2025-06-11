@@ -1,11 +1,11 @@
 import { useQuery, type UseQueryResult } from '@tanstack/react-query';
 import type { AxiosError } from 'axios';
-import { getMyPage, getMyLessons, getMyTeacherInfo, getMyLessonThumbnails } from '@/pages/mypage/apis/axios';
+import { getMyLessons, getMyLessonThumbnails, getMyPage, getMyTeacherInfo } from '@/pages/mypage/apis/axios';
 import type {
-  MyPageResponseTypes,
   LessonCountResponseTypes,
-  MyTeacherInfoResponseTypes,
   LessonThumbnailsResponseTypes,
+  MyPageResponseTypes,
+  MyTeacherInfoResponseTypes,
 } from '@/pages/mypage/types/api';
 import { memberKeys, teacherKeys } from '@/shared/constants/queryKey';
 
@@ -35,7 +35,8 @@ export const useGetMyLessonThumbnails = (
   currentRole?: string
 ): UseQueryResult<LessonThumbnailsResponseTypes, AxiosError> => {
   return useQuery<LessonThumbnailsResponseTypes, AxiosError>({
-    queryKey: memberKeys.thumbnails(),
+    queryKey: teacherKeys.thumbnails(),
+
     queryFn: getMyLessonThumbnails,
     enabled: currentRole === 'TEACHER',
   });

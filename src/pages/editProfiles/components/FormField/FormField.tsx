@@ -1,6 +1,7 @@
 import type { UseFormRegister } from 'react-hook-form';
 import * as styles from '@/pages/editProfiles/components/FormField/formField.css';
 import type { ProfileFormValues } from '@/pages/editProfiles/schema/profileSchema';
+import { allowOnlyNumberKey, allowOnlyNumberPaste } from '@/pages/editProfiles/utils/inputUtils';
 import { MAX_PHONENUMBER_LENGTH, MAX_NAME_LENGTH } from '@/pages/onboarding/constants';
 import Input from '@/shared/components/Input/Input';
 import Text from '@/shared/components/Text/Text';
@@ -26,10 +27,12 @@ const FormField = ({
   error,
   readOnly = false,
   validationMessage,
-  isFocused,
   onFocus,
   onBlur,
+  isFocused,
 }: FormFieldPropTypes) => {
+  const isPhoneNumber = name === 'phoneNumber';
+
   return (
     <div className={styles.fieldWrapperStyle}>
       <label>
@@ -41,8 +44,10 @@ const FormField = ({
         isError={!!error}
         maxLength={name === 'phoneNumber' ? MAX_PHONENUMBER_LENGTH : MAX_NAME_LENGTH}
         readOnly={readOnly}
+        isFocused={isFocused}
         onFocus={onFocus}
         onBlur={onBlur}
+        {...(isPhoneNumber && { inputMode: 'numeric', onKeyDown: allowOnlyNumberKey, onPaste: allowOnlyNumberPaste })}
       />
       <div className={styles.errorMessageStyle({ hasError: !!(error && error.message) })}>
         {error?.message && (
@@ -50,7 +55,7 @@ const FormField = ({
             {error.message}
           </Text>
         )}
-        {isFocused && validationMessage}
+        {validationMessage}
       </div>
     </div>
   );

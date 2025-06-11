@@ -20,5 +20,4 @@ export const buttonContainerStyle = style({
   bottom: '0',
   width: '100%',
   padding: '2.4rem 2rem 6.6rem 2rem',
-  // backgroundColor: vars.colors.white,
 });

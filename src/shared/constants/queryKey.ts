@@ -43,6 +43,7 @@ export const teacherKeys = {
   profile: (teacherId: number) => [...teacherKeys.all, teacherId],
   me: () => [...teacherKeys.all, 'me'],
   detail: () => [...teacherKeys.me(), 'detail'],
+  thumbnails: () => [...teacherKeys.me(), 'thumbnails'],
 };
 
 export const myPageKeys = {

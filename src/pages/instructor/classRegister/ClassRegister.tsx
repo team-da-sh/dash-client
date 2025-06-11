@@ -1,7 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useQueryClient } from '@tanstack/react-query';
 import type { FormEvent } from 'react';
-import { useController, useForm, FormProvider } from 'react-hook-form';
+import { FormProvider, useController, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { useGetLocationList, usePostClassRegisterInfo } from '@/pages/instructor/classRegister/apis/queries';
 import * as styles from '@/pages/instructor/classRegister/classRegister.css';
@@ -23,7 +23,7 @@ import type { LocationTypes } from '@/pages/instructor/classRegister/types/index
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import { genreEngMapping, levelEngMapping } from '@/shared/constants';
-import { lessonKeys, memberKeys } from '@/shared/constants/queryKey';
+import { memberKeys } from '@/shared/constants/queryKey';
 import useBottomSheet from '@/shared/hooks/useBottomSheet';
 import useDebounce from '@/shared/hooks/useDebounce';
 import useImageUploader from '@/shared/hooks/useImageUploader';
@@ -212,7 +212,7 @@ const ClassRegister = () => {
     handleDeleteUrl
   );
 
-  const debouncedSearchValue = useDebounce({ value: defaultPlace, delay: 500 });
+  const debouncedSearchValue = useDebounce({ value: defaultPlace, delay: 300 });
 
   const { data: locationList } = useGetLocationList(debouncedSearchValue);
 

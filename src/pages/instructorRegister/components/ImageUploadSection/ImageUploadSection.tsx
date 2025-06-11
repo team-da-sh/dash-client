@@ -1,6 +1,6 @@
 import * as styles from '@/pages/instructorRegister/components/ImageUploadSection/imageUploadSection.css';
 import IcCameraMain0624 from '@/shared/assets/svg/IcCameraMain0624';
-import defaultProfile from '/images/image_profile_basic.png';
+import IcProfileBasic from '@/shared/assets/svg/IcProfileBasic';
 
 interface ImageUploadSectionPropTypes {
   handleUploaderClick?: () => void;
@@ -21,8 +21,9 @@ const ImageUploadSection = ({
     <section className={styles.containerStyle} onClick={onClick}>
       <div
         className={styles.previewImgStyle}
-        style={previewImg ? { backgroundImage: `url(${previewImg})` } : { backgroundImage: `url(${defaultProfile})` }}
-        onClick={handleUploaderClick}>
+        onClick={handleUploaderClick}
+        style={previewImg ? { backgroundImage: `url(${previewImg})` } : undefined}>
+        {!previewImg && <IcProfileBasic />}
         <IcCameraMain0624 width={24} height={24} className={styles.icCameraStyle} />
       </div>
 

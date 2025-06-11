@@ -1,12 +1,12 @@
 import type { ReactNode } from 'react';
 import { tabRootStyle } from '@/shared/components/Tab/index.css';
 
-interface TabRootProps {
+interface TabRootPropTypes {
   children: ReactNode;
   className?: string;
 }
 
-const TabRoot = ({ children, className }: TabRootProps) => {
+const TabRoot = ({ children, className }: TabRootPropTypes) => {
   return <div className={`${tabRootStyle} ${className}`}>{children}</div>;
 };
 

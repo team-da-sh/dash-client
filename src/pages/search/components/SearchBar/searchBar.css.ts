@@ -8,16 +8,14 @@ export const containerStyle = style({
 
   display: 'flex',
   alignItems: 'center',
-  justifyContent: 'space-between',
-  gap: '0.6rem',
 
-  borderRadius: '9rem',
+  borderRadius: '90px',
   backgroundColor: vars.colors.gray01,
 });
 
 export const inputStyle = style({
-  width: '100%',
-  ...vars.fonts.b2_sb,
+  width: '21rem',
+  ...vars.fonts.b2_m,
 
   '::placeholder': {
     color: vars.colors.gray05,

@@ -7,10 +7,12 @@ export const useGetLocationList = (query: string) => {
   return useQuery({
     queryKey: locationKeys.search(query),
     queryFn: async () => {
+      if (!query.trim()) return null;
       return await getLocationList(query);
     },
-    enabled: query.trim().length > 0,
-    placeholderData: (prev) => prev,
+    placeholderData: query.trim() ? (prev) => prev : undefined,
+    retry: 0,
+    enabled: !!query.trim(),
   });
 };
 

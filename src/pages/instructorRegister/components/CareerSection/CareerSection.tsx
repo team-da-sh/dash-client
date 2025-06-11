@@ -58,7 +58,6 @@ const CareerSection = ({
           )
         }
         maxInputLength={MAX_CAREER_INPUT_LENGTH}
-        key={INSTRUCTOR_REGISTER_FORM_KEY.EDUCATIONS}
       />
 
       <InputSection
@@ -80,7 +79,6 @@ const CareerSection = ({
           )
         }
         maxInputLength={MAX_CAREER_INPUT_LENGTH}
-        key={INSTRUCTOR_REGISTER_FORM_KEY.EXPERIENCES}
       />
 
       <InputSection
@@ -102,7 +100,6 @@ const CareerSection = ({
           )
         }
         maxInputLength={MAX_CAREER_INPUT_LENGTH}
-        key={INSTRUCTOR_REGISTER_FORM_KEY.PRIZES}
       />
     </div>
   );

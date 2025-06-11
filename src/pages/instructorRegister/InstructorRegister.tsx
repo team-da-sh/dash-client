@@ -20,7 +20,8 @@ import { useGetRole } from '@/shared/apis/queries';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import Divider from '@/shared/components/Divider/Divider';
 import Head from '@/shared/components/Head/Head';
-import { authKeys } from '@/shared/constants/queryKey';
+import { notify } from '@/shared/components/Toast/Toast';
+import { authKeys, teacherKeys } from '@/shared/constants/queryKey';
 import { USER_ROLE } from '@/shared/constants/userRole';
 import useImageUploader from '@/shared/hooks/useImageUploader';
 import { setAccessToken, setRefreshToken } from '@/shared/utils/handleToken';
@@ -117,8 +118,8 @@ const InstructorRegister = () => {
       videoUrls: isVideoNoneChecked ? [] : videoUrls.filter((url) => url.trim() !== ''),
     };
 
-    // 강사 수정 성공 함수
-    const onSuccessEdit = (response: { data: { accessToken: string; refreshToken: string } }) => {
+    // 강사 등록 성공 함수
+    const onSuccessRegister = (response: { data: { accessToken: string; refreshToken: string } }) => {
       const { accessToken, refreshToken } = response.data;
 
       setAccessToken(accessToken);
@@ -129,20 +130,34 @@ const InstructorRegister = () => {
       navigate(ROUTES_CONFIG.instructorRegisterCompletion.path);
     };
 
+    // 강사 수정 성공 함수
+    const onSuccessEdit = () => {
+      // 강사 수정용 조회 API invalidate
+      queryClient.invalidateQueries({ queryKey: teacherKeys.me() });
+      // 마이페이지 강사 조회 API invalidate
+      queryClient.invalidateQueries({ queryKey: teacherKeys.detail() });
+      // 댄서 조회 API invalidate
+
+      navigate(ROUTES_CONFIG.mypage.withTab('teacher'));
+      notify('수정이 완료되었어요.', true);
+    };
+
     const onError = () => {
       navigate(ROUTES_CONFIG.error.path);
     };
 
-    // 강사 수정 (이미 강사 등록된 경우)
     if (isEditMode) {
+      // 강사 수정 (이미 강사 등록된 경우)
       instructorPatchMutate(updatedInfo, {
-        onSuccess: () => {
-          navigate(ROUTES_CONFIG.mypage.path);
-        },
+        onSuccess: onSuccessEdit,
         onError,
       });
     } else {
-      instructorRegisterMutate(updatedInfo, { onSuccess: onSuccessEdit, onError });
+      // 강사 등록 (아직 강사 등록 안된 경우)
+      instructorRegisterMutate(updatedInfo, {
+        onSuccess: onSuccessRegister,
+        onError,
+      });
     }
   };
 
@@ -177,12 +192,14 @@ const InstructorRegister = () => {
               </Head>
             </div>
 
-            <ImageUploadSection
-              imgRef={imgRef}
-              previewImg={previewImg}
-              uploadImgFile={uploadImgFile}
-              handleUploaderClick={handleUploaderClick}
-            />
+            <div className={styles.profileImageWrapperStyle}>
+              <ImageUploadSection
+                imgRef={imgRef}
+                previewImg={previewImg}
+                uploadImgFile={uploadImgFile}
+                handleUploaderClick={handleUploaderClick}
+              />
+            </div>
 
             <IntroductionSection register={register} error={errors.detail} detail={detail} />
           </div>

@@ -1,13 +1,14 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
-import { useForm, useController } from 'react-hook-form';
+import { useController, useForm } from 'react-hook-form';
 import { usePatchMyProfile } from '@/pages/editProfiles/api/queries';
 import BottomSheet from '@/pages/editProfiles/components/BottomSheet/BottomSheet';
 import FormField from '@/pages/editProfiles/components/FormField/FormField.tsx';
 import * as styles from '@/pages/editProfiles/components/ProfileForm/profileForm.css';
 import { MAX_NAME_LENGTH, MAX_NICKNAME_LENGTH } from '@/pages/editProfiles/constants/limit.ts';
-import { profileSchema, ProfileFormValues } from '@/pages/editProfiles/schema/profileSchema.ts';
-import { UpdateProfileRequestTypes } from '@/pages/editProfiles/types/api.ts';
+import type { ProfileFormValues } from '@/pages/editProfiles/schema/profileSchema.ts';
+import { profileSchema } from '@/pages/editProfiles/schema/profileSchema.ts';
+import type { UpdateProfileRequestTypes } from '@/pages/editProfiles/types/api.ts';
 import ImageUploadSection from '@/pages/instructorRegister/components/ImageUploadSection/ImageUploadSection.tsx';
 import { MAX_PHONENUMBER_LENGTH } from '@/pages/onboarding/constants';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
@@ -40,14 +41,6 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
     defaultValues,
     mode: 'onChange',
   });
-
-  const handleFocus = (fieldName: string) => {
-    setFocusedField(fieldName);
-  };
-
-  const handleBlur = () => {
-    setFocusedField(null);
-  };
 
   const { field } = useController({
     name: 'profileImageUrl',
@@ -98,6 +91,14 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
     editMyProfile(submitData);
   };
 
+  const handleFocus = (fieldName: string) => {
+    setFocusedField(fieldName);
+  };
+
+  const handleBlur = () => {
+    setFocusedField(null);
+  };
+
   const handleSelectImage = () => {
     handleUploaderClick();
   };
@@ -124,9 +125,9 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
           onFocus={() => handleFocus('nickname')}
           onBlur={handleBlur}
           validationMessage={
-            <Text
-              tag="b3_r"
-              color={errors.nickname ? 'alert3' : 'main4'}>{`${nickname?.length || 0}/${MAX_NICKNAME_LENGTH}`}</Text>
+            <Text tag="c1_m" color={errors.nickname ? 'alert3' : focusedField === 'nickname' ? 'main4' : 'gray9'}>
+              {`${nickname?.length || 0}/${MAX_NICKNAME_LENGTH}`}
+            </Text>
           }
         />
 
@@ -140,7 +141,9 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
           onFocus={() => handleFocus('name')}
           onBlur={handleBlur}
           validationMessage={
-            <Text tag="b3_r" color={errors.name ? 'alert3' : 'main4'}>{`${name?.length || 0}/${MAX_NAME_LENGTH}`}</Text>
+            <Text tag="c1_m" color={errors.name ? 'alert3' : focusedField === 'name' ? 'main4' : 'gray9'}>
+              {`${name?.length || 0}/${MAX_NAME_LENGTH}`}
+            </Text>
           }
         />
 
@@ -154,11 +157,9 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
           onFocus={() => handleFocus('phoneNumber')}
           onBlur={handleBlur}
           validationMessage={
-            <Text
-              tag="b3_r"
-              color={
-                errors.phoneNumber ? 'alert3' : 'main4'
-              }>{`${phoneNumber?.length || 0}/${MAX_PHONENUMBER_LENGTH}`}</Text>
+            <Text tag="c1_m" color={errors.phoneNumber ? 'alert3' : focusedField === 'phoneNumber' ? 'main4' : 'gray9'}>
+              {`${phoneNumber?.length || 0}/${MAX_PHONENUMBER_LENGTH}`}
+            </Text>
           }
         />
       </div>

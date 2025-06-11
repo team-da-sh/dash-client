@@ -30,17 +30,44 @@ export const profileSchema = z.object({
         PROFILE_IMAGE_ERRORS.INVALID_TYPE
       ),
   ]),
-  nickname: z
-    .string()
-    .min(MIN_NICKNAME_LENGTH, NICKNAME_ERRORS.REQUIRED)
-    .max(MAX_NICKNAME_LENGTH, NICKNAME_ERRORS.TOO_LONG)
-    .regex(/^[a-zA-Z0-9ㄱ-ㅎㅏ-ㅣ가-힣]+$/, NICKNAME_ERRORS.INVALID),
+  nickname: z.string().superRefine((val, ctx) => {
+    if (val.length === 0) {
+      ctx.addIssue({ code: 'custom', message: NICKNAME_ERRORS.REQUIRED });
+      return;
+    }
+    if (!/^[a-zA-Z0-9ㄱ-ㅎㅏ-ㅣ가-힣]+$/.test(val)) {
+      ctx.addIssue({ code: 'custom', message: NICKNAME_ERRORS.INVALID });
+      return;
+    }
+    if (val.length < MIN_NICKNAME_LENGTH) {
+      ctx.addIssue({ code: 'custom', message: NICKNAME_ERRORS.REQUIRED });
+      return;
+    }
+    if (val.length > MAX_NICKNAME_LENGTH) {
+      ctx.addIssue({ code: 'custom', message: NICKNAME_ERRORS.TOO_LONG });
+      return;
+    }
+  }),
+
   phoneNumber: z.string().regex(/^[0-9]\d{10}$/, PHONE_NUMBER_ERRORS.INVALID),
-  name: z
-    .string()
-    .min(MIN_NAME_LENGTH, NAME_ERRORS.REQUIRED)
-    .max(MAX_NAME_LENGTH, NAME_ERRORS.TOO_LONG)
-    .regex(/^[a-zA-Z0-9ㄱ-ㅎㅏ-ㅣ가-힣]+$/, NAME_ERRORS.INVALID),
+  name: z.string().superRefine((val, ctx) => {
+    if (val.length === 0) {
+      ctx.addIssue({ code: 'custom', message: NAME_ERRORS.REQUIRED });
+      return;
+    }
+    if (!/^[a-zA-Z0-9ㄱ-ㅎㅏ-ㅣ가-힣]+$/.test(val)) {
+      ctx.addIssue({ code: 'custom', message: NAME_ERRORS.INVALID });
+      return;
+    }
+    if (val.length < MIN_NAME_LENGTH) {
+      ctx.addIssue({ code: 'custom', message: NAME_ERRORS.REQUIRED });
+      return;
+    }
+    if (val.length > MAX_NAME_LENGTH) {
+      ctx.addIssue({ code: 'custom', message: NAME_ERRORS.TOO_LONG });
+      return;
+    }
+  }),
 });
 
 export type ProfileFormValues = z.infer<typeof profileSchema>;
