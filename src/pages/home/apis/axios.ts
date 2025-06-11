@@ -30,9 +30,3 @@ export const getLatestLessons = async () => {
 
   return data;
 };
-
-export const getPopularDancers = async () => {
-  const { data } = await instance.get(API_URL.TEACHERS_POPULAR);
-
-  return data;
-};

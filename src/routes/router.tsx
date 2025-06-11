@@ -1,28 +1,32 @@
+import { lazy } from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 import { LoginCallback } from '@/pages/auth/auth';
-import Class from '@/pages/class/Class';
-import Dancer from '@/pages/dancer/Dancer';
 import EditProfile from '@/pages/editProfiles/EditProfile';
-import Error from '@/pages/error/Error';
 import Home from '@/pages/home/Home';
-import ClassDetail from '@/pages/instructor/classDetail/ClassDetail';
-import ClassList from '@/pages/instructor/classList/ClassList';
-import ClassRegister from '@/pages/instructor/classRegister/ClassRegister';
 import ClassRegisterCompletion from '@/pages/instructor/classRegisterCompletion/ClassRegisterCompletion';
-import InstructorRegister from '@/pages/instructorRegister/InstructorRegister';
 import InstructorRegisterCompletion from '@/pages/instructorRegisterCompletion/InstructorRegisterCompletion';
-import Login from '@/pages/login/Login';
 import MyPage from '@/pages/mypage/MyPage';
-import MyPageReservation from '@/pages/mypage/components/mypageReservation/MypageReservation';
-import MyPageReservationDetail from '@/pages/mypage/components/mypageReservationDetail/MypageReservationDetail';
-import Onboarding from '@/pages/onboarding/Onboarding';
-import Reservation from '@/pages/reservation/Reservation';
 import { CheckoutPage } from '@/pages/reservation/components/TossPayments/CheckOut/CheckOut';
 import { FailPage } from '@/pages/reservation/components/TossPayments/Fail/Fail';
 import { SuccessPage } from '@/pages/reservation/components/TossPayments/Success/Success';
-import Search from '@/pages/search/Search';
 import Layout from '@/layout/Layout';
 import { ROUTES_CONFIG } from './routesConfig';
+
+const Login = lazy(() => import('@/pages/login/Login'));
+const Onboarding = lazy(() => import('@/pages/onboarding/Onboarding'));
+const Search = lazy(() => import('@/pages/search/Search'));
+const Class = lazy(() => import('@/pages/class/Class'));
+const Dancer = lazy(() => import('@/pages/dancer/Dancer'));
+const Reservation = lazy(() => import('@/pages/reservation/Reservation'));
+const MyPageReservation = lazy(() => import('@/pages/mypage/components/mypageReservation/MypageReservation.tsx'));
+const MyPageReservationDetail = lazy(
+  () => import('@/pages/mypage/components/mypageReservationDetail/MypageReservationDetail.tsx')
+);
+const ClassRegister = lazy(() => import('@/pages/instructor/classRegister/ClassRegister'));
+const InstructorRegister = lazy(() => import('@/pages/instructorRegister/InstructorRegister'));
+const ClassDetail = lazy(() => import('@/pages/instructor/classDetail/ClassDetail'));
+const ClassList = lazy(() => import('@/pages/instructor/classList/ClassList'));
+const Error = lazy(() => import('@/pages/error/Error'));
 
 export const router = createBrowserRouter([
   {

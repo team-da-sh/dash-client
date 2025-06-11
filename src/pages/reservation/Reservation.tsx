@@ -30,7 +30,7 @@ const Reservation = () => {
   }
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const { data, isError, isLoading } = useGetReservaion(id);
+  const { data, isError, isLoading } = useGetReservaion(+id);
 
   if (isLoading) {
     return <></>;

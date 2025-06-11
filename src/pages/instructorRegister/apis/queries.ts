@@ -10,7 +10,7 @@ import type {
   InstructorRegisterInfoResponseTypes,
   InstructorRegisterRequestTypes,
 } from '@/pages/instructorRegister/types/api';
-import { QUERY_KEYS } from '@/shared/constants/queryKey';
+import { teacherKeys } from '@/shared/constants/queryKey';
 import { USER_ROLE } from '@/shared/constants/userRole';
 
 export const usePostInstructor = () => {
@@ -23,7 +23,7 @@ export const useGetInstructorRegisterInfo = (
   userRole: string
 ): UseQueryResult<InstructorRegisterInfoResponseTypes, AxiosError> => {
   return useQuery({
-    queryKey: [QUERY_KEYS.TEACHER_DETAIL_INTRODUCTION],
+    queryKey: teacherKeys.me._ctx.detail.queryKey,
     queryFn: () => getInstructorRegisterInfo(),
     enabled: userRole === USER_ROLE.TEACHER,
   });

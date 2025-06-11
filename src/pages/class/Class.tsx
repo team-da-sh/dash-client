@@ -17,7 +17,7 @@ const Class = () => {
   }
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const { data, isError, isLoading } = useGetLessonDetail(id);
+  const { data, isError, isLoading } = useGetLessonDetail(+id);
 
   if (isLoading) {
     return <></>;

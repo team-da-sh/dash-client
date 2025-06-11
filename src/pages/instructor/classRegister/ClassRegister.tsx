@@ -23,7 +23,7 @@ import type { LocationTypes } from '@/pages/instructor/classRegister/types/index
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import { genreEngMapping, levelEngMapping } from '@/shared/constants';
-import { QUERY_KEYS } from '@/shared/constants/queryKey';
+import { lessonKeys, memberKeys } from '@/shared/constants/queryKey';
 import useBottomSheet from '@/shared/hooks/useBottomSheet';
 import useDebounce from '@/shared/hooks/useDebounce';
 import useImageUploader from '@/shared/hooks/useImageUploader';
@@ -185,7 +185,9 @@ const ClassRegister = () => {
 
       classRegisterMutate(updatedInfo, {
         onSuccess: () => {
-          queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.MEMBERS_ME] });
+          queryClient.invalidateQueries({ queryKey: memberKeys.me.queryKey });
+          queryClient.invalidateQueries({ queryKey: lessonKeys.list.queryKey });
+
           navigate(ROUTES_CONFIG.classRegisterCompletion.path);
         },
         onError: () => {
