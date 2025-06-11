@@ -9,6 +9,7 @@ interface lessonSearchTypes {
 
 export const lessonKeys = {
   all: ['lessons'] as const,
+  // 기준키
   list: () => [...lessonKeys.all, 'list'],
   latest: () => [...lessonKeys.list(), 'latest'],
   popular_genre: () => [...lessonKeys.list(), 'popular'],
@@ -29,21 +30,23 @@ export const lessonKeys = {
 export const memberKeys = {
   all: ['members'] as const,
   me: () => [memberKeys.all, 'me'],
-  lessons: () => [...memberKeys.me(), 'lessons'],
-  lessons_thumbnails: () => [...memberKeys.lessons(), 'thumbnails'],
   reservations: () => [...memberKeys.me(), 'reservations'],
-  reservations_list: () => [...memberKeys.reservations(), 'list'],
   reservations_detail: (reservationId: number) => [...memberKeys.reservations(), reservationId],
-  statistics: () => [memberKeys.reservations, 'statistics'],
+  reservations_statistics: () => [memberKeys.reservations, 'statistics'],
 };
 
 export const teacherKeys = {
   all: ['teachers'] as const,
-  search: (keyword: string) => [teacherKeys.all, keyword],
-  profile: (teacherId: number) => [...teacherKeys.all, teacherId],
+  // 기준키
+  list: () => [...teacherKeys.all, 'list'],
+  search: (keyword: string) => [teacherKeys.list(), keyword],
+  profile: (teacherId: number) => [...teacherKeys.list(), teacherId],
+
   me: () => [...teacherKeys.all, 'me'],
   detail: () => [...teacherKeys.me(), 'detail'],
-  thumbnails: () => [...teacherKeys.me(), 'thumbnails'],
+  lessons: () => [...teacherKeys.me(), 'lessons'],
+  thumbnails: () => [...teacherKeys.lessons(), 'thumbnails'],
+  detail: (lessonId: number) => [...teacherKeys.lessons(), lessonId],
 };
 
 export const myPageKeys = {
