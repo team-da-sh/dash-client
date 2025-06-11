@@ -1,14 +1,5 @@
-// queryKeys/lessonKeys.ts
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { createQueryKeys, mergeQueryKeys } from '@lukemorales/query-key-factory';
-
-export type LessonSearchTypes = {
-  genre: string;
-  level: string;
-  startDate: string;
-  endDate: string;
-  sortOption: string;
-  keyword: string;
-};
 
 export const lessonKeys = createQueryKeys('lesson', {
   detail: (lessonId: number) => [lessonId],
@@ -19,7 +10,7 @@ export const lessonKeys = createQueryKeys('lesson', {
       latest: { queryKey: null },
       popular_genre: { queryKey: null },
       upcoming: { queryKey: null },
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+
       search: (keyword: any) => ({
         queryKey: [keyword] as const,
       }),
@@ -47,7 +38,6 @@ export const teacherKeys = createQueryKeys('teacher', {
   list: {
     queryKey: null,
     contextQueries: {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       search: (keyword: any) => ({ queryKey: [keyword] }),
     },
   },
@@ -75,7 +65,6 @@ export const myPageKeys = createQueryKeys('myPage', {
 export const advertisementKeys = createQueryKeys('advertisements', {});
 
 export const locationKeys = createQueryKeys('locations', {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   search: (keyword: any) => ({ queryKey: [keyword] }),
 });
 
@@ -84,4 +73,12 @@ export const authKeys = createQueryKeys('auth', {
   role: { queryKey: null },
 });
 
-export const queryKeys = mergeQueryKeys(lessonKeys);
+export const queryKeys = mergeQueryKeys(
+  lessonKeys,
+  memberKeys,
+  teacherKeys,
+  myPageKeys,
+  advertisementKeys,
+  locationKeys,
+  authKeys
+);
