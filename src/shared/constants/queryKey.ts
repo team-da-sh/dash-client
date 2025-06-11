@@ -1,70 +1,87 @@
-interface lessonSearchTypes {
+// queryKeys/lessonKeys.ts
+import { createQueryKeys, mergeQueryKeys } from '@lukemorales/query-key-factory';
+
+export type LessonSearchTypes = {
   genre: string;
   level: string;
-  startDate: string | Date;
-  endDate: string | Date;
+  startDate: string;
+  endDate: string;
   sortOption: string;
   keyword: string;
-}
-
-export const lessonKeys = {
-  all: ['lessons'] as const,
-  // 기준키
-  list: () => [...lessonKeys.all, 'list'],
-  latest: () => [...lessonKeys.list(), 'latest'],
-  popular_genre: () => [...lessonKeys.list(), 'popular'],
-  upcoming: () => [...lessonKeys.list(), 'upcoming'],
-  search: ({ genre, level, startDate, endDate, sortOption, keyword }: lessonSearchTypes) => [
-    ...lessonKeys.list(),
-    genre,
-    level,
-    startDate,
-    endDate,
-    sortOption,
-    keyword,
-  ],
-  detail: (lessonId: number) => [...lessonKeys.all, lessonId],
-  reserve_progress: (lessonId: number) => [...lessonKeys.detail(lessonId), 'reserve-progress'],
 };
 
-export const memberKeys = {
-  all: ['members'] as const,
-  me: () => [memberKeys.all, 'me'],
-  reservations: () => [...memberKeys.me(), 'reservations'],
-  reservations_detail: (reservationId: number) => [...memberKeys.reservations(), reservationId],
-  reservations_statistics: () => [memberKeys.reservations, 'statistics'],
-};
+export const lessonKeys = createQueryKeys('lesson', {
+  detail: (lessonId: number) => [lessonId],
 
-export const teacherKeys = {
-  all: ['teachers'] as const,
-  // 기준키
-  list: () => [...teacherKeys.all, 'list'],
-  search: (keyword: string) => [teacherKeys.list(), keyword],
-  profile: (teacherId: number) => [...teacherKeys.list(), teacherId],
+  list: {
+    queryKey: null,
+    contextQueries: {
+      latest: { queryKey: null },
+      popular_genre: { queryKey: null },
+      upcoming: { queryKey: null },
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      search: (keyword: any) => ({
+        queryKey: [keyword] as const,
+      }),
+    },
+  },
+});
 
-  me: () => [...teacherKeys.all, 'me'],
-  detail: () => [...teacherKeys.me(), 'detail'],
-  lessons: () => [...teacherKeys.me(), 'lessons'],
-  thumbnails: () => [...teacherKeys.lessons(), 'thumbnails'],
-  detail: (lessonId: number) => [...teacherKeys.lessons(), lessonId],
-};
+export const memberKeys = createQueryKeys('member', {
+  me: {
+    queryKey: null,
+    contextQueries: {
+      reservation: {
+        queryKey: null,
+        contextQueries: {
+          list: { queryKey: null },
+          detail: (reservationId: number) => ({ queryKey: [reservationId] }),
+          statistics: { queryKey: ['statistics'] },
+        },
+      },
+    },
+  },
+});
 
-export const myPageKeys = {
-  all: ['myPage'] as const,
-  favorites: () => [...myPageKeys.all, 'favorites'],
-};
+export const teacherKeys = createQueryKeys('teacher', {
+  list: {
+    queryKey: null,
+    contextQueries: {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      search: (keyword: any) => ({ queryKey: [keyword] }),
+    },
+  },
+  me: {
+    queryKey: null,
+    contextQueries: {
+      profile: (teacherId: number) => ({ queryKey: [teacherId] }),
+      detail: { queryKey: null },
+      lesson: {
+        queryKey: null,
+        contextQueries: {
+          list: { queryKey: null },
+          thumbnails: { queryKey: null },
+          students: (lessonId: number) => ({ queryKey: [lessonId] }),
+        },
+      },
+    },
+  },
+});
 
-export const advertisementKeys = {
-  all: ['advertisements'] as const,
-};
+export const myPageKeys = createQueryKeys('myPage', {
+  favorites: { queryKey: null },
+});
 
-export const locationKeys = {
-  all: ['locations'] as const,
-  search: (keyword: string) => [...locationKeys.all, keyword],
-};
+export const advertisementKeys = createQueryKeys('advertisements', {});
 
-export const authKeys = {
-  all: ['auth'] as const,
-  reissue: () => [...authKeys.all, 'reissue'],
-  role: () => [...authKeys.all, 'role'],
-};
+export const locationKeys = createQueryKeys('locations', {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  search: (keyword: any) => ({ queryKey: [keyword] }),
+});
+
+export const authKeys = createQueryKeys('auth', {
+  reissue: { queryKey: null },
+  role: { queryKey: null },
+});
+
+export const queryKeys = mergeQueryKeys(lessonKeys);

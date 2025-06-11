@@ -15,7 +15,7 @@ export const useImageMutation = () => {
 
 export const useGetRole = () => {
   return useQuery<RoleNameResponseTypes>({
-    queryKey: authKeys.role(),
+    queryKey: authKeys.role.queryKey,
     queryFn: postRole,
   });
 };

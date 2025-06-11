@@ -29,7 +29,7 @@ export const useGetPopularGenres = () => {
   };
 
   return useQuery<PopularGenreResponseTypes>({
-    queryKey: lessonKeys.popular_genre(),
+    queryKey: lessonKeys.list._ctx.popular_genre.queryKey,
     queryFn: () => getPopularGenres(),
     select: transformGenres,
   });
@@ -37,14 +37,14 @@ export const useGetPopularGenres = () => {
 
 export const useGetUpcomingLessons = () => {
   return useQuery<UpcomingLessonsResponseTypes>({
-    queryKey: lessonKeys.upcoming(),
+    queryKey: lessonKeys.list._ctx.upcoming.queryKey,
     queryFn: () => getUpcommingLessons(),
   });
 };
 
 export const useGetLatestLessons = () => {
   return useQuery<LatestLessonsResponseTypes>({
-    queryKey: lessonKeys.latest(),
+    queryKey: lessonKeys.list._ctx.latest.queryKey,
     queryFn: () => getLatestLessons(),
   });
 };

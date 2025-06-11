@@ -23,7 +23,7 @@ export const useGetInstructorRegisterInfo = (
   userRole: string
 ): UseQueryResult<InstructorRegisterInfoResponseTypes, AxiosError> => {
   return useQuery({
-    queryKey: teacherKeys.detail(),
+    queryKey: teacherKeys.me._ctx.detail.queryKey,
     queryFn: () => getInstructorRegisterInfo(),
     enabled: userRole === USER_ROLE.TEACHER,
   });

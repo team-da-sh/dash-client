@@ -6,7 +6,7 @@ import { teacherKeys } from '@/shared/constants/queryKey';
 
 export const useGetDancerDetail = (teacherId: string) => {
   return useQuery<DancerDetailResponseTypes, AxiosError>({
-    queryKey: teacherKeys.detail(),
+    queryKey: teacherKeys.me._ctx.profile(+teacherId).queryKey,
     queryFn: () => getDancerDetail(teacherId),
   });
 };

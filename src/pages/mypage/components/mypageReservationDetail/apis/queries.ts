@@ -5,7 +5,7 @@ import { memberKeys } from '@/shared/constants/queryKey';
 
 export const useGetReservationsDetail = (lessonId: number) => {
   return useQuery<ReservationDetailType>({
-    queryKey: memberKeys.reservations_detail(lessonId),
+    queryKey: memberKeys.me._ctx.reservation._ctx.detail(lessonId).queryKey,
     queryFn: () => getReservationsDetail(lessonId),
 
     // reservationId가 없으면 쿼리 비활성화

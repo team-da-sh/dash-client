@@ -125,7 +125,7 @@ const InstructorRegister = () => {
       setAccessToken(accessToken);
       setRefreshToken(refreshToken);
 
-      queryClient.invalidateQueries({ queryKey: authKeys.role() });
+      queryClient.invalidateQueries({ queryKey: authKeys.role.queryKey });
 
       navigate(ROUTES_CONFIG.instructorRegisterCompletion.path);
     };
@@ -133,10 +133,10 @@ const InstructorRegister = () => {
     // 강사 수정 성공 함수
     const onSuccessEdit = () => {
       // 강사 수정용 조회 API invalidate
-      queryClient.invalidateQueries({ queryKey: teacherKeys.me() });
-      // 마이페이지 강사 조회 API invalidate
-      queryClient.invalidateQueries({ queryKey: teacherKeys.detail() });
+      queryClient.invalidateQueries({ queryKey: teacherKeys.me.queryKey });
+
       // 댄서 조회 API invalidate
+      queryClient.invalidateQueries({ queryKey: teacherKeys.list.queryKey });
 
       navigate(ROUTES_CONFIG.mypage.withTab('teacher'));
       notify('수정이 완료되었어요.', true);

@@ -6,7 +6,7 @@ import { lessonKeys } from '@/shared/constants/queryKey';
 
 export const useGetLessonDetail = (lessonId: number) => {
   return useQuery<LessonDetailResponseTypes, AxiosError>({
-    queryKey: lessonKeys.detail(lessonId),
+    queryKey: lessonKeys.detail(lessonId).queryKey,
     queryFn: () => getLessonDetail(lessonId),
   });
 };

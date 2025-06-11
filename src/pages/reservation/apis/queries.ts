@@ -6,7 +6,7 @@ import { lessonKeys, memberKeys } from '@/shared/constants/queryKey';
 
 export const useGetReservaion = (lessonId: number) => {
   return useQuery<ReservationDetailResponseTypes, AxiosError>({
-    queryKey: lessonKeys.reserve_progress(lessonId),
+    queryKey: lessonKeys.detail(lessonId).queryKey,
     queryFn: () => getReservation(lessonId),
   });
 };
@@ -21,7 +21,7 @@ export const usePostReservation = () => {
   >({
     mutationFn: ({ lessonId, paymentKey, orderId, amount }) => postReservation(lessonId, paymentKey, orderId, amount),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: memberKeys.me() });
+      queryClient.invalidateQueries({ queryKey: memberKeys.me._ctx.reservation.queryKey });
     },
   });
 };

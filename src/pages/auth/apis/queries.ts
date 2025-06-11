@@ -49,6 +49,6 @@ export const usePostLogout = () => {
 export const usePostReissue = () => {
   return useQuery({
     queryFn: postReissue,
-    queryKey: authKeys.reissue(),
+    queryKey: authKeys.reissue.queryKey,
   });
 };

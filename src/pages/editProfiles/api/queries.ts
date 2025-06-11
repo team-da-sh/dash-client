@@ -13,7 +13,7 @@ export const usePatchMyProfile = () => {
   return useMutation({
     mutationFn: (profileData: UpdateProfileRequestTypes) => patchMyProfile(profileData),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: memberKeys.me() });
+      queryClient.invalidateQueries({ queryKey: memberKeys.me.queryKey });
       navigate(ROUTES_CONFIG.mypage.path);
 
       notify('수정이 완료되었어요', true);

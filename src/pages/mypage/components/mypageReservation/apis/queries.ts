@@ -5,7 +5,7 @@ import type { ReservationResponseTypes } from '../types/api';
 
 export const useGetReservations = () => {
   return useQuery<ReservationResponseTypes>({
-    queryKey: memberKeys.reservations(),
+    queryKey: memberKeys.me._ctx.reservation.queryKey,
     queryFn: getReservations,
   });
 };

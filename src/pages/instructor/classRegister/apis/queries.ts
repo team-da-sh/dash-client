@@ -5,7 +5,7 @@ import { getLocationList, postClassRegisterInfo } from './axios';
 // TODO: keyword 필수인지 질문
 export const useGetLocationList = (query: string) => {
   return useQuery({
-    queryKey: locationKeys.search(query),
+    queryKey: locationKeys.search(query).queryKey,
     queryFn: async () => {
       if (!query.trim()) return null;
       return await getLocationList(query);
