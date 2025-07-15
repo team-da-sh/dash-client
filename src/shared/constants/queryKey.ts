@@ -1,43 +1,87 @@
-export const QUERY_KEYS = {
-  AUTH_LOGIN: 'auth_login',
-  AUTH_REISSUE: 'auth_reissue',
-  AUTH_LOGOUT: 'auth_logout',
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { createQueryKeys, mergeQueryKeys } from '@lukemorales/query-key-factory';
+import type { ClassListParamsTypes } from '@/pages/search/types/api';
 
-  MEMBERS_ME: 'members_me',
-  MEMBERS_RESERVATIONS: 'members_reservations',
-  MEMBERS_RESERVATION_DETAIL: 'members_reservation_detail',
-  MEMBERS_RESERVATION_STATISTICS: 'members_reservation_statistics',
+type SearchKeyword = string | number | ClassListParamsTypes;
 
-  TEACHERS: 'teachers',
-  TEACHERS_ME: 'teachers_me',
-  TEACHERS_ME_THUMBNAILS: 'teachers_me_thumbnails',
-  TEACHER_DETAIL: 'teacher_detail',
-  TEACHER_DETAIL_INTRODUCTION: 'teacher_detail_introduction',
-  TEACHERS_POPULAR: 'teachers_popular',
-  TEACHERS_SEARCH: 'teachers_search',
+export const lessonKeys = createQueryKeys('lesson', {
+  detail: (lessonId: number) => [lessonId],
 
-  LESSONS: 'lessons',
-  LESSON_DETAIL: 'lesson_detail',
-  LESSONS_LATEST: 'lessons_latest',
-  LESSONS_POPULAR_GENRES: 'lessons_popular_genres',
-  LESSONS_UPCOMING: 'lessons_upcoming',
-  LESSONS_FAVORITES: 'lessons_favorites',
-  LESSON_RESERVE_PROGRESS: 'lesson_reserve_progress',
-  LESSON_RESERVATION: 'lesson_reservation',
+  list: {
+    queryKey: null,
+    contextQueries: {
+      latest: { queryKey: null },
+      popular_genre: { queryKey: null },
+      upcoming: { queryKey: null },
 
-  MY_PAGE_FAVORITES: 'my_page_favorites',
-  MY_PAGE_LESSONS: 'my_page_lessons',
-  MY_PAGE_LESSON_DETAIL: 'my_page_lesson_detail',
+      search: (keyword: SearchKeyword) => ({
+        queryKey: [keyword] as const,
+      }),
+    },
+  },
+});
 
-  ADVERTISEMENTS: 'advertisements',
+export const memberKeys = createQueryKeys('member', {
+  me: {
+    queryKey: null,
+    contextQueries: {
+      reservation: {
+        queryKey: null,
+        contextQueries: {
+          list: { queryKey: null },
+          detail: (reservationId: number) => ({ queryKey: [reservationId] }),
+          statistics: { queryKey: ['statistics'] },
+        },
+      },
+    },
+  },
+});
 
-  SEARCH_LESSONS: 'search_lessons',
+export const teacherKeys = createQueryKeys('teacher', {
+  list: {
+    queryKey: null,
+    contextQueries: {
+      search: (keyword: any) => ({ queryKey: [keyword] }),
+    },
+  },
+  me: {
+    queryKey: null,
+    contextQueries: {
+      profile: (teacherId: number) => ({ queryKey: [teacherId] }),
+      detail: { queryKey: null },
+      lesson: {
+        queryKey: null,
+        contextQueries: {
+          list: { queryKey: null },
+          thumbnails: { queryKey: null },
+          students: (lessonId: number) => ({ queryKey: [lessonId] }),
+        },
+      },
+    },
+  },
+});
 
-  LOCATIONS: 'locations',
+export const myPageKeys = createQueryKeys('myPage', {
+  favorites: { queryKey: null },
+});
 
-  AUTH_ROLE: 'auth_role',
+export const advertisementKeys = createQueryKeys('advertisements', {});
 
-  IMAGES: 'images',
+export const locationKeys = createQueryKeys('locations', {
+  search: (keyword: any) => ({ queryKey: [keyword] }),
+});
 
-  ROLE: 'role',
-};
+export const authKeys = createQueryKeys('auth', {
+  reissue: { queryKey: null },
+  role: { queryKey: null },
+});
+
+export const queryKeys = mergeQueryKeys(
+  lessonKeys,
+  memberKeys,
+  teacherKeys,
+  myPageKeys,
+  advertisementKeys,
+  locationKeys,
+  authKeys
+);

@@ -14,7 +14,7 @@ const BottomList = () => {
   const { mutate: logout } = usePostLogout();
 
   const handleItemClick = (item: (typeof LIST_DATA)[number]) => {
-    if (item.inActive) return notify('해당 기능은 추후 구현 예정이에요');
+    if (item.inActive) return notify({ message: '해당 기능은 추후 구현 예정이에요' });
     if (item.isNavigate) {
       window.open(GOOGLE_FORM_LINK, '_blank');
       return;

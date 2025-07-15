@@ -13,7 +13,6 @@ export const API_URL = {
   TEACHERS: '/api/v1/teachers',
   TEACHER_DETAIL: '/api/v1/teachers',
   TEACHERS_ME: '/api/v1/teachers/me',
-  TEACHER_ME: '/api/v1/teachers/me',
   TEACHERS_LESSONS_DETAIL: '/api/v1/teachers/me/lessons',
   TEACHER_DETAIL_INTRODUCTION: '/api/v1/teachers/me/detail',
   TEACHER_ME_THUMBNAILS: '/api/v1/teachers/me/lessons/thumbnails',

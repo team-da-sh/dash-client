@@ -21,7 +21,7 @@ import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import Divider from '@/shared/components/Divider/Divider';
 import Head from '@/shared/components/Head/Head';
 import { notify } from '@/shared/components/Toast/Toast';
-import { QUERY_KEYS } from '@/shared/constants/queryKey';
+import { authKeys, teacherKeys } from '@/shared/constants/queryKey';
 import { USER_ROLE } from '@/shared/constants/userRole';
 import useImageUploader from '@/shared/hooks/useImageUploader';
 import { setAccessToken, setRefreshToken } from '@/shared/utils/handleToken';
@@ -125,7 +125,7 @@ const InstructorRegister = () => {
       setAccessToken(accessToken);
       setRefreshToken(refreshToken);
 
-      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.AUTH_ROLE] });
+      queryClient.invalidateQueries({ queryKey: authKeys.role.queryKey });
 
       navigate(ROUTES_CONFIG.instructorRegisterCompletion.path);
     };
@@ -133,14 +133,13 @@ const InstructorRegister = () => {
     // 강사 수정 성공 함수
     const onSuccessEdit = () => {
       // 강사 수정용 조회 API invalidate
-      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.TEACHER_DETAIL_INTRODUCTION] });
-      // 마이페이지 강사 조회 API invalidate
-      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.TEACHERS_ME] });
+      queryClient.invalidateQueries({ queryKey: teacherKeys.me.queryKey });
+
       // 댄서 조회 API invalidate
-      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.TEACHER_DETAIL] });
+      queryClient.invalidateQueries({ queryKey: teacherKeys.list.queryKey });
 
       navigate(ROUTES_CONFIG.mypage.withTab('teacher'));
-      notify('수정이 완료되었어요.', true);
+      notify({ message: '수정이 완료되었어요.', icon: 'success' });
     };
 
     const onError = () => {
