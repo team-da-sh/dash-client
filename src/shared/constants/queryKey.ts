@@ -1,5 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { createQueryKeys, mergeQueryKeys } from '@lukemorales/query-key-factory';
+import type { ClassListParamsTypes } from '@/pages/search/types/api';
+
+type SearchKeyword = string | number | ClassListParamsTypes;
 
 export const lessonKeys = createQueryKeys('lesson', {
   detail: (lessonId: number) => [lessonId],
@@ -11,7 +14,7 @@ export const lessonKeys = createQueryKeys('lesson', {
       popular_genre: { queryKey: null },
       upcoming: { queryKey: null },
 
-      search: (keyword: any) => ({
+      search: (keyword: SearchKeyword) => ({
         queryKey: [keyword] as const,
       }),
     },
