@@ -1,4 +1,5 @@
 import { MutationCache, QueryClient } from '@tanstack/react-query';
+import { isAxiosError } from 'axios';
 import { notify } from '@/shared/components/Toast/Toast';
 
 const DEFAULT_ERROR_MESSAGE = '요청에 실패했어요.';
@@ -11,9 +12,12 @@ const queryClient = new QueryClient({
     },
   },
   mutationCache: new MutationCache({
-    onError(error, vars, ctx, mutation) {
+    onError(error, _, __, mutation) {
+      const message =
+        mutation.meta?.errorMessage || (isAxiosError(error) && error.response?.data?.message) || DEFAULT_ERROR_MESSAGE;
+
       if (mutation.meta?.shouldShowToastMessage) {
-        notify(mutation.meta?.errorMessage || DEFAULT_ERROR_MESSAGE, true);
+        notify({ message: message || DEFAULT_ERROR_MESSAGE, icon: 'fail' });
       }
     },
   }),

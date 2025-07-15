@@ -41,5 +41,6 @@ interface ClassRegisterInfoTypes {
 export const usePostClassRegisterInfo = () => {
   return useMutation({
     mutationFn: (infoData: ClassRegisterInfoTypes) => postClassRegisterInfo(infoData),
+    meta: { shouldShowToastMessage: true },
   });
 };
