@@ -5,7 +5,7 @@ import { kakaoLogin, postLogout, postReissue } from '@/pages/auth/apis/axios';
 import type { loginTypes } from '@/pages/auth/types/api';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { instance } from '@/shared/apis/instance';
-import { QUERY_KEYS } from '@/shared/constants/queryKey';
+import { authKeys } from '@/shared/constants/queryKey';
 import { clearStorage, setStorage } from '@/shared/utils/handleToken';
 
 export const useLoginMutation = () => {
@@ -49,6 +49,6 @@ export const usePostLogout = () => {
 export const usePostReissue = () => {
   return useQuery({
     queryFn: postReissue,
-    queryKey: [QUERY_KEYS.AUTH_REISSUE],
+    queryKey: authKeys.reissue.queryKey,
   });
 };
