@@ -16,7 +16,7 @@ export const usePatchMyProfile = () => {
       queryClient.invalidateQueries({ queryKey: memberKeys.me.queryKey });
       navigate(ROUTES_CONFIG.mypage.path);
 
-      notify('수정이 완료되었어요', true);
+      notify({ message: '수정이 완료되었어요', icon: 'success' });
     },
     onError: (error: Error) => {
       navigate(ROUTES_CONFIG.error.path);

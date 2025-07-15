@@ -13,7 +13,7 @@ const MenuButton = ({ path, icon: Icon, label, inActive }: MenuButtonPropTypes) 
   const navigate = useNavigate();
 
   const handleClick = () => {
-    if (inActive) return notify('해당 기능은 추후 구현 예정이에요');
+    if (inActive) return notify({ message: '해당 기능은 추후 구현 예정이에요' });
     if (path) return navigate(path);
   };
 
