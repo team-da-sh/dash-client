@@ -3,6 +3,7 @@ import HomeCarousel from '@/pages/home/components/HomeCarousel/HomeCarousel';
 import LatestLessons from '@/pages/home/components/LatestLessons/LatestLessons';
 import PopularGenre from '@/pages/home/components/PopularGenre/PopularGenre';
 import UpcomingLessones from '@/pages/home/components/UpcomingLessons/UpcomingLessons';
+import { FetchErrorBoundary } from '@/shared/components/FetchErrorBoundary/FetchErrorBoundary';
 
 const images = '/images/image_kkukgirl.webp';
 
@@ -17,9 +18,12 @@ const Home = () => {
   return (
     <main>
       <HomeCarousel />
-      <LatestLessons />
-      <PopularGenre />
-      <UpcomingLessones />
+      <FetchErrorBoundary>
+        <LatestLessons />
+        <PopularGenre />
+        <UpcomingLessones />
+      </FetchErrorBoundary>
+
       <Footer />
     </main>
   );
