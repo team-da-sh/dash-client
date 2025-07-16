@@ -7,7 +7,8 @@ import { errorContainerStyle, buttonContainer } from '@/shared/components/FetchE
 import Spinner from '@/shared/components/Spinner/Spinner';
 import Text from '@/shared/components/Text/Text';
 
-export const FetchFallback = ({ resetErrorBoundary, error }: FallbackProps) => {
+const FetchErrorFallback = ({ resetErrorBoundary, error }: FallbackProps) => {
+  // 예상하지 못한 에러이면 GlobalErrorBoundary로 에러처리 위임
   if (error.status >= 500) {
     throw error;
   }
@@ -28,7 +29,7 @@ export const FetchErrorBoundary = ({ children }: { children: ReactNode }) => {
   const { reset } = useQueryErrorResetBoundary();
 
   return (
-    <ErrorBoundary FallbackComponent={FetchFallback} onReset={reset}>
+    <ErrorBoundary FallbackComponent={FetchErrorFallback} onReset={reset}>
       <Suspense
         fallback={
           <div className={errorContainerStyle}>

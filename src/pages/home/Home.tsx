@@ -23,7 +23,6 @@ const Home = () => {
         <PopularGenre />
         <UpcomingLessones />
       </FetchErrorBoundary>
-
       <Footer />
     </main>
   );
