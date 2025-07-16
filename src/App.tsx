@@ -31,9 +31,7 @@ const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={false} />
-
       <RouterProvider router={router} />
-
       <Toaster containerStyle={{ margin: '0 auto' }} />
     </QueryClientProvider>
   );

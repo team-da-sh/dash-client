@@ -10,7 +10,7 @@ const queryClient = new QueryClient({
       throwOnError: true,
       staleTime: 1000 * 60 * 1, // 1분 후 stale 상태로 처리
       refetchOnWindowFocus: false, // 브라우저 창이 다시 focus를 하면 refetch되는 옵션 off
-      retry: 0,
+      retry: 3,
     },
   },
   mutationCache: new MutationCache({

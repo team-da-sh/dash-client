@@ -1,6 +1,5 @@
 import { useQueryErrorResetBoundary } from '@tanstack/react-query';
-import type { ReactNode } from 'react';
-import { Suspense } from 'react';
+import { Suspense, type ReactNode } from 'react';
 import { ErrorBoundary, type FallbackProps } from 'react-error-boundary';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import { errorContainerStyle, buttonContainer } from '@/shared/components/FetchErrorBoundary/fetchErrorBoundary.css';

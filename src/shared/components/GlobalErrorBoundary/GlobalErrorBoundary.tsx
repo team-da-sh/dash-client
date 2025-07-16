@@ -2,7 +2,6 @@ import type { ReactNode } from 'react';
 import { lazy, Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { useNavigate } from 'react-router-dom';
-import Loading from '@/pages/loading/Loading';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import * as style from '@/shared/components/GlobalErrorBoundary/globalErrorBoundary.css';
@@ -64,7 +63,7 @@ const errorHandler = (error: Error) => {
 const GlobalErrorBoundary = ({ children }: { children: ReactNode }) => {
   return (
     <ErrorBoundary FallbackComponent={GlobalErrorFallback} onError={errorHandler}>
-      <Suspense fallback={<Loading />}>{children}</Suspense>
+      {children}
     </ErrorBoundary>
   );
 };
