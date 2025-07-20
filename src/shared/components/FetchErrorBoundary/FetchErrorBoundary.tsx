@@ -1,4 +1,5 @@
 import { useQueryErrorResetBoundary } from '@tanstack/react-query';
+import { isAxiosError } from 'axios';
 import { Suspense, type ReactNode } from 'react';
 import { ErrorBoundary, type FallbackProps } from 'react-error-boundary';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
@@ -7,8 +8,7 @@ import Spinner from '@/shared/components/Spinner/Spinner';
 import Text from '@/shared/components/Text/Text';
 
 const FetchErrorFallback = ({ resetErrorBoundary, error }: FallbackProps) => {
-  // 예상하지 못한 에러이면 GlobalErrorBoundary로 에러처리 위임
-  if (error.status >= 500) {
+  if (!isAxiosError(error) || !error.response) {
     throw error;
   }
 

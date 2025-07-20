@@ -19,14 +19,12 @@ const Home = () => {
     <main>
       <HomeCarousel />
       <FetchErrorBoundary>
-        <button
-          onClick={() => {
-            throw new Error('This is your first error!');
-          }}>
-          Break the world
-        </button>
         <LatestLessons />
+      </FetchErrorBoundary>
+      <FetchErrorBoundary>
         <PopularGenre />
+      </FetchErrorBoundary>
+      <FetchErrorBoundary>
         <UpcomingLessones />
       </FetchErrorBoundary>
       <Footer />
