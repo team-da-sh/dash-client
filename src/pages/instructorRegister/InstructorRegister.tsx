@@ -139,7 +139,7 @@ const InstructorRegister = () => {
       queryClient.invalidateQueries({ queryKey: teacherKeys.list.queryKey });
 
       navigate(ROUTES_CONFIG.mypage.withTab('teacher'));
-      notify('수정이 완료되었어요.', true);
+      notify({ message: '수정이 완료되었어요.', icon: 'success' });
     };
 
     const onError = () => {
