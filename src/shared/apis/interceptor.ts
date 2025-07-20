@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import type { AxiosError, InternalAxiosRequestConfig } from 'axios';
 import type { ErrorResponse } from 'react-router-dom';
 import { postReissue } from '@/pages/auth/apis/axios';

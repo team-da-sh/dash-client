@@ -1,14 +1,15 @@
 import * as Sentry from '@sentry/react';
-import { AxiosError, isAxiosError } from 'axios';
+import { isAxiosError } from 'axios';
 import type { ErrorInfo } from 'react';
 import { Suspense, type ReactNode } from 'react';
 import { ErrorBoundary, type FallbackProps } from 'react-error-boundary';
 import Error from '@/pages/error/Error';
 import { errorContainerStyle } from '@/shared/components/FetchErrorBoundary/fetchErrorBoundary.css';
 import Spinner from '@/shared/components/Spinner/Spinner';
+import type { ApiError } from '@/shared/types/ApiError';
 
 // sentry 로깅을 위한 핸들러
-const handleError = (error: Error, errorInfo: ErrorInfo) => {
+const handleError = (error: Error | ApiError, errorInfo: ErrorInfo) => {
   if (!isAxiosError(error)) {
     throw error;
   }

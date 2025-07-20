@@ -1,19 +1,22 @@
-import { captureException } from '@sentry/react';
-import type { ReactNode } from 'react';
-import { useEffect } from 'react';
+import * as Sentry from '@sentry/react';
+import type { ErrorInfo, ReactNode } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import Error from '@/pages/error/Error';
 
-const GlobalErrorFallback = ({ error }: { error: Error }) => {
-  useEffect(() => {
-    captureException(error);
-  }, [error]);
-
-  return <Error />;
+const handleError = (error: Error, errorInfo: ErrorInfo) => {
+  Sentry.withScope((scope) => {
+    scope.setExtras({ componentStack: errorInfo.componentStack });
+    scope.setLevel('error');
+    Sentry.captureException(error);
+  });
 };
 
 const GlobalErrorBoundary = ({ children }: { children: ReactNode }) => {
-  return <ErrorBoundary FallbackComponent={GlobalErrorFallback}>{children}</ErrorBoundary>;
+  return (
+    <ErrorBoundary FallbackComponent={Error} onError={handleError}>
+      {children}
+    </ErrorBoundary>
+  );
 };
 
 export default GlobalErrorBoundary;
