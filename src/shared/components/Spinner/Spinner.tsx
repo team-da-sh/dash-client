@@ -1,4 +1,4 @@
-import { spinnerStyle } from '@/shared/components/Spinner/Spinner.css';
+import { spinnerStyle } from '@/shared/components/Spinner/spinner.css';
 
 const Spinner = () => {
   return <span className={spinnerStyle}></span>;

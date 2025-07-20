@@ -1,5 +1,6 @@
+import { captureException } from '@sentry/react';
 import type { ReactNode } from 'react';
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { useNavigate } from 'react-router-dom';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
@@ -11,7 +12,12 @@ import { sprinkles } from '@/shared/styles/sprinkles.css';
 
 const IcError = lazy(() => import('@/shared/assets/svg/IcError'));
 
-const GlobalErrorFallback = () => {
+const GlobalErrorFallback = ({ error }: { error: Error }) => {
+  useEffect(() => {
+    console.log('로깅', error);
+    captureException(error);
+  }, [error]);
+
   const navigate = useNavigate();
 
   const handleHomeNavigation = () => {
