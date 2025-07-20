@@ -1,5 +1,5 @@
 import * as Sentry from '@sentry/react';
-import { isAxiosError } from 'axios';
+import { AxiosError, isAxiosError } from 'axios';
 import type { ErrorInfo } from 'react';
 import { Suspense, type ReactNode } from 'react';
 import { ErrorBoundary, type FallbackProps } from 'react-error-boundary';
