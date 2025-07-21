@@ -9,8 +9,10 @@ export const UPCOMING_LESSONS_DATA = {
       genre: 'HIPHOP',
       level: 'BEGINNER',
       name: '박재연의 미친 웨이브',
-      imageUrl: 'imageUrl',
-      teacherProfileImage: 'www.',
+      imageUrl:
+        'https://i.namu.wiki/i/U96fw_DDLHAtQSc6IR2YEMOwiqqFzT9NaJaO7HPqDATfbsPZhTylHbAHvIpNDEStQHK3luR8Db6FcAT2KSBm8A.webp',
+      teacherProfileImage:
+        'https://i.namu.wiki/i/U96fw_DDLHAtQSc6IR2YEMOwiqqFzT9NaJaO7HPqDATfbsPZhTylHbAHvIpNDEStQHK3luR8Db6FcAT2KSBm8A.webp',
       teacherName: '선생이름',
       startDate: '2025-01-13T18:26:27',
       endDate: '2025-01-13T18:26:27',

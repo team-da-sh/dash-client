@@ -1,7 +1,7 @@
 import { Outlet, ScrollRestoration, useLocation } from 'react-router-dom';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import { ApiErrorBoundary } from '@/shared/components/ApiErrorBoundary/ApiErrorBoundary';
-import GlobalErrorBoundary from '@/shared/components/GlobalErrorBoundary/GlobalErrorBoundary';
+import { ApiErrorBoundary } from '@/shared/components/ErrorBoundary/ApiErrorBoundary/ApiErrorBoundary';
+import GlobalErrorBoundary from '@/shared/components/ErrorBoundary/GlobalErrorBoundary/GlobalErrorBoundary';
 import Header from '@/shared/components/Header/Header';
 
 const Layout = () => {

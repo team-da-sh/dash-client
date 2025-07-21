@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useSuspenseQuery } from '@tanstack/react-query';
 import '@/pages/home/apis/axios';
 import { getAdvertisements, getLatestLessons, getPopularGenres, getUpcommingLessons } from '@/pages/home/apis/axios';
 import { MAX_POPULAR_GENRE_COUNT } from '@/pages/home/constants';
@@ -36,7 +36,7 @@ export const useGetPopularGenres = () => {
 };
 
 export const useGetUpcomingLessons = () => {
-  return useQuery<UpcomingLessonsResponseTypes>({
+  return useSuspenseQuery<UpcomingLessonsResponseTypes>({
     queryKey: lessonKeys.list._ctx.upcoming.queryKey,
     queryFn: () => getUpcommingLessons(),
   });
