@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import Error from '@/pages/error/Error';
+import ErrorPage from '@/pages/error/ErrorPage';
 import { useGetReservaion } from '@/pages/reservation/apis/queries';
 import AgreeCheckBox from '@/pages/reservation/components/AgreeCheckBox/AgreeCheckBox';
 import ApplicantInfo from '@/pages/reservation/components/ApplicantInfo/ApplicantInfo';
@@ -26,7 +26,7 @@ const Reservation = () => {
   const { id } = useParams<{ id: string }>();
 
   if (!id) {
-    return <Error />;
+    return <ErrorPage />;
   }
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -37,7 +37,7 @@ const Reservation = () => {
   }
 
   if (isError || !data) {
-    return <Error />;
+    return <ErrorPage />;
   }
 
   const handleToggleAll = () => {

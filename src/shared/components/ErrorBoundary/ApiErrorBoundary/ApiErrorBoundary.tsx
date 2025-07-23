@@ -3,7 +3,7 @@ import { isAxiosError } from 'axios';
 import type { ErrorInfo } from 'react';
 import { Suspense, type ReactNode } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
-import Error from '@/pages/error/Error';
+import ErrorPage from '@/pages/error/ErrorPage';
 import { errorContainerStyle } from '@/shared/components/ErrorBoundary/FetchErrorBoundary/fetchErrorBoundary.css';
 import Spinner from '@/shared/components/Spinner/Spinner';
 import { HTTP_STATUS_CODE } from '@/shared/constants/api';
@@ -17,6 +17,7 @@ const handleError = (error: Error | ApiError, errorInfo: ErrorInfo) => {
     throw error;
   }
 
+  console.log('api 까지 옴?');
   // 추후 배포 환경에서 에러 레벨 세분화
   Sentry.withScope((scope) => {
     scope.setExtras({ componentStack: errorInfo.componentStack });
@@ -31,7 +32,7 @@ const handleError = (error: Error | ApiError, errorInfo: ErrorInfo) => {
 
 export const ApiErrorBoundary = ({ children }: { children: ReactNode }) => {
   return (
-    <ErrorBoundary FallbackComponent={Error} onError={handleError}>
+    <ErrorBoundary FallbackComponent={ErrorPage} onError={handleError}>
       <Suspense
         fallback={
           <div className={errorContainerStyle}>

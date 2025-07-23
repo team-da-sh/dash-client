@@ -26,7 +26,7 @@ const ClassRegister = lazy(() => import('@/pages/instructor/classRegister/ClassR
 const InstructorRegister = lazy(() => import('@/pages/instructorRegister/InstructorRegister'));
 const ClassDetail = lazy(() => import('@/pages/instructor/classDetail/ClassDetail'));
 const ClassList = lazy(() => import('@/pages/instructor/classList/ClassList'));
-const Error = lazy(() => import('@/pages/error/Error'));
+const ErrorPage = lazy(() => import('@/pages/error/ErrorPage'));
 
 export const router = createBrowserRouter([
   {
@@ -54,7 +54,7 @@ export const router = createBrowserRouter([
       { path: ROUTES_CONFIG.payments.path, element: <CheckoutPage /> },
       { path: ROUTES_CONFIG.paymentsSuccess.path, element: <SuccessPage /> },
       { path: ROUTES_CONFIG.paymentsFail.path, element: <FailPage /> },
-      { path: '*', element: <Error /> },
+      { path: '*', element: <ErrorPage /> },
     ],
   },
 ]);

@@ -1,5 +1,7 @@
+import * as Sentry from '@sentry/react';
 import { useQueryErrorResetBoundary } from '@tanstack/react-query';
 import { isAxiosError } from 'axios';
+import type { ErrorInfo } from 'react';
 import { Suspense, type ReactNode } from 'react';
 import { ErrorBoundary, type FallbackProps } from 'react-error-boundary';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
@@ -9,6 +11,21 @@ import {
 } from '@/shared/components/ErrorBoundary/FetchErrorBoundary/fetchErrorBoundary.css';
 import Spinner from '@/shared/components/Spinner/Spinner';
 import Text from '@/shared/components/Text/Text';
+import type { ApiError } from '@/shared/types/ApiError';
+import { ERROR_LEVEL } from '@/shared/types/errorLevel';
+
+const handleError = (error: Error | ApiError, errorInfo: ErrorInfo) => {
+  Sentry.withScope((scope) => {
+    scope.setExtras({ componentStack: errorInfo.componentStack });
+    scope.setLevel(ERROR_LEVEL.WARNING);
+    scope.setTag('levelTag', 'warning');
+
+    const newError = new Error(error.message);
+    newError.name = error.name;
+
+    Sentry.captureException(newError);
+  });
+};
 
 const FetchErrorFallback = ({ resetErrorBoundary, error }: FallbackProps) => {
   if (!isAxiosError(error) || !error.response) {
@@ -31,7 +48,7 @@ export const FetchErrorBoundary = ({ children }: { children: ReactNode }) => {
   const { reset } = useQueryErrorResetBoundary();
 
   return (
-    <ErrorBoundary FallbackComponent={FetchErrorFallback} onReset={reset}>
+    <ErrorBoundary FallbackComponent={FetchErrorFallback} onReset={reset} onError={handleError}>
       <Suspense
         fallback={
           <div className={errorContainerStyle}>
