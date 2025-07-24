@@ -11,7 +11,7 @@ export const homeHandlers = [
   http.get(`${import.meta.env.VITE_DEV_BASE_URL}${API_URL.LESSONS_UPCOMING}`, () => {
     if (isFirstCall < 4) {
       isFirstCall++;
-      return HttpResponse.json({ message: '데이터 조회에 실패했어요.' }, { status: 403 });
+      return HttpResponse.json({ message: '데이터 조회에 실패했어요.' }, { status: 500 });
     }
 
     return HttpResponse.json(UPCOMING_LESSONS_DATA);

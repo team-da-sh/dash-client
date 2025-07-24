@@ -8,6 +8,7 @@ export class ApiError<T = unknown> extends Error implements AxiosError<T> {
   code?: string;
   request?: any;
   response?: AxiosResponse<T>;
+  status?: number;
   isAxiosError: boolean;
   toJSON: () => any;
 
@@ -48,6 +49,7 @@ export class ApiError<T = unknown> extends Error implements AxiosError<T> {
     this.code = error.code;
     this.request = error.request;
     this.response = error.response;
+    this.status = error.status;
     this.isAxiosError = error.isAxiosError;
     this.toJSON = error.toJSON;
   }

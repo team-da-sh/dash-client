@@ -15,10 +15,17 @@ import type { ApiError } from '@/shared/types/ApiError';
 import { ERROR_LEVEL } from '@/shared/types/errorLevel';
 
 const handleError = (error: Error | ApiError, errorInfo: ErrorInfo) => {
+  if (!isAxiosError(error)) {
+    throw error;
+  }
+  console.log(error.code);
+  if (error.status && error.status >= 500) {
+    throw error;
+  }
+
   Sentry.withScope((scope) => {
     scope.setExtras({ componentStack: errorInfo.componentStack });
     scope.setLevel(ERROR_LEVEL.WARNING);
-    scope.setTag('levelTag', 'warning');
 
     const newError = new Error(error.message);
     newError.name = error.name;

@@ -19,15 +19,14 @@ const Home = () => {
     <main>
       <HomeCarousel />
       <FetchErrorBoundary>
-        <UpcomingLessones />
+        <LatestLessons />
       </FetchErrorBoundary>
       <FetchErrorBoundary>
         <PopularGenre />
       </FetchErrorBoundary>
       <FetchErrorBoundary>
-        <LatestLessons />
+        <UpcomingLessones />
       </FetchErrorBoundary>
-
       <Footer />
     </main>
   );
