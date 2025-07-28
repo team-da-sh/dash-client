@@ -44,10 +44,11 @@ const Input = (
         <input
           ref={ref}
           type="text"
+          value={value}
           className={clsx(className, style.inputStyle)}
           onFocus={handleFocus}
           onBlur={handleBlur}
-          value={value}
+          maxLength={maxLength}
           aria-invalid={isError ? 'true' : 'false'}
           {...props}
         />
