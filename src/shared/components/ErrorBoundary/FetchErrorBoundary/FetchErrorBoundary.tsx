@@ -18,7 +18,7 @@ const handleError = (error: Error | ApiError, errorInfo: ErrorInfo) => {
   if (!isAxiosError(error)) {
     throw error;
   }
-  console.log(error.code);
+
   if (error.status && error.status >= 500) {
     throw error;
   }
@@ -35,10 +35,6 @@ const handleError = (error: Error | ApiError, errorInfo: ErrorInfo) => {
 };
 
 const FetchErrorFallback = ({ resetErrorBoundary, error }: FallbackProps) => {
-  if (!isAxiosError(error) || !error.response) {
-    throw error;
-  }
-
   return (
     <div className={errorContainerStyle}>
       <Text>{error.response.data.message}</Text>

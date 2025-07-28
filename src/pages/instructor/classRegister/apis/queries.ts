@@ -41,6 +41,6 @@ interface ClassRegisterInfoTypes {
 export const usePostClassRegisterInfo = () => {
   return useMutation({
     mutationFn: (infoData: ClassRegisterInfoTypes) => postClassRegisterInfo(infoData),
-    meta: { shouldShowToastMessage: true },
+    meta: { shouldShowToastMessage: true, errorMessage: '등록 권한이 없어요.' },
   });
 };
