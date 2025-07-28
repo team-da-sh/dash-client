@@ -78,22 +78,16 @@ const ProfileStep = ({ name, nickname, isNicknameError, changeIsNicknameError, o
         </Flex>
       </Flex>
 
-      <Flex direction="column" gap="0.8rem" marginTop="2.8rem" width="100%">
+      <Flex direction="column" marginTop="2.8rem" width="100%">
         <Input
           isError={isNicknameError}
+          helperText={'특수기호, 띄어쓰기는 입력할 수 없어요'}
           placeholder="댄서네임을 입력하세요"
           value={nickname}
           onChange={(e) => handleNicknameChange(e.target.value)}
+          hasLengthNumber={true}
+          maxLength={MAX_NICKNAME_LENGTH}
         />
-        <Flex width="100%" justify="spaceBetween">
-          <Text tag="b3_r" color="alert3">
-            {isNicknameError ? '특수기호, 띄어쓰기는 입력할 수 없어요' : ''}
-          </Text>
-
-          <Text tag="c1_m" color={isNicknameError ? 'alert3' : 'main4'}>
-            {nickname && `${nickname.length}/${MAX_NICKNAME_LENGTH}`}
-          </Text>
-        </Flex>
       </Flex>
     </Flex>
   );
