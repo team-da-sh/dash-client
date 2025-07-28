@@ -2,6 +2,13 @@ import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 import { vars } from '@/shared/styles/theme.css';
 
+export const allContainerStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '0.4rem',
+  width: '100%',
+});
+
 export const containerStyle = recipe({
   base: {
     display: 'flex',
@@ -33,5 +40,36 @@ export const inputStyle = style({
 
   '::placeholder': {
     color: vars.colors.gray05,
+  },
+});
+
+export const optionalContainerStyle = style({
+  display: 'flex',
+  justifyContent: 'space-between',
+  width: '100%',
+});
+
+export const lengthContainerStyle = style({
+  display: 'flex',
+  gap: '0.2rem',
+  marginLeft: 'auto',
+});
+
+export const lengthTextStyle = recipe({
+  base: {
+    color: vars.colors.gray04,
+  },
+  variants: {
+    defineLengthState: {
+      focus: {
+        color: vars.colors.main04,
+      },
+      error: {
+        color: vars.colors.alert03,
+      },
+      filled: {
+        color: vars.colors.gray09,
+      },
+    },
   },
 });
