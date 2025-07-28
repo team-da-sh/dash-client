@@ -19,9 +19,6 @@ const Input = (
 ) => {
   const [isFocused, setIsFocused] = useState(false);
 
-  const handleFocus = () => setIsFocused(true);
-  const handleBlur = () => setIsFocused(false);
-
   const defineInputState = (isError?: boolean, isFocused?: boolean) => {
     if (isError) return 'error';
     if (isFocused) return 'focus';
@@ -46,8 +43,8 @@ const Input = (
           type="text"
           value={value}
           className={clsx(className, style.inputStyle)}
-          onFocus={handleFocus}
-          onBlur={handleBlur}
+          onFocus={() => setIsFocused(true)}
+          onBlur={() => setIsFocused(false)}
           maxLength={maxLength}
           aria-invalid={isError ? 'true' : 'false'}
           {...props}
