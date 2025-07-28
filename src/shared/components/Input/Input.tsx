@@ -40,7 +40,7 @@ const Input = (
 
   return (
     <div className={style.allContainerStyle}>
-      <div className={style.containerStyle({ defineInputState: inputState })}>
+      <div className={style.containerStyle({ state: inputState })}>
         <input
           ref={ref}
           type="text"
@@ -63,13 +63,13 @@ const Input = (
         )}
         {hasLengthNumber && (
           <div className={style.lengthContainerStyle}>
-            <Text tag="c1_m" className={style.lengthTextStyle({ defineLengthState: lengthState })}>
+            <Text tag="c1_m" className={style.lengthTextStyle({ state: lengthState })}>
               {value ? value.length : 0}
             </Text>
-            <Text tag="c1_m" className={style.lengthTextStyle({ defineLengthState: lengthState })}>
+            <Text tag="c1_m" className={style.lengthTextStyle({ state: lengthState })}>
               /
             </Text>
-            <Text tag="c1_m" className={style.lengthTextStyle({ defineLengthState: lengthState })}>
+            <Text tag="c1_m" className={style.lengthTextStyle({ state: lengthState })}>
               {maxLength}
             </Text>
           </div>

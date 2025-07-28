@@ -23,7 +23,7 @@ export const containerStyle = recipe({
     backgroundColor: vars.colors.gray01,
   },
   variants: {
-    defineInputState: {
+    state: {
       focus: {
         outline: `1px solid ${vars.colors.main04}`,
       },
@@ -60,7 +60,7 @@ export const lengthTextStyle = recipe({
     color: vars.colors.gray04,
   },
   variants: {
-    defineLengthState: {
+    state: {
       focus: {
         color: vars.colors.main04,
       },
