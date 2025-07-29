@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import Header from '@/shared/components/Header/Header';
 
 const meta: Meta<typeof Header> = {
-  title: 'Common/Header',
+  title: 'Layout/Header',
   component: Header,
   parameters: {
     layout: 'fullscreen',
