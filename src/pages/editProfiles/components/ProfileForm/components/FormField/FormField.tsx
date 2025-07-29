@@ -1,5 +1,5 @@
 import type { UseFormRegister } from 'react-hook-form';
-import * as styles from '@/pages/editProfiles/components/FormField/formField.css';
+import * as styles from '@/pages/editProfiles/components/ProfileForm/components/FormField/formField.css';
 import type { ProfileFormValues } from '@/pages/editProfiles/schema/profileSchema';
 import { allowOnlyNumberKey, allowOnlyNumberPaste } from '@/pages/editProfiles/utils/inputUtils';
 import { MAX_PHONENUMBER_LENGTH, MAX_NAME_LENGTH } from '@/pages/onboarding/constants';
