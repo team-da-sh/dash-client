@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useController, useForm } from 'react-hook-form';
 import { usePatchMyProfile } from '@/pages/editProfiles/api/queries';
 import BottomSheet from '@/pages/editProfiles/components/BottomSheet/BottomSheet';
-import FormField from '@/pages/editProfiles/components/FormField/FormField.tsx';
+import FormField from '@/pages/editProfiles/components/ProfileForm/components/FormField/FormField';
 import * as styles from '@/pages/editProfiles/components/ProfileForm/profileForm.css';
 import { MAX_NAME_LENGTH, MAX_NICKNAME_LENGTH } from '@/pages/editProfiles/constants/limit.ts';
 import type { ProfileFormValues } from '@/pages/editProfiles/schema/profileSchema.ts';
