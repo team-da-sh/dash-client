@@ -1,0 +1,41 @@
+
+export const hexColors = {
+  main01: '#C3B9FF',
+  main02: '#9D8DFF',
+  main03: '#8349FF',
+  main04: '#7700FF',
+  main05: '#5901E1',
+  main06: '#4500CD',
+
+  sub01: '#DAFFB2',
+  sub02: '#B8FF6C',
+  sub03: '#A5FF46',
+  sub04: '#84FF00',
+  sub05: '#71E000',
+  sub06: '#63DE07',
+  sub07: '#45C00A',
+
+  alert01: '#FF6363',
+  alert02: '#EE4545',
+  alert03: '#D93030',
+
+  kakao01: '#FDE500',
+  kakao02: '#3C1E1E',
+
+  black70: 'rgba(0, 0, 0, 0.7)',
+  white50: 'rgba(255, 255, 255, 0.5)',
+
+  white: '#FFFFFF',
+  gray01: '#F3F4F6',
+  gray02: '#E5E7EB',
+  gray03: '#DDDFE5',
+  gray04: '#CFD3DE',
+  gray05: '#A7AFBF',
+  gray06: '#96A0B1',
+  gray07: '#788397',
+  gray08: '#636C7F',
+  gray09: '#525A6A',
+  gray10: '#363E4D',
+  gray11: '#202734',
+  black: '#091120',
+};
