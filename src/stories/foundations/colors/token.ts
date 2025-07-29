@@ -1,4 +1,3 @@
-
 export const hexColors = {
   main01: '#C3B9FF',
   main02: '#9D8DFF',
