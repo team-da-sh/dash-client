@@ -7,7 +7,7 @@ import {
 } from '@/pages/home/components/UpcomingLessons/upcomingLessons.css';
 import Head from '@/shared/components/Head/Head';
 
-const UpcomingLessones = () => {
+const UpcomingLessons = () => {
   const { data: upcomingLessonList } = useGetUpcomingLessons();
 
   return (
@@ -22,4 +22,4 @@ const UpcomingLessones = () => {
   );
 };
 
-export default UpcomingLessones;
+export default UpcomingLessons;

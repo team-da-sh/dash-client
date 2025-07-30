@@ -7,8 +7,8 @@ const spin = keyframes({
 });
 
 export const spinnerStyle = style({
-  width: '30px',
-  height: '30px',
+  width: '30rem',
+  height: '30rem',
   border: `5px solid ${vars.colors.gray02}`,
   borderBottomColor: 'transparent',
   borderRadius: '50%',
