@@ -30,22 +30,16 @@ const ClassAmount = ({ price, register }: ClassAmountPropTypes) => {
   return (
     <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 20, width: '100%' })}>
       <Description title="수강료" subTitle={CLASS_AMOUNT_SUBTITLE} />
-      <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 4 })}>
-        <Input
-          name={name}
-          ref={ref}
-          placeholder="0"
-          value={price}
-          onChange={handleChange}
-          rightAddOn={<Text tag="b2_sb_long">원</Text>}
-          isError={!!error}
-        />
-        {error && (
-          <Text tag="b3_r" color="alert3">
-            {error.message}
-          </Text>
-        )}
-      </div>
+      <Input
+        name={name}
+        ref={ref}
+        placeholder="0"
+        value={price}
+        onChange={handleChange}
+        rightAddOn={<Text tag="b2_sb_long">원</Text>}
+        isError={!!error}
+        helperText={error?.message}
+      />
     </div>
   );
 };
