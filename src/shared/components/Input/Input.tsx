@@ -39,6 +39,7 @@ const Input = (
     <div className={style.allContainerStyle}>
       <div className={style.containerStyle({ state: inputState })}>
         <input
+          {...props}
           ref={ref}
           type="text"
           value={value}
@@ -47,7 +48,6 @@ const Input = (
           onBlur={() => setIsFocused(false)}
           maxLength={maxLength}
           aria-invalid={isError ? 'true' : 'false'}
-          {...props}
         />
         {rightAddOn}
       </div>
