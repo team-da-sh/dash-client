@@ -3,7 +3,7 @@ import type { UseFormRegister } from 'react-hook-form';
 import Description from '@/pages/instructorRegister/components/Description/Description';
 import * as styles from '@/pages/instructorRegister/components/PersonalSNSSection/personalSNSSection.css';
 import type { instructorRegisterFormTypes } from '@/pages/instructorRegister/types/instructorRegisterForm';
-import SvgIcAt12 from '@/assets/svg/IcAt12';
+import SvgIcAt12 from '@/shared/assets/svg/IcAt12';
 import Text from '@/shared/components/Text/Text';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
 import { vars } from '@/shared/styles/theme.css';

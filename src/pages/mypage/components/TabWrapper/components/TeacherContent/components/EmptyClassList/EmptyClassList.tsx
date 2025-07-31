@@ -1,4 +1,4 @@
-import IcMyEmpty from '@/assets/svg/IcMyEmpty';
+import IcMyEmpty from '@/shared/assets/svg/IcMyEmpty';
 import Head from '@/shared/components/Head/Head';
 import * as styles from './EmptyClassList.css';
 

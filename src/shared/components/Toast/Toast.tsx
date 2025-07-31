@@ -1,6 +1,6 @@
 import toast from 'react-hot-toast';
-import SvgIcCautionAlert0120 from '@/assets/svg/IcCautionAlert0120';
-import SvgIcClearMain0420 from '@/assets/svg/IcClearMain0420';
+import SvgIcCautionAlert0120 from '@/shared/assets/svg/IcCautionAlert0120';
+import SvgIcClearMain0420 from '@/shared/assets/svg/IcClearMain0420';
 import { toastContentStyle } from '@/shared/components/Toast/toast.css';
 import { vars } from '@/shared/styles/theme.css';
 
