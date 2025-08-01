@@ -13,7 +13,7 @@ interface DancerNameSectionPropTypes {
 }
 
 const DancerNameSection = ({ register, isDataDirty, error, dancerName }: DancerNameSectionPropTypes) => {
-  console.log('DancerNameSection isDataDirty:', isDataDirty);
+  console.log('error', error);
   return (
     <section className={styles.containerStyle}>
       <Text tag="b2_sb">댄서네임</Text>
