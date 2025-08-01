@@ -1,6 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useQueryClient } from '@tanstack/react-query';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useController, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -9,12 +9,14 @@ import {
   usePostInstructor,
 } from '@/pages/instructorRegister/apis/queries';
 import CareerSection from '@/pages/instructorRegister/components/CareerSection/CareerSection';
+import DancerNameSection from '@/pages/instructorRegister/components/DancerNameSection/DancerNameSection';
 import ImageUploadSection from '@/pages/instructorRegister/components/ImageUploadSection/ImageUploadSection';
 import IntroductionSection from '@/pages/instructorRegister/components/IntroductionSection/IntroductionSection';
 import PersonalSNSSection from '@/pages/instructorRegister/components/PersonalSNSSection/PersonalSNSSection';
 import VideoLinkSection from '@/pages/instructorRegister/components/VideoLinkSection/VideoLinkSection';
 import * as styles from '@/pages/instructorRegister/instructorRegister.css';
 import { instructorRegisterSchema } from '@/pages/instructorRegister/schema/instructorRegisterSchema';
+import type { duplicateStateTypes } from '@/pages/instructorRegister/types/instructorRegisterForm';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { useGetRole } from '@/shared/apis/queries';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
@@ -25,9 +27,10 @@ import { authKeys, teacherKeys } from '@/shared/constants/queryKey';
 import { USER_ROLE } from '@/shared/constants/userRole';
 import useImageUploader from '@/shared/hooks/useImageUploader';
 import { setAccessToken, setRefreshToken } from '@/shared/utils/handleToken';
-import DancerNameSection from './components/DancerNameSection/DancerNameSection';
 
 const InstructorRegister = () => {
+  const [duplicateState, setDuplicateState] = useState<duplicateStateTypes>(null);
+
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
@@ -91,7 +94,9 @@ const InstructorRegister = () => {
   });
 
   const isEditMode = userRole === USER_ROLE.TEACHER;
-  const isButtonActive = isEditMode ? isDirty && isValid : isValid;
+  const isButtonActive = isEditMode
+    ? isDirty && isValid && duplicateState === 'available'
+    : isValid && duplicateState === 'available';
 
   // 이미지 업로드 관련
   const handleImageUploadSuccess = (url: string) => {
@@ -109,6 +114,7 @@ const InstructorRegister = () => {
     e.preventDefault();
 
     const updatedInfo = {
+      dancerName: dancerName.trim(),
       imageUrls: [imageUrls],
       detail: detail.trim(),
 
@@ -211,10 +217,12 @@ const InstructorRegister = () => {
           <div className={styles.sectionWrapperStyle}>
             <DancerNameSection
               register={register}
-              isDataDirty={dirtyFields.dancerName}
+              setError={setError}
+              isNameDirty={!!dirtyFields.dancerName}
               error={errors.dancerName}
               dancerName={dancerName}
-              setError={setError}
+              duplicateState={duplicateState}
+              setDuplicateState={setDuplicateState}
             />
 
             <IntroductionSection register={register} error={errors.detail} detail={detail} />
