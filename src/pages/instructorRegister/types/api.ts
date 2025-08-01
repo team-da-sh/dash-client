@@ -1,4 +1,5 @@
 export interface InstructorRegisterRequestTypes {
+  dancerName: string;
   imageUrls: string[];
   instagram: string | null;
   youtube: string | null;
