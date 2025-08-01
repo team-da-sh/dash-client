@@ -12,9 +12,14 @@ import { INCLUDE_BLANK, INCLUDE_SPECIAL } from '@/shared/constants/regex';
 
 export const instructorRegisterSchema = z
   .object({
-    dancerName: z.string().refine((val) => !INCLUDE_SPECIAL.test(val) && !INCLUDE_BLANK.test(val), {
-      message: FORM_ERROR_MESSAGE.INVALID,
-    }),
+    dancerName: z
+      .string()
+      .refine((value) => value.trim(), {
+        message: FORM_ERROR_MESSAGE.EMPTY_DANCER_NAME,
+      })
+      .refine((value) => !INCLUDE_SPECIAL.test(value) && !INCLUDE_BLANK.test(value), {
+        message: FORM_ERROR_MESSAGE.INVALID,
+      }),
     detail: z.string().min(MIN_INTRODUCTION_LENGTH, INTRODUCTION_LENGTH_ERROR_MSG).max(500),
     instagram: z.string().optional(),
     youtube: z.string().optional(),
