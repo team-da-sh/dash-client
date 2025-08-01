@@ -25,6 +25,7 @@ import { authKeys, teacherKeys } from '@/shared/constants/queryKey';
 import { USER_ROLE } from '@/shared/constants/userRole';
 import useImageUploader from '@/shared/hooks/useImageUploader';
 import { setAccessToken, setRefreshToken } from '@/shared/utils/handleToken';
+import DancerNameSection from './components/DancerNameSection/DancerNameSection';
 
 const InstructorRegister = () => {
   const navigate = useNavigate();
@@ -51,6 +52,7 @@ const InstructorRegister = () => {
     resolver: zodResolver(instructorRegisterSchema),
     mode: 'onTouched',
     defaultValues: {
+      dancerName: '',
       detail: '',
       instagram: '',
       youtube: '',
@@ -67,6 +69,7 @@ const InstructorRegister = () => {
   });
 
   const {
+    dancerName,
     detail,
     instagram,
     youtube,
@@ -200,9 +203,15 @@ const InstructorRegister = () => {
                 handleUploaderClick={handleUploaderClick}
               />
             </div>
+          </div>
+          <Divider direction="horizontal" color="gray1" length={'100%'} thickness={'0.8rem'} />
+
+          <div className={styles.sectionWrapperStyle}>
+            <DancerNameSection register={register} error={errors.dancerName} dancerName={dancerName} />
 
             <IntroductionSection register={register} error={errors.detail} detail={detail} />
           </div>
+
           <Divider direction="horizontal" color="gray1" length={'100%'} thickness={'0.8rem'} />
 
           <div className={styles.sectionWrapperStyle}>

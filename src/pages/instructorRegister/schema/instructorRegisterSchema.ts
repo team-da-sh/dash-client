@@ -10,6 +10,7 @@ import {
 
 export const instructorRegisterSchema = z
   .object({
+    dancerName: z.string(),
     detail: z.string().min(MIN_INTRODUCTION_LENGTH, INTRODUCTION_LENGTH_ERROR_MSG).max(500),
     instagram: z.string().optional(),
     youtube: z.string().optional(),
