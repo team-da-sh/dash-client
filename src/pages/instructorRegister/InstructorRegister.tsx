@@ -46,7 +46,7 @@ const InstructorRegister = () => {
     watch,
     setValue,
     control,
-    formState: { errors, isValid, isDirty },
+    formState: { errors, isValid, isDirty, dirtyFields },
     reset,
   } = useForm({
     resolver: zodResolver(instructorRegisterSchema),
@@ -168,6 +168,7 @@ const InstructorRegister = () => {
     if (!prevInstructorData) return;
 
     reset({
+      dancerName: prevInstructorData.dancerName || 'dd',
       imageUrls: prevInstructorData.profileImage || '',
       instagram: prevInstructorData.instagram || '',
       youtube: prevInstructorData.youtube || '',
@@ -207,7 +208,12 @@ const InstructorRegister = () => {
           <Divider direction="horizontal" color="gray1" length={'100%'} thickness={'0.8rem'} />
 
           <div className={styles.sectionWrapperStyle}>
-            <DancerNameSection register={register} error={errors.dancerName} dancerName={dancerName} />
+            <DancerNameSection
+              register={register}
+              isDataDirty={dirtyFields.dancerName}
+              error={errors.dancerName}
+              dancerName={dancerName}
+            />
 
             <IntroductionSection register={register} error={errors.detail} detail={detail} />
           </div>

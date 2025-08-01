@@ -9,6 +9,7 @@ export interface InstructorRegisterRequestTypes {
 }
 
 export interface InstructorRegisterInfoResponseTypes {
+  dancerName: string;
   profileImage: string;
   instagram: string | null;
   youtube: string | null;

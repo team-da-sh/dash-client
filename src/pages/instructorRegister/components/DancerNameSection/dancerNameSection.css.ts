@@ -11,8 +11,7 @@ export const containerStyle = style({
 
 export const duplicateCheckButtonStyle = style({
   width: '7.5rem',
-  height: '3.6rem',
+  padding: '0.8rem 1.4rem',
   ...vars.fonts.b2_m_long,
-  color: vars.colors.gray09,
   flexShrink: 0,
 });
