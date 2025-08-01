@@ -58,7 +58,7 @@ const Input = (
       </div>
 
       <div className={style.optionalContainerStyle}>
-        {isError && helperText && (
+        {helperText && (
           <Text tag="b3_r" color="alert3">
             {helperText}
           </Text>
