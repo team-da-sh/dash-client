@@ -1,5 +1,6 @@
-import type { FieldError, UseFormRegister } from 'react-hook-form';
+import type { FieldError, UseFormRegister, UseFormSetError } from 'react-hook-form';
 import * as styles from '@/pages/instructorRegister/components/DancerNameSection/dancerNameSection.css';
+import { FORM_ERROR_MESSAGE } from '@/pages/instructorRegister/constants/registerSection';
 import type { instructorRegisterFormTypes } from '@/pages/instructorRegister/types/instructorRegisterForm';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import Input from '@/shared/components/Input/Input';
@@ -7,12 +8,13 @@ import Text from '@/shared/components/Text/Text';
 
 interface DancerNameSectionPropTypes {
   register: UseFormRegister<instructorRegisterFormTypes>;
+  setError: UseFormSetError<instructorRegisterFormTypes>;
   isDataDirty: boolean | undefined;
   error: FieldError | undefined;
   dancerName: string;
 }
 
-const DancerNameSection = ({ register, isDataDirty, error, dancerName }: DancerNameSectionPropTypes) => {
+const DancerNameSection = ({ register, setError, isDataDirty, error, dancerName }: DancerNameSectionPropTypes) => {
   console.log('error', error);
   return (
     <section className={styles.containerStyle}>
@@ -31,8 +33,8 @@ const DancerNameSection = ({ register, isDataDirty, error, dancerName }: DancerN
             type="button"
             variant={isDataDirty ? 'primary' : 'temp'}
             onClick={() => {
-              // TODO: 중복 확인 API 연결 및 에러 처리
-              console.log('중복 확인 API');
+              // TODO: 중복 확인 API 연결 및 에러 분기 처리
+              setError('dancerName', { type: 'manual', message: FORM_ERROR_MESSAGE.DUPLICATE_DANCER_NAME });
             }}>
             중복확인
           </BoxButton>

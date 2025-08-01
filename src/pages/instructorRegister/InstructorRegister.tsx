@@ -48,6 +48,7 @@ const InstructorRegister = () => {
     control,
     formState: { errors, isValid, isDirty, dirtyFields },
     reset,
+    setError,
   } = useForm({
     resolver: zodResolver(instructorRegisterSchema),
     mode: 'onTouched',
@@ -213,6 +214,7 @@ const InstructorRegister = () => {
               isDataDirty={dirtyFields.dancerName}
               error={errors.dancerName}
               dancerName={dancerName}
+              setError={setError}
             />
 
             <IntroductionSection register={register} error={errors.detail} detail={detail} />
