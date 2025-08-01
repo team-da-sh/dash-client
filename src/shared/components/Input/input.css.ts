@@ -12,6 +12,7 @@ export const allContainerStyle = style({
 export const containerStyle = recipe({
   base: {
     display: 'flex',
+    alignItems: 'center',
     gap: '0.8rem',
 
     width: '100%',
