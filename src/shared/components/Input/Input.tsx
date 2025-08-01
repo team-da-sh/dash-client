@@ -45,7 +45,12 @@ const Input = (
           value={value}
           className={clsx(className, style.inputStyle)}
           onFocus={() => setIsFocused(true)}
-          onBlur={() => setIsFocused(false)}
+          // onBlur={() => setIsFocused(false)}
+          // TODO: RHF + Input 설계 맞는 방향일지 검토 필요
+          onBlur={(e) => {
+            props.onBlur?.(e);
+            setIsFocused(false);
+          }}
           maxLength={maxLength}
           aria-invalid={isError ? 'true' : 'false'}
         />
