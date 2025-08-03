@@ -18,7 +18,6 @@ import { formatLessonDateRange, getClassStatus } from '@/shared/utils/timeCalcul
 interface ClassCardPropTypes extends Lesson {
   isReservation?: boolean;
   onClick?: () => void;
-  role: 'student' | 'teacher';
   children?: React.ReactNode;
 }
 
