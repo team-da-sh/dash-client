@@ -39,3 +39,16 @@ export const lessonNameStyle = style({
   overflow: 'hidden',
   textOverflow: 'ellipsis',
 });
+
+export const askTextStyle = style({
+  display: 'flex',
+  justifyContent: 'flex-end',
+
+  marginTop: '1.2rem',
+
+  cursor: 'pointer',
+});
+
+export const dividerStyle = style({
+  margin: '1.2rem 0',
+});

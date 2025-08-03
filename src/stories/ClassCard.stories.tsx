@@ -15,7 +15,7 @@ const Template: StoryFn<typeof ClassCard> = (args) => <ClassCard {...args} />;
 export const Default = Template.bind({});
 Default.args = {
   name: '스트리트 댄스 심화',
-  imageUrl: 'https://example.com/lesson-image.jpg',
+  imageUrl: 'https://www.behindpress.com/news/photo/202307/40128_56872_431.jpg',
   genre: '힙합',
   level: '중급자',
   location: '서울특별시 강남구',
@@ -27,7 +27,7 @@ Default.args = {
 export const Levels = Template.bind({});
 Levels.args = {
   name: '스트리트 댄스 기초',
-  imageUrl: 'https://example.com/lesson-image.jpg',
+  imageUrl: 'https://www.behindpress.com/news/photo/202307/40128_56872_431.jpg',
   genre: '힙합',
   level: '입문자',
   location: '서울특별시 강남구',
