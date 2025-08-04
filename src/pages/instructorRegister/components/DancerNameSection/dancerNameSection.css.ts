@@ -6,7 +6,7 @@ export const containerStyle = style({
   flexDirection: 'column',
   gap: '0.8rem',
   width: '100%',
-  paddingTop: '2.4rem',
+  padding: '2.4rem 0',
 });
 
 export const duplicateCheckButtonStyle = style({
