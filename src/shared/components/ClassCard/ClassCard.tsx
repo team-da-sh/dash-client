@@ -23,13 +23,13 @@ interface ClassCardPropTypes extends Lesson {
 
 const studentStatus = (status: string) => {
   switch (status) {
-    case 'waittingPermission':
+    case 'waitingPermission':
       return [<SvgIcMeatballMain0320 width={20} />, '승인 대기'];
     case 'permission':
       return [<SvgIcClearMain0320 width={20} />, '승인 완료'];
     case 'register':
       return [<SvgIcClearGray0920 width={20} />, '수강 완료'];
-    case 'waittingCancle':
+    case 'waitingCancle':
       return [<SvgIcMeatballAlert20 width={20} />, '취소 대기'];
     case 'cancle':
       return [<SvgIcClearAlert20 width={20} />, '취소 완료'];
@@ -67,7 +67,7 @@ const ClassCard = ({
   const { data: role } = useGetRole();
 
   const [statusIcon, statusText] =
-    role?.role === 'student' ? studentStatus('waittingPermission') : teacherStatus('recruiting');
+    role?.role === 'student' ? studentStatus('waitingPermission') : teacherStatus('recruiting');
 
   const handleTextClick = (e: React.MouseEvent) => {
     e.stopPropagation();
