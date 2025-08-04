@@ -174,6 +174,10 @@ const InstructorRegister = () => {
   useEffect(() => {
     if (!prevInstructorData) return;
 
+    if (prevInstructorData.dancerName) {
+      setDuplicateState('available');
+    }
+
     reset({
       dancerName: prevInstructorData.dancerName || 'dd',
       imageUrls: prevInstructorData.profileImage || '',
