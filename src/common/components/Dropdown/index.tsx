@@ -31,6 +31,7 @@ const Dropdown = ({ options, selectedOption = options[0], handleSelectedOption }
         <ul className={listStyle}>
           {options.map((option) => (
             <li
+              key={option}
               role="button"
               onClick={() => handleItemClick(option)}
               className={itemStyle({ isSelected: selectedOption === option })}>
