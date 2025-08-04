@@ -60,6 +60,10 @@ export const ROUTES_CONFIG = {
     title: 'MypageReservationDetail',
     path: (id: string) => `/mypage/reservation/${id}`,
   },
+  accountRegister: {
+    title: 'AccountRegister',
+    path: '/mypage/account-register',
+  },
   classRegister: {
     title: 'ClassRegister',
     path: '/mypage/class-register',
