@@ -89,7 +89,7 @@ const AccountRegister = () => {
           <Head level="h3" tag="b2_sb">
             예금주명
           </Head>
-          <Input placeholder="장세희" {...register('depositor')} />
+          <Input placeholder="예금주명 입력" {...register('depositor')} />
         </div>
 
         <div className={styles.inputContainerStyle}>
