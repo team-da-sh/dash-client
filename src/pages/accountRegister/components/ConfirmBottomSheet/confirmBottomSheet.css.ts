@@ -1,5 +1,24 @@
-import { style } from '@vanilla-extract/css';
+import { keyframes, style } from '@vanilla-extract/css';
 import { vars } from '@/shared/styles/theme.css';
+
+// bottomSheet open/close animations
+const slideUp = keyframes({
+  from: { transform: 'translate(-50%, 100%)' },
+  to: { transform: 'translate(-50%, 0)' },
+});
+
+// const slideDown = keyframes({
+//   from: { transform: 'translate(-50%, 0)' },
+//   to: { transform: 'translate(-50%, 100%)' },
+// });
+
+export const slideUpStyle = style({
+  animation: `${slideUp} 450ms ease-in-out forwards`,
+});
+
+// export const slideDownStyle = style({
+//   animation: `${slideDown} 300ms ease forwards`,
+// });
 
 export const overlayStyle = style({
   position: 'fixed',
@@ -31,6 +50,8 @@ export const containerStyle = style({
   backgroundColor: vars.colors.white,
 
   zIndex: vars.zIndex.three,
+
+  transition: 'transform 300ms ease',
 });
 
 export const topContainerStyle = style({
@@ -87,15 +108,12 @@ export const buttonContainerStyle = style({
   height: '5.4rem',
 });
 
-export const primaryButtonCustomStyle = style({
-  width: '19.7rem',
-
-  flex: 2,
-});
-
-export const secondaryButtonCustomStyle = style({
-  width: '12.2rem',
-
+// TODO: 버튼 비율 QA 이후 확정
+export const secondaryButtonStyle = style({
   flex: 1,
   whiteSpace: 'nowrap',
+});
+
+export const primaryButtonStyle = style({
+  flex: 2,
 });

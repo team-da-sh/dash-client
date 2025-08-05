@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import * as styles from '@/pages/accountRegister/components/ConfirmBottomSheet/confirmBottomSheet.css';
 import SvgIcClearMain0420 from '@/shared/assets/svg/IcClearMain0420';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
@@ -6,19 +7,20 @@ import Text from '@/shared/components/Text/Text';
 import useOutsideClick from '@/shared/hooks/useOutsideClick';
 
 interface ConfirmBottomSheetPropTypes {
+  isOpen: boolean;
   onClose: () => void;
   depositor: string;
-  // TODO: bank type 구체화 필요
+  // TODO: 은행 바텀시트 구현 후 bank type 구체화
   bank: string;
   accountNumber: string;
 }
 
-const ConfirmBottomSheet = ({ onClose, depositor, bank, accountNumber }: ConfirmBottomSheetPropTypes) => {
+const ConfirmBottomSheet = ({ isOpen, onClose, depositor, bank, accountNumber }: ConfirmBottomSheetPropTypes) => {
   const ref = useOutsideClick(onClose);
 
   return (
     <div className={styles.overlayStyle}>
-      <div className={styles.containerStyle} ref={ref}>
+      <div className={clsx(styles.containerStyle, isOpen && styles.slideUpStyle)} ref={ref}>
         <div className={styles.topContainerStyle}>
           <SvgIcClearMain0420 width={'4.4rem'} height={'4.4rem'} />
           <div className={styles.titleStyle}>
@@ -55,10 +57,10 @@ const ConfirmBottomSheet = ({ onClose, depositor, bank, accountNumber }: Confirm
         </div>
 
         <div className={styles.buttonContainerStyle}>
-          <BoxButton type="button" variant="secondary" className={styles.secondaryButtonCustomStyle} onClick={onClose}>
+          <BoxButton type="button" variant="secondary" className={styles.secondaryButtonStyle} onClick={onClose}>
             다시 입력하기
           </BoxButton>
-          <BoxButton type="submit" className={styles.primaryButtonCustomStyle}>
+          <BoxButton type="submit" className={styles.primaryButtonStyle}>
             등록하기
           </BoxButton>
         </div>

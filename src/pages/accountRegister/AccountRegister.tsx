@@ -111,6 +111,7 @@ const AccountRegister = () => {
 
       {isBottomSheetOpen && (
         <ConfirmBottomSheet
+          isOpen={isBottomSheetOpen}
           onClose={handleBottomSheetClose}
           depositor={depositor}
           bank={bank}
