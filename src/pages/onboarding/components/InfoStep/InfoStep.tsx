@@ -1,11 +1,11 @@
-import { labelStyle } from '@/pages/onboarding/components/InfoStep/infoStep.css';
+import * as styles from '@/pages/onboarding/components/InfoStep/infoStep.css';
 import { INFO_KEY } from '@/pages/onboarding/constants';
 import type { onboardInfoTypes } from '@/pages/onboarding/types/onboardInfoTypes';
 import { validateTypingName, validateTypingPhoneNumber } from '@/pages/onboarding/utils/validate';
+import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import Head from '@/shared/components/Head/Head';
 import Input from '@/shared/components/Input/Input';
 import Text from '@/shared/components/Text/Text';
-import { sprinkles } from '@/shared/styles/sprinkles.css';
 
 interface InfoStepProps {
   name: string;
@@ -27,8 +27,8 @@ const InfoStep = ({ name, phoneNumber, onInfoChange }: InfoStepProps) => {
   };
 
   return (
-    <div className={sprinkles({ display: 'flex', flexDirection: 'column', width: '100%' })}>
-      <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 8 })}>
+    <div className={styles.containerStyle}>
+      <div className={styles.wrapperStyle}>
         <Head level="h1" tag="h3_sb">
           개인정보 입력
         </Head>
@@ -37,22 +37,28 @@ const InfoStep = ({ name, phoneNumber, onInfoChange }: InfoStepProps) => {
         </Text>
       </div>
 
-      <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 32, marginTop: 32, width: '100%' })}>
-        <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 8 })}>
-          <Text tag="b2_sb" className={labelStyle}>
+      <div className={styles.inputWrapperStyle}>
+        <div className={styles.wrapperStyle}>
+          <Text tag="b2_sb" className={styles.labelStyle}>
             이름
           </Text>
           <Input placeholder="김대쉬" value={name} onChange={(e) => handleNameChange(e.target.value)} />
         </div>
-        <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 8 })}>
-          <Text tag="b2_sb" className={labelStyle}>
+        <div className={styles.wrapperStyle}>
+          <Text tag="b2_sb" className={styles.labelStyle}>
             전화번호
           </Text>
-          <Input
-            placeholder="01012345678"
-            value={phoneNumber}
-            onChange={(e) => handlePhoneNumberChange(e.target.value)}
-          />
+          <div className={styles.numberWrapperStyle}>
+            <Input
+              placeholder="01012345678"
+              value={phoneNumber}
+              onChange={(e) => handlePhoneNumberChange(e.target.value)}
+              className={styles.inputStyle}
+            />
+            <BoxButton className={styles.buttonStyle} isDisabled={phoneNumber.length !== 11}>
+              인증 요청
+            </BoxButton>
+          </div>
         </div>
       </div>
     </div>
