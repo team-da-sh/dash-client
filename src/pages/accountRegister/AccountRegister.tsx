@@ -20,7 +20,7 @@ const AccountRegister = () => {
   const {
     register,
     watch,
-    formState: { errors, isDirty },
+    formState: { isDirty },
     // reset,
   } = useForm({
     resolver: zodResolver(accountRegisterSchema),
