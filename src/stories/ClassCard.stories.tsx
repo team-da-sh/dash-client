@@ -16,8 +16,8 @@ export const Default = Template.bind({});
 Default.args = {
   name: '스트리트 댄스 심화',
   imageUrl: 'https://www.behindpress.com/news/photo/202307/40128_56872_431.jpg',
-  genre: '힙합',
-  level: '중급자',
+  genre: 'HIPHOP',
+  level: 'INTERMEDIATE',
   location: '서울특별시 강남구',
   startDateTime: '2023-12-16T14:00:00',
   endDateTime: '2023-12-16T16:00:00',
@@ -27,8 +27,8 @@ export const OneButton = Template.bind({});
 OneButton.args = {
   name: '스트리트 댄스 기초',
   imageUrl: 'https://www.behindpress.com/news/photo/202307/40128_56872_431.jpg',
-  genre: '힙합',
-  level: '입문자',
+  genre: 'HIPHOP',
+  level: 'BEGINNER',
   location: '서울특별시 강남구',
   startDateTime: '2023-12-15T10:00:00',
   endDateTime: '2023-12-15T12:00:00',
@@ -44,8 +44,8 @@ export const TwoButton = Template.bind({});
 TwoButton.args = {
   name: '스트리트 댄스 기초',
   imageUrl: 'https://www.behindpress.com/news/photo/202307/40128_56872_431.jpg',
-  genre: '힙합',
-  level: '입문자',
+  genre: 'HIPHOP',
+  level: 'BEGINNER',
   location: '서울특별시 강남구',
   startDateTime: '2023-12-15T10:00:00',
   endDateTime: '2023-12-15T12:00:00',
@@ -59,13 +59,13 @@ TwoButton.args = {
   ),
 };
 
-// lesson일때때
+// lesson일때
 export const NoButton = Template.bind({});
 NoButton.args = {
   name: '스트리트 댄스 주말반',
   imageUrl: 'https://example.com/lesson-image.jpg',
-  genre: '힙합',
-  level: '입문자',
+  genre: 'HIPHOP',
+  level: 'BEGINNER',
   location: '서울특별시 강남구',
   startDateTime: '2025-01-22T10:00:00',
   endDateTime: '2025-01-22T12:00:00',

@@ -4,7 +4,7 @@ import { vars } from '@/shared/styles/theme.css';
 export const cardContainerStyle = style({
   width: '100%',
 
-  padding: '1.6rem 2rem',
+  padding: '2rem',
   borderRadius: 4,
   border: `1px solid ${vars.colors.gray03}`,
 
@@ -43,6 +43,7 @@ export const lessonNameStyle = style({
 export const askTextStyle = style({
   display: 'flex',
   justifyContent: 'flex-end',
+  alignItems: 'center',
 
   marginTop: '1.2rem',
 
