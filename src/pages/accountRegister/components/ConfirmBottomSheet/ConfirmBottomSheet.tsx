@@ -7,9 +7,13 @@ import useOutsideClick from '@/shared/hooks/useOutsideClick';
 
 interface ConfirmBottomSheetPropTypes {
   onClose: () => void;
+  depositor: string;
+  // TODO: bank type 구체화 필요
+  bank: string;
+  accountNumber: string;
 }
 
-const ConfirmBottomSheet = ({ onClose }: ConfirmBottomSheetPropTypes) => {
+const ConfirmBottomSheet = ({ onClose, depositor, bank, accountNumber }: ConfirmBottomSheetPropTypes) => {
   const ref = useOutsideClick(onClose);
 
   return (
@@ -37,21 +41,21 @@ const ConfirmBottomSheet = ({ onClose }: ConfirmBottomSheetPropTypes) => {
             <Text tag="b2_m_long" color="gray6" style={{ width: '4.9rem' }}>
               예금주
             </Text>
-            <Text tag="b2_m_long">주은혜</Text>
+            <Text tag="b2_m_long">{depositor}</Text>
           </div>
           <div className={styles.infoRowStyle}>
             <Text tag="b2_m_long" color="gray6" style={{ width: '4.9rem' }}>
               계좌번호
             </Text>
             <div className={styles.accountNumberStyle}>
-              <Text tag="b2_m_long">신한</Text>
-              <Text tag="b2_m_long">4879899192818</Text>
+              <Text tag="b2_m_long">{bank}</Text>
+              <Text tag="b2_m_long">{accountNumber}</Text>
             </div>
           </div>
         </div>
 
         <div className={styles.buttonContainerStyle}>
-          <BoxButton type="button" variant="secondary" className={styles.secondaryButtonCustomStyle}>
+          <BoxButton type="button" variant="secondary" className={styles.secondaryButtonCustomStyle} onClick={onClose}>
             다시 입력하기
           </BoxButton>
           <BoxButton type="submit" className={styles.primaryButtonCustomStyle}>
