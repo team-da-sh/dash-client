@@ -97,6 +97,8 @@ export const infoRowStyle = style({
 export const accountNumberStyle = style({
   display: 'flex',
   gap: '0.6rem',
+
+  overflow: 'hidden',
 });
 
 export const buttonContainerStyle = style({
@@ -116,4 +118,22 @@ export const secondaryButtonStyle = style({
 
 export const primaryButtonStyle = style({
   flex: 2,
+});
+
+export const noWrapStyle = style({
+  whiteSpace: 'nowrap',
+});
+
+export const leftLabelStyle = style([
+  noWrapStyle,
+  {
+    width: '4.9rem',
+    flexShrink: 0,
+  },
+]);
+
+export const ellipsisStyle = style({
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+  whiteSpace: 'nowrap',
 });

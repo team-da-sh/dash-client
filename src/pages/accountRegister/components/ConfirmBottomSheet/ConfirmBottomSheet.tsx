@@ -40,18 +40,25 @@ const ConfirmBottomSheet = ({ isOpen, onClose, depositor, bank, accountNumber }:
 
         <div className={styles.infoContainerStyle}>
           <div className={styles.infoRowStyle}>
-            <Text tag="b2_m_long" color="gray6" style={{ width: '4.9rem' }}>
+            <Text tag="b2_m_long" color="gray6" className={styles.leftLabelStyle}>
               예금주
             </Text>
-            <Text tag="b2_m_long">{depositor}</Text>
+            <Text tag="b2_m_long" className={styles.ellipsisStyle}>
+              {depositor}
+            </Text>
           </div>
           <div className={styles.infoRowStyle}>
-            <Text tag="b2_m_long" color="gray6" style={{ width: '4.9rem' }}>
+            <Text tag="b2_m_long" color="gray6" className={styles.leftLabelStyle}>
               계좌번호
             </Text>
+
             <div className={styles.accountNumberStyle}>
-              <Text tag="b2_m_long">{bank}</Text>
-              <Text tag="b2_m_long">{accountNumber}</Text>
+              <Text tag="b2_m_long" className={styles.noWrapStyle}>
+                {bank}
+              </Text>
+              <Text tag="b2_m_long" className={styles.ellipsisStyle}>
+                {accountNumber}
+              </Text>
             </div>
           </div>
         </div>
