@@ -1,5 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import * as styles from '@/pages/accountRegister/accountRegister.css';
@@ -43,7 +43,9 @@ const AccountRegister = () => {
   const isButtonActive = isEditMode ? isDirty && isValid : isValid;
 
   // TODO: unused warn으로 인한 임시 console 제거
-  console.log('setIsEditMode', setIsEditMode);
+  useEffect(() => {
+    console.log('setIsEditMode', setIsEditMode);
+  }, [setIsEditMode]);
 
   const onSubmit = () => {
     // TODO: 계좌 등록/수정 API 연결 추가 (success/error 핸들링 필요)
