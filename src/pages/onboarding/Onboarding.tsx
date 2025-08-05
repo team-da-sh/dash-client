@@ -11,7 +11,6 @@ import type { onboardInfoTypes } from '@/pages/onboarding/types/onboardInfoTypes
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { useFunnel } from '@/shared/hooks/useFunnel';
 import { setStorage } from '@/shared/utils/handleToken';
-import defaultProfile from '/images/image_profile_basic.png';
 
 const Onboarding = () => {
   const { Funnel, Step, setStep, currentStep } = useFunnel(FINAL_ONBOARDING_STEP, ROUTES_CONFIG.home.path);
@@ -19,10 +18,8 @@ const Onboarding = () => {
   const [info, setInfo] = useState<onboardInfoTypes>({
     name: '',
     phoneNumber: '',
-    nickname: '',
-    profileImageUrl: defaultProfile,
+    verificationCode: '',
   });
-
 
   const { mutate: onboardMutate } = usePostOnboard();
 
@@ -64,20 +61,21 @@ const Onboarding = () => {
       <div className={bodyWrapperStyle}>
         <Funnel>
           <Step name="1">
-            <InfoStep name={info.name} phoneNumber={info.phoneNumber} onInfoChange={handleInfoChange} />
+            <InfoStep
+              name={info.name}
+              phoneNumber={info.phoneNumber}
+              verificationCode={info.verificationCode}
+              onInfoChange={handleInfoChange}
+            />
           </Step>
           <Step name="2">
-            <FinishStep nickname={info.nickname} />
+            <FinishStep name={info.name} />
           </Step>
         </Funnel>
       </div>
 
       <div className={footerWrapperStyle}>
-        <SubmitButton
-          currentStep={currentStep}
-          info={info}
-          onNextButtonClick={handleNextButtonClick}
-        />
+        <SubmitButton currentStep={currentStep} info={info} onNextButtonClick={handleNextButtonClick} />
       </div>
     </form>
   );

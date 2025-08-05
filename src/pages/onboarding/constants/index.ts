@@ -5,6 +5,9 @@ export const INFO_KEY = {
   LEVEL: 'level',
   NICKNAME: 'nickname',
   PROFILE_IMAGE_URL: 'profileImageUrl',
+
+  // TODO 서버 논의 후 변환 필요
+  VERIFICATION_CODE: 'verificationCode',
 } as const;
 
 export const GENRELIST = [
@@ -32,6 +35,8 @@ export const LEVELS = {
 export const MIN_NAME_LENGTH = 2;
 
 export const MAX_NAME_LENGTH = 8;
+
+export const MAX_VERFICATION_CODE = 4;
 
 export const MAX_PHONENUMBER_LENGTH = 11;
 

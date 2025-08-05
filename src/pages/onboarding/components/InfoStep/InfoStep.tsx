@@ -1,6 +1,6 @@
 import { useVerificationTimer } from '@/pages/onboarding/components/InfoStep/hooks/useVerificationTimer';
 import * as styles from '@/pages/onboarding/components/InfoStep/infoStep.css';
-import { INFO_KEY } from '@/pages/onboarding/constants';
+import { INFO_KEY, MAX_PHONENUMBER_LENGTH, MAX_VERFICATION_CODE } from '@/pages/onboarding/constants';
 import type { onboardInfoTypes } from '@/pages/onboarding/types/onboardInfoTypes';
 import { validateTypingName, validateTypingPhoneNumber } from '@/pages/onboarding/utils/validate';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
@@ -11,10 +11,11 @@ import Text from '@/shared/components/Text/Text';
 interface InfoStepProps {
   name: string;
   phoneNumber: string;
+  verificationCode: string;
   onInfoChange: <K extends keyof onboardInfoTypes>(key: K, value: onboardInfoTypes[K]) => void;
 }
 
-const InfoStep = ({ name, phoneNumber, onInfoChange }: InfoStepProps) => {
+const InfoStep = ({ name, phoneNumber, verificationCode, onInfoChange }: InfoStepProps) => {
   const { isRunning: showTimer, formattedTime, startTimer } = useVerificationTimer(300);
 
   const handleNameChange = (name: string) => {
@@ -29,10 +30,20 @@ const InfoStep = ({ name, phoneNumber, onInfoChange }: InfoStepProps) => {
     onInfoChange(INFO_KEY.PHONE_NUMBER, phoneNumber);
   };
 
+  const handleVerificationCodeChange = (value: string) => {
+    const onlyNumbers = value.replace(/\D/g, '');
+    if (onlyNumbers.length <= MAX_VERFICATION_CODE) {
+      onInfoChange(INFO_KEY.VERIFICATION_CODE, onlyNumbers);
+    }
+  };
+
   const handleRequestVerification = () => {
     // TODO: 인증 번호 요청 api 연결
     startTimer();
   };
+
+  const isRequestDisabled = name.trim() === '' || phoneNumber.length !== MAX_PHONENUMBER_LENGTH;
+  const isVerifyButtonDisabled = verificationCode.length !== MAX_VERFICATION_CODE;
 
   return (
     <div className={styles.containerStyle}>
@@ -65,27 +76,26 @@ const InfoStep = ({ name, phoneNumber, onInfoChange }: InfoStepProps) => {
             />
             <BoxButton
               className={styles.buttonStyle}
-              isDisabled={name.trim() === '' || phoneNumber.length !== 11}
+              isDisabled={isRequestDisabled}
               onClick={handleRequestVerification}>
               인증 요청
             </BoxButton>
           </div>
           {showTimer && (
-            <div className={styles.wrapperStyle}>
-              <Text tag="b2_sb" className={styles.labelStyle}>
-                인증번호
-              </Text>
-              <div className={styles.numberWrapperStyle}>
-                <Input
-                  placeholder="인증번호 입력"
-                  rightAddOn={
-                    <Text tag="b2_sb" color="gray6">
-                      {formattedTime}
-                    </Text>
-                  }
-                />
-                <BoxButton className={styles.buttonStyle}>확인</BoxButton>
-              </div>
+            <div className={styles.numberWrapperStyle}>
+              <Input
+                placeholder="인증번호 4자리"
+                value={verificationCode}
+                onChange={(e) => handleVerificationCodeChange(e.target.value)}
+                rightAddOn={
+                  <Text tag="b2_m" color="gray8" className={styles.timerStyle}>
+                    {formattedTime}
+                  </Text>
+                }
+              />
+              <BoxButton className={styles.buttonStyle} isDisabled={isVerifyButtonDisabled}>
+                확인
+              </BoxButton>
             </div>
           )}
         </div>
