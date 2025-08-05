@@ -1,5 +1,6 @@
-import { useController, Control } from 'react-hook-form';
-import { ProfileFormValues } from '@/pages/editProfiles/schema/profileSchema';
+import type { Control } from 'react-hook-form';
+import { useController } from 'react-hook-form';
+import type { ProfileFormValues } from '@/pages/editProfiles/schema/profileSchema';
 import Text from '@/shared/components/Text/Text';
 import useImageUploader from '@/shared/hooks/useImageUploader';
 import * as styles from './profileImageUpload.css';
