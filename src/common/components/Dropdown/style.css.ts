@@ -8,6 +8,8 @@ export const containerStyle = style({
   alignItems: 'center',
 
   position: 'relative',
+
+  color: vars.colors.gray10,
 });
 
 export const triggerStyle = style({
@@ -19,7 +21,7 @@ export const triggerStyle = style({
 
   padding: '0.8rem 0.8rem 0.8rem 1.6rem',
 
-  border: '1px solid var(--grayscale-gray-02, #E5E7EB)',
+  border: `1px solid ${vars.colors.gray02}`,
   borderRadius: '4px',
 
   ...vars.fonts.b2_m,
@@ -48,10 +50,11 @@ export const listStyle = style({
   gap: '0.8rem',
 
   position: 'absolute',
+  zIndex: vars.zIndex.five,
 
   width: 'calc(100% - 2rem)',
   padding: '1.6rem',
-  marginTop: '5.8rem',
+  marginTop: '5.6rem',
 
   borderRadius: '4px',
   boxShadow: '0 0 8px 0 rgba(0, 0, 0, 0.10)',

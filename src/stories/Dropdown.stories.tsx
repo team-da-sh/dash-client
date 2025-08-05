@@ -34,7 +34,7 @@ export const Primary: Story = {
     handleSelectedOption: (option: string) => console.log(option),
   },
   render: () => (
-    <div style={{ width: '37.5rem' }}>
+    <div style={{ width: '37.5rem', height: '30rem' }}>
       <DropdownWithHooks />
     </div>
   ),
