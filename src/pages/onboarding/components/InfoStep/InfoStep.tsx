@@ -1,3 +1,4 @@
+import { useVerificationTimer } from '@/pages/onboarding/components/InfoStep/hooks/useVerificationTimer';
 import * as styles from '@/pages/onboarding/components/InfoStep/infoStep.css';
 import { INFO_KEY } from '@/pages/onboarding/constants';
 import type { onboardInfoTypes } from '@/pages/onboarding/types/onboardInfoTypes';
@@ -14,6 +15,8 @@ interface InfoStepProps {
 }
 
 const InfoStep = ({ name, phoneNumber, onInfoChange }: InfoStepProps) => {
+  const { isRunning: showTimer, formattedTime, startTimer } = useVerificationTimer(300);
+
   const handleNameChange = (name: string) => {
     if (!validateTypingName(name)) return;
 
@@ -24,6 +27,11 @@ const InfoStep = ({ name, phoneNumber, onInfoChange }: InfoStepProps) => {
     if (!validateTypingPhoneNumber(phoneNumber)) return;
 
     onInfoChange(INFO_KEY.PHONE_NUMBER, phoneNumber);
+  };
+
+  const handleRequestVerification = () => {
+    // TODO: 인증 번호 요청 api 연결
+    startTimer();
   };
 
   return (
@@ -55,10 +63,31 @@ const InfoStep = ({ name, phoneNumber, onInfoChange }: InfoStepProps) => {
               onChange={(e) => handlePhoneNumberChange(e.target.value)}
               className={styles.inputStyle}
             />
-            <BoxButton className={styles.buttonStyle} isDisabled={phoneNumber.length !== 11}>
+            <BoxButton
+              className={styles.buttonStyle}
+              isDisabled={name.trim() === '' || phoneNumber.length !== 11}
+              onClick={handleRequestVerification}>
               인증 요청
             </BoxButton>
           </div>
+          {showTimer && (
+            <div className={styles.wrapperStyle}>
+              <Text tag="b2_sb" className={styles.labelStyle}>
+                인증번호
+              </Text>
+              <div className={styles.numberWrapperStyle}>
+                <Input
+                  placeholder="인증번호 입력"
+                  rightAddOn={
+                    <Text tag="b2_sb" color="gray6">
+                      {formattedTime}
+                    </Text>
+                  }
+                />
+                <BoxButton className={styles.buttonStyle}>확인</BoxButton>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>
