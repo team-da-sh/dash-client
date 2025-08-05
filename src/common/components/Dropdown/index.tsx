@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { arrowStyle, containerStyle, itemStyle, listStyle, triggerStyle } from '@/common/components/Dropdown/style.css';
 import SvgIcArrowDownGray1032 from '@/shared/assets/svg/IcArrowDownGray1032';
+import Divider from '@/shared/components/Divider/Divider';
 import useOutsideClick from '@/shared/hooks/useOutsideClick';
 
 interface DropdownProps {
@@ -29,14 +30,17 @@ const Dropdown = ({ options, selectedOption = options[0], handleSelectedOption }
 
       {isOpen && (
         <ul className={listStyle}>
-          {options.map((option) => (
-            <li
-              key={option}
-              role="button"
-              onClick={() => handleItemClick(option)}
-              className={itemStyle({ isSelected: selectedOption === option })}>
-              {option}
-            </li>
+          {options.map((option, index) => (
+            <>
+              <li
+                key={option}
+                role="button"
+                onClick={() => handleItemClick(option)}
+                className={itemStyle({ isSelected: selectedOption === option })}>
+                {option}
+              </li>
+              {index !== options.length - 1 && <Divider color="gray1" />}
+            </>
           ))}
         </ul>
       )}
