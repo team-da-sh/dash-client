@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import * as styles from '@/pages/accountRegister/accountRegister.css';
+import ConfirmBottomSheet from '@/pages/accountRegister/components/ConfirmBottomSheet/ConfirmBottomSheet';
 import { accountRegisterSchema } from '@/pages/accountRegister/schema/accountRegisterSchema';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
@@ -11,7 +12,6 @@ import Head from '@/shared/components/Head/Head';
 import Input from '@/shared/components/Input/Input';
 import Text from '@/shared/components/Text/Text';
 import { notify } from '@/shared/components/Toast/Toast';
-import ConfirmBottomSheet from './components/ConfirmBottomSheet/ConfirmBottomSheet';
 
 const AccountRegister = () => {
   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
