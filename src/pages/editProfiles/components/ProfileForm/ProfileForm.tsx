@@ -5,14 +5,11 @@ import { usePatchMyProfile } from '@/pages/editProfiles/api/queries';
 import BottomSheet from '@/pages/editProfiles/components/BottomSheet/BottomSheet';
 import FormField from '@/pages/editProfiles/components/FormField/FormField.tsx';
 import * as styles from '@/pages/editProfiles/components/ProfileForm/profileForm.css';
-import { MAX_NAME_LENGTH, MAX_NICKNAME_LENGTH } from '@/pages/editProfiles/constants/limit.ts';
 import type { ProfileFormValues } from '@/pages/editProfiles/schema/profileSchema.ts';
 import { profileSchema } from '@/pages/editProfiles/schema/profileSchema.ts';
 import type { UpdateProfileRequestTypes } from '@/pages/editProfiles/types/api.ts';
 import ImageUploadSection from '@/pages/instructorRegister/components/ImageUploadSection/ImageUploadSection.tsx';
-import { MAX_PHONENUMBER_LENGTH } from '@/pages/onboarding/constants';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
-import Text from '@/shared/components/Text/Text';
 import useImageUploader from '@/shared/hooks/useImageUploader';
 
 interface ProfileFormPropTypes {
@@ -27,7 +24,6 @@ interface ProfileFormPropTypes {
 const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
   const { mutate: editMyProfile } = usePatchMyProfile();
 
-  const [focusedField, setFocusedField] = useState<string | null>(null);
   const [isImageClick, setIsImageClick] = useState(false);
 
   const {
@@ -91,14 +87,6 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
     editMyProfile(submitData);
   };
 
-  const handleFocus = (fieldName: string) => {
-    setFocusedField(fieldName);
-  };
-
-  const handleBlur = () => {
-    setFocusedField(null);
-  };
-
   const handleSelectImage = () => {
     handleUploaderClick();
   };
@@ -121,14 +109,7 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
           placeholder="댄서네임을 입력해주세요"
           register={register}
           error={errors.nickname}
-          isFocused={focusedField === 'nickname'}
-          onFocus={() => handleFocus('nickname')}
-          onBlur={handleBlur}
-          validationMessage={
-            <Text tag="c1_m" color={errors.nickname ? 'alert3' : focusedField === 'nickname' ? 'main4' : 'gray9'}>
-              {`${nickname?.length || 0}/${MAX_NICKNAME_LENGTH}`}
-            </Text>
-          }
+          value={nickname}
         />
 
         <FormField
@@ -137,14 +118,7 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
           register={register}
           placeholder="이름을 입력해주세요"
           error={errors.name}
-          isFocused={focusedField === 'name'}
-          onFocus={() => handleFocus('name')}
-          onBlur={handleBlur}
-          validationMessage={
-            <Text tag="c1_m" color={errors.name ? 'alert3' : focusedField === 'name' ? 'main4' : 'gray9'}>
-              {`${name?.length || 0}/${MAX_NAME_LENGTH}`}
-            </Text>
-          }
+          value={name}
         />
 
         <FormField
@@ -153,14 +127,7 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
           placeholder="전화번호를 입력해주세요"
           register={register}
           error={errors.phoneNumber}
-          isFocused={focusedField === 'phoneNumber'}
-          onFocus={() => handleFocus('phoneNumber')}
-          onBlur={handleBlur}
-          validationMessage={
-            <Text tag="c1_m" color={errors.phoneNumber ? 'alert3' : focusedField === 'phoneNumber' ? 'main4' : 'gray9'}>
-              {`${phoneNumber?.length || 0}/${MAX_PHONENUMBER_LENGTH}`}
-            </Text>
-          }
+          value={phoneNumber}
         />
       </div>
 

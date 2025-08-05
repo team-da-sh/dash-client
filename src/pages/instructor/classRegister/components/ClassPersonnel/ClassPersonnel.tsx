@@ -36,22 +36,16 @@ const ClassPersonnel = ({ register, maxReservationCount }: ClassPersonnelPropTyp
         mb: 40,
       })}>
       <Description title="모집 인원" subTitle={CLASS_PERSONNEL_SUBTITLE} />
-      <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 4 })}>
-        <Input
-          value={maxReservationCount}
-          name={name}
-          onChange={handleChange}
-          ref={ref}
-          placeholder="0"
-          rightAddOn={<Text tag="b2_sb_long">명</Text>}
-          isError={!!error}
-        />
-        {error && (
-          <Text tag="b3_r" color="alert3">
-            {error.message}
-          </Text>
-        )}
-      </div>
+      <Input
+        value={maxReservationCount}
+        name={name}
+        onChange={handleChange}
+        ref={ref}
+        placeholder="0"
+        rightAddOn={<Text tag="b2_sb_long">명</Text>}
+        isError={!!error}
+        helperText={error?.message}
+      />
     </div>
   );
 };
