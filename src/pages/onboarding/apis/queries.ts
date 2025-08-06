@@ -6,11 +6,10 @@ import type { onboardInfoTypes } from '@/pages/onboarding/types/onboardInfoTypes
 
 export const usePostOnboard = () => {
   return useMutation({
-    mutationFn: ({ name, phoneNumber, verificationCode, accessToken }: onboardInfoTypes & tokenTypes) =>
+    mutationFn: ({ name, phoneNumber, accessToken }: onboardInfoTypes & tokenTypes) =>
       postOnboard({
         name,
         phoneNumber,
-        verificationCode,
         accessToken,
       }),
 

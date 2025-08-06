@@ -77,7 +77,7 @@ const Onboarding = () => {
             <InfoStep
               name={info.name}
               phoneNumber={info.phoneNumber}
-              verificationCode={info.verificationCode}
+              verificationCode={info.verificationCode || ''}
               onInfoChange={handleInfoChange}
               setIsCodeVerified={handleCodeVerifiedChange}
             />
