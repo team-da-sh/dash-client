@@ -38,7 +38,7 @@ export const totalPriceContainerStyle = style({
   alignItems: 'center',
 
   width: '100%',
-  padding: '1.8rem 2rem 11.8rem 2rem',
+  padding: '1.8rem 2rem 10.2rem 2rem',
 });
 
 export const bottomButtonStyle = style({

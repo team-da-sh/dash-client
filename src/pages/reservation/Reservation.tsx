@@ -19,7 +19,7 @@ import { sprinkles } from '@/shared/styles/sprinkles.css';
 
 const Reservation = () => {
   const [isAllChecked, setIsAllChecked] = useState(false);
-  const [agreements, setAgreements] = useState([false, false]);
+  const [agreements, setAgreements] = useState(new Array(AGREEMENT_TERMS.length).fill(false));
 
   const navigate = useNavigate();
 
@@ -43,7 +43,7 @@ const Reservation = () => {
   const handleToggleAll = () => {
     const newState = !isAllChecked;
     setIsAllChecked(newState);
-    setAgreements([newState, newState]);
+    setAgreements(new Array(AGREEMENT_TERMS.length).fill(newState));
   };
 
   const handleToggle = (index: number) => {
@@ -81,12 +81,18 @@ const Reservation = () => {
           flexDirection: 'column',
           pt: 24,
           pr: 20,
-          pb: 36,
+          pb: 40,
           pl: 20,
-          gap: 32,
+          gap: 40,
         })}>
         <div className={sprinkles({ display: 'flex', flexDirection: 'column', width: '100%', gap: 16 })}>
-          <Text tag="b2_sb" color="gray9">
+          <Text tag="h6_sb" color="black">
+            신청자 정보
+          </Text>
+          <ApplicantInfo memberName={data.memberName} memberPhoneNumber={data.memberPhoneNumber} />
+        </div>
+        <div className={sprinkles({ display: 'flex', flexDirection: 'column', width: '100%', gap: 16 })}>
+          <Text tag="h6_sb" color="black">
             클래스 정보
           </Text>
           <ClassInfo
@@ -98,20 +104,14 @@ const Reservation = () => {
             lessonRound={data.lessonRound.lessonRounds}
           />
         </div>
-        <div className={sprinkles({ display: 'flex', flexDirection: 'column', width: '100%', gap: 16 })}>
-          <Text tag="b2_sb" color="gray9">
-            신청자 정보
-          </Text>
-          <ApplicantInfo memberName={data.memberName} memberPhoneNumber={data.memberPhoneNumber} />
-        </div>
       </section>
 
       <Divider direction="horizontal" length="100%" thickness="1.1rem" color="gray2" />
 
       <section
-        className={sprinkles({ display: 'flex', flexDirection: 'column', width: '100%', pt: 28, pr: 20, pl: 20 })}>
+        className={sprinkles({ display: 'flex', flexDirection: 'column', width: '100%', pt: 34, pr: 20, pl: 20 })}>
         <div className={sprinkles({ display: 'flex', flexDirection: 'column', width: '100%', gap: 20 })}>
-          <Text tag="b2_sb" color="gray9">
+          <Text tag="h6_sb" color="black">
             필수 약관 전체 동의
           </Text>
           <div>
@@ -132,9 +132,9 @@ const Reservation = () => {
             ))}
           </div>
           <Text tag="b2_m_long" color="gray6" className={sprinkles({ pb: 42 })}>
-            * 예약 서비스 이용을 위한 개인정보 수집 및 제 3자 제공,
+            * 서비스 이용을 위한 이용약관, 개인정보 수집 및 이용과 제3자
             <br />
-            취소/환불 규정을 확인하였으며 이에 동의합니다.
+            제공 동의서, 취소 및 환불 정책을 확인하였으며 이에 동의합니다.
           </Text>
         </div>
         <Divider direction="horizontal" length="100%" thickness="0.1rem" color="gray3" />
