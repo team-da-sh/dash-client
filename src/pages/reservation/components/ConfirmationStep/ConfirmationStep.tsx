@@ -1,17 +1,19 @@
+import { useState } from 'react';
 import SvgIcCopy from '@/shared/assets/svg/IcCopy';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import Head from '@/shared/components/Head/Head';
 import Text from '@/shared/components/Text/Text';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
+import ConfirmationBottomSheet from '../ConfirmationBottomSheet/ConfirmationBottomSheet';
 import * as styles from './confirmationStep.css';
 
-type ConfirmProps = {
+interface ConfirmationStepPropTypes {
   onNext: () => void;
   accountOwner?: string;
   bank?: string;
   accountNumber?: string;
   price?: string;
-};
+}
 
 const ConfirmationStep = ({
   onNext,
@@ -19,7 +21,9 @@ const ConfirmationStep = ({
   bank = '신한',
   accountNumber = '4879899192818',
   price = '350,000원',
-}: ConfirmProps) => {
+}: ConfirmationStepPropTypes) => {
+  const [isBottomSheetOpen, setBottomSheetOpen] = useState(true);
+
   const fullAccount = `${bank} ${accountNumber}`;
 
   const handleCopy = async () => {
@@ -28,6 +32,8 @@ const ConfirmationStep = ({
 
   return (
     <main>
+      <ConfirmationBottomSheet isOpen={isBottomSheetOpen} onClose={() => setBottomSheetOpen(false)} />
+
       <div className={styles.mainContainer}>
         <Head level="h2" tag="h3_sb" color="black">
           입금안내
@@ -78,7 +84,7 @@ const ConfirmationStep = ({
       </div>
 
       <div className={styles.confirmButtonContainer}>
-        <BoxButton onClick={onNext}>결제하기</BoxButton>
+        <BoxButton onClick={onNext}>확인</BoxButton>
       </div>
     </main>
   );

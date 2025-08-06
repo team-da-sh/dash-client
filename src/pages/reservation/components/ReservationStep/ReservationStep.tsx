@@ -16,7 +16,10 @@ import Head from '@/shared/components/Head/Head';
 import Text from '@/shared/components/Text/Text';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
 
-const ReservationStep = ({ onNext }: { onNext: () => void }) => {
+interface ReservationStepPropTypes {
+  onNext: () => void;
+}
+const ReservationStep = ({ onNext }: ReservationStepPropTypes) => {
   const [isAllChecked, setIsAllChecked] = useState(false);
   const [agreements, setAgreements] = useState(new Array(AGREEMENT_TERMS.length).fill(false));
 

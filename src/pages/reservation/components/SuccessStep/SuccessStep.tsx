@@ -3,7 +3,11 @@ import Completion from '@/shared/components/Completion/Completion';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
 import * as styles from './successStep.css';
 
-const SuccessStep = ({ onGoHome }: { onGoHome: () => void }) => {
+interface SuccessStepPropTypes {
+  onGoHome: () => void;
+}
+
+const SuccessStep = ({ onGoHome }: SuccessStepPropTypes) => {
   return (
     <div className={`${styles.flexCustomStyle}`}>
       <div className={sprinkles({ flexDirection: 'column', width: '100%' })}>
