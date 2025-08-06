@@ -6,7 +6,7 @@ import InfoStep from '@/pages/onboarding/components/InfoStep/InfoStep';
 import OnboardingHeader from '@/pages/onboarding/components/OnboardingHeader/OnboardingHeader';
 import SubmitButton from '@/pages/onboarding/components/SubmitButton/SubmitButton';
 import { FINAL_ONBOARDING_STEP } from '@/pages/onboarding/constants';
-import { bodyWrapperStyle, containerStyle, footerWrapperStyle } from '@/pages/onboarding/onboarding.css';
+import * as styles from '@/pages/onboarding/onboarding.css';
 import type { onboardInfoTypes } from '@/pages/onboarding/types/onboardInfoTypes';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { useFunnel } from '@/shared/hooks/useFunnel';
@@ -56,9 +56,9 @@ const Onboarding = () => {
   };
 
   return (
-    <form className={containerStyle} onSubmit={handleOnboardSubmit}>
+    <form className={styles.containerStyle} onSubmit={handleOnboardSubmit}>
       <OnboardingHeader />
-      <div className={bodyWrapperStyle}>
+      <div className={styles.bodyWrapperStyle}>
         <Funnel>
           <Step name="1">
             <InfoStep
@@ -74,7 +74,7 @@ const Onboarding = () => {
         </Funnel>
       </div>
 
-      <div className={footerWrapperStyle}>
+      <div className={styles.footerWrapperStyle}>
         <SubmitButton currentStep={currentStep} info={info} onNextButtonClick={handleNextButtonClick} />
       </div>
     </form>

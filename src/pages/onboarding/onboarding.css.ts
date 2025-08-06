@@ -19,3 +19,17 @@ export const footerWrapperStyle = style({
 
   backgroundColor: vars.colors.white,
 });
+
+export const toastContainerStyle = style({
+  display: 'flex',
+  gap: '0.8rem',
+  padding: '1.2rem 2rem',
+  marginBottom: '6.8rem',
+  width: '100%',
+
+  borderRadius: '0.8rem',
+  backgroundColor: vars.colors.gray10,
+  color: vars.colors.white,
+
+  ...vars.fonts.b2_m,
+});

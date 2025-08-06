@@ -41,7 +41,7 @@ const InfoStep = ({ name, phoneNumber, verificationCode, onInfoChange }: InfoSte
   const handleRequestVerification = () => {
     // TODO: 인증 번호 요청 api 연결
 
-    notify({ message: '인증번호가 전송되었습니다', icon: 'success' });
+    notify({ message: '인증번호가 전송되었습니다', icon: 'success', bottomGap: 'large' });
     startTimer();
   };
 

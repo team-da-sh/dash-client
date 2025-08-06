@@ -9,7 +9,7 @@ interface SubmitButtonPropTypes {
   onNextButtonClick: () => void;
 }
 
-const SubmitButton = ({ currentStep, info, onNextButtonClick}: SubmitButtonPropTypes) => {
+const SubmitButton = ({ currentStep, info, onNextButtonClick }: SubmitButtonPropTypes) => {
   const isButtonDisabled = (currentStep: number) => {
     switch (currentStep) {
       case 1:
