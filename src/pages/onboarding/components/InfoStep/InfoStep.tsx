@@ -7,6 +7,7 @@ import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import Head from '@/shared/components/Head/Head';
 import Input from '@/shared/components/Input/Input';
 import Text from '@/shared/components/Text/Text';
+import { notify } from '@/shared/components/Toast/Toast';
 
 interface InfoStepProps {
   name: string;
@@ -39,6 +40,8 @@ const InfoStep = ({ name, phoneNumber, verificationCode, onInfoChange }: InfoSte
 
   const handleRequestVerification = () => {
     // TODO: 인증 번호 요청 api 연결
+
+    notify({ message: '인증번호가 전송되었습니다', icon: 'success' });
     startTimer();
   };
 
