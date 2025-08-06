@@ -1,6 +1,6 @@
-import { useVerificationTimer } from '@/pages/onboarding/components/InfoStep/hooks/useVerificationTimer';
 import * as styles from '@/pages/onboarding/components/InfoStep/infoStep.css';
 import { INFO_KEY, MAX_PHONENUMBER_LENGTH, MAX_VERFICATION_CODE } from '@/pages/onboarding/constants';
+import { useVerificationTimer } from '@/pages/onboarding/hooks/useVerificationTimer';
 import type { onboardInfoTypes } from '@/pages/onboarding/types/onboardInfoTypes';
 import { validateTypingName, validateTypingPhoneNumber } from '@/pages/onboarding/utils/validate';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
@@ -14,9 +14,10 @@ interface InfoStepProps {
   phoneNumber: string;
   verificationCode: string;
   onInfoChange: <K extends keyof onboardInfoTypes>(key: K, value: onboardInfoTypes[K]) => void;
+  setIsCodeVerified: (verified: boolean) => void;
 }
 
-const InfoStep = ({ name, phoneNumber, verificationCode, onInfoChange }: InfoStepProps) => {
+const InfoStep = ({ name, phoneNumber, verificationCode, onInfoChange, setIsCodeVerified }: InfoStepProps) => {
   const { isRunning: showTimer, formattedTime, startTimer } = useVerificationTimer(300);
 
   const handleNameChange = (name: string) => {
@@ -42,7 +43,24 @@ const InfoStep = ({ name, phoneNumber, verificationCode, onInfoChange }: InfoSte
     // TODO: 인증 번호 요청 api 연결
 
     notify({ message: '인증번호가 전송되었습니다', icon: 'success', bottomGap: 'large' });
+
+    onInfoChange(INFO_KEY.VERIFICATION_CODE, '');
+
     startTimer();
+  };
+
+  const handleVerifyCode = () => {
+    // TODO: 인증번호 확인 로직, 임시 하드코딩
+    const tempCode = '1234';
+
+    if (verificationCode !== tempCode) {
+      notify({ message: '인증번호가 일치하지 않아요', icon: 'fail', bottomGap: 'large' });
+      setIsCodeVerified(false);
+      return;
+    }
+
+    notify({ message: '인증이 완료되었습니다', icon: 'success', bottomGap: 'large' });
+    setIsCodeVerified(true);
   };
 
   const isRequestDisabled = name.trim() === '' || phoneNumber.length !== MAX_PHONENUMBER_LENGTH;
@@ -96,7 +114,10 @@ const InfoStep = ({ name, phoneNumber, verificationCode, onInfoChange }: InfoSte
                   </Text>
                 }
               />
-              <BoxButton className={styles.buttonStyle({ type: 'default' })} isDisabled={isVerifyButtonDisabled}>
+              <BoxButton
+                className={styles.buttonStyle({ type: 'default' })}
+                isDisabled={isVerifyButtonDisabled}
+                onClick={handleVerifyCode}>
                 확인
               </BoxButton>
             </div>

@@ -23,6 +23,6 @@ export const validateTypingPhoneNumber = (phoneNumber: string) => {
 
 export const validatePhoneNumber = (phoneNumber: string) => {
   if (!phoneNumber) return false;
-  if (phoneNumber.length !== 11) return false;
+  if (phoneNumber.length !== MAX_PHONENUMBER_LENGTH) return false;
   return true;
 };

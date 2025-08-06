@@ -6,7 +6,7 @@ import InfoStep from '@/pages/onboarding/components/InfoStep/InfoStep';
 import OnboardingHeader from '@/pages/onboarding/components/OnboardingHeader/OnboardingHeader';
 import SubmitButton from '@/pages/onboarding/components/SubmitButton/SubmitButton';
 import { FINAL_ONBOARDING_STEP } from '@/pages/onboarding/constants';
-import * as styles from '@/pages/onboarding/onboarding.css';
+import { bodyWrapperStyle, containerStyle, footerWrapperStyle } from '@/pages/onboarding/onboarding.css';
 import type { onboardInfoTypes } from '@/pages/onboarding/types/onboardInfoTypes';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { useFunnel } from '@/shared/hooks/useFunnel';
@@ -21,9 +21,14 @@ const Onboarding = () => {
     verificationCode: '',
   });
 
+  const [isCodeVerified, setIsCodeVerified] = useState(false);
+
+  const handleCodeVerifiedChange = (verified: boolean) => {
+    setIsCodeVerified(verified);
+  };
+
   const { mutate: onboardMutate } = usePostOnboard();
 
-  // 토큰 ref로 전역변수로 저장
   const location = useLocation();
   const tokenRef = useRef(location.state);
 
@@ -38,6 +43,10 @@ const Onboarding = () => {
   const handleOnboardSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    if (!isCodeVerified) {
+      return;
+    }
+
     onboardMutate(
       {
         ...info,
@@ -45,7 +54,6 @@ const Onboarding = () => {
       },
       {
         onSuccess: ({ response }) => {
-          // 온보딩 성공시 로컬스토리지에 토큰 등록
           if (response.status === 200) {
             setStorage(tokenRef.current.accessToken, tokenRef.current.refreshToken);
             setStep(1);
@@ -56,9 +64,9 @@ const Onboarding = () => {
   };
 
   return (
-    <form className={styles.containerStyle} onSubmit={handleOnboardSubmit}>
+    <form className={containerStyle} onSubmit={handleOnboardSubmit}>
       <OnboardingHeader />
-      <div className={styles.bodyWrapperStyle}>
+      <div className={bodyWrapperStyle}>
         <Funnel>
           <Step name="1">
             <InfoStep
@@ -66,6 +74,7 @@ const Onboarding = () => {
               phoneNumber={info.phoneNumber}
               verificationCode={info.verificationCode}
               onInfoChange={handleInfoChange}
+              setIsCodeVerified={handleCodeVerifiedChange}
             />
           </Step>
           <Step name="2">
@@ -74,8 +83,13 @@ const Onboarding = () => {
         </Funnel>
       </div>
 
-      <div className={styles.footerWrapperStyle}>
-        <SubmitButton currentStep={currentStep} info={info} onNextButtonClick={handleNextButtonClick} />
+      <div className={footerWrapperStyle}>
+        <SubmitButton
+          currentStep={currentStep}
+          info={info}
+          onNextButtonClick={handleNextButtonClick}
+          isCodeVerified={isCodeVerified}
+        />
       </div>
     </form>
   );
