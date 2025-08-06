@@ -78,10 +78,10 @@ const InfoStep = ({ name, phoneNumber, verificationCode, onInfoChange }: InfoSte
               className={styles.inputStyle}
             />
             <BoxButton
-              className={styles.buttonStyle}
+              className={styles.buttonStyle({ type: showTimer ? 'resend' : 'default' })}
               isDisabled={isRequestDisabled}
               onClick={handleRequestVerification}>
-              인증 요청
+              {showTimer ? '재요청' : '인증 요청'}
             </BoxButton>
           </div>
           {showTimer && (
@@ -96,7 +96,7 @@ const InfoStep = ({ name, phoneNumber, verificationCode, onInfoChange }: InfoSte
                   </Text>
                 }
               />
-              <BoxButton className={styles.buttonStyle} isDisabled={isVerifyButtonDisabled}>
+              <BoxButton className={styles.buttonStyle({ type: 'default' })} isDisabled={isVerifyButtonDisabled}>
                 확인
               </BoxButton>
             </div>
