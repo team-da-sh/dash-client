@@ -42,4 +42,4 @@ export const MAX_PHONENUMBER_LENGTH = 11;
 
 export const MAX_NICKNAME_LENGTH = 8;
 
-export const FINAL_ONBOARDING_STEP = 3;
+export const FINAL_ONBOARDING_STEP = 2;

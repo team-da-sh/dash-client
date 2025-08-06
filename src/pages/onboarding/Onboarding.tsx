@@ -9,6 +9,7 @@ import { FINAL_ONBOARDING_STEP } from '@/pages/onboarding/constants';
 import { bodyWrapperStyle, containerStyle, footerWrapperStyle } from '@/pages/onboarding/onboarding.css';
 import type { onboardInfoTypes } from '@/pages/onboarding/types/onboardInfoTypes';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
+import Header from '@/shared/components/Header/Header';
 import { useFunnel } from '@/shared/hooks/useFunnel';
 import { setStorage } from '@/shared/utils/handleToken';
 
@@ -65,7 +66,7 @@ const Onboarding = () => {
 
   return (
     <form className={containerStyle} onSubmit={handleOnboardSubmit}>
-      <OnboardingHeader />
+      {currentStep === FINAL_ONBOARDING_STEP ? <Header /> : <OnboardingHeader />}
       <div className={bodyWrapperStyle}>
         <Funnel>
           <Step name="1">
