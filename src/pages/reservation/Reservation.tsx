@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Error from '@/pages/error/Error';
-import { useGetReservaion } from '@/pages/reservation/apis/queries';
+import { useGetReservation } from '@/pages/reservation/apis/queries';
 import AgreeCheckBox from '@/pages/reservation/components/AgreeCheckBox/AgreeCheckBox';
 import ApplicantInfo from '@/pages/reservation/components/ApplicantInfo/ApplicantInfo';
 import ClassInfo from '@/pages/reservation/components/ClassInfo/ClassInfo';
@@ -30,7 +30,7 @@ const Reservation = () => {
   }
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const { data, isError, isLoading } = useGetReservaion(+id);
+  const { data, isError, isLoading } = useGetReservation(+id);
 
   if (isLoading) {
     return <></>;

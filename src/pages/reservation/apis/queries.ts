@@ -4,9 +4,9 @@ import { getReservation, postReservation } from '@/pages/reservation/apis/axios'
 import type { ReservationDetailResponseTypes } from '@/pages/reservation/types/api';
 import { lessonKeys, memberKeys } from '@/shared/constants/queryKey';
 
-export const useGetReservaion = (lessonId: number) => {
+export const useGetReservation = (lessonId: number) => {
   return useQuery<ReservationDetailResponseTypes, AxiosError>({
-    queryKey: lessonKeys.detail(lessonId).queryKey,
+    queryKey: lessonKeys.reserve(lessonId).queryKey,
     queryFn: () => getReservation(lessonId),
   });
 };
