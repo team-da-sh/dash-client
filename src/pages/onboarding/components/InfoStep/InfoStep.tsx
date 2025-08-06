@@ -14,10 +14,18 @@ interface InfoStepProps {
   phoneNumber: string;
   verificationCode: string;
   onInfoChange: <K extends keyof onboardInfoTypes>(key: K, value: onboardInfoTypes[K]) => void;
+  isCodeVerified: boolean;
   setIsCodeVerified: (verified: boolean) => void;
 }
 
-const InfoStep = ({ name, phoneNumber, verificationCode, onInfoChange, setIsCodeVerified }: InfoStepProps) => {
+const InfoStep = ({
+  name,
+  phoneNumber,
+  verificationCode,
+  onInfoChange,
+  isCodeVerified,
+  setIsCodeVerified,
+}: InfoStepProps) => {
   const { isRunning: showTimer, formattedTime, startTimer } = useVerificationTimer(300);
 
   const handleNameChange = (name: string) => {
@@ -116,7 +124,7 @@ const InfoStep = ({ name, phoneNumber, verificationCode, onInfoChange, setIsCode
               />
               <BoxButton
                 className={styles.buttonStyle({ type: 'default' })}
-                isDisabled={isVerifyButtonDisabled}
+                isDisabled={isVerifyButtonDisabled || isCodeVerified}
                 onClick={handleVerifyCode}>
                 확인
               </BoxButton>

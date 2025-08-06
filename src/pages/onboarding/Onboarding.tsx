@@ -80,6 +80,7 @@ const Onboarding = () => {
               verificationCode={info.verificationCode || ''}
               onInfoChange={handleInfoChange}
               setIsCodeVerified={handleCodeVerifiedChange}
+              isCodeVerified={isCodeVerified}
             />
           </Step>
           <Step name="2">
