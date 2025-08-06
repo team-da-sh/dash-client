@@ -15,10 +15,6 @@ export const ROUTES_CONFIG = {
     title: 'Onboarding',
     path: '/onboarding',
   },
-  success: {
-    title: 'Success',
-    path: '/success',
-  },
   search: {
     title: 'Search',
     path: '/search',
