@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
-import Dropdown from '@/common/components/Dropdown';
+import Dropdown from '@/common/components/Dropdown/Dropdown';
 
 const meta = {
   title: 'Common/Dropdown',
