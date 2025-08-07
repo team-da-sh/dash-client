@@ -54,6 +54,7 @@ const DancerNameSection = ({
         })}
         isError={!!error}
         helperText={duplicateState === 'available' ? '사용 가능한 댄서 네임이에요.' : error?.message}
+        helperTextState={duplicateState === 'available' ? 'success' : 'error'}
         value={dancerName}
         showMaxLength={true}
         placeholder="나는대쉬"

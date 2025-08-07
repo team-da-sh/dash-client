@@ -50,6 +50,19 @@ export const optionalContainerStyle = style({
   width: '100%',
 });
 
+export const helperTextStyle = recipe({
+  variants: {
+    state: {
+      error: {
+        color: vars.colors.alert03,
+      },
+      success: {
+        color: vars.colors.main06,
+      },
+    },
+  },
+});
+
 export const lengthContainerStyle = style({
   display: 'flex',
   gap: '0.2rem',

@@ -8,13 +8,24 @@ interface InputPropTypes extends InputHTMLAttributes<HTMLInputElement> {
   isError?: boolean;
   rightAddOn?: ReactNode;
   helperText?: string;
+  helperTextState?: 'error' | 'success';
   showMaxLength?: boolean;
   value?: string;
   maxLength?: number;
 }
 
 const Input = (
-  { isError, className, value, rightAddOn, helperText, showMaxLength, maxLength, ...props }: InputPropTypes,
+  {
+    isError,
+    className,
+    value,
+    rightAddOn,
+    helperText,
+    helperTextState = 'error',
+    showMaxLength,
+    maxLength,
+    ...props
+  }: InputPropTypes,
   ref: ForwardedRef<HTMLInputElement>
 ) => {
   const [isFocused, setIsFocused] = useState(false);
@@ -59,7 +70,7 @@ const Input = (
 
       <div className={style.optionalContainerStyle}>
         {helperText && (
-          <Text tag="b3_r" color="alert3">
+          <Text tag="b3_r" className={style.helperTextStyle({ state: helperTextState })}>
             {helperText}
           </Text>
         )}
