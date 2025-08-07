@@ -49,7 +49,7 @@ const InstructorRegister = () => {
     watch,
     setValue,
     control,
-    formState: { errors, isValid, isDirty, dirtyFields },
+    formState: { errors, isValid, isDirty },
     reset,
     setError,
   } = useForm({
@@ -222,7 +222,6 @@ const InstructorRegister = () => {
             <DancerNameSection
               register={register}
               setError={setError}
-              isNameDirty={!!dirtyFields.dancerName}
               error={errors.dancerName}
               dancerName={dancerName}
               duplicateState={duplicateState}

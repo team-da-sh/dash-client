@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import type { FieldError, UseFormRegister, UseFormSetError } from 'react-hook-form';
 import * as styles from '@/pages/instructorRegister/components/DancerNameSection/dancerNameSection.css';
 import { FORM_ERROR_MESSAGE } from '@/pages/instructorRegister/constants/registerSection';
@@ -13,7 +12,6 @@ import Text from '@/shared/components/Text/Text';
 interface DancerNameSectionPropTypes {
   register: UseFormRegister<instructorRegisterFormTypes>;
   setError: UseFormSetError<instructorRegisterFormTypes>;
-  isNameDirty: boolean | undefined;
   error: FieldError | undefined;
   dancerName: string;
   duplicateState: duplicateStateTypes;
@@ -23,13 +21,11 @@ interface DancerNameSectionPropTypes {
 const DancerNameSection = ({
   register,
   setError,
-  isNameDirty,
   error,
   dancerName,
   duplicateState,
   setDuplicateState,
 }: DancerNameSectionPropTypes) => {
-  const [isButtonActive, setIsButtonActive] = useState(true);
   const testDuplicateData = false; // API 임시 테스트 데이터
 
   const fetchDuplicateCheck = async () => {
@@ -41,10 +37,9 @@ const DancerNameSection = ({
     } else {
       setDuplicateState('available');
     }
-    setIsButtonActive(false);
   };
 
-  const shouldDisableButton = !!error || !isNameDirty || !isButtonActive;
+  const shouldDisableButton = !!error || duplicateState === 'available';
   const buttonVariant = shouldDisableButton ? 'temp' : 'primary';
 
   return (
@@ -55,7 +50,6 @@ const DancerNameSection = ({
           onChange: () => {
             // 값이 변경되면 중복 상태 초기화
             setDuplicateState(null);
-            setIsButtonActive(true);
           },
         })}
         isError={!!error}
