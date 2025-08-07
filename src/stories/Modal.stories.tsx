@@ -33,9 +33,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 const ModalWithHooks = ({ type, content }: { type: 'default' | 'single'; content: string | ReactElement }) => {
-  const { openModal, closeModal } = useModal(() => (
-    <Modal type={type} content={content} onClose={closeModal} onClickHandler={open} />
-  ));
+  const { openModal, closeModal } = useModal(() => <Modal type={type} content={content} onClose={closeModal} />);
 
   return (
     <BoxButton variant="primary" onClick={openModal} style={{ width: '10rem' }}>
