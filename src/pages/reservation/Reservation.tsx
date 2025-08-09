@@ -1,9 +1,9 @@
 import { useNavigate } from 'react-router-dom';
+import ConfirmationStep from '@/pages/reservation/components/ConfirmationStep/ConfirmationStep';
+import ReservationStep from '@/pages/reservation/components/ReservationStep/ReservationStep';
+import SuccessStep from '@/pages/reservation/components/SuccessStep/SuccessStep';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { useFunnel } from '@/shared/hooks/useFunnel';
-import ConfirmationStep from './components/ConfirmationStep/confirmationStep';
-import ReservationStep from './components/ReservationStep/ReservationStep';
-import SuccessStep from './components/SuccessStep/SuccessStep';
 
 const Reservation = () => {
   const navigate = useNavigate();

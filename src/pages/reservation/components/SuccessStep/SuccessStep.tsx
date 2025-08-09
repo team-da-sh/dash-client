@@ -1,7 +1,7 @@
+import * as styles from '@/pages/reservation/components/SuccessStep/successStep.css';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import Completion from '@/shared/components/Completion/Completion';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
-import * as styles from './successStep.css';
 
 interface SuccessStepPropTypes {
   onGoHome: () => void;
