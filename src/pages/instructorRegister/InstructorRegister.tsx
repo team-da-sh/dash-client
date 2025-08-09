@@ -174,12 +174,14 @@ const InstructorRegister = () => {
   useEffect(() => {
     if (!prevInstructorData) return;
 
-    if (prevInstructorData.dancerName) {
-      setDuplicateState('available');
-    }
+    // TODO: prev data에 dancerName 추가되면 주석 제거
+    // if (prevInstructorData.dancerName) {
+    setDuplicateState('available');
+    // }
 
     reset({
-      dancerName: prevInstructorData.dancerName || 'dd',
+      // TODO: 임시 dancerName 값, 추후에 삭제 예정
+      dancerName: prevInstructorData.dancerName || '요거트스무디',
       imageUrls: prevInstructorData.profileImage || '',
       instagram: prevInstructorData.instagram || '',
       youtube: prevInstructorData.youtube || '',
