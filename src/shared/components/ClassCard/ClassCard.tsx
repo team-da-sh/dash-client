@@ -1,9 +1,12 @@
+import { useGetRole } from '@/shared/apis/queries';
 import IcArrowRightGray0614 from '@/shared/assets/svg/IcArrowRightGray0614';
-import IcClassEndMain0324 from '@/shared/assets/svg/IcClassEndMain0324';
-import IcClassIngMain0324 from '@/shared/assets/svg/IcClassIngMain0324';
-import IcClassSoonMain0324 from '@/shared/assets/svg/IcClassSoonMain0324';
+import SvgIcClearAlert20 from '@/shared/assets/svg/IcClearAlert20';
+import SvgIcClearGray0920 from '@/shared/assets/svg/IcClearGray0920';
+import SvgIcClearMain0320 from '@/shared/assets/svg/IcClearMain0320';
+import SvgIcMeatballAlert20 from '@/shared/assets/svg/IcMeatballAlert20';
+import SvgIcMeatballMain0320 from '@/shared/assets/svg/IcMeatballMain0320';
 import * as styles from '@/shared/components/ClassCard/classCard.css';
-// sprinkles import
+import Divider from '@/shared/components/Divider/Divider';
 import Head from '@/shared/components/Head/Head';
 import Tag from '@/shared/components/Tag/Tag';
 import Text from '@/shared/components/Text/Text';
@@ -11,6 +14,34 @@ import { genreMapping, levelMapping } from '@/shared/constants';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
 import type { Lesson } from '@/shared/types/lessonTypes';
 import { formatLessonDateRange, getClassStatus } from '@/shared/utils/timeCalculate';
+
+const studentStatus = (status: string) => {
+  switch (status) {
+    case 'waitingPermission':
+      return [<SvgIcMeatballMain0320 width={20} />, '승인 대기'];
+    case 'permission':
+      return [<SvgIcClearMain0320 width={20} />, '승인 완료'];
+    case 'register':
+      return [<SvgIcClearGray0920 width={20} />, '수강 완료'];
+    case 'waitingCancle':
+      return [<SvgIcMeatballAlert20 width={20} />, '취소 대기'];
+    case 'cancle':
+      return [<SvgIcClearAlert20 width={20} />, '취소 완료'];
+    default:
+      return [null, '상태 불명'];
+  }
+};
+
+const teacherStatus = (status: string) => {
+  switch (status) {
+    case 'recruiting':
+      return [<SvgIcMeatballMain0320 width={20} />, '모집 중'];
+    case 'recruitingEnd':
+      return [<SvgIcClearMain0320 width={20} />, '모집 완료'];
+    default:
+      return [null, '상태 불명'];
+  }
+};
 
 interface ClassCardPropTypes extends Lesson {
   isReservation?: boolean;
@@ -33,47 +64,12 @@ const ClassCard = ({
 }: ClassCardPropTypes) => {
   const { status, remainingDays } = getClassStatus(startDateTime, endDateTime);
 
-  const korstatus = () => {
-    if (isReservation) {
-      switch (status) {
-        case 'upcoming':
-          return '수강예정';
-        case 'ongoing':
-          return '수강중';
-        case 'completed':
-          return '수강완료';
-        default:
-          return '';
-      }
-    } else {
-      switch (status) {
-        case 'upcoming':
-          return '모집중';
-        case 'completed':
-        case 'ongoing':
-          return '모집완료';
-        default:
-          return '';
-      }
-    }
-  };
+  const { data: role } = useGetRole();
 
-  const statusIcon = () => {
-    if (!isReservation && status === 'upcoming') {
-      return <IcClassIngMain0324 width="1.8rem" />;
-    }
+  const [statusIcon, statusText] =
+    role?.role === 'student' ? studentStatus('waitingPermission') : teacherStatus('recruiting');
 
-    switch (status) {
-      case 'upcoming':
-        return <IcClassSoonMain0324 width="1.8rem" />;
-      case 'ongoing':
-        return <IcClassIngMain0324 width="1.8rem" />;
-      case 'completed':
-        return <IcClassEndMain0324 width="1.8rem" />;
-      default:
-        return null;
-    }
-  };
+  const showRemainingDays = isReservation && status === 'upcoming' && remainingDays !== undefined;
 
   const handleTextClick = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -93,42 +89,26 @@ const ClassCard = ({
             display: 'flex',
             alignItems: 'center',
             gap: 3,
-            marginBottom: 12,
           })}>
-          <div className={sprinkles({ marginRight: 5, display: 'flex', alignItems: 'center' })}>{statusIcon()}</div>
-          <Text tag="b2_sb" color={status === 'completed' ? 'gray8' : 'black'}>
-            {korstatus()}
-          </Text>
-          {isReservation && status === 'upcoming' && remainingDays !== undefined && (
+          <div className={sprinkles({ marginRight: 5, display: 'flex', alignItems: 'center' })}>{statusIcon}</div>
+          <Text tag="b1_sb">{statusText}</Text>
+          {showRemainingDays && (
             <Text tag="b3_m" color="main4">
               D-{remainingDays}
             </Text>
           )}
         </div>
-
-        {isReservation && (
-          <div
-            className={sprinkles({
-              display: 'flex',
-              alignItems: 'center',
-              gap: 2,
-            })}>
-            <Text tag="b3_m" color="gray7" onClick={handleTextClick}>
-              문의하기
-            </Text>
-            <IcArrowRightGray0614 width="1.4rem" height="1.4rem" />
-          </div>
-        )}
       </div>
+
+      <Divider color="gray1" className={styles.dividerStyle} />
 
       {/* 이미지/정보 영역 */}
       <div
         className={sprinkles({
           display: 'flex',
           gap: 12,
-          marginBottom: 16,
         })}>
-        <img src={imageUrl} className={styles.cardImageStyle} alt={`${name} 이미지`} />
+        <img src={imageUrl} className={styles.cardImageStyle} alt={`${name}`} />
         <div
           className={
             sprinkles({
@@ -170,7 +150,15 @@ const ClassCard = ({
           </div>
         </div>
       </div>
-      {children && <div className={sprinkles({ display: 'flex', gap: 7 })}>{children}</div>}
+      {children && <div className={sprinkles({ display: 'flex', gap: 7, mt: 12 })}>{children}</div>}
+      {isReservation && (
+        <div className={styles.askTextStyle}>
+          <Text tag="b3_m" color="gray7" onClick={handleTextClick}>
+            문의하기
+          </Text>
+          <IcArrowRightGray0614 width="1.4rem" height="1.4rem" />
+        </div>
+      )}
     </div>
   );
 };
