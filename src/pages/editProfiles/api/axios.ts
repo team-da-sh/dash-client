@@ -1,4 +1,4 @@
-import { UpdateProfileRequestTypes } from '@/pages/editProfiles/types/api';
+import type { UpdateProfileRequestTypes } from '@/pages/editProfiles/types/api';
 import { instance } from '@/shared/apis/instance';
 import { API_URL } from '@/shared/constants/apiURL';
 

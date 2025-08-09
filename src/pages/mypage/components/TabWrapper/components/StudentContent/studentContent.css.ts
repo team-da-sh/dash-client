@@ -28,7 +28,6 @@ export const menuButtonContainerStyle = style({
 
 export const noUnderlineStyle = style({
   textDecoration: 'none',
-  color: 'inherit',
   pointerEvents: 'none',
   cursor: 'default',
 

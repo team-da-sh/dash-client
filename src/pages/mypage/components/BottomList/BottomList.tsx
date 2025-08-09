@@ -36,7 +36,7 @@ const BottomList = () => {
             </li>
             {item.hasDivider && (
               <div className={styles.dividerStyle}>
-                <Divider color="gray1" thickness={1} />
+                <Divider color="gray2" thickness="0.1rem" />
               </div>
             )}
           </div>

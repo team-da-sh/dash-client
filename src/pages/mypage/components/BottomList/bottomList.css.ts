@@ -7,7 +7,7 @@ export const ulStyle = style({
 
   width: '100%',
 
-  padding: '2.4rem 1.6rem 2.8rem 1.6rem',
+  padding: '2.4rem 1.6rem 4.7rem 1.6rem',
   gap: '0.8rem',
 
   backgroundColor: vars.colors.white,
@@ -24,8 +24,8 @@ export const listStyle = style({
 });
 
 export const dividerStyle = style({
-  marginTop: '0.8rem',
-  marginBottom: '0.8rem',
+  marginTop: '2rem',
+  marginBottom: '1.2rem',
 });
 
 export const disabledStyle = style({
