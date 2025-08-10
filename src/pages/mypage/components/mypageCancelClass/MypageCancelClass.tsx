@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import * as styles from '@/pages/mypage/components/mypageCancelClass/mypageCancelCalss.css';
+import * as styles from '@/pages/mypage/components/mypageCancelClass/mypageCancelClass.css';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
 import type { Reservation } from '@/shared/types/reservationTypes';
