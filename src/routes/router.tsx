@@ -22,7 +22,7 @@ const MyPageReservation = lazy(() => import('@/pages/mypage/components/mypageRes
 const MyPageReservationDetail = lazy(
   () => import('@/pages/mypage/components/mypageReservationDetail/MypageReservationDetail.tsx')
 );
-const MypageCancelClass = lazy(() => import('@/pages/mypage/components/mypageCancleClass/MypageCancelClass.tsx'));
+const MypageCancelClass = lazy(() => import('@/pages/mypage/components/mypageCancelClass/MypageCancelClass'));
 const ClassRegister = lazy(() => import('@/pages/instructor/classRegister/ClassRegister'));
 const InstructorRegister = lazy(() => import('@/pages/instructorRegister/InstructorRegister'));
 const ClassDetail = lazy(() => import('@/pages/instructor/classDetail/ClassDetail'));
