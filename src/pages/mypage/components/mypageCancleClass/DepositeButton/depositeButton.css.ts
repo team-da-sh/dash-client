@@ -4,6 +4,7 @@ import { vars } from '@/shared/styles/theme.css';
 export const depositButtonStyle = recipe({
   base: {
     width: '100%',
+    height: '5.2rem',
     padding: '1.4rem 1.8rem',
     border: 'none',
     borderRadius: '4px',
@@ -14,13 +15,12 @@ export const depositButtonStyle = recipe({
   variants: {
     isSelected: {
       true: {
-        backgroundColor: vars.colors.main04,
+        backgroundColor: vars.colors.main03,
         color: vars.colors.white,
       },
       false: {
         backgroundColor: vars.colors.white,
         color: vars.colors.gray07,
-        border: `1px solid ${vars.colors.gray04}`,
       },
     },
   },

@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { containerStyle, layoutStyle } from '@/pages/mypage/components/mypageCancleClass/mypageCancelCalss.css';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
@@ -5,9 +6,11 @@ import ClassCard from '@/shared/components/ClassCard/ClassCard';
 import Head from '@/shared/components/Head/Head';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
 import type { Reservation } from '@/shared/types/reservationTypes';
+import DepositeButton from './DepositeButton/DepositeButton';
 
 const MypageCancelClass = () => {
   const location = useLocation();
+  const [selectedStatus, setSelectedStatus] = useState<'before' | 'after' | null>(null);
 
   const reservationFromState = location.state?.reservation as Reservation | undefined;
 
@@ -22,6 +25,10 @@ const MypageCancelClass = () => {
     console.log('취소 처리');
   };
 
+  const handleDepositStatusChange = (status: 'before' | 'after') => {
+    setSelectedStatus((prev) => (prev === status ? null : status));
+  };
+
   return (
     <div className={layoutStyle}>
       <div className={containerStyle}>
@@ -31,7 +38,7 @@ const MypageCancelClass = () => {
           </Head>
         </div>
 
-        <div className={sprinkles({ marginBottom: 28 })}>
+        <div className={sprinkles({ marginBottom: 26 })}>
           <ClassCard
             id={reservationData.reservationId}
             name={reservationData.name}
@@ -48,7 +55,24 @@ const MypageCancelClass = () => {
           />
         </div>
 
-        <BoxButton variant="primary" onClick={handleNextClick} className={sprinkles({ width: '100%' })}>
+        <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 15, marginBottom: 136 })}>
+          <DepositeButton
+            text="입금 전"
+            isSelected={selectedStatus === 'before'}
+            onClick={() => handleDepositStatusChange('before')}
+          />
+          <DepositeButton
+            text="입금 후"
+            isSelected={selectedStatus === 'after'}
+            onClick={() => handleDepositStatusChange('after')}
+          />
+        </div>
+
+        <BoxButton
+          variant="primary"
+          onClick={handleNextClick}
+          isDisabled={selectedStatus === null}
+          className={sprinkles({ width: '100%' })}>
           다음
         </BoxButton>
       </div>
