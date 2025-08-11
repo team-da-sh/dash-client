@@ -2,6 +2,8 @@ import { YOUTUBE_URL_REGEX } from '@/shared/constants';
 
 export const ONLY_NUMBER = /^\d*$/;
 
+export const ONLY_KOREAN = /[^ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/g;
+
 export const INCLUDE_SPECIAL = /[!@#$%^&*(),.?":{}|<>_\[\]\\\/+=~`'\-]/;
 
 export const INCLUDE_BLANK = /^.*\s.*$/;

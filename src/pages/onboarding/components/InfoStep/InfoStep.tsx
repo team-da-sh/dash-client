@@ -29,9 +29,8 @@ const InfoStep = ({
   const { isRunning: showTimer, formattedTime, startTimer } = useVerificationTimer(300);
 
   const handleNameChange = (name: string) => {
-    if (!validateTypingName(name)) return;
-
-    onInfoChange(INFO_KEY.NAME, name);
+    const validName = validateTypingName(name);
+    onInfoChange(INFO_KEY.NAME, validName);
   };
 
   const handlePhoneNumberChange = (phoneNumber: string) => {
@@ -71,7 +70,7 @@ const InfoStep = ({
     setIsCodeVerified(true);
   };
 
-  const isRequestDisabled = name.trim() === '' || phoneNumber.length !== MAX_PHONENUMBER_LENGTH;
+  const isRequestDisabled = phoneNumber.length !== MAX_PHONENUMBER_LENGTH;
   const isVerifyButtonDisabled = verificationCode.length !== MAX_VERFICATION_CODE;
 
   return (
