@@ -35,12 +35,6 @@ export const numberWrapperStyle = style({
 
 export const inputStyle = style({
   flex: 1,
-
-  selectors: {
-    '&:disabled': {
-      color: vars.colors.gray07,
-    },
-  },
 });
 
 export const buttonStyle = recipe({

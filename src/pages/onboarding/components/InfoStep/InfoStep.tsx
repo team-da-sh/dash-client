@@ -87,8 +87,16 @@ const InfoStep = ({
     resetTimer();
   };
 
+  const handleFocusAndNotify = (e: React.MouseEvent | React.TouchEvent) => {
+    if (!isCodeVerified) return;
+    e.preventDefault();
+    (e.target as HTMLElement).blur?.();
+    notify({ message: '이미 인증이 완료되었어요', icon: 'success', bottomGap: 'large' });
+  };
+
   const isRequestDisabled = phoneNumber.length !== MAX_PHONENUMBER_LENGTH || isCodeVerified;
   const isVerifyButtonDisabled = verificationCode.length !== MAX_VERFICATION_CODE;
+  const showAsResend = isRunning || isCodeVerified;
 
   return (
     <div className={styles.containerStyle}>
@@ -118,13 +126,15 @@ const InfoStep = ({
               value={phoneNumber}
               onChange={(e) => handlePhoneNumberChange(e.target.value)}
               className={styles.inputStyle}
-              disabled={isCodeVerified}
+              readOnly={isCodeVerified}
+              onMouseDown={handleFocusAndNotify}
+              onTouchStart={handleFocusAndNotify}
             />
             <BoxButton
               className={styles.buttonStyle({ type: isRunning ? 'resend' : 'default' })}
               isDisabled={isRequestDisabled}
               onClick={handleRequestVerification}>
-              {isRunning ? '재요청' : '인증 요청'}
+              {showAsResend ? '재요청' : '인증 요청'}
             </BoxButton>
           </div>
           {isVerificationVisible && (
@@ -138,6 +148,9 @@ const InfoStep = ({
                     {formattedTime}
                   </Text>
                 }
+                readOnly={isCodeVerified}
+                onMouseDown={handleFocusAndNotify}
+                onTouchStart={handleFocusAndNotify}
               />
               <BoxButton
                 className={styles.buttonStyle({ type: 'default' })}
