@@ -1,6 +1,6 @@
 import toast from 'react-hot-toast';
-import SvgIcCautionAlert0120 from '@/shared/assets/svg/IcCautionAlert0120';
-import SvgIcClearMain0420 from '@/shared/assets/svg/IcClearMain0420';
+import IcCautionAlert0120 from '@/shared/assets/svg/IcCautionAlert0120';
+import IcClearMain0420 from '@/shared/assets/svg/IcClearMain0420';
 import { toastContentStyle } from '@/shared/components/Toast/toast.css';
 import { vars } from '@/shared/styles/theme.css';
 
@@ -9,9 +9,9 @@ export type iconType = 'success' | 'fail' | 'default';
 const selectIcon = (icon: iconType) => {
   switch (icon) {
     case 'success':
-      return <SvgIcClearMain0420 width={20} />;
+      return <IcClearMain0420 width={20} />;
     case 'fail':
-      return <SvgIcCautionAlert0120 width={20} />;
+      return <IcCautionAlert0120 width={20} />;
     default:
       return;
   }
@@ -39,7 +39,8 @@ export const notify = ({ message, icon = 'default', bottomGap = 'default' }: not
   };
 
   const largeStyle = {
-    width: '100%',
+    maxWidth: 'unset',
+    width: 'min(calc(var(--max-width) - 4rem), calc(100vw - 4rem))',
     marginBottom: '6.8rem',
 
     backgroundColor: vars.colors.gray09,
@@ -55,7 +56,7 @@ export const notify = ({ message, icon = 'default', bottomGap = 'default' }: not
       </div>
     ),
     {
-      duration: 1500,
+      duration: 150000,
       position: 'bottom-center',
       style: bottomGap === 'large' ? largeStyle : defaultStyle,
     }
