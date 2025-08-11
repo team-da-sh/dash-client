@@ -1,5 +1,11 @@
 import * as styles from '@/pages/onboarding/components/InfoStep/infoStep.css';
-import { INFO_KEY, MAX_PHONENUMBER_LENGTH, MAX_VERFICATION_CODE } from '@/pages/onboarding/constants';
+import {
+  INFO_KEY,
+  MAX_PHONENUMBER_LENGTH,
+  MAX_VERFICATION_CODE,
+  REQUEST_DELAY,
+  TIMER_DURATION,
+} from '@/pages/onboarding/constants';
 import { useVerificationTimer } from '@/pages/onboarding/hooks/useVerificationTimer';
 import type { OnboardInfoTypes } from '@/pages/onboarding/types/onboardInfoTypes';
 import { validateTypingName, validateTypingPhoneNumber } from '@/pages/onboarding/utils/validate';
@@ -26,7 +32,7 @@ const InfoStep = ({
   isCodeVerified,
   setIsCodeVerified,
 }: InfoStepProps) => {
-  const { isRunning: showTimer, formattedTime, startTimer } = useVerificationTimer(300);
+  const { isRunning: showTimer, formattedTime, startTimer, seconds } = useVerificationTimer(TIMER_DURATION);
 
   const handleNameChange = (name: string) => {
     const validName = validateTypingName(name);
@@ -47,6 +53,13 @@ const InfoStep = ({
   };
 
   const handleRequestVerification = () => {
+    if (showTimer) {
+      if (seconds > TIMER_DURATION - REQUEST_DELAY) {
+        notify({ message: '잠시 후 다시 요청해주세요', icon: 'fail', bottomGap: 'large' });
+        return;
+      }
+    }
+
     // TODO: 인증 번호 요청 api 연결
 
     notify({ message: '인증번호가 전송되었습니다', icon: 'success', bottomGap: 'large' });
