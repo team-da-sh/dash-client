@@ -1,11 +1,11 @@
 import { FINAL_ONBOARDING_STEP } from '@/pages/onboarding/constants';
-import type { onboardInfoTypes } from '@/pages/onboarding/types/onboardInfoTypes';
+import type { OnboardInfoTypes } from '@/pages/onboarding/types/onboardInfoTypes';
 import { validateName, validatePhoneNumber } from '@/pages/onboarding/utils/validate';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 
 interface SubmitButtonPropTypes {
   currentStep: number;
-  info: onboardInfoTypes;
+  info: OnboardInfoTypes;
   onNextButtonClick: () => void;
   isCodeVerified: boolean; // 추가
 }
