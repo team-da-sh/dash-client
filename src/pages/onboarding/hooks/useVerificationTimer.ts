@@ -1,5 +1,11 @@
 import { useEffect, useState } from 'react';
 
+const formatTime = (s: number) => {
+  const m = String(Math.floor(s / 60)).padStart(2, '0');
+  const sec = String(s % 60).padStart(2, '0');
+  return `${m}:${sec}`;
+};
+
 export const useVerificationTimer = (initialSeconds: number = 300) => {
   const [isRunning, setIsRunning] = useState(false);
   const [seconds, setSeconds] = useState(initialSeconds);
@@ -24,13 +30,7 @@ export const useVerificationTimer = (initialSeconds: number = 300) => {
     }, 1000);
 
     return () => clearInterval(countdown);
-  }, [isRunning, initialSeconds]);
-
-  const formatTime = (s: number) => {
-    const m = String(Math.floor(s / 60)).padStart(2, '0');
-    const sec = String(s % 60).padStart(2, '0');
-    return `${m}:${sec}`;
-  };
+  }, [isRunning]);
 
   return {
     isRunning,
