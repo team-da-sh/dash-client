@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import * as styles from '@/pages/onboarding/components/InfoStep/infoStep.css';
 import {
   INFO_KEY,
@@ -32,7 +33,8 @@ const InfoStep = ({
   isCodeVerified,
   setIsCodeVerified,
 }: InfoStepProps) => {
-  const { isRunning: showTimer, formattedTime, startTimer, seconds } = useVerificationTimer(TIMER_DURATION);
+  const { isRunning, formattedTime, startTimer, seconds, resetTimer } = useVerificationTimer(TIMER_DURATION);
+  const [isVerificationVisible, setIsVerificationVisible] = useState(false);
 
   const handleNameChange = (name: string) => {
     const validName = validateTypingName(name);
@@ -53,7 +55,7 @@ const InfoStep = ({
   };
 
   const handleRequestVerification = () => {
-    if (showTimer) {
+    if (isRunning) {
       if (seconds > TIMER_DURATION - REQUEST_DELAY) {
         notify({ message: '잠시 후 다시 요청해주세요', icon: 'fail', bottomGap: 'large' });
         return;
@@ -66,6 +68,7 @@ const InfoStep = ({
 
     onInfoChange(INFO_KEY.VERIFICATION_CODE, '');
 
+    setIsVerificationVisible(true);
     startTimer();
   };
 
@@ -81,9 +84,10 @@ const InfoStep = ({
 
     notify({ message: '인증이 완료되었습니다', icon: 'success', bottomGap: 'large' });
     setIsCodeVerified(true);
+    resetTimer();
   };
 
-  const isRequestDisabled = phoneNumber.length !== MAX_PHONENUMBER_LENGTH;
+  const isRequestDisabled = phoneNumber.length !== MAX_PHONENUMBER_LENGTH || isCodeVerified;
   const isVerifyButtonDisabled = verificationCode.length !== MAX_VERFICATION_CODE;
 
   return (
@@ -114,15 +118,16 @@ const InfoStep = ({
               value={phoneNumber}
               onChange={(e) => handlePhoneNumberChange(e.target.value)}
               className={styles.inputStyle}
+              disabled={isCodeVerified}
             />
             <BoxButton
-              className={styles.buttonStyle({ type: showTimer ? 'resend' : 'default' })}
+              className={styles.buttonStyle({ type: isRunning ? 'resend' : 'default' })}
               isDisabled={isRequestDisabled}
               onClick={handleRequestVerification}>
-              {showTimer ? '재요청' : '인증 요청'}
+              {isRunning ? '재요청' : '인증 요청'}
             </BoxButton>
           </div>
-          {showTimer && (
+          {isVerificationVisible && (
             <div className={styles.numberWrapperStyle}>
               <Input
                 placeholder="인증번호 4자리"

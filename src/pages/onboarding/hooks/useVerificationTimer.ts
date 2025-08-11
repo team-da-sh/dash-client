@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { TIMER_DURATION } from '@/pages/onboarding/constants';
 
 const formatTime = (s: number) => {
   const m = String(Math.floor(s / 60)).padStart(2, '0');
@@ -6,13 +7,18 @@ const formatTime = (s: number) => {
   return `${m}:${sec}`;
 };
 
-export const useVerificationTimer = (initialSeconds: number = 300) => {
+export const useVerificationTimer = (initialSeconds: number = TIMER_DURATION) => {
   const [isRunning, setIsRunning] = useState(false);
   const [seconds, setSeconds] = useState(initialSeconds);
 
   const startTimer = () => {
     setSeconds(initialSeconds);
     setIsRunning(true);
+  };
+
+  const resetTimer = () => {
+    setSeconds(initialSeconds);
+    setIsRunning(false);
   };
 
   useEffect(() => {
@@ -37,5 +43,6 @@ export const useVerificationTimer = (initialSeconds: number = 300) => {
     seconds,
     formattedTime: formatTime(seconds),
     startTimer,
+    resetTimer,
   };
 };
