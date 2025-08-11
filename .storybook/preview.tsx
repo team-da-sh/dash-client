@@ -3,6 +3,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import React from 'react';
 import '../src/shared/styles/global.css';
 import '../src/shared/styles/reset.css';
+import '../src/shared/styles/theme.css';
 
 const preview: Preview = {
   parameters: {
