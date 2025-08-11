@@ -1,7 +1,7 @@
 import * as styles from '@/pages/onboarding/components/InfoStep/infoStep.css';
 import { INFO_KEY, MAX_PHONENUMBER_LENGTH, MAX_VERFICATION_CODE } from '@/pages/onboarding/constants';
 import { useVerificationTimer } from '@/pages/onboarding/hooks/useVerificationTimer';
-import type { onboardInfoTypes } from '@/pages/onboarding/types/onboardInfoTypes';
+import type { OnboardInfoTypes } from '@/pages/onboarding/types/onboardInfoTypes';
 import { validateTypingName, validateTypingPhoneNumber } from '@/pages/onboarding/utils/validate';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import Head from '@/shared/components/Head/Head';
@@ -13,7 +13,7 @@ interface InfoStepProps {
   name: string;
   phoneNumber: string;
   verificationCode: string;
-  onInfoChange: <K extends keyof onboardInfoTypes>(key: K, value: onboardInfoTypes[K]) => void;
+  onInfoChange: <K extends keyof OnboardInfoTypes>(key: K, value: OnboardInfoTypes[K]) => void;
   isCodeVerified: boolean;
   setIsCodeVerified: (verified: boolean) => void;
 }

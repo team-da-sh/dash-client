@@ -56,7 +56,7 @@ export const notify = ({ message, icon = 'default', bottomGap = 'default' }: not
       </div>
     ),
     {
-      duration: 150000,
+      duration: 1500,
       position: 'bottom-center',
       style: bottomGap === 'large' ? largeStyle : defaultStyle,
     }

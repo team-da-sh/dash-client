@@ -7,7 +7,7 @@ import OnboardingHeader from '@/pages/onboarding/components/OnboardingHeader/Onb
 import SubmitButton from '@/pages/onboarding/components/SubmitButton/SubmitButton';
 import { FINAL_ONBOARDING_STEP } from '@/pages/onboarding/constants';
 import * as styles from '@/pages/onboarding/onboarding.css';
-import type { onboardInfoTypes } from '@/pages/onboarding/types/onboardInfoTypes';
+import type { OnboardInfoTypes, OnboardingState } from '@/pages/onboarding/types/onboardInfoTypes';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { useFunnel } from '@/shared/hooks/useFunnel';
 
@@ -16,27 +16,30 @@ import { useFunnel } from '@/shared/hooks/useFunnel';
 const Onboarding = () => {
   const { Funnel, Step, setStep, currentStep } = useFunnel(FINAL_ONBOARDING_STEP, ROUTES_CONFIG.home.path);
 
-  const [info, setInfo] = useState<onboardInfoTypes>({
-    name: '',
-    phoneNumber: '',
-    verificationCode: '',
-  });
+  const initialState: OnboardingState = {
+    info: { name: '', phoneNumber: '', verificationCode: '' },
+    isCodeVerified: false,
+    isSubmitting: false,
+  };
 
-  const [isCodeVerified, setIsCodeVerified] = useState(false);
+  const [onboarding, setOnboarding] = useState<OnboardingState>(initialState);
 
   // const { mutate: onboardMutate } = usePostOnboard();
 
+  const handleInfoChange = <K extends keyof OnboardInfoTypes>(key: K, value: OnboardInfoTypes[K]) => {
+    setOnboarding((prev) => ({
+      ...prev,
+      info: { ...prev.info, [key]: value },
+    }));
+  };
+
   const handleCodeVerifiedChange = (verified: boolean) => {
-    setIsCodeVerified(verified);
+    setOnboarding((prev) => ({ ...prev, isCodeVerified: verified }));
   };
 
   // 토큰 ref로 전역변수로 저장
   // const location = useLocation();
   // const tokenRef = useRef(location.state);
-
-  const handleInfoChange = <K extends keyof onboardInfoTypes>(key: K, value: onboardInfoTypes[K]) => {
-    setInfo((prev) => ({ ...prev, [key]: value }));
-  };
 
   const handleNextButtonClick = () => {
     setStep(1);
@@ -44,7 +47,9 @@ const Onboarding = () => {
 
   const handleOnboardSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setOnboarding((prev) => ({ ...prev, isSubmitting: true }));
 
+    // TODO: API 연결 다시 필요
     // if (!isCodeVerified) {
     //   return;
     // }
@@ -64,8 +69,8 @@ const Onboarding = () => {
     //   }
     // );
 
-    // TODO: API 연결 다시 필요
     setStep(1);
+    setOnboarding((prev) => ({ ...prev, isSubmitting: false }));
   };
 
   return (
@@ -75,16 +80,16 @@ const Onboarding = () => {
         <Funnel>
           <Step name="1">
             <InfoStep
-              name={info.name}
-              phoneNumber={info.phoneNumber}
-              verificationCode={info.verificationCode || ''}
+              name={onboarding.info.name}
+              phoneNumber={onboarding.info.phoneNumber}
+              verificationCode={onboarding.info.verificationCode || ''}
               onInfoChange={handleInfoChange}
               setIsCodeVerified={handleCodeVerifiedChange}
-              isCodeVerified={isCodeVerified}
+              isCodeVerified={onboarding.isCodeVerified}
             />
           </Step>
           <Step name="2">
-            <FinishStep name={info.name} />
+            <FinishStep name={onboarding.info.name} />
           </Step>
         </Funnel>
       </div>
@@ -92,9 +97,9 @@ const Onboarding = () => {
       <div className={styles.footerWrapperStyle}>
         <SubmitButton
           currentStep={currentStep}
-          info={info}
+          info={onboarding.info}
           onNextButtonClick={handleNextButtonClick}
-          isCodeVerified={isCodeVerified}
+          isCodeVerified={onboarding.isCodeVerified}
         />
       </div>
     </form>
