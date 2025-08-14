@@ -46,6 +46,11 @@ const Input = (
   const inputState = defineInputState(isError, isFocused);
   const lengthState = defineLengthState(isError, isFocused);
 
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    props.onBlur?.(e);
+    setIsFocused(false);
+  };
+
   return (
     <div className={style.allContainerStyle}>
       <div className={style.containerStyle({ state: inputState })}>
@@ -58,10 +63,7 @@ const Input = (
           onFocus={() => setIsFocused(true)}
           // onBlur={() => setIsFocused(false)}
           // TODO: RHF + Input 설계 맞는 방향일지 검토 필요
-          onBlur={(e) => {
-            props.onBlur?.(e);
-            setIsFocused(false);
-          }}
+          onBlur={(e) => handleBlur(e)}
           maxLength={maxLength}
           aria-invalid={isError ? 'true' : 'false'}
         />
