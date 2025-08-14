@@ -8,14 +8,13 @@ import { sprinkles } from '@/shared/styles/sprinkles.css';
 import { vars } from '@/shared/styles/theme.css';
 import { INSTRUCTOR_REGISTER_PLACEHOLDER } from '../../constants/registerSection';
 
-interface PersonalSNSSectionPropTypes {
-  instagram?: string;
-  youtube?: string;
-}
-const PersonalSNSSection = ({ instagram, youtube }: PersonalSNSSectionPropTypes) => {
+const PersonalSNSSection = () => {
   const [isInstagramFocused, setIsInstagramFocused] = useState(false);
   const [isYoutubeFocused, setIsYoutubeFocused] = useState(false);
-  const { register } = useFormContext();
+
+  const { register, watch } = useFormContext();
+  const instagram = watch('instagram');
+  const youtube = watch('youtube');
 
   const handleInstagramFocus = () => setIsInstagramFocused(true);
   const handleInstagramBlur = () => setIsInstagramFocused(false);

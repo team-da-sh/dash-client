@@ -7,26 +7,11 @@ import {
   MAX_CAREER_INPUT_LENGTH,
 } from '@/pages/instructorRegister/constants/registerSection';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
+import type { instructorRegisterFormTypes } from '../../types/instructorRegisterForm';
 
-interface CareerSectionPropTypes {
-  educations: string[];
-  experiences: string[];
-  prizes: string[];
-  isEduNoneChecked: boolean;
-  isCareerNoneChecked: boolean;
-  isPrizeNoneChecked: boolean;
-}
-
-const CareerSection = ({
-  educations,
-  experiences,
-  prizes,
-
-  isEduNoneChecked,
-  isCareerNoneChecked,
-  isPrizeNoneChecked,
-}: CareerSectionPropTypes) => {
-  const { setValue } = useFormContext();
+const CareerSection = () => {
+  const { setValue, watch } = useFormContext<instructorRegisterFormTypes>();
+  const { educations, experiences, prizes, isEduNoneChecked, isCareerNoneChecked, isPrizeNoneChecked } = watch();
   const defaultSetValueOptions = {
     shouldValidate: true,
     shouldTouch: true,

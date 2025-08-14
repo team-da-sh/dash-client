@@ -10,19 +10,22 @@ import Input from '@/shared/components/Input/Input';
 import Text from '@/shared/components/Text/Text';
 
 interface DancerNameSectionPropTypes {
-  dancerName: string;
+  // dancerName: string;
   duplicateState: duplicateStateTypes;
   setDuplicateState: (state: duplicateStateTypes) => void;
 }
 
-const DancerNameSection = ({ dancerName, duplicateState, setDuplicateState }: DancerNameSectionPropTypes) => {
+const DancerNameSection = ({ duplicateState, setDuplicateState }: DancerNameSectionPropTypes) => {
   const {
     register,
     setError,
     formState: { errors },
+    watch,
   } = useFormContext<instructorRegisterFormTypes>();
 
   const error = errors.dancerName;
+  const dancerName = watch('dancerName');
+
   const testDuplicateData = false; // API 임시 테스트 데이터
 
   const fetchDuplicateCheck = async () => {

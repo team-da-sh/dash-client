@@ -68,27 +68,11 @@ const InstructorRegister = () => {
   });
 
   const {
-    watch,
     reset,
     control,
     formState: { isDirty, isValid },
+    handleSubmit,
   } = methods;
-
-  const {
-    dancerName,
-    detail,
-    instagram,
-    youtube,
-    educations,
-    experiences,
-    prizes,
-    videoUrls,
-    imageUrls,
-    isEduNoneChecked,
-    isCareerNoneChecked,
-    isPrizeNoneChecked,
-    isVideoNoneChecked,
-  } = watch();
 
   const { field } = useController({
     name: 'imageUrls',
@@ -112,22 +96,22 @@ const InstructorRegister = () => {
   );
 
   // form submit 함수
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const onSubmit = (data: instructorRegisterFormTypes) => {
+    console.log('Form submitted with data:', data);
 
     const updatedInfo = {
-      dancerName: dancerName.trim(),
-      imageUrls: [imageUrls],
-      detail: detail.trim(),
+      dancerName: data.dancerName.trim(),
+      imageUrls: [data.imageUrls],
+      detail: data.detail.trim(),
 
-      instagram: instagram?.trim() === '' ? null : `${instagram?.trim()}`,
-      youtube: youtube?.trim() === '' ? null : `${youtube?.trim()}`,
+      instagram: data.instagram?.trim() === '' ? null : `${data.instagram?.trim()}`,
+      youtube: data.youtube?.trim() === '' ? null : `${data.youtube?.trim()}`,
 
-      educations: isEduNoneChecked ? [] : educations.filter((education) => education.trim() !== ''),
-      experiences: isCareerNoneChecked ? [] : experiences.filter((experience) => experience.trim() !== ''),
-      prizes: isPrizeNoneChecked ? [] : prizes.filter((prize) => prize.trim() !== ''),
+      educations: data.isEduNoneChecked ? [] : data.educations.filter((education) => education.trim() !== ''),
+      experiences: data.isCareerNoneChecked ? [] : data.experiences.filter((experience) => experience.trim() !== ''),
+      prizes: data.isPrizeNoneChecked ? [] : data.prizes.filter((prize) => prize.trim() !== ''),
 
-      videoUrls: isVideoNoneChecked ? [] : videoUrls.filter((url) => url.trim() !== ''),
+      videoUrls: data.isVideoNoneChecked ? [] : data.videoUrls.filter((url) => url.trim() !== ''),
     };
 
     // 강사 등록 성공 함수
@@ -175,10 +159,11 @@ const InstructorRegister = () => {
 
   useEffect(() => {
     if (!prevInstructorData) return;
+    console.log('prevInstructorData:', prevInstructorData);
 
     // TODO: prev data에 dancerName 추가되면 주석 제거
     // if (prevInstructorData.dancerName) {
-    setDuplicateState('available');
+    // setDuplicateState('available');
     // }
 
     reset({
@@ -201,7 +186,7 @@ const InstructorRegister = () => {
 
   return (
     <FormProvider {...methods}>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.containerStyle}>
           <div className={styles.sectionWrapperStyle}>
             <div className={styles.titleStyle}>
@@ -222,36 +207,25 @@ const InstructorRegister = () => {
           <Divider direction="horizontal" color="gray1" length={'100%'} thickness={'0.8rem'} />
 
           <div className={styles.sectionWrapperStyle}>
-            <DancerNameSection
-              dancerName={dancerName}
-              duplicateState={duplicateState}
-              setDuplicateState={setDuplicateState}
-            />
+            <DancerNameSection duplicateState={duplicateState} setDuplicateState={setDuplicateState} />
 
-            <IntroductionSection detail={detail} />
+            <IntroductionSection />
           </div>
 
           <Divider direction="horizontal" color="gray1" length={'100%'} thickness={'0.8rem'} />
 
           <div className={styles.sectionWrapperStyle}>
-            <PersonalSNSSection instagram={instagram} youtube={youtube} />
+            <PersonalSNSSection />
           </div>
           <Divider direction="horizontal" color="gray1" length={'100%'} thickness={'0.8rem'} />
 
           <div className={styles.sectionWrapperStyle}>
-            <CareerSection
-              educations={educations}
-              experiences={experiences}
-              prizes={prizes}
-              isEduNoneChecked={isEduNoneChecked}
-              isCareerNoneChecked={isCareerNoneChecked}
-              isPrizeNoneChecked={isPrizeNoneChecked}
-            />
+            <CareerSection />
           </div>
           <Divider direction="horizontal" color="gray1" length={'100%'} thickness={'0.8rem'} />
 
           <div className={styles.sectionWrapperStyle}>
-            <VideoLinkSection videoUrls={videoUrls} isNoneChecked={isVideoNoneChecked} />
+            <VideoLinkSection />
           </div>
         </div>
 

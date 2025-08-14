@@ -12,18 +12,16 @@ import Text from '@/shared/components/Text/Text';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
 import type { instructorRegisterFormTypes } from '../../types/instructorRegisterForm';
 
-interface IntroductionSectionPropTypes {
-  detail: string;
-}
-
-const IntroductionSection = ({ detail }: IntroductionSectionPropTypes) => {
+const IntroductionSection = () => {
   const [isFocused, setIsFocused] = useState(false);
   const textAreaRef = useRef<HTMLTextAreaElement | null>(null);
   const {
     register,
     formState: { errors },
+    watch,
   } = useFormContext<instructorRegisterFormTypes>();
   const error = errors.detail;
+  const detail = watch('detail');
   const { name, onBlur, ref, onChange } = register('detail');
 
   const handleFocus = () => setIsFocused(true);
