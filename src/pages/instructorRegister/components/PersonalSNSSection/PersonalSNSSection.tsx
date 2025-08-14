@@ -1,8 +1,7 @@
 import { useState } from 'react';
-import type { UseFormRegister } from 'react-hook-form';
+import { useFormContext } from 'react-hook-form';
 import Description from '@/pages/instructorRegister/components/Description/Description';
 import * as styles from '@/pages/instructorRegister/components/PersonalSNSSection/personalSNSSection.css';
-import type { instructorRegisterFormTypes } from '@/pages/instructorRegister/types/instructorRegisterForm';
 import SvgIcAt12 from '@/shared/assets/svg/IcAt12';
 import Text from '@/shared/components/Text/Text';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
@@ -12,11 +11,11 @@ import { INSTRUCTOR_REGISTER_PLACEHOLDER } from '../../constants/registerSection
 interface PersonalSNSSectionPropTypes {
   instagram?: string;
   youtube?: string;
-  register: UseFormRegister<instructorRegisterFormTypes>;
 }
-const PersonalSNSSection = ({ instagram, youtube, register }: PersonalSNSSectionPropTypes) => {
+const PersonalSNSSection = ({ instagram, youtube }: PersonalSNSSectionPropTypes) => {
   const [isInstagramFocused, setIsInstagramFocused] = useState(false);
   const [isYoutubeFocused, setIsYoutubeFocused] = useState(false);
+  const { register } = useFormContext();
 
   const handleInstagramFocus = () => setIsInstagramFocused(true);
   const handleInstagramBlur = () => setIsInstagramFocused(false);

@@ -1,7 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useQueryClient } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
-import { useController, useForm } from 'react-hook-form';
+import { FormProvider, useController, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import {
   useGetInstructorRegisterInfo,
@@ -44,15 +44,7 @@ const InstructorRegister = () => {
   const { mutate: instructorPatchMutate } = usePatchInstructorRegisterInfo();
   const { data: prevInstructorData } = useGetInstructorRegisterInfo(userRole ?? '');
 
-  const {
-    register,
-    watch,
-    setValue,
-    control,
-    formState: { errors, isValid, isDirty },
-    reset,
-    setError,
-  } = useForm({
+  const methods = useForm({
     resolver: zodResolver(instructorRegisterSchema),
     mode: 'onTouched',
     defaultValues: {
@@ -71,6 +63,13 @@ const InstructorRegister = () => {
       isVideoNoneChecked: false,
     },
   });
+
+  const {
+    watch,
+    reset,
+    control,
+    formState: { isDirty, isValid, errors },
+  } = methods;
 
   const {
     dancerName,
@@ -198,7 +197,7 @@ const InstructorRegister = () => {
   }, [prevInstructorData, reset]);
 
   return (
-    <>
+    <FormProvider {...methods}>
       <form onSubmit={handleSubmit}>
         <div className={styles.containerStyle}>
           <div className={styles.sectionWrapperStyle}>
@@ -221,21 +220,19 @@ const InstructorRegister = () => {
 
           <div className={styles.sectionWrapperStyle}>
             <DancerNameSection
-              register={register}
-              setError={setError}
               error={errors.dancerName}
               dancerName={dancerName}
               duplicateState={duplicateState}
               setDuplicateState={setDuplicateState}
             />
 
-            <IntroductionSection register={register} error={errors.detail} detail={detail} />
+            <IntroductionSection error={errors.detail} detail={detail} />
           </div>
 
           <Divider direction="horizontal" color="gray1" length={'100%'} thickness={'0.8rem'} />
 
           <div className={styles.sectionWrapperStyle}>
-            <PersonalSNSSection instagram={instagram} youtube={youtube} register={register} />
+            <PersonalSNSSection instagram={instagram} youtube={youtube} />
           </div>
           <Divider direction="horizontal" color="gray1" length={'100%'} thickness={'0.8rem'} />
 
@@ -244,7 +241,6 @@ const InstructorRegister = () => {
               educations={educations}
               experiences={experiences}
               prizes={prizes}
-              setValue={setValue}
               isEduNoneChecked={isEduNoneChecked}
               isCareerNoneChecked={isCareerNoneChecked}
               isPrizeNoneChecked={isPrizeNoneChecked}
@@ -253,7 +249,7 @@ const InstructorRegister = () => {
           <Divider direction="horizontal" color="gray1" length={'100%'} thickness={'0.8rem'} />
 
           <div className={styles.sectionWrapperStyle}>
-            <VideoLinkSection videoUrls={videoUrls} setValue={setValue} isNoneChecked={isVideoNoneChecked} />
+            <VideoLinkSection videoUrls={videoUrls} isNoneChecked={isVideoNoneChecked} />
           </div>
         </div>
 
@@ -263,7 +259,7 @@ const InstructorRegister = () => {
           </BoxButton>
         </div>
       </form>
-    </>
+    </FormProvider>
   );
 };
 

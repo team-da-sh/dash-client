@@ -1,5 +1,5 @@
 import { useLayoutEffect, useRef, useState } from 'react';
-import type { FieldError, UseFormRegister } from 'react-hook-form';
+import { useFormContext, type FieldError } from 'react-hook-form';
 import {
   containerStyle,
   textAreaStyle,
@@ -8,19 +8,18 @@ import {
   INSTRUCTOR_REGISTER_PLACEHOLDER,
   MAX_INTRODUCTION_LENGTH,
 } from '@/pages/instructorRegister/constants/registerSection';
-import type { instructorRegisterFormTypes } from '@/pages/instructorRegister/types/instructorRegisterForm';
 import Text from '@/shared/components/Text/Text';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
 
 interface IntroductionSectionPropTypes {
   detail: string;
-  register: UseFormRegister<instructorRegisterFormTypes>;
   error: FieldError | undefined;
 }
 
-const IntroductionSection = ({ detail, register, error }: IntroductionSectionPropTypes) => {
+const IntroductionSection = ({ detail, error }: IntroductionSectionPropTypes) => {
   const [isFocused, setIsFocused] = useState(false);
   const textAreaRef = useRef<HTMLTextAreaElement | null>(null);
+  const { register } = useFormContext();
   const { name, onBlur, ref, onChange } = register('detail');
 
   const handleFocus = () => setIsFocused(true);

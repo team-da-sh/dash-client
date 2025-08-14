@@ -1,4 +1,4 @@
-import type { UseFormSetValue } from 'react-hook-form';
+import { useFormContext } from 'react-hook-form';
 import InputSection from '@/pages/instructorRegister/components/CareerSection/InputSection/InputSection';
 import Description from '@/pages/instructorRegister/components/Description/Description';
 import {
@@ -6,7 +6,6 @@ import {
   INSTRUCTOR_REGISTER_PLACEHOLDER,
   MAX_CAREER_INPUT_LENGTH,
 } from '@/pages/instructorRegister/constants/registerSection';
-import type { instructorRegisterFormTypes } from '@/pages/instructorRegister/types/instructorRegisterForm';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
 
 interface CareerSectionPropTypes {
@@ -16,19 +15,18 @@ interface CareerSectionPropTypes {
   isEduNoneChecked: boolean;
   isCareerNoneChecked: boolean;
   isPrizeNoneChecked: boolean;
-  setValue: UseFormSetValue<instructorRegisterFormTypes>;
 }
 
 const CareerSection = ({
   educations,
   experiences,
   prizes,
-  setValue,
 
   isEduNoneChecked,
   isCareerNoneChecked,
   isPrizeNoneChecked,
 }: CareerSectionPropTypes) => {
+  const { setValue } = useFormContext();
   const defaultSetValueOptions = {
     shouldValidate: true,
     shouldTouch: true,
