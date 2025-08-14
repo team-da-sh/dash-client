@@ -16,7 +16,10 @@ import PersonalSNSSection from '@/pages/instructorRegister/components/PersonalSN
 import VideoLinkSection from '@/pages/instructorRegister/components/VideoLinkSection/VideoLinkSection';
 import * as styles from '@/pages/instructorRegister/instructorRegister.css';
 import { instructorRegisterSchema } from '@/pages/instructorRegister/schema/instructorRegisterSchema';
-import type { duplicateStateTypes } from '@/pages/instructorRegister/types/instructorRegisterForm';
+import type {
+  duplicateStateTypes,
+  instructorRegisterFormTypes,
+} from '@/pages/instructorRegister/types/instructorRegisterForm';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { useGetRole } from '@/shared/apis/queries';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
@@ -68,7 +71,7 @@ const InstructorRegister = () => {
     watch,
     reset,
     control,
-    formState: { isDirty, isValid, errors },
+    formState: { isDirty, isValid },
   } = methods;
 
   const {
@@ -220,13 +223,12 @@ const InstructorRegister = () => {
 
           <div className={styles.sectionWrapperStyle}>
             <DancerNameSection
-              error={errors.dancerName}
               dancerName={dancerName}
               duplicateState={duplicateState}
               setDuplicateState={setDuplicateState}
             />
 
-            <IntroductionSection error={errors.detail} detail={detail} />
+            <IntroductionSection detail={detail} />
           </div>
 
           <Divider direction="horizontal" color="gray1" length={'100%'} thickness={'0.8rem'} />

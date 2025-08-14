@@ -1,21 +1,28 @@
-import { useFormContext, type FieldError } from 'react-hook-form';
+import { useFormContext } from 'react-hook-form';
 import * as styles from '@/pages/instructorRegister/components/DancerNameSection/dancerNameSection.css';
 import { FORM_ERROR_MESSAGE } from '@/pages/instructorRegister/constants/registerSection';
-import type { duplicateStateTypes } from '@/pages/instructorRegister/types/instructorRegisterForm';
+import type {
+  duplicateStateTypes,
+  instructorRegisterFormTypes,
+} from '@/pages/instructorRegister/types/instructorRegisterForm';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import Input from '@/shared/components/Input/Input';
 import Text from '@/shared/components/Text/Text';
 
 interface DancerNameSectionPropTypes {
-  error: FieldError | undefined;
   dancerName: string;
   duplicateState: duplicateStateTypes;
   setDuplicateState: (state: duplicateStateTypes) => void;
 }
 
-const DancerNameSection = ({ error, dancerName, duplicateState, setDuplicateState }: DancerNameSectionPropTypes) => {
-  const { register, setError } = useFormContext();
+const DancerNameSection = ({ dancerName, duplicateState, setDuplicateState }: DancerNameSectionPropTypes) => {
+  const {
+    register,
+    setError,
+    formState: { errors },
+  } = useFormContext<instructorRegisterFormTypes>();
 
+  const error = errors.dancerName;
   const testDuplicateData = false; // API 임시 테스트 데이터
 
   const fetchDuplicateCheck = async () => {
