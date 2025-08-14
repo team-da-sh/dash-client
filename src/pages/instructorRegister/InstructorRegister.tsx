@@ -97,8 +97,6 @@ const InstructorRegister = () => {
 
   // form submit 함수
   const onSubmit = (data: instructorRegisterFormTypes) => {
-    console.log('Form submitted with data:', data);
-
     const updatedInfo = {
       dancerName: data.dancerName.trim(),
       imageUrls: [data.imageUrls],
