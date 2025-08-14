@@ -180,8 +180,7 @@ const InstructorRegister = () => {
     // }
 
     reset({
-      // TODO: 임시 dancerName 값, 추후에 삭제 예정
-      dancerName: prevInstructorData.dancerName || '요거트스무디',
+      dancerName: prevInstructorData.dancerName || '',
       imageUrls: prevInstructorData.profileImage || '',
       instagram: prevInstructorData.instagram || '',
       youtube: prevInstructorData.youtube || '',
