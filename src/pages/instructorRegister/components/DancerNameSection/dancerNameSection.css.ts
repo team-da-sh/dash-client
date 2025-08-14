@@ -14,4 +14,5 @@ export const duplicateCheckButtonStyle = style({
   padding: '0.8rem 1.4rem',
   ...vars.fonts.b2_m_long,
   flexShrink: 0,
+  marginRight: '-0.6rem',
 });
