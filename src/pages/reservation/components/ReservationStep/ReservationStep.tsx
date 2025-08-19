@@ -123,11 +123,14 @@ const ReservationStep = ({ onNext }: ReservationStepPropTypes) => {
               />
             ))}
           </div>
-          <Text tag="b2_m_long" color="gray6" className={sprinkles({ pb: 42 })}>
-            * 서비스 이용을 위한 이용약관, 개인정보 수집 및 이용과 제3자
-            <br />
-            제공 동의서, 취소 및 환불 정책을 확인하였으며 이에 동의합니다.
-          </Text>
+          <div className={sprinkles({ pb: 42 })}>
+            <Text tag="b2_m_long" color="gray6">
+              * 서비스 이용을 위한 이용약관, 개인정보 수집 및 이용과 제3자
+            </Text>
+            <Text tag="b2_m_long" color="gray6">
+              제공 동의서, 취소 및 환불 정책을 확인하였으며 이에 동의합니다.
+            </Text>
+          </div>
         </div>
         <Divider direction="horizontal" length="100%" thickness="0.1rem" color="gray3" />
       </section>

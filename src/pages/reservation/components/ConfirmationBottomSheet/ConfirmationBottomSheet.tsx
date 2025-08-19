@@ -6,17 +6,12 @@ import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import Head from '@/shared/components/Head/Head';
 import Text from '@/shared/components/Text/Text';
 
-// import useOutsideClick from '@/shared/hooks/useOutsideClick';
-
 interface ConfirmationBottomSheetPropTypes {
   isOpen: boolean;
   onClose: () => void;
 }
 
 const ConfirmationBottomSheet = ({ isOpen, onClose }: ConfirmationBottomSheetPropTypes) => {
-  // const ref = useOutsideClick(onClose);
-
-  // 바텀시트는 열린 상태
   const [shouldRender, setShouldRender] = useState(true);
 
   const handleAnimationEnd = () => {
@@ -28,15 +23,17 @@ const ConfirmationBottomSheet = ({ isOpen, onClose }: ConfirmationBottomSheetPro
   if (!shouldRender) return null;
 
   return (
-    <div className={styles.overlayStyle}>
-      <div
+    <div className={styles.overlayStyle} role="presentation">
+      <section
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="confirmation-title"
         className={clsx(styles.containerStyle, !isOpen && styles.slideDownStyle)}
-        // ref={ref}
         onAnimationEnd={handleAnimationEnd}>
-        <div className={styles.topContainerStyle}>
-          <SvgIcClearMain0420 width={'4.4rem'} height={'4.4rem'} />
+        <header className={styles.topContainerStyle}>
+          <SvgIcClearMain0420 width="4.4rem" height="4.4rem" />
           <div className={styles.titleStyle}>
-            <Head level="h3" tag="h5_sb">
+            <Head id="confirmation-title" level="h3" tag="h5_sb">
               신청 완료!
             </Head>
             <div className={styles.subTitleStyle}>
@@ -48,14 +45,14 @@ const ConfirmationBottomSheet = ({ isOpen, onClose }: ConfirmationBottomSheetPro
               </Text>
             </div>
           </div>
-        </div>
+        </header>
 
         <div className={styles.confirmButtonContainer}>
-          <BoxButton type="submit" onClick={onClose}>
+          <BoxButton type="button" onClick={onClose}>
             확인
           </BoxButton>
         </div>
-      </div>
+      </section>
     </div>
   );
 };

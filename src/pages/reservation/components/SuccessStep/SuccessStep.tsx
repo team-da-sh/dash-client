@@ -9,9 +9,9 @@ interface SuccessStepPropTypes {
 
 const SuccessStep = ({ onGoHome }: SuccessStepPropTypes) => {
   return (
-    <div className={`${styles.flexCustomStyle}`}>
+    <main className={styles.flexCustomStyle}>
       <div className={sprinkles({ flexDirection: 'column', width: '100%' })}>
-        <div
+        <section
           className={sprinkles({
             display: 'flex',
             flexDirection: 'column',
@@ -24,12 +24,12 @@ const SuccessStep = ({ onGoHome }: SuccessStepPropTypes) => {
             subTitle="함께 리듬 탈 준비 됐나요?"
             description="강사가 입금 확인 후 신청이 확정될 예정이에요"
           />
-        </div>
+        </section>
         <div className={styles.successButtonContainer}>
           <BoxButton onClick={onGoHome}>신청내역으로 이동</BoxButton>
         </div>
       </div>
-    </div>
+    </main>
   );
 };
 

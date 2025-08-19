@@ -5,6 +5,7 @@ import SvgIcCopy from '@/shared/assets/svg/IcCopy';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import Head from '@/shared/components/Head/Head';
 import Text from '@/shared/components/Text/Text';
+import { notify } from '@/shared/components/Toast/Toast';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
 
 interface ConfirmationStepPropTypes {
@@ -29,6 +30,7 @@ const ConfirmationStep = ({
 
   const handleCopy = async () => {
     await navigator.clipboard.writeText(fullAccount);
+    notify({ message: '클립보드에 계좌 정보가 복사되었어요!', icon: 'success' });
   };
 
   const formattedPrice = `${price.toLocaleString()}원`;
