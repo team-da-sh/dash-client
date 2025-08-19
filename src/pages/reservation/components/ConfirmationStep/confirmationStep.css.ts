@@ -37,6 +37,12 @@ export const rowItemTitle = style({
   marginRight: '2.8rem',
 });
 
+export const copyButtonStyle = style({
+  display: 'flex',
+  alignItems: 'center',
+  cursor: 'pointer',
+});
+
 export const confirmButtonContainer = style({
   position: 'fixed',
   bottom: '0',

@@ -12,7 +12,7 @@ interface ConfirmationStepPropTypes {
   accountOwner?: string;
   bank?: string;
   accountNumber?: string;
-  price?: string;
+  price?: number;
 }
 
 const ConfirmationStep = ({
@@ -20,15 +20,18 @@ const ConfirmationStep = ({
   accountOwner = '주은혜',
   bank = '신한',
   accountNumber = '4879899192818',
-  price = '350,000원',
+  price = 350000,
 }: ConfirmationStepPropTypes) => {
   const [isBottomSheetOpen, setBottomSheetOpen] = useState(true);
 
+  // 계좌 번호 복사 시 은행 포함
   const fullAccount = `${bank} ${accountNumber}`;
 
   const handleCopy = async () => {
     await navigator.clipboard.writeText(fullAccount);
   };
+
+  const formattedPrice = `${price.toLocaleString()}원`;
 
   return (
     <main>
@@ -67,7 +70,7 @@ const ConfirmationStep = ({
               <Text tag="b2_m_long" color="black">
                 {accountNumber}
               </Text>
-              <button onClick={handleCopy}>
+              <button onClick={handleCopy} className={styles.copyButtonStyle}>
                 <SvgIcCopy width={16} height={16} />
               </button>
             </div>
@@ -77,7 +80,7 @@ const ConfirmationStep = ({
               수강료
             </Text>
             <Text tag="b2_m_long" color="black">
-              {price}
+              {formattedPrice}
             </Text>
           </div>
         </section>

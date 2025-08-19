@@ -58,6 +58,8 @@ const ReservationStep = ({ onNext }: ReservationStepPropTypes) => {
     isAllChecked ? styles.agreementCheckedStyle : styles.agreementUncheckedStyle
   }`;
 
+  const formattedPrice = `${data.price.toLocaleString()}원`;
+
   return (
     <main
       className={`${sprinkles({ display: 'flex', flexDirection: 'column', width: '100%' })} ${styles.reservationStyle}`}>
@@ -135,7 +137,7 @@ const ReservationStep = ({ onNext }: ReservationStepPropTypes) => {
           총 결제 금액
         </Head>
         <Head level="h2" tag="h3_sb" color="main4">
-          {data.price.toLocaleString()}원
+          {formattedPrice}
         </Head>
       </div>
       <section className={styles.bottomButtonStyle}>
