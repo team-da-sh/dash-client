@@ -5,7 +5,8 @@ import SvgIcClearMain0420 from '@/shared/assets/svg/IcClearMain0420';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import Head from '@/shared/components/Head/Head';
 import Text from '@/shared/components/Text/Text';
-import useOutsideClick from '@/shared/hooks/useOutsideClick';
+
+// import useOutsideClick from '@/shared/hooks/useOutsideClick';
 
 interface ConfirmationBottomSheetPropTypes {
   isOpen: boolean;
@@ -13,13 +14,10 @@ interface ConfirmationBottomSheetPropTypes {
 }
 
 const ConfirmationBottomSheet = ({ isOpen, onClose }: ConfirmationBottomSheetPropTypes) => {
-  const ref = useOutsideClick(onClose);
-  const [shouldRender, setShouldRender] = useState(isOpen);
+  // const ref = useOutsideClick(onClose);
 
-  // isOpen이 true면 무조건 렌더링 상태(true)로 만들기
-  if (isOpen && !shouldRender) {
-    setShouldRender(true);
-  }
+  // 바텀시트는 열린 상태
+  const [shouldRender, setShouldRender] = useState(true);
 
   const handleAnimationEnd = () => {
     if (!isOpen) {
@@ -32,8 +30,8 @@ const ConfirmationBottomSheet = ({ isOpen, onClose }: ConfirmationBottomSheetPro
   return (
     <div className={styles.overlayStyle}>
       <div
-        className={clsx(styles.containerStyle, isOpen ? styles.slideUpStyle : styles.slideDownStyle)}
-        ref={ref}
+        className={clsx(styles.containerStyle, !isOpen && styles.slideDownStyle)}
+        // ref={ref}
         onAnimationEnd={handleAnimationEnd}>
         <div className={styles.topContainerStyle}>
           <SvgIcClearMain0420 width={'4.4rem'} height={'4.4rem'} />
