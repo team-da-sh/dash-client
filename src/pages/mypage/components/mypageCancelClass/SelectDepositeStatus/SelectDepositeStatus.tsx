@@ -1,9 +1,9 @@
+import DepositeButton from '@/pages/mypage/components/mypageCancelClass/DepositeButton/DepositeButton';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import ClassCard from '@/shared/components/ClassCard/ClassCard';
 import Head from '@/shared/components/Head/Head';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
 import type { Reservation } from '@/shared/types/reservationTypes';
-import DepositeButton from '../depositeButton/DepositeButton';
 
 interface SelectDepositeStatusProps {
   reservationData: Reservation;

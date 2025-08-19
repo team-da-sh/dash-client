@@ -10,6 +10,8 @@ export const containerStyle = style({
   position: 'relative',
 
   color: vars.colors.gray10,
+
+  backgroundColor: vars.colors.white,
 });
 
 export const triggerStyle = style({
@@ -58,6 +60,8 @@ export const listStyle = style({
 
   borderRadius: '4px',
   boxShadow: '0 0 8px 0 rgba(0, 0, 0, 0.10)',
+
+  backgroundColor: vars.colors.white,
 });
 
 export const itemStyle = recipe({

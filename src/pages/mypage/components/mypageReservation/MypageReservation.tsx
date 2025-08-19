@@ -1,17 +1,20 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useGetReservations } from '@/pages/mypage/components/mypageReservation/apis/queries';
 import { containerStyle, layoutStyle } from '@/pages/mypage/components/mypageReservation/mypageReservation.css';
 import { handleBoxButtonClick, handleCancelClick, handleClassCardClick } from '@/pages/mypage/utils/clickUtils';
+import Dropdown from '@/common/components/Dropdown';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import ClassCard from '@/shared/components/ClassCard/ClassCard';
 import Head from '@/shared/components/Head/Head';
-import Text from '@/shared/components/Text/Text';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
 import type { Reservation } from '@/shared/types/reservationTypes';
 
 const MyPageReservation = () => {
   const navigate = useNavigate();
   const { data: reservationData } = useGetReservations();
+  const [selectedOption, setSelectedOption] = useState<string>('전체');
+  const dropdownOptions = ['전체', '승인대기', '승인완료'];
 
   const reservations = reservationData?.reservations || [];
   const reservationCount = reservations.length;
@@ -21,13 +24,16 @@ const MyPageReservation = () => {
       <div className={containerStyle}>
         <div className={sprinkles({ display: 'flex', alignItems: 'center', gap: 4 })}>
           <Head tag="h6_sb" color="black">
-            클래스 신청 내역
+            클래스 수강 목록
           </Head>
-          {reservationData && (
-            <Text tag="b2_m" color="gray7">
-              ({reservationCount})
-            </Text>
-          )}
+        </div>
+
+        <div className={sprinkles({ mt: 10 })}>
+          <Dropdown
+            options={dropdownOptions}
+            selectedOption={selectedOption}
+            handleSelectedOption={setSelectedOption}
+          />
         </div>
 
         {reservationCount > 0 && (
