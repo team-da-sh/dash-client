@@ -44,8 +44,21 @@ export const onErrorResponse = async (error: AxiosError) => {
   if (!originRequest) throw new Error('401 요청 에러');
 
   const statusCode = error.response?.status;
+  const url = originRequest.url || '';
+
+  const isRoleCheck = url.includes(API_URL.AUTH_ROLE);
+
+  const pathname = window.location.pathname;
+  const isAuthPages =
+    pathname === ROUTES_CONFIG.login.path ||
+    pathname === ROUTES_CONFIG.onboarding.path ||
+    pathname === ROUTES_CONFIG.auth.path;
 
   if (statusCode === HTTP_STATUS_CODE.UNAUTHORIZED && originRequest.url !== API_URL.AUTH_REISSUE) {
+    if (isRoleCheck || isAuthPages) {
+      return Promise.reject(error);
+    }
+
     // 토큰 갱신중인 경우
     if (isRefreshing) {
       return new Promise((resolve, reject) => {
