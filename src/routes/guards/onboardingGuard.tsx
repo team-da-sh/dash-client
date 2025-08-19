@@ -1,7 +1,7 @@
 import { Navigate, Outlet } from 'react-router-dom';
+import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { useGetRole } from '@/shared/apis/queries';
 import { getAccessToken, getRefreshToken } from '@/shared/utils/handleToken';
-import { ROUTES_CONFIG } from '../routesConfig';
 
 const OnboardingGuard = () => {
   const hasToken = !!(getAccessToken() || getRefreshToken());
