@@ -20,7 +20,7 @@ const ReservationHeader = ({ step }: ReservationHeaderPropTypes) => {
   };
 
   return (
-    <header className={styles.onboardingHeaderStyle}>
+    <header className={styles.reservationHeaderStyle({ withBorder: step !== 1 })}>
       {step !== 3 && (
         <button onClick={handleBackClick} aria-label="뒤로 이동">
           <IcBackBlack width={24} height={24} className={styles.svgStyle} />
