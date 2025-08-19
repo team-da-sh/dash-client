@@ -62,14 +62,10 @@ const ClassCard = ({
   children,
   onClick,
 }: ClassCardPropTypes) => {
-  const { status, remainingDays } = getClassStatus(startDateTime, endDateTime);
-
   const { data: role } = useGetRole();
 
   const [statusIcon, statusText] =
-    role?.role === 'student' ? studentStatus('waitingPermission') : teacherStatus('recruiting');
-
-  const showRemainingDays = isReservation && status === 'upcoming' && remainingDays !== undefined;
+    role?.role === 'student' ? teacherStatus('recruiting') : studentStatus('waitingPermission');
 
   const handleTextClick = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -92,11 +88,6 @@ const ClassCard = ({
           })}>
           <div className={sprinkles({ marginRight: 5, display: 'flex', alignItems: 'center' })}>{statusIcon}</div>
           <Text tag="b1_sb">{statusText}</Text>
-          {showRemainingDays && (
-            <Text tag="b3_m" color="main4">
-              D-{remainingDays}
-            </Text>
-          )}
         </div>
       </div>
 
