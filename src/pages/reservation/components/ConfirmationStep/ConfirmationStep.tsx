@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import ConfirmationBottomSheet from '@/pages/reservation/components/ConfirmationBottomSheet/ConfirmationBottomSheet';
 import * as styles from '@/pages/reservation/components/ConfirmationStep/confirmationStep.css';
 import SvgIcCopy from '@/shared/assets/svg/IcCopy';
@@ -23,7 +24,19 @@ const ConfirmationStep = ({
   accountNumber = '4879899192818',
   price = 350000,
 }: ConfirmationStepPropTypes) => {
-  const [isBottomSheetOpen, setBottomSheetOpen] = useState(true);
+  const location = useLocation();
+  const currentPath = location.pathname;
+  const STORAGE_KEY = `confirmation-bottomsheet-closed-${currentPath}`;
+
+  const [isBottomSheetOpen, setBottomSheetOpen] = useState(() => {
+    const closed = sessionStorage.getItem(STORAGE_KEY);
+    return closed !== 'true';
+  });
+
+  const handleCloseBottomSheet = () => {
+    setBottomSheetOpen(false);
+    sessionStorage.setItem(STORAGE_KEY, 'true');
+  };
 
   // 계좌 번호 복사 시 은행 포함
   const fullAccount = `${bank} ${accountNumber}`;
@@ -37,8 +50,7 @@ const ConfirmationStep = ({
 
   return (
     <main>
-      <ConfirmationBottomSheet isOpen={isBottomSheetOpen} onClose={() => setBottomSheetOpen(false)} />
-
+      {isBottomSheetOpen && <ConfirmationBottomSheet isOpen={isBottomSheetOpen} onClose={handleCloseBottomSheet} />}
       <div className={styles.mainContainer}>
         <Head level="h2" tag="h3_sb" color="black">
           입금안내
