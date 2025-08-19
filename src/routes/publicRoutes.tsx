@@ -1,4 +1,4 @@
-import { ROUTES_CONFIG } from './routesConfig';
+import { ROUTES_CONFIG } from '@/routes/routesConfig';
 
 export const publicRoutes = [
   ROUTES_CONFIG.home.path,
