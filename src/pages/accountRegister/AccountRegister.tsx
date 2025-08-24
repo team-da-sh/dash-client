@@ -97,7 +97,7 @@ const AccountRegister = () => {
             계좌 정보
           </Head>
           <Input placeholder="은행 선택" {...register('bank')} />
-          <Input placeholder="계좌번호 입력" {...register('accountNumber')} />
+          <Input placeholder="계좌번호 입력" inputMode="numeric" {...register('accountNumber')} />
         </div>
       </div>
 
