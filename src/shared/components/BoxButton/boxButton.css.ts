@@ -8,8 +8,6 @@ export const buttonStyle = recipe({
     border: 'none',
     borderRadius: '4px',
 
-    color: vars.colors.white,
-
     cursor: 'pointer',
   },
   variants: {
@@ -89,6 +87,17 @@ export const buttonStyle = recipe({
         '&:disabled': {
           cursor: 'default',
         },
+      },
+
+      transparency: {
+        padding: '1.3rem 0',
+
+        border: `1px solid ${vars.colors.gray06}`,
+        backgroundColor: 'transparent',
+
+        color: vars.colors.gray08,
+
+        ...vars.fonts.b2_m,
       },
     },
   },
