@@ -85,7 +85,7 @@ const ProfileStep = ({ name, nickname, isNicknameError, changeIsNicknameError, o
           placeholder="댄서네임을 입력하세요"
           value={nickname}
           onChange={(e) => handleNicknameChange(e.target.value)}
-          hasLengthNumber={true}
+          showMaxLength={true}
           maxLength={MAX_NICKNAME_LENGTH}
         />
       </Flex>

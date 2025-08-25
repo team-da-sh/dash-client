@@ -4,36 +4,26 @@ import { vars } from '@/shared/styles/theme.css';
 export const containerStyle = style({
   display: 'flex',
   flexDirection: 'column',
-
-  width: '100%',
+  padding: '4rem 2rem 0 2rem',
 });
 
 export const titleStyle = style({
   display: 'flex',
   flexDirection: 'column',
   gap: '0.8rem',
-  padding: '2rem 0 1.6rem 0 ',
 });
 
-export const sectionWrapperStyle = style({
+export const inputContainerStyle = style({
   display: 'flex',
   flexDirection: 'column',
-
-  width: '100%',
-  padding: '0 2rem',
+  gap: '0.8rem',
+  marginTop: '3.2rem',
 });
 
 export const buttonContainerStyle = style({
   width: '100%',
-  position: 'sticky',
+  position: 'fixed',
   bottom: '0',
   padding: '2.4rem 2rem',
   backgroundColor: vars.colors.white,
-});
-
-export const profileImageWrapperStyle = style({
-  display: 'flex',
-  justifyContent: 'center',
-  width: '100%',
-  padding: '1.2rem 0',
 });
