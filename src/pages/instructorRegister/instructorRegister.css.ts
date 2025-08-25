@@ -35,4 +35,5 @@ export const profileImageWrapperStyle = style({
   display: 'flex',
   justifyContent: 'center',
   width: '100%',
+  padding: '1.2rem 0',
 });
