@@ -1,5 +1,5 @@
 export interface InstructorRegisterRequestTypes {
-  dancerName: string;
+  nickname: string;
   imageUrls: string[];
   instagram: string | null;
   youtube: string | null;
@@ -10,7 +10,7 @@ export interface InstructorRegisterRequestTypes {
 }
 
 export interface InstructorRegisterInfoResponseTypes {
-  dancerName: string;
+  nickname: string;
   profileImage: string;
   instagram: string | null;
   youtube: string | null;

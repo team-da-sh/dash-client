@@ -51,7 +51,7 @@ const InstructorRegister = () => {
     resolver: zodResolver(instructorRegisterSchema),
     mode: 'onTouched',
     defaultValues: {
-      dancerName: '',
+      nickname: '',
       detail: '',
       instagram: '',
       youtube: '',
@@ -98,7 +98,7 @@ const InstructorRegister = () => {
   // form submit 함수
   const onSubmit = (data: instructorRegisterFormTypes) => {
     const updatedInfo = {
-      dancerName: data.dancerName.trim(),
+      nickname: data.nickname.trim(),
       imageUrls: [data.imageUrls],
       detail: data.detail.trim(),
 
@@ -157,7 +157,6 @@ const InstructorRegister = () => {
 
   useEffect(() => {
     if (!prevInstructorData) return;
-    console.log('prevInstructorData:', prevInstructorData);
 
     // TODO: prev data에 dancerName 추가되면 주석 제거
     // if (prevInstructorData.dancerName) {
@@ -165,7 +164,7 @@ const InstructorRegister = () => {
     // }
 
     reset({
-      dancerName: prevInstructorData.dancerName || '',
+      nickname: prevInstructorData.nickname || 'd',
       imageUrls: prevInstructorData.profileImage || '',
       instagram: prevInstructorData.instagram || '',
       youtube: prevInstructorData.youtube || '',

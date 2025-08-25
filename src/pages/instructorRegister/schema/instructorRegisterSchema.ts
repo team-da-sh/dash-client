@@ -12,7 +12,7 @@ import { INCLUDE_BLANK, INCLUDE_SPECIAL } from '@/shared/constants/regex';
 
 export const instructorRegisterSchema = z
   .object({
-    dancerName: z
+    nickname: z
       .string()
       .refine((value) => value.trim(), {
         message: FORM_ERROR_MESSAGE.EMPTY_DANCER_NAME,
