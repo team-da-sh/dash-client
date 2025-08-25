@@ -6,13 +6,13 @@ import ImageUploadSection from '@/pages/instructorRegister/components/ImageUploa
 import IntroductionSection from '@/pages/instructorRegister/components/IntroductionSection/IntroductionSection';
 import PersonalSNSSection from '@/pages/instructorRegister/components/PersonalSNSSection/PersonalSNSSection';
 import VideoLinkSection from '@/pages/instructorRegister/components/VideoLinkSection/VideoLinkSection';
+import useInstructorRegisterForm from '@/pages/instructorRegister/hooks/useInstructorRegisterForm';
 import * as styles from '@/pages/instructorRegister/instructorRegister.css';
 import { useGetRole } from '@/shared/apis/queries';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import Divider from '@/shared/components/Divider/Divider';
 import Head from '@/shared/components/Head/Head';
 import useImageUploader from '@/shared/hooks/useImageUploader';
-import useInstructorRegisterForm from './hooks/useInstructorRegisterForm';
 
 const InstructorRegister = () => {
   const { data } = useGetRole();

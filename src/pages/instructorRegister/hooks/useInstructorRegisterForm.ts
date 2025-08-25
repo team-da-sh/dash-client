@@ -3,15 +3,18 @@ import { useQueryClient } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+import { usePatchInstructorRegisterInfo, usePostInstructor } from '@/pages/instructorRegister/apis/queries';
+import { instructorRegisterSchema } from '@/pages/instructorRegister/schema/instructorRegisterSchema';
+import type { InstructorRegisterInfoResponseTypes } from '@/pages/instructorRegister/types/api';
+import type {
+  duplicateStateTypes,
+  instructorRegisterFormTypes,
+} from '@/pages/instructorRegister/types/instructorRegisterForm';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { notify } from '@/shared/components/Toast/Toast';
 import { authKeys, teacherKeys } from '@/shared/constants/queryKey';
 import { USER_ROLE } from '@/shared/constants/userRole';
 import { setAccessToken, setRefreshToken } from '@/shared/utils/handleToken';
-import { usePatchInstructorRegisterInfo, usePostInstructor } from '../apis/queries';
-import { instructorRegisterSchema } from '../schema/instructorRegisterSchema';
-import type { InstructorRegisterInfoResponseTypes } from '../types/api';
-import type { duplicateStateTypes, instructorRegisterFormTypes } from '../types/instructorRegisterForm';
 
 interface UseInstructorFormPropTypes {
   userRole?: string;
