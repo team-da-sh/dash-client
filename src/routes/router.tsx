@@ -1,5 +1,6 @@
 import { lazy } from 'react';
 import { createBrowserRouter } from 'react-router-dom';
+import AccountRegister from '@/pages/accountRegister/AccountRegister';
 import { LoginCallback } from '@/pages/auth/auth';
 import EditProfile from '@/pages/editProfiles/EditProfile';
 import Home from '@/pages/home/Home';
@@ -45,6 +46,7 @@ export const router = createBrowserRouter([
       { path: ROUTES_CONFIG.editProfile.path, element: <EditProfile /> },
       { path: ROUTES_CONFIG.mypageReservation.path, element: <MyPageReservation /> },
       { path: ROUTES_CONFIG.mypageReservationDetail.path(':id'), element: <MyPageReservationDetail /> },
+      { path: ROUTES_CONFIG.accountRegister.path, element: <AccountRegister /> },
       { path: ROUTES_CONFIG.classRegister.path, element: <ClassRegister /> },
       { path: ROUTES_CONFIG.classRegisterCompletion.path, element: <ClassRegisterCompletion /> },
       { path: ROUTES_CONFIG.instructorRegister.path, element: <InstructorRegister /> },
