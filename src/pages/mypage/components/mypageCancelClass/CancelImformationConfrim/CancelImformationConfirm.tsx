@@ -1,4 +1,5 @@
 import { useParams } from 'react-router-dom';
+import Error from '@/pages/error/Error';
 import { useGetReservationsDetail } from '@/pages/mypage/components/mypageReservationDetail/apis/queries';
 import ApplicantInfo from '@/pages/reservation/components/ApplicantInfo/ApplicantInfo';
 import ClassInfo from '@/pages/reservation/components/ClassInfo/ClassInfo';
@@ -19,7 +20,7 @@ const CancelImformationConfirm = () => {
   const { data } = useGetReservationsDetail(lessonId);
 
   if (!data) {
-    return <div></div>;
+    return <Error />;
   }
 
   return (
