@@ -111,15 +111,16 @@ const AccountRegister = () => {
         </BoxButton>
       </div>
 
-      {isBottomSheetOpen && (
-        <ConfirmBottomSheet
-          isOpen={isBottomSheetOpen}
-          onClose={handleBottomSheetClose}
-          depositor={depositor}
-          bank={bank}
-          accountNumber={accountNumber}
-        />
-      )}
+      {/* {isBottomSheetOpen && ( */}
+
+      <ConfirmBottomSheet
+        isOpen={isBottomSheetOpen}
+        onClose={handleBottomSheetClose}
+        depositor={depositor}
+        bank={bank}
+        accountNumber={accountNumber}
+      />
+      {/* )} */}
     </form>
   );
 };
