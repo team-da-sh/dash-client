@@ -1,18 +1,27 @@
 /* eslint-disable no-unused-vars */
 import { create } from 'zustand';
+import type { ReactNode } from 'react';
+import { randomId } from '@/shared/utils/randomId';
+
+type RenderProps = ({ isOpen, close }: { isOpen?: boolean; close: () => void }) => ReactNode;
 
 interface ModalStore {
-  modalStore: Array<{ id: string; modal: React.FC }>;
+  modalStore: Array<{ id: string; render: RenderProps }>;
 
-  addModal: (id: string, modal: React.FC) => void;
-  subtractModal: (id: string) => void;
+  openModal: (render: RenderProps) => void;
+  closeModal: (id: string) => void;
   resetStore: () => void;
 }
 
 export const useModalStore = create<ModalStore>((set) => ({
   modalStore: [],
 
-  addModal: (id, modal) => set((state) => ({ modalStore: [...state.modalStore, { id: id, modal }] })),
-  subtractModal: (id) => set((state) => ({ modalStore: state.modalStore.filter((modal) => modal.id !== id) })),
+  openModal: (render) => {
+    const modalId = randomId();
+    set((state) => ({ modalStore: [...state.modalStore, { id: modalId, render }] }));
+  },
+
+  closeModal: (id) => set((state) => ({ modalStore: state.modalStore.filter((modal) => modal.id !== id) })),
+
   resetStore: () => set(() => ({ modalStore: [] })),
 }));

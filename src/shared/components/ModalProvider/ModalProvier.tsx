@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useModalStore } from '@/common/stores/modal';
 
 const ModalProvider = () => {
-  const { modalStore, resetStore } = useModalStore();
+  const { modalStore, resetStore, closeModal } = useModalStore();
 
   useEffect(() => {
     resetStore();
@@ -17,17 +17,7 @@ const ModalProvider = () => {
     }
   }, [modalStore]);
 
-  return (
-    <>
-      {modalStore.map(({ id, modal }) => (
-        <ModalComponent key={id} component={modal} />
-      ))}
-    </>
-  );
-};
-
-const ModalComponent = ({ component, ...rest }: { component: React.FC }) => {
-  return component({ ...rest });
+  return <>{modalStore.map(({ id, render }) => render({ close: () => closeModal(id) }))}</>;
 };
 
 export default ModalProvider;
