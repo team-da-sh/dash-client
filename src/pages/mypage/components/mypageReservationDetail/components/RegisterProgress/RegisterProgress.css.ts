@@ -6,7 +6,7 @@ export const progressContatiner = style({
   display: 'flex',
   justifyContent: 'space-around',
 
-  padding: '1.6rem 2.4rem',
+  padding: '1.6rem 2.4rem 4rem 2.4rem',
 
   backgroundColor: vars.colors.white,
   borderRadius: '4px',
@@ -16,26 +16,33 @@ export const statusWrapper = style({
   position: 'relative',
   zIndex: vars.zIndex.two,
 
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  gap: '0.8rem',
+  height: '24px',
+  width: '24px',
+});
+
+export const textStyle = style({
+  position: 'absolute',
+  left: '50%',
+  transform: 'translateX(-50%)',
+
+  whiteSpace: 'nowrap',
 });
 
 export const dotsLineStyle = recipe({
   base: {
     position: 'absolute',
-    top: '0.9rem',
-    left: '2rem',
-    zIndex: vars.zIndex.one,
+    top: '50%',
+    transform: 'translateY(-50%)',
+    left: '100%',
+
+    margin: 0,
+    width: '300%',
 
     border: 'none',
     borderTop: '1px dashed',
     color: vars.colors.white,
     backgroundColor: vars.colors.white,
 
-    width: '200%',
-    height: '1px',
     stroke: vars.colors.gray02,
   },
   variants: {
