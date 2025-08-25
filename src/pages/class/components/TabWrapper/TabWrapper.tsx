@@ -41,7 +41,7 @@ const TabWrapper = ({ colorScheme, lessonData }: TabWrapperPropTypes) => {
       <div className={styles.tabPanelStyle}>
         {CLASS_TABS.map((tab) => (
           <TabPanel key={tab.id} isSelected={selectedTab === tab.id - 1}>
-            {tab.isImplemented ? tab.component(lessonData) : null}
+            {tab.isImplemented && tab.component(lessonData)}
           </TabPanel>
         ))}
       </div>
