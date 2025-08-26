@@ -36,7 +36,8 @@ export const IndicatorStyle = style({
   width: '7.7rem',
   height: '0.6rem',
   borderRadius: '0.9rem',
-  backgroundColor: vars.colors.gray05,
+  flexShrink: 0,
+  backgroundColor: vars.colors.gray02,
 });
 
 export const ListContainerStyle = style({
@@ -46,8 +47,6 @@ export const ListContainerStyle = style({
 
   marginTop: '3rem',
   width: '100%',
-  // height: '100%',
-  border: '2px solid red',
 
   overflowY: 'auto',
 });
@@ -71,7 +70,12 @@ export const ListItemStyle = style({
 export const tempImageStyle = style({
   width: '3.8rem',
   height: '3.4rem',
+});
 
-  backgroundColor: vars.colors.gray05,
-  borderRadius: '50%',
+export const scrollDisabled = style({
+  overflowY: 'hidden',
+});
+
+export const scrollEnabled = style({
+  overflowY: 'auto',
 });
