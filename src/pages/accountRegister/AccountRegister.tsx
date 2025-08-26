@@ -12,14 +12,20 @@ import Head from '@/shared/components/Head/Head';
 import Input from '@/shared/components/Input/Input';
 import Text from '@/shared/components/Text/Text';
 import { notify } from '@/shared/components/Toast/Toast';
+import BankBottomSheet from './components/BankBottomSheet/BankBottomSheet';
 
 const AccountRegister = () => {
   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
+  const [isBankSheetOpen, setIsBankSheetOpen] = useState(false);
   const [isEditMode, setIsEditMode] = useState(false);
   const navigate = useNavigate();
 
   const handleBottomSheetClose = () => {
     setIsBottomSheetOpen(false);
+  };
+
+  const handleBankSheetClose = () => {
+    setIsBankSheetOpen(false);
   };
 
   const {
@@ -111,16 +117,16 @@ const AccountRegister = () => {
         </BoxButton>
       </div>
 
-      {/* {isBottomSheetOpen && ( */}
-
+      <div onClick={() => setIsBankSheetOpen(true)}>테스트용</div>
       <ConfirmBottomSheet
         isOpen={isBottomSheetOpen}
-        onClose={handleBottomSheetClose}
+        close={handleBottomSheetClose}
         depositor={depositor}
         bank={bank}
         accountNumber={accountNumber}
       />
-      {/* )} */}
+
+      <BankBottomSheet isOpen={isBankSheetOpen} close={handleBankSheetClose} />
     </form>
   );
 };

@@ -8,15 +8,15 @@ import useOutsideClick from '@/shared/hooks/useOutsideClick';
 
 interface ConfirmBottomSheetPropTypes {
   isOpen: boolean;
-  onClose: () => void;
+  close: () => void;
   depositor: string;
   // TODO: 은행 바텀시트 구현 후 bank type 구체화
   bank: string;
   accountNumber: string;
 }
 
-const ConfirmBottomSheet = ({ isOpen, onClose, depositor, bank, accountNumber }: ConfirmBottomSheetPropTypes) => {
-  const ref = useOutsideClick(onClose);
+const ConfirmBottomSheet = ({ isOpen, close, depositor, bank, accountNumber }: ConfirmBottomSheetPropTypes) => {
+  const ref = useOutsideClick(close);
 
   return (
     <AnimatePresence>
@@ -77,7 +77,7 @@ const ConfirmBottomSheet = ({ isOpen, onClose, depositor, bank, accountNumber }:
             </div>
 
             <div className={styles.buttonContainerStyle}>
-              <BoxButton type="button" variant="secondary" className={styles.secondaryButtonStyle} onClick={onClose}>
+              <BoxButton type="button" variant="secondary" className={styles.secondaryButtonStyle} onClick={close}>
                 다시 입력하기
               </BoxButton>
               <BoxButton type="submit" className={styles.primaryButtonStyle}>
