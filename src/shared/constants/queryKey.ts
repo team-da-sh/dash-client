@@ -28,7 +28,14 @@ export const memberKeys = createQueryKeys('member', {
       reservation: {
         queryKey: null,
         contextQueries: {
-          list: { queryKey: null },
+          list: {
+            queryKey: null,
+            contextQueries: {
+              status: {
+                queryKey: null,
+              },
+            },
+          },
           detail: (reservationId: number) => ({ queryKey: [reservationId] }),
           statistics: { queryKey: ['statistics'] },
         },
