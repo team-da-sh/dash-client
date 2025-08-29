@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { createQueryKeys, mergeQueryKeys } from '@lukemorales/query-key-factory';
+import type { ReservationStatus } from '@/pages/mypage/components/mypageReservation/types/reservationStatus';
 import type { ClassListParamsTypes } from '@/pages/search/types/api';
 
 type SearchKeyword = string | number | ClassListParamsTypes;
@@ -28,13 +29,11 @@ export const memberKeys = createQueryKeys('member', {
       reservation: {
         queryKey: null,
         contextQueries: {
-          list: {
+          list: (status: ReservationStatus) => ({
+            queryKey: [status],
+          }),
+          status: {
             queryKey: null,
-            contextQueries: {
-              status: {
-                queryKey: null,
-              },
-            },
           },
           detail: (reservationId: number) => ({ queryKey: [reservationId] }),
           statistics: { queryKey: ['statistics'] },
