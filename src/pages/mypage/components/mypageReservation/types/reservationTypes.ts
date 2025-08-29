@@ -1,18 +1,20 @@
 import type { AttendStatus } from '@/pages/mypage/components/mypageReservation/types/attendStatus';
 import type { ReservationStatus } from '@/pages/mypage/components/mypageReservation/types/reservationStatus';
+import type { GenreTypes } from '@/pages/onboarding/types/genreTypes';
+import type { LevelTypes } from '@/pages/onboarding/types/levelTypes';
 
 export interface Reservation {
   lessonId: number;
   reservationId: number;
   name: string;
   imageUrl: string;
-  genre: string;
-  level: string;
+  genre: GenreTypes;
+  level: LevelTypes;
   location: string;
   startDateTime: string;
   endDateTime: string;
   dDay: number;
-  attendStatus: AttendStatus;
+  status: ReservationStatus;
   reservationStatus: ReservationStatus;
   reservationDateTime: string;
 }
