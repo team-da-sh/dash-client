@@ -6,3 +6,9 @@ export const getReservations = async () => {
 
   return data;
 };
+
+export const getReservationStatus = async () => {
+  const { data } = await instance.get(API_URL.LESSON_RESERVATION_STATUS);
+
+  return data;
+};
