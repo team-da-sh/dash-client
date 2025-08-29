@@ -1,3 +1,5 @@
+import type { ReservationStatus } from '@/pages/mypage/components/mypageReservation/types/reservationStatus';
+
 export const API_URL = {
   AUTH_LOGIN: '/api/v1/auth/login',
   AUTH_REISSUE: '/api/v1/auth/reissue',
@@ -6,7 +8,9 @@ export const API_URL = {
   MEMBERS_WITHDRAW: '/api/v1/members/withdraw',
   MEMBERS_ONBOARD: '/api/v1/members/onboard',
   MEMBERS_ME: '/api/v1/members/me',
-  MEMBERS_RESERVATIONS: '/api/v1/members/me/reservations',
+  MEMBERS_RESERVATIONS: (status: ReservationStatus) => {
+    return status === 'ALL' ? '/api/v1/members/me/reservations' : `/api/v1/members/me/reservations?status=${status}`;
+  },
   MEMBERS_RESERVATIONS_STATISTICS: '/api/v1/members/me/reservations/statistics',
   MEMBERS_RESERVATION_DETAIL: '/api/v1/members/me/reservations/',
 

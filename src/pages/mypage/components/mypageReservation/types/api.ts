@@ -1,11 +1,13 @@
-import type { ReservationStatus } from '@/pages/mypage/types/reservationStatus';
-import type { Reservation } from '@/shared/types/reservationTypes';
+import type { ReservationStatus } from '@/pages/mypage/components/mypageReservation/types/reservationStatus';
+import type { Reservation } from '@/pages/mypage/components/mypageReservation/types/reservationTypes';
 
 export interface ReservationResponseTypes {
   reservations: Reservation[];
 }
 
 export interface ReservationStatusResponseTypes {
-  status: ReservationStatus;
-  count: number;
+  reservationStatusCounts: {
+    status: ReservationStatus;
+    count: number;
+  }[];
 }
