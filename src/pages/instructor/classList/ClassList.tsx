@@ -1,16 +1,10 @@
-import { useNavigate } from 'react-router-dom';
 import { useGetMyLessons } from '@/pages/instructor/classList/apis/queries';
 import * as styles from '@/pages/instructor/classList/classList.css';
-import { handleBoxButtonClick, handleCancelClick, handleClassCardClick } from '@/pages/mypage/utils/clickUtils';
-import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import Head from '@/shared/components/Head/Head';
 import Text from '@/shared/components/Text/Text';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
-import type { Lesson } from '@/shared/types/lessonTypes';
 
 const ClassList = () => {
-  const navigate = useNavigate();
-
   const { data: lessonData, isError, isLoading } = useGetMyLessons();
 
   if (isLoading) {
