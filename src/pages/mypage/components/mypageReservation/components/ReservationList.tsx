@@ -26,20 +26,11 @@ const ReservationList = ({ status }: ReservationListProps) => {
             status={reservation.reservationStatus}
             date={reservation.reservationDateTime}
           />
-          <ClassCard.Body
-            name={reservation.name}
-            imageUrl={reservation.imageUrl}
-            genre={reservation.genre}
-            level={reservation.level}
-            location={reservation.location}
-            startDateTime={reservation.startDateTime}
-            endDateTime={reservation.endDateTime}
-          />
+          <ClassCard.Body {...reservation} />
           <ClassCard.Footer showAsk={true}>
             <BoxButton onClick={handleCancelClick} variant="temp">
               취소하기
             </BoxButton>
-
             <BoxButton
               variant="outline"
               onClick={(e) => handleBoxButtonClick(e, navigate, reservation.reservationId, true)}>
