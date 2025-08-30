@@ -1,4 +1,3 @@
-import type { AttendStatus } from '@/pages/mypage/components/mypageReservation/types/attendStatus';
 import type { ReservationStatus } from '@/pages/mypage/components/mypageReservation/types/reservationStatus';
 import type { GenreTypes } from '@/pages/onboarding/types/genreTypes';
 import type { LevelTypes } from '@/pages/onboarding/types/levelTypes';

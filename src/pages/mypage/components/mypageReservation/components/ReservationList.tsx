@@ -13,7 +13,6 @@ interface ReservationListProps {
 const ReservationList = ({ status }: ReservationListProps) => {
   const { data: reservationData } = useGetReservations(status);
 
-  console.log(reservationData);
   const navigate = useNavigate();
 
   return (

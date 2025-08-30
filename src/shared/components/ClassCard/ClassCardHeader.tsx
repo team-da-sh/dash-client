@@ -1,3 +1,4 @@
+import type { RecruitingStatus } from '@/pages/mypage/components/mypageReservation/types/recruitingStatus';
 import type { ReservationStatus } from '@/pages/mypage/components/mypageReservation/types/reservationStatus';
 import SvgIcClearAlert20 from '@/shared/assets/svg/IcClearAlert20';
 import SvgIcClearMain0320 from '@/shared/assets/svg/IcClearMain0320';
@@ -24,11 +25,11 @@ const studentStatus = (status: ReservationStatus) => {
   }
 };
 
-const teacherStatus = (status: string) => {
+const teacherStatus = (status: RecruitingStatus) => {
   switch (status) {
-    case 'recruiting':
+    case 'APPLYING':
       return [<SvgIcMeatballMain0320 width={20} />, '모집 중'];
-    case 'recruitingEnd':
+    case 'FINISHED':
       return [<SvgIcClearMain0320 width={20} />, '모집 완료'];
     default:
       return [null, '상태 불명'];
@@ -37,13 +38,14 @@ const teacherStatus = (status: string) => {
 
 interface ClassCardHeaderProps {
   role: 'teacher' | 'student';
-  status: ReservationStatus;
+  status: ReservationStatus | RecruitingStatus;
   date: string;
 }
 
 const ClassCardHeader = ({ role, status, date }: ClassCardHeaderProps) => {
-  const [statusIcon, statusText] = role === 'student' ? studentStatus(status) : teacherStatus(status);
-  console.log(statusIcon);
+  const [statusIcon, statusText] =
+    role === 'student' ? studentStatus(status as ReservationStatus) : teacherStatus(status as RecruitingStatus);
+
   return (
     <>
       <div
@@ -58,7 +60,6 @@ const ClassCardHeader = ({ role, status, date }: ClassCardHeaderProps) => {
             alignItems: 'center',
             gap: 8,
           })}>
-          {/* <div className={sprinkles({ marginRight: 5, display: 'flex', alignItems: 'center' })}>{statusIcon}</div> */}
           {statusIcon}
           <Text tag="b1_sb">{statusText}</Text>
           {date && (
