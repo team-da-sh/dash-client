@@ -3,7 +3,6 @@ import { useGetMyLessons } from '@/pages/instructor/classList/apis/queries';
 import * as styles from '@/pages/instructor/classList/classList.css';
 import { handleBoxButtonClick, handleCancelClick, handleClassCardClick } from '@/pages/mypage/utils/clickUtils';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
-import ClassCard from '@/shared/components/ClassCard/ClassCard';
 import Head from '@/shared/components/Head/Head';
 import Text from '@/shared/components/Text/Text';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
@@ -35,6 +34,7 @@ const ClassList = () => {
         </div>
 
         <section className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 12, marginTop: 16 })}>
+          {/* TODO: ClassCard 바뀐거 적용
           {lessonData?.lessons.map((lesson: Lesson) => (
             <ClassCard
               onClick={() => handleClassCardClick(navigate, lesson.id)}
@@ -48,7 +48,7 @@ const ClassList = () => {
                 상세보기
               </BoxButton>
             </ClassCard>
-          ))}
+          ))} */}
         </section>
       </main>
     </div>

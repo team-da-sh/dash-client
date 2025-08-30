@@ -2,7 +2,6 @@ import { useParams } from 'react-router-dom';
 import { useGetLessonDetail } from '@/pages/instructor/classDetail/apis/queries';
 import * as styles from '@/pages/instructor/classDetail/classDetail.css';
 import StudentCard from '@/pages/instructor/classDetail/components/StudentCard/StudentCard';
-import ClassCard from '@/shared/components/ClassCard/ClassCard';
 import Head from '@/shared/components/Head/Head';
 import Text from '@/shared/components/Text/Text';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
@@ -29,6 +28,7 @@ const ClassDetail = () => {
           클래스 정보
         </Head>
         <section className={sprinkles({ gap: 16 })}>
+          {/* TODO: ClassCard 바뀐거 적용 
           {lessonData && (
             <ClassCard
               id={lessonData.id}
@@ -43,7 +43,7 @@ const ClassDetail = () => {
               isReservation={false}
               applyStatus={lessonData.applyStatus}
             />
-          )}
+          )} */}
         </section>
 
         <section className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 16 })}>
