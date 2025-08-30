@@ -34,8 +34,6 @@ const MyPageReservation = () => {
 
   const [selectedStatus, setSelectedStatus] = useState<ReservationStatus>(options[0]);
 
-  console.log(selectedStatus);
-
   const combineCountAndStatus = (status: ReservationStatus) => {
     const count = reservationStatus?.reservationStatusCounts.filter(
       (reservationStatus) => reservationStatus.status === status
