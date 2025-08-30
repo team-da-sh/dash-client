@@ -102,7 +102,15 @@ const AccountRegister = () => {
           <Head level="h3" tag="b2_sb">
             계좌 정보
           </Head>
-          <Input placeholder="은행 선택" {...register('bank')} />
+          <Input
+            placeholder="은행 선택"
+            {...register('bank')}
+            readOnly
+            onClick={(e) => {
+              e.currentTarget.blur();
+              setIsBankSheetOpen(true);
+            }}
+          />
           <Input placeholder="계좌번호 입력" inputMode="numeric" {...register('accountNumber')} />
         </div>
       </div>
@@ -117,7 +125,6 @@ const AccountRegister = () => {
         </BoxButton>
       </div>
 
-      <div onClick={() => setIsBankSheetOpen(true)}>테스트용</div>
       <ConfirmBottomSheet
         isOpen={isBottomSheetOpen}
         close={handleBottomSheetClose}

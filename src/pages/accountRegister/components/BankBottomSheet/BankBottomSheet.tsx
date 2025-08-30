@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import { AnimatePresence, motion } from 'motion/react';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import * as styles from '@/pages/accountRegister/components/BankBottomSheet/bankBottomSheet.css';
 import Text from '@/shared/components/Text/Text';
 import useOutsideClick from '@/shared/hooks/useOutsideClick';
@@ -13,13 +13,27 @@ interface BankBottomSheetPropTypes {
 
 const BankBottomSheet = ({ isOpen, close }: BankBottomSheetPropTypes) => {
   const ref = useOutsideClick(close);
+  const scrollableListRef = useRef<HTMLUListElement>(null);
+
   const [isFullyOpened, setIsFullyOpened] = useState(false);
+  const [isScrollAtTop, setIsScrollAtTop] = useState(true);
+
+  const handleScroll = () => {
+    if (scrollableListRef.current) {
+      const { scrollTop } = scrollableListRef.current;
+      setIsScrollAtTop(scrollTop <= 0);
+    }
+  };
 
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
     }
-  });
+
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [isOpen]);
 
   return (
     <AnimatePresence>
@@ -38,15 +52,13 @@ const BankBottomSheet = ({ isOpen, close }: BankBottomSheetPropTypes) => {
             initial={{ y: '100%' }}
             animate={{ y: 143 }}
             exit={{ y: '100%' }}
-            drag="y"
+            transition={{ duration: 0.45, ease: 'easeInOut' }}
+            drag={isScrollAtTop ? 'y' : false}
             dragConstraints={{ top: 0 }}
             dragElastic={0.05}
-            transition={{ duration: 0.45, ease: 'easeInOut' }}
             onDragEnd={(_, info) => {
-              // 드래그가 끝날 때 처음 기준 무조건 방향이 아래면 닫기
               if (info.offset.y > 0) {
                 close();
-                return;
               }
             }}
             onUpdate={(latest) => {
@@ -56,6 +68,8 @@ const BankBottomSheet = ({ isOpen, close }: BankBottomSheetPropTypes) => {
             <div className={styles.IndicatorStyle} />
             <Text tag="h6_sb">은행 선택</Text>
             <ul
+              onScroll={handleScroll}
+              ref={scrollableListRef}
               className={clsx(styles.ListContainerStyle, isFullyOpened ? styles.scrollEnabled : styles.scrollDisabled)}>
               {[
                 '농협은행',
