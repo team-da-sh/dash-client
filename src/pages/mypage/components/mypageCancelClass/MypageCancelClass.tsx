@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import Error from '@/pages/error/Error';
 import DepositeButton from '@/pages/mypage/components/mypageCancelClass/DepositeButton/DepositeButton';
 import * as styles from '@/pages/mypage/components/mypageCancelClass/mypageCancelClass.css';
 import { useGetReservationClassCard } from '@/pages/mypage/components/mypageReservation/apis/queries';
@@ -15,7 +16,7 @@ const MypageCancelClass = () => {
   const [selectedStatus, setSelectedStatus] = useState<'before' | 'after' | null>(null);
 
   const reservationId = id ? Number(id) : 0;
-  const { data: reservationData, isLoading, error } = useGetReservationClassCard(reservationId);
+  const { data: reservationData } = useGetReservationClassCard(reservationId);
 
   const handleDepositStatusChange = (status: 'before' | 'after') => {
     setSelectedStatus((prev) => (prev === status ? null : status));
@@ -23,25 +24,16 @@ const MypageCancelClass = () => {
 
   const handleNext = () => {
     if (selectedStatus) {
-      // 선택된 상태를 query parameter로 전달
       navigate(ROUTES_CONFIG.mypageCancelConfirm.path(id!));
     }
   };
 
   if (!id || isNaN(reservationId)) {
-    return <div>잘못된 예약 ID입니다.</div>;
-  }
-
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>예약 정보를 불러오는 중 오류가 발생했습니다.</div>;
+    return <Error />;
   }
 
   if (!reservationData) {
-    return <div>예약 정보를 찾을 수 없습니다.</div>;
+    return <Error />;
   }
 
   return (
