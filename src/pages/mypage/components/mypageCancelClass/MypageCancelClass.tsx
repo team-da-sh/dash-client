@@ -9,7 +9,7 @@ import ClassCard from '@/shared/components/ClassCard/ClassCard';
 import Head from '@/shared/components/Head/Head';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
 
-const SelectDepositeStatusPage = () => {
+const MypageCancelClass = () => {
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
   const [selectedStatus, setSelectedStatus] = useState<'before' | 'after' | null>(null);
@@ -74,6 +74,7 @@ const SelectDepositeStatusPage = () => {
                 endDateTime={reservationData.endDateTime}
                 isReservation={true}
                 applyStatus={reservationData.attendStatus}
+                reservationDateTime={reservationData.reservationDateTime}
                 onClick={() => {}}
               />
             </div>
@@ -105,4 +106,4 @@ const SelectDepositeStatusPage = () => {
   );
 };
 
-export default SelectDepositeStatusPage;
+export default MypageCancelClass;

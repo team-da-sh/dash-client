@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import Error from '@/pages/error/Error';
 import { useGetMyPage } from '@/pages/mypage/apis/queries';
-import * as styles from '@/pages/mypage/components/mypageCancelClass/mypageCancelClass.css';
+import * as styles from '@/pages/mypage/components/CancelConfirmPage/cancelConfirmPage.css';
 import { useGetReservationsDetail } from '@/pages/mypage/components/mypageReservationDetail/apis/queries';
 import ApplicantInfo from '@/pages/reservation/components/ApplicantInfo/ApplicantInfo';
 import ClassInfo from '@/pages/reservation/components/ClassInfo/ClassInfo';
@@ -79,7 +79,7 @@ const CancelConfirmPage = () => {
             </div>
           </div>
 
-          <div className={sprinkles({ pt: 20, pr: 20, pb: 20, pl: 20 })}>
+          <div className={sprinkles({ pt: 24, pr: 20, pb: 24, pl: 20 })}>
             <BoxButton variant="primary" onClick={handleConfirm} className={sprinkles({ width: '100%' })}>
               취소하기
             </BoxButton>

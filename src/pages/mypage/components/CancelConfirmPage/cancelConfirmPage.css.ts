@@ -8,5 +8,4 @@ export const layoutStyle = style({
 
 export const containerStyle = style({
   height: '100%',
-  padding: '2rem 2rem 2.4rem 2rem',
 });

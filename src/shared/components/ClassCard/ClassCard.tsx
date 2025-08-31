@@ -13,7 +13,7 @@ import Text from '@/shared/components/Text/Text';
 import { genreMapping, levelMapping } from '@/shared/constants';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
 import type { Lesson } from '@/shared/types/lessonTypes';
-import { formatLessonDateRange, getClassStatus } from '@/shared/utils/timeCalculate';
+import { formatLessonDateRange, formatDate } from '@/shared/utils/timeCalculate';
 
 const studentStatus = (status: string) => {
   switch (status) {
@@ -47,6 +47,7 @@ interface ClassCardPropTypes extends Lesson {
   isReservation?: boolean;
   onClick?: () => void;
   children?: React.ReactNode;
+  reservationDateTime?: string;
 }
 
 const ClassCard = ({
@@ -61,6 +62,7 @@ const ClassCard = ({
   isReservation = true,
   children,
   onClick,
+  reservationDateTime,
 }: ClassCardPropTypes) => {
   const { data: role } = useGetRole();
 
@@ -84,10 +86,13 @@ const ClassCard = ({
           className={sprinkles({
             display: 'flex',
             alignItems: 'center',
-            gap: 3,
+            gap: 8,
           })}>
           <div className={sprinkles({ marginRight: 5, display: 'flex', alignItems: 'center' })}>{statusIcon}</div>
           <Text tag="b1_sb">{statusText}</Text>
+          <Text tag="b3_r" color="gray7">
+            {reservationDateTime && formatDate(reservationDateTime)}
+          </Text>
         </div>
       </div>
 
