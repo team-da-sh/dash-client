@@ -1,11 +1,19 @@
 import { useQuery } from '@tanstack/react-query';
-import { getReservations } from '@/pages/mypage/components/mypageReservation/apis/axios';
+import { getReservations, getReservationsClassCard } from '@/pages/mypage/components/mypageReservation/apis/axios';
 import { memberKeys } from '@/shared/constants/queryKey';
-import type { ReservationResponseTypes } from '../types/api';
+import type { ReservationResponseTypes, ReservationClassCardResponseTypes } from '../types/api';
 
 export const useGetReservations = () => {
   return useQuery<ReservationResponseTypes>({
     queryKey: memberKeys.me._ctx.reservation.queryKey,
     queryFn: getReservations,
+  });
+};
+
+export const useGetReservationClassCard = (reservationId: number) => {
+  return useQuery<ReservationClassCardResponseTypes>({
+    queryKey: memberKeys.me._ctx.reservation._ctx.detail(reservationId).queryKey,
+    queryFn: () => getReservationsClassCard(reservationId),
+    enabled: !!reservationId && !isNaN(reservationId),
   });
 };

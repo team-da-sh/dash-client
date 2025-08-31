@@ -32,9 +32,7 @@ export const handleCancelClick = (
   reservation: Reservation
 ) => {
   e.stopPropagation();
-  navigate(ROUTES_CONFIG.mypageCancelClass.path(reservation.reservationId.toString()), {
-    state: { reservation },
-  });
+  navigate(ROUTES_CONFIG.mypageCancelClass.path(reservation.reservationId.toString()));
 };
 
 export const handleBoxButtonClick = (

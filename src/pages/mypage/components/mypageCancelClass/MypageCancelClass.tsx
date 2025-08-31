@@ -1,19 +1,19 @@
 import { useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import * as styles from '@/pages/mypage/components/mypageCancelClass/mypageCancelClass.css';
+import { useGetReservationClassCard } from '@/pages/mypage/components/mypageReservation/apis/queries';
 import { useFunnel } from '@/shared/hooks/useFunnel';
-import type { Reservation } from '@/shared/types/reservationTypes';
 import CancelImformationConfirm from './CancelImformationConfrim/CancelImformationConfirm';
 import SelectDepositeStatus from './SelectDepositeStatus/SelectDepositeStatus';
 
 const MypageCancelClass = () => {
-  const location = useLocation();
+  const { id } = useParams<{ id: string }>();
   const [selectedStatus, setSelectedStatus] = useState<'before' | 'after' | null>(null);
   const { Funnel, Step, setStep } = useFunnel(2, '/mypage', false);
 
-  const reservationFromState = location.state?.reservation as Reservation;
+  const reservationId = id ? Number(id) : 0;
 
-  const reservationData = reservationFromState;
+  const { data: reservationData, isLoading, error } = useGetReservationClassCard(reservationId);
 
   const handleNextClick = () => {
     setStep(1);
@@ -24,6 +24,22 @@ const MypageCancelClass = () => {
   };
 
   // TODO: 입금 전, 입금 후 선택에 따른 분기 처리
+
+  if (!id || isNaN(reservationId)) {
+    return <div>잘못된 예약 ID입니다.</div>;
+  }
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>예약 정보를 불러오는 중 오류가 발생했습니다.</div>;
+  }
+
+  if (!reservationData) {
+    return <div>예약 정보를 찾을 수 없습니다.</div>;
+  }
 
   return (
     <div className={styles.layoutStyle}>
