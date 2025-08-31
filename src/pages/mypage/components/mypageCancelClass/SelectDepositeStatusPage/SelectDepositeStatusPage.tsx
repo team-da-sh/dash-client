@@ -17,8 +17,6 @@ const SelectDepositeStatusPage = () => {
   const reservationId = id ? Number(id) : 0;
   const { data: reservationData, isLoading, error } = useGetReservationClassCard(reservationId);
 
-  console.log(reservationData);
-
   const handleDepositStatusChange = (status: 'before' | 'after') => {
     setSelectedStatus((prev) => (prev === status ? null : status));
   };

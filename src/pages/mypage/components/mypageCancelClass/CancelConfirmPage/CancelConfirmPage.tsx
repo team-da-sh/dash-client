@@ -13,23 +13,8 @@ const CancelConfirmPage = () => {
   const { id } = useParams<{ id: string }>();
   const reservationId = Number(id);
 
-  console.log('🔍 CancelConfirmPage Debug:');
-  console.log('- URL id:', id);
-  console.log('- reservationId:', reservationId);
-  console.log('- reservationId type:', typeof reservationId);
-  console.log('- !!reservationId:', !!reservationId);
-
-  const reservationQuery = useGetReservationsDetail(reservationId);
-  const { data: reservationData } = reservationQuery;
+  const { data: reservationData } = useGetReservationsDetail(reservationId);
   const { data: myPageData } = useGetMyPage();
-
-  console.log('🔍 useGetReservationsDetail Query State:');
-  console.log('- isLoading:', reservationQuery.isLoading);
-  console.log('- isFetching:', reservationQuery.isFetching);
-  console.log('- isError:', reservationQuery.isError);
-  console.log('- error:', reservationQuery.error);
-  console.log('- data:', reservationQuery.data);
-  console.log('- status:', reservationQuery.status);
 
   const handleConfirm = () => {
     // TODO: 취소 api 연동 + modal 추가
