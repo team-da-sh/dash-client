@@ -69,7 +69,7 @@ const CancelConfirmPage = () => {
                 클래스 정보
               </Head>
               <ClassInfo
-                name={reservationData?.name || ''}
+                name={reservationData?.lessonName || ''}
                 location={reservationData?.location || ''}
                 locationDetail={reservationData?.detailedAddress}
                 teacherNickname={reservationData?.nickname || ''}
