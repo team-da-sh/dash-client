@@ -1,5 +1,5 @@
 export interface Reservation {
-  id?: number;
+  lessonId: number;
   reservationId: number;
   name: string;
   imageUrl: string;
@@ -10,4 +10,6 @@ export interface Reservation {
   endDateTime: string;
   dDay: number;
   attendStatus: string;
+  reservationStatus: string;
+  reservationDateTime: string;
 }

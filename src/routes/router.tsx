@@ -22,7 +22,12 @@ const MyPageReservation = lazy(() => import('@/pages/mypage/components/mypageRes
 const MyPageReservationDetail = lazy(
   () => import('@/pages/mypage/components/mypageReservationDetail/MypageReservationDetail.tsx')
 );
-const MypageCancelClass = lazy(() => import('@/pages/mypage/components/mypageCancelClass/MypageCancelClass'));
+const SelectDepositeStatusPage = lazy(
+  () => import('@/pages/mypage/components/mypageCancelClass/SelectDepositeStatusPage/SelectDepositeStatusPage')
+);
+const CancelConfirmPage = lazy(
+  () => import('@/pages/mypage/components/mypageCancelClass/CancelConfirmPage/CancelConfirmPage')
+);
 const ClassRegister = lazy(() => import('@/pages/instructor/classRegister/ClassRegister'));
 const InstructorRegister = lazy(() => import('@/pages/instructorRegister/InstructorRegister'));
 const ClassDetail = lazy(() => import('@/pages/instructor/classDetail/ClassDetail'));
@@ -46,7 +51,8 @@ export const router = createBrowserRouter([
       { path: ROUTES_CONFIG.editProfile.path, element: <EditProfile /> },
       { path: ROUTES_CONFIG.mypageReservation.path, element: <MyPageReservation /> },
       { path: ROUTES_CONFIG.mypageReservationDetail.path(':id'), element: <MyPageReservationDetail /> },
-      { path: ROUTES_CONFIG.mypageCancelClass.path(':id'), element: <MypageCancelClass /> },
+      { path: ROUTES_CONFIG.mypageCancelClass.path(':id'), element: <SelectDepositeStatusPage /> },
+      { path: ROUTES_CONFIG.mypageCancelConfirm.path(':id'), element: <CancelConfirmPage /> },
       { path: ROUTES_CONFIG.classRegister.path, element: <ClassRegister /> },
       { path: ROUTES_CONFIG.classRegisterCompletion.path, element: <ClassRegisterCompletion /> },
       { path: ROUTES_CONFIG.instructorRegister.path, element: <InstructorRegister /> },

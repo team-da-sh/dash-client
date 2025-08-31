@@ -12,7 +12,7 @@ export const useGetReservations = () => {
 
 export const useGetReservationClassCard = (reservationId: number) => {
   return useQuery<ReservationClassCardResponseTypes>({
-    queryKey: memberKeys.me._ctx.reservation._ctx.detail(reservationId).queryKey,
+    queryKey: memberKeys.me._ctx.reservation._ctx.card(reservationId).queryKey,
     queryFn: () => getReservationsClassCard(reservationId),
     enabled: !!reservationId && !isNaN(reservationId),
   });

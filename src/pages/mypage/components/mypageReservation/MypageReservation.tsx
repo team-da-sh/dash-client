@@ -52,7 +52,7 @@ const MyPageReservation = () => {
                 endDateTime={reservation.endDateTime}
                 isReservation={true}
                 applyStatus={reservation.attendStatus}
-                onClick={() => handleClassCardClick(navigate, reservation.reservationId)}>
+                onClick={() => handleClassCardClick(navigate, reservation.lessonId)}>
                 <BoxButton onClick={(e) => handleCancelClick(e, navigate, reservation)} variant="temp">
                   취소하기
                 </BoxButton>
