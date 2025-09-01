@@ -7,6 +7,12 @@ export const accountRegisterSchema = z.object({
     .min(1, '예금주명을 입력해주세요.')
     .regex(ONLY_KOR_ENG_SPACE, '한글, 영문, 띄어쓰기만 입력해주세요.'),
 
-  bank: z.string().min(1, '은행을 선택해주세요.'),
+  bank: z.object(
+    {
+      id: z.number(),
+      name: z.string().min(1, '은행을 선택해주세요.'),
+    },
+    { required_error: '은행을 선택해주세요.' }
+  ),
   accountNumber: z.string().min(7).max(16).regex(ONLY_NUMBER, '숫자만 입력해주세요.'),
 });

@@ -10,7 +10,6 @@ interface ConfirmBottomSheetPropTypes {
   isOpen: boolean;
   close: () => void;
   depositor: string;
-  // TODO: 은행 바텀시트 구현 후 bank type 구체화
   bank: string;
   accountNumber: string;
 }
