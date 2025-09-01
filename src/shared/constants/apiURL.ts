@@ -33,7 +33,7 @@ export const API_URL = {
   MY_PAGE_LESSON_DETAIL: '/api/v1/mypage/lessons/{lessonId}',
 
   ADVERTISEMENTS: '/api/v1/advertisements',
-  BANKS: '/api/v1/banks',
+  BANKS: '/api/v1/bank',
 
   SEARCH_LESSONS:
     '/api/v1/lessons?genre=:genre&level=:level&startDate=:startDate&endDate=:endDate&sortOption=:sortOption&keyword=:keyword',
