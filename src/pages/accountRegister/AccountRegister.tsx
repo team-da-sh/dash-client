@@ -12,6 +12,7 @@ import Head from '@/shared/components/Head/Head';
 import Input from '@/shared/components/Input/Input';
 import Text from '@/shared/components/Text/Text';
 import { notify } from '@/shared/components/Toast/Toast';
+import { useGetBankList } from './apis/queries';
 import BankBottomSheet from './components/BankBottomSheet/BankBottomSheet';
 
 const AccountRegister = () => {
@@ -19,6 +20,8 @@ const AccountRegister = () => {
   const [isBankSheetOpen, setIsBankSheetOpen] = useState(false);
   const [isEditMode, setIsEditMode] = useState(false);
   const navigate = useNavigate();
+
+  const { data: bankList } = useGetBankList();
 
   const handleBottomSheetClose = () => {
     setIsBottomSheetOpen(false);
@@ -33,6 +36,7 @@ const AccountRegister = () => {
     watch,
     // reset,
     handleSubmit,
+    setValue,
     formState: { isValid, isDirty },
   } = useForm({
     resolver: zodResolver(accountRegisterSchema),
@@ -40,10 +44,21 @@ const AccountRegister = () => {
     mode: 'onTouched',
     defaultValues: {
       depositor: '',
-      bank: '',
+      bank: { id: 0, name: '' },
       accountNumber: '',
     },
   });
+
+  const handleBankSelect = (selectedBankId: number, selectedBankName: string) => {
+    setValue(
+      'bank',
+      { id: selectedBankId, name: selectedBankName },
+      {
+        shouldValidate: true,
+        shouldDirty: true,
+      }
+    );
+  };
 
   const { depositor, bank, accountNumber } = watch();
   const isButtonActive = isEditMode ? isDirty && isValid : isValid;
@@ -104,7 +119,8 @@ const AccountRegister = () => {
           </Head>
           <Input
             placeholder="은행 선택"
-            {...register('bank')}
+            // {...register('bank')}
+            value={bank?.name || ''}
             readOnly
             onClick={(e) => {
               e.currentTarget.blur();
@@ -129,11 +145,18 @@ const AccountRegister = () => {
         isOpen={isBottomSheetOpen}
         close={handleBottomSheetClose}
         depositor={depositor}
-        bank={bank}
+        bank={bank.name || ''}
         accountNumber={accountNumber}
       />
 
-      <BankBottomSheet isOpen={isBankSheetOpen} close={handleBankSheetClose} />
+      {bankList && (
+        <BankBottomSheet
+          isOpen={isBankSheetOpen}
+          close={handleBankSheetClose}
+          banks={bankList}
+          handleBankSelect={handleBankSelect}
+        />
+      )}
     </form>
   );
 };

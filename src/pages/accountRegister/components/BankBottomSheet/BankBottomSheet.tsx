@@ -2,16 +2,18 @@ import clsx from 'clsx';
 import { AnimatePresence, motion } from 'motion/react';
 import { useEffect, useRef, useState } from 'react';
 import * as styles from '@/pages/accountRegister/components/BankBottomSheet/bankBottomSheet.css';
+import type { BankListResponseTypes } from '@/pages/accountRegister/types/api';
 import Text from '@/shared/components/Text/Text';
 import useOutsideClick from '@/shared/hooks/useOutsideClick';
-import toss from '../img_bank.png';
 
 interface BankBottomSheetPropTypes {
   isOpen: boolean;
   close: () => void;
+  banks: BankListResponseTypes[];
+  handleBankSelect: (bankId: number, bankName: string) => void;
 }
 
-const BankBottomSheet = ({ isOpen, close }: BankBottomSheetPropTypes) => {
+const BankBottomSheet = ({ isOpen, close, banks, handleBankSelect }: BankBottomSheetPropTypes) => {
   const ref = useOutsideClick(close);
   const scrollableListRef = useRef<HTMLUListElement>(null);
 
@@ -44,7 +46,8 @@ const BankBottomSheet = ({ isOpen, close }: BankBottomSheetPropTypes) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.5 }}></motion.div>
+            transition={{ duration: 0.5 }}
+          />
 
           <motion.div
             className={styles.containerStyle}
@@ -71,55 +74,16 @@ const BankBottomSheet = ({ isOpen, close }: BankBottomSheetPropTypes) => {
               onScroll={handleScroll}
               ref={scrollableListRef}
               className={clsx(styles.ListContainerStyle, isFullyOpened ? styles.scrollEnabled : styles.scrollDisabled)}>
-              {[
-                '농협은행',
-                '국민은행',
-                '신한은행',
-                '우리은행',
-                '하나은행',
-                '카카오뱅크',
-                '토스뱅크',
-                '케이뱅크',
-                '농협은행',
-                '국민은행',
-                '신한은행',
-                '우리은행',
-                '하나은행',
-                '우리은행',
-                '하나은행',
-                '카카오뱅크',
-                '토스뱅크',
-                '케이뱅크',
-                '농협은행',
-                '국민은행',
-                '신한은행',
-                '우리은행',
-                '하나은행',
-                '우리은행',
-                '하나은행',
-                '카카오뱅크',
-                '토스뱅크',
-                '케이뱅크',
-                '농협은행',
-                '국민은행',
-                '신한은행',
-                '우리은행',
-                '하나은행',
-                '카카오뱅크',
-                '토스뱅크',
-                '케이뱅크',
-                '농협은행',
-                '국민은행',
-                '신한은행',
-                '우리은행',
-                '하나은행',
-                '카카오뱅크',
-                '토스뱅크',
-                '케이뱅크',
-              ].map((bank, index) => (
-                <li key={index} className={styles.ListItemStyle}>
-                  <img src={toss} className={styles.tempImageStyle} />
-                  <Text tag="b3_m">{bank}</Text>
+              {banks.map(({ bankId, bankName, bankImageUrl }) => (
+                <li
+                  key={bankId}
+                  className={styles.ListItemStyle}
+                  onClick={() => {
+                    handleBankSelect(bankId, bankName);
+                    close();
+                  }}>
+                  <img src={bankImageUrl} className={styles.tempImageStyle} />
+                  <Text tag="b3_m">{bankName}</Text>
                 </li>
               ))}
             </ul>
