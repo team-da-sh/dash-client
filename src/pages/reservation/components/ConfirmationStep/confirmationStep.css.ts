@@ -49,3 +49,7 @@ export const confirmButtonContainer = style({
   padding: '2.4rem 2rem',
   width: '100%',
 });
+
+export const underline = style({
+  textDecoration: 'underline',
+});

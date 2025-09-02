@@ -38,11 +38,8 @@ const ConfirmationStep = ({
     sessionStorage.setItem(STORAGE_KEY, 'true');
   };
 
-  // 계좌 번호 복사 시 은행 포함
-  const fullAccount = `${bank} ${accountNumber}`;
-
   const handleCopy = async () => {
-    await navigator.clipboard.writeText(fullAccount);
+    await navigator.clipboard.writeText(accountNumber);
     notify({ message: '클립보드에 계좌 정보가 복사되었어요!', icon: 'success' });
   };
 
@@ -81,7 +78,7 @@ const ConfirmationStep = ({
               <Text tag="b2_m_long" color="black">
                 {bank}
               </Text>
-              <Text tag="b2_m_long" color="black">
+              <Text tag="b2_m_long" color="black" className={styles.underline}>
                 {accountNumber}
               </Text>
               <button onClick={handleCopy} className={styles.copyButtonStyle}>
