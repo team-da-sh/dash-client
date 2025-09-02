@@ -59,9 +59,9 @@ const MyPageReservation = () => {
           handleSelectedOption={handleSelectedOption}
         />
 
-        <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 12, marginTop: 16 })}>
+        <section className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 12, marginTop: 16 })}>
           <ReservationList status={selectedStatus} />
-        </div>
+        </section>
       </div>
     </div>
   );
