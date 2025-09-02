@@ -30,7 +30,7 @@ const TabWrapper = ({ colorScheme, lessonData }: TabWrapperPropTypes) => {
             <TabButton
               key={tab.id}
               isSelected={selectedTab === tab.id - 1}
-              onClick={() => handleTabClick(tab.id, tab.isImplemented ?? true)}
+              onClick={() => handleTabClick(tab.id, tab.isImplemented)}
               colorScheme={colorScheme}>
               {tab.label}
             </TabButton>
