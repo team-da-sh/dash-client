@@ -15,7 +15,7 @@ const ClassCardFooter = ({ showAsk, children }: ClassCardFooterProps) => {
   };
 
   return (
-    <div>
+    <>
       {children && <div className={sprinkles({ display: 'flex', gap: 7, mt: 12 })}>{children}</div>}
       {showAsk && (
         <div className={askTextStyle}>
@@ -25,7 +25,7 @@ const ClassCardFooter = ({ showAsk, children }: ClassCardFooterProps) => {
           <IcArrowRightGray0614 width="1.4rem" height="1.4rem" />
         </div>
       )}
-    </div>
+    </>
   );
 };
 
