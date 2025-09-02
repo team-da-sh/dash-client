@@ -13,7 +13,7 @@ import type { Reservation } from '@/shared/types/reservationTypes';
 const MyPageReservation = () => {
   const navigate = useNavigate();
   const { data: reservationData } = useGetReservations();
-  const [selectedOption, setSelectedOption] = useState<string>('전체');
+  const [selectedOption, setSelectedOption] = useState('전체');
   const dropdownOptions = ['전체', '승인대기', '승인완료'];
 
   const reservations = reservationData?.reservations || [];

@@ -1,10 +1,11 @@
 import { useParams } from 'react-router-dom';
-import Error from '@/pages/error/Error';
+import { useNavigate } from 'react-router-dom';
 import { useGetMyPage } from '@/pages/mypage/apis/queries';
 import * as styles from '@/pages/mypage/components/CancelConfirmPage/cancelConfirmPage.css';
 import { useGetReservationsDetail } from '@/pages/mypage/components/mypageReservationDetail/apis/queries';
 import ApplicantInfo from '@/pages/reservation/components/ApplicantInfo/ApplicantInfo';
 import ClassInfo from '@/pages/reservation/components/ClassInfo/ClassInfo';
+import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import Head from '@/shared/components/Head/Head';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
@@ -16,14 +17,12 @@ const CancelConfirmPage = () => {
   const { data: reservationData } = useGetReservationsDetail(reservationId);
   const { data: myPageData } = useGetMyPage();
 
+  const navigate = useNavigate();
+
   const handleConfirm = () => {
     // TODO: 취소 api 연동 + modal 추가
-    window.location.href = '/mypage';
+    navigate(ROUTES_CONFIG.mypageReservation.path);
   };
-
-  if (!reservationData || !myPageData) {
-    return <Error />;
-  }
 
   return (
     <div className={styles.layoutStyle}>

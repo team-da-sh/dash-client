@@ -67,7 +67,6 @@ const MypageCancelClass = () => {
                 isReservation={true}
                 applyStatus={reservationData.attendStatus}
                 reservationDateTime={reservationData.reservationDateTime}
-                onClick={() => {}}
               />
             </div>
 
