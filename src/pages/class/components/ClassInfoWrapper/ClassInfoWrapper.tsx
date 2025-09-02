@@ -130,10 +130,10 @@ const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetailResponseType
           </Text>
           <div className={styles.reviewTextStyle}>
             <Text tag="h6_sb" color="gray10">
-              5.0
+              -
             </Text>
             <Text tag="c1_r" color="gray6" className={styles.reviewSubText}>
-              (34)
+              (-)
             </Text>
           </div>
         </div>
