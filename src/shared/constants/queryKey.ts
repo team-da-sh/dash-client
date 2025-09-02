@@ -36,6 +36,7 @@ export const memberKeys = createQueryKeys('member', {
             queryKey: null,
           },
           detail: (reservationId: number) => ({ queryKey: [reservationId] }),
+          card: (reservationId: number) => ({ queryKey: ['card', reservationId] }),
           statistics: { queryKey: ['statistics'] },
         },
       },

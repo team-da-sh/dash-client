@@ -12,6 +12,8 @@ export const containerStyle = style({
   backgroundColor: vars.colors.white,
 
   color: vars.colors.gray10,
+
+  backgroundColor: vars.colors.white,
 });
 
 export const triggerStyle = style({
@@ -61,6 +63,8 @@ export const listStyle = style({
   backgroundColor: vars.colors.white,
   borderRadius: '4px',
   boxShadow: '0 0 8px 0 rgba(0, 0, 0, 0.10)',
+
+  backgroundColor: vars.colors.white,
 });
 
 export const itemStyle = recipe({

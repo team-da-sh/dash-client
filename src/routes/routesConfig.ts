@@ -60,6 +60,14 @@ export const ROUTES_CONFIG = {
     title: 'MypageReservationDetail',
     path: (id: string) => `/mypage/reservation/${id}`,
   },
+  mypageCancelClass: {
+    title: 'CancelClass',
+    path: (id: string) => `/mypage/reservation/${id}/cancel`,
+  },
+  mypageCancelConfirm: {
+    title: 'CancelConfirm',
+    path: (id: string) => `/mypage/reservation/${id}/cancel/confirm`,
+  },
   accountRegister: {
     title: 'AccountRegister',
     path: '/mypage/account-register',

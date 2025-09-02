@@ -11,3 +11,5 @@ export interface ReservationStatusResponseTypes {
     count: number;
   }[];
 }
+
+export type ReservationClassCardResponseTypes = Reservation;
