@@ -1,6 +1,6 @@
 import type { useNavigate } from 'react-router-dom';
+import type { Reservation } from '@/pages/mypage/components/mypageReservation/types/reservationTypes';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import type { Reservation } from '@/shared/types/reservationTypes';
 
 export const handleClassCardClick = (navigate: ReturnType<typeof useNavigate>, reservationId: number | undefined) => {
   if (reservationId !== undefined) {
