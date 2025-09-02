@@ -3,13 +3,11 @@ import { vars } from '@/shared/styles/theme.css';
 
 export const cardContainerStyle = style({
   display: 'flex',
-  alignItems: 'center',
+  justifyContent: 'space-between',
 
   width: '100%',
-  height: '6.4rem',
 
-  padding: '1.6rem 2rem 1.4rem 2.4rem',
-  border: `1px solid ${vars.colors.gray03}`,
+  padding: '1.6rem 2rem 1.6rem 2rem',
   borderRadius: '4px',
 
   backgroundColor: vars.colors.white,
@@ -17,4 +15,32 @@ export const cardContainerStyle = style({
 
 export const cardNumberStyle = style({
   marginRight: '2.4rem',
+});
+
+export const leftWrapper = style({
+  display: 'flex',
+  gap: '1.2rem',
+
+  marginTop: '0.5rem',
+});
+
+export const infoWrapper = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '0.9rem',
+});
+
+export const nameWrapper = style({
+  display: 'flex',
+  alignItems: 'center',
+  gap: '0.8rem',
+});
+
+export const rightWrapper = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '1.8rem',
+  alignItems: 'flex-end',
+
+  minWidth: '13.2rem',
 });
