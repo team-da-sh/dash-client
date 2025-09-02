@@ -5,6 +5,7 @@ import { type Reservation } from '@/pages/mypage/components/mypageReservation/ty
 import { handleBoxButtonClick, handleCancelClick, handleClassCardClick } from '@/pages/mypage/utils/clickUtils';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import ClassCard from '@/shared/components/ClassCard';
+import { USER_ROLE } from '@/shared/constants/userRole';
 
 interface ReservationListProps {
   status: ReservationStatus;
@@ -22,7 +23,7 @@ const ReservationList = ({ status }: ReservationListProps) => {
           key={reservation.reservationId}
           onClick={() => handleClassCardClick(navigate, reservation.reservationId)}>
           <ClassCard.Header
-            role="student"
+            role={USER_ROLE.MEMBER}
             status={reservation.reservationStatus}
             date={reservation.reservationDateTime}
           />
