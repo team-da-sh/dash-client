@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import type { GenreTypes } from '@/pages/onboarding/types/genreTypes';
 import type { LevelTypes } from '@/pages/onboarding/types/levelTypes';
 import * as styles from '@/shared/components/ClassCard/style.css';
@@ -27,15 +28,14 @@ const ClassCardBody = ({ name, imageUrl, genre, level, location, startDateTime, 
       })}>
       <img src={imageUrl} className={styles.cardImageStyle} alt={`${name}`} />
       <div
-        className={
+        className={clsx(
           sprinkles({
             display: 'flex',
             flexDirection: 'column',
             gap: 8,
-          }) +
-          ' ' +
+          }),
           styles.cardContentStyle
-        }>
+        )}>
         <div className={sprinkles({ display: 'flex', gap: 3 })}>
           <Tag type="genre" size="small">
             {genre && genreMapping[genre]}
