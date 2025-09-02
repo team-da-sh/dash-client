@@ -1,7 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useGetMyLessons } from '@/pages/instructor/lessonList/apis/queries';
 import type { LessonStatus } from '@/pages/instructor/lessonList/types/lessonStatus';
-import { handleClassCardClick } from '@/pages/mypage/utils/clickUtils';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import ClassCard from '@/shared/components/ClassCard';
@@ -17,24 +16,24 @@ const LessonList = ({ status }: LessonListProps) => {
 
   const navigate = useNavigate();
 
-  const handleViewDetailClick = (id: number) => {
-    navigate(ROUTES_CONFIG.instructorClassDetail.path(id.toString()));
+  const handleClassCardClick = (id: number) => {
+    navigate(ROUTES_CONFIG.class.path(id.toString()));
   };
 
   return (
-    <div>
+    <>
       {lessonData?.lessons.map((lesson: Lesson) => (
-        <ClassCard key={lesson.id} onClick={() => handleClassCardClick(navigate, lesson.id)}>
+        <ClassCard key={lesson.id} onClick={() => handleClassCardClick(lesson.id)}>
           <ClassCard.Header role={USER_ROLE.TEACHER} status={lesson.applyStatus} date={lesson.lessonDateTime} />
           <ClassCard.Body {...lesson} />
           <ClassCard.Footer showAsk={false}>
-            <BoxButton variant="outline" onClick={() => handleViewDetailClick(lesson.id)}>
+            <BoxButton variant="outline" onClick={() => handleClassCardClick(lesson.id)}>
               상세보기
             </BoxButton>
           </ClassCard.Footer>
         </ClassCard>
       ))}
-    </div>
+    </>
   );
 };
 
