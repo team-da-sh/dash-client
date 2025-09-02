@@ -11,16 +11,16 @@ import { sprinkles } from '@/shared/styles/sprinkles.css';
 
 interface ConfirmationStepPropTypes {
   onNext: () => void;
-  accountOwner?: string;
-  bank?: string;
+  depositor?: string;
+  bankName?: string;
   accountNumber?: string;
   price?: number;
 }
 
 const ConfirmationStep = ({
   onNext,
-  accountOwner = '주은혜',
-  bank = '신한',
+  depositor = '주은혜',
+  bankName = '신한',
   accountNumber = '4879899192818',
   price = 350000,
 }: ConfirmationStepPropTypes) => {
@@ -66,8 +66,8 @@ const ConfirmationStep = ({
             <Text tag="b2_m_long" color="gray6" className={styles.rowItemTitle}>
               예금주
             </Text>
-            <Text tag="b2_m_long" color="black">
-              {accountOwner}
+            <Text tag="b2_m_long" color="black" className={styles.breakWord}>
+              {depositor}
             </Text>
           </div>
           <div className={styles.rowItem}>
@@ -76,7 +76,7 @@ const ConfirmationStep = ({
             </Text>
             <div className={sprinkles({ display: 'flex', gap: 6, alignItems: 'center' })}>
               <Text tag="b2_m_long" color="black">
-                {bank}
+                {bankName}
               </Text>
               <Text tag="b2_m_long" color="black" className={styles.underline}>
                 {accountNumber}

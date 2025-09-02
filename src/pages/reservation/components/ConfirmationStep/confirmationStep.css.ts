@@ -7,6 +7,7 @@ export const mainContainer = style({
   padding: '4.1rem 2.8rem 0 2rem',
   width: '100%',
 });
+
 export const gapBetweenHeadAndNote = style({
   marginTop: '0.8rem',
 });
@@ -52,4 +53,8 @@ export const confirmButtonContainer = style({
 
 export const underline = style({
   textDecoration: 'underline',
+});
+
+export const breakWord = style({
+  wordBreak: 'break-word',
 });
