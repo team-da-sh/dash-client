@@ -21,13 +21,9 @@ const STATUS_KOREAN_MAP: Record<ReservationStatus, string> = {
   CANCELLED: '취소완료',
 };
 
-const STATUS_ENGLISH_MAP: Record<string, ReservationStatus> = {
-  전체: 'ALL',
-  승인대기: 'PENDING_APPROVAL',
-  승인완료: 'APPROVED',
-  취소대기: 'PENDING_CANCELLATION',
-  취소완료: 'CANCELLED',
-};
+const STATUS_ENGLISH_MAP = Object.fromEntries(
+  Object.entries(STATUS_KOREAN_MAP).map(([key, value]) => [value, key])
+) as Record<string, ReservationStatus>;
 
 const MyPageReservation = () => {
   const { data: reservationStatus } = useGetReservationStatus();

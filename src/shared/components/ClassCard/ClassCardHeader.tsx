@@ -7,10 +7,11 @@ import SvgIcMeatballMain0320 from '@/shared/assets/svg/IcMeatballMain0320';
 import * as styles from '@/shared/components/ClassCard/style.css';
 import Divider from '@/shared/components/Divider/Divider';
 import Text from '@/shared/components/Text/Text';
+import { USER_ROLE } from '@/shared/constants/userRole';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
 import { formatDate } from '@/shared/utils/timeCalculate';
 
-const studentStatus = (status: ReservationStatus) => {
+const memberStatus = (status: ReservationStatus) => {
   switch (status) {
     case 'PENDING_APPROVAL':
       return [<SvgIcMeatballMain0320 width={20} height={20} />, '승인 대기'];
@@ -37,14 +38,14 @@ const teacherStatus = (status: RecruitingStatus) => {
 };
 
 interface ClassCardHeaderProps {
-  role: 'teacher' | 'student';
+  role: keyof typeof USER_ROLE;
   status: ReservationStatus | RecruitingStatus;
   date: string;
 }
 
 const ClassCardHeader = ({ role, status, date }: ClassCardHeaderProps) => {
   const [statusIcon, statusText] =
-    role === 'student' ? studentStatus(status as ReservationStatus) : teacherStatus(status as RecruitingStatus);
+    role === USER_ROLE.MEMBER ? memberStatus(status as ReservationStatus) : teacherStatus(status as RecruitingStatus);
 
   return (
     <>
@@ -64,7 +65,7 @@ const ClassCardHeader = ({ role, status, date }: ClassCardHeaderProps) => {
           <Text tag="b1_sb">{statusText}</Text>
           {date && (
             <Text tag="b3_r" color="gray7">
-              {`${formatDate(date)} ${role === 'student' ? '신청' : '개설'}`}
+              {`${formatDate(date)} ${role === USER_ROLE.MEMBER ? '신청' : '개설'}`}
             </Text>
           )}
         </div>

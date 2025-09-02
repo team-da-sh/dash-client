@@ -4,6 +4,7 @@ import type { GenreTypes } from '@/pages/onboarding/types/genreTypes';
 import type { LevelTypes } from '@/pages/onboarding/types/levelTypes';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import ClassCard from '@/shared/components/ClassCard';
+import { USER_ROLE } from '@/shared/constants/userRole';
 
 // 1. 각 하위 컴포넌트의 Props 타입을 추출합니다.
 type ClassCardHeaderProps = ComponentProps<typeof ClassCard.Header>;
@@ -24,7 +25,7 @@ const meta: Meta<ClassCardStoryProps> = {
   tags: ['autodocs'],
   args: {
     hasHeader: true,
-    role: 'student',
+    role: USER_ROLE.MEMBER,
     status: 'APPROVED',
     hasFooter: true,
     showAsk: true,
