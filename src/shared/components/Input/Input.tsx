@@ -8,13 +8,24 @@ interface InputPropTypes extends InputHTMLAttributes<HTMLInputElement> {
   isError?: boolean;
   rightAddOn?: ReactNode;
   helperText?: string;
-  hasLengthNumber?: boolean;
+  helperTextState?: 'error' | 'success';
+  showMaxLength?: boolean;
   value?: string;
   maxLength?: number;
 }
 
 const Input = (
-  { isError, className, value, rightAddOn, helperText, hasLengthNumber, maxLength, ...props }: InputPropTypes,
+  {
+    isError,
+    className,
+    value,
+    rightAddOn,
+    helperText,
+    helperTextState = 'error',
+    showMaxLength,
+    maxLength,
+    ...props
+  }: InputPropTypes,
   ref: ForwardedRef<HTMLInputElement>
 ) => {
   const [isFocused, setIsFocused] = useState(false);
@@ -35,6 +46,11 @@ const Input = (
   const inputState = defineInputState(isError, isFocused);
   const lengthState = defineLengthState(isError, isFocused);
 
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    props.onBlur?.(e);
+    setIsFocused(false);
+  };
+
   return (
     <div className={style.allContainerStyle}>
       <div className={style.containerStyle({ state: inputState })}>
@@ -45,7 +61,9 @@ const Input = (
           value={value}
           className={clsx(className, style.inputStyle)}
           onFocus={() => setIsFocused(true)}
-          onBlur={() => setIsFocused(false)}
+          // onBlur={() => setIsFocused(false)}
+          // TODO: RHF + Input 설계 맞는 방향일지 검토 필요
+          onBlur={(e) => handleBlur(e)}
           maxLength={maxLength}
           aria-invalid={isError ? 'true' : 'false'}
         />
@@ -53,12 +71,12 @@ const Input = (
       </div>
 
       <div className={style.optionalContainerStyle}>
-        {isError && helperText && (
-          <Text tag="b3_r" color="alert3">
+        {helperText && (
+          <Text tag="b3_r" className={style.helperTextStyle({ state: helperTextState })}>
             {helperText}
           </Text>
         )}
-        {hasLengthNumber && (
+        {showMaxLength && (
           <div className={style.lengthContainerStyle}>
             <Text tag="c1_m" className={style.lengthTextStyle({ state: lengthState })}>
               {value ? value.length : 0}

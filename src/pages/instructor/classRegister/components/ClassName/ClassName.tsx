@@ -36,7 +36,7 @@ const ClassName = ({ register, className }: ClassNamePropTypes) => {
         isError={!!error}
         helperText={error?.message}
         value={className}
-        hasLengthNumber={true}
+        showMaxLength={true}
         className={sprinkles({ width: '100%' })}
         placeholder="클래스명을 입력해 주세요"
         maxLength={MAX_CLASS_NAME_LENGTH}

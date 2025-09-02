@@ -92,22 +92,35 @@ export const DANCER_TABS = [
 ];
 
 export const CLASS_TABS = [
-  { id: 1, label: '소개', component: (lessonData: LessonDetailResponseTypes) => <TabIntro lessonData={lessonData} /> },
+  {
+    id: 1,
+    label: '소개',
+    component: (lessonData: LessonDetailResponseTypes) => <TabIntro lessonData={lessonData} />,
+    isImplemented: true,
+  },
   {
     id: 2,
     label: '난이도',
     component: (lessonData: LessonDetailResponseTypes) => <TabLevel lessonData={lessonData} />,
+    isImplemented: true,
   },
-  { id: 3, label: '일정', component: (lessonData: LessonDetailResponseTypes) => <TabPeriod lessonData={lessonData} /> },
+  {
+    id: 3,
+    label: '일정',
+    component: (lessonData: LessonDetailResponseTypes) => <TabPeriod lessonData={lessonData} />,
+    isImplemented: true,
+  },
   {
     id: 4,
     label: '장소',
     component: (lessonData: LessonDetailResponseTypes) => <TabLocationInfo lessonData={lessonData} />,
+    isImplemented: true,
   },
   {
     id: 5,
     label: '리뷰',
     component: () => <TabReview />,
+    isImplemented: false,
   },
 ];
 
