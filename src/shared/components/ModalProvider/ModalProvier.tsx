@@ -4,8 +4,9 @@ import { useModalStore } from '@/common/stores/modal';
 const ModalProvider = () => {
   const { modalStore, resetStore, closeModal } = useModalStore();
 
+  // 언마운트시 모달 리셋
   useEffect(() => {
-    resetStore();
+    return () => resetStore();
   }, [resetStore]);
 
   // 모달 오버레이시 배경 스크롤 방지
@@ -17,7 +18,13 @@ const ModalProvider = () => {
     }
   }, [modalStore]);
 
-  return <>{modalStore.map(({ id, render }) => render({ close: () => closeModal(id) }))}</>;
+  return (
+    <>
+      {modalStore.map(({ id, render }) =>
+        render({ isOpen: modalStore.some((modal) => modal.id === id), close: () => closeModal(id) })
+      )}
+    </>
+  );
 };
 
 export default ModalProvider;

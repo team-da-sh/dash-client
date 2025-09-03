@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import type { ReactElement } from 'react';
 import Modal from '@/common/components/Modal/Modal';
-import useModal from '@/common/hooks/useModal';
+import { useModalStore } from '@/common/stores/modal';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 
 const meta = {
@@ -33,10 +33,13 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 const ModalWithHooks = ({ type, content }: { type: 'default' | 'single'; content: string | ReactElement }) => {
-  const { openModal, closeModal } = useModal(() => <Modal type={type} content={content} onClose={closeModal} />);
+  const { openModal } = useModalStore();
 
+  const handleModalOpen = () => {
+    openModal(({ close }) => <Modal content={content} type={type} onClose={close} onClickHandler={() => {}} />);
+  };
   return (
-    <BoxButton variant="primary" onClick={openModal} style={{ width: '10rem' }}>
+    <BoxButton variant="primary" onClick={handleModalOpen} style={{ width: '10rem' }}>
       모달 오픈
     </BoxButton>
   );
