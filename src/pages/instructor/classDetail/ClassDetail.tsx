@@ -2,8 +2,10 @@ import { useParams } from 'react-router-dom';
 import { useGetLessonDetail } from '@/pages/instructor/classDetail/apis/queries';
 import * as styles from '@/pages/instructor/classDetail/classDetail.css';
 import StudentCard from '@/pages/instructor/classDetail/components/StudentCard/StudentCard';
+import ClassCard from '@/shared/components/ClassCard';
 import Head from '@/shared/components/Head/Head';
 import Text from '@/shared/components/Text/Text';
+import { USER_ROLE } from '@/shared/constants/userRole';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
 
 const ClassDetail = () => {
@@ -11,39 +13,26 @@ const ClassDetail = () => {
 
   const lessonId = Number(id);
 
-  const { data: lessonData, isLoading, isError } = useGetLessonDetail(lessonId);
-
-  if (isLoading) {
-    return <></>;
-  }
-
-  if (isError) {
-    return <></>;
-  }
+  const { data: lessonData } = useGetLessonDetail(lessonId);
 
   return (
     <div className={styles.layoutStyle}>
       <div className={styles.containerStyle}>
         <Head level="h2" tag="h6_sb" color="black">
-          클래스 정보
+          내 클래스 정보
         </Head>
         <section className={sprinkles({ gap: 16 })}>
-          {/* TODO: ClassCard 바뀐거 적용 
           {lessonData && (
-            <ClassCard
-              id={lessonData.id}
-              name={lessonData.name}
-              imageUrl={lessonData.imageUrl}
-              genre={lessonData.genre}
-              level={lessonData.level}
-              location={lessonData.location}
-              detailedAddress={lessonData.detailedAddress}
-              startDateTime={lessonData.startDateTime}
-              endDateTime={lessonData.endDateTime}
-              isReservation={false}
-              applyStatus={lessonData.applyStatus}
-            />
-          )} */}
+            <ClassCard>
+              <ClassCard.Header
+                role={USER_ROLE.TEACHER}
+                date={lessonData.startDateTime}
+                status={lessonData.applyStatus}
+              />
+              <ClassCard.Body {...lessonData} />
+              <ClassCard.Footer>{'장소'}</ClassCard.Footer>
+            </ClassCard>
+          )}
         </section>
 
         <section className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 16 })}>
@@ -61,12 +50,12 @@ const ClassDetail = () => {
               }}
               index={0}
             />
-            {/* {(lessonData?.students ?? [])
+            {(lessonData?.students ?? [])
               .slice()
               .reverse()
               .map((students, index) => (
                 <StudentCard key={index} students={students} index={index} />
-              ))} */}
+              ))}
           </div>
         </section>
       </div>
