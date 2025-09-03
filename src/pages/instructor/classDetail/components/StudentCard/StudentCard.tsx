@@ -1,5 +1,7 @@
 import * as styles from '@/pages/instructor/classDetail/components/StudentCard/studentCard.css';
 import { formatPhoneNumber } from '@/pages/instructor/utils/format';
+import { STATUS_KOREAN_MAP } from '@/pages/mypage/components/mypageReservation/MypageReservation';
+import type { ReservationStatus } from '@/pages/mypage/components/mypageReservation/types/reservationStatus';
 import ApplyTag from '@/shared/components/ApplyTag/ApplyTag';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import Head from '@/shared/components/Head/Head';
@@ -9,7 +11,7 @@ interface studentsPropTypes {
   name: string;
   phoneNumber: string;
   createdAt: string;
-  status: string;
+  reservationStatus: Exclude<ReservationStatus, 'ALL'>;
 }
 
 interface StudentCardPropTypes {
@@ -30,7 +32,9 @@ const StudentCard = ({ studentData, index }: StudentCardPropTypes) => {
             <Head level="h2" tag="b1_sb">
               {studentData.name}
             </Head>
-            <ApplyTag variant="PENDING_APPROVAL">승인대기</ApplyTag>
+            <ApplyTag variant={studentData.reservationStatus}>
+              {STATUS_KOREAN_MAP[studentData.reservationStatus]}
+            </ApplyTag>
           </div>
           <Text tag="b3_r" color="gray7">
             {formatPhoneNumber(studentData.phoneNumber)}

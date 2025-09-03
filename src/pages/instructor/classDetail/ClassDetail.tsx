@@ -46,7 +46,7 @@ const ClassDetail = () => {
                 name: '김규홍',
                 phoneNumber: '010-7630-0607',
                 createdAt: '2018.08.01. 22:59:58',
-                status: 'approved',
+                reservationStatus: 'PENDING_CANCELLATION',
               }}
               index={0}
             />
@@ -54,7 +54,7 @@ const ClassDetail = () => {
               .slice()
               .reverse()
               .map((students, index) => (
-                <StudentCard key={index} students={students} index={index} />
+                <StudentCard key={index} studentData={students} index={index} />
               ))}
           </div>
         </section>

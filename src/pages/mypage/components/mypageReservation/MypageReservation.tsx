@@ -13,7 +13,7 @@ import { sprinkles } from '@/shared/styles/sprinkles.css';
 
 export const options = ['ALL', 'PENDING_APPROVAL', 'APPROVED', 'PENDING_CANCELLATION', 'CANCELLED'] as const;
 
-const STATUS_KOREAN_MAP: Record<ReservationStatus, string> = {
+export const STATUS_KOREAN_MAP: Record<ReservationStatus, string> = {
   ALL: '전체',
   PENDING_APPROVAL: '승인대기',
   APPROVED: '승인완료',
