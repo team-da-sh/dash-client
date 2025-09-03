@@ -1,8 +1,8 @@
 import * as styles from '@/pages/instructor/classDetail/components/StudentCard/studentCard.css';
 import { formatPhoneNumber } from '@/pages/instructor/utils/format';
+import ApplyTag from '@/shared/components/ApplyTag/ApplyTag';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import Head from '@/shared/components/Head/Head';
-import Tag from '@/shared/components/Tag/Tag';
 import Text from '@/shared/components/Text/Text';
 
 interface studentsPropTypes {
@@ -30,7 +30,7 @@ const StudentCard = ({ studentData, index }: StudentCardPropTypes) => {
             <Head level="h2" tag="b1_sb">
               {studentData.name}
             </Head>
-            <Tag type="level" size="small"></Tag>
+            <ApplyTag variant="PENDING_APPROVAL">승인대기</ApplyTag>
           </div>
           <Text tag="b3_r" color="gray7">
             {formatPhoneNumber(studentData.phoneNumber)}
