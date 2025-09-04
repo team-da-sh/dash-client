@@ -28,3 +28,9 @@ export const dividerStyle = style({
 
   transform: 'translate(-20px, -3px)',
 });
+
+export const emptyTextStyle = style({
+  width: '17rem',
+
+  margin: '5.4rem auto 0 auto',
+});

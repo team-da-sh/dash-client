@@ -18,18 +18,22 @@ interface StudentListProps {
 const StudentList = ({ reservationStatus, studentList }: StudentListProps) => {
   return (
     <>
-      <div className={pannelTitleWrapper}>
-        <Text tag="b2_sb" className={textStyle}>
-          {STATUS_KOREAN_MAP[reservationStatus]}
-        </Text>
-        <Divider color="black" />
-      </div>
+      {studentList.length > 0 && (
+        <>
+          <div className={pannelTitleWrapper}>
+            <Text tag="b2_sb" className={textStyle}>
+              {STATUS_KOREAN_MAP[reservationStatus]}
+            </Text>
+            <Divider color="black" />
+          </div>
 
-      <ul className={studentListWrapper}>
-        {studentList.map((student, index) => (
-          <StudentCard index={index} studentData={student} />
-        ))}
-      </ul>
+          <ul className={studentListWrapper}>
+            {studentList.map((student, index) => (
+              <StudentCard index={index} studentData={student} />
+            ))}
+          </ul>
+        </>
+      )}
     </>
   );
 };

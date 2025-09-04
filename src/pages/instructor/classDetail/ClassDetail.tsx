@@ -6,6 +6,7 @@ import StudentList from '@/pages/instructor/classDetail/components/StudentList/S
 import ClassCard from '@/shared/components/ClassCard';
 import Head from '@/shared/components/Head/Head';
 import { TabButton, TabList, TabPanel, TabRoot } from '@/shared/components/Tab';
+import Text from '@/shared/components/Text/Text';
 import { USER_ROLE } from '@/shared/constants/userRole';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
 
@@ -14,9 +15,7 @@ type TabStatus = 'APPROVED' | 'CANCELLED';
 const ClassDetail = () => {
   const { id } = useParams<{ id: string }>();
 
-  const lessonId = Number(id);
-
-  const { data: lessonData } = useGetLessonDetail(lessonId);
+  const { data: lessonData } = useGetLessonDetail(Number(id));
 
   const [selectedTab, setSelectedTab] = useState<TabStatus>('APPROVED');
 
@@ -73,28 +72,55 @@ const ClassDetail = () => {
             <hr className={styles.dividerStyle} />
 
             <TabPanel key={1} isSelected={selectedTab === 'APPROVED'}>
-              <StudentList
-                reservationStatus="PENDING_APPROVAL"
-                studentList={
-                  lessonData?.students.filter((student) => student.reservationStatus === 'PENDING_APPROVAL') ?? []
-                }
-              />
-              <StudentList
-                reservationStatus="APPROVED"
-                studentList={lessonData?.students.filter((student) => student.reservationStatus === 'APPROVED') ?? []}
-              />
+              {lessonData?.students.some(
+                (student) =>
+                  student.reservationStatus === 'PENDING_APPROVAL' || student.reservationStatus === 'APPROVED'
+              ) ? (
+                <>
+                  <StudentList
+                    reservationStatus="PENDING_APPROVAL"
+                    studentList={
+                      lessonData?.students.filter((student) => student.reservationStatus === 'PENDING_APPROVAL') ?? []
+                    }
+                  />
+                  <StudentList
+                    reservationStatus="APPROVED"
+                    studentList={
+                      lessonData?.students.filter((student) => student.reservationStatus === 'APPROVED') ?? []
+                    }
+                  />
+                </>
+              ) : (
+                <Text tag="b1_sb" color="gray9" className={styles.emptyTextStyle}>
+                  아직 신청한 수강생이 없어요.
+                </Text>
+              )}
             </TabPanel>
             <TabPanel key={2} isSelected={selectedTab === 'CANCELLED'}>
-              <StudentList
-                reservationStatus="PENDING_CANCELLATION"
-                studentList={
-                  lessonData?.students.filter((student) => student.reservationStatus === 'PENDING_CANCELLATION') ?? []
-                }
-              />
-              <StudentList
-                reservationStatus="CANCELLED"
-                studentList={lessonData?.students.filter((student) => student.reservationStatus === 'CANCELLED') ?? []}
-              />
+              {lessonData?.students.some(
+                (student) =>
+                  student.reservationStatus === 'PENDING_CANCELLATION' || student.reservationStatus === 'CANCELLED'
+              ) ? (
+                <>
+                  <StudentList
+                    reservationStatus="PENDING_CANCELLATION"
+                    studentList={
+                      lessonData?.students.filter((student) => student.reservationStatus === 'PENDING_CANCELLATION') ??
+                      []
+                    }
+                  />
+                  <StudentList
+                    reservationStatus="CANCELLED"
+                    studentList={
+                      lessonData?.students.filter((student) => student.reservationStatus === 'CANCELLED') ?? []
+                    }
+                  />
+                </>
+              ) : (
+                <Text tag="b1_sb" color="gray9" className={styles.emptyTextStyle}>
+                  아직 취소한 수강생이 없어요.
+                </Text>
+              )}
             </TabPanel>
           </TabRoot>
         </section>
