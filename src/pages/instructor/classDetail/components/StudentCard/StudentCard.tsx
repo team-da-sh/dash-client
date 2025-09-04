@@ -19,7 +19,19 @@ interface StudentCardPropTypes {
   index: number;
 }
 
+const STATUS_BUTTON_MAP: Record<
+  Exclude<ReservationStatus, 'ALL'>,
+  { text: string; variant: 'outline' | 'quaternary' }
+> = {
+  PENDING_APPROVAL: { text: '승인 확정', variant: 'outline' },
+  APPROVED: { text: '승인 대기로 변경', variant: 'quaternary' },
+  PENDING_CANCELLATION: { text: '취소 확정', variant: 'outline' },
+  CANCELLED: { text: '취소 대기로 변경', variant: 'quaternary' },
+};
+
 const StudentCard = ({ studentData, index }: StudentCardPropTypes) => {
+  const { text: buttonText, variant: buttonVariant } = STATUS_BUTTON_MAP[studentData.reservationStatus];
+
   return (
     <section className={styles.cardContainerStyle}>
       <section className={styles.leftWrapper}>
@@ -46,7 +58,7 @@ const StudentCard = ({ studentData, index }: StudentCardPropTypes) => {
         <Text tag="c1_r" color="gray9">
           {studentData.createdAt}
         </Text>
-        <BoxButton variant="outline">승인 확정</BoxButton>
+        <BoxButton variant={buttonVariant}>{buttonText}</BoxButton>
       </section>
     </section>
   );
