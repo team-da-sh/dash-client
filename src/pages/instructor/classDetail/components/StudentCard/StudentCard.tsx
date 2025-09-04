@@ -1,4 +1,5 @@
 import * as styles from '@/pages/instructor/classDetail/components/StudentCard/studentCard.css';
+import type { Student } from '@/pages/instructor/classDetail/types/api';
 import { formatPhoneNumber } from '@/pages/instructor/utils/format';
 import { STATUS_KOREAN_MAP } from '@/pages/mypage/components/mypageReservation/MypageReservation';
 import type { ReservationStatus } from '@/pages/mypage/components/mypageReservation/types/reservationStatus';
@@ -7,15 +8,8 @@ import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import Head from '@/shared/components/Head/Head';
 import Text from '@/shared/components/Text/Text';
 
-interface studentsPropTypes {
-  name: string;
-  phoneNumber: string;
-  createdAt: string;
-  reservationStatus: Exclude<ReservationStatus, 'ALL'>;
-}
-
 interface StudentCardPropTypes {
-  studentData: studentsPropTypes;
+  studentData: Student;
   index: number;
 }
 
@@ -56,7 +50,7 @@ const StudentCard = ({ studentData, index }: StudentCardPropTypes) => {
 
       <section className={styles.rightWrapper}>
         <Text tag="c1_r" color="gray9">
-          {studentData.createdAt}
+          {studentData.reservationDateTime}
         </Text>
         <BoxButton variant={buttonVariant}>{buttonText}</BoxButton>
       </section>

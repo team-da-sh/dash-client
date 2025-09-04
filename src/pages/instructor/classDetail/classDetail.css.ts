@@ -19,3 +19,12 @@ export const studentCardWrapperStyle = style({
   flexDirection: 'column',
   gap: '0.4rem',
 });
+
+export const dividerStyle = style({
+  width: '100vw',
+
+  border: 'none',
+  borderTop: `1px solid ${vars.colors.gray03}`,
+
+  transform: 'translate(-20px, -3px)',
+});

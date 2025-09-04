@@ -1,12 +1,15 @@
+import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useGetLessonDetail } from '@/pages/instructor/classDetail/apis/queries';
 import * as styles from '@/pages/instructor/classDetail/classDetail.css';
-import StudentCard from '@/pages/instructor/classDetail/components/StudentCard/StudentCard';
+import StudentList from '@/pages/instructor/classDetail/components/StudentList/StudentList';
 import ClassCard from '@/shared/components/ClassCard';
 import Head from '@/shared/components/Head/Head';
-import Text from '@/shared/components/Text/Text';
+import { TabButton, TabList, TabPanel, TabRoot } from '@/shared/components/Tab';
 import { USER_ROLE } from '@/shared/constants/userRole';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
+
+type TabStatus = 'APPROVED' | 'CANCELLED';
 
 const ClassDetail = () => {
   const { id } = useParams<{ id: string }>();
@@ -14,6 +17,12 @@ const ClassDetail = () => {
   const lessonId = Number(id);
 
   const { data: lessonData } = useGetLessonDetail(lessonId);
+
+  const [selectedTab, setSelectedTab] = useState<TabStatus>('APPROVED');
+
+  const handleTabClick = (tabId: TabStatus) => {
+    setSelectedTab(tabId);
+  };
 
   return (
     <div className={styles.layoutStyle}>
@@ -29,34 +38,65 @@ const ClassDetail = () => {
                 date={lessonData.startDateTime}
                 status={lessonData.applyStatus}
               />
-              <ClassCard.Body {...lessonData} />
+              <ClassCard.Body
+                name={lessonData.name}
+                imageUrl={lessonData.imageUrl}
+                genre={lessonData.genre}
+                level={lessonData.level}
+              />
               <ClassCard.Footer>{'장소'}</ClassCard.Footer>
             </ClassCard>
           )}
         </section>
 
         <section className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 16 })}>
-          <Text tag="b2_sb" color="gray9">
-            신청한 수강생 ({lessonData?.studentCount ?? 0})
-          </Text>
-          <div className={styles.studentCardWrapperStyle}>
-            <StudentCard
-              key={1}
-              studentData={{
-                name: '김규홍',
-                phoneNumber: '010-7630-0607',
-                createdAt: '2018.08.01. 22:59:58',
-                reservationStatus: 'PENDING_CANCELLATION',
-              }}
-              index={0}
-            />
-            {(lessonData?.students ?? [])
-              .slice()
-              .reverse()
-              .map((students, index) => (
-                <StudentCard key={index} studentData={students} index={index} />
-              ))}
-          </div>
+          <Head level="h2" tag="h6_sb" color="black">
+            수강생 관리
+          </Head>
+
+          <TabRoot>
+            <TabList>
+              <TabButton
+                isSelected={selectedTab === 'APPROVED'}
+                onClick={() => handleTabClick('APPROVED')}
+                colorScheme="secondary">
+                승인
+              </TabButton>
+              <TabButton
+                isSelected={selectedTab === 'CANCELLED'}
+                onClick={() => handleTabClick('CANCELLED')}
+                colorScheme="secondary">
+                취소
+              </TabButton>
+            </TabList>
+
+            <hr className={styles.dividerStyle} />
+
+            <TabPanel key={1} isSelected={selectedTab === 'APPROVED'}>
+              <StudentList
+                reservationStatus="PENDING_APPROVAL"
+                studentList={
+                  lessonData?.students.filter((student) => student.reservationStatus === 'PENDING_APPROVAL') ?? []
+                }
+              />
+              <StudentList
+                reservationStatus="APPROVED"
+                studentList={lessonData?.students.filter((student) => student.reservationStatus === 'APPROVED') ?? []}
+              />
+            </TabPanel>
+            <TabPanel key={2} isSelected={selectedTab === 'CANCELLED'}>
+              <StudentList
+                reservationStatus="PENDING_CANCELLATION"
+                studentList={
+                  lessonData?.students.filter((student) => student.reservationStatus === 'PENDING_CANCELLATION') ?? []
+                }
+              />
+              <StudentList
+                reservationStatus="CANCELLED"
+                studentList={lessonData?.students.filter((student) => student.reservationStatus === 'CANCELLED') ?? []}
+              />
+            </TabPanel>
+          </TabRoot>
         </section>
       </div>
     </div>

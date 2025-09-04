@@ -1,7 +1,15 @@
 import type { RecruitingStatus } from '@/pages/mypage/components/mypageReservation/types/recruitingStatus';
+import type { ReservationStatus } from '@/pages/mypage/components/mypageReservation/types/reservationStatus';
 import type { GenreTypes } from '@/pages/onboarding/types/genreTypes';
 import type { LevelTypes } from '@/pages/onboarding/types/levelTypes';
-import type { Student } from '@/shared/types/myPageLessonDetailTypes';
+
+export interface Student {
+  reservationId: number;
+  name: string;
+  phoneNumber: string;
+  reservationDateTime: string;
+  reservationStatus: Exclude<ReservationStatus, 'ALL'>;
+}
 
 export interface LessonDetailGetResponse {
   id: number;
