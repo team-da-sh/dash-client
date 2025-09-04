@@ -15,9 +15,9 @@ import useImageUploader from '@/shared/hooks/useImageUploader';
 interface ProfileFormPropTypes {
   defaultValues: {
     nickname: string;
-    phoneNumber: string;
-    name: string;
     profileImageUrl: string;
+    name: string;
+    phoneNumber: string;
   };
 }
 
@@ -70,7 +70,7 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
     handleCloseBottomSheet
   );
 
-  const { nickname, name, phoneNumber } = watch();
+  const { name, phoneNumber } = watch();
   const isButtonActive = isDirty && isValid;
 
   const onSubmit = (formData: ProfileFormValues) => {
@@ -78,7 +78,7 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
     const profileImageUrl = typeof value === 'string' && value.trim() !== '' ? value : null;
 
     const submitData: UpdateProfileRequestTypes = {
-      nickname: formData.nickname,
+      nickname: defaultValues.nickname,
       phoneNumber: formData.phoneNumber,
       name: formData.name,
       profileImageUrl,
@@ -102,15 +102,6 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
             onClick={handleImageFormClick}
           />
         </div>
-
-        <FormField
-          label="댄서네임"
-          name="nickname"
-          placeholder="댄서네임을 입력해주세요"
-          register={register}
-          error={errors.nickname}
-          value={nickname}
-        />
 
         <FormField
           label="이름"

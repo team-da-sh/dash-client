@@ -35,7 +35,7 @@ const FormField = ({ label, name, placeholder, register, error, readOnly = false
         isError={!!error}
         maxLength={name === 'phoneNumber' ? MAX_PHONENUMBER_LENGTH : MAX_NAME_LENGTH}
         readOnly={readOnly}
-        hasLengthNumber={true}
+        showMaxLength={true}
         helperText={error?.message}
         {...(isPhoneNumber && { inputMode: 'numeric', onKeyDown: allowOnlyNumberKey, onPaste: allowOnlyNumberPaste })}
       />

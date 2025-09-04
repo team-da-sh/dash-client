@@ -7,7 +7,7 @@ export const containerStyle = style({
   flexDirection: 'column',
   gap: '0.8rem',
   width: '100%',
-  padding: '1.2rem 0 3.2rem 0',
+  padding: '1.2rem 0 1.6rem 0',
 });
 
 export const textAreaStyle = recipe({
