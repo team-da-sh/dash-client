@@ -28,6 +28,10 @@ export const API_URL = {
   TEACHERS_POPULAR: '/api/v1/teachers/popular',
   TEACHERS_SEARCH: '/api/v1/teachers?keyword=:keyword',
   TEACHERS_LESSON_STATUS: '/api/v1/teachers/me/lessons/status',
+  TEACHERS_LESSON_CHANGE_APPROVE: (lessonId: number, reservationId: number) =>
+    `/api/v1/teachers/me/lessons/${lessonId}/${reservationId}/change-approve`,
+  TEACHERS_LESSON_CHANGE_CANCEL: (lessonId: number, reservationId: number) =>
+    `/api/v1/teachers/me/lessons/${lessonId}/${reservationId}/change-cancel`,
 
   LESSONS: '/api/v1/lessons',
   LESSON_DETAIL: '/api/v1/lessons',
