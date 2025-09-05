@@ -83,6 +83,7 @@ export const queryKeys = mergeQueryKeys(
   teacherKeys,
   myPageKeys,
   advertisementKeys,
+  bankKeys,
   locationKeys,
   authKeys
 );

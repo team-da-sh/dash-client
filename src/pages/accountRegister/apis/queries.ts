@@ -6,7 +6,7 @@ import { bankKeys } from '@/shared/constants/queryKey';
 
 export const useGetBankList = () => {
   return useQuery<BankListResponseTypes[], AxiosError>({
-    queryKey: bankKeys.all,
+    queryKey: bankKeys._def,
     queryFn: () => getBankList(),
   });
 };
