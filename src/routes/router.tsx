@@ -7,9 +7,6 @@ import Home from '@/pages/home/Home';
 import ClassRegisterCompletion from '@/pages/instructor/classRegisterCompletion/ClassRegisterCompletion';
 import InstructorRegisterCompletion from '@/pages/instructorRegisterCompletion/InstructorRegisterCompletion';
 import MyPage from '@/pages/mypage/MyPage';
-import { CheckoutPage } from '@/pages/reservation/components/TossPayments/CheckOut/CheckOut';
-import { FailPage } from '@/pages/reservation/components/TossPayments/Fail/Fail';
-import { SuccessPage } from '@/pages/reservation/components/TossPayments/Success/Success';
 import Layout from '@/layout/Layout';
 import { ROUTES_CONFIG } from './routesConfig';
 
@@ -57,9 +54,6 @@ export const router = createBrowserRouter([
       { path: ROUTES_CONFIG.instructorRegisterCompletion.path, element: <InstructorRegisterCompletion /> },
       { path: ROUTES_CONFIG.instructorClassDetail.path(':id'), element: <ClassDetail /> },
       { path: ROUTES_CONFIG.instructorClassList.path, element: <ClassList /> },
-      { path: ROUTES_CONFIG.payments.path, element: <CheckoutPage /> },
-      { path: ROUTES_CONFIG.paymentsSuccess.path, element: <SuccessPage /> },
-      { path: ROUTES_CONFIG.paymentsFail.path, element: <FailPage /> },
       { path: '*', element: <Error /> },
     ],
   },
