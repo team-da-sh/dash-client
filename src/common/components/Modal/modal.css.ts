@@ -11,7 +11,7 @@ export const layoutStyle = style({
   left: 0,
 
   width: '100%',
-  height: '100vh',
+  height: '100dvh',
   zIndex: vars.zIndex.backdrop,
 
   backgroundColor: vars.colors.black70,
