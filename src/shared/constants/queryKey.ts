@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { createQueryKeys, mergeQueryKeys } from '@lukemorales/query-key-factory';
+import type { LessonStatus } from '@/pages/instructor/lessonList/types/lessonStatus';
 import type { ReservationStatus } from '@/pages/mypage/components/mypageReservation/types/reservationStatus';
 import type { ClassListParamsTypes } from '@/pages/search/types/api';
 
@@ -59,9 +60,12 @@ export const teacherKeys = createQueryKeys('teacher', {
       lesson: {
         queryKey: null,
         contextQueries: {
-          list: { queryKey: null },
+          list: (status: LessonStatus) => ({
+            queryKey: [status],
+          }),
           thumbnails: { queryKey: null },
           students: (lessonId: number) => ({ queryKey: [lessonId] }),
+          status: { queryKey: null },
         },
       },
     },

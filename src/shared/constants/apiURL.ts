@@ -1,3 +1,4 @@
+import type { LessonStatus } from '@/pages/instructor/lessonList/types/lessonStatus';
 import type { ReservationStatus } from '@/pages/mypage/components/mypageReservation/types/reservationStatus';
 
 export const API_URL = {
@@ -18,11 +19,14 @@ export const API_URL = {
   TEACHERS: '/api/v1/teachers',
   TEACHER_DETAIL: '/api/v1/teachers',
   TEACHERS_ME: '/api/v1/teachers/me',
-  TEACHERS_LESSONS_DETAIL: '/api/v1/teachers/me/lessons',
+  TEACHERS_LESSONS: (status: LessonStatus) => {
+    return status === 'ALL' ? '/api/v1/teachers/me/lessons' : `/api/v1/teachers/me/lessons?status=${status}`;
+  },
   TEACHER_DETAIL_INTRODUCTION: '/api/v1/teachers/me/detail',
   TEACHER_ME_THUMBNAILS: '/api/v1/teachers/me/lessons/thumbnails',
   TEACHERS_POPULAR: '/api/v1/teachers/popular',
   TEACHERS_SEARCH: '/api/v1/teachers?keyword=:keyword',
+  TEACHERS_LESSON_STATUS: '/api/v1/teachers/me/lessons/status',
 
   LESSONS: '/api/v1/lessons',
   LESSON_DETAIL: '/api/v1/lessons',
