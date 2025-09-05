@@ -1,6 +1,7 @@
 import type { Preview } from '@storybook/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import React from 'react';
+import ModalProvider from '../src/shared/components/ModalProvider/ModalProvier';
 import '../src/shared/styles/global.css';
 import '../src/shared/styles/reset.css';
 
@@ -20,6 +21,7 @@ const preview: Preview = {
       return (
         <QueryClientProvider client={queryClient}>
           <Story />
+          <ModalProvider />
         </QueryClientProvider>
       );
     },

@@ -7,7 +7,7 @@ import {
   titleStyle,
 } from '@/pages/mypage/components/mypageReservation/mypageReservation.css';
 import type { ReservationStatus } from '@/pages/mypage/components/mypageReservation/types/reservationStatus';
-import Dropdown from '@/common/components/Dropdown';
+import Dropdown from '@/common/components/Dropdown/Dropdown';
 import Head from '@/shared/components/Head/Head';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
 
