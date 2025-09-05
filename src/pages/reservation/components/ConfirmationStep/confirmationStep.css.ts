@@ -21,7 +21,7 @@ export const confirmSection = style({
   flexDirection: 'column',
   marginTop: '1.6rem',
   padding: '2.2rem 7.5rem 2.2rem 2.4rem',
-  gap: '1.477rem',
+  gap: '1.4rem',
 
   borderRadius: '11px',
   border: `1px solid ${vars.colors.gray02}`,
