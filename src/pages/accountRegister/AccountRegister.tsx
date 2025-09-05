@@ -7,6 +7,7 @@ import ConfirmBottomSheet from '@/pages/accountRegister/components/ConfirmBottom
 import { accountRegisterSchema } from '@/pages/accountRegister/schema/accountRegisterSchema';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { useGetBankList } from '@/shared/apis/queries';
+import SvgIcArrowDownGray1032 from '@/shared/assets/svg/IcArrowDownGray1032';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import Divider from '@/shared/components/Divider/Divider';
 import Head from '@/shared/components/Head/Head';
@@ -119,14 +120,15 @@ const AccountRegister = () => {
           </Head>
           <Input
             placeholder="은행 선택"
-            // {...register('bank')}
             value={bank?.name || ''}
             readOnly
             onClick={(e) => {
               e.currentTarget.blur();
               setIsBankSheetOpen(true);
             }}
+            rightAddOn={<SvgIcArrowDownGray1032 width={'3.2rem'} />}
           />
+
           <Input placeholder="계좌번호 입력" inputMode="numeric" {...register('accountNumber')} />
         </div>
       </div>
