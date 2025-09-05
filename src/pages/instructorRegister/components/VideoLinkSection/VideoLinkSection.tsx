@@ -1,4 +1,4 @@
-import type { UseFormSetValue } from 'react-hook-form';
+import { useFormContext } from 'react-hook-form';
 import InputSection from '@/pages/instructorRegister/components/CareerSection/InputSection/InputSection';
 import Description from '@/pages/instructorRegister/components/Description/Description';
 import {
@@ -6,16 +6,12 @@ import {
   INSTRUCTOR_REGISTER_PLACEHOLDER,
   MAX_VIDEO_INPUT_COUNT,
 } from '@/pages/instructorRegister/constants/registerSection';
-import type { instructorRegisterFormTypes } from '@/pages/instructorRegister/types/instructorRegisterForm';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
+import type { instructorRegisterFormTypes } from '../../types/instructorRegisterForm';
 
-interface VideoLinkSectionPropTypes {
-  videoUrls: string[];
-  setValue: UseFormSetValue<instructorRegisterFormTypes>;
-  isNoneChecked: boolean;
-}
-
-const VideoLinkSection = ({ videoUrls, setValue, isNoneChecked }: VideoLinkSectionPropTypes) => {
+const VideoLinkSection = () => {
+  const { setValue, watch } = useFormContext<instructorRegisterFormTypes>();
+  const { videoUrls, isVideoNoneChecked } = watch();
   return (
     <section className={sprinkles({ display: 'flex', flexDirection: 'column', width: '100%', pb: 27 })}>
       <Description title="유튜브 영상 등록" subTitle="나를 대표하는 댄스 영상을 최대 5개 등록해 주세요" />
@@ -23,9 +19,9 @@ const VideoLinkSection = ({ videoUrls, setValue, isNoneChecked }: VideoLinkSecti
       <InputSection
         title="링크"
         placeholder={INSTRUCTOR_REGISTER_PLACEHOLDER.VIDEO}
-        isNoneChecked={isNoneChecked}
+        isNoneChecked={isVideoNoneChecked}
         onToggleActive={() => {
-          setValue(INSTRUCTOR_REGISTER_FORM_KEY.IS_VIDEO_NONE_CHECKED, !isNoneChecked, {
+          setValue(INSTRUCTOR_REGISTER_FORM_KEY.IS_VIDEO_NONE_CHECKED, !isVideoNoneChecked, {
             shouldValidate: true,
             shouldDirty: true,
           });

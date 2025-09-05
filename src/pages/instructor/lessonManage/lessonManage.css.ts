@@ -10,6 +10,10 @@ export const containerStyle = style({
   padding: '2rem 2rem 3.4rem 2rem',
 });
 
+export const titleStyle = style({
+  marginBottom: '1.2rem',
+});
+
 export const buttonStyle = style({
   width: '100%',
 

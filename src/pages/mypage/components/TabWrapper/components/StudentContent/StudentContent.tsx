@@ -37,7 +37,7 @@ const StudentContent = () => {
         ))}
       </div>
       <Divider color="gray1" thickness="0.4rem" />
-      <BottomList />
+      <BottomList userRole="STUDENT" />
     </div>
   );
 };

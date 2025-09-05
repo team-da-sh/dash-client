@@ -12,6 +12,7 @@ export const allContainerStyle = style({
 export const containerStyle = recipe({
   base: {
     display: 'flex',
+    alignItems: 'center',
     gap: '0.8rem',
 
     width: '100%',
@@ -47,6 +48,19 @@ export const optionalContainerStyle = style({
   display: 'flex',
   justifyContent: 'space-between',
   width: '100%',
+});
+
+export const helperTextStyle = recipe({
+  variants: {
+    state: {
+      error: {
+        color: vars.colors.alert03,
+      },
+      success: {
+        color: vars.colors.main06,
+      },
+    },
+  },
 });
 
 export const lengthContainerStyle = style({

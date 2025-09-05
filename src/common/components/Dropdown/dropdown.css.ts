@@ -9,6 +9,8 @@ export const containerStyle = style({
 
   position: 'relative',
 
+  backgroundColor: vars.colors.white,
+
   color: vars.colors.gray10,
 });
 
@@ -56,6 +58,7 @@ export const listStyle = style({
   padding: '1.6rem',
   marginTop: '5.6rem',
 
+  backgroundColor: vars.colors.white,
   borderRadius: '4px',
   boxShadow: '0 0 8px 0 rgba(0, 0, 0, 0.10)',
 });

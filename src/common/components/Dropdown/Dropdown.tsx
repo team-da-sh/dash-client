@@ -1,5 +1,11 @@
 import { useState } from 'react';
-import { arrowStyle, containerStyle, itemStyle, listStyle, triggerStyle } from '@/common/components/Dropdown/style.css';
+import {
+  arrowStyle,
+  containerStyle,
+  itemStyle,
+  listStyle,
+  triggerStyle,
+} from '@/common/components/Dropdown/dropdown.css';
 import SvgIcArrowDownGray1032 from '@/shared/assets/svg/IcArrowDownGray1032';
 import Divider from '@/shared/components/Divider/Divider';
 import useOutsideClick from '@/shared/hooks/useOutsideClick';
