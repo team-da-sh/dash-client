@@ -210,6 +210,8 @@ export const vars = createGlobalTheme(':root', {
     three: '3',
     four: '4',
     five: '5',
+    backdrop: '9',
+    modal: '10',
   },
   tags: {
     h1_sb: 'h1_sb',
