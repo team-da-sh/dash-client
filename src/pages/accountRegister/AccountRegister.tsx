@@ -6,13 +6,13 @@ import * as styles from '@/pages/accountRegister/accountRegister.css';
 import ConfirmBottomSheet from '@/pages/accountRegister/components/ConfirmBottomSheet/ConfirmBottomSheet';
 import { accountRegisterSchema } from '@/pages/accountRegister/schema/accountRegisterSchema';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
+import { useGetBankList } from '@/shared/apis/queries';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import Divider from '@/shared/components/Divider/Divider';
 import Head from '@/shared/components/Head/Head';
 import Input from '@/shared/components/Input/Input';
 import Text from '@/shared/components/Text/Text';
 import { notify } from '@/shared/components/Toast/Toast';
-import { useGetBankList } from './apis/queries';
 import BankBottomSheet from './components/BankBottomSheet/BankBottomSheet';
 
 const AccountRegister = () => {
