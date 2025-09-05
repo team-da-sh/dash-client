@@ -3,7 +3,7 @@ import { useGetDancerDetail } from '@/pages/dancer/apis/queries';
 import DancerInfo from '@/pages/dancer/components/DancerInfo/DancerInfo';
 import TabWrapper from '@/pages/dancer/components/TabWrapper/TabWrapper';
 import * as styles from '@/pages/dancer/dancer.css';
-import Error from '@/pages/error/Error';
+import ErrorPage from '@/pages/error/ErrorPage';
 import Head from '@/shared/components/Head/Head';
 import Tag from '@/shared/components/Tag/Tag';
 import Text from '@/shared/components/Text/Text';
@@ -14,7 +14,7 @@ const Dancer = () => {
   const { id } = useParams<{ id: string }>();
 
   if (!id) {
-    return <Error />;
+    return <ErrorPage />;
   }
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -25,7 +25,7 @@ const Dancer = () => {
   }
 
   if (isError || !data) {
-    return <Error />;
+    return <ErrorPage />;
   }
   const { imageUrls, genres, nickname } = data;
 

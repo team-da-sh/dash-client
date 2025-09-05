@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { onErrorResponse, onResponse } from '@/shared/apis/interceptor';
+import { onErrorExpand, onErrorResponse, onResponse } from '@/shared/apis/interceptor';
 
 export const instance = axios.create({
   baseURL: import.meta.env.VITE_DEV_BASE_URL,
@@ -9,6 +9,11 @@ export const instance = axios.create({
 });
 
 instance.interceptors.request.use(onResponse);
+
 instance.interceptors.response.use((response) => {
   return response;
 }, onErrorResponse);
+
+instance.interceptors.response.use((response) => {
+  return response;
+}, onErrorExpand);

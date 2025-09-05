@@ -1,9 +1,12 @@
+/* eslint-disable no-unused-vars */
 import type { AxiosError, InternalAxiosRequestConfig } from 'axios';
+import type { ErrorResponse } from 'react-router-dom';
 import { postReissue } from '@/pages/auth/apis/axios';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { instance } from '@/shared/apis/instance';
 import { HTTP_STATUS_CODE } from '@/shared/constants/api';
 import { API_URL } from '@/shared/constants/apiURL';
+import { ApiError } from '@/shared/types/ApiError';
 import { clearStorage, getAccessToken, getRefreshToken, setStorage } from '@/shared/utils/handleToken';
 
 type FailedRequest = {
@@ -76,4 +79,10 @@ export const onErrorResponse = async (error: AxiosError) => {
   }
 
   return Promise.reject(error);
+};
+
+export const onErrorExpand = (error: AxiosError<ErrorResponse>) => {
+  if (!error.response) throw error;
+
+  throw new ApiError(error);
 };

@@ -9,7 +9,7 @@ import { sprinkles } from '@/shared/styles/sprinkles.css';
 
 const IcError = lazy(() => import('@/shared/assets/svg/IcError'));
 
-const Error = () => {
+const ErrorPage = () => {
   const navigate = useNavigate();
 
   const handleHomeNavigation = () => {
@@ -53,4 +53,4 @@ const Error = () => {
   );
 };
 
-export default Error;
+export default ErrorPage;

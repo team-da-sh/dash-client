@@ -27,4 +27,5 @@ export const deadlineLessonWrapperStyle = style({
   width: '100%',
 
   marginTop: '3.2rem',
+  marginBottom: '4.8rem',
 });

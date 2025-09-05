@@ -190,9 +190,9 @@ const ClassRegister = () => {
 
           navigate(ROUTES_CONFIG.classRegisterCompletion.path);
         },
-        onError: () => {
-          navigate(ROUTES_CONFIG.error.path);
-        },
+        // onError: () => {
+        //   navigate(ROUTES_CONFIG.error.path);
+        // },
       });
     }
   };
