@@ -9,19 +9,25 @@ import { USER_ROLE } from '@/shared/constants/userRole';
 
 interface ReservationListProps {
   status: ReservationStatus;
+  targetReservationId?: number;
 }
 
-const ReservationList = ({ status }: ReservationListProps) => {
+const ReservationList = ({ status, targetReservationId }: ReservationListProps) => {
   const { data: reservationData } = useGetReservations(status);
 
   const navigate = useNavigate();
 
+  // 특정 예약 ID가 제공된 경우 해당 예약만 필터링
+  const filteredReservations = targetReservationId
+    ? reservationData?.reservations.filter(
+        (reservation: Reservation) => reservation.reservationId === targetReservationId
+      )
+    : reservationData?.reservations;
+
   return (
     <>
-      {reservationData?.reservations.map((reservation: Reservation) => (
-        <ClassCard
-          key={reservation.reservationId}
-          onClick={() => handleClassCardClick(navigate, reservation.reservationId)}>
+      {filteredReservations?.map((reservation: Reservation) => (
+        <ClassCard key={reservation.reservationId} onClick={() => handleClassCardClick(navigate, reservation.lessonId)}>
           <ClassCard.Header
             role={USER_ROLE.MEMBER}
             status={reservation.reservationStatus}
@@ -29,7 +35,7 @@ const ReservationList = ({ status }: ReservationListProps) => {
           />
           <ClassCard.Body {...reservation} />
           <ClassCard.Footer showAsk={true}>
-            <BoxButton onClick={handleCancelClick} variant="temp">
+            <BoxButton onClick={(e) => handleCancelClick(e, navigate, reservation)} variant="temp">
               취소하기
             </BoxButton>
             <BoxButton

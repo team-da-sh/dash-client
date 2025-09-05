@@ -13,3 +13,11 @@ export const getReservationStatus = async () => {
 
   return data;
 };
+
+export const getReservationsClassCard = async (reservationId: number) => {
+  const { data } = await instance.get(
+    API_URL.MEMBERS_RESERVATIONS_CLASS_CARD.replace('{reservationId}', reservationId.toString())
+  );
+
+  return data;
+};
