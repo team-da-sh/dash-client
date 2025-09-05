@@ -45,15 +45,15 @@ const AccountRegister = () => {
     mode: 'onTouched',
     defaultValues: {
       depositor: '',
-      bank: { id: 0, name: '' },
+      bank: { id: 0, name: '', imageUrl: '' },
       accountNumber: '',
     },
   });
 
-  const handleBankSelect = (selectedBankId: number, selectedBankName: string) => {
+  const handleBankSelect = (selectedBankId: number, selectedBankName: string, imageUrl: string) => {
     setValue(
       'bank',
-      { id: selectedBankId, name: selectedBankName },
+      { id: selectedBankId, name: selectedBankName, imageUrl },
       {
         shouldValidate: true,
         shouldDirty: true,
@@ -118,7 +118,8 @@ const AccountRegister = () => {
           <Head level="h3" tag="b2_sb">
             계좌 정보
           </Head>
-          <Input
+
+          {/* <Input
             placeholder="은행 선택"
             value={bank?.name || ''}
             readOnly
@@ -127,7 +128,26 @@ const AccountRegister = () => {
               setIsBankSheetOpen(true);
             }}
             rightAddOn={<SvgIcArrowDownGray1032 width={'3.2rem'} />}
-          />
+          /> */}
+
+          <div
+            className={styles.bankSelectContainerStyle}
+            onClick={(e) => {
+              e.currentTarget.blur();
+              setIsBankSheetOpen(true);
+            }}>
+            {bank.imageUrl && bank.name ? (
+              <div className={styles.bankInfoContainerStyle}>
+                <img src={bank.imageUrl} alt="은행 로고" className={styles.bankSelectImageStyle} />
+                <Text tag="b2_sb_long">{bank.name}</Text>
+              </div>
+            ) : (
+              <Text tag="b2_sb_long" color="gray5">
+                은행 선택
+              </Text>
+            )}
+            <SvgIcArrowDownGray1032 width={'3.2rem'} />
+          </div>
 
           <Input placeholder="계좌번호 입력" inputMode="numeric" {...register('accountNumber')} />
         </div>

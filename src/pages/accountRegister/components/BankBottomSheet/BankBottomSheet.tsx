@@ -2,15 +2,15 @@ import clsx from 'clsx';
 import { AnimatePresence, motion } from 'motion/react';
 import { useEffect, useRef, useState } from 'react';
 import * as styles from '@/pages/accountRegister/components/BankBottomSheet/bankBottomSheet.css';
-import type { BankListResponseTypes } from '@/pages/accountRegister/types/api';
 import Text from '@/shared/components/Text/Text';
 import useOutsideClick from '@/shared/hooks/useOutsideClick';
+import type { BankListResponseTypes } from '@/shared/types/api';
 
 interface BankBottomSheetPropTypes {
   isOpen: boolean;
   close: () => void;
   banks: BankListResponseTypes[];
-  handleBankSelect: (bankId: number, bankName: string) => void;
+  handleBankSelect: (bankId: number, bankName: string, imageUrl: string) => void;
 }
 
 const BankBottomSheet = ({ isOpen, close, banks, handleBankSelect }: BankBottomSheetPropTypes) => {
@@ -79,7 +79,7 @@ const BankBottomSheet = ({ isOpen, close, banks, handleBankSelect }: BankBottomS
                   key={bankId}
                   className={styles.ListItemStyle}
                   onClick={() => {
-                    handleBankSelect(bankId, bankName);
+                    handleBankSelect(bankId, bankName, bankImageUrl);
                     close();
                   }}>
                   <img src={bankImageUrl} className={styles.tempImageStyle} />
