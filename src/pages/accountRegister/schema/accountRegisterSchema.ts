@@ -11,6 +11,7 @@ export const accountRegisterSchema = z.object({
     {
       id: z.number(),
       name: z.string().min(1, '은행을 선택해주세요.'),
+      imageUrl: z.string(),
     },
     { required_error: '은행을 선택해주세요.' }
   ),
