@@ -82,12 +82,14 @@ const ClassDetail = () => {
                     studentList={
                       lessonData?.students.filter((student) => student.reservationStatus === 'PENDING_APPROVAL') ?? []
                     }
+                    lessonId={lessonData.id}
                   />
                   <StudentList
                     reservationStatus="APPROVED"
                     studentList={
                       lessonData?.students.filter((student) => student.reservationStatus === 'APPROVED') ?? []
                     }
+                    lessonId={lessonData.id}
                   />
                 </>
               ) : (
@@ -108,12 +110,14 @@ const ClassDetail = () => {
                       lessonData?.students.filter((student) => student.reservationStatus === 'PENDING_CANCELLATION') ??
                       []
                     }
+                    lessonId={lessonData.id}
                   />
                   <StudentList
                     reservationStatus="CANCELLED"
                     studentList={
                       lessonData?.students.filter((student) => student.reservationStatus === 'CANCELLED') ?? []
                     }
+                    lessonId={lessonData.id}
                   />
                 </>
               ) : (

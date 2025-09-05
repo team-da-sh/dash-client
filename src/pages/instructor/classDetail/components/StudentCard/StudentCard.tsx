@@ -1,17 +1,15 @@
+import { useLessonApproveMutation, useLessonCancelMutation } from '@/pages/instructor/classDetail/apis/queries';
 import * as styles from '@/pages/instructor/classDetail/components/StudentCard/studentCard.css';
 import type { Student } from '@/pages/instructor/classDetail/types/api';
 import { formatPhoneNumber } from '@/pages/instructor/utils/format';
 import { STATUS_KOREAN_MAP } from '@/pages/mypage/components/mypageReservation/MypageReservation';
 import type { ReservationStatus } from '@/pages/mypage/components/mypageReservation/types/reservationStatus';
+import Modal from '@/common/components/Modal/Modal';
+import { useModalStore } from '@/common/stores/modal';
 import ApplyTag from '@/shared/components/ApplyTag/ApplyTag';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import Head from '@/shared/components/Head/Head';
 import Text from '@/shared/components/Text/Text';
-
-interface StudentCardPropTypes {
-  studentData: Student;
-  index: number;
-}
 
 const STATUS_BUTTON_MAP: Record<
   Exclude<ReservationStatus, 'ALL'>,
@@ -23,8 +21,40 @@ const STATUS_BUTTON_MAP: Record<
   CANCELLED: { text: '취소 대기로 변경', variant: 'quaternary' },
 };
 
-const StudentCard = ({ studentData, index }: StudentCardPropTypes) => {
+interface StudentCardPropTypes {
+  studentData: Student;
+  index: number;
+  lessonId: number;
+}
+
+const StudentCard = ({ studentData, index, lessonId }: StudentCardPropTypes) => {
+  const { openModal } = useModalStore();
+
   const { text: buttonText, variant: buttonVariant } = STATUS_BUTTON_MAP[studentData.reservationStatus];
+
+  const status = studentData.reservationStatus;
+
+  const { mutate: approveMutate } = useLessonApproveMutation();
+  const { mutate: cancelMutate } = useLessonCancelMutation();
+
+  const handleStatusChangeClick = () => {
+    if (status === 'APPROVED' || status === 'PENDING_APPROVAL') {
+      approveMutate({ lessonId, reservationId: studentData.reservationId });
+    } else {
+      if (status === 'PENDING_CANCELLATION') {
+        openModal(({ close }) => (
+          <Modal
+            type="default"
+            content={`${studentData.name}님의 취소를 확인하셨나요?`}
+            onClose={close}
+            onClickHandler={() => cancelMutate({ lessonId, reservationId: studentData.reservationId })}
+          />
+        ));
+      } else {
+        cancelMutate({ lessonId, reservationId: studentData.reservationId });
+      }
+    }
+  };
 
   return (
     <section className={styles.cardContainerStyle}>
@@ -52,7 +82,9 @@ const StudentCard = ({ studentData, index }: StudentCardPropTypes) => {
         <Text tag="c1_r" color="gray9">
           {studentData.reservationDateTime}
         </Text>
-        <BoxButton variant={buttonVariant}>{buttonText}</BoxButton>
+        <BoxButton variant={buttonVariant} onClick={handleStatusChangeClick}>
+          {buttonText}
+        </BoxButton>
       </section>
     </section>
   );

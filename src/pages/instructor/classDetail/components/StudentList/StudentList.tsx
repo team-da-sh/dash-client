@@ -13,9 +13,10 @@ import Text from '@/shared/components/Text/Text';
 interface StudentListProps {
   reservationStatus: ReservationStatus;
   studentList: Student[];
+  lessonId: number;
 }
 
-const StudentList = ({ reservationStatus, studentList }: StudentListProps) => {
+const StudentList = ({ reservationStatus, studentList, lessonId }: StudentListProps) => {
   return (
     <>
       {studentList.length > 0 && (
@@ -29,7 +30,7 @@ const StudentList = ({ reservationStatus, studentList }: StudentListProps) => {
 
           <ul className={studentListWrapper}>
             {studentList.map((student, index) => (
-              <StudentCard index={index} studentData={student} />
+              <StudentCard index={index} studentData={student} lessonId={lessonId} />
             ))}
           </ul>
         </>

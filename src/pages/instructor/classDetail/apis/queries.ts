@@ -12,14 +12,16 @@ export const useGetLessonDetail = (lessonId: number) => {
   });
 };
 
-export const useLessonApproveMutation = (lessonId: number, reservationId: number) => {
+export const useLessonApproveMutation = () => {
   return useMutation({
-    mutationFn: () => postLessonApprove(lessonId, reservationId),
+    mutationFn: ({ lessonId, reservationId }: { lessonId: number; reservationId: number }) =>
+      postLessonApprove(lessonId, reservationId),
   });
 };
 
-export const useLessonCancelMutation = (lessonId: number, reservationId: number) => {
+export const useLessonCancelMutation = () => {
   return useMutation({
-    mutationFn: () => postLessonCancel(lessonId, reservationId),
+    mutationFn: ({ lessonId, reservationId }: { lessonId: number; reservationId: number }) =>
+      postLessonCancel(lessonId, reservationId),
   });
 };
