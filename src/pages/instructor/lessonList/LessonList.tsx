@@ -17,7 +17,7 @@ const LessonList = ({ status }: LessonListProps) => {
   const navigate = useNavigate();
 
   const handleClassCardClick = (id: number) => {
-    navigate(ROUTES_CONFIG.class.path(id.toString()));
+    navigate(ROUTES_CONFIG.instructorClassDetail.path(id.toString()));
   };
 
   return (
