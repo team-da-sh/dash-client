@@ -14,7 +14,7 @@ import Head from '@/shared/components/Head/Head';
 import Input from '@/shared/components/Input/Input';
 import Text from '@/shared/components/Text/Text';
 import { notify } from '@/shared/components/Toast/Toast';
-import BankBottomSheet from './components/BankBottomSheet/BankBottomSheet';
+import BankBottomSheet from '../../shared/components/BankBottomSheet/BankBottomSheet';
 
 const AccountRegister = () => {
   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
