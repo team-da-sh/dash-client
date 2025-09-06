@@ -3,12 +3,12 @@ import { useState } from 'react';
 import { useController, useForm } from 'react-hook-form';
 import { usePatchMyProfile } from '@/pages/editProfiles/api/queries';
 import BottomSheet from '@/pages/editProfiles/components/BottomSheet/BottomSheet';
-import FormField from '@/pages/editProfiles/components/FormField/FormField.tsx';
+import FormField from '@/pages/editProfiles/components/FormField/FormField';
 import * as styles from '@/pages/editProfiles/components/ProfileForm/profileForm.css';
-import type { ProfileFormValues } from '@/pages/editProfiles/schema/profileSchema.ts';
-import { profileSchema } from '@/pages/editProfiles/schema/profileSchema.ts';
-import type { UpdateProfileRequestTypes } from '@/pages/editProfiles/types/api.ts';
-import ImageUploadSection from '@/pages/instructorRegister/components/ImageUploadSection/ImageUploadSection.tsx';
+import type { ProfileFormValues } from '@/pages/editProfiles/schema/profileSchema';
+import { profileSchema } from '@/pages/editProfiles/schema/profileSchema';
+import type { UpdateProfileRequestTypes } from '@/pages/editProfiles/types/api';
+import ImageUploadSection from '@/pages/instructorRegister/components/ImageUploadSection/ImageUploadSection';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import useImageUploader from '@/shared/hooks/useImageUploader';
 
@@ -44,18 +44,15 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
 
   const handleSuccess = (url: string) => {
     field.onChange(url);
+    handleCloseBottomSheet();
   };
 
   const handleDelete = () => {
     field.onChange('');
-    if (imgRef.current) {
-      imgRef.current.value = '';
-    }
+    if (imgRef.current) imgRef.current.value = '';
   };
 
-  const handleImageFormClick = () => {
-    setIsImageClick(true);
-  };
+  const handleImageFormClick = () => setIsImageClick(true);
 
   const handleCloseBottomSheet = () => {
     document.body.style.overflow = '';
@@ -125,14 +122,13 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
           확인
         </BoxButton>
       </div>
-      {isImageClick && (
-        <BottomSheet
-          isVisible={isImageClick}
-          onClose={handleCloseBottomSheet}
-          onSelectImage={handleSelectImage}
-          onDeleteImage={deleteImgFile}
-        />
-      )}
+
+      <BottomSheet
+        isVisible={isImageClick}
+        onClose={handleCloseBottomSheet}
+        onSelectImage={handleSelectImage}
+        onDeleteImage={deleteImgFile}
+      />
     </form>
   );
 };
