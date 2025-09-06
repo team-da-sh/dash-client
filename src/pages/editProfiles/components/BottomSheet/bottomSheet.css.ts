@@ -1,8 +1,6 @@
 import { style } from '@vanilla-extract/css';
 import { vars } from '@/shared/styles/theme.css';
 
-export const bottomSheetContainerStyle = style({ overflow: 'hidden' });
-
 export const overlayStyle = style({
   position: 'fixed',
   left: '50%',
