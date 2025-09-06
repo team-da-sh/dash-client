@@ -6,6 +6,8 @@ import { useGetReservationsDetail } from '@/pages/mypage/components/mypageReserv
 import ApplicantInfo from '@/pages/reservation/components/ApplicantInfo/ApplicantInfo';
 import ClassInfo from '@/pages/reservation/components/ClassInfo/ClassInfo';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
+import Modal from '@/common/components/Modal/Modal';
+import { useModalStore } from '@/common/stores/modal';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import Head from '@/shared/components/Head/Head';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
@@ -18,10 +20,20 @@ const CancelConfirmPage = () => {
   const { data: myPageData } = useGetMyPage();
 
   const navigate = useNavigate();
+  const { openModal } = useModalStore();
 
   const handleConfirm = () => {
-    // TODO: 취소 api 연동 + modal 추가
-    navigate(ROUTES_CONFIG.mypageReservation.path);
+    openModal(({ close }) => (
+      <Modal
+        content="클래스 신청이 취소됐어요. 취소된 클래스는 신청 내역에서 확인할 수 있어요."
+        type="single"
+        onClose={close}
+        onClickHandler={() => {
+          // TODO: 취소 api 연동
+          navigate(ROUTES_CONFIG.mypageReservation.path);
+        }}
+      />
+    ));
   };
 
   return (
