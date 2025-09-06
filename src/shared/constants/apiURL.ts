@@ -13,6 +13,7 @@ export const API_URL = {
     return status === 'ALL' ? '/api/v1/members/me/reservations' : `/api/v1/members/me/reservations?status=${status}`;
   },
   MEMBERS_RESERVATIONS_CLASS_CARD: '/api/v1/members/me/reservations/{reservationId}/class-card',
+  MEMBERS_RESERVATIONS_CANCEL: '/api/v1/members/me/reservations/{reservationId}/cancel',
   MEMBERS_RESERVATIONS_STATISTICS: '/api/v1/members/me/reservations/statistics',
   MEMBERS_RESERVATION_DETAIL: '/api/v1/members/me/reservations',
 

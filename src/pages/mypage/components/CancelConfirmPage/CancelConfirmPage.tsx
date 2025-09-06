@@ -1,16 +1,15 @@
 import { useParams } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
 import { useGetMyPage } from '@/pages/mypage/apis/queries';
 import * as styles from '@/pages/mypage/components/CancelConfirmPage/cancelConfirmPage.css';
 import { useGetReservationsDetail } from '@/pages/mypage/components/mypageReservationDetail/apis/queries';
 import ApplicantInfo from '@/pages/reservation/components/ApplicantInfo/ApplicantInfo';
 import ClassInfo from '@/pages/reservation/components/ClassInfo/ClassInfo';
-import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import Modal from '@/common/components/Modal/Modal';
 import { useModalStore } from '@/common/stores/modal';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import Head from '@/shared/components/Head/Head';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
+import { useCancelReservation } from './hooks/useCancelReservation';
 
 const CancelConfirmPage = () => {
   const { id } = useParams<{ id: string }>();
@@ -19,8 +18,8 @@ const CancelConfirmPage = () => {
   const { data: reservationData } = useGetReservationsDetail(reservationId);
   const { data: myPageData } = useGetMyPage();
 
-  const navigate = useNavigate();
   const { openModal } = useModalStore();
+  const { mutate: cancelReservation, isPending } = useCancelReservation();
 
   const handleConfirm = () => {
     openModal(({ close }) => (
@@ -29,8 +28,12 @@ const CancelConfirmPage = () => {
         type="single"
         onClose={close}
         onClickHandler={() => {
-          // TODO: 취소 api 연동
-          navigate(ROUTES_CONFIG.mypageReservation.path);
+          cancelReservation({
+            reservationId,
+            requestData: {
+              deposited: false,
+            },
+          });
         }}
       />
     ));
@@ -91,8 +94,12 @@ const CancelConfirmPage = () => {
           </div>
 
           <div className={sprinkles({ pt: 24, pr: 20, pb: 24, pl: 20 })}>
-            <BoxButton variant="primary" onClick={handleConfirm} className={sprinkles({ width: '100%' })}>
-              취소하기
+            <BoxButton
+              variant="primary"
+              onClick={handleConfirm}
+              className={sprinkles({ width: '100%' })}
+              disabled={isPending}>
+              {isPending ? '처리 중...' : '취소하기'}
             </BoxButton>
           </div>
         </div>
