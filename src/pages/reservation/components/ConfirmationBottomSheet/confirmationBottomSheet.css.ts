@@ -27,8 +27,6 @@ export const containerStyle = style({
   backgroundColor: vars.colors.white,
 
   zIndex: vars.zIndex.three,
-
-  transition: 'transform 300ms ease',
 });
 
 export const topContainerStyle = style({
