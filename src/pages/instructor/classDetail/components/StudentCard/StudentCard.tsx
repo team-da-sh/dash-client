@@ -1,3 +1,4 @@
+import { useQueryClient } from '@tanstack/react-query';
 import { useLessonApproveMutation, useLessonCancelMutation } from '@/pages/instructor/classDetail/apis/queries';
 import * as styles from '@/pages/instructor/classDetail/components/StudentCard/studentCard.css';
 import type { Student } from '@/pages/instructor/classDetail/types/api';
@@ -10,6 +11,8 @@ import ApplyTag from '@/shared/components/ApplyTag/ApplyTag';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import Head from '@/shared/components/Head/Head';
 import Text from '@/shared/components/Text/Text';
+import { notify } from '@/shared/components/Toast/Toast';
+import { teacherKeys } from '@/shared/constants/queryKey';
 
 const STATUS_BUTTON_MAP: Record<
   Exclude<ReservationStatus, 'ALL'>,
@@ -37,9 +40,23 @@ const StudentCard = ({ studentData, index, lessonId }: StudentCardPropTypes) => 
   const { mutate: approveMutate } = useLessonApproveMutation();
   const { mutate: cancelMutate } = useLessonCancelMutation();
 
+  const queryClient = useQueryClient();
+
   const handleStatusChangeClick = () => {
     if (status === 'APPROVED' || status === 'PENDING_APPROVAL') {
-      approveMutate({ lessonId, reservationId: studentData.reservationId });
+      approveMutate(
+        { lessonId, reservationId: studentData.reservationId },
+        {
+          onSuccess: (data) => {
+            if (data.isFull) {
+              openModal(({ close }) => <Modal type="single" content={'클래스 정원이 다 찼어요.'} onClose={close} />);
+            } else {
+              notify({ message: '승인에 성공했습니다.', icon: 'success' });
+            }
+            queryClient.invalidateQueries({ queryKey: teacherKeys.me._ctx.lesson._ctx.students(lessonId).queryKey });
+          },
+        }
+      );
     } else {
       if (status === 'PENDING_CANCELLATION') {
         openModal(({ close }) => (
@@ -47,11 +64,33 @@ const StudentCard = ({ studentData, index, lessonId }: StudentCardPropTypes) => 
             type="default"
             content={`${studentData.name}님의 취소를 확인하셨나요?`}
             onClose={close}
-            onClickHandler={() => cancelMutate({ lessonId, reservationId: studentData.reservationId })}
+            onClickHandler={() =>
+              cancelMutate(
+                { lessonId, reservationId: studentData.reservationId },
+                {
+                  onSuccess: () => {
+                    notify({ message: '취소에 성공했습니다.', icon: 'success' });
+                    queryClient.invalidateQueries({
+                      queryKey: teacherKeys.me._ctx.lesson._ctx.students(lessonId).queryKey,
+                    });
+                  },
+                }
+              )
+            }
           />
         ));
       } else {
-        cancelMutate({ lessonId, reservationId: studentData.reservationId });
+        cancelMutate(
+          { lessonId, reservationId: studentData.reservationId },
+          {
+            onSuccess: () => {
+              notify({ message: '취소대기로 변경했습니다.', icon: 'success' });
+              queryClient.invalidateQueries({
+                queryKey: teacherKeys.me._ctx.lesson._ctx.students(lessonId).queryKey,
+              });
+            },
+          }
+        );
       }
     }
   };

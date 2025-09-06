@@ -26,3 +26,7 @@ export interface LessonDetailGetResponse {
   studentCount: number;
   lessonDateTime: string;
 }
+
+export interface ChangeApproveResponse {
+  isFull: true;
+}
