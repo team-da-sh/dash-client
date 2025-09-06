@@ -56,7 +56,7 @@ const TeacherContent = () => {
           </>
         )}
         <div className={styles.topContainerStyle}>
-          <UnregisteredTeacher nickname={myData.nickname} />
+          <UnregisteredTeacher nickname={myData.name} />
           <Divider color="gray1" thickness="0.4rem" />
         </div>
         <BottomList userRole="TEACHER" />

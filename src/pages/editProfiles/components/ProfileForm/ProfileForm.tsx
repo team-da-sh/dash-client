@@ -14,7 +14,6 @@ import useImageUploader from '@/shared/hooks/useImageUploader';
 
 interface ProfileFormPropTypes {
   defaultValues: {
-    nickname: string;
     profileImageUrl: string;
     name: string;
     phoneNumber: string;
@@ -78,7 +77,6 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
     const profileImageUrl = typeof value === 'string' && value.trim() !== '' ? value : null;
 
     const submitData: UpdateProfileRequestTypes = {
-      nickname: defaultValues.nickname,
       phoneNumber: formData.phoneNumber,
       name: formData.name,
       profileImageUrl,
