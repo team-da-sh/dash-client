@@ -77,6 +77,7 @@ export const myPageKeys = createQueryKeys('myPage', {
 });
 
 export const advertisementKeys = createQueryKeys('advertisements', {});
+export const bankKeys = createQueryKeys('banks', {});
 
 export const locationKeys = createQueryKeys('locations', {
   search: (keyword: any) => ({ queryKey: [keyword] }),
@@ -93,6 +94,7 @@ export const queryKeys = mergeQueryKeys(
   teacherKeys,
   myPageKeys,
   advertisementKeys,
+  bankKeys,
   locationKeys,
   authKeys
 );

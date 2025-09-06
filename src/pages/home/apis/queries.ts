@@ -4,15 +4,15 @@ import { getAdvertisements, getLatestLessons, getPopularGenres, getUpcommingLess
 import { MAX_POPULAR_GENRE_COUNT } from '@/pages/home/constants';
 import type {
   AdvertisementResponseTypes,
-  PopularGenreResponseTypes,
   LatestLessonsResponseTypes,
+  PopularGenreResponseTypes,
   UpcomingLessonsResponseTypes,
 } from '@/pages/home/types/api';
 import { advertisementKeys, lessonKeys } from '@/shared/constants/queryKey';
 
 export const useGetAdvertisements = () => {
   return useQuery<AdvertisementResponseTypes>({
-    queryKey: advertisementKeys.all,
+    queryKey: advertisementKeys._def,
     queryFn: getAdvertisements,
   });
 };

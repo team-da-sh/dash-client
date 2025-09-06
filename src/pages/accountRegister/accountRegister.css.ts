@@ -27,3 +27,29 @@ export const buttonContainerStyle = style({
   padding: '2.4rem 2rem',
   backgroundColor: vars.colors.white,
 });
+
+export const bankSelectContainerStyle = style({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+
+  width: '100%',
+  height: '5.2rem',
+
+  padding: '1rem 1.8rem',
+  backgroundColor: vars.colors.gray01,
+
+  border: 'none',
+  borderRadius: '4px',
+});
+
+export const bankInfoContainerStyle = style({
+  display: 'flex',
+  alignItems: 'center',
+  gap: '0.4rem',
+});
+
+export const bankSelectImageStyle = style({
+  width: '2.2rem',
+  height: '2.2rem',
+});
