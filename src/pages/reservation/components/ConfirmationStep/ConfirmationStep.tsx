@@ -11,10 +11,10 @@ import { sprinkles } from '@/shared/styles/sprinkles.css';
 
 interface ConfirmationStepPropTypes {
   onNext: () => void;
-  depositor: string;
-  bankName: string;
-  accountNumber: string;
-  price: number;
+  depositor?: string;
+  bankName?: string;
+  accountNumber?: string;
+  price?: number;
 }
 
 const ConfirmationStep = ({
@@ -26,7 +26,7 @@ const ConfirmationStep = ({
 }: ConfirmationStepPropTypes) => {
   const location = useLocation();
   const currentPath = location.pathname;
-  const STORAGE_KEY = `confirmation-bottomsheet-closed-${currentPath}`;
+  const STORAGE_KEY = `bottomsheet-closed-${currentPath}`;
 
   const [isBottomSheetOpen, setBottomSheetOpen] = useState(() => {
     const closed = sessionStorage.getItem(STORAGE_KEY);
