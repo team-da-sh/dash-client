@@ -8,14 +8,14 @@ import useOutsideClick from '@/shared/hooks/useOutsideClick';
 
 interface ConfirmBottomSheetPropTypes {
   isOpen: boolean;
-  close: () => void;
+  onClose: () => void;
   depositor: string;
   bank: string;
   accountNumber: string;
 }
 
-const ConfirmBottomSheet = ({ isOpen, close, depositor, bank, accountNumber }: ConfirmBottomSheetPropTypes) => {
-  const ref = useOutsideClick(close);
+const ConfirmBottomSheet = ({ isOpen, onClose, depositor, bank, accountNumber }: ConfirmBottomSheetPropTypes) => {
+  const ref = useOutsideClick(onClose);
 
   return (
     <AnimatePresence>
@@ -43,7 +43,7 @@ const ConfirmBottomSheet = ({ isOpen, close, depositor, bank, accountNumber }: C
                   <Text tag="b2_m_long" color="gray7">
                     수강생이 강사님의 계좌로 직접 입금해요
                   </Text>
-                  <Text tag="b2_m_long" color="gray7" className={styles.subTitleStyle}>
+                  <Text tag="b2_m_long" color="gray7">
                     입금 오류 방지를 위해 한 번 더 확인해 주세요
                   </Text>
                 </div>
@@ -76,7 +76,7 @@ const ConfirmBottomSheet = ({ isOpen, close, depositor, bank, accountNumber }: C
             </div>
 
             <div className={styles.buttonContainerStyle}>
-              <BoxButton type="button" variant="secondary" className={styles.secondaryButtonStyle} onClick={close}>
+              <BoxButton type="button" variant="secondary" className={styles.secondaryButtonStyle} onClick={onClose}>
                 다시 입력하기
               </BoxButton>
               <BoxButton type="submit" className={styles.primaryButtonStyle}>

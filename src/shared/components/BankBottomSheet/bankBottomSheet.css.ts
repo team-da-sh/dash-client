@@ -35,7 +35,7 @@ export const IndicatorStyle = style({
   marginBottom: '1.2rem',
   width: '7.7rem',
   height: '0.6rem',
-  borderRadius: '0.9rem',
+  borderRadius: '9px',
   flexShrink: 0,
   backgroundColor: vars.colors.gray02,
 });
@@ -61,7 +61,7 @@ export const ListItemStyle = style({
   width: '100%',
   height: '8.2rem',
 
-  borderRadius: '0.6rem',
+  borderRadius: '6px',
   backgroundColor: vars.colors.gray01,
 
   cursor: 'pointer',

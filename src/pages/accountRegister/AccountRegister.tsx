@@ -4,17 +4,18 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import * as styles from '@/pages/accountRegister/accountRegister.css';
 import ConfirmBottomSheet from '@/pages/accountRegister/components/ConfirmBottomSheet/ConfirmBottomSheet';
+import { ACCOUNT_REGISTER_FORM_KEY } from '@/pages/accountRegister/constants/registerSection';
 import { accountRegisterSchema } from '@/pages/accountRegister/schema/accountRegisterSchema';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { useGetBankList } from '@/shared/apis/queries';
 import SvgIcArrowDownGray1032 from '@/shared/assets/svg/IcArrowDownGray1032';
+import BankBottomSheet from '@/shared/components/BankBottomSheet/BankBottomSheet';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import Divider from '@/shared/components/Divider/Divider';
 import Head from '@/shared/components/Head/Head';
 import Input from '@/shared/components/Input/Input';
 import Text from '@/shared/components/Text/Text';
 import { notify } from '@/shared/components/Toast/Toast';
-import BankBottomSheet from '../../shared/components/BankBottomSheet/BankBottomSheet';
 
 const AccountRegister = () => {
   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
@@ -45,15 +46,15 @@ const AccountRegister = () => {
     mode: 'onTouched',
     defaultValues: {
       depositor: '',
-      bank: { id: 0, name: '', imageUrl: '' },
+      bank: { bankId: 0, bankName: '', bankImageUrl: '' },
       accountNumber: '',
     },
   });
 
   const handleBankSelect = (selectedBankId: number, selectedBankName: string, imageUrl: string) => {
     setValue(
-      'bank',
-      { id: selectedBankId, name: selectedBankName, imageUrl },
+      ACCOUNT_REGISTER_FORM_KEY.BANK,
+      { bankId: selectedBankId, bankName: selectedBankName, bankImageUrl: imageUrl },
       {
         shouldValidate: true,
         shouldDirty: true,
@@ -131,16 +132,16 @@ const AccountRegister = () => {
             rightAddOn={<SvgIcArrowDownGray1032 width={'3.2rem'} />}
           /> */}
 
-          <div
+          <button
+            type="button"
             className={styles.bankSelectContainerStyle}
-            onClick={(e) => {
-              e.currentTarget.blur();
+            onClick={() => {
               setIsBankSheetOpen(true);
             }}>
-            {bank.imageUrl && bank.name ? (
+            {bank.bankImageUrl && bank.bankName ? (
               <div className={styles.bankInfoContainerStyle}>
-                <img src={bank.imageUrl} alt="은행 로고" className={styles.bankSelectImageStyle} />
-                <Text tag="b2_sb_long">{bank.name}</Text>
+                <img src={bank.bankImageUrl} alt="은행 로고" className={styles.bankSelectImageStyle} />
+                <Text tag="b2_sb_long">{bank.bankName}</Text>
               </div>
             ) : (
               <Text tag="b2_sb_long" color="gray5">
@@ -148,7 +149,7 @@ const AccountRegister = () => {
               </Text>
             )}
             <SvgIcArrowDownGray1032 width={'3.2rem'} />
-          </div>
+          </button>
 
           <Input placeholder="계좌번호 입력" inputMode="numeric" {...register('accountNumber')} />
         </div>
@@ -166,16 +167,16 @@ const AccountRegister = () => {
 
       <ConfirmBottomSheet
         isOpen={isBottomSheetOpen}
-        close={handleBottomSheetClose}
+        onClose={handleBottomSheetClose}
         depositor={depositor}
-        bank={bank.name || ''}
+        bank={bank.bankName || ''}
         accountNumber={accountNumber}
       />
 
       {bankList && (
         <BankBottomSheet
           isOpen={isBankSheetOpen}
-          close={handleBankSheetClose}
+          onClose={handleBankSheetClose}
           banks={bankList}
           handleBankSelect={handleBankSelect}
         />

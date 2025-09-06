@@ -8,13 +8,13 @@ import type { BankListResponseTypes } from '@/shared/types/api';
 
 interface BankBottomSheetPropTypes {
   isOpen: boolean;
-  close: () => void;
+  onClose: () => void;
   banks: BankListResponseTypes[];
   handleBankSelect: (bankId: number, bankName: string, imageUrl: string) => void;
 }
 
-const BankBottomSheet = ({ isOpen, close, banks, handleBankSelect }: BankBottomSheetPropTypes) => {
-  const ref = useOutsideClick(close);
+const BankBottomSheet = ({ isOpen, onClose, banks, handleBankSelect }: BankBottomSheetPropTypes) => {
+  const ref = useOutsideClick(onClose);
   const scrollableListRef = useRef<HTMLUListElement>(null);
 
   const [isFullyOpened, setIsFullyOpened] = useState(false);
@@ -61,7 +61,7 @@ const BankBottomSheet = ({ isOpen, close, banks, handleBankSelect }: BankBottomS
             dragElastic={0.05}
             onDragEnd={(_, info) => {
               if (info.offset.y > 0) {
-                close();
+                onClose();
               }
             }}
             onUpdate={(latest) => {
@@ -80,9 +80,9 @@ const BankBottomSheet = ({ isOpen, close, banks, handleBankSelect }: BankBottomS
                   className={styles.ListItemStyle}
                   onClick={() => {
                     handleBankSelect(bankId, bankName, bankImageUrl);
-                    close();
+                    onClose();
                   }}>
-                  <img src={bankImageUrl} className={styles.tempImageStyle} />
+                  <img src={bankImageUrl} className={styles.tempImageStyle} alt={bankName} />
                   <Text tag="b3_m">{bankName}</Text>
                 </li>
               ))}
