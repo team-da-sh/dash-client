@@ -57,6 +57,9 @@ const BankBottomSheet = ({ isOpen, onClose, banks, handleBankSelect }: BankBotto
             exit={{ y: '100%' }}
             transition={{ duration: 0.45, ease: 'easeInOut' }}
             drag={isScrollAtTop ? 'y' : false}
+            style={{
+              cursor: isScrollAtTop ? 'grab' : 'default',
+            }}
             dragConstraints={{ top: 0 }}
             dragElastic={0.05}
             onDragEnd={(_, info) => {
