@@ -52,8 +52,8 @@ const StudentCard = ({ studentData, index, lessonId }: StudentCardPropTypes) => 
               openModal(({ close }) => <Modal type="single" content={'클래스 정원이 다 찼어요.'} onClose={close} />);
             } else {
               notify({ message: '승인에 성공했습니다.', icon: 'success' });
+              queryClient.invalidateQueries({ queryKey: teacherKeys.me._ctx.lesson._ctx.students(lessonId).queryKey });
             }
-            queryClient.invalidateQueries({ queryKey: teacherKeys.me._ctx.lesson._ctx.students(lessonId).queryKey });
           },
         }
       );
