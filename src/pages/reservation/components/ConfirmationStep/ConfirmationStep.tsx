@@ -11,10 +11,10 @@ import { sprinkles } from '@/shared/styles/sprinkles.css';
 
 interface ConfirmationStepPropTypes {
   onNext: () => void;
-  depositor?: string;
-  bankName?: string;
-  accountNumber?: string;
-  price?: number;
+  depositor: string;
+  bankName: string;
+  accountNumber: string;
+  price: number;
 }
 
 const ConfirmationStep = ({
@@ -47,7 +47,8 @@ const ConfirmationStep = ({
 
   return (
     <main>
-      {isBottomSheetOpen && <ConfirmationBottomSheet isOpen={isBottomSheetOpen} onClose={handleCloseBottomSheet} />}
+      <ConfirmationBottomSheet isOpen={isBottomSheetOpen} onClose={handleCloseBottomSheet} />
+
       <div className={styles.mainContainer}>
         <Head level="h2" tag="h3_sb" color="black">
           입금안내
@@ -81,7 +82,7 @@ const ConfirmationStep = ({
               <Text tag="b2_m_long" color="black" className={styles.underline}>
                 {accountNumber}
               </Text>
-              <button onClick={handleCopy} className={styles.copyButtonStyle}>
+              <button onClick={handleCopy} className={styles.copyButtonStyle} aria-label="계좌번호 복사">
                 <SvgIcCopy width={16} height={16} />
               </button>
             </div>
