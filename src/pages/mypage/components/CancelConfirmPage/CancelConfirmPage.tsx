@@ -95,7 +95,11 @@ const CancelConfirmPage = () => {
           </div>
 
           <div className={sprinkles({ pt: 24, pr: 20, pb: 24, pl: 20 })}>
-            <BoxButton variant="primary" onClick={handleConfirm} disabled={isPending}>
+            <BoxButton
+              variant="primary"
+              onClick={handleConfirm}
+              className={sprinkles({ width: '100%' })}
+              disabled={isPending}>
               {isPending ? '처리 중...' : '취소하기'}
             </BoxButton>
           </div>
