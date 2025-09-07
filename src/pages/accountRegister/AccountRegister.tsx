@@ -16,16 +16,16 @@ import Head from '@/shared/components/Head/Head';
 import Input from '@/shared/components/Input/Input';
 import Text from '@/shared/components/Text/Text';
 import { notify } from '@/shared/components/Toast/Toast';
-import { useGetTeacherAccount } from './apis/queries';
+import { useGetTeacherAccount, usePostTeacherAccount } from './apis/queries';
 
 const AccountRegister = () => {
   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
   const [isBankSheetOpen, setIsBankSheetOpen] = useState(false);
-  // const [isEditMode, setIsEditMode] = useState(false);
   const navigate = useNavigate();
 
   const { data: bankList } = useGetBankList();
   const { data: accountData } = useGetTeacherAccount();
+  const { mutate: teacherAccountMutate } = usePostTeacherAccount();
 
   // 수정 모드 여부
   const isEditMode = accountData?.isRegistered ?? false;
@@ -71,15 +71,27 @@ const AccountRegister = () => {
   const isButtonActive = isEditMode ? isDirty && isValid : isValid;
 
   const onSubmit = () => {
-    // TODO: 계좌 등록/수정 API 연결 추가 (success/error 핸들링 필요)
+    const updateInfo = {
+      depositor: depositor.trim(),
+      bankId: bank.bankId,
+      bankName: bank.bankName,
+      accountNumber: accountNumber.trim(),
+    };
 
-    navigate(ROUTES_CONFIG.mypage.withTab('student'));
+    teacherAccountMutate(updateInfo, {
+      onSuccess: () => {
+        navigate(ROUTES_CONFIG.mypage.withTab('student'));
 
-    if (isEditMode) {
-      notify({ message: '계좌정보 수정이 완료되었어요', icon: 'success' });
-    } else {
-      notify({ message: '계좌 등록이 완료되었어요', icon: 'success' });
-    }
+        if (isEditMode) {
+          notify({ message: '계좌정보 수정이 완료되었어요', icon: 'success' });
+        } else {
+          notify({ message: '계좌 등록이 완료되었어요', icon: 'success' });
+        }
+      },
+      onError: () => {
+        navigate(ROUTES_CONFIG.error.path);
+      },
+    });
   };
 
   useEffect(() => {
