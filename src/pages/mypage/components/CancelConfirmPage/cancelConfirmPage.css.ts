@@ -22,6 +22,7 @@ export const dividerStyle = style({
 export const bottomButtonStyle = style({
   position: 'fixed',
   bottom: '0',
-  padding: '2.4rem 2rem',
+  padding: '0 2rem 2.4rem',
   width: '100%',
+  backgroundColor: vars.colors.gray01,
 });

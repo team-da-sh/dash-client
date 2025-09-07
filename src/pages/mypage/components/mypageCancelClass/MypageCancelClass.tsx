@@ -92,7 +92,7 @@ const MypageCancelClass = () => {
             </div>
 
             <div className={sprinkles({ marginBottom: 26 })}>
-              <ReservationList status="ALL" targetReservationId={reservationId} />
+              <ReservationList status="ALL" targetReservationId={reservationId} showActions={false} />
             </div>
 
             <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 15, marginBottom: 20 })}>
