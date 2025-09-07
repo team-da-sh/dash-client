@@ -1,4 +1,4 @@
-import type { UseQueryResult } from '@tanstack/react-query';
+import type { UseMutationResult, UseQueryResult } from '@tanstack/react-query';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import type { AxiosError } from 'axios';
 import {
@@ -12,7 +12,7 @@ import type {
   InstructorRegisterRequestTypes,
   NicknameDuplicateResponseTypes,
 } from '@/pages/instructorRegister/types/api';
-import { queryKeys, teacherKeys } from '@/shared/constants/queryKey';
+import { teacherKeys } from '@/shared/constants/queryKey';
 import { USER_ROLE } from '@/shared/constants/userRole';
 
 export const usePostInstructor = () => {
@@ -37,12 +37,18 @@ export const usePatchInstructorRegisterInfo = () => {
   });
 };
 
-export const useGetNicknameDuplicate = (
-  nickname: string
-): UseQueryResult<NicknameDuplicateResponseTypes, AxiosError> => {
-  return useQuery({
-    queryKey: [queryKeys.teacher.nicknameValidation(nickname), nickname],
-    queryFn: () => getNicknameDuplicate(nickname),
-    enabled: !!nickname,
+// export const useGetNicknameDuplicate = (
+//   nickname: string
+// ): UseQueryResult<NicknameDuplicateResponseTypes, AxiosError> => {
+//   return useQuery({
+//     queryKey: [queryKeys.teacher.nicknameValidation(nickname), nickname],
+//     queryFn: () => getNicknameDuplicate(nickname),
+//     enabled: !!nickname,
+//   });
+// };
+
+export const useGetNicknameDuplicate = (): UseMutationResult<NicknameDuplicateResponseTypes, AxiosError, string> => {
+  return useMutation({
+    mutationFn: (nickname: string) => getNicknameDuplicate(nickname),
   });
 };
