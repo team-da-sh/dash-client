@@ -9,3 +9,12 @@ export interface OnboardingState {
   isCodeVerified: boolean;
   isSubmitting: boolean;
 }
+
+export interface PhoneRequestTypes {
+  phoneNumber: string;
+}
+
+export interface phoneVerifyTypes {
+  phoneNumber: String;
+  code: string;
+}
