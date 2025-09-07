@@ -32,7 +32,7 @@ export const MIN_NAME_LENGTH = 2;
 
 export const MAX_NAME_LENGTH = 8;
 
-export const MAX_VERFICATION_CODE = 4;
+export const MAX_VERFICATION_CODE = 6;
 
 export const MAX_PHONENUMBER_LENGTH = 11;
 

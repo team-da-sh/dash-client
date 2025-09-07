@@ -169,7 +169,7 @@ const InfoStep = ({
           {isVerificationVisible && (
             <div className={styles.numberWrapperStyle}>
               <Input
-                placeholder="인증번호 4자리"
+                placeholder="인증번호 6자리"
                 value={verificationCode}
                 onChange={(e) => handleVerificationCodeChange(e.target.value)}
                 rightAddOn={
