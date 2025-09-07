@@ -37,16 +37,6 @@ export const usePatchInstructorRegisterInfo = () => {
   });
 };
 
-// export const useGetNicknameDuplicate = (
-//   nickname: string
-// ): UseQueryResult<NicknameDuplicateResponseTypes, AxiosError> => {
-//   return useQuery({
-//     queryKey: [queryKeys.teacher.nicknameValidation(nickname), nickname],
-//     queryFn: () => getNicknameDuplicate(nickname),
-//     enabled: !!nickname,
-//   });
-// };
-
 export const useGetNicknameDuplicate = (): UseMutationResult<NicknameDuplicateResponseTypes, AxiosError, string> => {
   return useMutation({
     mutationFn: (nickname: string) => getNicknameDuplicate(nickname),
