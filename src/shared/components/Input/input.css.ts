@@ -32,6 +32,17 @@ export const containerStyle = recipe({
         outline: `1px solid ${vars.colors.alert03}`,
       },
     },
+    backgroundColor: {
+      white: {
+        backgroundColor: vars.colors.white,
+      },
+      gray: {
+        backgroundColor: vars.colors.gray01,
+      },
+    },
+  },
+  defaultVariants: {
+    backgroundColor: 'gray',
   },
 });
 
