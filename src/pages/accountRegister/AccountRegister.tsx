@@ -21,11 +21,14 @@ import { useGetTeacherAccount } from './apis/queries';
 const AccountRegister = () => {
   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
   const [isBankSheetOpen, setIsBankSheetOpen] = useState(false);
-  const [isEditMode, setIsEditMode] = useState(false);
+  // const [isEditMode, setIsEditMode] = useState(false);
   const navigate = useNavigate();
 
   const { data: bankList } = useGetBankList();
   const { data: accountData } = useGetTeacherAccount();
+
+  // 수정 모드 여부
+  const isEditMode = accountData?.isRegistered ?? false;
 
   const handleBottomSheetClose = () => {
     setIsBottomSheetOpen(false);
@@ -80,18 +83,9 @@ const AccountRegister = () => {
   };
 
   useEffect(() => {
-    if (!accountData) {
-      return;
-    }
-
-    setIsEditMode(accountData.isRegistered);
-
-    if (accountData.isRegistered && bankList) {
+    if (isEditMode && accountData && bankList) {
       const existingBank = bankList.find((bank) => bank.bankId === accountData.bankId);
-
-      if (!existingBank) {
-        return;
-      }
+      if (!existingBank) return;
 
       reset({
         depositor: accountData.depositor,
@@ -103,7 +97,7 @@ const AccountRegister = () => {
         },
       });
     }
-  }, [accountData, bankList, reset]);
+  }, [isEditMode, accountData, bankList, reset]);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
