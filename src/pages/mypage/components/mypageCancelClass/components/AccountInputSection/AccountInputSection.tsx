@@ -3,6 +3,7 @@ import SvgIcArrowDownGray1032 from '@/shared/assets/svg/IcArrowDownGray1032';
 import Head from '@/shared/components/Head/Head';
 import Input from '@/shared/components/Input/Input';
 import Text from '@/shared/components/Text/Text';
+import { ONLY_NUMBER } from '@/shared/constants/regex';
 import * as styles from './accountInputSetion.css';
 
 interface Bank {
@@ -20,9 +21,24 @@ interface AccountInputSectionProps {
   selectedBank: Bank;
   onBankSelectClick: () => void;
   register: UseFormRegister<AccountFormData>;
+  accountNumber: string;
 }
 
-const AccountInputSection = ({ isVisible, selectedBank, onBankSelectClick, register }: AccountInputSectionProps) => {
+const AccountInputSection = ({
+  isVisible,
+  selectedBank,
+  onBankSelectClick,
+  register,
+  accountNumber,
+}: AccountInputSectionProps) => {
+  const { name, onChange, ref } = register('accountNumber');
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (ONLY_NUMBER.test(e.target.value)) {
+      onChange(e);
+    }
+  };
+
   if (!isVisible) return null;
 
   return (
@@ -50,7 +66,10 @@ const AccountInputSection = ({ isVisible, selectedBank, onBankSelectClick, regis
             backgroundColor="white"
             placeholder="계좌번호 입력"
             inputMode="numeric"
-            {...register('accountNumber')}
+            value={accountNumber}
+            name={name}
+            onChange={handleChange}
+            ref={ref}
           />
         </div>
       </div>

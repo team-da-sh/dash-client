@@ -108,6 +108,7 @@ const MypageCancelClass = () => {
               selectedBank={selectedBank}
               onBankSelectClick={() => setIsBankSheetOpen(true)}
               register={register}
+              accountNumber={accountNumber}
             />
           </div>
 
