@@ -2,7 +2,7 @@ import { style } from '@vanilla-extract/css';
 import { vars } from '@/shared/styles/theme.css';
 
 export const layoutStyle = style({
-  height: 'calc(100dvh - 6rem)',
+  height: '100vh',
   backgroundColor: vars.colors.gray01,
 });
 
