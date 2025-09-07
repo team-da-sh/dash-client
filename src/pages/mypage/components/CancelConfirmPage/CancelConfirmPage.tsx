@@ -167,10 +167,9 @@ const CancelConfirmPage = () => {
               </div>
             </div>
 
-            <hr className={styles.dividerStyle} />
-
             {isAfterDeposit && (
               <>
+                <hr className={styles.dividerStyle} />
                 <RefundAccountSection
                   isVisible={isAfterDeposit}
                   selectedBank={selectedBank}
