@@ -7,7 +7,7 @@ export const overlayStyle = style({
   height: '100vh',
   width: '100%',
 
-  background: vars.colors.black70,
+  background: vars.colors.black50,
   zIndex: vars.zIndex.two,
 });
 

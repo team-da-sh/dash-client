@@ -63,9 +63,7 @@ const ReservationStep = ({ onNext }: ReservationStepPropTypes) => {
   return (
     <main
       className={`${sprinkles({ display: 'flex', flexDirection: 'column', width: '100%' })} ${styles.reservationStyle}`}>
-      <section>
-        <TopInfoContent name={data.name} teacherNickname={data.teacherNickname} imageUrl={data.imageUrl} />
-      </section>
+      <TopInfoContent name={data.name} teacherNickname={data.teacherNickname} imageUrl={data.imageUrl} />
       <section
         className={sprinkles({
           display: 'flex',
@@ -101,39 +99,46 @@ const ReservationStep = ({ onNext }: ReservationStepPropTypes) => {
       <Divider direction="horizontal" length="100%" thickness="1.1rem" color="gray2" />
 
       <section
-        className={sprinkles({ display: 'flex', flexDirection: 'column', width: '100%', pt: 34, pr: 20, pl: 20 })}>
-        <div className={sprinkles({ display: 'flex', flexDirection: 'column', width: '100%', gap: 20 })}>
-          <Text tag="h6_sb" color="black">
-            필수 약관 전체 동의
-          </Text>
-          <div>
-            <div onClick={handleToggleAll} className={agreementClassStyle}>
-              {isAllChecked ? <IcCheckcircleMain0324 height={24} /> : <IcCheckcircleGray0524 height={24} />}
-              <Head level="h5" tag="b1_sb">
-                전체동의
-              </Head>
-            </div>
-            {AGREEMENT_TERMS.map((term, index) => (
-              <AgreeCheckBox
-                key={index}
-                text={term.text}
-                isChecked={agreements[index]}
-                onToggle={() => handleToggle(index)}
-                link={term.link}
-              />
-            ))}
+        className={sprinkles({
+          display: 'flex',
+          flexDirection: 'column',
+          width: '100%',
+          pt: 34,
+          pr: 20,
+          pl: 20,
+        })}>
+        <Text tag="h6_sb" color="black" className={sprinkles({ pb: 16 })}>
+          필수 약관 전체 동의
+        </Text>
+        <div className={sprinkles({ pb: 20 })}>
+          <div onClick={handleToggleAll} className={agreementClassStyle}>
+            {isAllChecked ? <IcCheckcircleMain0324 height={24} /> : <IcCheckcircleGray0524 height={24} />}
+            <Head level="h5" tag="b1_sb">
+              전체동의
+            </Head>
           </div>
-          <div className={sprinkles({ pb: 42 })}>
-            <Text tag="b2_m_long" color="gray6">
-              * 서비스 이용을 위한 이용약관, 개인정보 수집 및 이용과 제3자
-            </Text>
-            <Text tag="b2_m_long" color="gray6">
-              제공 동의서, 취소 및 환불 정책을 확인하였으며 이에 동의합니다.
-            </Text>
-          </div>
+          {AGREEMENT_TERMS.map((term, index) => (
+            <AgreeCheckBox
+              key={index}
+              text={term.text}
+              isChecked={agreements[index]}
+              onToggle={() => handleToggle(index)}
+              link={term.link}
+            />
+          ))}
         </div>
-        <Divider direction="horizontal" length="100%" thickness="0.1rem" color="gray3" />
+        <div className={sprinkles({ pb: 42 })}>
+          <Text tag="b2_m_long" color="gray6">
+            * 서비스 이용을 위한 이용약관, 개인정보 수집 및 이용과 제3자
+          </Text>
+          <Text tag="b2_m_long" color="gray6">
+            제공 동의서, 취소 및 환불 정책을 확인하였으며 이에 동의합니다.
+          </Text>
+        </div>
       </section>
+      <div className={sprinkles({ pl: 20, pr: 20 })}>
+        <Divider direction="horizontal" length="100%" thickness="0.1rem" color="gray3" />
+      </div>
 
       <div className={styles.totalPriceContainerStyle}>
         <Head level="h3" tag="h5_sb" color="gray9">

@@ -40,7 +40,7 @@ const ConfirmationStep = ({
 
   const handleCopy = async () => {
     await navigator.clipboard.writeText(accountNumber);
-    notify({ message: '클립보드에 계좌 정보가 복사되었어요!', icon: 'success' });
+    notify({ message: '클립보드에 계좌번호가 복사되었어요', icon: 'success', bottomGap: 'large' });
   };
 
   const formattedPrice = `${price.toLocaleString()}원`;
