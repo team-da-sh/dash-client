@@ -35,7 +35,7 @@ const BottomSheet = ({ onClose, onSelectImage, onDeleteImage, isVisible }: Botto
               <Head level="h2" tag="h6_sb">
                 프로필 이미지
               </Head>
-              <button onClick={onClose} aria-label="닫기">
+              <button type="button" onClick={onClose} aria-label="닫기">
                 <IcCloseBlack24 width={24} height={24} />
               </button>
             </div>

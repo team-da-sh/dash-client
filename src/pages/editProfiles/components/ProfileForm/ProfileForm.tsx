@@ -37,10 +37,7 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
     mode: 'onChange',
   });
 
-  const { field } = useController({
-    name: 'profileImageUrl',
-    control,
-  });
+  const { field } = useController({ name: 'profileImageUrl', control });
 
   const handleSuccess = (url: string) => {
     field.onChange(url);
@@ -52,7 +49,13 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
     if (imgRef.current) imgRef.current.value = '';
   };
 
-  const handleImageFormClick = () => setIsImageClick(true);
+  const handleImageFormClick = () => {
+    if (!watch('profileImageUrl')) {
+      handleUploaderClick();
+    } else {
+      setIsImageClick(true);
+    }
+  };
 
   const handleCloseBottomSheet = () => {
     document.body.style.overflow = '';
@@ -80,10 +83,6 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
     };
 
     editMyProfile(submitData);
-  };
-
-  const handleSelectImage = () => {
-    handleUploaderClick();
   };
 
   return (
@@ -126,7 +125,7 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
       <BottomSheet
         isVisible={isImageClick}
         onClose={handleCloseBottomSheet}
-        onSelectImage={handleSelectImage}
+        onSelectImage={handleUploaderClick}
         onDeleteImage={deleteImgFile}
       />
     </form>
