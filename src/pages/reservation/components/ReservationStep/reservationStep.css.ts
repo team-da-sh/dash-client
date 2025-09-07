@@ -38,13 +38,12 @@ export const totalPriceContainerStyle = style({
   alignItems: 'center',
 
   width: '100%',
-  padding: '1.8rem 2rem 10.2rem 2rem',
+  padding: '1.8rem 2rem 2.4rem 2rem',
 });
 
 export const bottomButtonStyle = style({
+  display: 'flex',
   justifyItems: 'center',
-  position: 'fixed',
-  bottom: '0',
-  padding: '2.4rem 2rem',
   width: '100%',
+  padding: '0 2rem 2.4rem',
 });

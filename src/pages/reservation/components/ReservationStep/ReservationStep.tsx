@@ -81,6 +81,7 @@ const ReservationStep = ({ onNext }: ReservationStepPropTypes) => {
           </Text>
           <ApplicantInfo memberName={data.memberName} memberPhoneNumber={data.memberPhoneNumber} />
         </div>
+
         <div className={sprinkles({ display: 'flex', flexDirection: 'column', width: '100%', gap: 16 })}>
           <Text tag="h6_sb" color="black">
             클래스 정보
@@ -136,6 +137,7 @@ const ReservationStep = ({ onNext }: ReservationStepPropTypes) => {
           </Text>
         </div>
       </section>
+
       <div className={sprinkles({ pl: 20, pr: 20 })}>
         <Divider direction="horizontal" length="100%" thickness="0.1rem" color="gray3" />
       </div>
@@ -148,6 +150,7 @@ const ReservationStep = ({ onNext }: ReservationStepPropTypes) => {
           {formattedPrice}
         </Head>
       </div>
+
       <section className={styles.bottomButtonStyle}>
         <BoxButton variant="primary" isDisabled={!isAllChecked} onClick={isAllChecked ? onNext : undefined}>
           신청하기
