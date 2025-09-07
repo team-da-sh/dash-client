@@ -11,7 +11,7 @@ export const bottomSheetContainerStyle = style({
   width: '100%',
   zIndex: vars.zIndex.two,
 
-  background: vars.colors.black70,
+  background: vars.colors.black50,
 });
 
 export const mainWrapperStyle = style({
