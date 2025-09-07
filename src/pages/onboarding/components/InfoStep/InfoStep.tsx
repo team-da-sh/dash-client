@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { usePostPhoneRequest, usePostPhoneVerify } from '@/pages/onboarding/apis/queries';
 import * as styles from '@/pages/onboarding/components/InfoStep/infoStep.css';
 import {
   INFO_KEY,
@@ -15,6 +16,7 @@ import Head from '@/shared/components/Head/Head';
 import Input from '@/shared/components/Input/Input';
 import Text from '@/shared/components/Text/Text';
 import { notify } from '@/shared/components/Toast/Toast';
+import { ApiError } from '@/shared/types/api';
 
 interface InfoStepProps {
   name: string;
@@ -23,6 +25,7 @@ interface InfoStepProps {
   onInfoChange: <K extends keyof OnboardInfoTypes>(key: K, value: OnboardInfoTypes[K]) => void;
   isCodeVerified: boolean;
   setIsCodeVerified: (verified: boolean) => void;
+  accessToken: string;
 }
 
 const InfoStep = ({
@@ -32,9 +35,14 @@ const InfoStep = ({
   onInfoChange,
   isCodeVerified,
   setIsCodeVerified,
+  accessToken,
 }: InfoStepProps) => {
   const { isRunning, formattedTime, startTimer, seconds, resetTimer } = useVerificationTimer(TIMER_DURATION);
   const [isVerificationVisible, setIsVerificationVisible] = useState(false);
+  const [requestCount, setRequestCount] = useState(0);
+
+  const { mutate: requestPhoneMutate } = usePostPhoneRequest();
+  const { mutate: verifyPhoneMutate } = usePostPhoneVerify();
 
   const handleNameChange = (name: string) => {
     const validName = validateTypingName(name);
@@ -43,7 +51,6 @@ const InfoStep = ({
 
   const handlePhoneNumberChange = (phoneNumber: string) => {
     if (!validateTypingPhoneNumber(phoneNumber)) return;
-
     onInfoChange(INFO_KEY.PHONE_NUMBER, phoneNumber);
   };
 
@@ -55,36 +62,58 @@ const InfoStep = ({
   };
 
   const handleRequestVerification = () => {
-    if (isRunning) {
-      if (seconds > TIMER_DURATION - REQUEST_DELAY) {
-        notify({ message: '잠시 후 다시 요청해주세요', icon: 'fail', bottomGap: 'large' });
-        return;
-      }
+    if (isRunning && seconds > TIMER_DURATION - REQUEST_DELAY) {
+      notify({ message: '잠시 후 다시 요청해주세요', icon: 'fail', bottomGap: 'large' });
+      return;
     }
-
-    // TODO: 인증 번호 요청 api 연결
-
-    notify({ message: '인증번호가 전송되었습니다', icon: 'success', bottomGap: 'large' });
-
-    onInfoChange(INFO_KEY.VERIFICATION_CODE, '');
-
-    setIsVerificationVisible(true);
-    startTimer();
-  };
-
-  const handleVerifyCode = () => {
-    // TODO: 인증번호 확인 로직, 임시 하드코딩
-    const tempCode = '1234';
-
-    if (verificationCode !== tempCode) {
-      notify({ message: '인증번호가 일치하지 않아요', icon: 'fail', bottomGap: 'large' });
-      setIsCodeVerified(false);
+    if (requestCount >= 5) {
+      notify({ message: '인증 요청은 하루에 5회까지만 가능해요', icon: 'fail', bottomGap: 'large' });
       return;
     }
 
-    notify({ message: '인증이 완료되었습니다', icon: 'success', bottomGap: 'large' });
-    setIsCodeVerified(true);
-    resetTimer();
+    setRequestCount((prev) => prev + 1);
+    
+    requestPhoneMutate(
+      { phoneNumber, accessToken },
+      {
+        onSuccess: () => {
+          notify({ message: '인증번호가 전송되었습니다', icon: 'success', bottomGap: 'large' });
+          onInfoChange(INFO_KEY.VERIFICATION_CODE, '');
+          setIsVerificationVisible(true);
+          startTimer();
+        },
+      onError: (error) => {
+          if (error.response?.status === 404) {
+            notify({ message: '이미 등록된 전화번호에요', icon: 'fail', bottomGap: 'large' });
+          } else {
+            notify({ message: '인증번호 전송에 실패했어요', icon: 'fail', bottomGap: 'large' });
+          }
+        },
+      }
+    );
+  };
+
+  const handleVerifyCode = () => {
+    verifyPhoneMutate(
+      { phoneNumber, code: verificationCode, accessToken },
+      {
+        onSuccess: () => {
+          notify({ message: '인증이 완료되었습니다', icon: 'success', bottomGap: 'large' });
+          setIsCodeVerified(true);
+          resetTimer();
+        },
+          onError: (error) => {
+           const apiError = error.response?.data as ApiError;
+           if (error.response?.status === 409) {
+            notify({ message: '인증번호가 일치하지 않아요', icon: 'fail', bottomGap: 'large' });
+           } else {
+             const message = apiError?.message || '인증에 실패했어요. 다시 시도해주세요.';
+             notify({ message, icon: 'fail', bottomGap: 'large' });
+           }
+          setIsCodeVerified(false);
+        },
+      }
+    );
   };
 
   const handleFocusAndNotify = (e: React.MouseEvent | React.TouchEvent) => {

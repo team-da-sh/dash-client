@@ -1,6 +1,6 @@
-import { useState } from 'react';
-// import { useLocation } from 'react-router-dom';
-// import { usePostOnboard } from '@/pages/onboarding/apis/queries';
+import { useRef, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import { usePostOnboard } from '@/pages/onboarding/apis/queries';
 import FinishStep from '@/pages/onboarding/components/FinishStep/FinishStep';
 import InfoStep from '@/pages/onboarding/components/InfoStep/InfoStep';
 import OnboardingHeader from '@/pages/onboarding/components/OnboardingHeader/OnboardingHeader';
@@ -10,8 +10,9 @@ import * as styles from '@/pages/onboarding/onboarding.css';
 import type { OnboardInfoTypes, OnboardingState } from '@/pages/onboarding/types/onboardInfoTypes';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { useFunnel } from '@/shared/hooks/useFunnel';
+import { setStorage } from '@/shared/utils/handleToken';
+import { notify } from '@/shared/components/Toast/Toast';
 
-// import { setStorage } from '@/shared/utils/handleToken';
 
 const Onboarding = () => {
   const { Funnel, Step, setStep, currentStep } = useFunnel(FINAL_ONBOARDING_STEP, ROUTES_CONFIG.home.path);
@@ -24,7 +25,10 @@ const Onboarding = () => {
 
   const [onboarding, setOnboarding] = useState<OnboardingState>(initialState);
 
-  // const { mutate: onboardMutate } = usePostOnboard();
+  const { mutate: onboardMutate } = usePostOnboard();
+
+  const location = useLocation();
+  const tokenRef = useRef(location.state);
 
   const handleInfoChange = <K extends keyof OnboardInfoTypes>(key: K, value: OnboardInfoTypes[K]) => {
     setOnboarding((prev) => ({
@@ -37,10 +41,6 @@ const Onboarding = () => {
     setOnboarding((prev) => ({ ...prev, isCodeVerified: verified }));
   };
 
-  // 토큰 ref로 전역변수로 저장
-  // const location = useLocation();
-  // const tokenRef = useRef(location.state);
-
   const handleNextButtonClick = () => {
     setStep(1);
   };
@@ -49,28 +49,30 @@ const Onboarding = () => {
     e.preventDefault();
     setOnboarding((prev) => ({ ...prev, isSubmitting: true }));
 
-    // TODO: API 연결 다시 필요
-    // if (!isCodeVerified) {
-    //   return;
-    // }
+    if (!onboarding.isCodeVerified) {
+       notify({ message: '휴대폰 인증을 먼저 완료해주세요', icon: 'fail', bottomGap: 'large' });
+       setOnboarding((prev) => ({ ...prev, isSubmitting: false }));
+       return;
+    }
 
-    // onboardMutate(
-    //   {
-    //     ...info,
-    //     accessToken: tokenRef.current.accessToken,
-    //   },
-    //   {
-    //     onSuccess: ({ response }) => {
-    //       if (response.status === 200) {
-    //         setStorage(tokenRef.current.accessToken, tokenRef.current.refreshToken);
-    //         setStep(1);
-    //       }
-    //     },
-    //   }
-    // );
-
-    setStep(1);
-    setOnboarding((prev) => ({ ...prev, isSubmitting: false }));
+    onboardMutate(
+      {
+        ...onboarding.info,
+        accessToken: tokenRef.current.accessToken,
+      },
+      {
+        onSuccess: () => {
+            setStorage(tokenRef.current.accessToken, tokenRef.current.refreshToken);
+            setStep(1);
+        },
+        onError: () => {
+           notify({ message: '정보 등록에 실패했어요. 다시 시도해주세요.', icon: 'fail', bottomGap: 'large' });
+        },
+        onSettled: () => {
+            setOnboarding((prev) => ({ ...prev, isSubmitting: false }));
+        }
+      }
+    );
   };
 
   return (
@@ -86,6 +88,7 @@ const Onboarding = () => {
               onInfoChange={handleInfoChange}
               setIsCodeVerified={handleCodeVerifiedChange}
               isCodeVerified={onboarding.isCodeVerified}
+              accessToken={tokenRef.current.accessToken}
             />
           </Step>
           <Step name="2">
