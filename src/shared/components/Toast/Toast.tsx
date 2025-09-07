@@ -33,8 +33,8 @@ export const notify = ({ message, icon = 'default', bottomGap = 'default' }: not
     bottom: '2.4rem',
     left: '50%',
     transform: 'translateX(-50%)',
-    backgroundColor: vars.colors.gray10,
-    color: vars.colors.white,
+    backgroundColor: vars.colors.gray09,
+    color: vars.colors.gray01,
     ...vars.fonts.b2_m,
   };
 
