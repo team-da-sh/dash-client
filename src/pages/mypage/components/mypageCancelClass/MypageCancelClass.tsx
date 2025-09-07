@@ -51,7 +51,12 @@ const MypageCancelClass = () => {
 
   const handleNext = () => {
     if (selectedStatus) {
-      navigate(ROUTES_CONFIG.mypageCancelConfirm.path(id!));
+      const state = {
+        depositStatus: selectedStatus,
+        bankInfo: selectedBank,
+        accountNumber: accountNumber,
+      };
+      navigate(ROUTES_CONFIG.mypageCancelConfirm.path(id!), { state });
     }
   };
 

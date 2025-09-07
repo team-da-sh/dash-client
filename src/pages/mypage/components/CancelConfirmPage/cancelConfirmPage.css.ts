@@ -9,3 +9,19 @@ export const layoutStyle = style({
 export const containerStyle = style({
   height: '100%',
 });
+
+export const dividerStyle = style({
+  width: '100vw',
+
+  border: 'none',
+  borderTop: `11px solid ${vars.colors.gray02}`,
+
+  transform: 'translate(-20px, -3px)',
+});
+
+export const bottomButtonStyle = style({
+  position: 'fixed',
+  bottom: '0',
+  padding: '2.4rem 2rem',
+  width: '100%',
+});
