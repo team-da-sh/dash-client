@@ -3,14 +3,16 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import type { AxiosError } from 'axios';
 import {
   getInstructorRegisterInfo,
+  getNicknameDuplicate,
   patchInstructorRegisterInfo,
   postInstructorRegisterInfo,
 } from '@/pages/instructorRegister/apis/axios';
 import type {
   InstructorRegisterInfoResponseTypes,
   InstructorRegisterRequestTypes,
+  NicknameDuplicateResponseTypes,
 } from '@/pages/instructorRegister/types/api';
-import { teacherKeys } from '@/shared/constants/queryKey';
+import { queryKeys, teacherKeys } from '@/shared/constants/queryKey';
 import { USER_ROLE } from '@/shared/constants/userRole';
 
 export const usePostInstructor = () => {
@@ -32,5 +34,15 @@ export const useGetInstructorRegisterInfo = (
 export const usePatchInstructorRegisterInfo = () => {
   return useMutation({
     mutationFn: (infoData: InstructorRegisterRequestTypes) => patchInstructorRegisterInfo(infoData),
+  });
+};
+
+export const useGetNicknameDuplicate = (
+  nickname: string
+): UseQueryResult<NicknameDuplicateResponseTypes, AxiosError> => {
+  return useQuery({
+    queryKey: [queryKeys.teacher.nicknameValidation(nickname), nickname],
+    queryFn: () => getNicknameDuplicate(nickname),
+    enabled: !!nickname,
   });
 };

@@ -20,3 +20,7 @@ export interface InstructorRegisterInfoResponseTypes {
   detail: string;
   videoUrls: string[];
 }
+
+export interface NicknameDuplicateResponseTypes {
+  isDuplicated: boolean;
+}

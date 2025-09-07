@@ -70,6 +70,9 @@ export const teacherKeys = createQueryKeys('teacher', {
       },
     },
   },
+  nicknameValidation: (nickname: string) => ({
+    queryKey: [nickname],
+  }),
 });
 
 export const myPageKeys = createQueryKeys('myPage', {
