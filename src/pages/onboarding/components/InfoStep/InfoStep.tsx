@@ -1,23 +1,44 @@
-import { labelStyle } from '@/pages/onboarding/components/InfoStep/infoStep.css';
-import { INFO_KEY } from '@/pages/onboarding/constants';
-import type { onboardInfoTypes } from '@/pages/onboarding/types/onboardInfoTypes';
+import { useState } from 'react';
+import * as styles from '@/pages/onboarding/components/InfoStep/infoStep.css';
+import {
+  INFO_KEY,
+  MAX_PHONENUMBER_LENGTH,
+  MAX_VERFICATION_CODE,
+  REQUEST_DELAY,
+  TIMER_DURATION,
+} from '@/pages/onboarding/constants';
+import { useVerificationTimer } from '@/pages/onboarding/hooks/useVerificationTimer';
+import type { OnboardInfoTypes } from '@/pages/onboarding/types/onboardInfoTypes';
 import { validateTypingName, validateTypingPhoneNumber } from '@/pages/onboarding/utils/validate';
+import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import Head from '@/shared/components/Head/Head';
 import Input from '@/shared/components/Input/Input';
 import Text from '@/shared/components/Text/Text';
-import { sprinkles } from '@/shared/styles/sprinkles.css';
+import { notify } from '@/shared/components/Toast/Toast';
 
 interface InfoStepProps {
   name: string;
   phoneNumber: string;
-  onInfoChange: <K extends keyof onboardInfoTypes>(key: K, value: onboardInfoTypes[K]) => void;
+  verificationCode: string;
+  onInfoChange: <K extends keyof OnboardInfoTypes>(key: K, value: OnboardInfoTypes[K]) => void;
+  isCodeVerified: boolean;
+  setIsCodeVerified: (verified: boolean) => void;
 }
 
-const InfoStep = ({ name, phoneNumber, onInfoChange }: InfoStepProps) => {
-  const handleNameChange = (name: string) => {
-    if (!validateTypingName(name)) return;
+const InfoStep = ({
+  name,
+  phoneNumber,
+  verificationCode,
+  onInfoChange,
+  isCodeVerified,
+  setIsCodeVerified,
+}: InfoStepProps) => {
+  const { isRunning, formattedTime, startTimer, seconds, resetTimer } = useVerificationTimer(TIMER_DURATION);
+  const [isVerificationVisible, setIsVerificationVisible] = useState(false);
 
-    onInfoChange(INFO_KEY.NAME, name);
+  const handleNameChange = (name: string) => {
+    const validName = validateTypingName(name);
+    onInfoChange(INFO_KEY.NAME, validName);
   };
 
   const handlePhoneNumberChange = (phoneNumber: string) => {
@@ -26,9 +47,60 @@ const InfoStep = ({ name, phoneNumber, onInfoChange }: InfoStepProps) => {
     onInfoChange(INFO_KEY.PHONE_NUMBER, phoneNumber);
   };
 
+  const handleVerificationCodeChange = (value: string) => {
+    const onlyNumbers = value.replace(/\D/g, '');
+    if (onlyNumbers.length <= MAX_VERFICATION_CODE) {
+      onInfoChange(INFO_KEY.VERIFICATION_CODE, onlyNumbers);
+    }
+  };
+
+  const handleRequestVerification = () => {
+    if (isRunning) {
+      if (seconds > TIMER_DURATION - REQUEST_DELAY) {
+        notify({ message: '잠시 후 다시 요청해주세요', icon: 'fail', bottomGap: 'large' });
+        return;
+      }
+    }
+
+    // TODO: 인증 번호 요청 api 연결
+
+    notify({ message: '인증번호가 전송되었습니다', icon: 'success', bottomGap: 'large' });
+
+    onInfoChange(INFO_KEY.VERIFICATION_CODE, '');
+
+    setIsVerificationVisible(true);
+    startTimer();
+  };
+
+  const handleVerifyCode = () => {
+    // TODO: 인증번호 확인 로직, 임시 하드코딩
+    const tempCode = '1234';
+
+    if (verificationCode !== tempCode) {
+      notify({ message: '인증번호가 일치하지 않아요', icon: 'fail', bottomGap: 'large' });
+      setIsCodeVerified(false);
+      return;
+    }
+
+    notify({ message: '인증이 완료되었습니다', icon: 'success', bottomGap: 'large' });
+    setIsCodeVerified(true);
+    resetTimer();
+  };
+
+  const handleFocusAndNotify = (e: React.MouseEvent | React.TouchEvent) => {
+    if (!isCodeVerified) return;
+    e.preventDefault();
+    (e.target as HTMLElement).blur?.();
+    notify({ message: '이미 인증이 완료되었어요', icon: 'success', bottomGap: 'large' });
+  };
+
+  const isRequestDisabled = phoneNumber.length !== MAX_PHONENUMBER_LENGTH || isCodeVerified;
+  const isVerifyButtonDisabled = verificationCode.length !== MAX_VERFICATION_CODE;
+  const showAsResend = isRunning || isCodeVerified;
+
   return (
-    <div className={sprinkles({ display: 'flex', flexDirection: 'column', width: '100%' })}>
-      <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 8 })}>
+    <div className={styles.containerStyle}>
+      <div className={styles.wrapperStyle}>
         <Head level="h1" tag="h3_sb">
           개인정보 입력
         </Head>
@@ -37,22 +109,57 @@ const InfoStep = ({ name, phoneNumber, onInfoChange }: InfoStepProps) => {
         </Text>
       </div>
 
-      <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 32, marginTop: 32, width: '100%' })}>
-        <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 8 })}>
-          <Text tag="b2_sb" className={labelStyle}>
+      <div className={styles.inputWrapperStyle}>
+        <div className={styles.wrapperStyle}>
+          <Text tag="b2_sb" className={styles.labelStyle}>
             이름
           </Text>
           <Input placeholder="김대쉬" value={name} onChange={(e) => handleNameChange(e.target.value)} />
         </div>
-        <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 8 })}>
-          <Text tag="b2_sb" className={labelStyle}>
+        <div className={styles.wrapperStyle}>
+          <Text tag="b2_sb" className={styles.labelStyle}>
             전화번호
           </Text>
-          <Input
-            placeholder="01012345678"
-            value={phoneNumber}
-            onChange={(e) => handlePhoneNumberChange(e.target.value)}
-          />
+          <div className={styles.numberWrapperStyle}>
+            <Input
+              placeholder="01012345678"
+              value={phoneNumber}
+              onChange={(e) => handlePhoneNumberChange(e.target.value)}
+              className={styles.inputStyle}
+              readOnly={isCodeVerified}
+              onMouseDown={handleFocusAndNotify}
+              onTouchStart={handleFocusAndNotify}
+            />
+            <BoxButton
+              className={styles.buttonStyle({ type: isRunning ? 'resend' : 'default' })}
+              isDisabled={isRequestDisabled}
+              onClick={handleRequestVerification}>
+              {showAsResend ? '재요청' : '인증 요청'}
+            </BoxButton>
+          </div>
+          {isVerificationVisible && (
+            <div className={styles.numberWrapperStyle}>
+              <Input
+                placeholder="인증번호 4자리"
+                value={verificationCode}
+                onChange={(e) => handleVerificationCodeChange(e.target.value)}
+                rightAddOn={
+                  <Text tag="b2_m" color="gray8" className={styles.timerStyle}>
+                    {formattedTime}
+                  </Text>
+                }
+                readOnly={isCodeVerified}
+                onMouseDown={handleFocusAndNotify}
+                onTouchStart={handleFocusAndNotify}
+              />
+              <BoxButton
+                className={styles.buttonStyle({ type: 'default' })}
+                isDisabled={isVerifyButtonDisabled || isCodeVerified}
+                onClick={handleVerifyCode}>
+                확인
+              </BoxButton>
+            </div>
+          )}
         </div>
       </div>
     </div>
