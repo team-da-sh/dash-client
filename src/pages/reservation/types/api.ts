@@ -16,3 +16,10 @@ export interface ReservationDetailResponseTypes {
   memberName: string;
   memberPhoneNumber: string;
 }
+
+export interface ClassReservationResponseTypes {
+  depositor: string;
+  bankName: string;
+  accountNumber: string;
+  price: number;
+}
