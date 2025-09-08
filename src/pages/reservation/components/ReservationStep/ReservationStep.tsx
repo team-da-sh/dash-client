@@ -25,7 +25,7 @@ interface ReservationStepPropTypes {
 
 const ReservationStep = ({ onNext }: ReservationStepPropTypes) => {
   const [isAllChecked, setIsAllChecked] = useState(false);
-  const [agreements, setAgreements] = useState<boolean[]>(new Array(AGREEMENT_TERMS.length).fill(false));
+  const [agreements, setAgreements] = useState(new Array(AGREEMENT_TERMS.length).fill(false));
 
   const { id } = useParams<{ id: string }>();
   const { data, isError, isLoading } = useGetReservation(Number(id));

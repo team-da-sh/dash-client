@@ -4,9 +4,9 @@ import ConfirmationStep from '@/pages/reservation/components/ConfirmationStep/Co
 import ReservationHeader from '@/pages/reservation/components/ReservationHeader/ReservationHeader';
 import ReservationStep from '@/pages/reservation/components/ReservationStep/ReservationStep';
 import SuccessStep from '@/pages/reservation/components/SuccessStep/SuccessStep';
+import type { ClassReservationResponseTypes } from '@/pages/reservation/types/api';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { useFunnel } from '@/shared/hooks/useFunnel';
-import type { ClassReservationResponseTypes } from './types/api';
 
 const Reservation = () => {
   const navigate = useNavigate();
