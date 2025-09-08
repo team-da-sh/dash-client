@@ -15,4 +15,5 @@ export const duplicateCheckButtonStyle = style({
   ...vars.fonts.b2_m_long,
   flexShrink: 0,
   marginRight: '-0.6rem',
+  whiteSpace: 'nowrap',
 });
