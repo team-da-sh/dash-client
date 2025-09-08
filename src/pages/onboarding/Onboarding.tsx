@@ -11,8 +11,6 @@ import type { OnboardInfoTypes, OnboardingState } from '@/pages/onboarding/types
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { useFunnel } from '@/shared/hooks/useFunnel';
 import { setStorage } from '@/shared/utils/handleToken';
-import { notify } from '@/shared/components/Toast/Toast';
-
 
 const Onboarding = () => {
   const { Funnel, Step, setStep, currentStep } = useFunnel(FINAL_ONBOARDING_STEP, ROUTES_CONFIG.home.path);
@@ -49,12 +47,6 @@ const Onboarding = () => {
     e.preventDefault();
     setOnboarding((prev) => ({ ...prev, isSubmitting: true }));
 
-    if (!onboarding.isCodeVerified) {
-       notify({ message: '휴대폰 인증을 먼저 완료해주세요', icon: 'fail', bottomGap: 'large' });
-       setOnboarding((prev) => ({ ...prev, isSubmitting: false }));
-       return;
-    }
-
     onboardMutate(
       {
         ...onboarding.info,
@@ -64,9 +56,6 @@ const Onboarding = () => {
         onSuccess: () => {
             setStorage(tokenRef.current.accessToken, tokenRef.current.refreshToken);
             setStep(1);
-        },
-        onError: () => {
-           notify({ message: '정보 등록에 실패했어요. 다시 시도해주세요.', icon: 'fail', bottomGap: 'large' });
         },
         onSettled: () => {
             setOnboarding((prev) => ({ ...prev, isSubmitting: false }));

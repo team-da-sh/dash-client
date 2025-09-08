@@ -5,6 +5,7 @@ import {
   INFO_KEY,
   MAX_PHONENUMBER_LENGTH,
   MAX_VERFICATION_CODE,
+  PHONE_AUTH_MESSAGES,
   REQUEST_DELAY,
   TIMER_DURATION,
 } from '@/pages/onboarding/constants';
@@ -16,7 +17,7 @@ import Head from '@/shared/components/Head/Head';
 import Input from '@/shared/components/Input/Input';
 import Text from '@/shared/components/Text/Text';
 import { notify } from '@/shared/components/Toast/Toast';
-import { ApiError } from '@/shared/types/api';
+import type { ApiError } from '@/shared/types/api';
 
 interface InfoStepProps {
   name: string;
@@ -60,14 +61,16 @@ const InfoStep = ({
       onInfoChange(INFO_KEY.VERIFICATION_CODE, onlyNumbers);
     }
   };
+  const isApproachingTimerEnd = seconds > TIMER_DURATION - REQUEST_DELAY;
+  const shouldSendRequest = isRunning && isApproachingTimerEnd;
 
   const handleRequestVerification = () => {
-    if (isRunning && seconds > TIMER_DURATION - REQUEST_DELAY) {
-      notify({ message: '잠시 후 다시 요청해주세요', icon: 'fail', bottomGap: 'large' });
+    if (shouldSendRequest) {
+      notify({ message: PHONE_AUTH_MESSAGES.TRY_AGAIN, icon: 'fail', bottomGap: 'large' });
       return;
     }
     if (requestCount >= 5) {
-      notify({ message: '인증 요청은 하루에 5회까지만 가능해요', icon: 'fail', bottomGap: 'large' });
+      notify({ message: PHONE_AUTH_MESSAGES.LIMIT_EXCEEDED, icon: 'fail', bottomGap: 'large' });
       return;
     }
 
@@ -77,16 +80,16 @@ const InfoStep = ({
       { phoneNumber, accessToken },
       {
         onSuccess: () => {
-          notify({ message: '인증번호가 전송되었습니다', icon: 'success', bottomGap: 'large' });
+          notify({ message: PHONE_AUTH_MESSAGES.CODE_SENT, icon: 'success', bottomGap: 'large' });
           onInfoChange(INFO_KEY.VERIFICATION_CODE, '');
           setIsVerificationVisible(true);
           startTimer();
         },
       onError: (error) => {
           if (error.response?.status === 404) {
-            notify({ message: '이미 등록된 전화번호에요', icon: 'fail', bottomGap: 'large' });
+            notify({ message: PHONE_AUTH_MESSAGES.DUPLICATE_PHONE, icon: 'fail', bottomGap: 'large' });
           } else {
-            notify({ message: '인증번호 전송에 실패했어요', icon: 'fail', bottomGap: 'large' });
+            notify({ message: PHONE_AUTH_MESSAGES.SEND_FAILED, icon: 'fail', bottomGap: 'large' });
           }
         },
       }
@@ -98,16 +101,16 @@ const InfoStep = ({
       { phoneNumber, code: verificationCode, accessToken },
       {
         onSuccess: () => {
-          notify({ message: '인증이 완료되었습니다', icon: 'success', bottomGap: 'large' });
+          notify({ message: PHONE_AUTH_MESSAGES.VERIFIED_SUCCESS, icon: 'success', bottomGap: 'large' });
           setIsCodeVerified(true);
           resetTimer();
         },
           onError: (error) => {
            const apiError = error.response?.data as ApiError;
            if (error.response?.status === 409) {
-            notify({ message: '인증번호가 일치하지 않아요', icon: 'fail', bottomGap: 'large' });
+            notify({ message: PHONE_AUTH_MESSAGES.CODE_MISMATCH, icon: 'fail', bottomGap: 'large' });
            } else {
-             const message = apiError?.message || '인증에 실패했어요. 다시 시도해주세요.';
+             const message = apiError?.message || PHONE_AUTH_MESSAGES.TRY_AGAIN;
              notify({ message, icon: 'fail', bottomGap: 'large' });
            }
           setIsCodeVerified(false);
@@ -120,7 +123,7 @@ const InfoStep = ({
     if (!isCodeVerified) return;
     e.preventDefault();
     (e.target as HTMLElement).blur?.();
-    notify({ message: '이미 인증이 완료되었어요', icon: 'success', bottomGap: 'large' });
+    notify({ message: PHONE_AUTH_MESSAGES.ALREADY_VERIFIED, icon: 'success', bottomGap: 'large' });
   };
 
   const isRequestDisabled = phoneNumber.length !== MAX_PHONENUMBER_LENGTH || isCodeVerified;
