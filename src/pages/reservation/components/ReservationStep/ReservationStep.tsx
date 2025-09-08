@@ -9,6 +9,7 @@ import ClassInfo from '@/pages/reservation/components/ClassInfo/ClassInfo';
 import * as styles from '@/pages/reservation/components/ReservationStep/reservationStep.css';
 import TopInfoContent from '@/pages/reservation/components/TopInfoContent/TopInfoContent';
 import { AGREEMENT_TERMS } from '@/pages/reservation/constants/index';
+import type { ClassReservationResponseTypes } from '@/pages/reservation/types/api';
 import IcCheckcircleGray0524 from '@/shared/assets/svg/IcCheckcircleGray0524';
 import IcCheckcircleMain0324 from '@/shared/assets/svg/IcCheckcircleMain0324';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
@@ -17,7 +18,6 @@ import Head from '@/shared/components/Head/Head';
 import Text from '@/shared/components/Text/Text';
 import { notify } from '@/shared/components/Toast/Toast';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
-import type { ClassReservationResponseTypes } from '../../types/api';
 
 interface ReservationStepPropTypes {
   onNext: (detail: ClassReservationResponseTypes) => void;
