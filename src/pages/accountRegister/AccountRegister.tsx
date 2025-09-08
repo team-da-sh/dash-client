@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import * as styles from '@/pages/accountRegister/accountRegister.css';
+import { useGetTeacherAccount, usePostTeacherAccount } from '@/pages/accountRegister/apis/queries';
 import ConfirmBottomSheet from '@/pages/accountRegister/components/ConfirmBottomSheet/ConfirmBottomSheet';
 import { ACCOUNT_REGISTER_FORM_KEY } from '@/pages/accountRegister/constants/registerSection';
 import { accountRegisterSchema } from '@/pages/accountRegister/schema/accountRegisterSchema';
@@ -16,7 +17,6 @@ import Head from '@/shared/components/Head/Head';
 import Input from '@/shared/components/Input/Input';
 import Text from '@/shared/components/Text/Text';
 import { notify } from '@/shared/components/Toast/Toast';
-import { useGetTeacherAccount, usePostTeacherAccount } from './apis/queries';
 
 const AccountRegister = () => {
   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
