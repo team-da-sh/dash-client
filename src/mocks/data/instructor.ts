@@ -12,6 +12,7 @@ export const LESSON_DETAIL_MOCK: LessonDetailGetResponse = {
   endDateTime: '2025-09-15T12:00:00',
   applyStatus: 'FINISHED',
   studentCount: 0,
+  rounds: [],
   lessonDateTime: '',
   students: [
     // --- 승인 대기 (PENDING_APPROVAL) ---
