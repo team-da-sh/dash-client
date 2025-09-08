@@ -47,6 +47,7 @@ export const buttonStyle = recipe({
         border: `0.5px solid ${vars.colors.gray09}`,
         backgroundColor: vars.colors.main03,
 
+        color: vars.colors.white,
         ...vars.fonts.b3_m_narrow,
 
         '&:disabled': {
