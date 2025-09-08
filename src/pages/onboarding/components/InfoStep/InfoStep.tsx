@@ -18,7 +18,6 @@ import Head from '@/shared/components/Head/Head';
 import Input from '@/shared/components/Input/Input';
 import Text from '@/shared/components/Text/Text';
 import { notify } from '@/shared/components/Toast/Toast';
-import type { ApiError } from '@/shared/types/api';
 
 interface InfoStepProps {
   name: string;
@@ -106,14 +105,13 @@ const InfoStep = ({
           setIsCodeVerified(true);
           resetTimer();
         },
-          onError: (error) => {
-           const apiError = error.response?.data as ApiError;
-           if (error.response?.status === 409) {
+        onError: (error) => { 
+          if (error.response?.status === 409) {
             notify({ message: PHONE_AUTH_MESSAGES.CODE_MISMATCH, icon: 'fail', bottomGap: 'large' });
-           } else {
-             const message = apiError?.message || PHONE_AUTH_MESSAGES.TRY_AGAIN;
-             notify({ message, icon: 'fail', bottomGap: 'large' });
-           }
+          } else {
+            const message = error.response?.data?.message || PHONE_AUTH_MESSAGES.TRY_AGAIN;
+            notify({ message, icon: 'fail', bottomGap: 'large' });
+          }
           setIsCodeVerified(false);
         },
       }

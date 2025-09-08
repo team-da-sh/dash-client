@@ -5,6 +5,7 @@ import type { tokenTypes } from '@/pages/onboarding/types/api';
 import type { OnboardInfoTypes, PhoneRequestTypes, phoneVerifyTypes } from '@/pages/onboarding/types/onboardInfoTypes';
 import { notify } from '@/shared/components/Toast/Toast';
 import { PHONE_AUTH_MESSAGES } from '@/pages/onboarding/constants';
+import { ApiError } from '@/shared/types/api';
 
 export const usePostOnboard = () => {
   return useMutation({
@@ -44,7 +45,7 @@ export const usePostPhoneVerify = () => {
         code,
         accessToken,
       }),
-    onError: (error: AxiosError) => {
+    onError: (error: AxiosError<ApiError>) => {
       if (!error.response) return;
       notify({message: PHONE_AUTH_MESSAGES.CODE_MISMATCH, icon: 'fail', bottomGap: 'large'})
     },
