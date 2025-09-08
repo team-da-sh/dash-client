@@ -40,7 +40,7 @@ const Modal = ({ content, type, onClose, onClickHandler }: DialogProps) => {
             </>
           )}
           {type === 'single' && (
-            <BoxButton variant="primary" onClick={onClose}>
+            <BoxButton variant="primary" onClick={handleCheckButtonClick}>
               확인
             </BoxButton>
           )}
