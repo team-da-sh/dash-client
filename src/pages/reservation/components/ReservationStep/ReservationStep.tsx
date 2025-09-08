@@ -87,7 +87,7 @@ const ReservationStep = ({ onNext }: ReservationStepPropTypes) => {
             클래스 정보
           </Text>
           <ClassInfo
-            name={data.name}
+            lessonName={data.name}
             location={data.location}
             locationDetail={data.locationDetail}
             teacherNickname={data.teacherNickname}

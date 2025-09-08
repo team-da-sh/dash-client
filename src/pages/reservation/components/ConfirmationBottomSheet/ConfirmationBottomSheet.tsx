@@ -1,9 +1,10 @@
 import { AnimatePresence, motion } from 'motion/react';
 import * as styles from '@/pages/reservation/components/ConfirmationBottomSheet/confirmationBottomSheet.css';
-import SvgIcClearMain0420 from '@/shared/assets/svg/IcClearMain0420';
+import SvgIcClear from '@/shared/assets/svg/IcClear';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import Head from '@/shared/components/Head/Head';
 import Text from '@/shared/components/Text/Text';
+import { vars } from '@/shared/styles/theme.css';
 
 interface ConfirmationBottomSheetPropTypes {
   isOpen: boolean;
@@ -32,7 +33,7 @@ const ConfirmationBottomSheet = ({ isOpen, onClose }: ConfirmationBottomSheetPro
             exit={{ y: '100%' }}
             transition={{ duration: 0.45, ease: 'easeInOut' }}>
             <header className={styles.topContainerStyle}>
-              <SvgIcClearMain0420 width="4.4rem" height="4.4rem" />
+              <SvgIcClear width="4.4rem" height="4.4rem" color={vars.colors.main03} />
               <div className={styles.titleStyle}>
                 <Head id="confirmation-title" level="h3" tag="h5_sb">
                   신청 완료!

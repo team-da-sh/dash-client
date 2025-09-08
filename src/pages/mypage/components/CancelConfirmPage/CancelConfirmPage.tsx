@@ -161,55 +161,56 @@ const CancelConfirmPage = () => {
                 <ApplicantInfo memberName={myPageData?.name || ''} memberPhoneNumber={myPageData?.phoneNumber || ''} />
               </div>
 
-            <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 16 })}>
-              <Head tag="h6_sb" color="black">
-                클래스 정보
-              </Head>
-              <ClassInfo
-                lessonName={reservationData?.lessonName || ''}
-                location={reservationData?.location || ''}
-                locationDetail={reservationData?.detailedAddress}
-                teacherNickname={reservationData?.nickname || ''}
-                level={reservationData?.level || ''}
-                lessonRound={reservationData?.rounds}
-              />
+              <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 16 })}>
+                <Head tag="h6_sb" color="black">
+                  클래스 정보
+                </Head>
+                <ClassInfo
+                  lessonName={reservationData?.lessonName || ''}
+                  location={reservationData?.location || ''}
+                  locationDetail={reservationData?.detailedAddress}
+                  teacherNickname={reservationData?.nickname || ''}
+                  level={reservationData?.level || ''}
+                  lessonRound={reservationData?.rounds}
+                />
+              </div>
+
+              {isAfterDeposit && (
+                <>
+                  <hr className={styles.dividerStyle} />
+                  <RefundAccountSection
+                    isVisible={isAfterDeposit}
+                    selectedBank={selectedBank}
+                    onBankSelectClick={() => setIsBankSheetOpen(true)}
+                    register={register}
+                  />
+
+                  <RefundPolicySection isVisible={isAfterDeposit} onAgreementChange={handlePolicyAgreementChange} />
+                </>
+              )}
             </div>
 
-            {isAfterDeposit && (
-              <>
-                <hr className={styles.dividerStyle} />
-                <RefundAccountSection
-                  isVisible={isAfterDeposit}
-                  selectedBank={selectedBank}
-                  onBankSelectClick={() => setIsBankSheetOpen(true)}
-                  register={register}
-                />
-
-                <RefundPolicySection isVisible={isAfterDeposit} onAgreementChange={handlePolicyAgreementChange} />
-              </>
-            )}
-          </div>
-
-          <div className={styles.bottomButtonStyle}>
-            <BoxButton
-              variant="primary"
-              onClick={handleConfirm}
-              className={sprinkles({ width: '100%' })}
-              disabled={isPending || !isButtonActive()}>
-              {isPending ? '처리 중...' : '취소하기'}
-            </BoxButton>
+            <div className={styles.bottomButtonStyle}>
+              <BoxButton
+                variant="primary"
+                onClick={handleConfirm}
+                className={sprinkles({ width: '100%' })}
+                disabled={isPending || !isButtonActive()}>
+                {isPending ? '처리 중...' : '취소하기'}
+              </BoxButton>
+            </div>
           </div>
         </div>
-      </div>
 
-      {bankList && (
-        <BankBottomSheet
-          isOpen={isBankSheetOpen}
-          onClose={handleBankSheetClose}
-          banks={bankList}
-          handleBankSelect={handleBankSelect}
-        />
-      )}
+        {bankList && (
+          <BankBottomSheet
+            isOpen={isBankSheetOpen}
+            onClose={handleBankSheetClose}
+            banks={bankList}
+            handleBankSelect={handleBankSelect}
+          />
+        )}
+      </div>
     </div>
   );
 };
