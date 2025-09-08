@@ -14,6 +14,11 @@ export const bookerComponentStyle = style({
   borderRadius: '4px',
 });
 
+export const textWrapper = style({
+  display: 'flex',
+  gap: '1.2rem',
+});
+
 export const textLabelStyle = style({
   width: '4.4rem',
   whiteSpace: 'nowrap',

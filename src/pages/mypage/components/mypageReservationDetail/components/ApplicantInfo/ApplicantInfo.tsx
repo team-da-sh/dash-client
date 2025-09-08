@@ -1,6 +1,5 @@
-import * as styles from '@/pages/reservation/components/ApplicantInfo/applicantInfo.css';
+import * as styles from '@/pages/mypage/components/mypageReservationDetail/components/ApplicantInfo/applicantInfo.css';
 import Text from '@/shared/components/Text/Text';
-import { sprinkles } from '@/shared/styles/sprinkles.css';
 import { formatPhoneNumberNoSpace } from '@/shared/utils/formatPhoneNumber';
 import { formatDateTime } from '@/shared/utils/timeCalculate';
 
@@ -12,8 +11,8 @@ interface ApplicantInfoPropTypes {
 
 const ApplicantInfo = ({ memberName, memberPhoneNumber, reservationDateTime }: ApplicantInfoPropTypes) => {
   return (
-    <div className={styles.bookerComponentStyle}>
-      <div className={sprinkles({ display: 'flex', gap: 12 })}>
+    <section className={styles.bookerComponentStyle}>
+      <div className={styles.textWrapper}>
         <Text tag="b3_sb_narrow" color="gray7" className={styles.textLabelStyle}>
           이름
         </Text>
@@ -21,7 +20,7 @@ const ApplicantInfo = ({ memberName, memberPhoneNumber, reservationDateTime }: A
           {memberName}
         </Text>
       </div>
-      <div className={sprinkles({ display: 'flex', gap: 12 })}>
+      <div className={styles.textWrapper}>
         <Text tag="b3_sb_narrow" color="gray7" className={styles.textLabelStyle}>
           전화번호
         </Text>
@@ -29,7 +28,7 @@ const ApplicantInfo = ({ memberName, memberPhoneNumber, reservationDateTime }: A
           {formatPhoneNumberNoSpace(memberPhoneNumber)}
         </Text>
       </div>
-      <div className={sprinkles({ display: 'flex', gap: 12 })}>
+      <div className={styles.textWrapper}>
         <Text tag="b3_sb_narrow" color="gray7" className={styles.textLabelStyle}>
           신청일시
         </Text>
@@ -37,7 +36,7 @@ const ApplicantInfo = ({ memberName, memberPhoneNumber, reservationDateTime }: A
           {formatDateTime(reservationDateTime)}
         </Text>
       </div>
-    </div>
+    </section>
   );
 };
 
