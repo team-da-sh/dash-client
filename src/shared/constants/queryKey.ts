@@ -68,6 +68,7 @@ export const teacherKeys = createQueryKeys('teacher', {
           status: { queryKey: null },
         },
       },
+      account: { queryKey: null },
     },
   },
 });

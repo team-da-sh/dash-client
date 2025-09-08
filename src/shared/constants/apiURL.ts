@@ -24,6 +24,7 @@ export const API_URL = {
   },
   TEACHER_DETAIL_INTRODUCTION: '/api/v1/teachers/me/detail',
   TEACHER_ME_THUMBNAILS: '/api/v1/teachers/me/lessons/thumbnails',
+  TEACHER_ME_ACCOUNT: '/api/v1/teachers/me/account',
   TEACHERS_POPULAR: '/api/v1/teachers/popular',
   TEACHERS_SEARCH: '/api/v1/teachers?keyword=:keyword',
   TEACHERS_LESSON_STATUS: '/api/v1/teachers/me/lessons/status',
