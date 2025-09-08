@@ -54,18 +54,25 @@ const Onboarding = () => {
       },
       {
         onSuccess: () => {
-            setStorage(tokenRef.current.accessToken, tokenRef.current.refreshToken);
-            setStep(1);
+          setStorage(tokenRef.current.accessToken, tokenRef.current.refreshToken);
+          setStep(1);
         },
         onSettled: () => {
-            setOnboarding((prev) => ({ ...prev, isSubmitting: false }));
-        }
+          setOnboarding((prev) => ({ ...prev, isSubmitting: false }));
+        },
       }
     );
   };
 
   return (
-    <form className={styles.containerStyle} onSubmit={handleOnboardSubmit}>
+    <form
+      className={styles.containerStyle}
+      onSubmit={handleOnboardSubmit}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+        }
+      }}>
       <OnboardingHeader step={currentStep} />
       <div className={styles.bodyWrapperStyle}>
         <Funnel>
