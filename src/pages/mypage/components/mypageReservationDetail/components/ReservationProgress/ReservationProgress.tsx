@@ -3,6 +3,7 @@ import type {
   ReservationStatus,
 } from '@/pages/mypage/components/mypageReservation/types/reservationStatus';
 import {
+  calcelContainer,
   cancelLineStyle,
   dotsLineStyle,
   progressContatiner,
@@ -20,7 +21,7 @@ interface ReservationProgressProps {
 
 const ReservationProgress = ({ reservationStatus }: ReservationProgressProps) => {
   return reservationStatus === 'PENDING_CANCELLATION' || reservationStatus === 'CANCELLED' ? (
-    <section className={progressContatiner}>
+    <section className={calcelContainer}>
       <div className={statusWrapper}>
         <SvgIcMeatball width={24} height={24} color={vars.colors.alert01} />
         <Text tag="b3_sb" className={textStyle}>
@@ -60,7 +61,7 @@ const ReservationProgress = ({ reservationStatus }: ReservationProgressProps) =>
       </div>{' '}
       <hr
         className={dotsLineStyle({
-          filled: reservationStatus === 'APPROVED' || reservationStatus === 'IN_PROGRESS',
+          filled: reservationStatus === 'IN_PROGRESS' || reservationStatus === 'COMPLETED',
         })}
       />
       <div className={statusWrapper}>

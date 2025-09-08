@@ -7,7 +7,17 @@ export const progressContatiner = style({
   justifyContent: 'space-around',
   alignItems: 'center',
 
-  padding: '1.6rem 2.4rem 4rem 2.4rem',
+  padding: '1.6rem 3.2rem 4rem 3.2rem',
+
+  backgroundColor: vars.colors.white,
+  borderRadius: '4px',
+});
+
+export const calcelContainer = style({
+  display: 'flex',
+  alignItems: 'center',
+
+  padding: '1.6rem 9.5rem 4rem 9.5rem',
 
   backgroundColor: vars.colors.white,
   borderRadius: '4px',
