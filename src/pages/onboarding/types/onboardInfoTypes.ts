@@ -15,6 +15,6 @@ export interface PhoneRequestTypes {
 }
 
 export interface phoneVerifyTypes {
-  phoneNumber: String;
+  phoneNumber: string;
   code: string;
 }

@@ -32,7 +32,9 @@ export const MIN_NAME_LENGTH = 2;
 
 export const MAX_NAME_LENGTH = 8;
 
-export const MAX_VERFICATION_CODE = 6;
+export const MAX_VERIFICATION_CODE = 6;
+
+export const MAX_VERIFICATION_NUMBER = 5;
 
 export const MAX_PHONENUMBER_LENGTH = 11;
 
@@ -44,7 +46,6 @@ export const TIMER_DURATION = 300;
 
 export const REQUEST_DELAY = 10;
 
-// 인증번호 관련 유즈케이스 에러메세지
 export const PHONE_AUTH_MESSAGES = {
   TRY_AGAIN: '잠시 후 다시 요청해주세요',
   CODE_MISMATCH: '인증번호가 일치하지 않아요',

@@ -4,7 +4,8 @@ import * as styles from '@/pages/onboarding/components/InfoStep/infoStep.css';
 import {
   INFO_KEY,
   MAX_PHONENUMBER_LENGTH,
-  MAX_VERFICATION_CODE,
+  MAX_VERIFICATION_CODE,
+  MAX_VERIFICATION_NUMBER,
   PHONE_AUTH_MESSAGES,
   REQUEST_DELAY,
   TIMER_DURATION,
@@ -57,7 +58,7 @@ const InfoStep = ({
 
   const handleVerificationCodeChange = (value: string) => {
     const onlyNumbers = value.replace(/\D/g, '');
-    if (onlyNumbers.length <= MAX_VERFICATION_CODE) {
+    if (onlyNumbers.length <= MAX_VERIFICATION_CODE) {
       onInfoChange(INFO_KEY.VERIFICATION_CODE, onlyNumbers);
     }
   };
@@ -69,7 +70,7 @@ const InfoStep = ({
       notify({ message: PHONE_AUTH_MESSAGES.TRY_AGAIN, icon: 'fail', bottomGap: 'large' });
       return;
     }
-    if (requestCount >= 5) {
+    if (requestCount >= MAX_VERIFICATION_NUMBER) {
       notify({ message: PHONE_AUTH_MESSAGES.LIMIT_EXCEEDED, icon: 'fail', bottomGap: 'large' });
       return;
     }
@@ -127,7 +128,7 @@ const InfoStep = ({
   };
 
   const isRequestDisabled = phoneNumber.length !== MAX_PHONENUMBER_LENGTH || isCodeVerified;
-  const isVerifyButtonDisabled = verificationCode.length !== MAX_VERFICATION_CODE;
+  const isVerifyButtonDisabled = verificationCode.length !== MAX_VERIFICATION_CODE;
   const showAsResend = isRunning || isCodeVerified;
 
   return (
