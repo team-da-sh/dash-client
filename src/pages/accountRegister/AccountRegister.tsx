@@ -4,8 +4,12 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import * as styles from '@/pages/accountRegister/accountRegister.css';
 import ConfirmBottomSheet from '@/pages/accountRegister/components/ConfirmBottomSheet/ConfirmBottomSheet';
+import { ACCOUNT_REGISTER_FORM_KEY } from '@/pages/accountRegister/constants/registerSection';
 import { accountRegisterSchema } from '@/pages/accountRegister/schema/accountRegisterSchema';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
+import { useGetBankList } from '@/shared/apis/queries';
+import SvgIcArrowDownGray1032 from '@/shared/assets/svg/IcArrowDownGray1032';
+import BankBottomSheet from '@/shared/components/BankBottomSheet/BankBottomSheet';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import Divider from '@/shared/components/Divider/Divider';
 import Head from '@/shared/components/Head/Head';
@@ -15,11 +19,18 @@ import { notify } from '@/shared/components/Toast/Toast';
 
 const AccountRegister = () => {
   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
+  const [isBankSheetOpen, setIsBankSheetOpen] = useState(false);
   const [isEditMode, setIsEditMode] = useState(false);
   const navigate = useNavigate();
 
+  const { data: bankList } = useGetBankList();
+
   const handleBottomSheetClose = () => {
     setIsBottomSheetOpen(false);
+  };
+
+  const handleBankSheetClose = () => {
+    setIsBankSheetOpen(false);
   };
 
   const {
@@ -27,6 +38,7 @@ const AccountRegister = () => {
     watch,
     // reset,
     handleSubmit,
+    setValue,
     formState: { isValid, isDirty },
   } = useForm({
     resolver: zodResolver(accountRegisterSchema),
@@ -34,10 +46,21 @@ const AccountRegister = () => {
     mode: 'onTouched',
     defaultValues: {
       depositor: '',
-      bank: '',
+      bank: { bankId: 0, bankName: '', bankImageUrl: '' },
       accountNumber: '',
     },
   });
+
+  const handleBankSelect = (selectedBankId: number, selectedBankName: string, imageUrl: string) => {
+    setValue(
+      ACCOUNT_REGISTER_FORM_KEY.BANK,
+      { bankId: selectedBankId, bankName: selectedBankName, bankImageUrl: imageUrl },
+      {
+        shouldValidate: true,
+        shouldDirty: true,
+      }
+    );
+  };
 
   const { depositor, bank, accountNumber } = watch();
   const isButtonActive = isEditMode ? isDirty && isValid : isValid;
@@ -96,7 +119,38 @@ const AccountRegister = () => {
           <Head level="h3" tag="b2_sb">
             계좌 정보
           </Head>
-          <Input placeholder="은행 선택" {...register('bank')} />
+
+          {/* TODO: 검토 후 삭제 예정 (아래 div로 대체한 상태) */}
+          {/* <Input
+            placeholder="은행 선택"
+            value={bank?.name || ''}
+            readOnly
+            onClick={(e) => {
+              e.currentTarget.blur();
+              setIsBankSheetOpen(true);
+            }}
+            rightAddOn={<SvgIcArrowDownGray1032 width={'3.2rem'} />}
+          /> */}
+
+          <button
+            type="button"
+            className={styles.bankSelectContainerStyle}
+            onClick={() => {
+              setIsBankSheetOpen(true);
+            }}>
+            {bank.bankImageUrl && bank.bankName ? (
+              <div className={styles.bankInfoContainerStyle}>
+                <img src={bank.bankImageUrl} alt="은행 로고" className={styles.bankSelectImageStyle} />
+                <Text tag="b2_sb_long">{bank.bankName}</Text>
+              </div>
+            ) : (
+              <Text tag="b2_sb_long" color="gray5">
+                은행 선택
+              </Text>
+            )}
+            <SvgIcArrowDownGray1032 width={'3.2rem'} />
+          </button>
+
           <Input placeholder="계좌번호 입력" inputMode="numeric" {...register('accountNumber')} />
         </div>
       </div>
@@ -111,13 +165,20 @@ const AccountRegister = () => {
         </BoxButton>
       </div>
 
-      {isBottomSheetOpen && (
-        <ConfirmBottomSheet
-          isOpen={isBottomSheetOpen}
-          onClose={handleBottomSheetClose}
-          depositor={depositor}
-          bank={bank}
-          accountNumber={accountNumber}
+      <ConfirmBottomSheet
+        isOpen={isBottomSheetOpen}
+        onClose={handleBottomSheetClose}
+        depositor={depositor}
+        bank={bank.bankName || ''}
+        accountNumber={accountNumber}
+      />
+
+      {bankList && (
+        <BankBottomSheet
+          isOpen={isBankSheetOpen}
+          onClose={handleBankSheetClose}
+          banks={bankList}
+          handleBankSelect={handleBankSelect}
         />
       )}
     </form>

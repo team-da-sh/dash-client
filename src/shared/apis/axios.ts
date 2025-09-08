@@ -15,3 +15,8 @@ export const postRole = async () => {
 
   return data;
 };
+
+export const getBankList = async () => {
+  const { data } = await instance.get(API_URL.BANKS);
+  return data;
+};

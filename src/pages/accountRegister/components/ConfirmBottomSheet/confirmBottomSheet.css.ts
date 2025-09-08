@@ -1,24 +1,5 @@
-import { keyframes, style } from '@vanilla-extract/css';
+import { style } from '@vanilla-extract/css';
 import { vars } from '@/shared/styles/theme.css';
-
-// bottomSheet open/close animations
-const slideUp = keyframes({
-  from: { transform: 'translate(-50%, 100%)' },
-  to: { transform: 'translate(-50%, 0)' },
-});
-
-// const slideDown = keyframes({
-//   from: { transform: 'translate(-50%, 0)' },
-//   to: { transform: 'translate(-50%, 100%)' },
-// });
-
-export const slideUpStyle = style({
-  animation: `${slideUp} 450ms ease-in-out forwards`,
-});
-
-// export const slideDownStyle = style({
-//   animation: `${slideDown} 300ms ease forwards`,
-// });
 
 export const overlayStyle = style({
   position: 'fixed',
@@ -34,8 +15,6 @@ export const overlayStyle = style({
 
 export const containerStyle = style({
   position: 'fixed',
-  left: '50%',
-  transform: 'translateX(-50%)',
   bottom: 0,
 
   display: 'flex',
@@ -50,8 +29,6 @@ export const containerStyle = style({
   backgroundColor: vars.colors.white,
 
   zIndex: vars.zIndex.three,
-
-  transition: 'transform 300ms ease',
 });
 
 export const topContainerStyle = style({
