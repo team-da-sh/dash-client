@@ -17,3 +17,8 @@ export const patchInstructorRegisterInfo = async (infoData: InstructorRegisterRe
   const response = await instance.patch(API_URL.TEACHERS_ME, infoData);
   return response;
 };
+
+export const getNicknameDuplicate = async (nickname: string) => {
+  const { data } = await instance.get(`${API_URL.TEACHER_NICKNAME_VALIDATION}?nickname=${nickname}`);
+  return data;
+};

@@ -1,4 +1,5 @@
 export const INSTRUCTOR_REGISTER_FORM_KEY = {
+  NICKNAME: 'nickname',
   IMAGE_URLS: 'imageUrls',
   INSTAGRAM: 'instagram',
   YOUTUBE: 'youtube',

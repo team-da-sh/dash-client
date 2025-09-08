@@ -31,6 +31,7 @@ export const API_URL = {
   TEACHERS_POPULAR: '/api/v1/teachers/popular',
   TEACHERS_SEARCH: '/api/v1/teachers?keyword=:keyword',
   TEACHERS_LESSON_STATUS: '/api/v1/teachers/me/lessons/status',
+  TEACHER_NICKNAME_VALIDATION: '/api/v1/teachers/nickname-validation',
 
   LESSONS: '/api/v1/lessons',
   LESSON_DETAIL: '/api/v1/lessons',

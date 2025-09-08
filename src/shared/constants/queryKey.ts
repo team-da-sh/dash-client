@@ -71,6 +71,9 @@ export const teacherKeys = createQueryKeys('teacher', {
       account: { queryKey: null },
     },
   },
+  nicknameValidation: (nickname: string) => ({
+    queryKey: [nickname],
+  }),
 });
 
 export const myPageKeys = createQueryKeys('myPage', {
