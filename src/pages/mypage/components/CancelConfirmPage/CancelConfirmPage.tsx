@@ -3,6 +3,7 @@ import { useGetMyPage } from '@/pages/mypage/apis/queries';
 import { useCancelReservation } from '@/pages/mypage/components/CancelConfirmPage/apis/query/useCancelReservation';
 import * as styles from '@/pages/mypage/components/CancelConfirmPage/cancelConfirmPage.css';
 import { useGetReservationsDetail } from '@/pages/mypage/components/mypageReservationDetail/apis/queries';
+import { CANCEL_CONFIRM_MESSAGE } from '@/pages/mypage/constants/modalMessage';
 import ApplicantInfo from '@/pages/reservation/components/ApplicantInfo/ApplicantInfo';
 import ClassInfo from '@/pages/reservation/components/ClassInfo/ClassInfo';
 import Modal from '@/common/components/Modal/Modal';
@@ -24,7 +25,7 @@ const CancelConfirmPage = () => {
   const handleConfirm = () => {
     openModal(({ close }) => (
       <Modal
-        content="클래스 신청이 취소됐어요. 취소된 클래스는 신청 내역에서 확인할 수 있어요."
+        content={CANCEL_CONFIRM_MESSAGE}
         type="single"
         onClose={close}
         onClickHandler={() => {
