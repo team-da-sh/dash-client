@@ -1,6 +1,6 @@
-import { useState } from 'react';
-// import { useLocation } from 'react-router-dom';
-// import { usePostOnboard } from '@/pages/onboarding/apis/queries';
+import { useRef, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import { usePostOnboard } from '@/pages/onboarding/apis/queries';
 import FinishStep from '@/pages/onboarding/components/FinishStep/FinishStep';
 import InfoStep from '@/pages/onboarding/components/InfoStep/InfoStep';
 import OnboardingHeader from '@/pages/onboarding/components/OnboardingHeader/OnboardingHeader';
@@ -10,8 +10,7 @@ import * as styles from '@/pages/onboarding/onboarding.css';
 import type { OnboardInfoTypes, OnboardingState } from '@/pages/onboarding/types/onboardInfoTypes';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { useFunnel } from '@/shared/hooks/useFunnel';
-
-// import { setStorage } from '@/shared/utils/handleToken';
+import { setStorage } from '@/shared/utils/handleToken';
 
 const Onboarding = () => {
   const { Funnel, Step, setStep, currentStep } = useFunnel(FINAL_ONBOARDING_STEP, ROUTES_CONFIG.home.path);
@@ -24,7 +23,10 @@ const Onboarding = () => {
 
   const [onboarding, setOnboarding] = useState<OnboardingState>(initialState);
 
-  // const { mutate: onboardMutate } = usePostOnboard();
+  const { mutate: onboardMutate } = usePostOnboard();
+
+  const location = useLocation();
+  const tokenRef = useRef(location.state);
 
   const handleInfoChange = <K extends keyof OnboardInfoTypes>(key: K, value: OnboardInfoTypes[K]) => {
     setOnboarding((prev) => ({
@@ -37,10 +39,6 @@ const Onboarding = () => {
     setOnboarding((prev) => ({ ...prev, isCodeVerified: verified }));
   };
 
-  // 토큰 ref로 전역변수로 저장
-  // const location = useLocation();
-  // const tokenRef = useRef(location.state);
-
   const handleNextButtonClick = () => {
     setStep(1);
   };
@@ -49,32 +47,32 @@ const Onboarding = () => {
     e.preventDefault();
     setOnboarding((prev) => ({ ...prev, isSubmitting: true }));
 
-    // TODO: API 연결 다시 필요
-    // if (!isCodeVerified) {
-    //   return;
-    // }
-
-    // onboardMutate(
-    //   {
-    //     ...info,
-    //     accessToken: tokenRef.current.accessToken,
-    //   },
-    //   {
-    //     onSuccess: ({ response }) => {
-    //       if (response.status === 200) {
-    //         setStorage(tokenRef.current.accessToken, tokenRef.current.refreshToken);
-    //         setStep(1);
-    //       }
-    //     },
-    //   }
-    // );
-
-    setStep(1);
-    setOnboarding((prev) => ({ ...prev, isSubmitting: false }));
+    onboardMutate(
+      {
+        ...onboarding.info,
+        accessToken: tokenRef.current.accessToken,
+      },
+      {
+        onSuccess: () => {
+          setStorage(tokenRef.current.accessToken, tokenRef.current.refreshToken);
+          setStep(1);
+        },
+        onSettled: () => {
+          setOnboarding((prev) => ({ ...prev, isSubmitting: false }));
+        },
+      }
+    );
   };
 
   return (
-    <form className={styles.containerStyle} onSubmit={handleOnboardSubmit}>
+    <form
+      className={styles.containerStyle}
+      onSubmit={handleOnboardSubmit}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+        }
+      }}>
       <OnboardingHeader step={currentStep} />
       <div className={styles.bodyWrapperStyle}>
         <Funnel>
@@ -86,6 +84,7 @@ const Onboarding = () => {
               onInfoChange={handleInfoChange}
               setIsCodeVerified={handleCodeVerifiedChange}
               isCodeVerified={onboarding.isCodeVerified}
+              accessToken={tokenRef.current.accessToken}
             />
           </Step>
           <Step name="2">

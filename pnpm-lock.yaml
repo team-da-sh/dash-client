@@ -20,9 +20,6 @@ importers:
       '@tanstack/react-query-devtools':
         specifier: ^5.62.15
         version: 5.62.15(@tanstack/react-query@5.62.15(react@18.3.1))(react@18.3.1)
-      '@tosspayments/tosspayments-sdk':
-        specifier: ^2.3.4
-        version: 2.3.4
       '@types/react-slick':
         specifier: ^0.23.13
         version: 0.23.13
@@ -1362,9 +1359,6 @@ packages:
     engines: {node: '>=12', npm: '>=6'}
     peerDependencies:
       '@testing-library/dom': '>=7.21.4'
-
-  '@tosspayments/tosspayments-sdk@2.3.4':
-    resolution: {integrity: sha512-YypRXqS+9XtQew5TQBa21Ww8Z7QH+fOkuedfH/BaomsCqBv3qS4wMNCSYrq8pxQ7NBOOuPDw0DLvY7Bg5FWNmQ==}
 
   '@trivago/prettier-plugin-sort-imports@5.2.1':
     resolution: {integrity: sha512-NDZndt0fmVThIx/8cExuJHLZagUVzfGCoVrwH9x6aZvwfBdkrDFTYujecek6X2WpG4uUFsVaPg5+aNQPSyjcmw==}
@@ -4478,8 +4472,6 @@ snapshots:
   '@testing-library/user-event@14.6.1(@testing-library/dom@9.3.4)':
     dependencies:
       '@testing-library/dom': 9.3.4
-
-  '@tosspayments/tosspayments-sdk@2.3.4': {}
 
   '@trivago/prettier-plugin-sort-imports@5.2.1(prettier@3.4.2)':
     dependencies:

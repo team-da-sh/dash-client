@@ -52,4 +52,5 @@ export const bankInfoContainerStyle = style({
 export const bankSelectImageStyle = style({
   width: '2.2rem',
   height: '2.2rem',
+  objectFit: 'contain',
 });

@@ -21,7 +21,7 @@ const AgreeCheckBox = ({ text, isChecked, onToggle, link = '' }: AgreeCheckBoxPr
   };
   return (
     <div
-      className={sprinkles({ display: 'flex', width: '100%', p: 8, justifyContent: 'space-between' })}
+      className={sprinkles({ display: 'flex', width: '100%', p: 8, justifyContent: 'space-between', height: 48 })}
       onClick={onToggle}>
       <div className={sprinkles({ display: 'flex', gap: 12, alignItems: 'center' })}>
         {isChecked ? <IcCheckMain0324 width={24} height={24} /> : <IcCheckGray0724 width={24} height={24} />}

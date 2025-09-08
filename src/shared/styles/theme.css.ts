@@ -52,6 +52,7 @@ export const vars = createGlobalTheme(':root', {
     kakao02: '#3C1E1E',
 
     // opacity
+    black50: 'rgba(0, 0, 0, 0.5)',
     black70: 'rgba(0, 0, 0, 0.7)',
     white50: 'rgba(255, 255, 255, 0.5)',
 

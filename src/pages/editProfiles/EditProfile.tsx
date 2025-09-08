@@ -17,7 +17,6 @@ const EditProfile = () => {
       </Head>
       <ProfileForm
         defaultValues={{
-          nickname: data.nickname,
           name: data.name,
           phoneNumber: data.phoneNumber,
           profileImageUrl: data.profileImageUrl,

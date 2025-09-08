@@ -3,3 +3,7 @@ export interface BankListResponseTypes {
   bankId: number;
   bankName: string;
 }
+
+export interface ApiError {
+  message: string;
+}
