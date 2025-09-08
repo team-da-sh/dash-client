@@ -42,17 +42,18 @@ const ReservationList = ({ status, targetReservationId, showActions = true }: Re
               date={reservation.reservationDateTime}
             />
             <ClassCard.Body {...reservation} />
-
-            <ClassCard.Footer showAsk={true}>
-              <BoxButton onClick={(e) => handleCancelClick(e, navigate, reservation)} variant="temp">
-                취소하기
-              </BoxButton>
-              <BoxButton
-                variant="outline"
-                onClick={(e) => handleBoxButtonClick(e, navigate, reservation.reservationId, true)}>
-                상세보기
-              </BoxButton>
-            </ClassCard.Footer>
+            {showActions && (
+              <ClassCard.Footer showAsk={true}>
+                <BoxButton onClick={(e) => handleCancelClick(e, navigate, reservation)} variant="temp">
+                  취소하기
+                </BoxButton>
+                <BoxButton
+                  variant="outline"
+                  onClick={(e) => handleBoxButtonClick(e, navigate, reservation.reservationId, true)}>
+                  상세보기
+                </BoxButton>
+              </ClassCard.Footer>
+            )}
           </ClassCard>
         ))
       ) : (

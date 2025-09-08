@@ -51,7 +51,10 @@ const StudentCard = ({ studentData, index, lessonId }: StudentCardPropTypes) => 
             if (data.isFull) {
               openModal(({ close }) => <Modal type="single" content={'클래스 정원이 다 찼어요.'} onClose={close} />);
             } else {
-              notify({ message: '승인에 성공했습니다.', icon: 'success' });
+              notify({
+                message: status === 'APPROVED' ? '승인 대기로 변경되었어요.' : '승인이 확정되었어요.',
+                icon: 'success',
+              });
               queryClient.invalidateQueries({ queryKey: teacherKeys.me._ctx.lesson._ctx.students(lessonId).queryKey });
             }
           },
@@ -69,7 +72,7 @@ const StudentCard = ({ studentData, index, lessonId }: StudentCardPropTypes) => 
                 { lessonId, reservationId: studentData.reservationId },
                 {
                   onSuccess: () => {
-                    notify({ message: '취소에 성공했습니다.', icon: 'success' });
+                    notify({ message: '취소가 완료되었어요.', icon: 'success' });
                     queryClient.invalidateQueries({
                       queryKey: teacherKeys.me._ctx.lesson._ctx.students(lessonId).queryKey,
                     });
@@ -84,7 +87,7 @@ const StudentCard = ({ studentData, index, lessonId }: StudentCardPropTypes) => 
           { lessonId, reservationId: studentData.reservationId },
           {
             onSuccess: () => {
-              notify({ message: '취소대기로 변경했습니다.', icon: 'success' });
+              notify({ message: '취소 대기로 변경되었어요.', icon: 'success' });
               queryClient.invalidateQueries({
                 queryKey: teacherKeys.me._ctx.lesson._ctx.students(lessonId).queryKey,
               });

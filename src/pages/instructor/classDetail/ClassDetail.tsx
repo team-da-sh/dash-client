@@ -3,10 +3,13 @@ import { useParams } from 'react-router-dom';
 import { useGetLessonDetail } from '@/pages/instructor/classDetail/apis/queries';
 import * as styles from '@/pages/instructor/classDetail/classDetail.css';
 import StudentList from '@/pages/instructor/classDetail/components/StudentList/StudentList';
+import ClassInfo from '@/pages/mypage/components/mypageReservationDetail/components/ClassInfo/ClassInfo';
+import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import ClassCard from '@/shared/components/ClassCard';
 import Head from '@/shared/components/Head/Head';
 import { TabButton, TabList, TabPanel, TabRoot } from '@/shared/components/Tab';
 import Text from '@/shared/components/Text/Text';
+import { notify } from '@/shared/components/Toast/Toast';
 import { USER_ROLE } from '@/shared/constants/userRole';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
 
@@ -29,7 +32,7 @@ const ClassDetail = () => {
         <Head level="h2" tag="h6_sb" color="black">
           내 클래스 정보
         </Head>
-        <section className={sprinkles({ gap: 16 })}>
+        <section className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 8 })}>
           {lessonData && (
             <ClassCard>
               <ClassCard.Header
@@ -43,9 +46,15 @@ const ClassDetail = () => {
                 genre={lessonData.genre}
                 level={lessonData.level}
               />
-              <ClassCard.Footer>{'장소'}</ClassCard.Footer>
+              <ClassCard.Footer>
+                <ClassInfo lessonRound={lessonData.rounds} location={lessonData.location} />
+              </ClassCard.Footer>
             </ClassCard>
           )}
+
+          <BoxButton variant="transparency" onClick={() => notify({ message: '해당 기능은 추후 구현 예정입니다.' })}>
+            수정하기
+          </BoxButton>
         </section>
 
         <section className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 16 })}>

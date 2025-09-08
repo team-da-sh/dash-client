@@ -25,8 +25,14 @@ export interface LessonDetailGetResponse {
   students: Student[];
   studentCount: number;
   lessonDateTime: string;
+  rounds: RoundType[];
 }
 
 export interface ChangeApproveResponse {
   isFull: true;
+}
+
+export interface RoundType {
+  startDateTime: string;
+  endDateTime: string;
 }

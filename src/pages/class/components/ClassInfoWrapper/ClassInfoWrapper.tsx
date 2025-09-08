@@ -3,6 +3,7 @@ import Card from '@/pages/class/components/Card/Card';
 import * as styles from '@/pages/class/components/ClassInfoWrapper/classInfoWrapper.css';
 import type { LessonDetailResponseTypes } from '@/pages/class/types/api';
 import { getDDayLabel } from '@/pages/class/utils/dDay';
+import type { GenreTypes } from '@/pages/onboarding/types/genreTypes';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import Head from '@/shared/components/Head/Head';
 import Tag from '@/shared/components/Tag/Tag';
@@ -24,7 +25,7 @@ const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetailResponseType
     level,
   } = lessonData;
 
-  const translatedGenre = genreMapping[genre] || genre;
+  const translatedGenre = genreMapping[genre as Exclude<GenreTypes, null>] || genre;
   const dDay = getDDayLabel(remainingDays);
 
   const navigate = useNavigate();
