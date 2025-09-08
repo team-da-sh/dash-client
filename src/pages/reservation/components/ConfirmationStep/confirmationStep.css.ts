@@ -20,7 +20,7 @@ export const confirmSection = style({
   display: 'flex',
   flexDirection: 'column',
   marginTop: '1.6rem',
-  padding: '2.2rem 7.5rem 2.2rem 2.4rem',
+  padding: '2.2rem 0 2.2rem 2.4rem',
   gap: '1.4rem',
 
   borderRadius: '11px',
@@ -36,6 +36,7 @@ export const rowItem = style({
 export const rowItemTitle = style({
   width: '4.9rem',
   marginRight: '2.8rem',
+  whiteSpace: 'nowrap',
 });
 
 export const copyButtonStyle = style({
