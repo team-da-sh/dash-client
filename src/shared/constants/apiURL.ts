@@ -5,6 +5,8 @@ export const API_URL = {
   AUTH_LOGIN: '/api/v1/auth/login',
   AUTH_REISSUE: '/api/v1/auth/reissue',
   AUTH_LOGOUT: '/api/v1/auth/logout',
+  AUTH_PHONE_REQUEST: '/api/v1/auth/phone/request',
+  AUTH_PHONE_VERIFY: '/api/v1/auth/phone/verify',
 
   MEMBERS_WITHDRAW: '/api/v1/members/withdraw',
   MEMBERS_ONBOARD: '/api/v1/members/onboard',
