@@ -1,44 +1,56 @@
+import type { AxiosError } from 'axios';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Error from '@/pages/error/Error';
-import { useGetReservation } from '@/pages/reservation/apis/queries';
+import { useGetReservation, usePostReservation } from '@/pages/reservation/apis/queries';
 import AgreeCheckBox from '@/pages/reservation/components/AgreeCheckBox/AgreeCheckBox';
 import ApplicantInfo from '@/pages/reservation/components/ApplicantInfo/ApplicantInfo';
 import ClassInfo from '@/pages/reservation/components/ClassInfo/ClassInfo';
 import * as styles from '@/pages/reservation/components/ReservationStep/reservationStep.css';
 import TopInfoContent from '@/pages/reservation/components/TopInfoContent/TopInfoContent';
 import { AGREEMENT_TERMS } from '@/pages/reservation/constants/index';
+import type { ClassReservationResponseTypes } from '@/pages/reservation/types/api';
 import IcCheckcircleGray0524 from '@/shared/assets/svg/IcCheckcircleGray0524';
 import IcCheckcircleMain0324 from '@/shared/assets/svg/IcCheckcircleMain0324';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import Divider from '@/shared/components/Divider/Divider';
 import Head from '@/shared/components/Head/Head';
 import Text from '@/shared/components/Text/Text';
+import { notify } from '@/shared/components/Toast/Toast';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
 
 interface ReservationStepPropTypes {
-  onNext: () => void;
+  onNext: (detail: ClassReservationResponseTypes) => void;
 }
+
 const ReservationStep = ({ onNext }: ReservationStepPropTypes) => {
   const [isAllChecked, setIsAllChecked] = useState(false);
   const [agreements, setAgreements] = useState(new Array(AGREEMENT_TERMS.length).fill(false));
 
   const { id } = useParams<{ id: string }>();
+  const { data, isError, isLoading } = useGetReservation(Number(id));
+  const { mutate: postReservation } = usePostReservation();
 
-  if (!id) {
-    return <Error />;
-  }
+  if (!id) return <Error />;
+  if (isLoading) return null;
+  if (isError || !data) return <Error />;
 
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const { data, isError, isLoading } = useGetReservation(+id);
-
-  if (isLoading) {
-    return <></>;
-  }
-
-  if (isError || !data) {
-    return <Error />;
-  }
+  const handleSubmit = () => {
+    postReservation(
+      { lessonId: id },
+      {
+        onSuccess: onNext,
+        onError: (error: AxiosError<{ message: string }>) => {
+          const message = error?.response?.data?.message || '예약 중 오류가 발생했어요. 다시 시도해주세요.';
+          notify({
+            message,
+            icon: 'fail',
+            bottomGap: 'large',
+          });
+        },
+      }
+    );
+  };
 
   const handleToggleAll = () => {
     const newState = !isAllChecked;
@@ -50,7 +62,6 @@ const ReservationStep = ({ onNext }: ReservationStepPropTypes) => {
     const newAgreements = [...agreements];
     newAgreements[index] = !newAgreements[index];
     setAgreements(newAgreements);
-
     setIsAllChecked(newAgreements.every((isChecked) => isChecked));
   };
 
@@ -152,7 +163,7 @@ const ReservationStep = ({ onNext }: ReservationStepPropTypes) => {
       </div>
 
       <section className={styles.bottomButtonStyle}>
-        <BoxButton variant="primary" isDisabled={!isAllChecked} onClick={isAllChecked ? onNext : undefined}>
+        <BoxButton variant="primary" isDisabled={!isAllChecked} onClick={handleSubmit}>
           신청하기
         </BoxButton>
       </section>

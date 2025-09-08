@@ -5,6 +5,7 @@ import type { LessonDetailResponseTypes } from '@/pages/class/types/api';
 import IcQuesitonmark from '@/shared/assets/svg/IcQuesitonmark';
 import Head from '@/shared/components/Head/Head';
 import Text from '@/shared/components/Text/Text';
+import { notify } from '@/shared/components/Toast/Toast';
 import { LEVEL, levelMapping } from '@/shared/constants/index';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
 
@@ -51,9 +52,7 @@ const TabLevel = ({ lessonData }: { lessonData: LessonDetailResponseTypes }) => 
           <Text tag="c1_m" color="gray7">
             클래스 난이도는 이렇게 설정되어있어요!
           </Text>
-          <button className={sprinkles({ display: 'flex' })}>
-            <IcQuesitonmark width={'1.4rem'} />
-          </button>
+          <IcQuesitonmark width={'1.4rem'} onClick={() => notify({ message: '해당 기능은 추후 구현 예정이에요' })} />
         </div>
       </div>
       <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 17 })}>

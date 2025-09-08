@@ -11,19 +11,13 @@ import { sprinkles } from '@/shared/styles/sprinkles.css';
 
 interface ConfirmationStepPropTypes {
   onNext: () => void;
-  depositor?: string;
-  bankName?: string;
-  accountNumber?: string;
-  price?: number;
+  depositor: string;
+  bankName: string;
+  accountNumber: string;
+  price: number;
 }
 
-const ConfirmationStep = ({
-  onNext,
-  depositor = '주은혜',
-  bankName = '신한',
-  accountNumber = '4879899192818',
-  price = 350000,
-}: ConfirmationStepPropTypes) => {
+const ConfirmationStep = ({ onNext, depositor, bankName, accountNumber, price }: ConfirmationStepPropTypes) => {
   const location = useLocation();
   const currentPath = location.pathname;
   const STORAGE_KEY = `bottomsheet-closed-${currentPath}`;
