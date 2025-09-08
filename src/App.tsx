@@ -6,6 +6,7 @@ import { Toaster } from 'react-hot-toast';
 import { RouterProvider } from 'react-router-dom';
 import Error from '@/pages/error/Error';
 import { router } from '@/routes/router.tsx';
+import ModalProvider from '@/shared/components/ModalProvider/ModalProvier';
 import Loading from './pages/loading/Loading';
 import queryClient from './queryClient';
 import './shared/styles/index.css';
@@ -38,6 +39,7 @@ const App = () => {
         <Suspense fallback={<Loading />}>
           <RouterProvider router={router} />
         </Suspense>
+        <ModalProvider />
       </ErrorBoundary>
       <Toaster containerStyle={{ margin: '0 auto' }} />
     </QueryClientProvider>

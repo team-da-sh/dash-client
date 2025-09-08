@@ -1,5 +1,5 @@
 import { useLayoutEffect, useRef, useState } from 'react';
-import type { FieldError, UseFormRegister } from 'react-hook-form';
+import { useFormContext } from 'react-hook-form';
 import {
   containerStyle,
   textAreaStyle,
@@ -8,19 +8,20 @@ import {
   INSTRUCTOR_REGISTER_PLACEHOLDER,
   MAX_INTRODUCTION_LENGTH,
 } from '@/pages/instructorRegister/constants/registerSection';
-import type { instructorRegisterFormTypes } from '@/pages/instructorRegister/types/instructorRegisterForm';
 import Text from '@/shared/components/Text/Text';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
+import type { instructorRegisterFormTypes } from '../../types/instructorRegisterForm';
 
-interface IntroductionSectionPropTypes {
-  detail: string;
-  register: UseFormRegister<instructorRegisterFormTypes>;
-  error: FieldError | undefined;
-}
-
-const IntroductionSection = ({ detail, register, error }: IntroductionSectionPropTypes) => {
+const IntroductionSection = () => {
   const [isFocused, setIsFocused] = useState(false);
   const textAreaRef = useRef<HTMLTextAreaElement | null>(null);
+  const {
+    register,
+    formState: { errors },
+    watch,
+  } = useFormContext<instructorRegisterFormTypes>();
+  const error = errors.detail;
+  const detail = watch('detail');
   const { name, onBlur, ref, onChange } = register('detail');
 
   const handleFocus = () => setIsFocused(true);
@@ -78,7 +79,7 @@ const IntroductionSection = ({ detail, register, error }: IntroductionSectionPro
 
         <div className={sprinkles({ display: 'flex', justifyContent: 'space-between' })}>
           <Text tag="b3_r" color="alert3">
-            {error && error.message}
+            {error?.message}
           </Text>
 
           <div className={sprinkles({ display: 'flex', gap: 2 })}>

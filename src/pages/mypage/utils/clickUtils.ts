@@ -1,6 +1,6 @@
 import type { useNavigate } from 'react-router-dom';
+import type { Reservation } from '@/pages/mypage/components/mypageReservation/types/reservationTypes';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import { notify } from '@/shared/components/Toast/Toast';
 
 export const handleClassCardClick = (navigate: ReturnType<typeof useNavigate>, reservationId: number | undefined) => {
   if (reservationId !== undefined) {
@@ -26,9 +26,13 @@ export const handleDetailClick = (
   }
 };
 
-export const handleCancelClick = (e: React.MouseEvent) => {
+export const handleCancelClick = (
+  e: React.MouseEvent,
+  navigate: ReturnType<typeof useNavigate>,
+  reservation: Reservation
+) => {
   e.stopPropagation();
-  notify('해당 기능은 추후 구현 예정이에요');
+  navigate(ROUTES_CONFIG.mypageCancelClass.path(reservation.reservationId.toString()));
 };
 
 export const handleBoxButtonClick = (

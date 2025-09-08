@@ -6,7 +6,6 @@ export interface LessonCountResponseTypes {
 
 export interface MyPageResponseTypes {
   profileImageUrl: string;
-  nickname: string;
   name: string;
   phoneNumber: string;
 }

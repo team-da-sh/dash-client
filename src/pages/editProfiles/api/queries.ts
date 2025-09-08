@@ -4,7 +4,7 @@ import { patchMyProfile } from '@/pages/editProfiles/api/axios';
 import type { UpdateProfileRequestTypes } from '@/pages/editProfiles/types/api';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { notify } from '@/shared/components/Toast/Toast';
-import { QUERY_KEYS } from '@/shared/constants/queryKey';
+import { memberKeys } from '@/shared/constants/queryKey';
 
 export const usePatchMyProfile = () => {
   const navigate = useNavigate();
@@ -13,10 +13,10 @@ export const usePatchMyProfile = () => {
   return useMutation({
     mutationFn: (profileData: UpdateProfileRequestTypes) => patchMyProfile(profileData),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.MEMBERS_ME] });
+      queryClient.invalidateQueries({ queryKey: memberKeys.me.queryKey });
       navigate(ROUTES_CONFIG.mypage.path);
 
-      notify('수정이 완료되었어요', true);
+      notify({ message: '수정이 완료되었어요', icon: 'success' });
     },
     onError: (error: Error) => {
       navigate(ROUTES_CONFIG.error.path);

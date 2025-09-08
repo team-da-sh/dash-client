@@ -1,4 +1,5 @@
 export const INSTRUCTOR_REGISTER_FORM_KEY = {
+  NICKNAME: 'nickname',
   IMAGE_URLS: 'imageUrls',
   INSTAGRAM: 'instagram',
   YOUTUBE: 'youtube',
@@ -36,3 +37,9 @@ export const MIN_VIDEO_INPUT_COUNT = 1;
 export const MAX_VIDEO_INPUT_COUNT = 5;
 
 export const INTRODUCTION_LENGTH_ERROR_MSG = '30자 이상 작성해 주세요';
+
+export const FORM_ERROR_MESSAGE = {
+  INVALID: '특수기호, 띄어쓰기는 입력할 수 없어요.',
+  DUPLICATE_DANCER_NAME: '이미 사용 중인 댄서 네임이에요.',
+  EMPTY_DANCER_NAME: '댄서 네임을 입력해 주세요.',
+};

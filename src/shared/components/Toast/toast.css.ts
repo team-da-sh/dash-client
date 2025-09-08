@@ -1,20 +1,20 @@
-import { style } from '@vanilla-extract/css';
-import { vars } from '@/shared/styles/theme.css';
+import { recipe } from '@vanilla-extract/recipes';
 
-export const toastContainerStyle = style({
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  gap: '1rem',
-
-  width: '33.5rem',
-  height: '4.2rem',
-  padding: '1.2rem 9.8rem',
-  marginBottom: '3rem',
-
-  borderRadius: '6px',
-  backgroundColor: vars.colors.gray10,
-
-  ...vars.fonts.b2_m,
-  color: vars.colors.white,
+export const toastContentStyle = recipe({
+  base: {
+    display: 'flex',
+    alignItems: 'center',
+    width: '100%',
+  },
+  variants: {
+    hasIcon: {
+      true: {
+        justifyContent: 'flex-start',
+        gap: '0.8rem',
+      },
+      false: {
+        justifyContent: 'center',
+      },
+    },
+  },
 });

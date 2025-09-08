@@ -56,10 +56,10 @@ const TeacherContent = () => {
           </>
         )}
         <div className={styles.topContainerStyle}>
-          <UnregisteredTeacher nickname={myData.nickname} />
+          <UnregisteredTeacher name={myData.name} />
           <Divider color="gray1" thickness="0.4rem" />
         </div>
-        <BottomList />
+        <BottomList userRole="TEACHER" />
       </div>
     );
   }
@@ -140,7 +140,9 @@ const TeacherContent = () => {
         </section>
       </div>
       <Divider color="gray1" thickness="0.4rem" />
-      <div className={styles.reviewContainerStyle} onClick={() => notify('해당 기능은 추후 구현 예정이에요')}>
+      <div
+        className={styles.reviewContainerStyle}
+        onClick={() => notify({ message: '해당 기능은 추후 구현 예정이에요' })}>
         <div className={sprinkles({ display: 'flex', alignItems: 'center', gap: 4 })}>
           <IcReview width={24} />
           <Text tag="b2_sb" color="gray11">
@@ -150,7 +152,7 @@ const TeacherContent = () => {
         <IcArrowRightSmallGray0732 width={32} />
       </div>
       <Divider color="gray1" thickness="0.4rem" />
-      <BottomList />
+      <BottomList userRole="TEACHER" />
       <button type="button" className={styles.classButtonStyle} onClick={handleClassButtonClick}>
         <IcPlusWhite24 width={24} />
         <Text tag="b1_sb_long" color="white">

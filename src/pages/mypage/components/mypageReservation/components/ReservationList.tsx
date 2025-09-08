@@ -1,0 +1,56 @@
+import { useNavigate } from 'react-router-dom';
+import { useGetReservations } from '@/pages/mypage/components/mypageReservation/apis/queries';
+import { type ReservationStatus } from '@/pages/mypage/components/mypageReservation/types/reservationStatus';
+import { type Reservation } from '@/pages/mypage/components/mypageReservation/types/reservationTypes';
+import { handleBoxButtonClick, handleCancelClick, handleClassCardClick } from '@/pages/mypage/utils/clickUtils';
+import BoxButton from '@/shared/components/BoxButton/BoxButton';
+import ClassCard from '@/shared/components/ClassCard';
+import { USER_ROLE } from '@/shared/constants/userRole';
+
+interface ReservationListProps {
+  status: ReservationStatus;
+  targetReservationId?: number;
+  showActions?: boolean;
+}
+
+const ReservationList = ({ status, targetReservationId, showActions = true }: ReservationListProps) => {
+  const { data: reservationData } = useGetReservations(status);
+
+  const navigate = useNavigate();
+
+  // 특정 예약 ID가 제공된 경우 해당 예약만 필터링
+  const filteredReservations = targetReservationId
+    ? reservationData?.reservations.filter(
+        (reservation: Reservation) => reservation.reservationId === targetReservationId
+      )
+    : reservationData?.reservations;
+
+  return (
+    <>
+      {filteredReservations?.map((reservation: Reservation) => (
+        <ClassCard key={reservation.reservationId} onClick={() => handleClassCardClick(navigate, reservation.lessonId)}>
+          <ClassCard.Header
+            role={USER_ROLE.MEMBER}
+            status={reservation.reservationStatus}
+            date={reservation.reservationDateTime}
+          />
+          <ClassCard.Body {...reservation} />
+          {showActions && (
+            <ClassCard.Footer showAsk={true}>
+              <BoxButton onClick={(e) => handleCancelClick(e, navigate, reservation)} variant="temp">
+                취소하기
+              </BoxButton>
+              <BoxButton
+                variant="outline"
+                onClick={(e) => handleBoxButtonClick(e, navigate, reservation.reservationId, true)}>
+                상세보기
+              </BoxButton>
+            </ClassCard.Footer>
+          )}
+        </ClassCard>
+      ))}
+    </>
+  );
+};
+
+export default ReservationList;

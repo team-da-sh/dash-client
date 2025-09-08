@@ -52,6 +52,7 @@ export const vars = createGlobalTheme(':root', {
     kakao02: '#3C1E1E',
 
     // opacity
+    black50: 'rgba(0, 0, 0, 0.5)',
     black70: 'rgba(0, 0, 0, 0.7)',
     white50: 'rgba(255, 255, 255, 0.5)',
 
@@ -210,6 +211,8 @@ export const vars = createGlobalTheme(':root', {
     three: '3',
     four: '4',
     five: '5',
+    backdrop: '9',
+    modal: '10',
   },
   tags: {
     h1_sb: 'h1_sb',
