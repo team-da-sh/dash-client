@@ -12,9 +12,10 @@ import { USER_ROLE } from '@/shared/constants/userRole';
 interface ReservationListProps {
   status: ReservationStatus;
   targetReservationId?: number;
+  showActions?: boolean;
 }
 
-const ReservationList = ({ status, targetReservationId }: ReservationListProps) => {
+const ReservationList = ({ status, targetReservationId, showActions = true }: ReservationListProps) => {
   const { data: reservationData } = useGetReservations(status);
 
   const navigate = useNavigate();
@@ -41,6 +42,7 @@ const ReservationList = ({ status, targetReservationId }: ReservationListProps) 
               date={reservation.reservationDateTime}
             />
             <ClassCard.Body {...reservation} />
+
             <ClassCard.Footer showAsk={true}>
               <BoxButton onClick={(e) => handleCancelClick(e, navigate, reservation)} variant="temp">
                 취소하기

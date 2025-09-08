@@ -3,27 +3,28 @@ import { vars } from '@/shared/styles/theme.css';
 
 export const layoutStyle = style({
   height: 'calc(100dvh - 6rem)',
+  padding: '3.3rem 2rem',
 
   backgroundColor: vars.colors.gray01,
 });
 
-export const containerStyle = style({
+export const classInfoTitleStyle = style({
+  marginBottom: '1.2rem',
+});
+
+export const classInfoWrapper = style({
   display: 'flex',
   flexDirection: 'column',
-
-  padding: '0rem 2rem',
-  gap: '1.8rem',
+  gap: '0.8rem',
 });
 
-export const mainTextStyle = style({
-  padding: '2rem 0rem 1.6rem 0rem',
-});
-
-export const wrapperStyle = style({
+export const buttonWrapper = style({
   display: 'flex',
+  gap: '0.8rem',
+  justifyContent: 'center',
 
   width: '100%',
-  justifyContent: 'center',
+  marginTop: '0.8rem',
 });
 
 export const cardStyle = style({
@@ -40,9 +41,9 @@ export const classHeaderStyle = style({
   marginBottom: '1.6rem',
 });
 
-export const applicantHeaderStyle = style({
+export const titleStyle = style({
   marginTop: '3.2rem',
-  marginBottom: '1.6rem',
+  marginBottom: '1.2rem',
 });
 
 export const applyDateStyle = style({
@@ -50,4 +51,12 @@ export const applyDateStyle = style({
   justifyContent: 'flex-end',
 
   marginTop: '1.2rem',
+});
+
+export const applicantWrapper = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '1.2rem',
+
+  marginTop: '4rem',
 });

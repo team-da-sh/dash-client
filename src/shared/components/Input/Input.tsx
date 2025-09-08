@@ -12,6 +12,7 @@ interface InputPropTypes extends InputHTMLAttributes<HTMLInputElement> {
   showMaxLength?: boolean;
   value?: string;
   maxLength?: number;
+  backgroundColor?: 'white' | 'gray';
 }
 
 const Input = (
@@ -24,6 +25,7 @@ const Input = (
     helperTextState = 'error',
     showMaxLength,
     maxLength,
+    backgroundColor = 'gray',
     ...props
   }: InputPropTypes,
   ref: ForwardedRef<HTMLInputElement>
@@ -53,7 +55,7 @@ const Input = (
 
   return (
     <div className={style.allContainerStyle}>
-      <div className={style.containerStyle({ state: inputState })}>
+      <div className={style.containerStyle({ state: inputState, backgroundColor })}>
         <input
           {...props}
           ref={ref}

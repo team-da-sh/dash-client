@@ -1,6 +1,7 @@
 import { useFormContext } from 'react-hook-form';
+import { useGetNicknameDuplicate } from '@/pages/instructorRegister/apis/queries';
 import * as styles from '@/pages/instructorRegister/components/DancerNameSection/dancerNameSection.css';
-import { FORM_ERROR_MESSAGE } from '@/pages/instructorRegister/constants/registerSection';
+import { FORM_ERROR_MESSAGE, INSTRUCTOR_REGISTER_FORM_KEY } from '@/pages/instructorRegister/constants/registerSection';
 import type {
   duplicateStateTypes,
   instructorRegisterFormTypes,
@@ -18,24 +19,35 @@ const DancerNameSection = ({ duplicateState, setDuplicateState }: DancerNameSect
   const {
     register,
     setError,
+    clearErrors,
     formState: { errors },
     watch,
   } = useFormContext<instructorRegisterFormTypes>();
 
   const error = errors.nickname;
-  const dancerName = watch('nickname');
+  const dancerName = watch(INSTRUCTOR_REGISTER_FORM_KEY.NICKNAME);
 
-  const testDuplicateData = false; // API 임시 테스트 데이터
+  // 강사 닉네임 중복검사
+  const { mutate: checkNicknameDuplicate } = useGetNicknameDuplicate();
 
   const fetchDuplicateCheck = async () => {
-    // data 받고 중복 여부 true/false에 따라 분기 처리
-    // TODO : 중복 확인 API 연결 및 에러 분기 처리
-    if (testDuplicateData) {
-      setError('nickname', { type: 'manual', message: FORM_ERROR_MESSAGE.DUPLICATE_DANCER_NAME });
-      setDuplicateState('duplicate');
-    } else {
-      setDuplicateState('available');
-    }
+    checkNicknameDuplicate(dancerName, {
+      onSuccess: ({ isDuplicated }) => {
+        if (isDuplicated) {
+          setError(INSTRUCTOR_REGISTER_FORM_KEY.NICKNAME, {
+            type: 'manual',
+            message: FORM_ERROR_MESSAGE.DUPLICATE_DANCER_NAME,
+          });
+          setDuplicateState('duplicate');
+        } else {
+          clearErrors(INSTRUCTOR_REGISTER_FORM_KEY.NICKNAME);
+          setDuplicateState('available');
+        }
+      },
+      onError: () => {
+        console.error('닉네임 중복 검사 실패');
+      },
+    });
   };
 
   const shouldDisableButton = !!error || duplicateState === 'available';

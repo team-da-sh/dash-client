@@ -8,7 +8,7 @@ type SearchKeyword = string | number | ClassListParamsTypes;
 
 export const lessonKeys = createQueryKeys('lesson', {
   detail: (lessonId: number) => [lessonId],
-
+  reserve: (lessonId: number) => ['reserve', lessonId],
   list: {
     queryKey: null,
     contextQueries: {
@@ -68,8 +68,12 @@ export const teacherKeys = createQueryKeys('teacher', {
           status: { queryKey: null },
         },
       },
+      account: { queryKey: null },
     },
   },
+  nicknameValidation: (nickname: string) => ({
+    queryKey: [nickname],
+  }),
 });
 
 export const myPageKeys = createQueryKeys('myPage', {
@@ -77,6 +81,7 @@ export const myPageKeys = createQueryKeys('myPage', {
 });
 
 export const advertisementKeys = createQueryKeys('advertisements', {});
+export const bankKeys = createQueryKeys('banks', {});
 
 export const locationKeys = createQueryKeys('locations', {
   search: (keyword: any) => ({ queryKey: [keyword] }),
@@ -93,6 +98,7 @@ export const queryKeys = mergeQueryKeys(
   teacherKeys,
   myPageKeys,
   advertisementKeys,
+  bankKeys,
   locationKeys,
   authKeys
 );
