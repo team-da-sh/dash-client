@@ -136,18 +136,6 @@ const AccountRegister = () => {
             계좌 정보
           </Head>
 
-          {/* TODO: 검토 후 삭제 예정 (아래 div로 대체한 상태) */}
-          {/* <Input
-            placeholder="은행 선택"
-            value={bank?.name || ''}
-            readOnly
-            onClick={(e) => {
-              e.currentTarget.blur();
-              setIsBankSheetOpen(true);
-            }}
-            rightAddOn={<SvgIcArrowDownGray1032 width={'3.2rem'} />}
-          /> */}
-
           <button
             type="button"
             className={styles.bankSelectContainerStyle}
