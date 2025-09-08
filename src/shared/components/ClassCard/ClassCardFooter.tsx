@@ -5,10 +5,10 @@ import Text from '@/shared/components/Text/Text';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
 
 interface ClassCardFooterProps extends PropsWithChildren {
-  showAsk: boolean;
+  showAsk?: boolean;
 }
 
-const ClassCardFooter = ({ showAsk, children }: ClassCardFooterProps) => {
+const ClassCardFooter = ({ showAsk = false, children }: ClassCardFooterProps) => {
   const handleTextClick = (e: React.MouseEvent) => {
     e.stopPropagation();
     window.open('https://forms.gle/JMYzQGxEdVHVogsE6', '_blank');

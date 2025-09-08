@@ -1,10 +1,11 @@
 import clsx from 'clsx';
 import * as styles from '@/pages/accountRegister/components/ConfirmBottomSheet/confirmBottomSheet.css';
-import SvgIcClearMain0420 from '@/shared/assets/svg/IcClearMain0420';
+import SvgIcClear from '@/shared/assets/svg/IcClear';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import Head from '@/shared/components/Head/Head';
 import Text from '@/shared/components/Text/Text';
 import useOutsideClick from '@/shared/hooks/useOutsideClick';
+import { vars } from '@/shared/styles/theme.css';
 
 interface ConfirmBottomSheetPropTypes {
   isOpen: boolean;
@@ -22,7 +23,7 @@ const ConfirmBottomSheet = ({ isOpen, onClose, depositor, bank, accountNumber }:
     <div className={styles.overlayStyle}>
       <div className={clsx(styles.containerStyle, isOpen && styles.slideUpStyle)} ref={ref}>
         <div className={styles.topContainerStyle}>
-          <SvgIcClearMain0420 width={'4.4rem'} height={'4.4rem'} />
+          <SvgIcClear width={'4.4rem'} height={'4.4rem'} color={vars.colors.main03} />
           <div className={styles.titleStyle}>
             <Head level="h1" tag="h5_sb">
               입력하신 내용이 맞나요?
