@@ -1,6 +1,6 @@
 import toast from 'react-hot-toast';
-import IcCautionAlert0120 from '@/shared/assets/svg/IcCautionAlert0120';
-import IcClearMain0420 from '@/shared/assets/svg/IcClearMain0420';
+import SvgIcCautionAlert0120 from '@/shared/assets/svg/IcCautionAlert0120';
+import SvgIcClear from '@/shared/assets/svg/IcClear';
 import { toastContentStyle } from '@/shared/components/Toast/toast.css';
 import { vars } from '@/shared/styles/theme.css';
 
@@ -9,9 +9,10 @@ export type iconType = 'success' | 'fail' | 'default';
 const selectIcon = (icon: iconType) => {
   switch (icon) {
     case 'success':
-      return <IcClearMain0420 width={20} />;
+      return <SvgIcClear width={20} color={vars.colors.main03} />;
+
     case 'fail':
-      return <IcCautionAlert0120 width={20} />;
+      return <SvgIcCautionAlert0120 width={20} />;
     default:
       return;
   }

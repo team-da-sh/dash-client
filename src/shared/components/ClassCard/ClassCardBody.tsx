@@ -37,12 +37,16 @@ const ClassCardBody = ({ name, imageUrl, genre, level, location, startDateTime, 
           styles.cardContentStyle
         )}>
         <div className={sprinkles({ display: 'flex', gap: 3 })}>
-          <Tag type="genre" size="small">
-            {genre && genreMapping[genre]}
-          </Tag>
-          <Tag type="level" size="small">
-            {level && levelMapping[level]}
-          </Tag>
+          {genre && (
+            <Tag type="genre" size="small">
+              {genreMapping[genre]}
+            </Tag>
+          )}
+          {level && (
+            <Tag type="level" size="small">
+              {level && levelMapping[level]}
+            </Tag>
+          )}
         </div>
         <Head level="h2" tag="b1_sb" className={styles.lessonNameStyle}>
           {name}

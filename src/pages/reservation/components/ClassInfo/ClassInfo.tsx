@@ -6,7 +6,7 @@ import { sprinkles } from '@/shared/styles/sprinkles.css';
 import { calculatePeriod, formatSimpleDate } from '@/shared/utils/dateCalculate';
 
 interface ClassInfoPropTypes {
-  name: string;
+  lessonName: string;
   location: string;
   locationDetail?: string;
   teacherNickname: string;
@@ -20,7 +20,7 @@ interface LessonRoundPropTypes {
 }
 
 const ClassInfo = ({
-  name,
+  lessonName,
   location,
   locationDetail,
   teacherNickname,
@@ -31,7 +31,7 @@ const ClassInfo = ({
     <div className={styles.infoContainerStyle}>
       <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 20 })}>
         <Head level="h5" tag="b1_sb">
-          {name}
+          {lessonName}
         </Head>
         <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 10 })}>
           <div className={sprinkles({ display: 'flex', gap: 12 })}>
