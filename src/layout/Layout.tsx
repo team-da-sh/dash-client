@@ -7,8 +7,9 @@ const Layout = () => {
 
   const isSearchPath = pathname === ROUTES_CONFIG.search.path;
   const isOnboardingPath = pathname === ROUTES_CONFIG.onboarding.path;
+  const isReservationPath = pathname.startsWith('/reservation/');
 
-  const shouldShowHeader = !isSearchPath && !isOnboardingPath;
+  const shouldShowHeader = !isSearchPath && !isOnboardingPath && !isReservationPath;
 
   return (
     <>

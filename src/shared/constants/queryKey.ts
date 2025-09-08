@@ -8,7 +8,7 @@ type SearchKeyword = string | number | ClassListParamsTypes;
 
 export const lessonKeys = createQueryKeys('lesson', {
   detail: (lessonId: number) => [lessonId],
-
+  reserve: (lessonId: number) => ['reserve', lessonId],
   list: {
     queryKey: null,
     contextQueries: {
