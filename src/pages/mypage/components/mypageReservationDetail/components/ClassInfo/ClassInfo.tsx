@@ -1,22 +1,15 @@
 import {
   textLabelStyle,
-  lessonNameStyle,
-  cardImageStyle,
   infoContainerStyle,
 } from '@/pages/mypage/components/mypageReservationDetail/components/ClassInfo/ClassInfo.css';
-import Head from '@/shared/components/Head/Head';
-import Tag from '@/shared/components/Tag/Tag';
 import Text from '@/shared/components/Text/Text';
-import { genreMapping, levelMapping } from '@/shared/constants';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
 import { calculatePeriod, formatSimpleDate } from '@/shared/utils/dateCalculate';
 
 interface ClassInfoPropTypes {
-  name: string;
-  genre: string;
   location: string;
   locationDetail?: string;
-  level: string;
+
   lessonRound?: LessonRoundPropTypes[];
 }
 
@@ -25,26 +18,9 @@ interface LessonRoundPropTypes {
   endDateTime: string;
 }
 
-const ClassInfo = ({ name, genre, location, locationDetail, level, lessonRound = [] }: ClassInfoPropTypes) => {
+const ClassInfo = ({ location, locationDetail, lessonRound = [] }: ClassInfoPropTypes) => {
   return (
     <section className={infoContainerStyle}>
-      <div className={sprinkles({ display: 'flex', gap: 8 })}>
-        <img className={cardImageStyle} alt="수업" />
-        <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 8 })}>
-          <div className={sprinkles({ display: 'flex', gap: 3 })}>
-            <Tag type="genre" size="small">
-              {genre && genreMapping[genre]}
-            </Tag>
-            <Tag type="level" size="small">
-              {level && levelMapping[level]}
-            </Tag>
-          </div>
-          <Head level="h2" tag="b1_sb" className={lessonNameStyle}>
-            {name}
-          </Head>
-        </div>
-      </div>
-
       <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 12 })}>
         <div className={sprinkles({ display: 'flex', gap: 12 })}>
           <Text tag="b3_sb_narrow" color="gray7" className={textLabelStyle}>

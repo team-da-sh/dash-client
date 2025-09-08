@@ -18,22 +18,3 @@ export const textLabelStyle = style({
   width: '4.4rem',
   whiteSpace: 'nowrap',
 });
-
-export const lessonNameStyle = style({
-  width: '100%',
-  whiteSpace: 'nowrap',
-  overflow: 'hidden',
-  textOverflow: 'ellipsis',
-});
-
-export const cardImageStyle = style({
-  width: '8.4rem',
-  height: '8.4rem',
-  flexShrink: 0,
-
-  objectFit: 'cover',
-
-  borderRadius: 3.4,
-
-  backgroundColor: vars.colors.gray04,
-});

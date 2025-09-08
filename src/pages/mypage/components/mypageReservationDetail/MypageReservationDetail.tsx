@@ -2,19 +2,18 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useGetReservationsDetail } from '@/pages/mypage/components/mypageReservationDetail/apis/queries';
 import ApplicantInfo from '@/pages/mypage/components/mypageReservationDetail/components/ApplicantInfo/ApplicantInfo';
 import ClassInfo from '@/pages/mypage/components/mypageReservationDetail/components/ClassInfo/ClassInfo';
-import RegisterProgress from '@/pages/mypage/components/mypageReservationDetail/components/RegisterProgress/RegisterProgress';
+import ReservationProgress from '@/pages/mypage/components/mypageReservationDetail/components/ReservationProgress/ReservationProgress';
 import * as styles from '@/pages/mypage/components/mypageReservationDetail/mypageReservationDetail.css';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
+import ClassCard from '@/shared/components/ClassCard';
 import Head from '@/shared/components/Head/Head';
 
 const MyPageReservationDetail = () => {
-  const { id } = useParams<{ id: string }>();
-
-  const lessonId = Number(id);
+  const { id: lessonId } = useParams<{ id: string }>();
 
   const navigate = useNavigate();
 
-  const { data } = useGetReservationsDetail(lessonId);
+  const { data } = useGetReservationsDetail(Number(lessonId));
 
   if (!data) {
     return <div>오류 data 없음 </div>;
@@ -38,8 +37,13 @@ const MyPageReservationDetail = () => {
         </Head>
 
         <div className={styles.classInfoWrapper}>
-          <RegisterProgress />
-          <ClassInfo lessonRound={data.rounds} location={data.location} name={data.lessonName} />
+          <ReservationProgress reservationStatus={data.reservationStatus} />
+          <ClassCard>
+            <ClassCard.Body name={data.lessonName} level={data.level} genre={data.genre} imageUrl={data.imageUrl} />
+            <ClassCard.Footer>
+              <ClassInfo lessonRound={data.rounds} location={data.location} />
+            </ClassCard.Footer>
+          </ClassCard>
         </div>
       </section>
 

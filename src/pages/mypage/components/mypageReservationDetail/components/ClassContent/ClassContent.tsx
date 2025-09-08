@@ -1,6 +1,5 @@
 import { useParams } from 'react-router-dom';
 import { useGetReservationsDetail } from '@/pages/mypage/components/mypageReservationDetail/apis/queries';
-import ClassInfo from '@/pages/reservation/components/ClassInfo/ClassInfo';
 import Text from '@/shared/components/Text/Text';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
 import { getStatusMessage } from '@/shared/utils/getStatusMessage';
@@ -25,15 +24,6 @@ const ClassContent = () => {
       <Text tag="b2_m_long" color="gray8">
         {getStatusMessage(status, data?.dDay)}
       </Text>
-
-      <ClassInfo
-        name={data.lessonName}
-        location={data.location}
-        locationDetail={data.detailedAddress}
-        teacherNickname={data.nickname}
-        level={data.level}
-        lessonRound={data.rounds}
-      />
     </div>
   );
 };
