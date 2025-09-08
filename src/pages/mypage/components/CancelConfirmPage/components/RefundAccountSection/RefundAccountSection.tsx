@@ -14,6 +14,7 @@ interface Bank {
 
 interface AccountFormData {
   accountNumber: string;
+  bank: { bankId: number; bankName: string; bankImageUrl: string };
 }
 
 interface RefundAccountSectionProps {
@@ -21,23 +22,17 @@ interface RefundAccountSectionProps {
   selectedBank: Bank;
   onBankSelectClick: () => void;
   register: UseFormRegister<AccountFormData>;
-  accountNumber: string;
 }
 
-const RefundAccountSection = ({
-  isVisible,
-  selectedBank,
-  onBankSelectClick,
-  register,
-  accountNumber,
-}: RefundAccountSectionProps) => {
-  const { name, onChange, ref } = register('accountNumber');
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (ONLY_NUMBER.test(e.target.value)) {
-      onChange(e);
-    }
-  };
+const RefundAccountSection = ({ isVisible, selectedBank, onBankSelectClick, register }: RefundAccountSectionProps) => {
+  const registerAccount = register('accountNumber', {
+    onChange: (e) => {
+      if (!ONLY_NUMBER.test(e.target.value)) {
+        e.preventDefault();
+        return;
+      }
+    },
+  });
 
   if (!isVisible) return null;
 
@@ -62,15 +57,7 @@ const RefundAccountSection = ({
             )}
             <SvgIcArrowDownGray1032 width={'3.2rem'} />
           </button>
-          <Input
-            backgroundColor="white"
-            placeholder="계좌번호 입력"
-            inputMode="numeric"
-            value={accountNumber}
-            name={name}
-            onChange={handleChange}
-            ref={ref}
-          />
+          <Input backgroundColor="white" placeholder="계좌번호 입력" inputMode="numeric" {...registerAccount} />
         </div>
       </div>
     </div>

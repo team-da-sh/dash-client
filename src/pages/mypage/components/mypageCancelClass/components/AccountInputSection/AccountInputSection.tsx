@@ -1,10 +1,10 @@
 import type { UseFormRegister } from 'react-hook-form';
+import * as styles from '@/pages/mypage/components/mypageCancelClass/components/AccountInputSection/accountInputSetion.css';
 import SvgIcArrowDownGray1032 from '@/shared/assets/svg/IcArrowDownGray1032';
 import Head from '@/shared/components/Head/Head';
 import Input from '@/shared/components/Input/Input';
 import Text from '@/shared/components/Text/Text';
 import { ONLY_NUMBER } from '@/shared/constants/regex';
-import * as styles from './accountInputSetion.css';
 
 interface Bank {
   bankId: number;
@@ -21,23 +21,17 @@ interface AccountInputSectionProps {
   selectedBank: Bank;
   onBankSelectClick: () => void;
   register: UseFormRegister<AccountFormData>;
-  accountNumber: string;
 }
 
-const AccountInputSection = ({
-  isVisible,
-  selectedBank,
-  onBankSelectClick,
-  register,
-  accountNumber,
-}: AccountInputSectionProps) => {
-  const { name, onChange, ref } = register('accountNumber');
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (ONLY_NUMBER.test(e.target.value)) {
-      onChange(e);
-    }
-  };
+const AccountInputSection = ({ isVisible, selectedBank, onBankSelectClick, register }: AccountInputSectionProps) => {
+  const registerAccount = register('accountNumber', {
+    onChange: (e) => {
+      if (!ONLY_NUMBER.test(e.target.value)) {
+        e.preventDefault();
+        return;
+      }
+    },
+  });
 
   if (!isVisible) return null;
 
@@ -52,7 +46,11 @@ const AccountInputSection = ({
           <button type="button" className={styles.bankSelectContainerStyle} onClick={onBankSelectClick}>
             {selectedBank.bankImageUrl && selectedBank.bankName ? (
               <div className={styles.bankInfoContainerStyle}>
-                <img src={selectedBank.bankImageUrl} alt="은행 로고" className={styles.bankSelectImageStyle} />
+                <img
+                  src={selectedBank.bankImageUrl}
+                  alt={selectedBank.bankName}
+                  className={styles.bankSelectImageStyle}
+                />
                 <Text tag="b2_sb_long">{selectedBank.bankName}</Text>
               </div>
             ) : (
@@ -62,15 +60,7 @@ const AccountInputSection = ({
             )}
             <SvgIcArrowDownGray1032 width={'3.2rem'} />
           </button>
-          <Input
-            backgroundColor="white"
-            placeholder="계좌번호 입력"
-            inputMode="numeric"
-            value={accountNumber}
-            name={name}
-            onChange={handleChange}
-            ref={ref}
-          />
+          <Input backgroundColor="white" placeholder="계좌번호 입력" inputMode="numeric" {...registerAccount} />
         </div>
       </div>
     </div>

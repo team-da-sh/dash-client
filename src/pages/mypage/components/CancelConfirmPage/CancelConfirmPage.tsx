@@ -45,31 +45,40 @@ const CancelConfirmPage = () => {
   const isAfterDeposit = depositStatus === 'after';
 
   const [isBankSheetOpen, setIsBankSheetOpen] = useState(false);
-  const [selectedBank, setSelectedBank] = useState({
-    bankId: navigationState?.bankInfo.bankId || 0,
-    bankName: navigationState?.bankInfo.bankName || '',
-    bankImageUrl: navigationState?.bankInfo.bankImageUrl || '',
-  });
+  type FormValues = {
+    accountNumber: string;
+    bank: { bankId: number; bankName: string; bankImageUrl: string };
+  };
   const [isPolicyAgreed, setIsPolicyAgreed] = useState(false);
 
-  const { register, watch } = useForm({
+  const { register, watch, setValue } = useForm<FormValues>({
     defaultValues: {
       accountNumber: navigationState?.accountNumber || '',
+      bank: {
+        bankId: navigationState?.bankInfo.bankId || 0,
+        bankName: navigationState?.bankInfo.bankName || '',
+        bankImageUrl: navigationState?.bankInfo.bankImageUrl || '',
+      },
     },
   });
 
   const accountNumber = watch('accountNumber');
+  const selectedBank = watch('bank');
 
   const handleBankSheetClose = () => {
     setIsBankSheetOpen(false);
   };
 
   const handleBankSelect = (selectedBankId: number, selectedBankName: string, imageUrl: string) => {
-    setSelectedBank({
-      bankId: selectedBankId,
-      bankName: selectedBankName,
-      bankImageUrl: imageUrl,
-    });
+    setValue(
+      'bank',
+      { bankId: selectedBankId, bankName: selectedBankName, bankImageUrl: imageUrl },
+      {
+        shouldDirty: true,
+        shouldTouch: true,
+        shouldValidate: false,
+      }
+    );
   };
 
   const handlePolicyAgreementChange = (isAgreed: boolean) => {
@@ -78,7 +87,7 @@ const CancelConfirmPage = () => {
 
   const isButtonActive = () => {
     if (isAfterDeposit) {
-      const isBankSelected = selectedBank.bankId > 0 && selectedBank.bankName !== '';
+      const isBankSelected = selectedBank?.bankId > 0 && selectedBank?.bankName !== '';
       const isAccountNumberValid = Boolean(accountNumber && accountNumber.trim().length > 0);
       return isBankSelected && isAccountNumberValid && isPolicyAgreed;
     }
@@ -96,8 +105,8 @@ const CancelConfirmPage = () => {
             reservationId,
             requestData: {
               deposited: isAfterDeposit,
-              bankId: isAfterDeposit ? selectedBank.bankId : undefined,
-              bankName: isAfterDeposit ? selectedBank.bankName : undefined,
+              bankId: isAfterDeposit ? selectedBank?.bankId : undefined,
+              bankName: isAfterDeposit ? selectedBank?.bankName : undefined,
               accountNumber: isAfterDeposit ? accountNumber : undefined,
             },
           });
@@ -175,7 +184,6 @@ const CancelConfirmPage = () => {
                   selectedBank={selectedBank}
                   onBankSelectClick={() => setIsBankSheetOpen(true)}
                   register={register}
-                  accountNumber={accountNumber}
                 />
 
                 <RefundPolicySection isVisible={isAfterDeposit} onAgreementChange={handlePolicyAgreementChange} />
