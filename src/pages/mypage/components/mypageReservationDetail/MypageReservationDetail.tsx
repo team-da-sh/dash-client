@@ -48,9 +48,11 @@ const MyPageReservationDetail = () => {
       </section>
 
       <section className={styles.buttonWrapper}>
-        <BoxButton variant="transparency" onClick={handleGoCancleClassPage}>
-          취소하기
-        </BoxButton>
+        {!(data.reservationStatus === 'CANCELLED' || data.reservationStatus === 'PENDING_CANCELLATION') && (
+          <BoxButton variant="transparency" onClick={handleGoCancleClassPage}>
+            취소하기
+          </BoxButton>
+        )}
         <BoxButton variant="transparency" onClick={handleGoAskPage}>
           문의하기
         </BoxButton>
