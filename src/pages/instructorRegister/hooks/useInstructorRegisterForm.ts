@@ -126,13 +126,12 @@ const useInstructorRegisterForm = ({ userRole, prevInstructorData }: UseInstruct
   useEffect(() => {
     if (!prevInstructorData) return;
 
-    // TODO: prev data에 dancerName 추가되면 주석 제거
-    // if (prevInstructorData.dancerName) {
-    // setDuplicateState('available');
-    // }
+    if (prevInstructorData.nickname) {
+      setDuplicateState('available');
+    }
 
     reset({
-      nickname: prevInstructorData.nickname || 'd',
+      nickname: prevInstructorData.nickname || '',
       imageUrls: prevInstructorData.profileImage || '',
       instagram: prevInstructorData.instagram || '',
       youtube: prevInstructorData.youtube || '',
