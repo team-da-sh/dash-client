@@ -1,9 +1,9 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
+import { postCancelReservation } from '@/pages/mypage/components/CancelConfirmPage/apis/axios/cancelReservation';
+import type { CancelReservationRequest } from '@/pages/mypage/components/CancelConfirmPage/types/cancelReservationRequest';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { memberKeys } from '@/shared/constants/queryKey';
-import { cancelReservation } from '../apis/cancelReservation';
-import type { CancelReservationRequest } from '../types/cancelRequest';
 
 export const useCancelReservation = () => {
   const queryClient = useQueryClient();
@@ -11,13 +11,13 @@ export const useCancelReservation = () => {
 
   return useMutation({
     mutationFn: ({ reservationId, requestData }: { reservationId: number; requestData: CancelReservationRequest }) =>
-      cancelReservation(reservationId, requestData),
+      postCancelReservation(reservationId, requestData),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: memberKeys.me._ctx.reservation.queryKey });
       navigate(ROUTES_CONFIG.mypageReservation.path);
     },
-    onError: (error) => {
-      console.error('예약 취소 실패:', error);
+    onError: () => {
+      navigate(ROUTES_CONFIG.error.path);
     },
   });
 };

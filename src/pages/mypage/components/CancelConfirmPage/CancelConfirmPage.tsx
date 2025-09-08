@@ -1,5 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useGetMyPage } from '@/pages/mypage/apis/queries';
+import { useCancelReservation } from '@/pages/mypage/components/CancelConfirmPage/apis/query/useCancelReservation';
 import * as styles from '@/pages/mypage/components/CancelConfirmPage/cancelConfirmPage.css';
 import { useGetReservationsDetail } from '@/pages/mypage/components/mypageReservationDetail/apis/queries';
 import ApplicantInfo from '@/pages/reservation/components/ApplicantInfo/ApplicantInfo';
@@ -9,7 +10,6 @@ import { useModalStore } from '@/common/stores/modal';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import Head from '@/shared/components/Head/Head';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
-import { useCancelReservation } from './hooks/useCancelReservation';
 
 const CancelConfirmPage = () => {
   const { id } = useParams<{ id: string }>();
@@ -94,11 +94,7 @@ const CancelConfirmPage = () => {
           </div>
 
           <div className={sprinkles({ pt: 24, pr: 20, pb: 24, pl: 20 })}>
-            <BoxButton
-              variant="primary"
-              onClick={handleConfirm}
-              className={sprinkles({ width: '100%' })}
-              disabled={isPending}>
+            <BoxButton variant="primary" onClick={handleConfirm} disabled={isPending}>
               {isPending ? '처리 중...' : '취소하기'}
             </BoxButton>
           </div>
