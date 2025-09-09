@@ -1,3 +1,4 @@
+import type { TabStatus } from '@/pages/instructor/classDetail/ClassDetail';
 import StudentCard from '@/pages/instructor/classDetail/components/StudentCard/StudentCard';
 import {
   pannelTitleWrapper,
@@ -14,9 +15,10 @@ interface StudentListProps {
   reservationStatus: ReservationStatus;
   studentList: Student[];
   lessonId: number;
+  selectedTab: TabStatus;
 }
 
-const StudentList = ({ reservationStatus, studentList, lessonId }: StudentListProps) => {
+const StudentList = ({ reservationStatus, studentList, lessonId, selectedTab }: StudentListProps) => {
   return (
     <>
       {studentList.length > 0 && (
@@ -30,7 +32,7 @@ const StudentList = ({ reservationStatus, studentList, lessonId }: StudentListPr
 
           <ul className={studentListWrapper}>
             {studentList.map((student, index) => (
-              <StudentCard index={index} studentData={student} lessonId={lessonId} />
+              <StudentCard index={index} studentData={student} lessonId={lessonId} selectedTab={selectedTab} />
             ))}
           </ul>
         </>

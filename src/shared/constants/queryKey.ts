@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { createQueryKeys, mergeQueryKeys } from '@lukemorales/query-key-factory';
+import type { TabStatus } from '@/pages/instructor/classDetail/ClassDetail';
 import type { LessonStatus } from '@/pages/instructor/lessonList/types/lessonStatus';
 import type { ReservationStatus } from '@/pages/mypage/components/mypageReservation/types/reservationStatus';
 import type { ClassListParamsTypes } from '@/pages/search/types/api';
@@ -64,7 +65,7 @@ export const teacherKeys = createQueryKeys('teacher', {
             queryKey: [status],
           }),
           thumbnails: { queryKey: null },
-          students: (lessonId: number) => ({ queryKey: [lessonId] }),
+          students: (lessonId: number, status: TabStatus) => ({ queryKey: [lessonId, status] }),
           status: { queryKey: null },
         },
       },
