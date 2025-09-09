@@ -22,6 +22,7 @@ export const API_URL = {
   TEACHERS: '/api/v1/teachers',
   TEACHER_DETAIL: '/api/v1/teachers',
   TEACHERS_ME: '/api/v1/teachers/me',
+  TEACHERS_LESSONS_DETAIL: '/api/v1/teachers/me/lessons',
   TEACHERS_LESSONS: (status: LessonStatus) => {
     return status === 'ALL' ? '/api/v1/teachers/me/lessons' : `/api/v1/teachers/me/lessons?status=${status}`;
   },
@@ -31,6 +32,10 @@ export const API_URL = {
   TEACHERS_POPULAR: '/api/v1/teachers/popular',
   TEACHERS_SEARCH: '/api/v1/teachers?keyword=:keyword',
   TEACHERS_LESSON_STATUS: '/api/v1/teachers/me/lessons/status',
+  TEACHERS_LESSON_CHANGE_APPROVE: (lessonId: number, reservationId: number) =>
+    `/api/v1/teachers/me/lessons/${lessonId}/${reservationId}/change-approve`,
+  TEACHERS_LESSON_CHANGE_CANCEL: (lessonId: number, reservationId: number) =>
+    `/api/v1/teachers/me/lessons/${lessonId}/${reservationId}/change-cancel`,
   TEACHER_NICKNAME_VALIDATION: '/api/v1/teachers/nickname-validation',
 
   LESSONS: '/api/v1/lessons',

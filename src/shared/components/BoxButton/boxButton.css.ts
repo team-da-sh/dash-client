@@ -40,7 +40,24 @@ export const buttonStyle = recipe({
           cursor: 'default',
         },
       },
+      quaternary: {
+        padding: '0.8rem 0',
 
+        backgroundColor: vars.colors.gray01,
+
+        color: vars.colors.main04,
+
+        ...vars.fonts.b3_m_narrow,
+
+        '&:disabled': {
+          border: `0.5px solid ${vars.colors.gray04}`,
+          backgroundColor: vars.colors.gray01,
+
+          color: vars.colors.gray05,
+
+          cursor: 'default',
+        },
+      },
       outline: {
         padding: '0.8rem 0',
 

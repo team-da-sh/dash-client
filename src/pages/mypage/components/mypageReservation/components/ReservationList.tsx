@@ -1,10 +1,12 @@
 import { useNavigate } from 'react-router-dom';
+import { emptyTextStyle } from '@/pages/instructor/lessonList/lessonList.css';
 import { useGetReservations } from '@/pages/mypage/components/mypageReservation/apis/queries';
 import { type ReservationStatus } from '@/pages/mypage/components/mypageReservation/types/reservationStatus';
 import { type Reservation } from '@/pages/mypage/components/mypageReservation/types/reservationTypes';
 import { handleBoxButtonClick, handleCancelClick, handleClassCardClick } from '@/pages/mypage/utils/clickUtils';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import ClassCard from '@/shared/components/ClassCard';
+import Text from '@/shared/components/Text/Text';
 import { USER_ROLE } from '@/shared/constants/userRole';
 
 interface ReservationListProps {
@@ -25,30 +27,40 @@ const ReservationList = ({ status, targetReservationId, showActions = true }: Re
       )
     : reservationData?.reservations;
 
+  if (!filteredReservations) return <></>;
+
   return (
     <>
-      {filteredReservations?.map((reservation: Reservation) => (
-        <ClassCard key={reservation.reservationId} onClick={() => handleClassCardClick(navigate, reservation.lessonId)}>
-          <ClassCard.Header
-            role={USER_ROLE.MEMBER}
-            status={reservation.reservationStatus}
-            date={reservation.reservationDateTime}
-          />
-          <ClassCard.Body {...reservation} />
-          {showActions && (
-            <ClassCard.Footer showAsk={true}>
-              <BoxButton onClick={(e) => handleCancelClick(e, navigate, reservation)} variant="temp">
-                취소하기
-              </BoxButton>
-              <BoxButton
-                variant="outline"
-                onClick={(e) => handleBoxButtonClick(e, navigate, reservation.reservationId, true)}>
-                상세보기
-              </BoxButton>
-            </ClassCard.Footer>
-          )}
-        </ClassCard>
-      ))}
+      {filteredReservations?.length > 0 ? (
+        filteredReservations?.map((reservation: Reservation) => (
+          <ClassCard
+            key={reservation.reservationId}
+            onClick={() => handleClassCardClick(navigate, reservation.lessonId)}>
+            <ClassCard.Header
+              role={USER_ROLE.MEMBER}
+              status={reservation.reservationStatus}
+              date={reservation.reservationDateTime}
+            />
+            <ClassCard.Body {...reservation} />
+            {showActions && (
+              <ClassCard.Footer showAsk={true}>
+                <BoxButton onClick={(e) => handleCancelClick(e, navigate, reservation)} variant="temp">
+                  취소하기
+                </BoxButton>
+                <BoxButton
+                  variant="outline"
+                  onClick={(e) => handleBoxButtonClick(e, navigate, reservation.reservationId, true)}>
+                  상세보기
+                </BoxButton>
+              </ClassCard.Footer>
+            )}
+          </ClassCard>
+        ))
+      ) : (
+        <Text tag="b1_sb" color="gray7" className={emptyTextStyle}>
+          해당하는 클래스가 없어요.
+        </Text>
+      )}
     </>
   );
 };
