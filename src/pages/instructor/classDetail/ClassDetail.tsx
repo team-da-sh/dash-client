@@ -13,14 +13,14 @@ import { notify } from '@/shared/components/Toast/Toast';
 import { USER_ROLE } from '@/shared/constants/userRole';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
 
-type TabStatus = 'APPROVED' | 'CANCELLED';
+export type TabStatus = 'APPROVE' | 'CANCEL';
 
 const ClassDetail = () => {
   const { id } = useParams<{ id: string }>();
 
-  const { data: lessonData } = useGetLessonDetail(Number(id));
+  const [selectedTab, setSelectedTab] = useState<TabStatus>('APPROVE');
 
-  const [selectedTab, setSelectedTab] = useState<TabStatus>('APPROVED');
+  const { data: lessonData } = useGetLessonDetail(Number(id), selectedTab);
 
   const handleTabClick = (tabId: TabStatus) => {
     setSelectedTab(tabId);
@@ -65,14 +65,14 @@ const ClassDetail = () => {
           <TabRoot>
             <TabList>
               <TabButton
-                isSelected={selectedTab === 'APPROVED'}
-                onClick={() => handleTabClick('APPROVED')}
+                isSelected={selectedTab === 'APPROVE'}
+                onClick={() => handleTabClick('APPROVE')}
                 colorScheme="secondary">
                 승인
               </TabButton>
               <TabButton
-                isSelected={selectedTab === 'CANCELLED'}
-                onClick={() => handleTabClick('CANCELLED')}
+                isSelected={selectedTab === 'CANCEL'}
+                onClick={() => handleTabClick('CANCEL')}
                 colorScheme="secondary">
                 취소
               </TabButton>
@@ -80,7 +80,7 @@ const ClassDetail = () => {
 
             <hr className={styles.dividerStyle} />
 
-            <TabPanel key={1} isSelected={selectedTab === 'APPROVED'}>
+            <TabPanel key={1} isSelected={selectedTab === 'APPROVE'}>
               {lessonData?.students.some(
                 (student) =>
                   student.reservationStatus === 'PENDING_APPROVAL' || student.reservationStatus === 'APPROVED'
@@ -92,6 +92,7 @@ const ClassDetail = () => {
                       lessonData?.students.filter((student) => student.reservationStatus === 'PENDING_APPROVAL') ?? []
                     }
                     lessonId={lessonData.id}
+                    selectedTab={selectedTab}
                   />
                   <StudentList
                     reservationStatus="APPROVED"
@@ -99,6 +100,7 @@ const ClassDetail = () => {
                       lessonData?.students.filter((student) => student.reservationStatus === 'APPROVED') ?? []
                     }
                     lessonId={lessonData.id}
+                    selectedTab={selectedTab}
                   />
                 </>
               ) : (
@@ -107,7 +109,7 @@ const ClassDetail = () => {
                 </Text>
               )}
             </TabPanel>
-            <TabPanel key={2} isSelected={selectedTab === 'CANCELLED'}>
+            <TabPanel key={2} isSelected={selectedTab === 'CANCEL'}>
               {lessonData?.students.some(
                 (student) =>
                   student.reservationStatus === 'PENDING_CANCELLATION' || student.reservationStatus === 'CANCELLED'
@@ -120,6 +122,7 @@ const ClassDetail = () => {
                       []
                     }
                     lessonId={lessonData.id}
+                    selectedTab={selectedTab}
                   />
                   <StudentList
                     reservationStatus="CANCELLED"
@@ -127,6 +130,7 @@ const ClassDetail = () => {
                       lessonData?.students.filter((student) => student.reservationStatus === 'CANCELLED') ?? []
                     }
                     lessonId={lessonData.id}
+                    selectedTab={selectedTab}
                   />
                 </>
               ) : (

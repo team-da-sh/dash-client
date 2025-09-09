@@ -1,4 +1,5 @@
 import { useQueryClient } from '@tanstack/react-query';
+import type { TabStatus } from '@/pages/instructor/classDetail/ClassDetail';
 import { useLessonApproveMutation, useLessonCancelMutation } from '@/pages/instructor/classDetail/apis/queries';
 import * as styles from '@/pages/instructor/classDetail/components/StudentCard/studentCard.css';
 import type { Student } from '@/pages/instructor/classDetail/types/api';
@@ -28,9 +29,10 @@ interface StudentCardPropTypes {
   studentData: Student;
   index: number;
   lessonId: number;
+  selectedTab: TabStatus;
 }
 
-const StudentCard = ({ studentData, index, lessonId }: StudentCardPropTypes) => {
+const StudentCard = ({ studentData, index, lessonId, selectedTab }: StudentCardPropTypes) => {
   const { openModal } = useModalStore();
 
   const { text: buttonText, variant: buttonVariant } = STATUS_BUTTON_MAP[studentData.reservationStatus];
@@ -55,7 +57,9 @@ const StudentCard = ({ studentData, index, lessonId }: StudentCardPropTypes) => 
                 message: status === 'APPROVED' ? '승인 대기로 변경되었어요.' : '승인이 확정되었어요.',
                 icon: 'success',
               });
-              queryClient.invalidateQueries({ queryKey: teacherKeys.me._ctx.lesson._ctx.students(lessonId).queryKey });
+              queryClient.invalidateQueries({
+                queryKey: teacherKeys.me._ctx.lesson._ctx.students(lessonId, selectedTab).queryKey,
+              });
             }
           },
         }
@@ -74,7 +78,7 @@ const StudentCard = ({ studentData, index, lessonId }: StudentCardPropTypes) => 
                   onSuccess: () => {
                     notify({ message: '취소가 완료되었어요.', icon: 'success' });
                     queryClient.invalidateQueries({
-                      queryKey: teacherKeys.me._ctx.lesson._ctx.students(lessonId).queryKey,
+                      queryKey: teacherKeys.me._ctx.lesson._ctx.students(lessonId, selectedTab).queryKey,
                     });
                   },
                 }
@@ -89,7 +93,7 @@ const StudentCard = ({ studentData, index, lessonId }: StudentCardPropTypes) => 
             onSuccess: () => {
               notify({ message: '취소 대기로 변경되었어요.', icon: 'success' });
               queryClient.invalidateQueries({
-                queryKey: teacherKeys.me._ctx.lesson._ctx.students(lessonId).queryKey,
+                queryKey: teacherKeys.me._ctx.lesson._ctx.students(lessonId, selectedTab).queryKey,
               });
             },
           }
