@@ -14,6 +14,7 @@ import Head from '@/shared/components/Head/Head';
 import Text from '@/shared/components/Text/Text';
 import { notify } from '@/shared/components/Toast/Toast';
 import { teacherKeys } from '@/shared/constants/queryKey';
+import { formatDateTime } from '@/shared/utils/timeUtils';
 
 const STATUS_BUTTON_MAP: Record<
   Exclude<ReservationStatus, 'ALL'>,
@@ -126,7 +127,7 @@ const StudentCard = ({ studentData, index, lessonId, selectedTab }: StudentCardP
 
       <section className={styles.rightWrapper}>
         <Text tag="c1_r" color="gray9">
-          {studentData.reservationDateTime}
+          {formatDateTime(studentData.reservationDateTime)}
         </Text>
         <BoxButton variant={buttonVariant} onClick={handleStatusChangeClick}>
           {buttonText}
