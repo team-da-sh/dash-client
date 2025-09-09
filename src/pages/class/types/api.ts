@@ -1,6 +1,10 @@
+import type { RecruitingStatus } from '@/pages/mypage/components/mypageReservation/types/recruitingStatus';
+import type { GenreTypes } from '@/pages/onboarding/types/genreTypes';
+import type { LevelTypes } from '@/pages/onboarding/types/levelTypes';
+
 export interface LessonDetailResponseTypes {
   imageUrl: string;
-  genre: string;
+  genre: GenreTypes;
 
   name: string;
   teacherId: number;
@@ -12,7 +16,7 @@ export interface LessonDetailResponseTypes {
   price: number;
   detail: string;
   recommendation: string;
-  level: string;
+  level: LevelTypes;
   remainingDays: number;
   lessonRound: {
     lessonRounds: {
@@ -27,6 +31,8 @@ export interface LessonDetailResponseTypes {
   favoriteCount?: number;
   bookStatus: boolean;
   status: StatusType;
+  applyStatus: RecruitingStatus;
+  createdAt: string;
 }
 
 export type StatusType = 'OPEN' | 'EXPIRED' | 'OVER_BOOKED';
