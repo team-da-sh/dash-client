@@ -40,8 +40,8 @@ const StudentCard = ({ studentData, index, lessonId, selectedTab }: StudentCardP
 
   const status = studentData.reservationStatus;
 
-  const { mutate: approveMutate } = useLessonApproveMutation();
-  const { mutate: cancelMutate } = useLessonCancelMutation();
+  const { mutate: approveMutate, isPending: successPending } = useLessonApproveMutation();
+  const { mutate: cancelMutate, isPending: cancelPending } = useLessonCancelMutation();
 
   const queryClient = useQueryClient();
 
@@ -129,7 +129,7 @@ const StudentCard = ({ studentData, index, lessonId, selectedTab }: StudentCardP
         <Text tag="c1_r" color="gray9">
           {formatDateTime(studentData.reservationDateTime)}
         </Text>
-        <BoxButton variant={buttonVariant} onClick={handleStatusChangeClick}>
+        <BoxButton variant={buttonVariant} onClick={handleStatusChangeClick} disabled={successPending || cancelPending}>
           {buttonText}
         </BoxButton>
       </section>
