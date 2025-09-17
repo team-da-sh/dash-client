@@ -1,8 +1,9 @@
 import { fixedContainerStyle, blurCapStyle, wrapperStyle } from '@/shared/components/BlurButton/BlurButton.css';
+import { ReactNode } from 'react';
 
 interface BlurButtonProps {
   blurColor?: 'gray' | 'white';
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
 const BlurBotton = ({ blurColor = 'gray', children }: BlurButtonProps) => {
