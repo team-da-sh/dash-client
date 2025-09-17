@@ -23,8 +23,8 @@ const ClassButtonWrapper = ({ lessonData }: { lessonData: LessonDetailResponseTy
   };
 
   return (
-<ButtonBlur blurColor='white'>
-        <BoxButton variant="heart" onClick={toggleHeart}>
+    <ButtonBlur blurColor='white'>
+      <BoxButton variant="heart" onClick={toggleHeart}>
         {isHeartFilled ? <IcHeartFilledGray07 width={28} /> : <IcHeartOutlinedGray07 width={28} />}
       </BoxButton>
 
@@ -36,7 +36,7 @@ const ClassButtonWrapper = ({ lessonData }: { lessonData: LessonDetailResponseTy
       >
         {buttonText}
       </BoxButton>
-</ButtonBlur>
+    </ButtonBlur>
   );
 };
 

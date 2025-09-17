@@ -1,6 +1,6 @@
-import { vars } from '@/shared/styles/theme.css';
-import { styleVariants } from '@vanilla-extract/css';
+import { style, styleVariants } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
+import { vars } from '@/shared/styles/theme.css';
 
 export const fixedContainerStyle = recipe({
   base: {
@@ -46,3 +46,8 @@ export const blurCapStyle = styleVariants({
     background: 'linear-gradient(to top, rgba(255,255,255,1), rgba(255,255,255,0))',
   },
 });
+
+export const wrapperStyle = style({
+    display: 'flex',
+    gap: '0.8rem'
+})

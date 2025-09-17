@@ -12,12 +12,12 @@ import Modal from '@/common/components/Modal/Modal';
 import { useModalStore } from '@/common/stores/modal';
 import { useGetBankList } from '@/shared/apis/queries';
 import BankBottomSheet from '@/shared/components/BankBottomSheet/BankBottomSheet';
+import BlurBotton from '@/shared/components/BlurButton/BlurButton';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import Head from '@/shared/components/Head/Head';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
 import RefundAccountSection from './components/RefundAccountSection/RefundAccountSection';
 import RefundPolicySection from './components/RefundPolicySection/RefundPolicySection';
-import BlurBotton from '@/shared/components/BlurButton/BlurButton';
 
 interface NavigationState {
   depositStatus: 'before' | 'after';
@@ -191,15 +191,15 @@ const CancelConfirmPage = () => {
               )}
             </div>
 
-<BlurBotton blurColor='gray'>
-                <BoxButton
+            <BlurBotton blurColor="gray">
+              <BoxButton
                 variant="primary"
                 onClick={handleConfirm}
                 className={sprinkles({ width: '100%' })}
                 disabled={isPending || !isButtonActive()}>
                 {isPending ? '처리 중...' : '취소하기'}
               </BoxButton>
-</BlurBotton>
+            </BlurBotton>
           </div>
         </div>
 
