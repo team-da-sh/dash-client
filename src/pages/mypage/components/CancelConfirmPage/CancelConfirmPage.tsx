@@ -17,6 +17,7 @@ import Head from '@/shared/components/Head/Head';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
 import RefundAccountSection from './components/RefundAccountSection/RefundAccountSection';
 import RefundPolicySection from './components/RefundPolicySection/RefundPolicySection';
+import BlurBotton from '@/shared/components/BlurButton/BlurButton';
 
 interface NavigationState {
   depositStatus: 'before' | 'after';
@@ -190,15 +191,15 @@ const CancelConfirmPage = () => {
               )}
             </div>
 
-            <div className={styles.bottomButtonStyle}>
-              <BoxButton
+<BlurBotton blurColor='gray'>
+                <BoxButton
                 variant="primary"
                 onClick={handleConfirm}
                 className={sprinkles({ width: '100%' })}
                 disabled={isPending || !isButtonActive()}>
                 {isPending ? '처리 중...' : '취소하기'}
               </BoxButton>
-            </div>
+</BlurBotton>
           </div>
         </div>
 
