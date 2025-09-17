@@ -18,6 +18,7 @@ import Head from '@/shared/components/Head/Head';
 import Text from '@/shared/components/Text/Text';
 import { notify } from '@/shared/components/Toast/Toast';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
+import BlurBotton from '@/shared/components/BlurButton/BlurButton';
 
 interface ReservationStepPropTypes {
   onNext: (detail: ClassReservationResponseTypes) => void;
@@ -162,11 +163,13 @@ const ReservationStep = ({ onNext }: ReservationStepPropTypes) => {
         </Head>
       </div>
 
-      <section className={styles.bottomButtonStyle}>
-        <BoxButton variant="primary" isDisabled={!isAllChecked} onClick={handleSubmit}>
+<BlurBotton blurColor='gray'>
+          <BoxButton variant="primary" isDisabled={!isAllChecked} onClick={handleSubmit}>
           신청하기
         </BoxButton>
-      </section>
+</BlurBotton>
+
+
     </main>
   );
 };
