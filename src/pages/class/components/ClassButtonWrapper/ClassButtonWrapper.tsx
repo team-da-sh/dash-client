@@ -6,7 +6,7 @@ import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import IcHeartFilledGray07 from '@/shared/assets/svg/IcHeartFilledGray07';
 import IcHeartOutlinedGray07 from '@/shared/assets/svg/IcHeartOutlinedGray07';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
-import ButtonBlur from '@/shared/components/BlurButton/BlurButton';
+import BlurButton from '@/shared/components/BlurButton/BlurButton';
 
 const ClassButtonWrapper = ({ lessonData }: { lessonData: LessonDetailResponseTypes }) => {
   const navigate = useNavigate();
@@ -23,7 +23,7 @@ const ClassButtonWrapper = ({ lessonData }: { lessonData: LessonDetailResponseTy
   };
 
   return (
-    <ButtonBlur blurColor='white'>
+    <BlurButton blurColor='white'>
       <BoxButton variant="heart" onClick={toggleHeart}>
         {isHeartFilled ? <IcHeartFilledGray07 width={28} /> : <IcHeartOutlinedGray07 width={28} />}
       </BoxButton>
@@ -36,7 +36,7 @@ const ClassButtonWrapper = ({ lessonData }: { lessonData: LessonDetailResponseTy
       >
         {buttonText}
       </BoxButton>
-    </ButtonBlur>
+    </BlurButton>
   );
 };
 
