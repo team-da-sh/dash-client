@@ -1,12 +1,12 @@
 import { fixedContainerStyle, blurCapStyle, wrapperStyle } from '@/shared/components/BlurButton/BlurButton.css';
 import { ReactNode } from 'react';
 
-interface BlurButtonProps {
+interface BlurButtonPropTypes {
   blurColor?: 'gray' | 'white';
   children: ReactNode;
 }
 
-const BlurBotton = ({ blurColor = 'gray', children }: BlurButtonProps) => {
+const BlurBotton = ({ blurColor = 'gray', children }: BlurButtonPropTypes) => {
   return (
     <div className={fixedContainerStyle({ blurBase: blurColor })}>
       <div aria-hidden className={blurCapStyle[blurColor]} />
