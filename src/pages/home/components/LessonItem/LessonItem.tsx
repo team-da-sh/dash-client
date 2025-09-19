@@ -62,7 +62,7 @@ const LessonItem = ({
       className={clsx(styles.wrapper, sprinkles({ display: 'flex', flexDirection: 'column', gap: 8 }))}
       onClick={handleLessonClick}>
       <img src={imageUrl} alt="클래스 섬네일" className={styles.classImage} />
-      {remainingDays < 4 && (
+      {remainingDays < 4 && remainingDays >= 0 && (
         <Tag type="deadline" size="thumbnail" className={styles.deadlineTag}>
           {calculateRemainingDate(startDate, remainingDays)}
         </Tag>
