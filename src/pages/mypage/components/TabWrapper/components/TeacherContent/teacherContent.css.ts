@@ -28,7 +28,7 @@ export const classButtonStyle = style({
   alignItems: 'center',
   gap: '0.2rem',
 
-  position: 'absolute',
+  position: 'fixed',    
   right: '2rem',
   bottom: '36px',
 
