@@ -5,13 +5,12 @@ import { vars } from '@/shared/styles/theme.css';
 export const fixedContainerStyle = recipe({
   base: {
     position: 'fixed',
-left: 0,
+    left: 0,
     right: 0,
     margin: '0 auto',
     width: 'min(100dvw, var(--max-width))',
     bottom: 0,
     zIndex: vars.zIndex.five,
-   padding: '0 2.4rem 2rem',
   },
   variants: {
     blurBase: {
@@ -50,6 +49,7 @@ export const blurCapStyle = styleVariants({
 });
 
 export const wrapperStyle = style({
-    display: 'flex',
-    gap: '0.8rem'
-})
+  display: 'flex',
+  gap: '0.8rem',
+  padding: '0 2.4rem 2rem',
+});
