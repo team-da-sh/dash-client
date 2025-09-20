@@ -18,7 +18,7 @@ export interface ReservationDetailType {
   name: string;
   phoneNumber: string;
   reservationDateTime: string;
-  imageUrl: string;
+  lessonImageUrl: string;
   reservationStatus: ReservationStatus | ProgressStatus;
 }
 

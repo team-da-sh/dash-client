@@ -44,9 +44,12 @@ const ReservationList = ({ status, targetReservationId, showActions = true }: Re
             <ClassCard.Body {...reservation} />
             {showActions && (
               <ClassCard.Footer showAsk={true}>
-                <BoxButton onClick={(e) => handleCancelClick(e, navigate, reservation)} variant="temp">
-                  취소하기
-                </BoxButton>
+                {(reservation.reservationStatus === 'PENDING_APPROVAL' ||
+                  reservation.reservationStatus === 'APPROVED') && (
+                  <BoxButton onClick={(e) => handleCancelClick(e, navigate, reservation)} variant="temp">
+                    취소하기
+                  </BoxButton>
+                )}
                 <BoxButton
                   variant="outline"
                   onClick={(e) => handleBoxButtonClick(e, navigate, reservation.reservationId, true)}>
