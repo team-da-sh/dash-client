@@ -4,6 +4,7 @@ import ApplicantInfo from '@/pages/mypage/components/mypageReservationDetail/com
 import ClassInfo from '@/pages/mypage/components/mypageReservationDetail/components/ClassInfo/ClassInfo';
 import ReservationProgress from '@/pages/mypage/components/mypageReservationDetail/components/ReservationProgress/ReservationProgress';
 import * as styles from '@/pages/mypage/components/mypageReservationDetail/mypageReservationDetail.css';
+import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import ClassCard from '@/shared/components/ClassCard';
 import Head from '@/shared/components/Head/Head';
@@ -21,7 +22,7 @@ const MyPageReservationDetail = () => {
 
   const handleGoCancleClassPage = () => {
     // TODO: 취소 페이지 path 입력
-    navigate('취소 url');
+    navigate(ROUTES_CONFIG.mypageCancelClass.path(lessonId ?? ''));
   };
 
   const handleGoAskPage = (e: React.MouseEvent) => {
@@ -39,7 +40,12 @@ const MyPageReservationDetail = () => {
         <div className={styles.classInfoWrapper}>
           <ReservationProgress reservationStatus={data.reservationStatus} />
           <ClassCard>
-            <ClassCard.Body name={data.lessonName} level={data.level} genre={data.genre} imageUrl={data.imageUrl} />
+            <ClassCard.Body
+              name={data.lessonName}
+              level={data.level}
+              genre={data.genre}
+              imageUrl={data.lessonImageUrl}
+            />
             <ClassCard.Footer>
               <ClassInfo lessonRound={data.rounds} location={data.location} />
             </ClassCard.Footer>

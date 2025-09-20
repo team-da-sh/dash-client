@@ -12,6 +12,7 @@ import { AGREEMENT_TERMS } from '@/pages/reservation/constants/index';
 import type { ClassReservationResponseTypes } from '@/pages/reservation/types/api';
 import IcCheckcircleGray0524 from '@/shared/assets/svg/IcCheckcircleGray0524';
 import IcCheckcircleMain0324 from '@/shared/assets/svg/IcCheckcircleMain0324';
+import BlurBotton from '@/shared/components/BlurButton/BlurButton';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import Divider from '@/shared/components/Divider/Divider';
 import Head from '@/shared/components/Head/Head';
@@ -162,11 +163,11 @@ const ReservationStep = ({ onNext }: ReservationStepPropTypes) => {
         </Head>
       </div>
 
-      <section className={styles.bottomButtonStyle}>
+      <BlurBotton blurColor="gray">
         <BoxButton variant="primary" isDisabled={!isAllChecked} onClick={handleSubmit}>
           신청하기
         </BoxButton>
-      </section>
+      </BlurBotton>
     </main>
   );
 };

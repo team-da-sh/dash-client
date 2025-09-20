@@ -14,6 +14,7 @@ import Head from '@/shared/components/Head/Head';
 import Text from '@/shared/components/Text/Text';
 import { notify } from '@/shared/components/Toast/Toast';
 import { teacherKeys } from '@/shared/constants/queryKey';
+import { formatDateTime } from '@/shared/utils/timeUtils';
 
 const STATUS_BUTTON_MAP: Record<
   Exclude<ReservationStatus, 'ALL'>,
@@ -39,8 +40,8 @@ const StudentCard = ({ studentData, index, lessonId, selectedTab }: StudentCardP
 
   const status = studentData.reservationStatus;
 
-  const { mutate: approveMutate } = useLessonApproveMutation();
-  const { mutate: cancelMutate } = useLessonCancelMutation();
+  const { mutate: approveMutate, isPending: successPending } = useLessonApproveMutation();
+  const { mutate: cancelMutate, isPending: cancelPending } = useLessonCancelMutation();
 
   const queryClient = useQueryClient();
 
@@ -126,9 +127,9 @@ const StudentCard = ({ studentData, index, lessonId, selectedTab }: StudentCardP
 
       <section className={styles.rightWrapper}>
         <Text tag="c1_r" color="gray9">
-          {studentData.reservationDateTime}
+          {formatDateTime(studentData.reservationDateTime)}
         </Text>
-        <BoxButton variant={buttonVariant} onClick={handleStatusChangeClick}>
+        <BoxButton variant={buttonVariant} onClick={handleStatusChangeClick} disabled={successPending || cancelPending}>
           {buttonText}
         </BoxButton>
       </section>

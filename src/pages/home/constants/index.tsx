@@ -11,3 +11,7 @@ export const GENRE_ICONS = [
 export const MAX_POPULAR_GENRE_COUNT = 3;
 
 export const DUMMY = 'DUMMY';
+
+export const MAX_REMAINING_DAYS = 4;
+
+export const MIN_REMAINING_DAYS = 0;

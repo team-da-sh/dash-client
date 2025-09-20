@@ -18,11 +18,3 @@ export const dividerStyle = style({
 
   transform: 'translate(-20px, -3px)',
 });
-
-export const bottomButtonStyle = style({
-  position: 'fixed',
-  bottom: '0',
-  padding: '0 2rem 2.4rem',
-  width: '100%',
-  backgroundColor: vars.colors.gray01,
-});
