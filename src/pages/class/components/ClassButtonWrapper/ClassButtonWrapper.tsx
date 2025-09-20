@@ -7,6 +7,7 @@ import IcHeartFilledGray07 from '@/shared/assets/svg/IcHeartFilledGray07';
 import IcHeartOutlinedGray07 from '@/shared/assets/svg/IcHeartOutlinedGray07';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import BlurButton from '@/shared/components/BlurButton/BlurButton';
+import { flexGapStyle } from '@/pages/class/components/ClassButtonWrapper/classButtonWrapper.css';
 
 const ClassButtonWrapper = ({ lessonData }: { lessonData: LessonDetailResponseTypes }) => {
   const navigate = useNavigate();
@@ -23,7 +24,7 @@ const ClassButtonWrapper = ({ lessonData }: { lessonData: LessonDetailResponseTy
   };
 
   return (
-    <BlurButton blurColor='white'>
+    <BlurButton blurColor='white' className={flexGapStyle}>
       <BoxButton variant="heart" onClick={toggleHeart}>
         {isHeartFilled ? <IcHeartFilledGray07 width={28} /> : <IcHeartOutlinedGray07 width={28} />}
       </BoxButton>
@@ -32,7 +33,6 @@ const ClassButtonWrapper = ({ lessonData }: { lessonData: LessonDetailResponseTy
         variant="primary"
         isDisabled={isDisabled}
         onClick={handleApplyClick}
-        className="flex-1"
       >
         {buttonText}
       </BoxButton>
