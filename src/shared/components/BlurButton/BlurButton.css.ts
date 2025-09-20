@@ -5,11 +5,13 @@ import { vars } from '@/shared/styles/theme.css';
 export const fixedContainerStyle = recipe({
   base: {
     position: 'fixed',
-    left: `max(2rem, calc((100vw - var(--max-width)) / 2))`,
+left: 0,
+    right: 0,
+    margin: '0 auto',
+    width: 'min(100dvw, var(--max-width))',
     bottom: 0,
-    width: '100%',
     zIndex: vars.zIndex.five,
-    padding: '0 1.8rem 2.4rem',
+   padding: '0 2.4rem 2rem',
   },
   variants: {
     blurBase: {
