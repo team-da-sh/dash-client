@@ -3,11 +3,16 @@ import { useForm } from 'react-hook-form';
 import { useNavigate, useParams } from 'react-router-dom';
 import DepositeButton from '@/pages/mypage/components/mypageCancelClass/DepositeButton/DepositeButton';
 import AccountInputSection from '@/pages/mypage/components/mypageCancelClass/components/AccountInputSection/AccountInputSection';
-import * as styles from '@/pages/mypage/components/mypageCancelClass/mypageCancelClass.css';
+import {
+  layoutStyle,
+  containerStyle,
+  scrollAreaStyle,
+} from '@/pages/mypage/components/mypageCancelClass/mypageCancelClass.css';
 import ReservationList from '@/pages/mypage/components/mypageReservation/components/ReservationList';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { useGetBankList } from '@/shared/apis/queries';
 import BankBottomSheet from '@/shared/components/BankBottomSheet/BankBottomSheet';
+import BlurButton from '@/shared/components/BlurButton/BlurButton';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import Head from '@/shared/components/Head/Head';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
@@ -75,15 +80,9 @@ const MypageCancelClass = () => {
   };
 
   return (
-    <div className={styles.layoutStyle}>
-      <div className={styles.containerStyle}>
-        <div
-          className={sprinkles({
-            display: 'flex',
-            flexDirection: 'column',
-            height: '100%',
-            justifyContent: 'space-between',
-          })}>
+    <div className={layoutStyle}>
+      <div className={containerStyle}>
+        <div className={scrollAreaStyle}>
           <div>
             <div className={sprinkles({ paddingBottom: 20 })}>
               <Head tag="h6_sb" color="black">
@@ -116,13 +115,15 @@ const MypageCancelClass = () => {
             />
           </div>
 
-          <BoxButton
-            variant="primary"
-            onClick={handleNext}
-            disabled={!isButtonActive()}
-            className={sprinkles({ width: '100%' })}>
-            다음
-          </BoxButton>
+          <BlurButton>
+            <BoxButton
+              variant="primary"
+              onClick={handleNext}
+              disabled={!isButtonActive()}
+              className={sprinkles({ width: '100%' })}>
+              다음
+            </BoxButton>
+          </BlurButton>
         </div>
       </div>
 
