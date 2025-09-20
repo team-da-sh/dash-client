@@ -6,7 +6,7 @@ interface BlurButtonPropTypes {
   children: ReactNode;
 }
 
-const BlurBotton = ({ blurColor = 'gray', children }: BlurButtonPropTypes) => {
+const BlurButton = ({ blurColor = 'gray', children }: BlurButtonPropTypes) => {
   return (
     <div className={fixedContainerStyle({ blurBase: blurColor })}>
       <div aria-hidden className={blurCapStyle[blurColor]} />
@@ -15,4 +15,4 @@ const BlurBotton = ({ blurColor = 'gray', children }: BlurButtonPropTypes) => {
   );
 };
 
-export default BlurBotton;
+export default BlurButton;

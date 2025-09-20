@@ -5,7 +5,7 @@ import { vars } from '@/shared/styles/theme.css';
 export const fixedContainerStyle = recipe({
   base: {
     position: 'fixed',
-    left: 0,
+    left: `max(2rem, calc((100vw - var(--max-width)) / 2))`,
     bottom: 0,
     width: '100%',
     zIndex: vars.zIndex.five,
