@@ -4,7 +4,7 @@ import { HTTP_STATUS_CODE } from '@/shared/constants/api';
 
 // Error name status 별로 확장한 ApiError class
 export class ApiError<T = unknown> extends Error implements AxiosError<T> {
-  config: InternalAxiosRequestConfig;
+  config?: InternalAxiosRequestConfig;
   code?: string;
   request?: any;
   response?: AxiosResponse<T>;
@@ -20,7 +20,7 @@ export class ApiError<T = unknown> extends Error implements AxiosError<T> {
 
     switch (errorStatus) {
       case HTTP_STATUS_CODE.BAD_REQUEST: // 400
-        name += ': BAD_REQUESET';
+        name += ': BAD_REQUEST';
         break;
       case HTTP_STATUS_CODE.UNAUTHORIZED: // 401
         name += ': UNAUTHORIZED';
@@ -45,7 +45,7 @@ export class ApiError<T = unknown> extends Error implements AxiosError<T> {
     this.name = name;
     this.stack = error.stack;
 
-    this.config = error.config!;
+    this.config = error.config;
     this.code = error.code;
     this.request = error.request;
     this.response = error.response;

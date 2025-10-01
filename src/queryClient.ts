@@ -10,7 +10,6 @@ const queryClient = new QueryClient({
       throwOnError: true,
       staleTime: 1000 * 60 * 1, // 1분 후 stale 상태로 처리
       refetchOnWindowFocus: false, // 브라우저 창이 다시 focus를 하면 refetch되는 옵션 off
-      retry: 3,
     },
   },
   mutationCache: new MutationCache({
@@ -19,7 +18,7 @@ const queryClient = new QueryClient({
         mutation.meta?.errorMessage || (isAxiosError(error) && error.response?.data?.message) || DEFAULT_ERROR_MESSAGE;
 
       if (mutation.meta?.shouldShowToastMessage) {
-        notify({ message: message || DEFAULT_ERROR_MESSAGE, icon: 'fail' });
+        notify({ message: message, icon: 'fail' });
       }
     },
   }),
