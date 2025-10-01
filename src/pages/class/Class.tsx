@@ -6,14 +6,14 @@ import ClassInfoWrapper from '@/pages/class/components/ClassInfoWrapper/ClassInf
 import LimitedChip from '@/pages/class/components/LimitedChip/LimitedChip';
 import TabWrapper from '@/pages/class/components/TabWrapper/TabWrapper';
 import { LOW_SEAT_THRESHOLD } from '@/pages/class/constants';
-import Error from '@/pages/error/Error';
+import ErrorPage from '@/pages/error/ErrorPage';
 import Divider from '@/shared/components/Divider/Divider';
 
 const Class = () => {
   const { id } = useParams<{ id: string }>();
 
   if (!id) {
-    return <Error />;
+    return <ErrorPage />;
   }
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -24,7 +24,7 @@ const Class = () => {
   }
 
   if (isError || !data) {
-    return <Error />;
+    return <ErrorPage />;
   }
 
   const imageUrl = data.imageUrl;
