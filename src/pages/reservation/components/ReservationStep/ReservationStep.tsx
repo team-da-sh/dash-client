@@ -1,7 +1,7 @@
 import type { AxiosError } from 'axios';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import Error from '@/pages/error/Error';
+import ErrorPage from '@/pages/error/ErrorPage';
 import { useGetReservation, usePostReservation } from '@/pages/reservation/apis/queries';
 import AgreeCheckBox from '@/pages/reservation/components/AgreeCheckBox/AgreeCheckBox';
 import ApplicantInfo from '@/pages/reservation/components/ApplicantInfo/ApplicantInfo';
@@ -32,9 +32,9 @@ const ReservationStep = ({ onNext }: ReservationStepPropTypes) => {
   const { data, isError, isLoading } = useGetReservation(Number(id));
   const { mutate: postReservation } = usePostReservation();
 
-  if (!id) return <Error />;
+  if (!id) return <ErrorPage />;
   if (isLoading) return null;
-  if (isError || !data) return <Error />;
+  if (isError || !data) return <ErrorPage />;
 
   const handleSubmit = () => {
     postReservation(
