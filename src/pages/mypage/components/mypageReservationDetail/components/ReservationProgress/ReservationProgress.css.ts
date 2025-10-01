@@ -34,12 +34,21 @@ export const svgStyle = style({
   zIndex: vars.zIndex.three,
 });
 
-export const textStyle = style({
-  position: 'absolute',
-  left: '50%',
-  transform: 'translateX(-50%)',
+export const textStyle = recipe({
+  base: {
+    position: 'absolute',
+    left: '50%',
+    transform: 'translateX(-50%)',
 
-  whiteSpace: 'nowrap',
+    whiteSpace: 'nowrap',
+  },
+  variants: {
+    status: {
+      finish: { color: vars.colors.gray08 },
+      inProgress: { color: vars.colors.gray11 },
+      pending: { color: vars.colors.gray05 },
+    },
+  },
 });
 
 export const cancelLineStyle = recipe({
