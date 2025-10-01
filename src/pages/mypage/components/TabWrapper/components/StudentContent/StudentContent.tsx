@@ -22,10 +22,10 @@ const StudentContent = () => {
         <InfoComponent
           type="student"
           profileImageUrl={data.profileImageUrl}
-          mainText={<Text tag="b1_sb">{data.nickname}</Text>}
+          mainText={<Text tag="b1_sb">{data.name}</Text>}
           subContent={
             <Text tag="b3_r" color="gray6" className={styles.noUnderlineStyle}>
-              {data.name} · {formatPhoneNumberNoSpace(data.phoneNumber)}
+              {formatPhoneNumberNoSpace(data.phoneNumber)}
             </Text>
           }
         />
@@ -37,7 +37,7 @@ const StudentContent = () => {
         ))}
       </div>
       <Divider color="gray1" thickness="0.4rem" />
-      <BottomList />
+      <BottomList userRole="STUDENT" />
     </div>
   );
 };

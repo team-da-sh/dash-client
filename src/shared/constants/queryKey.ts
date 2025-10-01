@@ -1,12 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { createQueryKeys, mergeQueryKeys } from '@lukemorales/query-key-factory';
+import type { TabStatus } from '@/pages/instructor/classDetail/ClassDetail';
+import type { LessonStatus } from '@/pages/instructor/lessonList/types/lessonStatus';
+import type { ReservationStatus } from '@/pages/mypage/components/mypageReservation/types/reservationStatus';
 import type { ClassListParamsTypes } from '@/pages/search/types/api';
 
 type SearchKeyword = string | number | ClassListParamsTypes;
 
 export const lessonKeys = createQueryKeys('lesson', {
   detail: (lessonId: number) => [lessonId],
-
+  reserve: (lessonId: number) => ['reserve', lessonId],
   list: {
     queryKey: null,
     contextQueries: {
@@ -28,8 +31,14 @@ export const memberKeys = createQueryKeys('member', {
       reservation: {
         queryKey: null,
         contextQueries: {
-          list: { queryKey: null },
+          list: (status: ReservationStatus) => ({
+            queryKey: [status],
+          }),
+          status: {
+            queryKey: null,
+          },
           detail: (reservationId: number) => ({ queryKey: [reservationId] }),
+          card: (reservationId: number) => ({ queryKey: ['card', reservationId] }),
           statistics: { queryKey: ['statistics'] },
         },
       },
@@ -52,13 +61,20 @@ export const teacherKeys = createQueryKeys('teacher', {
       lesson: {
         queryKey: null,
         contextQueries: {
-          list: { queryKey: null },
+          list: (status: LessonStatus) => ({
+            queryKey: [status],
+          }),
           thumbnails: { queryKey: null },
-          students: (lessonId: number) => ({ queryKey: [lessonId] }),
+          students: (lessonId: number, status: TabStatus) => ({ queryKey: [lessonId, status] }),
+          status: { queryKey: null },
         },
       },
+      account: { queryKey: null },
     },
   },
+  nicknameValidation: (nickname: string) => ({
+    queryKey: [nickname],
+  }),
 });
 
 export const myPageKeys = createQueryKeys('myPage', {
@@ -66,6 +82,7 @@ export const myPageKeys = createQueryKeys('myPage', {
 });
 
 export const advertisementKeys = createQueryKeys('advertisements', {});
+export const bankKeys = createQueryKeys('banks', {});
 
 export const locationKeys = createQueryKeys('locations', {
   search: (keyword: any) => ({ queryKey: [keyword] }),
@@ -82,6 +99,7 @@ export const queryKeys = mergeQueryKeys(
   teacherKeys,
   myPageKeys,
   advertisementKeys,
+  bankKeys,
   locationKeys,
   authKeys
 );

@@ -6,9 +6,9 @@ import Text from '@/shared/components/Text/Text';
 import * as styles from './unregisteredTeacher.css';
 
 interface UnregisteredTeacherPropTypes {
-  nickname: string;
+  name: string;
 }
-const UnregisteredTeacher = ({ nickname }: UnregisteredTeacherPropTypes) => {
+const UnregisteredTeacher = ({ name }: UnregisteredTeacherPropTypes) => {
   const navigate = useNavigate();
   const handleRegisterButtonClick = () => {
     navigate(ROUTES_CONFIG.instructorRegister.path);
@@ -23,7 +23,7 @@ const UnregisteredTeacher = ({ nickname }: UnregisteredTeacherPropTypes) => {
         </Head>
         <div className={styles.textStyle}>
           <Text tag="b2_m_long" color="gray6">
-            {nickname} 님의 강사 프로필을 등록하고
+            {name} 님의 강사 프로필을 등록하고
           </Text>
           <Text tag="b2_m_long" color="gray6">
             수강생들을 만나보세요!

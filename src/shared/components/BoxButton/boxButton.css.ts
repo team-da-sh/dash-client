@@ -8,8 +8,6 @@ export const buttonStyle = recipe({
     border: 'none',
     borderRadius: '4px',
 
-    color: vars.colors.white,
-
     cursor: 'pointer',
   },
   variants: {
@@ -42,13 +40,31 @@ export const buttonStyle = recipe({
           cursor: 'default',
         },
       },
+      quaternary: {
+        padding: '0.8rem 0',
 
+        backgroundColor: vars.colors.gray01,
+
+        color: vars.colors.main04,
+
+        ...vars.fonts.b3_m_narrow,
+
+        '&:disabled': {
+          border: `0.5px solid ${vars.colors.gray04}`,
+          backgroundColor: vars.colors.gray01,
+
+          color: vars.colors.gray05,
+
+          cursor: 'default',
+        },
+      },
       outline: {
         padding: '0.8rem 0',
 
         border: `0.5px solid ${vars.colors.gray09}`,
         backgroundColor: vars.colors.main03,
 
+        color: vars.colors.white,
         ...vars.fonts.b3_m_narrow,
 
         '&:disabled': {
@@ -89,6 +105,17 @@ export const buttonStyle = recipe({
         '&:disabled': {
           cursor: 'default',
         },
+      },
+
+      transparency: {
+        padding: '1.3rem 0',
+
+        border: `1px solid ${vars.colors.gray06}`,
+        backgroundColor: 'transparent',
+
+        color: vars.colors.gray08,
+
+        ...vars.fonts.b2_m,
       },
     },
   },

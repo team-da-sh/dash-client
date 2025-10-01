@@ -23,6 +23,7 @@ import Text from '@/shared/components/Text/Text';
 import { genreMapping, levelMapping } from '@/shared/constants';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
 import { calculateRemainingDate } from '@/shared/utils/dateCalculate';
+import { MAX_REMAINING_DAYS, MIN_REMAINING_DAYS } from '@/pages/home/constants/index';
 
 const LessonItem = ({
   id,
@@ -62,7 +63,7 @@ const LessonItem = ({
       className={clsx(styles.wrapper, sprinkles({ display: 'flex', flexDirection: 'column', gap: 8 }))}
       onClick={handleLessonClick}>
       <img src={imageUrl} alt="클래스 섬네일" className={styles.classImage} />
-      {remainingDays < 4 && (
+      {remainingDays < MAX_REMAINING_DAYS && remainingDays >= MIN_REMAINING_DAYS && (
         <Tag type="deadline" size="thumbnail" className={styles.deadlineTag}>
           {calculateRemainingDate(startDate, remainingDays)}
         </Tag>

@@ -3,13 +3,10 @@ import {
   ACCEPTED_IMAGE_TYPES,
   MAX_FILE_SIZE,
   MAX_NAME_LENGTH,
-  MAX_NICKNAME_LENGTH,
   MIN_NAME_LENGTH,
-  MIN_NICKNAME_LENGTH,
 } from '@/pages/editProfiles/constants/limit';
 import {
   PROFILE_IMAGE_ERRORS,
-  NICKNAME_ERRORS,
   NAME_ERRORS,
   PHONE_NUMBER_ERRORS,
 } from '@/pages/editProfiles/constants/validationMessage';
@@ -30,25 +27,6 @@ export const profileSchema = z.object({
         PROFILE_IMAGE_ERRORS.INVALID_TYPE
       ),
   ]),
-  nickname: z.string().superRefine((val, ctx) => {
-    if (val.length === 0) {
-      ctx.addIssue({ code: 'custom', message: NICKNAME_ERRORS.REQUIRED });
-      return;
-    }
-    if (!/^[a-zA-Z0-9ㄱ-ㅎㅏ-ㅣ가-힣]+$/.test(val)) {
-      ctx.addIssue({ code: 'custom', message: NICKNAME_ERRORS.INVALID });
-      return;
-    }
-    if (val.length < MIN_NICKNAME_LENGTH) {
-      ctx.addIssue({ code: 'custom', message: NICKNAME_ERRORS.REQUIRED });
-      return;
-    }
-    if (val.length > MAX_NICKNAME_LENGTH) {
-      ctx.addIssue({ code: 'custom', message: NICKNAME_ERRORS.TOO_LONG });
-      return;
-    }
-  }),
-
   phoneNumber: z.string().regex(/^[0-9]\d{10}$/, PHONE_NUMBER_ERRORS.INVALID),
   name: z.string().superRefine((val, ctx) => {
     if (val.length === 0) {

@@ -1,4 +1,4 @@
-import type { ReservationDetailResponseTypes } from '@/pages/reservation/types/api';
+import type { ClassReservationResponseTypes, ReservationDetailResponseTypes } from '@/pages/reservation/types/api';
 import { instance } from '@/shared/apis/instance';
 import { API_URL } from '@/shared/constants/apiURL';
 
@@ -8,17 +8,8 @@ export const getReservation = async (lessonId: number): Promise<ReservationDetai
   return data;
 };
 
-export const postReservation = async (
-  lessonId: string,
-  paymentKey: string,
-  orderId: string,
-  amount: number
-): Promise<ReservationDetailResponseTypes> => {
+export const postReservation = async (lessonId: string): Promise<ClassReservationResponseTypes> => {
   const url = `${API_URL.LESSON_RESERVATION}/${lessonId}/reservations`;
-  const { data } = await instance.post(url, {
-    paymentKey,
-    orderId,
-    amount,
-  });
+  const { data } = await instance.post(url);
   return data;
 };

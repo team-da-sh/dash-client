@@ -28,9 +28,9 @@ export const classButtonStyle = style({
   alignItems: 'center',
   gap: '0.2rem',
 
-  position: 'absolute',
-  right: '2rem',
-  bottom: '36px',
+  position: 'fixed',
+  right: `max(2rem, calc((100vw - var(--max-width)) / 2 + 2rem))`,
+  bottom: '3.6rem',
 
   width: 'max-content',
   padding: '1.2rem 1.6rem 1.2rem 1.2rem',

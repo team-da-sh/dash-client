@@ -14,7 +14,9 @@ const Loading = () => {
       paddingLeft="11.8rem">
       <Flex direction="column" align="center" justify="center" gap="1.3rem">
         <img src={LoadingGif} width={300} />
-        <Head tag="h6_sb">로딩 중...</Head>
+        <Head tag="h6_sb" color="gray6">
+          로딩 중...
+        </Head>
       </Flex>
     </Flex>
   );

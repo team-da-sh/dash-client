@@ -1,0 +1,121 @@
+import type { LessonDetailGetResponse } from '@/pages/instructor/classDetail/types/api';
+
+export const LESSON_DETAIL_MOCK: LessonDetailGetResponse = {
+  id: 12345,
+  name: '스트리트 댄스 기초',
+  imageUrl: 'http://www.kstarfashion.com/news/photo/202406/215910_131927_3527.jpg',
+  genre: 'HIPHOP',
+  level: 'BEGINNER',
+  location: '서울특별시 강남구',
+  detailedAddress: '2동 1005호',
+  startDateTime: '2025-09-15T10:00:00',
+  endDateTime: '2025-09-15T12:00:00',
+  applyStatus: 'FINISHED',
+  studentCount: 0,
+  rounds: [],
+  lessonDateTime: '',
+  students: [
+    // --- 승인 대기 (PENDING_APPROVAL) ---
+    {
+      reservationId: 101,
+      name: '김민준',
+      phoneNumber: '010-1111-2222',
+      reservationDateTime: '2025-09-12T10:05:00',
+      reservationStatus: 'PENDING_APPROVAL',
+    },
+    {
+      reservationId: 102,
+      name: '이서아',
+      phoneNumber: '010-2222-3333',
+      reservationDateTime: '2025-09-12T11:20:00',
+      reservationStatus: 'PENDING_APPROVAL',
+    },
+    {
+      reservationId: 103,
+      name: '박하준',
+      phoneNumber: '010-3333-4444',
+      reservationDateTime: '2025-09-12T14:00:00',
+      reservationStatus: 'PENDING_APPROVAL',
+    },
+    // --- 승인 완료 (APPROVED) ---
+    {
+      reservationId: 201,
+      name: '최수호',
+      phoneNumber: '010-5555-6666',
+      reservationDateTime: '2025-09-13T09:15:00',
+      reservationStatus: 'APPROVED',
+    },
+    {
+      reservationId: 202,
+      name: '강지우',
+      phoneNumber: '010-6666-7777',
+      reservationDateTime: '2025-09-13T10:30:00',
+      reservationStatus: 'APPROVED',
+    },
+    {
+      reservationId: 203,
+      name: '윤도현',
+      phoneNumber: '010-7777-8888',
+      reservationDateTime: '2025-09-13T13:00:00',
+      reservationStatus: 'APPROVED',
+    },
+    {
+      reservationId: 204,
+      name: '임서연',
+      phoneNumber: '010-8888-9999',
+      reservationDateTime: '2025-09-13T15:20:00',
+      reservationStatus: 'APPROVED',
+    },
+    // --- 취소 대기 (PENDING_CANCELLATION) ---
+    {
+      reservationId: 301,
+      name: '오지아',
+      phoneNumber: '010-1212-3434',
+      reservationDateTime: '2025-09-14T11:00:00',
+      reservationStatus: 'PENDING_CANCELLATION',
+    },
+    {
+      reservationId: 302,
+      name: '송은우',
+      phoneNumber: '010-2323-4545',
+      reservationDateTime: '2025-09-14T12:10:00',
+      reservationStatus: 'PENDING_CANCELLATION',
+    },
+    {
+      reservationId: 303,
+      name: '조민서',
+      phoneNumber: '010-3434-5656',
+      reservationDateTime: '2025-09-14T14:30:00',
+      reservationStatus: 'PENDING_CANCELLATION',
+    },
+    // --- 취소 완료 (CANCELLED) ---
+    {
+      reservationId: 401,
+      name: '황시우',
+      phoneNumber: '010-4545-6767',
+      reservationDateTime: '2025-09-11T15:00:00',
+      reservationStatus: 'CANCELLED',
+    },
+    {
+      reservationId: 402,
+      name: '배서준',
+      phoneNumber: '010-5656-7878',
+      reservationDateTime: '2025-09-11T17:40:00',
+      reservationStatus: 'CANCELLED',
+    },
+    {
+      reservationId: 403,
+      name: '문채원',
+      phoneNumber: '010-6767-8989',
+      reservationDateTime: '2025-09-11T19:00:00',
+      reservationStatus: 'CANCELLED',
+    },
+    {
+      reservationId: 404,
+      name: '백이현',
+      phoneNumber: '010-7878-9090',
+      reservationDateTime: '2025-09-11T21:00:00',
+      reservationStatus: 'CANCELLED',
+    },
+  ],
+};

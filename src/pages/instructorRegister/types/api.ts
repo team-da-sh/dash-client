@@ -1,4 +1,5 @@
 export interface InstructorRegisterRequestTypes {
+  nickname: string;
   imageUrls: string[];
   instagram: string | null;
   youtube: string | null;
@@ -9,6 +10,7 @@ export interface InstructorRegisterRequestTypes {
 }
 
 export interface InstructorRegisterInfoResponseTypes {
+  nickname: string;
   profileImage: string;
   instagram: string | null;
   youtube: string | null;
@@ -17,4 +19,8 @@ export interface InstructorRegisterInfoResponseTypes {
   prizes: string[];
   detail: string;
   videoUrls: string[];
+}
+
+export interface NicknameDuplicateResponseTypes {
+  isDuplicated: boolean;
 }
