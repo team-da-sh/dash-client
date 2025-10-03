@@ -52,17 +52,15 @@ const ClassDetail = () => {
               </ClassCard.Footer>
             </ClassCard>
           )}
-
           <BoxButton variant="transparency" onClick={() => notify({ message: '해당 기능은 추후 구현 예정입니다.' })}>
             수정하기
           </BoxButton>
         </section>
-
-        {/* <section> */}
         <Head level="h2" tag="h6_sb" color="black">
           수강생 관리
         </Head>
       </div>
+
       <TabRoot>
         <TabList className={styles.tabListStyle}>
           <TabButton
@@ -78,6 +76,7 @@ const ClassDetail = () => {
             취소
           </TabButton>
         </TabList>
+
         <Divider direction="horizontal" color="gray3" length="100%" thickness="0.1rem" />
 
         <TabPanel key={1} isSelected={selectedTab === 'APPROVE'} className={styles.tabPanelStyle}>
@@ -134,8 +133,6 @@ const ClassDetail = () => {
           )}
         </TabPanel>
       </TabRoot>
-      {/* </section> */}
-      {/* </div> */}
     </div>
   );
 };
