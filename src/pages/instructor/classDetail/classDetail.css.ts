@@ -43,6 +43,6 @@ export const tabListStyle = style({
 export const tabPanelStyle = style({
   display: 'flex',
   flexDirection: 'column',
-  gap: '1rem',
+  gap: '1.2rem',
   padding: '0rem 2rem 3.6rem',
 });
