@@ -114,7 +114,9 @@ const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetailResponseType
             인원
           </Text>
           <Text tag="h6_sb" color="gray10">
-            {maxReservationCount}명
+            <Text tag="h6_sb" color="gray10">
+              {maxReservationCount > 999 ? '999명+' : `${maxReservationCount}명`}
+            </Text>
           </Text>
         </div>
 
