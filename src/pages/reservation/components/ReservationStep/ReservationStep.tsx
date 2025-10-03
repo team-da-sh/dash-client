@@ -18,9 +18,10 @@ import Head from '@/shared/components/Head/Head';
 import Text from '@/shared/components/Text/Text';
 import { notify } from '@/shared/components/Toast/Toast';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
+import type { ClassReservationResponseTypes } from '../../types/api';
 
 interface ReservationStepPropTypes {
-  onNext: () => void;
+  onNext: (detail: ClassReservationResponseTypes) => void;
 }
 
 const ReservationStep = ({ onNext }: ReservationStepPropTypes) => {
