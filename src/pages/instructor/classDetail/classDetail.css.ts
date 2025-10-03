@@ -2,8 +2,7 @@ import { style } from '@vanilla-extract/css';
 import { vars } from '@/shared/styles/theme.css';
 
 export const layoutStyle = style({
-  height: 'calc(100dvh - 6rem)',
-
+  height: '100%',
   backgroundColor: vars.colors.gray01,
 });
 
@@ -42,5 +41,8 @@ export const tabListStyle = style({
 });
 
 export const tabPanelStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '1rem',
   padding: '0rem 2rem 3.6rem',
 });

@@ -105,7 +105,7 @@ const ClassDetail = () => {
             </Text>
           )}
         </TabPanel>
-        <TabPanel key={2} isSelected={selectedTab === 'CANCEL'}>
+        <TabPanel key={2} isSelected={selectedTab === 'CANCEL'} className={styles.tabPanelStyle}>
           {lessonData?.students.some(
             (student) =>
               student.reservationStatus === 'PENDING_CANCELLATION' || student.reservationStatus === 'CANCELLED'
