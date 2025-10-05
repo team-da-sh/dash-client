@@ -5,7 +5,6 @@ import {
   INFO_KEY,
   MAX_PHONENUMBER_LENGTH,
   MAX_VERIFICATION_CODE,
-  MAX_VERIFICATION_NUMBER,
   MIN_NAME_LENGTH,
   NAME_ERROR_MESSAGES,
   PHONE_AUTH_MESSAGES,
@@ -47,7 +46,7 @@ const InfoStep = ({
 }: InfoStepProps) => {
   const { isRunning, formattedTime, startTimer, seconds, resetTimer } = useVerificationTimer(TIMER_DURATION);
   const [isVerificationVisible, setIsVerificationVisible] = useState(false);
-  const [requestCount, setRequestCount] = useState(0);
+  // const [requestCount, setRequestCount] = useState(0);
   const [nameErrorMessage, setNameErrorMessage] = useState('');
 
   const { mutate: requestPhoneMutate } = usePostPhoneRequest();
@@ -87,12 +86,12 @@ const InfoStep = ({
       notify({ message: PHONE_AUTH_MESSAGES.TRY_AGAIN, icon: 'fail', bottomGap: 'large' });
       return;
     }
-    if (requestCount >= MAX_VERIFICATION_NUMBER) {
-      notify({ message: PHONE_AUTH_MESSAGES.LIMIT_EXCEEDED, icon: 'fail', bottomGap: 'large' });
-      return;
-    }
+    // if (requestCount >= MAX_VERIFICATION_NUMBER) {
+    //   notify({ message: PHONE_AUTH_MESSAGES.LIMIT_EXCEEDED, icon: 'fail', bottomGap: 'large' });
+    //   return;
+    // }
 
-    setRequestCount((prev) => prev + 1);
+    // setRequestCount((prev) => prev + 1);
 
     requestPhoneMutate(
       { phoneNumber, accessToken },
@@ -104,7 +103,9 @@ const InfoStep = ({
           startTimer();
         },
         onError: (error) => {
-          if (error.response?.status === 404) {
+          if (error.response?.status === 400) {
+            notify({ message: PHONE_AUTH_MESSAGES.LIMIT_EXCEEDED, icon: 'fail', bottomGap: 'large' });
+          } else if (error.response?.status === 404) {
             notify({ message: PHONE_AUTH_MESSAGES.DUPLICATE_PHONE, icon: 'fail', bottomGap: 'large' });
           } else {
             notify({ message: PHONE_AUTH_MESSAGES.SEND_FAILED, icon: 'fail', bottomGap: 'large' });
@@ -119,6 +120,8 @@ const InfoStep = ({
       { phoneNumber, code: verificationCode, accessToken },
       {
         onSuccess: (data) => {
+          if (!data) return;
+
           if (data.success) {
             notify({ message: PHONE_AUTH_MESSAGES.VERIFIED_SUCCESS, icon: 'success', bottomGap: 'large' });
             setIsCodeVerified(true);
