@@ -22,7 +22,7 @@ export const bankSelectContainerStyle = style({
   justifyContent: 'space-between',
   padding: '12px 16px',
   backgroundColor: 'white',
-  borderRadius: '8px',
+  borderRadius: '4px',
   cursor: 'pointer',
   width: '100%',
 });
