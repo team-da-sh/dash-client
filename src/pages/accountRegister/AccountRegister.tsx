@@ -159,7 +159,7 @@ const AccountRegister = () => {
             <SvgIcArrowDownGray1032 width={'3.2rem'} />
           </button>
 
-          <Input placeholder="계좌번호 입력" inputMode="numeric" {...register('accountNumber')} />
+          <Input placeholder="계좌번호 입력" inputMode="numeric" {...register('accountNumber')} maxLength={20} />
         </div>
       </div>
 
