@@ -1,4 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useQueryClient } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
@@ -17,11 +18,13 @@ import Head from '@/shared/components/Head/Head';
 import Input from '@/shared/components/Input/Input';
 import Text from '@/shared/components/Text/Text';
 import { notify } from '@/shared/components/Toast/Toast';
+import { queryKeys } from '@/shared/constants/queryKey';
 
 const AccountRegister = () => {
   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
   const [isBankSheetOpen, setIsBankSheetOpen] = useState(false);
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
   const { data: bankList } = useGetBankList();
   const { data: accountData } = useGetTeacherAccount();
@@ -81,6 +84,7 @@ const AccountRegister = () => {
     teacherAccountMutate(updateInfo, {
       onSuccess: () => {
         navigate(ROUTES_CONFIG.mypage.withTab('student'));
+        queryClient.invalidateQueries({ queryKey: queryKeys.teacher.me._ctx.account.queryKey });
 
         if (isEditMode) {
           notify({ message: '계좌정보 수정이 완료되었어요', icon: 'success' });
