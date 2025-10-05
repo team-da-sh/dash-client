@@ -75,7 +75,7 @@ const InfoStep = ({
     }
 
     setRequestCount((prev) => prev + 1);
-    
+
     requestPhoneMutate(
       { phoneNumber, accessToken },
       {
@@ -85,7 +85,7 @@ const InfoStep = ({
           setIsVerificationVisible(true);
           startTimer();
         },
-      onError: (error) => {
+        onError: (error) => {
           if (error.response?.status === 404) {
             notify({ message: PHONE_AUTH_MESSAGES.DUPLICATE_PHONE, icon: 'fail', bottomGap: 'large' });
           } else {
@@ -105,7 +105,7 @@ const InfoStep = ({
           setIsCodeVerified(true);
           resetTimer();
         },
-        onError: (error) => { 
+        onError: (error) => {
           if (error.response?.status === 409) {
             notify({ message: PHONE_AUTH_MESSAGES.CODE_MISMATCH, icon: 'fail', bottomGap: 'large' });
           } else {
