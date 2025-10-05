@@ -41,7 +41,8 @@ const ClassPlace = ({
   handleRemoveLocation,
 }: ClassPlacePropTypes) => {
   const shouldShowEmptyMessage = Array.isArray(locationList?.locations) && locationList.locations.length === 0;
-  const shouldShowLocationList = Array.isArray(locationList?.locations) && locationList.locations.length > 0;
+  const shouldShowLocationList =
+    Array.isArray(locationList?.locations) && locationList.locations.length > 0 && defaultPlace.trim() !== '';
   const {
     formState: { errors },
   } = useFormContext();
