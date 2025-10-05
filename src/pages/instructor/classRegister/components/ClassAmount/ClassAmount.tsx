@@ -39,6 +39,7 @@ const ClassAmount = ({ price, register }: ClassAmountPropTypes) => {
         rightAddOn={<Text tag="b2_sb_long">원</Text>}
         isError={!!error}
         helperText={error?.message}
+        maxLength={9}
       />
     </div>
   );
