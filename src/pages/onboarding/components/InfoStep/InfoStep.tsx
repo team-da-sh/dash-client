@@ -118,10 +118,15 @@ const InfoStep = ({
     verifyPhoneMutate(
       { phoneNumber, code: verificationCode, accessToken },
       {
-        onSuccess: () => {
-          notify({ message: PHONE_AUTH_MESSAGES.VERIFIED_SUCCESS, icon: 'success', bottomGap: 'large' });
-          setIsCodeVerified(true);
-          resetTimer();
+        onSuccess: (data) => {
+          if (data.success) {
+            notify({ message: PHONE_AUTH_MESSAGES.VERIFIED_SUCCESS, icon: 'success', bottomGap: 'large' });
+            setIsCodeVerified(true);
+            resetTimer();
+            return;
+          }
+          notify({ message: PHONE_AUTH_MESSAGES.CODE_MISMATCH, icon: 'fail', bottomGap: 'large' });
+          setIsCodeVerified(false);
         },
         onError: (error) => {
           if (error.response?.status === 409) {
