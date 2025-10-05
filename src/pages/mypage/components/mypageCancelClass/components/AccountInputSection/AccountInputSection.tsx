@@ -60,7 +60,13 @@ const AccountInputSection = ({ isVisible, selectedBank, onBankSelectClick, regis
             )}
             <SvgIcArrowDownGray1032 width={'3.2rem'} />
           </button>
-          <Input backgroundColor="white" placeholder="계좌번호 입력" inputMode="numeric" {...registerAccount} />
+          <Input
+            backgroundColor="white"
+            placeholder="계좌번호 입력"
+            inputMode="numeric"
+            {...registerAccount}
+            maxLength={20}
+          />
         </div>
       </div>
     </div>
