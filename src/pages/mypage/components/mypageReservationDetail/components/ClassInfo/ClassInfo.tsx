@@ -9,7 +9,6 @@ import { calculatePeriod, formatSimpleDate } from '@/shared/utils/dateCalculate'
 interface ClassInfoPropTypes {
   location: string;
   locationDetail?: string;
-
   lessonRound?: LessonRoundPropTypes[];
 }
 
@@ -19,6 +18,7 @@ interface LessonRoundPropTypes {
 }
 
 const ClassInfo = ({ location, locationDetail, lessonRound = [] }: ClassInfoPropTypes) => {
+  console.log(locationDetail);
   return (
     <section className={infoContainerStyle}>
       <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 12 })}>

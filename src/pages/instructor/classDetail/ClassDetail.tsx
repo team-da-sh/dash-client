@@ -47,7 +47,11 @@ const ClassDetail = () => {
                 level={lessonData.level}
               />
               <ClassCard.Footer>
-                <ClassInfo lessonRound={lessonData.rounds} location={lessonData.location} />
+                <ClassInfo
+                  lessonRound={lessonData.rounds}
+                  location={lessonData.location}
+                  locationDetail={lessonData.detailedAddress}
+                />
               </ClassCard.Footer>
             </ClassCard>
           )}
