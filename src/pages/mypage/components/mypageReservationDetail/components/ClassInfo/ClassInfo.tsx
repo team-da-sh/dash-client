@@ -18,7 +18,6 @@ interface LessonRoundPropTypes {
 }
 
 const ClassInfo = ({ location, locationDetail, lessonRound = [] }: ClassInfoPropTypes) => {
-  console.log(locationDetail);
   return (
     <section className={infoContainerStyle}>
       <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 12 })}>
