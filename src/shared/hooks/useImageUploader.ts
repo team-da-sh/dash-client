@@ -5,7 +5,7 @@ import { resizeImage } from '@/shared/utils/resizeImage';
 const useImageUploader = (
   onSuccess: (url: string) => void,
   handleDeleteUrl?: () => void,
-  initialImageUrl?: string,
+  initialImageUrl?: string | null,
   handleCloseBottomSheet?: () => void
 ) => {
   const [previewImg, setPreviewImg] = useState<string>(initialImageUrl || '');
