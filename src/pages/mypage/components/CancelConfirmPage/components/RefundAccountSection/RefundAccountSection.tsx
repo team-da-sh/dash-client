@@ -4,6 +4,7 @@ import SvgIcArrowDownGray1032 from '@/shared/assets/svg/IcArrowDownGray1032';
 import Head from '@/shared/components/Head/Head';
 import Input from '@/shared/components/Input/Input';
 import Text from '@/shared/components/Text/Text';
+import { MAX_ACCOUNT_NUMBER_LENGTH } from '@/shared/constants/account';
 import { ONLY_NUMBER } from '@/shared/constants/regex';
 
 interface Bank {
@@ -57,7 +58,13 @@ const RefundAccountSection = ({ isVisible, selectedBank, onBankSelectClick, regi
             )}
             <SvgIcArrowDownGray1032 width={'3.2rem'} />
           </button>
-          <Input backgroundColor="white" placeholder="계좌번호 입력" inputMode="numeric" {...registerAccount} />
+          <Input
+            backgroundColor="white"
+            placeholder="계좌번호 입력"
+            inputMode="numeric"
+            {...registerAccount}
+            maxLength={MAX_ACCOUNT_NUMBER_LENGTH}
+          />
         </div>
       </div>
     </div>

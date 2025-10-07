@@ -4,12 +4,12 @@ import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import * as styles from '@/pages/accountRegister/accountRegister.css';
-import { useGetTeacherAccount, usePostTeacherAccount } from '@/pages/accountRegister/apis/queries';
+import { usePostTeacherAccount } from '@/pages/accountRegister/apis/queries';
 import ConfirmBottomSheet from '@/pages/accountRegister/components/ConfirmBottomSheet/ConfirmBottomSheet';
 import { ACCOUNT_REGISTER_FORM_KEY } from '@/pages/accountRegister/constants/registerSection';
 import { accountRegisterSchema } from '@/pages/accountRegister/schema/accountRegisterSchema';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import { useGetBankList } from '@/shared/apis/queries';
+import { useGetBankList, useGetTeacherAccount } from '@/shared/apis/queries';
 import SvgIcArrowDownGray1032 from '@/shared/assets/svg/IcArrowDownGray1032';
 import BankBottomSheet from '@/shared/components/BankBottomSheet/BankBottomSheet';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
@@ -18,6 +18,7 @@ import Head from '@/shared/components/Head/Head';
 import Input from '@/shared/components/Input/Input';
 import Text from '@/shared/components/Text/Text';
 import { notify } from '@/shared/components/Toast/Toast';
+import { MAX_ACCOUNT_NUMBER_LENGTH } from '@/shared/constants/account';
 import { queryKeys } from '@/shared/constants/queryKey';
 
 const AccountRegister = () => {
@@ -159,7 +160,12 @@ const AccountRegister = () => {
             <SvgIcArrowDownGray1032 width={'3.2rem'} />
           </button>
 
-          <Input placeholder="계좌번호 입력" inputMode="numeric" {...register('accountNumber')} />
+          <Input
+            placeholder="계좌번호 입력"
+            inputMode="numeric"
+            {...register('accountNumber')}
+            maxLength={MAX_ACCOUNT_NUMBER_LENGTH}
+          />
         </div>
       </div>
 
