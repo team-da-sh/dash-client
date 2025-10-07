@@ -5,11 +5,12 @@ import FinishStep from '@/pages/onboarding/components/FinishStep/FinishStep';
 import InfoStep from '@/pages/onboarding/components/InfoStep/InfoStep';
 import OnboardingHeader from '@/pages/onboarding/components/OnboardingHeader/OnboardingHeader';
 import SubmitButton from '@/pages/onboarding/components/SubmitButton/SubmitButton';
-import { FINAL_ONBOARDING_STEP, PHONE_AUTH_MESSAGES } from '@/pages/onboarding/constants';
+import { FINAL_ONBOARDING_STEP } from '@/pages/onboarding/constants';
 import * as styles from '@/pages/onboarding/onboarding.css';
 import type { OnboardInfoTypes, OnboardingState } from '@/pages/onboarding/types/onboardInfoTypes';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { notify } from '@/shared/components/Toast/Toast';
+import { PHONE_AUTH_MESSAGES } from '@/shared/constants/userInfo';
 import { useFunnel } from '@/shared/hooks/useFunnel';
 import { setStorage } from '@/shared/utils/handleToken';
 

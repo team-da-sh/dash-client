@@ -1,11 +1,7 @@
 import { useState } from 'react';
 import { usePostPhoneRequest, usePostPhoneVerify } from '@/pages/onboarding/apis/queries';
 import * as styles from '@/pages/onboarding/components/InfoStep/infoStep.css';
-import {
-  INFO_KEY,
-  REQUEST_DELAY,
-  TIMER_DURATION,
-} from '@/pages/onboarding/constants';
+import { INFO_KEY, REQUEST_DELAY, TIMER_DURATION } from '@/pages/onboarding/constants';
 import { useVerificationTimer } from '@/pages/onboarding/hooks/useVerificationTimer';
 import type { OnboardInfoTypes } from '@/pages/onboarding/types/onboardInfoTypes';
 import { validateTypingPhoneNumber } from '@/pages/onboarding/utils/validate';
@@ -14,6 +10,13 @@ import Head from '@/shared/components/Head/Head';
 import Input from '@/shared/components/Input/Input';
 import Text from '@/shared/components/Text/Text';
 import { notify } from '@/shared/components/Toast/Toast';
+import {
+  MAX_PHONENUMBER_LENGTH,
+  MAX_VERIFICATION_CODE,
+  MIN_NAME_LENGTH,
+  NAME_ERROR_MESSAGES,
+  PHONE_AUTH_MESSAGES,
+} from '@/shared/constants/userInfo';
 import { ONLY_KOREAN_AND_ENGLISH } from '@/shared/constants/regex';
 
 interface InfoStepProps {

@@ -1,4 +1,4 @@
-import { MAX_NAME_LENGTH, MAX_PHONENUMBER_LENGTH, MIN_NAME_LENGTH } from '@/pages/onboarding/constants';
+import { MAX_NAME_LENGTH, MAX_PHONENUMBER_LENGTH, MIN_NAME_LENGTH } from '@/shared/constants/userInfo';
 import { ONLY_KOREAN_AND_ENGLISH, ONLY_NUMBER } from '@/shared/constants/regex';
 
 export const validateTypingName = (name: string) => {
