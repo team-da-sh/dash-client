@@ -2,7 +2,10 @@ import { style } from '@vanilla-extract/css';
 import { vars } from '@/shared/styles/theme.css';
 
 export const layoutStyle = style({
-  height: '100%',
+  // TODO: 문제 없는지 확인 필요
+  // height: 'calc(100dvh - 6rem)',
+  minHeight: '100dvh',
+
   backgroundColor: vars.colors.gray01,
 });
 

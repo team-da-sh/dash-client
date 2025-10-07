@@ -122,10 +122,10 @@ const AccountRegister = () => {
       <div className={styles.containerStyle}>
         <div className={styles.titleStyle}>
           <Head level="h1" tag="h3_sb">
-            계좌 등록하기
+            {isEditMode ? '계좌 관리하기' : '계좌 등록하기'}
           </Head>
           <Text tag="b2_m" color="gray7">
-            수업료를 입금받은 계좌를 등록해요
+            {isEditMode ? '등록한 계좌를 관리해요' : '수업료를 입금받은 계좌를 등록해요'}
           </Text>
         </div>
 
