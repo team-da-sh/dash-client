@@ -4,7 +4,7 @@ import { ROUTES_CONFIG } from '@/routes/routesConfig';
 
 export const handleClassCardClick = (navigate: ReturnType<typeof useNavigate>, reservationId: number | undefined) => {
   if (reservationId !== undefined) {
-    const path = ROUTES_CONFIG.class.path(reservationId.toString());
+    const path = ROUTES_CONFIG.mypageReservationDetail.path(reservationId.toString());
     navigate(path);
   } else {
     navigate(ROUTES_CONFIG.error.path);

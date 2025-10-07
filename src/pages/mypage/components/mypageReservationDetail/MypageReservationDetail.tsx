@@ -47,7 +47,7 @@ const MyPageReservationDetail = () => {
               imageUrl={data.lessonImageUrl}
             />
             <ClassCard.Footer>
-              <ClassInfo lessonRound={data.rounds} location={data.location} />
+              <ClassInfo lessonRound={data.rounds} location={data.location} locationDetail={data.detailedAddress} />
             </ClassCard.Footer>
           </ClassCard>
         </div>

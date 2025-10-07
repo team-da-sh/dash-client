@@ -9,7 +9,6 @@ import { calculatePeriod, formatSimpleDate } from '@/shared/utils/dateCalculate'
 interface ClassInfoPropTypes {
   location: string;
   locationDetail?: string;
-
   lessonRound?: LessonRoundPropTypes[];
 }
 

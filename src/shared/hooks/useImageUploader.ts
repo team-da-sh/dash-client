@@ -1,11 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 import { useImageMutation } from '@/shared/apis/queries';
 import { resizeImage } from '@/shared/utils/resizeImage';
+import { notify } from '../components/Toast/Toast';
 
 const useImageUploader = (
   onSuccess: (url: string) => void,
   handleDeleteUrl?: () => void,
-  initialImageUrl?: string,
+  initialImageUrl?: string | null,
   handleCloseBottomSheet?: () => void
 ) => {
   const [previewImg, setPreviewImg] = useState<string>(initialImageUrl || '');
@@ -25,6 +26,11 @@ const useImageUploader = (
     }
   };
 
+  const resetImage = () => {
+    setImgFile(undefined);
+    setPreviewImg('');
+  };
+
   const uploadImgFile = async () => {
     if (!imgRef.current || !imgRef.current.files) return;
 
@@ -40,6 +46,10 @@ const useImageUploader = (
           onSuccess(data.imageUrl);
           handleCloseBottomSheet?.();
         }
+      },
+      onError: () => {
+        notify({ message: '이미지 저장에 실패했어요.', icon: 'fail' });
+        resetImage();
       },
     });
 
@@ -58,8 +68,7 @@ const useImageUploader = (
     if (e) {
       e.stopPropagation();
     }
-    setImgFile(undefined);
-    setPreviewImg('');
+    resetImage();
 
     if (handleDeleteUrl) {
       handleDeleteUrl();

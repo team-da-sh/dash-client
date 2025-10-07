@@ -1,6 +1,10 @@
 import type { SVGProps } from 'react';
 
-const SvgIcAt12 = ({ fill = '#091120', ...props }: SVGProps<SVGSVGElement>) => (
+interface IcAt12Props extends Omit<SVGProps<SVGSVGElement>, 'fill'> {
+  fill?: string;
+}
+
+const SvgIcAt12 = ({ fill = '#091120', ...props }: IcAt12Props) => (
   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 13 12" {...props}>
     <path
       fill={fill}
