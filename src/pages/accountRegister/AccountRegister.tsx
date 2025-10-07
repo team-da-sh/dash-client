@@ -18,6 +18,7 @@ import Head from '@/shared/components/Head/Head';
 import Input from '@/shared/components/Input/Input';
 import Text from '@/shared/components/Text/Text';
 import { notify } from '@/shared/components/Toast/Toast';
+import { MAX_ACCOUNT_NUMBER_LENGTH } from '@/shared/constants/account';
 import { queryKeys } from '@/shared/constants/queryKey';
 
 const AccountRegister = () => {
@@ -159,7 +160,12 @@ const AccountRegister = () => {
             <SvgIcArrowDownGray1032 width={'3.2rem'} />
           </button>
 
-          <Input placeholder="계좌번호 입력" inputMode="numeric" {...register('accountNumber')} maxLength={20} />
+          <Input
+            placeholder="계좌번호 입력"
+            inputMode="numeric"
+            {...register('accountNumber')}
+            maxLength={MAX_ACCOUNT_NUMBER_LENGTH}
+          />
         </div>
       </div>
 

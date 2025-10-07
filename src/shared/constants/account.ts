@@ -1,0 +1,1 @@
+export const MAX_ACCOUNT_NUMBER_LENGTH = 20;
