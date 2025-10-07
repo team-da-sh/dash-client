@@ -9,6 +9,8 @@ import { FINAL_ONBOARDING_STEP } from '@/pages/onboarding/constants';
 import * as styles from '@/pages/onboarding/onboarding.css';
 import type { OnboardInfoTypes, OnboardingState } from '@/pages/onboarding/types/onboardInfoTypes';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
+import { notify } from '@/shared/components/Toast/Toast';
+import { PHONE_AUTH_MESSAGES } from '@/shared/constants/userInfo';
 import { useFunnel } from '@/shared/hooks/useFunnel';
 import { setStorage } from '@/shared/utils/handleToken';
 
@@ -59,6 +61,11 @@ const Onboarding = () => {
         onSuccess: () => {
           setStorage(tokenRef.current.accessToken, tokenRef.current.refreshToken);
           setStep(1);
+        },
+        onError: (error) => {
+          if (error.response?.status === 409) {
+            notify({ message: PHONE_AUTH_MESSAGES.DUPLICATE_PHONE, icon: 'fail', bottomGap: 'large' });
+          }
         },
         onSettled: () => {
           setOnboarding((prev) => ({ ...prev, isSubmitting: false }));

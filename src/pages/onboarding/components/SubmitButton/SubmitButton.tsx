@@ -7,7 +7,7 @@ interface SubmitButtonPropTypes {
   currentStep: number;
   info: OnboardInfoTypes;
   onNextButtonClick: () => void;
-  isCodeVerified: boolean; // 추가
+  isCodeVerified: boolean; 
   isNameError: boolean;
 }
 
@@ -15,7 +15,6 @@ const SubmitButton = ({ currentStep, info, onNextButtonClick, isCodeVerified, is
   const isButtonDisabled = (step: number) => {
     switch (step) {
       case 1:
-        // 인증까지 완료되어야 버튼 활성화
         return !(!isNameError && validatePhoneNumber(info.phoneNumber) && isCodeVerified);
       case 2:
         return false;

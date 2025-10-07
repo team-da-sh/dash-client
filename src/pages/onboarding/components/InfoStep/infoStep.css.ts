@@ -41,7 +41,8 @@ export const buttonStyle = recipe({
   base: {
     width: '8.2rem',
     height: '5.2rem',
-    padding: '0.3rem 0.8rem',
+    padding: '0.3rem 1.6rem',
+    whiteSpace: 'nowrap',
     textAlign: 'center',
     ...vars.fonts.b2_sb_long,
   },
