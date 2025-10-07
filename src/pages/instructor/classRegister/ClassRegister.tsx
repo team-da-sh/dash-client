@@ -107,6 +107,7 @@ const ClassRegister = () => {
     setMinute,
     setAmpm,
     setSelectedTime,
+    setDefaultPlace,
     handleAddTime: originalHandleAddTime,
     handleRemoveTime: originalHandleRemoveTime,
     handleNoneLocationCheck,
@@ -219,6 +220,7 @@ const ClassRegister = () => {
   const handleRemoveLocation = () => {
     setSelectedLocation(null);
     setValue('selectedLocation', null, { shouldValidate: true });
+    setDefaultPlace('');
   };
 
   const handleSelectLocation = (location: LocationTypes | null) => {

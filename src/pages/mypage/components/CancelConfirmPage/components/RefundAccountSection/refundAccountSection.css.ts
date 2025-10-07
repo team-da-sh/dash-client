@@ -8,6 +8,7 @@ export const titleContainerStyle = style({
   display: 'flex',
   flexDirection: 'column',
   gap: '1.2rem',
+  paddingTop: '2.4rem',
 });
 
 export const inputContainerStyle = style({
@@ -22,7 +23,7 @@ export const bankSelectContainerStyle = style({
   justifyContent: 'space-between',
   padding: '12px 16px',
   backgroundColor: 'white',
-  borderRadius: '8px',
+  borderRadius: '4px',
   cursor: 'pointer',
   width: '100%',
 });

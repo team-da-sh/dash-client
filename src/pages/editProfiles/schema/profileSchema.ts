@@ -13,7 +13,7 @@ import {
 
 export const profileSchema = z.object({
   profileImageUrl: z.union([
-    z.string().optional(),
+    z.string().nullable().optional(),
     z
       .instanceof(FileList)
       .optional()

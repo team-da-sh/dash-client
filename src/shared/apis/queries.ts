@@ -1,9 +1,9 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
 import type { AxiosError } from 'axios';
 import queryClient from '@/queryClient';
-import { getBankList, postImage, postRole } from '@/shared/apis/axios';
-import { authKeys, bankKeys } from '@/shared/constants/queryKey';
-import type { BankListResponseTypes } from '@/shared/types/api';
+import { getBankList, getTeacherAccount, postImage, postRole } from '@/shared/apis/axios';
+import { authKeys, bankKeys, teacherKeys } from '@/shared/constants/queryKey';
+import type { BankListResponseTypes, TeacherAccountResponseTypes } from '@/shared/types/api';
 import type { RoleNameResponseTypes } from '@/shared/types/myPageTypes';
 
 export const useImageMutation = () => {
@@ -26,5 +26,12 @@ export const useGetBankList = () => {
   return useQuery<BankListResponseTypes[], AxiosError>({
     queryKey: bankKeys._def,
     queryFn: () => getBankList(),
+  });
+};
+
+export const useGetTeacherAccount = () => {
+  return useQuery<TeacherAccountResponseTypes, AxiosError>({
+    queryKey: teacherKeys.me._ctx.account.queryKey,
+    queryFn: () => getTeacherAccount(),
   });
 };

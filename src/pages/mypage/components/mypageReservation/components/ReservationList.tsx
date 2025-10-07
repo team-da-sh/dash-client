@@ -35,7 +35,7 @@ const ReservationList = ({ status, targetReservationId, showActions = true }: Re
         filteredReservations?.map((reservation: Reservation) => (
           <ClassCard
             key={reservation.reservationId}
-            onClick={() => handleClassCardClick(navigate, reservation.lessonId)}>
+            onClick={() => handleClassCardClick(navigate, reservation.reservationId)}>
             <ClassCard.Header
               role={USER_ROLE.MEMBER}
               status={reservation.reservationStatus}

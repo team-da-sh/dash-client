@@ -7,3 +7,11 @@ export interface BankListResponseTypes {
 export interface ApiError {
   message: string;
 }
+
+export interface TeacherAccountResponseTypes {
+  isRegistered: boolean;
+  depositor: string;
+  bankId: number;
+  bankName: string;
+  accountNumber: string;
+}

@@ -22,7 +22,7 @@ const StudentList = ({ reservationStatus, studentList, lessonId, selectedTab }: 
   return (
     <>
       {studentList.length > 0 && (
-        <>
+        <div>
           <div className={pannelTitleWrapper}>
             <Text tag="b2_sb" className={textStyle}>
               {STATUS_KOREAN_MAP[reservationStatus]}
@@ -35,7 +35,7 @@ const StudentList = ({ reservationStatus, studentList, lessonId, selectedTab }: 
               <StudentCard index={index} studentData={student} lessonId={lessonId} selectedTab={selectedTab} />
             ))}
           </ul>
-        </>
+        </div>
       )}
     </>
   );

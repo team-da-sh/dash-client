@@ -136,7 +136,7 @@ const CancelConfirmPage = () => {
               pr: 20,
               pl: 20,
             })}>
-            <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 20 })}>
+            <div className={sprinkles({ display: 'flex', flexDirection: 'column' })}>
               <div
                 className={sprinkles({
                   display: 'flex',
@@ -155,14 +155,14 @@ const CancelConfirmPage = () => {
                   하시겠습니까?
                 </Head>
               </div>
-              <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 16 })}>
+              <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 16, pt: 24 })}>
                 <Head tag="h6_sb" color="black">
                   신청자 정보
                 </Head>
                 <ApplicantInfo memberName={myPageData?.name || ''} memberPhoneNumber={myPageData?.phoneNumber || ''} />
               </div>
 
-              <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 16 })}>
+              <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 16, pt: 40, pb: 40 })}>
                 <Head tag="h6_sb" color="black">
                   클래스 정보
                 </Head>
