@@ -26,7 +26,7 @@ export const agreementContainerStyle = style({
   gap: '1.2rem',
   cursor: 'pointer',
   padding: '2rem',
-  backgroundColor: 'white',
+  backgroundColor: vars.colors.white,
   borderRadius: '8px',
   border: `1.133px solid ${vars.colors.gray04}`,
 });

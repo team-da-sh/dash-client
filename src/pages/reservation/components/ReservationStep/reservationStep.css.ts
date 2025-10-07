@@ -40,3 +40,8 @@ export const totalPriceContainerStyle = style({
   width: '100%',
   padding: '1.8rem 2rem 10.8rem 2rem',
 });
+
+export const priceWrapperStyle = style({
+  display: 'flex',
+  gap: '0.1rem',
+});

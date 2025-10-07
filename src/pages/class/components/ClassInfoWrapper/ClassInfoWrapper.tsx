@@ -35,6 +35,8 @@ const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetailResponseType
     navigate(path);
   };
 
+  const MAX_DISPLAY_RESERVATION_COUNT = 999;
+
   return (
     <section className={sprinkles({ flexDirection: 'column', pt: 20, pr: 20, pb: 24, pl: 20 })}>
       <div className={sprinkles({ display: 'flex', mb: 12, gap: 6 })}>
@@ -114,7 +116,11 @@ const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetailResponseType
             인원
           </Text>
           <Text tag="h6_sb" color="gray10">
-            {maxReservationCount}명
+            <Text tag="h6_sb" color="gray10">
+              {maxReservationCount > MAX_DISPLAY_RESERVATION_COUNT
+                ? `${MAX_DISPLAY_RESERVATION_COUNT}+`
+                : `${maxReservationCount}명`}
+            </Text>
           </Text>
         </div>
 

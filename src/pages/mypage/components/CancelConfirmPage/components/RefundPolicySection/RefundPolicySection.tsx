@@ -25,7 +25,7 @@ const RefundPolicySection = ({ isVisible, onAgreementChange }: RefundPolicySecti
 
   return (
     <div className={styles.containerStyle}>
-      <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 16 })}>
+      <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 16, pt: 40 })}>
         <Head tag="h6_sb" color="black">
           취소 및 환불 약관 안내
         </Head>

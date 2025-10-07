@@ -1,14 +1,15 @@
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useQueryClient } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import * as styles from '@/pages/accountRegister/accountRegister.css';
-import { useGetTeacherAccount, usePostTeacherAccount } from '@/pages/accountRegister/apis/queries';
+import { usePostTeacherAccount } from '@/pages/accountRegister/apis/queries';
 import ConfirmBottomSheet from '@/pages/accountRegister/components/ConfirmBottomSheet/ConfirmBottomSheet';
 import { ACCOUNT_REGISTER_FORM_KEY } from '@/pages/accountRegister/constants/registerSection';
 import { accountRegisterSchema } from '@/pages/accountRegister/schema/accountRegisterSchema';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import { useGetBankList } from '@/shared/apis/queries';
+import { useGetBankList, useGetTeacherAccount } from '@/shared/apis/queries';
 import SvgIcArrowDownGray1032 from '@/shared/assets/svg/IcArrowDownGray1032';
 import BankBottomSheet from '@/shared/components/BankBottomSheet/BankBottomSheet';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
@@ -17,11 +18,14 @@ import Head from '@/shared/components/Head/Head';
 import Input from '@/shared/components/Input/Input';
 import Text from '@/shared/components/Text/Text';
 import { notify } from '@/shared/components/Toast/Toast';
+import { MAX_ACCOUNT_NUMBER_LENGTH } from '@/shared/constants/account';
+import { queryKeys } from '@/shared/constants/queryKey';
 
 const AccountRegister = () => {
   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
   const [isBankSheetOpen, setIsBankSheetOpen] = useState(false);
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
   const { data: bankList } = useGetBankList();
   const { data: accountData } = useGetTeacherAccount();
@@ -81,6 +85,7 @@ const AccountRegister = () => {
     teacherAccountMutate(updateInfo, {
       onSuccess: () => {
         navigate(ROUTES_CONFIG.mypage.withTab('student'));
+        queryClient.invalidateQueries({ queryKey: queryKeys.teacher.me._ctx.account.queryKey });
 
         if (isEditMode) {
           notify({ message: '계좌정보 수정이 완료되었어요', icon: 'success' });
@@ -117,10 +122,10 @@ const AccountRegister = () => {
       <div className={styles.containerStyle}>
         <div className={styles.titleStyle}>
           <Head level="h1" tag="h3_sb">
-            계좌 등록하기
+            {isEditMode ? '계좌 관리하기' : '계좌 등록하기'}
           </Head>
           <Text tag="b2_m" color="gray7">
-            수업료를 입금받은 계좌를 등록해요
+            {isEditMode ? '등록한 계좌를 관리해요' : '수업료를 입금받은 계좌를 등록해요'}
           </Text>
         </div>
 
@@ -155,7 +160,12 @@ const AccountRegister = () => {
             <SvgIcArrowDownGray1032 width={'3.2rem'} />
           </button>
 
-          <Input placeholder="계좌번호 입력" inputMode="numeric" {...register('accountNumber')} />
+          <Input
+            placeholder="계좌번호 입력"
+            inputMode="numeric"
+            {...register('accountNumber')}
+            maxLength={MAX_ACCOUNT_NUMBER_LENGTH}
+          />
         </div>
       </div>
 

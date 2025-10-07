@@ -24,7 +24,9 @@ const ReservationProgress = ({ reservationStatus }: ReservationProgressProps) =>
     <section className={calcelContainer}>
       <div className={statusWrapper}>
         <SvgIcMeatball width={24} height={24} color={vars.colors.alert01} />
-        <Text tag="b3_sb" className={textStyle}>
+        <Text
+          tag="b3_sb"
+          className={textStyle({ status: reservationStatus === 'PENDING_CANCELLATION' ? 'inProgress' : 'finish' })}>
           취소대기
         </Text>
       </div>
@@ -35,7 +37,9 @@ const ReservationProgress = ({ reservationStatus }: ReservationProgressProps) =>
           height={24}
           color={reservationStatus === 'CANCELLED' ? vars.colors.alert01 : vars.colors.gray04}
         />
-        <Text tag="b3_sb" className={textStyle}>
+        <Text
+          tag="b3_sb"
+          className={textStyle({ status: reservationStatus === 'CANCELLED' ? 'inProgress' : 'pending' })}>
           취소완료
         </Text>
       </div>
@@ -44,7 +48,9 @@ const ReservationProgress = ({ reservationStatus }: ReservationProgressProps) =>
     <section className={progressContatiner}>
       <div className={statusWrapper}>
         <SvgIcMeatball width={24} height={24} color={vars.colors.main03} />
-        <Text tag="b3_sb" className={textStyle}>
+        <Text
+          tag="b3_sb"
+          className={textStyle({ status: reservationStatus === 'PENDING_APPROVAL' ? 'inProgress' : 'finish' })}>
           승인대기
         </Text>
       </div>
@@ -55,7 +61,16 @@ const ReservationProgress = ({ reservationStatus }: ReservationProgressProps) =>
           height={24}
           color={reservationStatus === 'PENDING_APPROVAL' ? vars.colors.gray04 : vars.colors.main03}
         />
-        <Text tag="b3_sb" className={textStyle}>
+        <Text
+          tag="b3_sb"
+          className={textStyle({
+            status:
+              reservationStatus === 'PENDING_APPROVAL'
+                ? 'pending'
+                : reservationStatus === 'APPROVED'
+                  ? 'inProgress'
+                  : 'finish',
+          })}>
           승인완료
         </Text>
       </div>{' '}
@@ -74,7 +89,16 @@ const ReservationProgress = ({ reservationStatus }: ReservationProgressProps) =>
               : vars.colors.gray04
           }
         />
-        <Text tag="b3_sb" className={textStyle}>
+        <Text
+          tag="b3_sb"
+          className={textStyle({
+            status:
+              reservationStatus === 'IN_PROGRESS'
+                ? 'inProgress'
+                : reservationStatus === 'COMPLETED'
+                  ? 'finish'
+                  : 'pending',
+          })}>
           수강중
         </Text>
       </div>
@@ -85,7 +109,9 @@ const ReservationProgress = ({ reservationStatus }: ReservationProgressProps) =>
           height={24}
           color={reservationStatus === 'COMPLETED' ? vars.colors.main03 : vars.colors.gray04}
         />
-        <Text tag="b3_sb" className={textStyle}>
+        <Text
+          tag="b3_sb"
+          className={textStyle({ status: reservationStatus === 'COMPLETED' ? 'inProgress' : 'pending' })}>
           수강완료
         </Text>
       </div>

@@ -36,8 +36,7 @@ globalStyle('html, body', {
   margin: '0 auto',
   scrollBehavior: 'smooth',
   backgroundColor: vars.colors.white,
-  boxShadow: '0px 0px 50px 0px rgba(0, 0, 0, 0.07)',
-})
+});
 
 // A 태그 스타일
 globalStyle('a', {
