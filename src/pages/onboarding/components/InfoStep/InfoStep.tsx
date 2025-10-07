@@ -3,11 +3,6 @@ import { usePostPhoneRequest, usePostPhoneVerify } from '@/pages/onboarding/apis
 import * as styles from '@/pages/onboarding/components/InfoStep/infoStep.css';
 import {
   INFO_KEY,
-  MAX_PHONENUMBER_LENGTH,
-  MAX_VERIFICATION_CODE,
-  MIN_NAME_LENGTH,
-  NAME_ERROR_MESSAGES,
-  PHONE_AUTH_MESSAGES,
   REQUEST_DELAY,
   TIMER_DURATION,
 } from '@/pages/onboarding/constants';
@@ -46,7 +41,6 @@ const InfoStep = ({
 }: InfoStepProps) => {
   const { isRunning, formattedTime, startTimer, seconds, resetTimer } = useVerificationTimer(TIMER_DURATION);
   const [isVerificationVisible, setIsVerificationVisible] = useState(false);
-  // const [requestCount, setRequestCount] = useState(0);
   const [nameErrorMessage, setNameErrorMessage] = useState('');
 
   const { mutate: requestPhoneMutate } = usePostPhoneRequest();
@@ -86,12 +80,6 @@ const InfoStep = ({
       notify({ message: PHONE_AUTH_MESSAGES.TRY_AGAIN, icon: 'fail', bottomGap: 'large' });
       return;
     }
-    // if (requestCount >= MAX_VERIFICATION_NUMBER) {
-    //   notify({ message: PHONE_AUTH_MESSAGES.LIMIT_EXCEEDED, icon: 'fail', bottomGap: 'large' });
-    //   return;
-    // }
-
-    // setRequestCount((prev) => prev + 1);
 
     requestPhoneMutate(
       { phoneNumber, accessToken },
