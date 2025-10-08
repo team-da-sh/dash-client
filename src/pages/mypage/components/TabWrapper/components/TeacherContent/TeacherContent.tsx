@@ -69,6 +69,7 @@ const TeacherContent = () => {
     if (accountData?.isRegistered) {
       navigate(ROUTES_CONFIG.classRegister.path);
     } else {
+      notify({ message: '클래스 개설 전 계좌를 먼저 등록해 주세요', icon: 'success', bottomGap: 'large' });
       navigate(ROUTES_CONFIG.accountRegister.path);
     }
   };

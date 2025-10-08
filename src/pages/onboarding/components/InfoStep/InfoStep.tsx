@@ -10,6 +10,7 @@ import Head from '@/shared/components/Head/Head';
 import Input from '@/shared/components/Input/Input';
 import Text from '@/shared/components/Text/Text';
 import { notify } from '@/shared/components/Toast/Toast';
+import { ONLY_KOREAN_AND_ENGLISH } from '@/shared/constants/regex';
 import {
   MAX_PHONENUMBER_LENGTH,
   MAX_VERIFICATION_CODE,
@@ -17,7 +18,6 @@ import {
   NAME_ERROR_MESSAGES,
   PHONE_AUTH_MESSAGES,
 } from '@/shared/constants/userInfo';
-import { ONLY_KOREAN_AND_ENGLISH } from '@/shared/constants/regex';
 
 interface InfoStepProps {
   name: string;
