@@ -73,6 +73,7 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
       {
         onSuccess: () => {
           notify({ message: PHONE_AUTH_MESSAGES.CODE_SENT, icon: 'success', bottomGap: 'large' });
+          setVerificationCode('');
           setIsVerificationVisible(true);
           startTimer();
         },
