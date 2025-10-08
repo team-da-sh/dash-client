@@ -265,6 +265,7 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
                     {formattedTime}
                   </Text>
                 }
+                maxLength={MAX_VERIFICATION_CODE}
                 readOnly={isCodeVerified}
                 onMouseDown={handleFocusAndNotify}
                 onTouchStart={handleFocusAndNotify}
