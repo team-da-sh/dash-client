@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { TIMER_DURATION } from '@/pages/onboarding/constants';
+import { TIMER_DURATION } from '@/shared/constants/userInfo';
 
 const formatTime = (s: number) => {
   const m = String(Math.floor(s / 60)).padStart(2, '0');

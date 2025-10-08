@@ -10,8 +10,6 @@ import type { UpdateProfileRequestTypes } from '@/pages/editProfiles/types/api';
 import { allowOnlyNumberKey, allowOnlyNumberPaste } from '@/pages/editProfiles/utils/inputUtils';
 import ImageUploadSection from '@/pages/instructorRegister/components/ImageUploadSection/ImageUploadSection';
 import { usePostPhoneRequest, usePostPhoneVerify } from '@/pages/onboarding/apis/queries';
-import { REQUEST_DELAY, TIMER_DURATION } from '@/pages/onboarding/constants';
-import { useVerificationTimer } from '@/pages/onboarding/hooks/useVerificationTimer';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import Input from '@/shared/components/Input/Input';
 import Text from '@/shared/components/Text/Text';
@@ -21,8 +19,11 @@ import {
   MAX_PHONENUMBER_LENGTH,
   MAX_VERIFICATION_CODE,
   PHONE_AUTH_MESSAGES,
+  REQUEST_DELAY,
+  TIMER_DURATION,
 } from '@/shared/constants/userInfo';
 import useImageUploader from '@/shared/hooks/useImageUploader';
+import { useVerificationTimer } from '@/shared/hooks/useVerificationTimer';
 import { getAccessToken } from '@/shared/utils/handleToken';
 
 interface ProfileFormPropTypes {
@@ -91,7 +92,6 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
 
   const accessToken = getAccessToken() ?? '';
 
-  // 인증 관련 로직
   const phoneNumber = watch('phoneNumber');
 
   const isApproachingTimerEnd = seconds > TIMER_DURATION - REQUEST_DELAY;
@@ -165,15 +165,12 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
   const currentPhone = watch('phoneNumber');
   const currentImage = watch('profileImageUrl');
 
-  // 이름/이미지 변경 여부
   const isNameChanged = currentName !== defaultValues.name;
   const isImageChanged = (currentImage || '') !== (defaultValues.profileImageUrl || '');
 
-  // 전화번호 변경 여부
   const isPhoneChanged = currentPhone !== defaultValues.phoneNumber;
   const isPhoneVerified = isPhoneChanged ? isVerificationVisible && isCodeVerified : true;
 
-  // 버튼 활성화 여부
   const isButtonActive = (isNameChanged || isImageChanged || isPhoneChanged) && isPhoneVerified;
 
   const isRequestDisabled = !isPhoneChanged || phoneNumber.length !== MAX_PHONENUMBER_LENGTH || isCodeVerified;
@@ -206,7 +203,6 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
           />
         </div>
 
-        {/* 이름 */}
         <div className={styles.fieldWrapperStyle}>
           <label>
             <Text tag="b2_sb">이름</Text>
@@ -222,7 +218,6 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
           />
         </div>
 
-        {/* 전화번호 + 인증 */}
         <div className={styles.fieldWrapperStyle}>
           <label>
             <Text tag="b2_sb">전화번호</Text>
@@ -265,7 +260,7 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
                     {formattedTime}
                   </Text>
                 }
-                maxLength={MAX_VERIFICATION_CODE}
+                // maxLength={MAX_VERIFICATION_CODE} // 6자 제한
                 readOnly={isCodeVerified}
                 onMouseDown={handleFocusAndNotify}
                 onTouchStart={handleFocusAndNotify}
@@ -281,14 +276,12 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
         </div>
       </div>
 
-      {/* 제출 버튼 */}
       <div className={styles.buttonWrapperStyle}>
         <BoxButton variant="primary" isDisabled={!isButtonActive} type="submit">
           확인
         </BoxButton>
       </div>
 
-      {/* 이미지 변경 bottom sheet */}
       <BottomSheet
         isVisible={isImageClick}
         onClose={handleCloseBottomSheet}

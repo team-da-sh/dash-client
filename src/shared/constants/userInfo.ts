@@ -8,6 +8,10 @@ export const MAX_VERIFICATION_NUMBER = 5;
 
 export const MAX_PHONENUMBER_LENGTH = 11;
 
+export const TIMER_DURATION = 300;
+
+export const REQUEST_DELAY = 10;
+
 export const NAME_ERROR_MESSAGES = {
   REQUIRED: '이름은 필수 입력 사항이에요',
   TOO_SHORT: `이름은 최소 ${MIN_NAME_LENGTH}자 이상이어야 해요`,
