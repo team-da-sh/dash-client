@@ -1,6 +1,9 @@
+import { useState } from 'react';
 import type { Control } from 'react-hook-form';
 import { useController } from 'react-hook-form';
+import BottomSheet from '@/pages/editProfiles/components/BottomSheet/BottomSheet';
 import type { ProfileFormValues } from '@/pages/editProfiles/schema/profileSchema';
+import IcProfileBasic from '@/shared/assets/svg/IcProfileBasic';
 import Text from '@/shared/components/Text/Text';
 import useImageUploader from '@/shared/hooks/useImageUploader';
 import * as styles from './profileImageUpload.css';
@@ -9,42 +12,86 @@ interface ProfileImageUploadPropTypes {
   defaultImageUrl: string;
   control: Control<ProfileFormValues>;
 }
+
 const ProfileImageUpload = ({ defaultImageUrl, control }: ProfileImageUploadPropTypes) => {
   const { field } = useController({
     name: 'profileImageUrl',
     control,
   });
 
+  const [isSheetOpen, setIsSheetOpen] = useState(false);
+
+  const openBottomSheet = () => {
+    document.body.style.overflow = 'hidden';
+    setIsSheetOpen(true);
+  };
+
+  const closeBottomSheet = () => {
+    document.body.style.overflow = '';
+    setIsSheetOpen(false);
+  };
+
   const handleSuccess = (url: string) => {
     field.onChange(url);
+    closeBottomSheet();
   };
 
   const handleDelete = () => {
     field.onChange('');
+    if (imgRef.current) imgRef.current.value = '';
+    closeBottomSheet();
   };
 
-  const { previewImg, imgRef, handleUploaderClick, uploadImgFile } = useImageUploader(handleSuccess, handleDelete);
+  const { previewImg, imgRef, handleUploaderClick, deleteImgFile, uploadImgFile } = useImageUploader(
+    handleSuccess,
+    handleDelete,
+    defaultImageUrl,
+    closeBottomSheet
+  );
+
+  const handleImageClick = () => {
+    if (previewImg) {
+      openBottomSheet();
+    } else {
+      handleUploaderClick();
+    }
+  };
 
   return (
-    <div className={styles.containerStyle}>
-      <div className={styles.imgWrapperStyle} onClick={handleUploaderClick}>
-        <img src={previewImg || defaultImageUrl} alt="프로필 이미지" />
+    <>
+      <div className={styles.containerStyle} onClick={handleImageClick}>
+        <div
+          className={styles.imgWrapperStyle}
+          style={previewImg ? { backgroundImage: `url(${previewImg})` } : undefined}>
+          {!previewImg && <IcProfileBasic width={96} height={96} />}
+          <Text tag="c1_sb" color="white" className={styles.overlayStyle}>
+            수정
+          </Text>
+        </div>
 
-        <Text tag="c1_sb" color="white" className={styles.overlayStyle}>
-          수정
-        </Text>
+        <input
+          id="file-input"
+          type="file"
+          accept="image/*"
+          className={styles.inputStyle}
+          onChange={uploadImgFile}
+          ref={imgRef}
+        />
       </div>
-      <input
-        id="file-input"
-        type="file"
-        accept="image/*"
-        ref={(el) => {
-          imgRef.current = el;
+
+      <BottomSheet
+        isVisible={isSheetOpen}
+        onClose={closeBottomSheet}
+        onSelectImage={() => {
+          closeBottomSheet();
+          handleUploaderClick();
         }}
-        className={styles.inputStyle}
-        onChange={uploadImgFile}
+        onDeleteImage={() => {
+          deleteImgFile();
+          handleDelete();
+        }}
       />
-    </div>
+    </>
   );
 };
 

@@ -1,14 +1,12 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
-import { useController, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { usePatchMyProfile } from '@/pages/editProfiles/api/queries';
-import BottomSheet from '@/pages/editProfiles/components/BottomSheet/BottomSheet';
 import * as styles from '@/pages/editProfiles/components/ProfileForm/profileForm.css';
 import type { ProfileFormValues } from '@/pages/editProfiles/schema/profileSchema';
 import { profileSchema } from '@/pages/editProfiles/schema/profileSchema';
 import type { UpdateProfileRequestTypes } from '@/pages/editProfiles/types/api';
 import { allowOnlyNumberKey, allowOnlyNumberPaste } from '@/pages/editProfiles/utils/inputUtils';
-import ImageUploadSection from '@/pages/instructorRegister/components/ImageUploadSection/ImageUploadSection';
 import { usePostPhoneRequest, usePostPhoneVerify } from '@/pages/onboarding/apis/queries';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import Input from '@/shared/components/Input/Input';
@@ -22,9 +20,9 @@ import {
   REQUEST_DELAY,
   TIMER_DURATION,
 } from '@/shared/constants/userInfo';
-import useImageUploader from '@/shared/hooks/useImageUploader';
 import { useVerificationTimer } from '@/shared/hooks/useVerificationTimer';
 import { getAccessToken } from '@/shared/utils/handleToken';
+import ProfileImageUpload from './components/ProfileImageUpload/ProfileImageUpload';
 
 interface ProfileFormPropTypes {
   defaultValues: {
@@ -39,7 +37,6 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
   const { mutate: requestPhoneMutate } = usePostPhoneRequest();
   const { mutate: verifyPhoneMutate } = usePostPhoneVerify();
 
-  const [isImageClick, setIsImageClick] = useState(false);
   const [isCodeVerified, setIsCodeVerified] = useState(false);
   const [verificationCode, setVerificationCode] = useState('');
   const [isVerificationVisible, setIsVerificationVisible] = useState(false);
@@ -57,38 +54,6 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
     defaultValues,
     mode: 'onChange',
   });
-
-  const { field } = useController({ name: 'profileImageUrl', control });
-
-  const handleSuccess = (url: string) => {
-    field.onChange(url);
-    handleCloseBottomSheet();
-  };
-
-  const handleDelete = () => {
-    field.onChange('');
-    if (imgRef.current) imgRef.current.value = '';
-  };
-
-  const handleCloseBottomSheet = () => {
-    document.body.style.overflow = '';
-    setIsImageClick(false);
-  };
-
-  const { previewImg, imgRef, handleUploaderClick, deleteImgFile, uploadImgFile } = useImageUploader(
-    handleSuccess,
-    handleDelete,
-    defaultValues.profileImageUrl,
-    handleCloseBottomSheet
-  );
-
-  const handleImageFormClick = () => {
-    if (!watch('profileImageUrl')) {
-      handleUploaderClick();
-    } else {
-      setIsImageClick(true);
-    }
-  };
 
   const accessToken = getAccessToken() ?? '';
 
@@ -160,7 +125,6 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
     notify({ message: PHONE_AUTH_MESSAGES.ALREADY_VERIFIED, icon: 'success' });
   };
 
-  // 폼 제출
   const currentName = watch('name');
   const currentPhone = watch('phoneNumber');
   const currentImage = watch('profileImageUrl');
@@ -193,14 +157,8 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.formWrapper}>
       <div>
-        {/* 프로필 이미지 */}
         <div className={styles.imageWrapperStyle}>
-          <ImageUploadSection
-            previewImg={previewImg}
-            uploadImgFile={uploadImgFile}
-            imgRef={imgRef}
-            onClick={handleImageFormClick}
-          />
+          <ProfileImageUpload defaultImageUrl={defaultValues.profileImageUrl ?? ''} control={control} />
         </div>
 
         <div className={styles.fieldWrapperStyle}>
@@ -260,7 +218,7 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
                     {formattedTime}
                   </Text>
                 }
-                // maxLength={MAX_VERIFICATION_CODE} // 6자 제한
+                maxLength={MAX_VERIFICATION_CODE}
                 readOnly={isCodeVerified}
                 onMouseDown={handleFocusAndNotify}
                 onTouchStart={handleFocusAndNotify}
@@ -281,13 +239,6 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
           확인
         </BoxButton>
       </div>
-
-      <BottomSheet
-        isVisible={isImageClick}
-        onClose={handleCloseBottomSheet}
-        onSelectImage={handleUploaderClick}
-        onDeleteImage={deleteImgFile}
-      />
     </form>
   );
 };
