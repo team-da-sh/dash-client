@@ -15,6 +15,7 @@ export const REQUEST_DELAY = 10;
 export const NAME_ERROR_MESSAGES = {
   REQUIRED: '이름은 필수 입력 사항이에요',
   TOO_SHORT: `이름은 최소 ${MIN_NAME_LENGTH}자 이상이어야 해요`,
+  TOO_LONG: `이름은 최대 ${MAX_NAME_LENGTH}자까지 입력 가능해요`,
   ONLY_KOREAN_AND_ENGLISH: '특수기호, 띄어쓰기는 입력할 수 없어요',
 } as const;
 

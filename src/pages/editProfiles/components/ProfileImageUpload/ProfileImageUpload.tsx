@@ -59,10 +59,11 @@ const ProfileImageUpload = ({ defaultImageUrl, control }: ProfileImageUploadProp
 
   return (
     <>
-      <div className={styles.containerStyle} onClick={handleImageClick}>
+      <div className={styles.containerStyle}>
         <div
           className={styles.imgWrapperStyle}
-          style={previewImg ? { backgroundImage: `url(${previewImg})` } : undefined}>
+          style={previewImg ? { backgroundImage: `url(${previewImg})` } : undefined}
+          onClick={handleImageClick}>
           {!previewImg && <IcProfileBasic width={96} height={96} />}
           <Text tag="c1_sb" color="white" className={styles.overlayStyle}>
             수정

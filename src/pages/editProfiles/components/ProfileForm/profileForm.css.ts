@@ -2,23 +2,23 @@ import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 import { vars } from '@/shared/styles/theme.css';
 
-export const formWrapper = style({
+export const form = style({
   display: 'flex',
   flexDirection: 'column',
   height: '100%',
   justifyContent: 'space-between',
 });
 
-export const imageWrapperStyle = style({
+export const imageSection = style({
   display: 'flex',
   justifyContent: 'center',
 });
 
-export const buttonWrapperStyle = style({
+export const submitSection = style({
   padding: '2.4rem 0',
 });
 
-export const fieldWrapperStyle = style({
+export const fieldStyle = style({
   display: 'flex',
   flexDirection: 'column',
   gap: '0.8rem',
@@ -26,57 +26,12 @@ export const fieldWrapperStyle = style({
   padding: '1.2rem 0',
 });
 
-export const errorMessageStyle = recipe({
-  base: {
-    display: 'flex',
-  },
-  variants: {
-    hasError: {
-      true: {
-        justifyContent: 'space-between',
-      },
-      false: {
-        justifyContent: 'end',
-      },
-    },
-  },
-  defaultVariants: {
-    hasError: false,
-  },
-});
-
-export const labelStyle = style({
-  minWidth: '4.7rem',
-
-  whiteSpace: 'nowrap',
-});
-
-export const containerStyle = style({
-  display: 'flex',
-  flexDirection: 'column',
-  width: '100%',
-});
-
-export const wrapperStyle = style({
-  display: 'flex',
-  flexDirection: 'column',
-  gap: '0.8rem',
-});
-
-export const inputWrapperStyle = style({
-  display: 'flex',
-  flexDirection: 'column',
-  gap: '3.2rem',
-  marginTop: '3.2rem',
-  width: '100%',
-});
-
-export const numberWrapperStyle = style({
+export const inputRow = style({
   display: 'flex',
   gap: '0.4rem',
 });
 
-export const inputStyle = style({
+export const input = style({
   flex: 1,
 });
 

@@ -122,7 +122,7 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
     if (!isCodeVerified) return;
     e.preventDefault();
     (e.target as HTMLElement).blur?.();
-    notify({ message: PHONE_AUTH_MESSAGES.ALREADY_VERIFIED, icon: 'success' });
+    notify({ message: PHONE_AUTH_MESSAGES.ALREADY_VERIFIED, icon: 'success', bottomGap: 'large' });
   };
 
   const currentName = watch('name');
@@ -154,13 +154,13 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className={styles.formWrapper}>
+    <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
       <div>
-        <div className={styles.imageWrapperStyle}>
+        <div className={styles.imageSection}>
           <ProfileImageUpload defaultImageUrl={defaultValues.profileImageUrl ?? ''} control={control} />
         </div>
 
-        <div className={styles.fieldWrapperStyle}>
+        <div className={styles.fieldStyle}>
           <label>
             <Text tag="b2_sb">이름</Text>
           </label>
@@ -175,12 +175,12 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
           />
         </div>
 
-        <div className={styles.fieldWrapperStyle}>
+        <div className={styles.fieldStyle}>
           <label>
             <Text tag="b2_sb">전화번호</Text>
           </label>
 
-          <div className={styles.numberWrapperStyle}>
+          <div className={styles.inputRow}>
             <Input
               {...register('phoneNumber')}
               placeholder="01012345678"
@@ -197,7 +197,7 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
                 register('phoneNumber').onChange(e);
               }}
               value={phoneNumber}
-              className={styles.inputStyle}
+              className={styles.input}
             />
 
             <BoxButton
@@ -209,7 +209,7 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
           </div>
 
           {isVerificationVisible && (
-            <div className={styles.numberWrapperStyle}>
+            <div className={styles.inputRow}>
               <Input
                 placeholder={`인증번호 ${MAX_VERIFICATION_CODE}자리`}
                 value={verificationCode}
@@ -236,7 +236,7 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
         </div>
       </div>
 
-      <div className={styles.buttonWrapperStyle}>
+      <div className={styles.submitSection}>
         <BoxButton variant="primary" isDisabled={!isButtonActive} type="submit">
           확인
         </BoxButton>
