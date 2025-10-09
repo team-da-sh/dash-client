@@ -3,8 +3,9 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { usePatchMyProfile } from '@/pages/editProfiles/api/queries';
 import * as styles from '@/pages/editProfiles/components/ProfileForm/profileForm.css';
-import type { ProfileFormValues } from '@/pages/editProfiles/schema/profileSchema';
+import ProfileImageUpload from '@/pages/editProfiles/components/ProfileImageUpload/ProfileImageUpload';
 import { profileSchema } from '@/pages/editProfiles/schema/profileSchema';
+import type { ProfileFormValues } from '@/pages/editProfiles/schema/profileSchema';
 import type { UpdateProfileRequestTypes } from '@/pages/editProfiles/types/api';
 import { allowOnlyNumberKey, allowOnlyNumberPaste } from '@/pages/editProfiles/utils/inputUtils';
 import { usePostPhoneRequest, usePostPhoneVerify } from '@/pages/onboarding/apis/queries';
@@ -22,7 +23,6 @@ import {
 } from '@/shared/constants/userInfo';
 import { useVerificationTimer } from '@/shared/hooks/useVerificationTimer';
 import { getAccessToken } from '@/shared/utils/handleToken';
-import ProfileImageUpload from './components/ProfileImageUpload/ProfileImageUpload';
 
 interface ProfileFormPropTypes {
   defaultValues: {
@@ -37,9 +37,9 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
   const { mutate: requestPhoneMutate } = usePostPhoneRequest();
   const { mutate: verifyPhoneMutate } = usePostPhoneVerify();
 
-  const [isCodeVerified, setIsCodeVerified] = useState(false);
   const [verificationCode, setVerificationCode] = useState('');
   const [isVerificationVisible, setIsVerificationVisible] = useState(false);
+  const [isCodeVerified, setIsCodeVerified] = useState(false);
 
   const { isRunning, formattedTime, startTimer, seconds, resetTimer } = useVerificationTimer(TIMER_DURATION);
 
@@ -56,7 +56,6 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
   });
 
   const accessToken = getAccessToken() ?? '';
-
   const phoneNumber = watch('phoneNumber');
 
   const isApproachingTimerEnd = seconds > TIMER_DURATION - REQUEST_DELAY;
@@ -132,10 +131,9 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
 
   const isNameChanged = currentName !== defaultValues.name;
   const isImageChanged = (currentImage || '') !== (defaultValues.profileImageUrl || '');
-
   const isPhoneChanged = currentPhone !== defaultValues.phoneNumber;
-  const isPhoneVerified = isPhoneChanged ? isVerificationVisible && isCodeVerified : true;
 
+  const isPhoneVerified = isPhoneChanged ? isVerificationVisible && isCodeVerified : true;
   const isButtonActive = (isNameChanged || isImageChanged || isPhoneChanged) && isPhoneVerified;
 
   const isRequestDisabled = !isPhoneChanged || phoneNumber.length !== MAX_PHONENUMBER_LENGTH || isCodeVerified;
@@ -173,7 +171,7 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
             isError={!!errors.name}
             helperText={errors.name?.message}
             maxLength={MAX_NAME_LENGTH}
-            showMaxLength={true}
+            showMaxLength
           />
         </div>
 
@@ -181,6 +179,7 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
           <label>
             <Text tag="b2_sb">전화번호</Text>
           </label>
+
           <div className={styles.numberWrapperStyle}>
             <Input
               {...register('phoneNumber')}
@@ -200,6 +199,7 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
               value={phoneNumber}
               className={styles.inputStyle}
             />
+
             <BoxButton
               className={styles.buttonStyle({ type: isRunning ? 'resend' : 'default' })}
               isDisabled={isRequestDisabled}
@@ -224,6 +224,7 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
                 onMouseDown={handleFocusAndNotify}
                 onTouchStart={handleFocusAndNotify}
               />
+
               <BoxButton
                 className={styles.buttonStyle({ type: 'default' })}
                 isDisabled={isVerifyButtonDisabled || isCodeVerified}

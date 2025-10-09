@@ -2,11 +2,11 @@ import { useState } from 'react';
 import type { Control } from 'react-hook-form';
 import { useController } from 'react-hook-form';
 import BottomSheet from '@/pages/editProfiles/components/BottomSheet/BottomSheet';
+import * as styles from '@/pages/editProfiles/components/ProfileImageUpload/profileImageUpload.css';
 import type { ProfileFormValues } from '@/pages/editProfiles/schema/profileSchema';
 import IcProfileBasic from '@/shared/assets/svg/IcProfileBasic';
 import Text from '@/shared/components/Text/Text';
 import useImageUploader from '@/shared/hooks/useImageUploader';
-import * as styles from './profileImageUpload.css';
 
 interface ProfileImageUploadPropTypes {
   defaultImageUrl: string;
