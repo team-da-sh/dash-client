@@ -14,7 +14,7 @@ import useImageUploader from '@/shared/hooks/useImageUploader';
 
 interface ProfileFormPropTypes {
   defaultValues: {
-    profileImageUrl: string;
+    profileImageUrl: string | null;
     name: string;
     phoneNumber: string;
   };

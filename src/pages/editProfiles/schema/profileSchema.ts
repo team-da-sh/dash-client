@@ -1,19 +1,15 @@
 import { z } from 'zod';
-import {
-  ACCEPTED_IMAGE_TYPES,
-  MAX_FILE_SIZE,
-  MAX_NAME_LENGTH,
-  MIN_NAME_LENGTH,
-} from '@/pages/editProfiles/constants/limit';
+import { ACCEPTED_IMAGE_TYPES, MAX_FILE_SIZE } from '@/pages/editProfiles/constants/limit';
 import {
   PROFILE_IMAGE_ERRORS,
   NAME_ERRORS,
   PHONE_NUMBER_ERRORS,
 } from '@/pages/editProfiles/constants/validationMessage';
+import { MAX_NAME_LENGTH, MIN_NAME_LENGTH } from '@/shared/constants/userInfo';
 
 export const profileSchema = z.object({
   profileImageUrl: z.union([
-    z.string().optional(),
+    z.string().nullable().optional(),
     z
       .instanceof(FileList)
       .optional()

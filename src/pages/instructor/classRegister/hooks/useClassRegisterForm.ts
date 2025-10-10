@@ -106,6 +106,7 @@ export const useClassRegisterForm = () => {
     setMinute,
     setAmpm,
     setSelectedTime,
+    setDefaultPlace,
     selectedTime,
     handleAddTime,
     handleImageUploadSuccess,

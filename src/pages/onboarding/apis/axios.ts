@@ -20,35 +20,35 @@ export const postOnboard = async ({ name, phoneNumber, accessToken }: OnboardInf
   return { response };
 };
 
-export const postPhoneRequest = async({phoneNumber, accessToken} : PhoneRequestTypes & tokenTypes) => {
+export const postPhoneRequest = async ({ phoneNumber, accessToken }: PhoneRequestTypes & tokenTypes) => {
   const response = await instance.post(
     API_URL.AUTH_PHONE_REQUEST,
     {
       phoneNumber,
     },
-        {
-      headers: { 
-        Authorization: `Bearer ${accessToken}`,
-      },
-    }
-  )
-
-  return {response}
-}
-
-export const postPhoneVerify = async ({ phoneNumber, code, accessToken }: phoneVerifyTypes & tokenTypes) => {
-  const response = await instance.post(
-    API_URL.AUTH_PHONE_VERIFY, 
     {
-      phoneNumber,
-      code,
-    },
-    {
-      headers: { 
+      headers: {
         Authorization: `Bearer ${accessToken}`,
       },
     }
   );
 
-  return response.data; 
+  return { response };
+};
+
+export const postPhoneVerify = async ({ phoneNumber, code, accessToken }: phoneVerifyTypes & tokenTypes) => {
+  const response = await instance.post(
+    API_URL.AUTH_PHONE_VERIFY,
+    {
+      phoneNumber,
+      code,
+    },
+    {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    }
+  );
+
+  return response.data;
 };

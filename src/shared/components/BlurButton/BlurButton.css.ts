@@ -10,7 +10,7 @@ export const fixedContainerStyle = recipe({
     margin: '0 auto',
     width: 'min(100dvw, var(--max-width))',
     bottom: 0,
-    zIndex: vars.zIndex.five,
+    zIndex: vars.zIndex.one,
   },
   variants: {
     blurBase: {
