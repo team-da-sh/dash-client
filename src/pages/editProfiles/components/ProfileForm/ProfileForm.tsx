@@ -1,6 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import { usePatchMyProfile } from '@/pages/editProfiles/api/queries';
 import * as styles from '@/pages/editProfiles/components/ProfileForm/profileForm.css';
 import ProfileImageUpload from '@/pages/editProfiles/components/ProfileImageUpload/ProfileImageUpload';
@@ -9,6 +10,7 @@ import type { ProfileFormValues } from '@/pages/editProfiles/schema/profileSchem
 import type { UpdateProfileRequestTypes } from '@/pages/editProfiles/types/api';
 import { allowOnlyNumberKey, allowOnlyNumberPaste } from '@/pages/editProfiles/utils/inputUtils';
 import { usePostPhoneRequest, usePostPhoneVerify } from '@/pages/onboarding/apis/queries';
+import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import Input from '@/shared/components/Input/Input';
 import Text from '@/shared/components/Text/Text';
@@ -55,13 +57,21 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
     mode: 'onChange',
   });
 
-  const accessToken = getAccessToken() ?? '';
   const phoneNumber = watch('phoneNumber');
 
   const isApproachingTimerEnd = seconds > TIMER_DURATION - REQUEST_DELAY;
   const shouldSendRequest = isRunning && isApproachingTimerEnd;
 
+  const accessToken = getAccessToken();
+  const navigate = useNavigate();
+
   const handleRequestVerification = () => {
+    if (!accessToken) {
+      notify({ message: '로그인이 필요합니다.', icon: 'fail', bottomGap: 'large' });
+      navigate(ROUTES_CONFIG.login.path);
+      return;
+    }
+
     if (shouldSendRequest) {
       notify({ message: PHONE_AUTH_MESSAGES.TRY_AGAIN, icon: 'fail', bottomGap: 'large' });
       return;
@@ -90,28 +100,31 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
   };
 
   const handleVerifyCode = () => {
+    if (!accessToken) {
+      notify({ message: '로그인이 필요합니다.', icon: 'fail', bottomGap: 'large' });
+      navigate(ROUTES_CONFIG.login.path);
+      return;
+    }
+
     verifyPhoneMutate(
       { phoneNumber, code: verificationCode, accessToken },
       {
         onSuccess: (data) => {
-          if (!data) return;
-
-          if (data.success) {
+          if (data?.success) {
             notify({ message: PHONE_AUTH_MESSAGES.VERIFIED_SUCCESS, icon: 'success', bottomGap: 'large' });
             setIsCodeVerified(true);
             resetTimer();
-            return;
+          } else {
+            notify({ message: PHONE_AUTH_MESSAGES.CODE_MISMATCH, icon: 'fail', bottomGap: 'large' });
+            setIsCodeVerified(false);
           }
-          notify({ message: PHONE_AUTH_MESSAGES.CODE_MISMATCH, icon: 'fail', bottomGap: 'large' });
-          setIsCodeVerified(false);
         },
         onError: (error) => {
-          if (error.response?.status === 409) {
-            notify({ message: PHONE_AUTH_MESSAGES.CODE_MISMATCH, icon: 'fail', bottomGap: 'large' });
-          } else {
-            const message = error.response?.data?.message || PHONE_AUTH_MESSAGES.TRY_AGAIN;
-            notify({ message, icon: 'fail', bottomGap: 'large' });
-          }
+          const message =
+            error.response?.status === 409
+              ? PHONE_AUTH_MESSAGES.CODE_MISMATCH
+              : error.response?.data?.message || PHONE_AUTH_MESSAGES.TRY_AGAIN;
+          notify({ message, icon: 'fail', bottomGap: 'large' });
           setIsCodeVerified(false);
         },
       }
@@ -189,8 +202,7 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
               onKeyDown={allowOnlyNumberKey}
               onPaste={allowOnlyNumberPaste}
               readOnly={isCodeVerified}
-              onMouseDown={handleFocusAndNotify}
-              onTouchStart={handleFocusAndNotify}
+              onPointerDown={handleFocusAndNotify}
               onChange={(e) => {
                 const onlyNumbers = e.target.value.replace(/\D/g, '');
                 e.target.value = onlyNumbers;
@@ -221,8 +233,7 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
                 }
                 maxLength={MAX_VERIFICATION_CODE}
                 readOnly={isCodeVerified}
-                onMouseDown={handleFocusAndNotify}
-                onTouchStart={handleFocusAndNotify}
+                onPointerDown={handleFocusAndNotify}
               />
 
               <BoxButton
