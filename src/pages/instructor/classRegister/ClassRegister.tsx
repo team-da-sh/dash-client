@@ -50,7 +50,7 @@ const ClassRegister = () => {
     },
   });
 
-  const { register, watch, setValue, control } = methods;
+  const { register, watch, setValue, control, clearErrors } = methods;
 
   const {
     className,
@@ -115,6 +115,11 @@ const ClassRegister = () => {
     setSelectedLocation,
     isButtonActive,
   } = useClassRegisterForm();
+
+  const handleLocationCheckboxClick = () => {
+    handleNoneLocationCheck();
+    clearErrors('selectedLocation');
+  };
 
   const handleAddTime = () => {
     const newTimes = originalHandleAddTime();
@@ -259,7 +264,7 @@ const ClassRegister = () => {
             <ClassPlace
               register={register}
               isUndecidedLocation={isUndecidedLocation}
-              handleHasLocation={handleNoneLocationCheck}
+              handleHasLocation={handleLocationCheckboxClick}
               defaultPlace={defaultPlace}
               handleDefaultPlace={handleDefaultPlace}
               selectedLocation={selectedLocation}
