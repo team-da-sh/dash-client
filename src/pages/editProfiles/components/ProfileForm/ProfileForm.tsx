@@ -1,16 +1,13 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
 import { usePatchMyProfile } from '@/pages/editProfiles/api/queries';
 import * as styles from '@/pages/editProfiles/components/ProfileForm/profileForm.css';
 import ProfileImageUpload from '@/pages/editProfiles/components/ProfileImageUpload/ProfileImageUpload';
+import { useVerification } from '@/pages/editProfiles/hooks/useVerification';
 import { profileSchema } from '@/pages/editProfiles/schema/profileSchema';
 import type { ProfileFormValues } from '@/pages/editProfiles/schema/profileSchema';
 import type { UpdateProfileRequestTypes } from '@/pages/editProfiles/types/api';
 import { allowOnlyNumberKey, allowOnlyNumberPaste } from '@/pages/editProfiles/utils/inputUtils';
-import { usePostPhoneRequest, usePostPhoneVerify } from '@/pages/onboarding/apis/queries';
-import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import Input from '@/shared/components/Input/Input';
 import Text from '@/shared/components/Text/Text';
@@ -20,11 +17,7 @@ import {
   MAX_PHONENUMBER_LENGTH,
   MAX_VERIFICATION_CODE,
   PHONE_AUTH_MESSAGES,
-  REQUEST_DELAY,
-  TIMER_DURATION,
 } from '@/shared/constants/userInfo';
-import { useVerificationTimer } from '@/shared/hooks/useVerificationTimer';
-import { getAccessToken } from '@/shared/utils/handleToken';
 
 interface ProfileFormPropTypes {
   defaultValues: {
@@ -36,14 +29,6 @@ interface ProfileFormPropTypes {
 
 const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
   const { mutate: editMyProfile } = usePatchMyProfile();
-  const { mutate: requestPhoneMutate } = usePostPhoneRequest();
-  const { mutate: verifyPhoneMutate } = usePostPhoneVerify();
-
-  const [verificationCode, setVerificationCode] = useState('');
-  const [isVerificationVisible, setIsVerificationVisible] = useState(false);
-  const [isCodeVerified, setIsCodeVerified] = useState(false);
-
-  const { isRunning, formattedTime, startTimer, seconds, resetTimer } = useVerificationTimer(TIMER_DURATION);
 
   const {
     register,
@@ -59,77 +44,14 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
 
   const phoneNumber = watch('phoneNumber');
 
-  const isApproachingTimerEnd = seconds > TIMER_DURATION - REQUEST_DELAY;
-  const shouldSendRequest = isRunning && isApproachingTimerEnd;
-
-  const accessToken = getAccessToken();
-  const navigate = useNavigate();
-
-  const handleRequestVerification = () => {
-    if (!accessToken) {
-      notify({ message: '로그인이 필요합니다.', icon: 'fail', bottomGap: 'large' });
-      navigate(ROUTES_CONFIG.login.path);
-      return;
-    }
-
-    if (shouldSendRequest) {
-      notify({ message: PHONE_AUTH_MESSAGES.TRY_AGAIN, icon: 'fail', bottomGap: 'large' });
-      return;
-    }
-
-    requestPhoneMutate(
-      { phoneNumber, accessToken },
-      {
-        onSuccess: () => {
-          notify({ message: PHONE_AUTH_MESSAGES.CODE_SENT, icon: 'success', bottomGap: 'large' });
-          setVerificationCode('');
-          setIsVerificationVisible(true);
-          startTimer();
-        },
-        onError: (error) => {
-          if (error.response?.status === 400) {
-            notify({ message: PHONE_AUTH_MESSAGES.LIMIT_EXCEEDED, icon: 'fail', bottomGap: 'large' });
-          } else if (error.response?.status === 404) {
-            notify({ message: PHONE_AUTH_MESSAGES.DUPLICATE_PHONE, icon: 'fail', bottomGap: 'large' });
-          } else {
-            notify({ message: PHONE_AUTH_MESSAGES.SEND_FAILED, icon: 'fail', bottomGap: 'large' });
-          }
-        },
-      }
-    );
-  };
-
-  const handleVerifyCode = () => {
-    if (!accessToken) {
-      notify({ message: '로그인이 필요합니다.', icon: 'fail', bottomGap: 'large' });
-      navigate(ROUTES_CONFIG.login.path);
-      return;
-    }
-
-    verifyPhoneMutate(
-      { phoneNumber, code: verificationCode, accessToken },
-      {
-        onSuccess: (data) => {
-          if (data?.success) {
-            notify({ message: PHONE_AUTH_MESSAGES.VERIFIED_SUCCESS, icon: 'success', bottomGap: 'large' });
-            setIsCodeVerified(true);
-            resetTimer();
-          } else {
-            notify({ message: PHONE_AUTH_MESSAGES.CODE_MISMATCH, icon: 'fail', bottomGap: 'large' });
-            setIsCodeVerified(false);
-          }
-        },
-        onError: (error) => {
-          const message =
-            error.response?.status === 409
-              ? PHONE_AUTH_MESSAGES.CODE_MISMATCH
-              : error.response?.data?.message || PHONE_AUTH_MESSAGES.TRY_AGAIN;
-          notify({ message, icon: 'fail', bottomGap: 'large' });
-          setIsCodeVerified(false);
-        },
-      }
-    );
-  };
+  const {
+    state: { code: verificationCode, isVisible: isVerificationVisible, isVerified: isCodeVerified },
+    dispatch,
+    handleRequestVerification,
+    handleVerifyCode,
+    formattedTime,
+    isRunning,
+  } = useVerification(phoneNumber);
 
   const handleFocusAndNotify = (e: React.MouseEvent | React.TouchEvent) => {
     if (!isCodeVerified) return;
@@ -154,8 +76,10 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
   const showAsResend = isRunning || isCodeVerified;
 
   const onSubmit = (formData: ProfileFormValues) => {
-    const value = formData.profileImageUrl;
-    const profileImageUrl = typeof value === 'string' && value.trim() !== '' ? value : null;
+    const profileImageUrl =
+      typeof formData.profileImageUrl === 'string' && formData.profileImageUrl.trim() !== ''
+        ? formData.profileImageUrl
+        : null;
 
     const submitData: UpdateProfileRequestTypes = {
       phoneNumber: formData.phoneNumber,
@@ -225,7 +149,7 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
               <Input
                 placeholder={`인증번호 ${MAX_VERIFICATION_CODE}자리`}
                 value={verificationCode}
-                onChange={(e) => setVerificationCode(e.target.value.replace(/\D/g, ''))}
+                onChange={(e) => dispatch({ type: 'CODE_CHANGE', payload: e.target.value.replace(/\D/g, '') })}
                 rightAddOn={
                   <Text tag="b2_m" color="gray8" className={styles.timerStyle}>
                     {formattedTime}
