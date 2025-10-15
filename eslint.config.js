@@ -7,7 +7,7 @@ import globals from 'globals';
 import tseslint from 'typescript-eslint';
 
 export default tseslint.config(
-  { ignores: ['dist', '**/node_modules/**'] },
+  { ignores: ['dist', '**/node_modules/**', '**/svg/**'] },
   {
     extends: [js.configs.recommended, ...tseslint.configs.recommended, jsxA11y.flatConfigs.recommended],
     files: ['**/*.{ts,tsx}'],
@@ -25,7 +25,6 @@ export default tseslint.config(
       'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
       '@typescript-eslint/no-require-imports': 'off',
 
-      'no-unused-vars': 'warn',
       'arrow-spacing': 'warn',
       eqeqeq: ['error', 'always'],
       'key-spacing': ['error', { beforeColon: false, afterColon: true }],
