@@ -9,9 +9,13 @@ export const containerStyle = style({
 export const latestLessonWrapperStyle = style({
   display: 'flex',
   gap: '0.8rem',
-  marginTop: '2rem',
-  overflow: 'auto',
+  marginTop: '1.6rem',
+  overflowX: 'auto',
   whiteSpace: 'nowrap',
+
+  // foucs시 outline 영역이 안보이는것을 방지하기 위해 padding 추가 (접근성 준수)
+  // 이 부분이 없으면 overflowX: auto 때문에 포커스시 outline 영역이 안보임
+  padding: '0.4rem 0rem',
 
   selectors: {
     '&:first-of-type': {
