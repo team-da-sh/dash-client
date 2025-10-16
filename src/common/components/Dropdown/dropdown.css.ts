@@ -49,7 +49,6 @@ export const arrowStyle = recipe({
 export const listStyle = style({
   display: 'flex',
   flexDirection: 'column',
-  gap: '0.8rem',
 
   position: 'absolute',
   zIndex: vars.zIndex.five,
@@ -63,7 +62,21 @@ export const listStyle = style({
   boxShadow: '0 0 8px 0 rgba(0, 0, 0, 0.10)',
 });
 
-export const itemStyle = recipe({
+export const itemStyle = style({
+  selectors: {
+    '& + &::before': {
+      content: '',
+      display: 'block',
+      width: '100%',
+      height: '1px',
+      margin: '0.8rem 0',
+
+      backgroundColor: vars.colors.gray01,
+    },
+  },
+});
+
+export const itemButtonStyle = recipe({
   base: {
     width: '100%',
     padding: '1rem 0.8rem',
@@ -71,6 +84,7 @@ export const itemStyle = recipe({
     borderRadius: '4px',
     ...vars.fonts.b2_m,
 
+    textAlign: 'left',
     cursor: 'pointer',
   },
 
