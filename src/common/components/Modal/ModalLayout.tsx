@@ -7,7 +7,12 @@ interface ModalLayoutProps extends PropsWithChildren {
 
 const ModalLayout = ({ onClose, children }: ModalLayoutProps) => {
   return (
-    <div onClick={onClose} className={layoutStyle}>
+    <div
+      onClick={(e) => {
+        e.stopPropagation();
+        onClose();
+      }}
+      className={layoutStyle}>
       {children}
     </div>
   );

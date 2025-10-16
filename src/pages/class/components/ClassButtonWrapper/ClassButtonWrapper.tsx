@@ -1,13 +1,13 @@
 import { useNavigate, useParams } from 'react-router-dom';
+import { flexGapStyle } from '@/pages/class/components/ClassButtonWrapper/classButtonWrapper.css';
 import { useClassButtonState } from '@/pages/class/hooks/useClassButtonState';
 import { useHeartToggle } from '@/pages/class/hooks/useHeartToggle';
 import type { LessonDetailResponseTypes } from '@/pages/class/types/api';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import IcHeartFilledGray07 from '@/shared/assets/svg/IcHeartFilledGray07';
 import IcHeartOutlinedGray07 from '@/shared/assets/svg/IcHeartOutlinedGray07';
-import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import BlurButton from '@/shared/components/BlurButton/BlurButton';
-import { flexGapStyle } from '@/pages/class/components/ClassButtonWrapper/classButtonWrapper.css';
+import BoxButton from '@/shared/components/BoxButton/BoxButton';
 
 const ClassButtonWrapper = ({ lessonData }: { lessonData: LessonDetailResponseTypes }) => {
   const navigate = useNavigate();
@@ -24,16 +24,12 @@ const ClassButtonWrapper = ({ lessonData }: { lessonData: LessonDetailResponseTy
   };
 
   return (
-    <BlurButton blurColor='white' className={flexGapStyle}>
+    <BlurButton blurColor="white" className={flexGapStyle}>
       <BoxButton variant="heart" onClick={toggleHeart}>
         {isHeartFilled ? <IcHeartFilledGray07 width={28} /> : <IcHeartOutlinedGray07 width={28} />}
       </BoxButton>
 
-      <BoxButton
-        variant="primary"
-        isDisabled={isDisabled}
-        onClick={handleApplyClick}
-      >
+      <BoxButton variant="primary" isDisabled={isDisabled} onClick={handleApplyClick}>
         {buttonText}
       </BoxButton>
     </BlurButton>

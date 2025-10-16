@@ -66,7 +66,7 @@ const DropdownContent = ({ children }: DropdownContentPropTypes) => {
   const { open, handleToggleClose } = useDropdownContext();
 
   return (
-    <ul onClick={handleToggleClose} className={styles.dropdownContent}>
+    <ul onClick={handleToggleClose} className={styles.dropdownContent} aria-hidden>
       {open && children}
     </ul>
   );

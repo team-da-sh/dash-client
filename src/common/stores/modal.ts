@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { create } from 'zustand';
 import type { ReactNode } from 'react';
 import { randomId } from '@/shared/utils/randomId';
