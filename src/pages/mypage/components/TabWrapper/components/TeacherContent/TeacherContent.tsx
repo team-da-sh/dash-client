@@ -12,7 +12,7 @@ import * as styles from '@/pages/mypage/components/TabWrapper/components/Teacher
 import { VISIT_KEY } from '@/pages/mypage/constants/storageKey';
 import { getUser } from '@/pages/mypage/utils/storage';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import { useGetRole } from '@/shared/apis/queries';
+import { useGetRole, useGetTeacherAccount } from '@/shared/apis/queries';
 import IcArrowRightSmallGray0732 from '@/shared/assets/svg/IcArrowRightSmallGray0732';
 import IcInstagram20 from '@/shared/assets/svg/IcInstagram20';
 import IcPlusWhite24 from '@/shared/assets/svg/IcPlusWhite24';
@@ -36,6 +36,7 @@ const TeacherContent = () => {
   const { data } = useGetMyTeacherInfo(userRole);
   const { data: lessonData } = useGetMyLessonThumbnails(userRole);
   const { data: myData } = useGetMyPage();
+  const { data: accountData } = useGetTeacherAccount();
 
   const isRegisteredTeacherProfile = userRole === 'TEACHER';
 
@@ -65,7 +66,12 @@ const TeacherContent = () => {
   }
 
   const handleClassButtonClick = () => {
-    navigate(ROUTES_CONFIG.classRegister.path);
+    if (accountData?.isRegistered) {
+      navigate(ROUTES_CONFIG.classRegister.path);
+    } else {
+      notify({ message: '클래스 개설 전 계좌를 먼저 등록해 주세요', icon: 'success', bottomGap: 'large' });
+      navigate(ROUTES_CONFIG.accountRegister.path);
+    }
   };
 
   const handleAllButtonClick = () => {

@@ -19,7 +19,7 @@ export const getPopularGenres = async () => {
   return data;
 };
 
-export const getUpcommingLessons = async () => {
+export const getUpcomingLessons = async () => {
   const { data } = await instance.get(API_URL.LESSONS_UPCOMING);
 
   return data;

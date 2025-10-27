@@ -1,21 +1,21 @@
 import { FINAL_ONBOARDING_STEP } from '@/pages/onboarding/constants';
 import type { OnboardInfoTypes } from '@/pages/onboarding/types/onboardInfoTypes';
-import { validateName, validatePhoneNumber } from '@/pages/onboarding/utils/validate';
+import { validatePhoneNumber } from '@/pages/onboarding/utils/validate';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 
 interface SubmitButtonPropTypes {
   currentStep: number;
   info: OnboardInfoTypes;
   onNextButtonClick: () => void;
-  isCodeVerified: boolean; // 추가
+  isCodeVerified: boolean; 
+  isNameError: boolean;
 }
 
-const SubmitButton = ({ currentStep, info, onNextButtonClick, isCodeVerified }: SubmitButtonPropTypes) => {
+const SubmitButton = ({ currentStep, info, onNextButtonClick, isCodeVerified, isNameError }: SubmitButtonPropTypes) => {
   const isButtonDisabled = (step: number) => {
     switch (step) {
       case 1:
-        // 인증까지 완료되어야 버튼 활성화
-        return !(validateName(info.name) && validatePhoneNumber(info.phoneNumber) && isCodeVerified);
+        return !(!isNameError && validatePhoneNumber(info.phoneNumber) && isCodeVerified);
       case 2:
         return false;
       default:

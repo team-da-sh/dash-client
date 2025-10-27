@@ -5,7 +5,7 @@ export const pannelTitleWrapper = style({
   gap: '0.4rem',
   alignItems: 'center',
 
-  marginTop: '2.2rem',
+  marginTop: '2rem',
   marginBottom: '1.6rem',
 });
 

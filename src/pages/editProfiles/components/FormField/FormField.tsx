@@ -2,9 +2,10 @@ import type { UseFormRegister } from 'react-hook-form';
 import * as styles from '@/pages/editProfiles/components/FormField/formField.css';
 import type { ProfileFormValues } from '@/pages/editProfiles/schema/profileSchema';
 import { allowOnlyNumberKey, allowOnlyNumberPaste } from '@/pages/editProfiles/utils/inputUtils';
-import { MAX_NAME_LENGTH, MAX_PHONENUMBER_LENGTH } from '@/pages/onboarding/constants';
 import Input from '@/shared/components/Input/Input';
 import Text from '@/shared/components/Text/Text';
+import { MAX_PHONENUMBER_LENGTH } from '@/shared/constants/userInfo';
+import { MAX_NAME_LENGTH } from '@/shared/constants/userInfo';
 
 interface FormFieldPropTypes {
   label: string;

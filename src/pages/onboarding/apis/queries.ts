@@ -4,8 +4,8 @@ import { postOnboard, postPhoneRequest, postPhoneVerify } from '@/pages/onboardi
 import type { tokenTypes } from '@/pages/onboarding/types/api';
 import type { OnboardInfoTypes, PhoneRequestTypes, phoneVerifyTypes } from '@/pages/onboarding/types/onboardInfoTypes';
 import { notify } from '@/shared/components/Toast/Toast';
-import { PHONE_AUTH_MESSAGES } from '@/pages/onboarding/constants';
-import { ApiError } from '@/shared/types/api';
+import { PHONE_AUTH_MESSAGES } from '@/shared/constants/userInfo';
+import type { ApiError } from '@/shared/types/api';
 
 export const usePostOnboard = () => {
   return useMutation({
@@ -32,7 +32,7 @@ export const usePostPhoneRequest = () => {
       }),
     onError: (error: AxiosError) => {
       if (!error.response) return;
-      notify({message: PHONE_AUTH_MESSAGES.SEND_FAILED, icon: 'fail', bottomGap: 'large'})
+      notify({ message: PHONE_AUTH_MESSAGES.SEND_FAILED, icon: 'fail', bottomGap: 'large' });
     },
   });
 };
@@ -47,7 +47,7 @@ export const usePostPhoneVerify = () => {
       }),
     onError: (error: AxiosError<ApiError>) => {
       if (!error.response) return;
-      notify({message: PHONE_AUTH_MESSAGES.CODE_MISMATCH, icon: 'fail', bottomGap: 'large'})
+      notify({ message: PHONE_AUTH_MESSAGES.CODE_MISMATCH, icon: 'fail', bottomGap: 'large' });
     },
   });
 };

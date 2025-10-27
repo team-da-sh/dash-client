@@ -8,7 +8,6 @@ import {
   MIN_PRIZE_INPUT_COUNT,
   MIN_VIDEO_INPUT_COUNT,
 } from '@/pages/instructorRegister/constants/registerSection';
-import { INCLUDE_BLANK, INCLUDE_SPECIAL } from '@/shared/constants/regex';
 
 export const instructorRegisterSchema = z
   .object({
@@ -17,7 +16,7 @@ export const instructorRegisterSchema = z
       .refine((value) => value.trim(), {
         message: FORM_ERROR_MESSAGE.EMPTY_DANCER_NAME,
       })
-      .refine((value) => !INCLUDE_SPECIAL.test(value) && !INCLUDE_BLANK.test(value), {
+      .refine((value) => /^[a-zA-Z0-9ㄱ-ㅎㅏ-ㅣ가-힣]+$/.test(value), {
         message: FORM_ERROR_MESSAGE.INVALID,
       }),
     detail: z.string().min(MIN_INTRODUCTION_LENGTH, INTRODUCTION_LENGTH_ERROR_MSG).max(500),

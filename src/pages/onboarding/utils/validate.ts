@@ -1,9 +1,9 @@
-import { MAX_NAME_LENGTH, MAX_PHONENUMBER_LENGTH, MIN_NAME_LENGTH } from '@/pages/onboarding/constants';
-import { ONLY_KOREAN, ONLY_NUMBER } from '@/shared/constants/regex';
+import { MAX_NAME_LENGTH, MAX_PHONENUMBER_LENGTH, MIN_NAME_LENGTH } from '@/shared/constants/userInfo';
+import { ONLY_KOREAN_AND_ENGLISH, ONLY_NUMBER } from '@/shared/constants/regex';
 
 export const validateTypingName = (name: string) => {
-  const onlyKorean = name.replace(ONLY_KOREAN, '');
-  return onlyKorean.slice(0, MAX_NAME_LENGTH);
+  const onlyKoreanAndEnglish = name.replace(ONLY_KOREAN_AND_ENGLISH, '');
+  return onlyKoreanAndEnglish.slice(0, MAX_NAME_LENGTH);
 };
 
 export const validateName = (name: string) => {

@@ -50,7 +50,7 @@ const ClassRegister = () => {
     },
   });
 
-  const { register, watch, setValue, control } = methods;
+  const { register, watch, setValue, control, clearErrors } = methods;
 
   const {
     className,
@@ -107,6 +107,7 @@ const ClassRegister = () => {
     setMinute,
     setAmpm,
     setSelectedTime,
+    setDefaultPlace,
     handleAddTime: originalHandleAddTime,
     handleRemoveTime: originalHandleRemoveTime,
     handleNoneLocationCheck,
@@ -114,6 +115,11 @@ const ClassRegister = () => {
     setSelectedLocation,
     isButtonActive,
   } = useClassRegisterForm();
+
+  const handleLocationCheckboxClick = () => {
+    handleNoneLocationCheck();
+    clearErrors('selectedLocation');
+  };
 
   const handleAddTime = () => {
     const newTimes = originalHandleAddTime();
@@ -190,9 +196,9 @@ const ClassRegister = () => {
 
           navigate(ROUTES_CONFIG.classRegisterCompletion.path);
         },
-        onError: () => {
-          navigate(ROUTES_CONFIG.error.path);
-        },
+        // onError: () => {
+        //   navigate(ROUTES_CONFIG.error.path);
+        // },
       });
     }
   };
@@ -219,6 +225,7 @@ const ClassRegister = () => {
   const handleRemoveLocation = () => {
     setSelectedLocation(null);
     setValue('selectedLocation', null, { shouldValidate: true });
+    setDefaultPlace('');
   };
 
   const handleSelectLocation = (location: LocationTypes | null) => {
@@ -257,7 +264,7 @@ const ClassRegister = () => {
             <ClassPlace
               register={register}
               isUndecidedLocation={isUndecidedLocation}
-              handleHasLocation={handleNoneLocationCheck}
+              handleHasLocation={handleLocationCheckboxClick}
               defaultPlace={defaultPlace}
               handleDefaultPlace={handleDefaultPlace}
               selectedLocation={selectedLocation}

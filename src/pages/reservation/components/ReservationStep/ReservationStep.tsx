@@ -1,7 +1,7 @@
 import type { AxiosError } from 'axios';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import Error from '@/pages/error/Error';
+import ErrorPage from '@/pages/error/ErrorPage';
 import { useGetReservation, usePostReservation } from '@/pages/reservation/apis/queries';
 import AgreeCheckBox from '@/pages/reservation/components/AgreeCheckBox/AgreeCheckBox';
 import ApplicantInfo from '@/pages/reservation/components/ApplicantInfo/ApplicantInfo';
@@ -9,7 +9,6 @@ import ClassInfo from '@/pages/reservation/components/ClassInfo/ClassInfo';
 import * as styles from '@/pages/reservation/components/ReservationStep/reservationStep.css';
 import TopInfoContent from '@/pages/reservation/components/TopInfoContent/TopInfoContent';
 import { AGREEMENT_TERMS } from '@/pages/reservation/constants/index';
-import type { ClassReservationResponseTypes } from '@/pages/reservation/types/api';
 import IcCheckcircleGray0524 from '@/shared/assets/svg/IcCheckcircleGray0524';
 import IcCheckcircleMain0324 from '@/shared/assets/svg/IcCheckcircleMain0324';
 import BlurBotton from '@/shared/components/BlurButton/BlurButton';
@@ -19,6 +18,7 @@ import Head from '@/shared/components/Head/Head';
 import Text from '@/shared/components/Text/Text';
 import { notify } from '@/shared/components/Toast/Toast';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
+import type { ClassReservationResponseTypes } from '../../types/api';
 
 interface ReservationStepPropTypes {
   onNext: (detail: ClassReservationResponseTypes) => void;
@@ -32,9 +32,9 @@ const ReservationStep = ({ onNext }: ReservationStepPropTypes) => {
   const { data, isError, isLoading } = useGetReservation(Number(id));
   const { mutate: postReservation } = usePostReservation();
 
-  if (!id) return <Error />;
+  if (!id) return <ErrorPage />;
   if (isLoading) return null;
-  if (isError || !data) return <Error />;
+  if (isError || !data) return <ErrorPage />;
 
   const handleSubmit = () => {
     postReservation(
@@ -69,8 +69,6 @@ const ReservationStep = ({ onNext }: ReservationStepPropTypes) => {
   const agreementClassStyle = `${styles.agreementBoxStyle} ${
     isAllChecked ? styles.agreementCheckedStyle : styles.agreementUncheckedStyle
   }`;
-
-  const formattedPrice = `${data.price.toLocaleString()}원`;
 
   return (
     <main
@@ -158,9 +156,14 @@ const ReservationStep = ({ onNext }: ReservationStepPropTypes) => {
         <Head level="h3" tag="h5_sb" color="gray9">
           총 결제 금액
         </Head>
-        <Head level="h2" tag="h3_sb" color="main4">
-          {formattedPrice}
-        </Head>
+        <div className={styles.priceWrapperStyle}>
+          <Head level="h2" tag="h3_sb" color="main4">
+            {data.price.toLocaleString()}
+          </Head>
+          <Head level="h2" tag="h3_sb" color="main4">
+            원
+          </Head>
+        </div>
       </div>
 
       <BlurBotton blurColor="gray">

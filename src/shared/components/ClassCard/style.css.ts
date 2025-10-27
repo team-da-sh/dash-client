@@ -6,7 +6,6 @@ export const cardContainerStyle = style({
 
   padding: '2rem',
   borderRadius: 4,
-  border: `1px solid ${vars.colors.gray03}`,
 
   backgroundColor: vars.colors.white,
 });

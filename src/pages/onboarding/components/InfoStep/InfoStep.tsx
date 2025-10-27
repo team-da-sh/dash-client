@@ -1,23 +1,23 @@
 import { useState } from 'react';
 import { usePostPhoneRequest, usePostPhoneVerify } from '@/pages/onboarding/apis/queries';
 import * as styles from '@/pages/onboarding/components/InfoStep/infoStep.css';
-import {
-  INFO_KEY,
-  MAX_PHONENUMBER_LENGTH,
-  MAX_VERIFICATION_CODE,
-  MAX_VERIFICATION_NUMBER,
-  PHONE_AUTH_MESSAGES,
-  REQUEST_DELAY,
-  TIMER_DURATION,
-} from '@/pages/onboarding/constants';
+import { INFO_KEY, REQUEST_DELAY, TIMER_DURATION } from '@/pages/onboarding/constants';
 import { useVerificationTimer } from '@/pages/onboarding/hooks/useVerificationTimer';
 import type { OnboardInfoTypes } from '@/pages/onboarding/types/onboardInfoTypes';
-import { validateTypingName, validateTypingPhoneNumber } from '@/pages/onboarding/utils/validate';
+import { validateTypingPhoneNumber } from '@/pages/onboarding/utils/validate';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import Head from '@/shared/components/Head/Head';
 import Input from '@/shared/components/Input/Input';
 import Text from '@/shared/components/Text/Text';
 import { notify } from '@/shared/components/Toast/Toast';
+import { ONLY_KOREAN_AND_ENGLISH } from '@/shared/constants/regex';
+import {
+  MAX_PHONENUMBER_LENGTH,
+  MAX_VERIFICATION_CODE,
+  MIN_NAME_LENGTH,
+  NAME_ERROR_MESSAGES,
+  PHONE_AUTH_MESSAGES,
+} from '@/shared/constants/userInfo';
 
 interface InfoStepProps {
   name: string;
@@ -27,6 +27,8 @@ interface InfoStepProps {
   isCodeVerified: boolean;
   setIsCodeVerified: (verified: boolean) => void;
   accessToken: string;
+  isNameError: boolean;
+  handleNameErrorChange: (isError: boolean) => void;
 }
 
 const InfoStep = ({
@@ -37,17 +39,29 @@ const InfoStep = ({
   isCodeVerified,
   setIsCodeVerified,
   accessToken,
+  isNameError,
+  handleNameErrorChange,
 }: InfoStepProps) => {
   const { isRunning, formattedTime, startTimer, seconds, resetTimer } = useVerificationTimer(TIMER_DURATION);
   const [isVerificationVisible, setIsVerificationVisible] = useState(false);
-  const [requestCount, setRequestCount] = useState(0);
+  const [nameErrorMessage, setNameErrorMessage] = useState('');
 
   const { mutate: requestPhoneMutate } = usePostPhoneRequest();
   const { mutate: verifyPhoneMutate } = usePostPhoneVerify();
 
   const handleNameChange = (name: string) => {
-    const validName = validateTypingName(name);
-    onInfoChange(INFO_KEY.NAME, validName);
+    if (ONLY_KOREAN_AND_ENGLISH.test(name)) {
+      handleNameErrorChange(true);
+      setNameErrorMessage(NAME_ERROR_MESSAGES.ONLY_KOREAN_AND_ENGLISH);
+    } else if (name.length === 0 || name.length < MIN_NAME_LENGTH) {
+      handleNameErrorChange(true);
+      setNameErrorMessage(NAME_ERROR_MESSAGES.TOO_SHORT);
+    } else {
+      handleNameErrorChange(false);
+      setNameErrorMessage('');
+    }
+
+    onInfoChange(INFO_KEY.NAME, name);
   };
 
   const handlePhoneNumberChange = (phoneNumber: string) => {
@@ -69,13 +83,7 @@ const InfoStep = ({
       notify({ message: PHONE_AUTH_MESSAGES.TRY_AGAIN, icon: 'fail', bottomGap: 'large' });
       return;
     }
-    if (requestCount >= MAX_VERIFICATION_NUMBER) {
-      notify({ message: PHONE_AUTH_MESSAGES.LIMIT_EXCEEDED, icon: 'fail', bottomGap: 'large' });
-      return;
-    }
 
-    setRequestCount((prev) => prev + 1);
-    
     requestPhoneMutate(
       { phoneNumber, accessToken },
       {
@@ -85,8 +93,10 @@ const InfoStep = ({
           setIsVerificationVisible(true);
           startTimer();
         },
-      onError: (error) => {
-          if (error.response?.status === 404) {
+        onError: (error) => {
+          if (error.response?.status === 400) {
+            notify({ message: PHONE_AUTH_MESSAGES.LIMIT_EXCEEDED, icon: 'fail', bottomGap: 'large' });
+          } else if (error.response?.status === 404) {
             notify({ message: PHONE_AUTH_MESSAGES.DUPLICATE_PHONE, icon: 'fail', bottomGap: 'large' });
           } else {
             notify({ message: PHONE_AUTH_MESSAGES.SEND_FAILED, icon: 'fail', bottomGap: 'large' });
@@ -100,12 +110,19 @@ const InfoStep = ({
     verifyPhoneMutate(
       { phoneNumber, code: verificationCode, accessToken },
       {
-        onSuccess: () => {
-          notify({ message: PHONE_AUTH_MESSAGES.VERIFIED_SUCCESS, icon: 'success', bottomGap: 'large' });
-          setIsCodeVerified(true);
-          resetTimer();
+        onSuccess: (data) => {
+          if (!data) return;
+
+          if (data.success) {
+            notify({ message: PHONE_AUTH_MESSAGES.VERIFIED_SUCCESS, icon: 'success', bottomGap: 'large' });
+            setIsCodeVerified(true);
+            resetTimer();
+            return;
+          }
+          notify({ message: PHONE_AUTH_MESSAGES.CODE_MISMATCH, icon: 'fail', bottomGap: 'large' });
+          setIsCodeVerified(false);
         },
-        onError: (error) => { 
+        onError: (error) => {
           if (error.response?.status === 409) {
             notify({ message: PHONE_AUTH_MESSAGES.CODE_MISMATCH, icon: 'fail', bottomGap: 'large' });
           } else {
@@ -145,7 +162,15 @@ const InfoStep = ({
           <Text tag="b2_sb" className={styles.labelStyle}>
             이름
           </Text>
-          <Input placeholder="김대쉬" value={name} onChange={(e) => handleNameChange(e.target.value)} />
+          <Input
+            placeholder="김대쉬"
+            value={name}
+            onChange={(e) => handleNameChange(e.target.value)}
+            showMaxLength={true}
+            maxLength={8}
+            isError={isNameError}
+            helperText={nameErrorMessage}
+          />
         </div>
         <div className={styles.wrapperStyle}>
           <Text tag="b2_sb" className={styles.labelStyle}>
@@ -158,9 +183,9 @@ const InfoStep = ({
               onChange={(e) => handlePhoneNumberChange(e.target.value)}
               className={styles.inputStyle}
               readOnly={isCodeVerified}
-              onMouseDown={handleFocusAndNotify}
-              onTouchStart={handleFocusAndNotify}
+              onClick={isCodeVerified ? handleFocusAndNotify : undefined}
             />
+
             <BoxButton
               className={styles.buttonStyle({ type: isRunning ? 'resend' : 'default' })}
               isDisabled={isRequestDisabled}
@@ -180,8 +205,7 @@ const InfoStep = ({
                   </Text>
                 }
                 readOnly={isCodeVerified}
-                onMouseDown={handleFocusAndNotify}
-                onTouchStart={handleFocusAndNotify}
+                onClick={isCodeVerified ? handleFocusAndNotify : undefined}
               />
               <BoxButton
                 className={styles.buttonStyle({ type: 'default' })}

@@ -7,7 +7,7 @@ export const infoContainerStyle = style({
   gap: '2rem',
 
   margin: '0 auto',
-  padding: '2rem 0',
+  paddingTop: '0.4rem',
   width: '100%',
 
   background: vars.colors.white,

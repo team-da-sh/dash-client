@@ -25,8 +25,8 @@ const CancelConfirmPage = lazy(() => import('@/pages/mypage/components/CancelCon
 const ClassRegister = lazy(() => import('@/pages/instructor/classRegister/ClassRegister'));
 const InstructorRegister = lazy(() => import('@/pages/instructorRegister/InstructorRegister'));
 const ClassDetail = lazy(() => import('@/pages/instructor/classDetail/ClassDetail'));
+const ErrorPage = lazy(() => import('@/pages/error/ErrorPage'));
 const LessonManage = lazy(() => import('@/pages/instructor/lessonManage/LessonManage'));
-const Error = lazy(() => import('@/pages/error/Error'));
 
 export const router = createBrowserRouter([
   {
@@ -53,8 +53,8 @@ export const router = createBrowserRouter([
       { path: ROUTES_CONFIG.instructorRegister.path, element: <InstructorRegister /> },
       { path: ROUTES_CONFIG.instructorRegisterCompletion.path, element: <InstructorRegisterCompletion /> },
       { path: ROUTES_CONFIG.instructorClassDetail.path(':id'), element: <ClassDetail /> },
+      { path: '*', element: <ErrorPage /> },
       { path: ROUTES_CONFIG.instructorClassList.path, element: <LessonManage /> },
-      { path: '*', element: <Error /> },
     ],
   },
 ]);
