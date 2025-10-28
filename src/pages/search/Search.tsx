@@ -3,7 +3,8 @@ import { useLocation } from 'react-router-dom';
 import { useGetClassList, useGetDancerList } from '@/pages/search/apis/queries';
 import SearchBar from '@/pages/search/components/SearchBar/SearchBar';
 import TabContainer from '@/pages/search/components/TabContainer/TabContainer';
-import { DEFAULT_SORT_TAGS, SORT_LABELS } from '@/pages/search/constants/index';
+import type { TAB_TYPES } from '@/pages/search/constants/index';
+import { DEFAULT_SORT_TAGS, SORT_LABELS, TAB } from '@/pages/search/constants/index';
 import { formatDateEndTime, formatDateStartTime } from '@/pages/search/utils/formatDate';
 import { handleSearchChange } from '@/pages/search/utils/searchHandlers';
 import Flex from '@/shared/components/Flex/Flex';
@@ -14,7 +15,7 @@ import SearchHeader from './components/SearchHeader/SearchHeader';
 
 const Search = () => {
   const location = useLocation();
-  const { selectedTab, setSelectedTab } = useTabNavigation('class');
+  const { selectedTab, setSelectedTab } = useTabNavigation<TAB_TYPES>(TAB.CLASS);
 
   const [genre, setGenre] = useState<string | null>(location.state?.genre || null);
 
@@ -31,6 +32,7 @@ const Search = () => {
 
   const { data: dancerList, error } = useGetDancerList({
     keyword: debouncedSearchValue,
+    selectedTab: selectedTab as TAB_TYPES,
   });
 
   const { data: classList } = useGetClassList({
@@ -40,6 +42,7 @@ const Search = () => {
     startDate: formatDateStartTime(startDate),
     endDate: formatDateEndTime(endDate),
     sortOption,
+    selectedTab: selectedTab as TAB_TYPES,
   });
 
   return (

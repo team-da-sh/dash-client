@@ -40,8 +40,32 @@ export const deadlineTagStyle = style({
 export const genreWrapperStyle = style({
   width: '100%',
 
-  marginTop: '4.8rem',
+  marginTop: '4.4rem',
   padding: '3.2rem 2rem 3.8rem 2rem',
 
   backgroundColor: vars.colors.gray01,
+});
+
+export const linkStyle = style({
+  textDecoration: 'none',
+
+  selectors: {
+    '&::after': {
+      content: '""',
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+    },
+
+    '&:focus-visible': {
+      outline: 'none',
+    },
+
+    '&:focus-visible::after': {
+      outline: '2px solid #007bff',
+      outlineOffset: '2px',
+    },
+  },
 });

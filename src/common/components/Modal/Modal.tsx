@@ -26,7 +26,7 @@ const Modal = ({ content, type, onClose, onClickHandler }: DialogProps) => {
 
   return (
     <ModalLayout onClose={onClose}>
-      <div className={containerStyle} onClick={(e) => e.stopPropagation()}>
+      <div className={containerStyle}>
         <div className={contentStyle}>{content}</div>
         <div className={buttonWrapperStyle}>
           {type === 'default' && (

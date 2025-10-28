@@ -3,6 +3,7 @@ import type { HTMLAttributes } from 'react';
 import { textStyle } from '@/shared/components/Text/text.css';
 
 interface TextProps extends HTMLAttributes<HTMLParagraphElement> {
+  as?: 'p' | 'span';
   tag?:
     | 'h1_sb'
     | 'h3_sb'
@@ -61,11 +62,13 @@ interface TextProps extends HTMLAttributes<HTMLParagraphElement> {
     | 'black';
 }
 
-const Text = ({ tag = 'b1_sb_long', color = 'black', children, className, ...props }: TextProps) => {
+const Text = ({ as = 'p', tag = 'b1_sb_long', color = 'black', children, className, ...props }: TextProps) => {
+  const Tag = as;
+
   return (
-    <p className={clsx(className, textStyle({ tag, color }))} {...props}>
+    <Tag className={clsx(className, textStyle({ tag, color }))} {...props}>
       {children}
-    </p>
+    </Tag>
   );
 };
 

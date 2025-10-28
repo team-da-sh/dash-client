@@ -28,7 +28,7 @@ export const descriptionStyle = style({
   whiteSpace: 'pre-line',
 });
 
-export const showDetailWrapperStyle = style({
+export const showDetailButtonStyle = style({
   display: 'flex',
   alignItems: 'center',
   gap: '0.2rem',
@@ -36,9 +36,7 @@ export const showDetailWrapperStyle = style({
   position: 'absolute',
   left: '2rem',
   bottom: '2.8rem',
-});
 
-export const showDetailButtonStyle = style({
   color: vars.colors.white,
   ...vars.fonts.b3_m,
 

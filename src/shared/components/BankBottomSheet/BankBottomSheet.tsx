@@ -78,15 +78,18 @@ const BankBottomSheet = ({ isOpen, onClose, banks, handleBankSelect }: BankBotto
               ref={scrollableListRef}
               className={clsx(styles.ListContainerStyle, isFullyOpened ? styles.scrollEnabled : styles.scrollDisabled)}>
               {banks.map(({ bankId, bankName, bankImageUrl }) => (
-                <li
-                  key={bankId}
-                  className={styles.ListItemStyle}
-                  onClick={() => {
-                    handleBankSelect(bankId, bankName, bankImageUrl);
-                    onClose();
-                  }}>
-                  <img src={bankImageUrl} className={styles.tempImageStyle} alt={bankName} />
-                  <Text tag="b3_m">{bankName}</Text>
+                <li key={bankId}>
+                  <button
+                    className={styles.ListItemStyle}
+                    onClick={() => {
+                      handleBankSelect(bankId, bankName, bankImageUrl);
+                      onClose();
+                    }}>
+                    <img src={bankImageUrl} className={styles.tempImageStyle} alt={bankName} />
+                    <Text as="span" tag="b3_m">
+                      {bankName}
+                    </Text>
+                  </button>
                 </li>
               ))}
             </ul>

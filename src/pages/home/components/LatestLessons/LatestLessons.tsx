@@ -11,14 +11,15 @@ const LatestLessons = () => {
   const { data: latestLessonDatas } = useGetLatestLessons();
 
   return (
-    <div className={containerStyle}>
-      <Head level="h2" tag="h5_sb" className={titleStyle}>
+    <section className={containerStyle} aria-labelledby="latest-lessons-title">
+      <Head level="h2" tag="h5_sb" className={titleStyle} id="latest-lessons-title">
         따끈따끈 신상 클래스
       </Head>
-      <ul className={latestLessonWrapperStyle}>
-        {latestLessonDatas?.lessons.map((lesson) => <LessonItem key={lesson.id} useNewStyles={false} {...lesson} />)}
+
+      <ul className={latestLessonWrapperStyle} aria-label="신상 클래스">
+        {latestLessonDatas?.lessons.map((lesson) => <LessonItem key={lesson.id} {...lesson} />)}
       </ul>
-    </div>
+    </section>
   );
 };
 
