@@ -44,11 +44,28 @@ export const containerStyle = style({
   animation: `0.28s ease-in-out ${modalAnimation}`,
 });
 
+// description 이 존재하는 경우 컨텐츠 간 간격을 개별 요소의 패딩으로 처리하기 위해 gap 제거 버전
+export const containerNoGapStyle = style([
+  containerStyle,
+  {
+    gap: '0',
+  },
+]);
+
 export const contentStyle = style({
   paddingLeft: '0.8rem',
 
   ...vars.fonts.h6_sb,
   color: vars.colors.gray11,
+});
+
+export const descriptionStyle = style({
+  paddingLeft: '0.8rem',
+  paddingTop: '1rem',
+  paddingBottom: '2.4rem',
+
+  ...vars.fonts.b2_m_long,
+  color: vars.colors.gray07,
 });
 
 export const buttonWrapperStyle = style({
