@@ -14,7 +14,7 @@ const EmptyView = () => {
         gap: 24,
         marginTop: 60,
       })}>
-      <img src={EmptyGif} width={300} />
+      <img src={EmptyGif} width={300} alt="검색 결과가 없어요." />
 
       <div
         className={sprinkles({

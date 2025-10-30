@@ -1,5 +1,5 @@
-import { MAX_NAME_LENGTH, MAX_PHONENUMBER_LENGTH, MIN_NAME_LENGTH } from '@/shared/constants/userInfo';
 import { ONLY_KOREAN_AND_ENGLISH, ONLY_NUMBER } from '@/shared/constants/regex';
+import { MAX_NAME_LENGTH, MAX_PHONENUMBER_LENGTH, MIN_NAME_LENGTH } from '@/shared/constants/userInfo';
 
 export const validateTypingName = (name: string) => {
   const onlyKoreanAndEnglish = name.replace(ONLY_KOREAN_AND_ENGLISH, '');

@@ -4,7 +4,6 @@ import {
   descriptionStyle,
   imageStyle,
   showDetailButtonStyle,
-  showDetailWrapperStyle,
 } from '@/pages/home/components/SliderItem/sliderItem.css';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import IcArrowRightWhite14 from '@/shared/assets/svg/IcArrowRightWhite14';
@@ -28,18 +27,16 @@ const SliderItem = ({ imageUrl, description, id }: SliderItemPropTypes) => {
 
   return (
     <div className={containerStyle}>
-      <img src={imageUrl} className={imageStyle} />
+      <img src={imageUrl} className={imageStyle} alt={`${description} 배너`} />
 
       <Head level="h2" tag="h3_sb" color="white" className={descriptionStyle}>
         {description}
       </Head>
 
-      <div className={showDetailWrapperStyle}>
-        <button className={showDetailButtonStyle} onClick={handleShowDetailClick}>
-          자세히 보기
-        </button>
+      <button className={showDetailButtonStyle} onClick={handleShowDetailClick}>
+        자세히 보기
         <IcArrowRightWhite14 width={14} height={14} />
-      </div>
+      </button>
     </div>
   );
 };

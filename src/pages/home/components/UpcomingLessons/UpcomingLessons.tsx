@@ -20,8 +20,8 @@ const UpcomingLessons = () => {
   }, [upcomingLessonList]);
 
   return (
-    <div className={deadlineLessonWrapperStyle}>
-      <Head level="h2" tag="h5_sb" className={titleStyle}>
+    <section className={deadlineLessonWrapperStyle} aria-labelledby="upcoming-lessons-title">
+      <Head level="h2" tag="h5_sb" className={titleStyle} id="upcoming-lessons-title">
         놓치면 아쉬울 마지막 기회
       </Head>
       <ul className={containerStyle}>
@@ -29,7 +29,7 @@ const UpcomingLessons = () => {
           <LessonItem key={lesson.id} useNewStyles={false} {...lesson} />
         ))}
       </ul>
-    </div>
+    </section>
   );
 };
 

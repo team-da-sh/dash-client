@@ -20,7 +20,7 @@ const FinishStep = ({ name }: FinishStepProps) => {
       </div>
 
       <div className={styles.gifWrapperStyle}>
-        <img src={ClearGif} width={244} />
+        <img src={ClearGif} width={244} alt="완료 애니메이션" />
       </div>
     </div>
   );
