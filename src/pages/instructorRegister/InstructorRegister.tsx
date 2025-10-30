@@ -12,6 +12,7 @@ import { useGetRole } from '@/shared/apis/queries';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import Divider from '@/shared/components/Divider/Divider';
 import Head from '@/shared/components/Head/Head';
+import useBlockBackWithUnsavedChanges from '@/shared/hooks/useBlockBackWithUnsavedChanges';
 import useImageUploader from '@/shared/hooks/useImageUploader';
 
 const InstructorRegister = () => {
@@ -39,6 +40,8 @@ const InstructorRegister = () => {
     undefined,
     prevInstructorData?.profileImage
   );
+
+  useBlockBackWithUnsavedChanges({ methods, snapshotDeps: [prevInstructorData] });
 
   return (
     <FormProvider {...methods}>

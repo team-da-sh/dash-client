@@ -24,6 +24,7 @@ import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import { genreEngMapping, levelEngMapping } from '@/shared/constants';
 import { lessonKeys, memberKeys } from '@/shared/constants/queryKey';
+import useBlockBackWithUnsavedChanges from '@/shared/hooks/useBlockBackWithUnsavedChanges';
 import useBottomSheet from '@/shared/hooks/useBottomSheet';
 import useDebounce from '@/shared/hooks/useDebounce';
 import useImageUploader from '@/shared/hooks/useImageUploader';
@@ -232,6 +233,7 @@ const ClassRegister = () => {
     setSelectedLocation(location);
     setValue('selectedLocation', location, { shouldValidate: true });
   };
+  useBlockBackWithUnsavedChanges({ methods });
 
   return (
     <>
