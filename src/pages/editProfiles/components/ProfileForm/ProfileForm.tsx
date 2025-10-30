@@ -10,6 +10,7 @@ import { profileSchema } from '@/pages/editProfiles/schema/profileSchema';
 import type { UpdateProfileRequestTypes } from '@/pages/editProfiles/types/api';
 import ImageUploadSection from '@/pages/instructorRegister/components/ImageUploadSection/ImageUploadSection';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
+import useBlockBackWithUnsavedChanges from '@/shared/hooks/useBlockBackWithUnsavedChanges';
 import useImageUploader from '@/shared/hooks/useImageUploader';
 
 interface ProfileFormPropTypes {
@@ -25,17 +26,20 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
 
   const [isImageClick, setIsImageClick] = useState(false);
 
+  const methods = useForm<ProfileFormValues>({
+    resolver: zodResolver(profileSchema),
+    defaultValues,
+    mode: 'onChange',
+  });
   const {
     register,
     handleSubmit,
     control,
     formState: { errors, isValid, isDirty },
     watch,
-  } = useForm<ProfileFormValues>({
-    resolver: zodResolver(profileSchema),
-    defaultValues,
-    mode: 'onChange',
-  });
+  } = methods;
+
+  useBlockBackWithUnsavedChanges<ProfileFormValues>({ methods, snapshotDeps: [defaultValues] });
 
   const { field } = useController({ name: 'profileImageUrl', control });
 
