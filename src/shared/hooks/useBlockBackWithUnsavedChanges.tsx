@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { FieldValues, UseFormReturn } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import Modal from '@/common/components/Modal/Modal';
 import { useModalStore } from '@/common/stores/modal';
 
@@ -99,5 +100,43 @@ export default function useBlockBackWithUnsavedChanges<TFieldValues extends Fiel
 
     window.addEventListener('popstate', handlePopState);
     return () => window.removeEventListener('popstate', handlePopState);
+  }, [navigate, openModal, content, description, leftButtonText, rightButtonText]);
+
+  useEffect(() => {
+    const handleLogoClickCapture = (event: MouseEvent) => {
+      if (!shouldBlockRef.current || !isDirtyRef.current) return;
+
+      const target = event.target as HTMLElement | null;
+      if (!target) return;
+
+      const logoButton = target.closest('[aria-label="홈으로 이동"]') as HTMLElement | null;
+      if (!logoButton) return;
+
+      event.preventDefault();
+      event.stopPropagation();
+
+      openModal(({ close }) => (
+        <Modal
+          content={content}
+          description={description}
+          type="default"
+          onClose={close}
+          leftButtonText={leftButtonText}
+          rightButtonText={rightButtonText}
+          onLeftClickHandler={() => {
+            shouldBlockRef.current = false;
+            armedRef.current = false;
+            close();
+            navigate(ROUTES_CONFIG.home.path);
+          }}
+          onRightClickHandler={() => {
+            close();
+          }}
+        />
+      ));
+    };
+
+    window.addEventListener('click', handleLogoClickCapture, true);
+    return () => window.removeEventListener('click', handleLogoClickCapture, true);
   }, [navigate, openModal, content, description, leftButtonText, rightButtonText]);
 }
