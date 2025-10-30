@@ -96,6 +96,10 @@ export const ROUTES_CONFIG = {
     title: 'instructorClassDetail',
     path: (id: string) => `/mypage/instructor/class-list/${id}`,
   },
+  withdraw: {
+    title: 'Withdraw',
+    path: '/mypage/withdraw',
+  },
   error: {
     title: 'Error',
     path: '/error',
