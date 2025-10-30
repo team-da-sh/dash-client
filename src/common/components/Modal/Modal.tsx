@@ -13,9 +13,11 @@ interface DialogProps {
   type: 'default' | 'single';
   onClose: () => void;
   onClickHandler?: () => void;
+  cancelText?: string;
+  confirmText?: string;
 }
 
-const Modal = ({ content, type, onClose, onClickHandler }: DialogProps) => {
+const Modal = ({ content, type, onClose, onClickHandler, cancelText = '취소', confirmText = '확인' }: DialogProps) => {
   const handleCheckButtonClick = () => {
     if (onClickHandler) {
       onClickHandler();
@@ -32,16 +34,16 @@ const Modal = ({ content, type, onClose, onClickHandler }: DialogProps) => {
           {type === 'default' && (
             <>
               <button onClick={onClose} className={closeButtonStyle}>
-                취소
+                {cancelText}
               </button>
               <BoxButton variant="primary" onClick={handleCheckButtonClick}>
-                확인
+                {confirmText}
               </BoxButton>
             </>
           )}
           {type === 'single' && (
             <BoxButton variant="primary" onClick={handleCheckButtonClick}>
-              확인
+              {confirmText}
             </BoxButton>
           )}
         </div>
