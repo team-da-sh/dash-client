@@ -29,7 +29,3 @@ export const LEVELS = {
 } as const;
 
 export const FINAL_ONBOARDING_STEP = 2;
-
-export const TIMER_DURATION = 300;
-
-export const REQUEST_DELAY = 10;
