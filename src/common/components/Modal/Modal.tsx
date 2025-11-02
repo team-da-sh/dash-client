@@ -13,9 +13,18 @@ interface DialogProps {
   type: 'default' | 'single';
   onClose: () => void;
   onClickHandler?: () => void;
+  leftButtonText?: string;
+  rightButtonText?: string;
 }
 
-const Modal = ({ content, type, onClose, onClickHandler }: DialogProps) => {
+const Modal = ({
+  content,
+  type,
+  onClose,
+  onClickHandler,
+  leftButtonText = '취소',
+  rightButtonText = '확인',
+}: DialogProps) => {
   const handleCheckButtonClick = () => {
     if (onClickHandler) {
       onClickHandler();
@@ -32,16 +41,16 @@ const Modal = ({ content, type, onClose, onClickHandler }: DialogProps) => {
           {type === 'default' && (
             <>
               <button onClick={onClose} className={closeButtonStyle}>
-                취소
+                {leftButtonText}
               </button>
               <BoxButton variant="primary" onClick={handleCheckButtonClick}>
-                확인
+                {rightButtonText}
               </BoxButton>
             </>
           )}
           {type === 'single' && (
             <BoxButton variant="primary" onClick={handleCheckButtonClick}>
-              확인
+              {rightButtonText}
             </BoxButton>
           )}
         </div>
