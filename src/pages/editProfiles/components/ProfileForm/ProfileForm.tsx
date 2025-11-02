@@ -91,9 +91,9 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+    <form onSubmit={handleSubmit(onSubmit)} className={styles.formStyle}>
       <div>
-        <div className={styles.imageSection}>
+        <div className={styles.imageSectionStyle}>
           <ProfileImageUpload defaultImageUrl={defaultValues.profileImageUrl ?? ''} control={control} />
         </div>
 
@@ -117,7 +117,7 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
             <Text tag="b2_sb">전화번호</Text>
           </label>
 
-          <div className={styles.inputRow}>
+          <div className={styles.inputRowStyle}>
             <Input
               {...register('phoneNumber')}
               placeholder="01012345678"
@@ -133,7 +133,7 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
                 register('phoneNumber').onChange(e);
               }}
               value={phoneNumber}
-              className={styles.input}
+              className={styles.inputStyle}
             />
 
             <BoxButton
@@ -145,7 +145,7 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
           </div>
 
           {isVerificationVisible && (
-            <div className={styles.inputRow}>
+            <div className={styles.inputRowStyle}>
               <Input
                 placeholder={`인증번호 ${MAX_VERIFICATION_CODE}자리`}
                 value={verificationCode}
@@ -171,7 +171,7 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
         </div>
       </div>
 
-      <div className={styles.submitSection}>
+      <div className={styles.submitSectionStyle}>
         <BoxButton variant="primary" isDisabled={!isButtonActive} type="submit">
           확인
         </BoxButton>

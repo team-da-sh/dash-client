@@ -2,19 +2,19 @@ import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 import { vars } from '@/shared/styles/theme.css';
 
-export const form = style({
+export const formStyle = style({
   display: 'flex',
   flexDirection: 'column',
   height: '100%',
   justifyContent: 'space-between',
 });
 
-export const imageSection = style({
+export const imageSectionStyle = style({
   display: 'flex',
   justifyContent: 'center',
 });
 
-export const submitSection = style({
+export const submitSectionStyle = style({
   padding: '2.4rem 0',
 });
 
@@ -26,12 +26,12 @@ export const fieldStyle = style({
   padding: '1.2rem 0',
 });
 
-export const inputRow = style({
+export const inputRowStyle = style({
   display: 'flex',
   gap: '0.4rem',
 });
 
-export const input = style({
+export const inputStyle = style({
   flex: 1,
 });
 
