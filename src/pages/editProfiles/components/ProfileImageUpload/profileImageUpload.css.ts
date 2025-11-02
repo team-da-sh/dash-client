@@ -21,6 +21,13 @@ export const imgWrapperStyle = style({
   borderRadius: '110px',
 
   cursor: 'pointer',
+
+  backgroundSize: 'cover',
+  backgroundPosition: 'center',
+
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
 });
 
 export const overlayStyle = style({

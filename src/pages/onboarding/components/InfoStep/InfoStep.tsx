@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { usePostPhoneRequest, usePostPhoneVerify } from '@/pages/onboarding/apis/queries';
 import * as styles from '@/pages/onboarding/components/InfoStep/infoStep.css';
-import { INFO_KEY, REQUEST_DELAY, TIMER_DURATION } from '@/pages/onboarding/constants';
-import { useVerificationTimer } from '@/pages/onboarding/hooks/useVerificationTimer';
+import { INFO_KEY } from '@/pages/onboarding/constants';
 import type { OnboardInfoTypes } from '@/pages/onboarding/types/onboardInfoTypes';
 import { validateTypingPhoneNumber } from '@/pages/onboarding/utils/validate';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
@@ -17,7 +16,10 @@ import {
   MIN_NAME_LENGTH,
   NAME_ERROR_MESSAGES,
   PHONE_AUTH_MESSAGES,
+  REQUEST_DELAY,
+  TIMER_DURATION,
 } from '@/shared/constants/userInfo';
+import { useVerificationTimer } from '@/shared/hooks/useVerificationTimer';
 
 interface InfoStepProps {
   name: string;
