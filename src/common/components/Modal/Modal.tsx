@@ -62,7 +62,7 @@ const Modal = ({
     <ModalLayout onClose={onClose}>
       <div className={description ? containerNoGapStyle : containerStyle}>
         <div className={contentStyle}>{content}</div>
-        <div className={descriptionStyle}>{description}</div>
+        {description && <div className={descriptionStyle}>{description}</div>}
         <div className={buttonWrapperStyle}>
           {type === 'default' && (
             <>
