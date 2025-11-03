@@ -26,6 +26,7 @@ export const protectedRoutes = [
   { path: ROUTES_CONFIG.mypageReservationDetail.path(':id'), element: <MyPageReservationDetail /> },
 
   { path: ROUTES_CONFIG.classRegister.path, element: <ClassRegister /> },
+  { path: ROUTES_CONFIG.classEdit.path(':id'), element: <ClassRegister /> },
   { path: ROUTES_CONFIG.classRegisterCompletion.path, element: <ClassRegisterCompletion /> },
   { path: ROUTES_CONFIG.instructorRegister.path, element: <InstructorRegister /> },
   { path: ROUTES_CONFIG.instructorRegisterCompletion.path, element: <InstructorRegisterCompletion /> },
