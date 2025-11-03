@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import Modal from '@/common/components/Modal/Modal';
 import { useModalStore } from '@/common/stores/modal';
+import { isLoggedIn } from '@/shared/utils/authUtil';
 
 type UseBlockBackWithUnsavedChangesParams<TFieldValues extends FieldValues> = {
   methods: UseFormReturn<TFieldValues>;
@@ -103,14 +104,22 @@ export default function useBlockBackWithUnsavedChanges<TFieldValues extends Fiel
   }, [navigate, openModal, content, description, leftButtonText, rightButtonText]);
 
   useEffect(() => {
-    const handleLogoClickCapture = (event: MouseEvent) => {
+    const handleHeaderNavClickCapture = (event: MouseEvent) => {
       if (!shouldBlockRef.current || !isDirtyRef.current) return;
 
       const target = event.target as HTMLElement | null;
       if (!target) return;
 
       const logoButton = target.closest('[aria-label="홈으로 이동"]') as HTMLElement | null;
-      if (!logoButton) return;
+      const searchButton = target.closest('[aria-label="검색 페이지로 이동"]') as HTMLElement | null;
+      const mypageButton = target.closest('[aria-label="마이페이지로 이동"]') as HTMLElement | null;
+
+      let navigateTo: string | null = null;
+      if (logoButton) navigateTo = ROUTES_CONFIG.home.path;
+      else if (searchButton) navigateTo = ROUTES_CONFIG.search.path;
+      else if (mypageButton) navigateTo = isLoggedIn() ? ROUTES_CONFIG.mypage.path : ROUTES_CONFIG.login.path;
+
+      if (!navigateTo) return;
 
       event.preventDefault();
       event.stopPropagation();
@@ -127,7 +136,7 @@ export default function useBlockBackWithUnsavedChanges<TFieldValues extends Fiel
             shouldBlockRef.current = false;
             armedRef.current = false;
             close();
-            navigate(ROUTES_CONFIG.home.path);
+            navigate(navigateTo!);
           }}
           onRightClickHandler={() => {
             close();
@@ -136,7 +145,7 @@ export default function useBlockBackWithUnsavedChanges<TFieldValues extends Fiel
       ));
     };
 
-    window.addEventListener('click', handleLogoClickCapture, true);
-    return () => window.removeEventListener('click', handleLogoClickCapture, true);
+    window.addEventListener('click', handleHeaderNavClickCapture, true);
+    return () => window.removeEventListener('click', handleHeaderNavClickCapture, true);
   }, [navigate, openModal, content, description, leftButtonText, rightButtonText]);
 }
