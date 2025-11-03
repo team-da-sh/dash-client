@@ -1,13 +1,11 @@
 import { Navigate, Outlet } from 'react-router-dom';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import { useGetRole } from '@/shared/apis/queries';
+import { getAccessToken, getRefreshToken } from '@/shared/utils/handleToken';
 
 const GuestGuard = () => {
-  const { data, isLoading } = useGetRole();
+  const hasToken = !!(getAccessToken() || getRefreshToken());
 
-  if (isLoading) return <div />;
-
-  if (data?.role) return <Navigate to={ROUTES_CONFIG.home.path} replace />;
+  if (hasToken) return <Navigate to={ROUTES_CONFIG.home.path} replace />;
 
   return <Outlet />;
 };

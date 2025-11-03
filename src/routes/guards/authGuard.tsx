@@ -1,13 +1,11 @@
 import { Navigate, Outlet } from 'react-router-dom';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import { useGetRole } from '@/shared/apis/queries';
+import { getAccessToken, getRefreshToken } from '@/shared/utils/handleToken';
 
 const AuthGuard = () => {
-  const { data, isLoading, error } = useGetRole();
+  const hasToken = !!(getAccessToken() || getRefreshToken());
 
-  if (isLoading) return <div />;
-
-  if (error || !data?.role) {
+  if (!hasToken) {
     return <Navigate to={ROUTES_CONFIG.login.path} replace />;
   }
 
