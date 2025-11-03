@@ -1,7 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useQueryClient } from '@tanstack/react-query';
 import type { FormEvent } from 'react';
-import { useEffect } from 'react';
 import { FormProvider, useController, useForm } from 'react-hook-form';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useGetLessonDetail } from '@/pages/class/apis/queries';
@@ -18,13 +17,14 @@ import ClassRecommend from '@/pages/instructor/classRegister/components/ClassRec
 import ClassRepresentImage from '@/pages/instructor/classRegister/components/ClassRepresentImage/ClassRepresentImage';
 import ClassRegisterBottomSheet from '@/pages/instructor/classRegister/components/ClassSchedule/ClassRegisterBottomSheet/ClassRegisterBottomSheet';
 import ClassSchedule from '@/pages/instructor/classRegister/components/ClassSchedule/ClassSchedule';
+import { useClassEditMode } from '@/pages/instructor/classRegister/hooks/useClassEditMode';
 import { useClassRegisterForm } from '@/pages/instructor/classRegister/hooks/useClassRegisterForm';
 import { classRegisterSchema } from '@/pages/instructor/classRegister/schema/classRegisterSchema';
 import type { ClassRegisterInfoTypes } from '@/pages/instructor/classRegister/types/api';
 import type { LocationTypes } from '@/pages/instructor/classRegister/types/index';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
-import { genreEngMapping, genreMapping, levelEngMapping, levelMapping } from '@/shared/constants';
+import { genreEngMapping, levelEngMapping } from '@/shared/constants';
 import { lessonKeys, memberKeys } from '@/shared/constants/queryKey';
 import useBottomSheet from '@/shared/hooks/useBottomSheet';
 import useDebounce from '@/shared/hooks/useDebounce';
@@ -126,76 +126,14 @@ const ClassRegister = () => {
   } = useClassRegisterForm();
 
   // 수정 모드일 때 폼 필드 채우기
-  useEffect(() => {
-    if (isEditMode && lessonData) {
-      // 클래스명
-      setValue('className', lessonData.name || '');
-
-      // 클래스 설명
-      setValue('detail', lessonData.detail || '');
-
-      // 장르 (영어 → 한글 변환)
-      if (lessonData.genre) {
-        const genreKorean = genreMapping[lessonData.genre] || '';
-        setValue('selectedGenre', genreKorean);
-      }
-
-      // 레벨 (영어 → 한글 변환)
-      if (lessonData.level) {
-        const levelKorean = levelMapping[lessonData.level] || '';
-        setValue('selectedLevel', levelKorean);
-      }
-
-      // 추천 대상
-      setValue('recommendation', lessonData.recommendation || '');
-
-      // 최대 인원
-      setValue('maxReservationCount', String(lessonData.maxReservationCount || ''));
-
-      // 가격
-      setValue('price', String(lessonData.price || ''));
-
-      // 이미지
-      if (lessonData.imageUrl) {
-        setValue('imageUrls', lessonData.imageUrl);
-        setImageUrls({ imageUrls: lessonData.imageUrl });
-      }
-
-      // 일정 정보
-      if (lessonData.lessonRound?.lessonRounds) {
-        const formattedTimes = lessonData.lessonRound.lessonRounds.map((round) => {
-          const start = new Date(round.startDateTime);
-          const end = new Date(round.endDateTime);
-          const duration = (end.getTime() - start.getTime()) / (1000 * 60 * 60); // 시간 단위로 변환
-
-          return {
-            startTime: round.startDateTime,
-            endTime: round.endDateTime,
-            date: start.toISOString().split('T')[0],
-            duration,
-          };
-        });
-        setTimes(formattedTimes);
-      }
-
-      // 장소 정보
-      if (lessonData.location) {
-        setValue('detailedAddress', lessonData.streetDetailAddress || '');
-        setValue('isUndecidedLocation', false);
-
-        // selectedLocation 설정
-        const locationData: LocationTypes = {
-          location: lessonData.location,
-          streetAddress: lessonData.streetAddress,
-          oldStreetAddress: lessonData.oldStreetAddress,
-        };
-        setSelectedLocation(locationData);
-        setValue('selectedLocation', locationData, { shouldValidate: true });
-      } else {
-        setValue('isUndecidedLocation', true);
-      }
-    }
-  }, [isEditMode, lessonData, setValue, setImageUrls, setTimes, setSelectedLocation]);
+  useClassEditMode({
+    isEditMode,
+    lessonData,
+    setValue,
+    setImageUrls,
+    setTimes,
+    setSelectedLocation,
+  });
 
   const handleLocationCheckboxClick = () => {
     handleNoneLocationCheck();
