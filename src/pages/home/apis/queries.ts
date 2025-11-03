@@ -20,6 +20,9 @@ export const useGetAdvertisements = () => {
 export const useGetPopularGenres = () => {
   // 장르가 3개 미만인 경우 DUMMY 장르 넘겨줌
   const transformGenres = (data: PopularGenreResponseTypes): PopularGenreResponseTypes => {
+    // data가 없거나 genres가 없으면 그대로 반환
+    if (!data || !data.genres) return data;
+
     if (data.genres.length >= MAX_POPULAR_GENRE_COUNT) return data;
 
     const tempGenres = [...data.genres].concat(
