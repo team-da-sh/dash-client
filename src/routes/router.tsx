@@ -9,7 +9,8 @@ import Layout from '@/layout/Layout';
 import OnboardingGuard from './guards/onboardingGuard';
 import { ROUTES_CONFIG } from './routesConfig';
 
-const Error = lazy(() => import('@/pages/error/Error'));
+/* eslint-disable react-refresh/only-export-components */
+const Error = lazy(() => import('@/pages/error/ErrorPage'));
 const Onboarding = lazy(() => import('@/pages/onboarding/Onboarding'));
 
 export const router = createBrowserRouter([
