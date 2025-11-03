@@ -118,5 +118,6 @@ export const useClassRegisterForm = () => {
     setImageUrls,
     isButtonActive,
     setSelectedLocation,
+    setTimes,
   };
 };
