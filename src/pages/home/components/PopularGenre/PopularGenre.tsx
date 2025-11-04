@@ -24,7 +24,7 @@ const PopularGenre = () => {
       </Head>
 
       <ul className={sprinkles({ display: 'flex', justifyContent: 'space-between', gap: 7, marginTop: 20 })}>
-        {data?.genres.map((genre, index) => (
+        {data?.genres?.map((genre, index) => (
           <GenreItem
             key={genre}
             medalIcon={GENRE_ICONS[index]}
