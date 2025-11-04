@@ -5,7 +5,7 @@ export const containerStyle = style({
   display: 'flex',
   flexDirection: 'column',
   padding: '2.4rem 2rem',
-  height: 'calc(100dvh - 6rem)',
+  minHeight: 'calc(100dvh - 6rem)',
   backgroundColor: vars.colors.gray01,
 });
 
@@ -29,6 +29,7 @@ export const reasonListStyle = style({
   gap: '2.2rem',
   padding: '2.4rem',
   borderRadius: '4px',
+  marginBottom: '13.1rem',
   backgroundColor: vars.colors.white,
 });
 

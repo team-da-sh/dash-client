@@ -5,7 +5,7 @@ export const containerStyle = style({
   display: 'flex',
   flexDirection: 'column',
   padding: '2.4rem 2rem',
-  height: 'calc(100dvh - 6rem)',
+  minHeight: 'calc(100dvh - 6rem)',
   backgroundColor: vars.colors.gray01,
 });
 
@@ -65,6 +65,7 @@ export const agreeSectionStyle = style({
   alignItems: 'center',
   gap: '1.4rem',
   padding: '1.9rem 1.5rem',
+  marginBottom: '13.1rem',
   borderRadius: '4px',
   backgroundColor: vars.colors.white,
   cursor: 'pointer',
