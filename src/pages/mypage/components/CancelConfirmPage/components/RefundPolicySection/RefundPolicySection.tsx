@@ -6,6 +6,7 @@ import IcFrame from '@/shared/assets/svg/IcFrame';
 import Head from '@/shared/components/Head/Head';
 import Text from '@/shared/components/Text/Text';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
+import { vars } from '@/shared/styles/theme.css';
 
 interface RefundPolicySectionProps {
   isVisible: boolean;
@@ -40,7 +41,7 @@ const RefundPolicySection = ({ isVisible, onAgreementChange }: RefundPolicySecti
           {isAgreed ? (
             <IcCheckcircleMain0324 width={24} height={24} />
           ) : (
-            <IcCheckcircleGray0524 width={24} height={24} />
+            <IcCheckcircleGray0524 width={24} height={24} color={vars.colors.gray05} />
           )}
           <Text tag="b1_sb" color={isAgreed ? 'black' : 'gray10'}>
             위 사항을 모두 확인했습니다.
