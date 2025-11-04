@@ -28,7 +28,7 @@ const NoticeStep = ({ onNext }: NoticeStepPropTypes) => {
   const handleAgreeToggle = () => setAgreed((prev) => !prev);
 
   return (
-    <div className={containerStyle}>
+    <main className={containerStyle}>
       <Text tag="h3_sb" color="black" className={titleStyle}>
         회원 탈퇴
       </Text>
@@ -85,7 +85,7 @@ const NoticeStep = ({ onNext }: NoticeStepPropTypes) => {
           다음
         </BoxButton>
       </BlurButton>
-    </div>
+    </main>
   );
 };
 

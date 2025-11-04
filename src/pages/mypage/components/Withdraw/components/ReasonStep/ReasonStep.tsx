@@ -39,7 +39,7 @@ const ReasonStep = ({ onNext }: ReasonStepProps) => {
   };
 
   return (
-    <div className={containerStyle}>
+    <main className={containerStyle}>
       <Text tag="h3_sb" color="black" className={titleStyle}>
         탈퇴하는 이유가 무엇인가요?
       </Text>
@@ -85,7 +85,7 @@ const ReasonStep = ({ onNext }: ReasonStepProps) => {
           다음
         </BoxButton>
       </BlurButton>
-    </div>
+    </main>
   );
 };
 
