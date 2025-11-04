@@ -10,3 +10,11 @@ export const REASONS = [
 ] as const;
 
 export type WithdrawReasonTypes = (typeof REASONS)[number];
+
+export const BULLET_LIST = [
+  '개인 식별 정보 파기',
+  '카카오 로그인 연동 해제',
+  '활동 기록 및 콘텐츠 영구 삭제',
+  '수강생 클래스 내역 삭제\n: 클래스 신청, 수강, 취소 내역 일체 (수강생 해당)',
+  '강사 프로필 및 클래스 정보 삭제\n: 등록한 강사 프로필, 개설 클래스, 수강생 명단 등 모든 관리 정보\n(강사 해당)',
+];

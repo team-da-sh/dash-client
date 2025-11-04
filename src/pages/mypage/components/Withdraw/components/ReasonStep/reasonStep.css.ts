@@ -37,6 +37,7 @@ export const reasonItemStyle = style({
   alignItems: 'center',
   gap: '1.4rem',
   cursor: 'pointer',
+  WebkitTapHighlightColor: 'transparent',
 });
 
 export const etcGroupStyle = style({
