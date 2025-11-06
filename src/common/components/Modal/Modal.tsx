@@ -69,13 +69,13 @@ const Modal = ({
               <button onClick={handleLeftButtonClick} className={closeButtonStyle}>
                 {leftButtonText}
               </button>
-              <BoxButton variant="primary" onClick={handleRightButtonClick}>
+              <BoxButton variant="primary03" onClick={handleRightButtonClick}>
                 {rightButtonText}
               </BoxButton>
             </>
           )}
           {type === 'single' && (
-            <BoxButton variant="primary" onClick={handleCheckButtonClick}>
+            <BoxButton variant="primary03" onClick={handleCheckButtonClick}>
               {rightButtonText}
             </BoxButton>
           )}
