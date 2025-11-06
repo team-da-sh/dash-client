@@ -12,7 +12,7 @@ import {
   agreeSectionStyle,
 } from '@/pages/mypage/components/Withdraw/components/NoticeStep/noticeStep.css';
 import { BULLET_LIST } from '@/pages/mypage/components/Withdraw/constants';
-// import Modal from '@/common/components/Modal/Modal';
+import Modal from '@/common/components/Modal/Modal';
 import IcCheckcircleGray0524 from '@/shared/assets/svg/IcCheckcircleGray0524';
 import IcCheckcircleMain0324 from '@/shared/assets/svg/IcCheckcircleMain0324';
 import BlurButton from '@/shared/components/BlurButton/BlurButton';
@@ -26,17 +26,17 @@ interface NoticeStepPropTypes {
 
 const NoticeStep = ({ onNext }: NoticeStepPropTypes) => {
   const [agreed, setAgreed] = useState(false);
-  // const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleAgreeToggle = () => setAgreed((prev) => !prev);
-  // const handleOpenModal = () => setIsModalOpen(true);
-  // const handleCloseModal = () => setIsModalOpen(false);
+  const handleOpenModal = () => setIsModalOpen(true);
+  const handleCloseModal = () => setIsModalOpen(false);
 
-  // 탈퇴 모달 -> 탈퇴하기
-  // const handleWithdrawConfirm = () => {
-  //   setIsModalOpen(false);
-  //   onNext();
-  // };
+  // 탈퇴 시
+  const handleWithdrawConfirm = () => {
+    setIsModalOpen(false);
+    onNext();
+  };
 
   return (
     <main className={containerStyle}>
@@ -92,29 +92,22 @@ const NoticeStep = ({ onNext }: NoticeStepPropTypes) => {
       </button>
 
       <BlurButton>
-        <BoxButton
-          //  onClick={handleOpenModal}
-          disabled={!agreed}>
+        <BoxButton onClick={handleOpenModal} disabled={!agreed}>
           다음
         </BoxButton>
       </BlurButton>
 
-      {/* {isModalOpen && (
+      {isModalOpen && (
         <Modal
           type="default"
-          content={
-            <Text tag="h6_sb" color="gray11">
-              정말 탈퇴하시겠어요?
-            </Text>
-          }
-          description="회원님은 현재 탈퇴 동의를 완료하셨습니다. 서비스를 떠나시면, 모든 데이터는 영구 삭제되며 복구가 불가능합니다."
+          content="정말 탈퇴하시겠어요?"
+          // description="회원님은 현재 탈퇴 동의를 완료하셨습니다. 서비스를 떠나시면, 모든 데이터는 영구 삭제되며 복구가 불가능합니다."
           leftButtonText="이전"
           rightButtonText="탈퇴하기"
           onClose={handleCloseModal}
-          onLeftClickHandler={handleCloseModal}
-          onRightClickHandler={handleWithdrawConfirm}
+          onClickHandler={handleWithdrawConfirm}
         />
-      )} */}
+      )}
     </main>
   );
 };
