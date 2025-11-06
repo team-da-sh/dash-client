@@ -61,6 +61,7 @@ export const legalNoticeStyle = style({
 });
 
 export const agreeSectionStyle = style({
+  all: 'unset',
   display: 'flex',
   alignItems: 'center',
   gap: '1.4rem',

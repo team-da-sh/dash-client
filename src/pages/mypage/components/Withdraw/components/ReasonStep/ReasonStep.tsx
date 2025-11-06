@@ -8,7 +8,8 @@ import {
   reasonItemStyle,
   etcGroupStyle,
 } from '@/pages/mypage/components/Withdraw/components/ReasonStep/reasonStep.css';
-import { REASONS, WithdrawReasonTypes } from '@/pages/mypage/components/Withdraw/constants';
+import type { WithdrawReasonTypes } from '@/pages/mypage/components/Withdraw/constants';
+import { REASONS } from '@/pages/mypage/components/Withdraw/constants';
 import IcCheckcircleGray0524 from '@/shared/assets/svg/IcCheckcircleGray0524';
 import IcCheckcircleMain0324 from '@/shared/assets/svg/IcCheckcircleMain0324';
 import BlurButton from '@/shared/components/BlurButton/BlurButton';
@@ -61,12 +62,12 @@ const ReasonStep = ({ onNext }: ReasonStepProps) => {
 
           return (
             <div key={reason} className={reason === '기타' ? etcGroupStyle : undefined}>
-              <div className={reasonItemStyle} onClick={() => toggleReason(reason)}>
+              <button className={reasonItemStyle} onClick={() => toggleReason(reason)}>
                 <Icon width={24} height={24} color={vars.colors.gray03} />
                 <Text tag="b2_sb" color="gray9">
                   {reason}
                 </Text>
-              </div>
+              </button>
 
               {reason === '기타' && isChecked && (
                 <Input
