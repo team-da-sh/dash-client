@@ -57,8 +57,8 @@ const NoticeStep = ({ onNext }: NoticeStepPropTypes) => {
         </Text>
 
         <ul className={bulletListStyle}>
-          {BULLET_LIST.map((item, idx) => (
-            <li key={idx} className={bulletItemStyle}>
+          {BULLET_LIST.map((item) => (
+            <li key={item} className={bulletItemStyle}>
               {item.split('\n').map((line, i) => (
                 <span key={i}>
                   {line}

@@ -28,6 +28,7 @@ export const reasonListStyle = style({
   flexDirection: 'column',
   gap: '2.2rem',
   padding: '2.4rem',
+
   borderRadius: '4px',
   marginBottom: '13.1rem',
   backgroundColor: vars.colors.white,
@@ -37,6 +38,7 @@ export const reasonItemStyle = style({
   display: 'flex',
   alignItems: 'center',
   gap: '1.4rem',
+
   cursor: 'pointer',
   WebkitTapHighlightColor: 'transparent',
 });

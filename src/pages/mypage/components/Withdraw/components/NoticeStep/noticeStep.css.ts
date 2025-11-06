@@ -22,6 +22,7 @@ export const noticeCardStyle = style({
   flexDirection: 'column',
   padding: '2.4rem 2.7rem 2.4rem 2rem',
   marginBottom: '1.2rem',
+
   borderRadius: '4px',
   backgroundColor: vars.colors.white,
 });
@@ -38,6 +39,7 @@ export const bulletListStyle = style({
   display: 'flex',
   flexDirection: 'column',
   gap: '0.8rem',
+
   color: vars.colors.gray10,
   ...vars.fonts.b3_m_narrow,
 });
@@ -45,6 +47,7 @@ export const bulletListStyle = style({
 export const bulletItemStyle = style({
   position: 'relative',
   paddingLeft: '1.6rem',
+
   selectors: {
     '&::before': {
       content: '"•"',
@@ -67,6 +70,7 @@ export const agreeSectionStyle = style({
   gap: '1.4rem',
   padding: '1.9rem 1.5rem',
   marginBottom: '13.1rem',
+
   borderRadius: '4px',
   backgroundColor: vars.colors.white,
   cursor: 'pointer',

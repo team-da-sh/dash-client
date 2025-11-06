@@ -19,6 +19,7 @@ export const boxStyle = style({
   rowGap: '1.4rem',
   columnGap: '2.8rem',
   padding: '1.8rem 2.4rem',
+
   borderRadius: '10px',
   border: `1px solid ${vars.colors.gray02}`,
   backgroundColor: vars.colors.gray01,
