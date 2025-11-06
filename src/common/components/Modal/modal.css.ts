@@ -52,16 +52,14 @@ export const containerNoGapStyle = style([
 ]);
 
 export const contentStyle = style({
-  paddingLeft: '0.8rem',
+  padding: '0 0.8rem',
 
   ...vars.fonts.h6_sb,
   color: vars.colors.gray11,
 });
 
 export const descriptionStyle = style({
-  paddingLeft: '0.8rem',
-  paddingTop: '1rem',
-  paddingBottom: '2.4rem',
+  padding: '1rem 0.8rem 2.4rem',
 
   ...vars.fonts.b2_m_long,
   color: vars.colors.gray07,
