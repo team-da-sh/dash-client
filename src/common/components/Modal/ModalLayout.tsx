@@ -8,9 +8,19 @@ interface ModalLayoutProps extends PropsWithChildren {
 const ModalLayout = ({ onClose, children }: ModalLayoutProps) => {
   return (
     <div
+      role="button"
+      tabIndex={0}
+      aria-label="모달 닫기"
       onClick={(e) => {
         e.stopPropagation();
         onClose();
+      }}
+      onKeyDown={(e) => {
+        if (e.key === 'Escape') {
+          e.preventDefault();
+          e.stopPropagation();
+          onClose();
+        }
       }}
       className={layoutStyle}>
       {children}
