@@ -67,8 +67,7 @@ const ClassRegister = () => {
     },
   });
 
-  const { register, watch, setValue, control, clearErrors, formState, reset } = methods;
-  const { isDirty } = formState;
+  const { register, watch, setValue, control, clearErrors, reset } = methods;
 
   const {
     className,
@@ -98,14 +97,12 @@ const ClassRegister = () => {
   const toggleCategory = (category: string) => {
     setValue('selectedGenre', category === selectedGenre ? '' : category, {
       shouldValidate: true,
-      shouldDirty: true,
     });
   };
 
   const toggleLevel = (level: string) => {
     setValue('selectedLevel', level === selectedLevel ? '' : level, {
       shouldValidate: true,
-      shouldDirty: true,
     });
   };
 
@@ -333,8 +330,7 @@ const ClassRegister = () => {
                   recommendation,
                   maxReservationCount,
                   price,
-                }) ||
-                (isEditMode && !isDirty)
+                })
               }>
               완료
             </BoxButton>
