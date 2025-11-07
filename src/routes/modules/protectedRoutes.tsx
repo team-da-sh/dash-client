@@ -14,7 +14,7 @@ const MyPageReservationDetail = lazy(
 const ClassRegister = lazy(() => import('@/pages/instructor/classRegister/ClassRegister'));
 const InstructorRegister = lazy(() => import('@/pages/instructorRegister/InstructorRegister'));
 const ClassDetail = lazy(() => import('@/pages/instructor/classDetail/ClassDetail'));
-const LessonList = lazy(() => import('@/pages/instructor/lessonList/LessonList'));
+const LessonManage = lazy(() => import('@/pages/instructor/lessonManage/LessonManage'));
 
 export const protectedRoutes = [
   { path: ROUTES_CONFIG.reservation.path(':id'), element: <Reservation /> },
@@ -31,5 +31,5 @@ export const protectedRoutes = [
   { path: ROUTES_CONFIG.instructorRegister.path, element: <InstructorRegister /> },
   { path: ROUTES_CONFIG.instructorRegisterCompletion.path, element: <InstructorRegisterCompletion /> },
   { path: ROUTES_CONFIG.instructorClassDetail.path(':id'), element: <ClassDetail /> },
-  { path: ROUTES_CONFIG.instructorClassList.path, element: <LessonList status="ALL" /> },
+  { path: ROUTES_CONFIG.instructorClassList.path, element: <LessonManage /> },
 ];

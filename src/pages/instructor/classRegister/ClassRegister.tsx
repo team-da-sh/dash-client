@@ -47,10 +47,8 @@ const ClassRegister = () => {
   const { mutate: classUpdateMutate } = usePatchClassInfo();
   const { isBottomSheetOpen, openBottomSheet, closeBottomSheet } = useBottomSheet();
 
-  // 유효한 id가 있을 때만 데이터를 불러옴
   const { data: lessonData } = useGetLessonDetail(lessonId || 0);
 
-  // 수정 모드: 유효한 id가 있고, 데이터를 성공적으로 불러온 경우
   const isEditMode = isValidId && !!lessonData;
 
   const methods = useForm({
