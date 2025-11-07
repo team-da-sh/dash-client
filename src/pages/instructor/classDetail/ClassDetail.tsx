@@ -34,6 +34,8 @@ const ClassDetail = () => {
     }
   };
 
+  const isClassStarted = lessonData ? new Date() >= new Date(lessonData.startDateTime) : false;
+
   return (
     <div className={styles.layoutStyle}>
       <div className={styles.containerStyle}>
@@ -63,7 +65,7 @@ const ClassDetail = () => {
               </ClassCard.Footer>
             </ClassCard>
           )}
-          <BoxButton variant="primary" onClick={handleEditClick}>
+          <BoxButton variant="primary" onClick={handleEditClick} disabled={isClassStarted}>
             수정하기
           </BoxButton>
         </section>
