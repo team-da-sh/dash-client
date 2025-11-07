@@ -1,3 +1,4 @@
+import { useId } from 'react';
 import {
   containerStyle,
   descriptionStyle,
@@ -6,6 +7,7 @@ import {
   buttonContainerStyle,
 } from '@/pages/mypage/components/Withdraw/components/CompleteStep/completeStep.css';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
+import Head from '@/shared/components/Head/Head';
 import Text from '@/shared/components/Text/Text';
 
 interface CompleteStepPropTypes {
@@ -13,37 +15,47 @@ interface CompleteStepPropTypes {
 }
 
 const CompleteStep = ({ onGoHome }: CompleteStepPropTypes) => {
+  const titleId = useId();
+
   return (
-    <main>
-      <div className={containerStyle}>
-        <Text tag="h3_sb" color="black">
+    <>
+      <div className={containerStyle} aria-labelledby={titleId}>
+        <Head id={titleId} tag="h3_sb" color="black">
           회원 탈퇴가 완료되었습니다.
           <br />
           서비스를 이용해 주셔서 감사합니다.
-        </Text>
+        </Head>
         <Text tag="b2_m" color="gray7" className={descriptionStyle}>
           언제든 다시 춤추고 싶으실 때, 다시 찾아주세요!
           <br />더 나은 모습으로 회원님을 기다리겠습니다.
         </Text>
-        <div className={boxStyle}>
-          <Text tag="b2_m_long" color="gray6">
-            가입 계정
-          </Text>
-          <Text tag="b2_m_long" color="black" className={boxValueStyle}>
-            Dash@naver.com
-          </Text>
-          <Text tag="b2_m_long" color="gray6">
-            탈퇴 날짜
-          </Text>
-          <Text tag="b2_m_long" color="black">
-            2025-10-28
-          </Text>
-        </div>
+        <dl className={boxStyle}>
+          <dt>
+            <Text as="span" tag="b2_m_long" color="gray6">
+              가입 계정
+            </Text>
+          </dt>
+          <dd className={boxValueStyle}>
+            <Text tag="b2_m_long" color="black">
+              Dash@naver.com
+            </Text>
+          </dd>
+          <dt>
+            <Text as="span" tag="b2_m_long" color="gray6">
+              탈퇴 날짜
+            </Text>
+          </dt>
+          <dd>
+            <Text tag="b2_m_long" color="black">
+              2025-10-28
+            </Text>
+          </dd>
+        </dl>
       </div>
       <div className={buttonContainerStyle}>
         <BoxButton onClick={onGoHome}>홈으로 돌아가기</BoxButton>
       </div>
-    </main>
+    </>
   );
 };
 

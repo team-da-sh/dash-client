@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useId, useState } from 'react';
 import {
   containerStyle,
   titleStyle,
@@ -14,6 +14,7 @@ import IcCheckcircleGray0524 from '@/shared/assets/svg/IcCheckcircleGray0524';
 import IcCheckcircleMain0324 from '@/shared/assets/svg/IcCheckcircleMain0324';
 import BlurButton from '@/shared/components/BlurButton/BlurButton';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
+import Head from '@/shared/components/Head/Head';
 import Input from '@/shared/components/Input/Input';
 import Text from '@/shared/components/Text/Text';
 import { vars } from '@/shared/styles/theme.css';
@@ -39,11 +40,13 @@ const ReasonStep = ({ onNext }: ReasonStepProps) => {
     });
   };
 
+  const titleId = useId();
+
   return (
-    <main className={containerStyle}>
-      <Text tag="h3_sb" color="black" className={titleStyle}>
+    <main className={containerStyle} aria-labelledby={titleId}>
+      <Head id={titleId} tag="h3_sb" color="black" className={titleStyle}>
         탈퇴하는 이유가 무엇인가요?
-      </Text>
+      </Head>
 
       <Text tag="b2_m_long" color="gray9" className={descriptionStyle}>
         서비스를 탈퇴하시려는 이유를 알려주세요. 회원님의
@@ -62,9 +65,13 @@ const ReasonStep = ({ onNext }: ReasonStepProps) => {
 
           return (
             <div key={reason} className={reason === '기타' ? etcGroupStyle : undefined}>
-              <button className={reasonItemStyle} onClick={() => toggleReason(reason)}>
+              <button
+                className={reasonItemStyle}
+                onClick={() => toggleReason(reason)}
+                aria-pressed={isChecked}
+                aria-label={`탈퇴 이유: ${reason}${isChecked ? ' 선택됨' : ''}`}>
                 <Icon width={24} height={24} color={vars.colors.gray03} />
-                <Text tag="b2_sb" color="gray9">
+                <Text as="span" tag="b2_sb" color="gray9">
                   {reason}
                 </Text>
               </button>
@@ -74,6 +81,7 @@ const ReasonStep = ({ onNext }: ReasonStepProps) => {
                   placeholder="탈퇴 사유를 작성해 주세요."
                   value={customReason}
                   onChange={(e) => setCustomReason(e.target.value)}
+                  aria-label="기타 탈퇴 사유 입력"
                 />
               )}
             </div>

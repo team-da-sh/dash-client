@@ -103,7 +103,7 @@ const NoticeStep = ({ onNext }: NoticeStepPropTypes) => {
         ) : (
           <IcCheckcircleGray0524 width={24} height={24} color={vars.colors.gray05} aria-hidden="true" />
         )}
-        <Text tag="b2_m_long" color="gray10">
+        <Text as="span" tag="b2_m_long" color="gray10">
           위 내용을 모두 확인하였으며,
           <br />
           회원 탈퇴에 동의합니다.
