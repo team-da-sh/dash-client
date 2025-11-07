@@ -63,7 +63,7 @@ const ClassDetail = () => {
               </ClassCard.Footer>
             </ClassCard>
           )}
-          <BoxButton variant="transparency" onClick={handleEditClick}>
+          <BoxButton variant="primary" onClick={handleEditClick}>
             수정하기
           </BoxButton>
         </section>
