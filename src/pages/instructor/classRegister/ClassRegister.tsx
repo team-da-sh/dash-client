@@ -4,7 +4,11 @@ import type { FormEvent } from 'react';
 import { FormProvider, useController, useForm } from 'react-hook-form';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useGetLessonDetail } from '@/pages/class/apis/queries';
-import { useGetLocationList, usePostClassRegisterInfo } from '@/pages/instructor/classRegister/apis/queries';
+import {
+  useGetLocationList,
+  usePatchClassInfo,
+  usePostClassRegisterInfo,
+} from '@/pages/instructor/classRegister/apis/queries';
 import * as styles from '@/pages/instructor/classRegister/classRegister.css';
 import ClassAmount from '@/pages/instructor/classRegister/components/ClassAmount/ClassAmount';
 import ClassDescription from '@/pages/instructor/classRegister/components/ClassDescription/ClassDescription';
@@ -37,9 +41,9 @@ const ClassRegister = () => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const { mutate: classRegisterMutate } = usePostClassRegisterInfo();
+  const { mutate: classUpdateMutate } = usePatchClassInfo();
   const { isBottomSheetOpen, openBottomSheet, closeBottomSheet } = useBottomSheet();
 
-  // 수정 모드일 때 클래스 정보 가져오기
   const { data: lessonData } = useGetLessonDetail(Number(id));
 
   const methods = useForm({
@@ -58,7 +62,8 @@ const ClassRegister = () => {
     },
   });
 
-  const { register, watch, setValue, control, clearErrors } = methods;
+  const { register, watch, setValue, control, clearErrors, formState, reset } = methods;
+  const { isDirty } = formState;
 
   const {
     className,
@@ -129,7 +134,7 @@ const ClassRegister = () => {
   useClassEditMode({
     isEditMode,
     lessonData,
-    setValue,
+    reset,
     setImageUrls,
     setTimes,
     setSelectedLocation,
@@ -188,10 +193,9 @@ const ClassRegister = () => {
 
     if (selectedGenre && selectedLevel) {
       const updatedInfo: ClassRegisterInfoTypes = {
-        imageUrls: [imageUrls],
+        imageUrls: imageUrls ? [imageUrls] : [],
         name: className,
         detail: detail,
-        videoUrls: [],
         maxReservationCount: Number(maxReservationCount),
         genre: genreEngMapping[selectedGenre],
         level: levelEngMapping[selectedLevel],
@@ -208,17 +212,35 @@ const ClassRegister = () => {
         })),
       };
 
-      classRegisterMutate(updatedInfo, {
-        onSuccess: () => {
-          queryClient.invalidateQueries({ queryKey: memberKeys.me.queryKey });
-          queryClient.invalidateQueries({ queryKey: lessonKeys.list.queryKey });
+      if (isEditMode) {
+        // 수정 모드일 때
+        console.log('PATCH Request Body:', JSON.stringify(updatedInfo, null, 2));
+        classUpdateMutate(
+          { lessonId: Number(id), infoData: updatedInfo },
+          {
+            onSuccess: () => {
+              queryClient.invalidateQueries({ queryKey: memberKeys.me.queryKey });
+              queryClient.invalidateQueries({ queryKey: lessonKeys.list.queryKey });
+              queryClient.invalidateQueries({ queryKey: lessonKeys.detail(Number(id)).queryKey });
 
-          navigate(ROUTES_CONFIG.classRegisterCompletion.path);
-        },
-        // onError: () => {
-        //   navigate(ROUTES_CONFIG.error.path);
-        // },
-      });
+              navigate(ROUTES_CONFIG.instructorClassDetail.path(id!));
+            },
+          }
+        );
+      } else {
+        // 등록 모드일 때
+        classRegisterMutate(updatedInfo, {
+          onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: memberKeys.me.queryKey });
+            queryClient.invalidateQueries({ queryKey: lessonKeys.list.queryKey });
+
+            navigate(ROUTES_CONFIG.classRegisterCompletion.path);
+          },
+          // onError: () => {
+          //   navigate(ROUTES_CONFIG.error.path);
+          // },
+        });
+      }
     }
   };
 
@@ -306,7 +328,8 @@ const ClassRegister = () => {
                   recommendation,
                   maxReservationCount,
                   price,
-                })
+                }) ||
+                (isEditMode && !isDirty)
               }>
               완료
             </BoxButton>
