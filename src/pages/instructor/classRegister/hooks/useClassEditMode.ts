@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import type { UseFormSetValue } from 'react-hook-form';
+import type { UseFormReset } from 'react-hook-form';
 import type { LessonDetailResponseTypes } from '@/pages/class/types/api';
 import type { LocationTypes } from '@/pages/instructor/classRegister/types';
 import type { ClassRegisterFormTypes } from '@/pages/instructor/classRegister/types/classRegisterForm';
@@ -8,7 +8,7 @@ import { genreMapping, levelMapping } from '@/shared/constants';
 interface UseClassEditModeProps {
   isEditMode: boolean;
   lessonData: LessonDetailResponseTypes | undefined;
-  setValue: UseFormSetValue<ClassRegisterFormTypes>;
+  reset: UseFormReset<ClassRegisterFormTypes>;
   setImageUrls: (value: { imageUrls: string }) => void;
   setTimes: (value: { startTime: string; endTime: string; date: string; duration: number }[]) => void;
   setSelectedLocation: (value: LocationTypes | null) => void;
@@ -17,49 +17,21 @@ interface UseClassEditModeProps {
 export const useClassEditMode = ({
   isEditMode,
   lessonData,
-  setValue,
+  reset,
   setImageUrls,
   setTimes,
   setSelectedLocation,
 }: UseClassEditModeProps) => {
   useEffect(() => {
     if (isEditMode && lessonData) {
-      // 클래스명
-      setValue('className', lessonData.name || '');
+      // 장르와 레벨을 한글로 변환
+      const genreKorean = lessonData.genre ? genreMapping[lessonData.genre] || '' : '';
+      const levelKorean = lessonData.level ? levelMapping[lessonData.level] || '' : '';
 
-      // 클래스 설명
-      setValue('detail', lessonData.detail || '');
-
-      // 장르 (영어 → 한글 변환)
-      if (lessonData.genre) {
-        const genreKorean = genreMapping[lessonData.genre] || '';
-        setValue('selectedGenre', genreKorean);
-      }
-
-      // 레벨 (영어 → 한글 변환)
-      if (lessonData.level) {
-        const levelKorean = levelMapping[lessonData.level] || '';
-        setValue('selectedLevel', levelKorean);
-      }
-
-      // 추천 대상
-      setValue('recommendation', lessonData.recommendation || '');
-
-      // 최대 인원
-      setValue('maxReservationCount', String(lessonData.maxReservationCount || ''));
-
-      // 가격
-      setValue('price', String(lessonData.price || ''));
-
-      // 이미지
-      if (lessonData.imageUrl) {
-        setValue('imageUrls', lessonData.imageUrl);
-        setImageUrls({ imageUrls: lessonData.imageUrl });
-      }
-
-      // 일정 정보
+      // 일정 정보 포맷팅
+      let formattedTimes: { startTime: string; endTime: string; date: string; duration: number }[] = [];
       if (lessonData.lessonRound?.lessonRounds) {
-        const formattedTimes = lessonData.lessonRound.lessonRounds.map((round) => {
+        formattedTimes = lessonData.lessonRound.lessonRounds.map((round) => {
           const start = new Date(round.startDateTime);
           const end = new Date(round.endDateTime);
           const duration = (end.getTime() - start.getTime()) / (1000 * 60 * 60); // 시간 단위로 변환
@@ -71,25 +43,45 @@ export const useClassEditMode = ({
             duration,
           };
         });
-        setTimes(formattedTimes);
       }
 
-      // 장소 정보
+      // 장소 정보 설정
+      let locationData: LocationTypes | null = null;
       if (lessonData.location) {
-        setValue('detailedAddress', lessonData.streetDetailAddress || '');
-        setValue('isUndecidedLocation', false);
-
-        // selectedLocation 설정
-        const locationData: LocationTypes = {
+        locationData = {
           location: lessonData.location,
           streetAddress: lessonData.streetAddress,
           oldStreetAddress: lessonData.oldStreetAddress,
         };
+      }
+
+      // reset을 사용하여 새로운 defaultValues 설정
+      reset({
+        className: lessonData.name || '',
+        detail: lessonData.detail || '',
+        selectedGenre: genreKorean,
+        selectedLevel: levelKorean,
+        recommendation: lessonData.recommendation || '',
+        maxReservationCount: String(lessonData.maxReservationCount || ''),
+        price: String(lessonData.price || ''),
+        imageUrls: lessonData.imageUrl || '',
+        isUndecidedLocation: !lessonData.location,
+        detailedAddress: lessonData.streetDetailAddress || '',
+        selectedLocation: locationData,
+      });
+
+      // 외부 state 업데이트
+      if (lessonData.imageUrl) {
+        setImageUrls({ imageUrls: lessonData.imageUrl });
+      }
+
+      if (formattedTimes.length > 0) {
+        setTimes(formattedTimes);
+      }
+
+      if (locationData) {
         setSelectedLocation(locationData);
-        setValue('selectedLocation', locationData, { shouldValidate: true });
-      } else {
-        setValue('isUndecidedLocation', true);
       }
     }
-  }, [isEditMode, lessonData, setValue, setImageUrls, setTimes, setSelectedLocation]);
+  }, [isEditMode, lessonData, reset, setImageUrls, setTimes, setSelectedLocation]);
 };
