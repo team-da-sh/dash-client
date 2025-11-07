@@ -12,6 +12,7 @@ interface UseClassEditModeProps {
   setImageUrls: (value: { imageUrls: string }) => void;
   setTimes: (value: { startTime: string; endTime: string; date: string; duration: number }[]) => void;
   setSelectedLocation: (value: LocationTypes | null) => void;
+  setIsUndecidedLocation: (value: boolean) => void;
 }
 
 // 장르와 레벨을 한글로 변환
@@ -61,7 +62,8 @@ const updateExternalStates = (
   locationData: LocationTypes | null,
   setImageUrls: (value: { imageUrls: string }) => void,
   setTimes: (value: { startTime: string; endTime: string; date: string; duration: number }[]) => void,
-  setSelectedLocation: (value: LocationTypes | null) => void
+  setSelectedLocation: (value: LocationTypes | null) => void,
+  setIsUndecidedLocation: (value: boolean) => void
 ) => {
   if (lessonData.imageUrl) {
     setImageUrls({ imageUrls: lessonData.imageUrl });
@@ -74,6 +76,9 @@ const updateExternalStates = (
   if (locationData) {
     setSelectedLocation(locationData);
   }
+
+  // 장소미정 상태 설정
+  setIsUndecidedLocation(!lessonData.location);
 };
 
 export const useClassEditMode = ({
@@ -83,6 +88,7 @@ export const useClassEditMode = ({
   setImageUrls,
   setTimes,
   setSelectedLocation,
+  setIsUndecidedLocation,
 }: UseClassEditModeProps) => {
   useEffect(() => {
     if (!isEditMode || !lessonData) {
@@ -109,6 +115,6 @@ export const useClassEditMode = ({
     });
 
     // 외부 state 업데이트
-    updateExternalStates(lessonData, formattedTimes, locationData, setImageUrls, setTimes, setSelectedLocation);
-  }, [isEditMode, lessonData, reset, setImageUrls, setTimes, setSelectedLocation]);
+    updateExternalStates(lessonData, formattedTimes, locationData, setImageUrls, setTimes, setSelectedLocation, setIsUndecidedLocation);
+  }, [isEditMode, lessonData, reset, setImageUrls, setTimes, setSelectedLocation, setIsUndecidedLocation]);
 };

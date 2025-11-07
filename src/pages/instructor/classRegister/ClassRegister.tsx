@@ -67,7 +67,8 @@ const ClassRegister = () => {
     },
   });
 
-  const { register, watch, setValue, control, clearErrors, reset } = methods;
+  const { register, watch, setValue, control, clearErrors, reset, formState } = methods;
+  const { isDirty } = formState;
 
   const {
     className,
@@ -130,6 +131,7 @@ const ClassRegister = () => {
     setSelectedLocation,
     isButtonActive,
     setTimes,
+    setIsUndecidedLocation,
   } = useClassRegisterForm();
 
   // 수정 모드일 때 폼 필드 채우기
@@ -140,6 +142,7 @@ const ClassRegister = () => {
     setImageUrls,
     setTimes,
     setSelectedLocation,
+    setIsUndecidedLocation,
   });
 
   const handleLocationCheckboxClick = () => {
@@ -330,7 +333,8 @@ const ClassRegister = () => {
                   recommendation,
                   maxReservationCount,
                   price,
-                })
+                }) ||
+                (isEditMode && !isDirty)
               }>
               완료
             </BoxButton>

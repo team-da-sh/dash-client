@@ -119,5 +119,6 @@ export const useClassRegisterForm = () => {
     isButtonActive,
     setSelectedLocation,
     setTimes,
+    setIsUndecidedLocation,
   };
 };
