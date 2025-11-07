@@ -47,7 +47,7 @@ const ClassRegister = () => {
   const { mutate: classUpdateMutate } = usePatchClassInfo();
   const { isBottomSheetOpen, openBottomSheet, closeBottomSheet } = useBottomSheet();
 
-  const { data: lessonData } = useGetLessonDetail(lessonId || 0);
+  const { data: lessonData } = useGetLessonDetail(lessonId || 0, { enabled: isValidId });
 
   const isEditMode = isValidId && !!lessonData;
 
