@@ -36,15 +36,22 @@ import useImageUploader from '@/shared/hooks/useImageUploader';
 
 const ClassRegister = () => {
   const { id } = useParams<{ id: string }>();
-  const isEditMode = !!id;
+  const navigate = useNavigate();
+
+  // id가 존재하고 유효한 숫자인지 확인
+  const lessonId = id ? Number(id) : null;
+  const isValidId = lessonId !== null && !isNaN(lessonId) && lessonId > 0;
 
   const queryClient = useQueryClient();
-  const navigate = useNavigate();
   const { mutate: classRegisterMutate } = usePostClassRegisterInfo();
   const { mutate: classUpdateMutate } = usePatchClassInfo();
   const { isBottomSheetOpen, openBottomSheet, closeBottomSheet } = useBottomSheet();
 
-  const { data: lessonData } = useGetLessonDetail(Number(id));
+  // 유효한 id가 있을 때만 데이터를 불러옴
+  const { data: lessonData } = useGetLessonDetail(lessonId || 0);
+
+  // 수정 모드: 유효한 id가 있고, 데이터를 성공적으로 불러온 경우
+  const isEditMode = isValidId && !!lessonData;
 
   const methods = useForm({
     resolver: zodResolver(classRegisterSchema),
@@ -212,18 +219,18 @@ const ClassRegister = () => {
         })),
       };
 
-      if (isEditMode) {
+      if (isEditMode && lessonId) {
         // 수정 모드일 때
         console.log('PATCH Request Body:', JSON.stringify(updatedInfo, null, 2));
         classUpdateMutate(
-          { lessonId: Number(id), infoData: updatedInfo },
+          { lessonId, infoData: updatedInfo },
           {
             onSuccess: () => {
               queryClient.invalidateQueries({ queryKey: memberKeys.me.queryKey });
               queryClient.invalidateQueries({ queryKey: lessonKeys.list.queryKey });
-              queryClient.invalidateQueries({ queryKey: lessonKeys.detail(Number(id)).queryKey });
+              queryClient.invalidateQueries({ queryKey: lessonKeys.detail(lessonId).queryKey });
 
-              navigate(ROUTES_CONFIG.instructorClassDetail.path(id!));
+              navigate(ROUTES_CONFIG.instructorClassDetail.path(String(lessonId)));
             },
           }
         );
