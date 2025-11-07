@@ -21,6 +21,7 @@ import ClassRecommend from '@/pages/instructor/classRegister/components/ClassRec
 import ClassRepresentImage from '@/pages/instructor/classRegister/components/ClassRepresentImage/ClassRepresentImage';
 import ClassRegisterBottomSheet from '@/pages/instructor/classRegister/components/ClassSchedule/ClassRegisterBottomSheet/ClassRegisterBottomSheet';
 import ClassSchedule from '@/pages/instructor/classRegister/components/ClassSchedule/ClassSchedule';
+import { STATE_VALUE } from '@/pages/instructor/classRegister/constants/stateValue';
 import { useClassEditMode } from '@/pages/instructor/classRegister/hooks/useClassEditMode';
 import { useClassRegisterForm } from '@/pages/instructor/classRegister/hooks/useClassRegisterForm';
 import { classRegisterSchema } from '@/pages/instructor/classRegister/schema/classRegisterSchema';
@@ -38,7 +39,6 @@ const ClassRegister = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
 
-  // id가 존재하고 유효한 숫자인지 확인
   const lessonId = id ? Number(id) : null;
   const isValidId = lessonId !== null && !isNaN(lessonId) && lessonId > 0;
 
@@ -219,7 +219,6 @@ const ClassRegister = () => {
 
       if (isEditMode && lessonId) {
         // 수정 모드일 때
-        console.log('PATCH Request Body:', JSON.stringify(updatedInfo, null, 2));
         classUpdateMutate(
           { lessonId, infoData: updatedInfo },
           {
@@ -271,13 +270,13 @@ const ClassRegister = () => {
 
   const handleRemoveLocation = () => {
     setSelectedLocation(null);
-    setValue('selectedLocation', null, { shouldValidate: true });
+    setValue(STATE_VALUE.SELECTED_LOCATION, null, { shouldValidate: true });
     setDefaultPlace('');
   };
 
   const handleSelectLocation = (location: LocationTypes | null) => {
     setSelectedLocation(location);
-    setValue('selectedLocation', location, { shouldValidate: true });
+    setValue(STATE_VALUE.SELECTED_LOCATION, location, { shouldValidate: true });
   };
 
   return (
