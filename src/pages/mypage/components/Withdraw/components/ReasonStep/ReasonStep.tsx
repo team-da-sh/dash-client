@@ -9,7 +9,7 @@ import {
   etcGroupStyle,
 } from '@/pages/mypage/components/Withdraw/components/ReasonStep/reasonStep.css';
 import type { WithdrawReasonTypes } from '@/pages/mypage/components/Withdraw/constants';
-import { REASONS } from '@/pages/mypage/components/Withdraw/constants';
+import { WITHDRAW_REASONS } from '@/pages/mypage/components/Withdraw/constants';
 import IcCheckcircleGray0524 from '@/shared/assets/svg/IcCheckcircleGray0524';
 import IcCheckcircleMain0324 from '@/shared/assets/svg/IcCheckcircleMain0324';
 import BlurButton from '@/shared/components/BlurButton/BlurButton';
@@ -56,7 +56,7 @@ const ReasonStep = ({ onNext }: ReasonStepProps) => {
       </Text>
 
       <div className={reasonListStyle}>
-        {REASONS.map((reason) => {
+        {WITHDRAW_REASONS.map((reason) => {
           const isChecked = selectedReasons.includes(reason);
           const Icon = isChecked ? IcCheckcircleMain0324 : IcCheckcircleGray0524;
 

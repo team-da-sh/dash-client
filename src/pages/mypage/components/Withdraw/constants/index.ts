@@ -1,4 +1,4 @@
-export const REASONS = [
+export const WITHDRAW_REASONS = [
   '원하는 강사/클래스를 찾지 못했어요',
   '수강생 모집이 잘 되지 않았어요',
   '더 이상 댄스 활동을 하지 않게 되었어요',
@@ -9,7 +9,7 @@ export const REASONS = [
   '기타',
 ] as const;
 
-export type WithdrawReasonTypes = (typeof REASONS)[number];
+export type WithdrawReasonTypes = (typeof WITHDRAW_REASONS)[number];
 
 export const BULLET_LIST = [
   '개인 식별 정보 파기',

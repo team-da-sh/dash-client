@@ -25,10 +25,10 @@ interface NoticeStepPropTypes {
 }
 
 const NoticeStep = ({ onNext }: NoticeStepPropTypes) => {
-  const [agreed, setAgreed] = useState(false);
+  const [isagreed, setIsAgreed] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleAgreeToggle = () => setAgreed((prev) => !prev);
+  const handleAgreeToggle = () => setIsAgreed((prev) => !prev);
   const handleOpenModal = () => setIsModalOpen(true);
   const handleCloseModal = () => setIsModalOpen(false);
 
@@ -79,7 +79,7 @@ const NoticeStep = ({ onNext }: NoticeStepPropTypes) => {
       </div>
 
       <button className={agreeSectionStyle} onClick={handleAgreeToggle}>
-        {agreed ? (
+        {isagreed ? (
           <IcCheckcircleMain0324 width={24} height={24} />
         ) : (
           <IcCheckcircleGray0524 width={24} height={24} color={vars.colors.gray05} />
@@ -92,7 +92,7 @@ const NoticeStep = ({ onNext }: NoticeStepPropTypes) => {
       </button>
 
       <BlurButton>
-        <BoxButton onClick={handleOpenModal} disabled={!agreed}>
+        <BoxButton onClick={handleOpenModal} disabled={!isagreed}>
           다음
         </BoxButton>
       </BlurButton>
