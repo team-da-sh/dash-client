@@ -2,6 +2,7 @@
 import { lazy } from 'react';
 import EditProfile from '@/pages/editProfiles/EditProfile';
 import ClassRegisterCompletion from '@/pages/instructor/classRegisterCompletion/ClassRegisterCompletion';
+import LessonManage from '@/pages/instructor/lessonManage/LessonManage';
 import InstructorRegisterCompletion from '@/pages/instructorRegisterCompletion/InstructorRegisterCompletion';
 import MyPage from '@/pages/mypage/MyPage';
 import Withdraw from '@/pages/mypage/components/Withdraw/Withdraw';
@@ -29,6 +30,7 @@ export const protectedRoutes = [
   { path: ROUTES_CONFIG.classRegisterCompletion.path, element: <ClassRegisterCompletion /> },
   { path: ROUTES_CONFIG.instructorRegister.path, element: <InstructorRegister /> },
   { path: ROUTES_CONFIG.instructorRegisterCompletion.path, element: <InstructorRegisterCompletion /> },
+  { path: ROUTES_CONFIG.instructorClassList.path, element: <LessonManage /> },
   { path: ROUTES_CONFIG.instructorClassDetail.path(':id'), element: <ClassDetail /> },
   { path: ROUTES_CONFIG.withdraw.path, element: <Withdraw /> },
 ];
