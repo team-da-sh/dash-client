@@ -18,6 +18,7 @@ import Head from '@/shared/components/Head/Head';
 import Text from '@/shared/components/Text/Text';
 import { notify } from '@/shared/components/Toast/Toast';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
+import { vars } from '@/shared/styles/theme.css';
 import type { ClassReservationResponseTypes } from '../../types/api';
 
 interface ReservationStepPropTypes {
@@ -123,7 +124,11 @@ const ReservationStep = ({ onNext }: ReservationStepPropTypes) => {
         </Text>
         <div className={sprinkles({ pb: 20 })}>
           <div onClick={handleToggleAll} className={agreementClassStyle}>
-            {isAllChecked ? <IcCheckcircleMain0324 height={24} /> : <IcCheckcircleGray0524 height={24} />}
+            {isAllChecked ? (
+              <IcCheckcircleMain0324 height={24} />
+            ) : (
+              <IcCheckcircleGray0524 height={24} color={vars.colors.gray05} />
+            )}
             <Head level="h5" tag="b1_sb">
               전체동의
             </Head>

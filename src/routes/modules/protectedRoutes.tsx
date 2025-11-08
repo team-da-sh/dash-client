@@ -5,6 +5,7 @@ import ClassRegisterCompletion from '@/pages/instructor/classRegisterCompletion/
 import LessonManage from '@/pages/instructor/lessonManage/LessonManage';
 import InstructorRegisterCompletion from '@/pages/instructorRegisterCompletion/InstructorRegisterCompletion';
 import MyPage from '@/pages/mypage/MyPage';
+import Withdraw from '@/pages/mypage/components/Withdraw/Withdraw';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 
 const Reservation = lazy(() => import('@/pages/reservation/Reservation'));
@@ -31,4 +32,5 @@ export const protectedRoutes = [
   { path: ROUTES_CONFIG.instructorRegisterCompletion.path, element: <InstructorRegisterCompletion /> },
   { path: ROUTES_CONFIG.instructorClassList.path, element: <LessonManage /> },
   { path: ROUTES_CONFIG.instructorClassDetail.path(':id'), element: <ClassDetail /> },
+  { path: ROUTES_CONFIG.withdraw.path, element: <Withdraw /> },
 ];
