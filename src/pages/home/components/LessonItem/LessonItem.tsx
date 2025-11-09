@@ -39,7 +39,12 @@ const LessonItem = ({
   startDate,
   useNewStyles = false,
   isMyPage = false,
-}: Omit<LessonTypes, 'location'> & { useNewStyles?: boolean; isMyPage?: boolean }) => {
+  linkType,
+}: Omit<LessonTypes, 'location'> & {
+  useNewStyles?: boolean;
+  isMyPage?: boolean;
+  linkType: 'detail' | 'manage';
+}) => {
   const nameId = useId();
   const teacherId = useId();
   const genreId = useId();
@@ -84,7 +89,13 @@ const LessonItem = ({
       </div>
 
       <Head level="h3" tag="b1_sb_long" className={titleStyle} id={nameId}>
-        <Link to={ROUTES_CONFIG.class.path(`${id}`)} className={linkStyle}>
+        <Link
+          to={
+            linkType === 'detail'
+              ? ROUTES_CONFIG.class.path(`${id}`)
+              : ROUTES_CONFIG.instructorClassDetail.path(id.toString())
+          }
+          className={linkStyle}>
           {name}
         </Link>
       </Head>
