@@ -17,3 +17,9 @@ export const postClassRegisterInfo = async (infoData: ClassRegisterInfoTypes) =>
 
   return data;
 };
+
+export const patchClassInfo = async (lessonId: number, infoData: ClassRegisterInfoTypes) => {
+  const { data } = await instance.patch(`${API_URL.LESSON_UPDATE}/${lessonId}`, infoData);
+
+  return data;
+};

@@ -7,7 +7,6 @@ export interface ClassRegisterInfoTypes {
   imageUrls: string[];
   name: string;
   detail: string;
-  videoUrls: string[];
   maxReservationCount: number;
   genre: string;
   level: string;

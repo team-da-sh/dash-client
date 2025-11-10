@@ -31,6 +31,10 @@ export const tagStyle = recipe({
         backgroundColor: vars.colors.gray02,
         color: vars.colors.gray08,
       },
+      COMPLETED: {
+        backgroundColor: vars.colors.gray02,
+        color: vars.colors.gray08,
+      },
     },
   },
 });
