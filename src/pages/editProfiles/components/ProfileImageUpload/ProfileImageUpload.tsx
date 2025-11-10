@@ -63,13 +63,20 @@ const ProfileImageUpload = ({ defaultImageUrl, control }: ProfileImageUploadProp
         <div
           className={styles.imgWrapperStyle}
           style={previewImg ? { backgroundImage: `url(${previewImg})` } : undefined}
-          onClick={handleImageClick}>
+          onClick={handleImageClick}
+          role="button"
+          tabIndex={0}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              handleImageClick();
+            }
+          }}>
           {!previewImg && <IcProfileBasic width={96} height={96} />}
           <Text tag="c1_sb" color="white" className={styles.overlayStyle}>
             수정
           </Text>
         </div>
-
         <input
           id="file-input"
           type="file"
