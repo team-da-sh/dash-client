@@ -16,6 +16,8 @@ const ClassRegister = lazy(() => import('@/pages/instructor/classRegister/ClassR
 const InstructorRegister = lazy(() => import('@/pages/instructorRegister/InstructorRegister'));
 const ClassDetail = lazy(() => import('@/pages/instructor/classDetail/ClassDetail'));
 const LessonManage = lazy(() => import('@/pages/instructor/lessonManage/LessonManage'));
+const MyPageCancelClass = lazy(() => import('@/pages/mypage/components/mypageCancelClass/MypageCancelClass'));
+const MyPageCancelConfirm = lazy(() => import('@/pages/mypage/components/CancelConfirmPage/CancelConfirmPage'));
 
 export const protectedRoutes = [
   { path: ROUTES_CONFIG.reservation.path(':id'), element: <Reservation /> },
@@ -25,7 +27,10 @@ export const protectedRoutes = [
   { path: ROUTES_CONFIG.editProfile.path, element: <EditProfile /> },
   { path: ROUTES_CONFIG.mypageReservation.path, element: <MyPageReservation /> },
   { path: ROUTES_CONFIG.mypageReservationDetail.path(':id'), element: <MyPageReservationDetail /> },
+  { path: ROUTES_CONFIG.mypageCancelClass.path(':id'), element: <MyPageCancelClass /> },
+  { path: ROUTES_CONFIG.mypageCancelConfirm.path(':id'), element: <MyPageCancelConfirm /> },
 
+  { path: ROUTES_CONFIG.instructorClassList.path, element: <LessonManage /> },
   { path: ROUTES_CONFIG.classRegister.path, element: <ClassRegister /> },
   { path: ROUTES_CONFIG.classEdit.path(':id'), element: <ClassRegister /> },
   { path: ROUTES_CONFIG.classRegisterCompletion.path, element: <ClassRegisterCompletion /> },
