@@ -17,15 +17,27 @@ interface ClassCardBodyProps {
   location?: string;
   startDateTime?: string;
   endDateTime?: string;
+  onClick?: () => void;
 }
 
-const ClassCardBody = ({ name, imageUrl, genre, level, location, startDateTime, endDateTime }: ClassCardBodyProps) => {
+const ClassCardBody = ({
+  name,
+  imageUrl,
+  genre,
+  level,
+  location,
+  startDateTime,
+  endDateTime,
+  onClick,
+}: ClassCardBodyProps) => {
   return (
-    <div
+    <button
       className={sprinkles({
         display: 'flex',
         gap: 12,
-      })}>
+      })}
+      type="button"
+      onClick={onClick}>
       <img src={imageUrl} className={styles.cardImageStyle} alt={`${name}`} />
       <div
         className={clsx(
@@ -74,7 +86,7 @@ const ClassCardBody = ({ name, imageUrl, genre, level, location, startDateTime, 
           )}
         </div>
       </div>
-    </div>
+    </button>
   );
 };
 

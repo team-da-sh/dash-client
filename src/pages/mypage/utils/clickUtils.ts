@@ -2,9 +2,9 @@ import type { useNavigate } from 'react-router-dom';
 import type { Reservation } from '@/pages/mypage/components/mypageReservation/types/reservationTypes';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 
-export const handleClassCardClick = (navigate: ReturnType<typeof useNavigate>, reservationId: number | undefined) => {
-  if (reservationId !== undefined) {
-    const path = ROUTES_CONFIG.mypageReservationDetail.path(reservationId.toString());
+export const handleClassCardClick = (navigate: ReturnType<typeof useNavigate>, lessonId: number | undefined) => {
+  if (lessonId !== undefined) {
+    const path = ROUTES_CONFIG.class.path(lessonId.toString());
     navigate(path);
   } else {
     navigate(ROUTES_CONFIG.error.path);
