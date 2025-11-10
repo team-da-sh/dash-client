@@ -19,6 +19,7 @@ export const STATUS_KOREAN_MAP: Record<ReservationStatus, string> = {
   APPROVED: '승인완료',
   PENDING_CANCELLATION: '취소대기',
   CANCELLED: '취소완료',
+  COMPLETED: '수강완료',
 };
 
 const STATUS_ENGLISH_MAP = Object.fromEntries(

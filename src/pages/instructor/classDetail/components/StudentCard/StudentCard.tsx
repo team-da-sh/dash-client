@@ -24,6 +24,7 @@ const STATUS_BUTTON_MAP: Record<
   APPROVED: { text: '승인 대기로 변경', variant: 'quaternary' },
   PENDING_CANCELLATION: { text: '취소 확정', variant: 'outline' },
   CANCELLED: { text: '취소 대기로 변경', variant: 'quaternary' },
+  COMPLETED: { text: '완료됨', variant: 'quaternary' },
 };
 
 interface StudentCardPropTypes {
