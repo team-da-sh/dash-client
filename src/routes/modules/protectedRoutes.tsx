@@ -40,6 +40,5 @@ export const protectedRoutes = [
   { path: ROUTES_CONFIG.instructorRegisterCompletion.path, element: <InstructorRegisterCompletion /> },
   { path: ROUTES_CONFIG.instructorClassList.path, element: <LessonManage /> },
   { path: ROUTES_CONFIG.instructorClassDetail.path(':id'), element: <ClassDetail /> },
-  { path: ROUTES_CONFIG.instructorClassList.path, element: <LessonManage /> },
   { path: ROUTES_CONFIG.withdraw.path, element: <Withdraw /> },
 ];
