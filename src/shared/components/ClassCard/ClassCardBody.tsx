@@ -31,12 +31,11 @@ const ClassCardBody = ({
   onClick,
 }: ClassCardBodyProps) => {
   return (
-    <button
+    <div
       className={sprinkles({
         display: 'flex',
         gap: 12,
       })}
-      type="button"
       onClick={onClick}>
       <img src={imageUrl} className={styles.cardImageStyle} alt={`${name}`} />
       <div
@@ -86,7 +85,7 @@ const ClassCardBody = ({
           )}
         </div>
       </div>
-    </button>
+    </div>
   );
 };
 

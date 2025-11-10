@@ -10,11 +10,11 @@ import ClassCard from '@/shared/components/ClassCard';
 import Head from '@/shared/components/Head/Head';
 
 const MyPageReservationDetail = () => {
-  const { id: lessonId } = useParams<{ id: string }>();
+  const { id: reservationId } = useParams<{ id: string }>();
 
   const navigate = useNavigate();
 
-  const { data } = useGetReservationsDetail(Number(lessonId));
+  const { data } = useGetReservationsDetail(Number(reservationId));
 
   if (!data) {
     return <div>오류 data 없음 </div>;
@@ -22,7 +22,7 @@ const MyPageReservationDetail = () => {
 
   const handleGoCancleClassPage = () => {
     // TODO: 취소 페이지 path 입력
-    navigate(ROUTES_CONFIG.mypageCancelClass.path(lessonId ?? ''));
+    navigate(ROUTES_CONFIG.mypageCancelClass.path(reservationId ?? ''));
   };
 
   const handleGoAskPage = (e: React.MouseEvent) => {
@@ -39,17 +39,19 @@ const MyPageReservationDetail = () => {
 
         <div className={styles.classInfoWrapper}>
           <ReservationProgress reservationStatus={data.reservationStatus} />
-          <ClassCard>
-            <ClassCard.Body
-              name={data.lessonName}
-              level={data.level}
-              genre={data.genre}
-              imageUrl={data.lessonImageUrl}
-            />
-            <ClassCard.Footer>
-              <ClassInfo lessonRound={data.rounds} location={data.location} locationDetail={data.detailedAddress} />
-            </ClassCard.Footer>
-          </ClassCard>
+          <div>
+            <ClassCard>
+              <ClassCard.Body
+                name={data.lessonName}
+                level={data.level}
+                genre={data.genre}
+                imageUrl={data.lessonImageUrl}
+              />
+              <ClassCard.Footer>
+                <ClassInfo lessonRound={data.rounds} location={data.location} locationDetail={data.detailedAddress} />
+              </ClassCard.Footer>
+            </ClassCard>
+          </div>
         </div>
       </section>
 
