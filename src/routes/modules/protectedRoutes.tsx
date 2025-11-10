@@ -1,5 +1,6 @@
 /* eslint-disable react-refresh/only-export-components */
 import { lazy } from 'react';
+import AccountRegister from '@/pages/accountRegister/AccountRegister';
 import EditProfile from '@/pages/editProfiles/EditProfile';
 import ClassRegisterCompletion from '@/pages/instructor/classRegisterCompletion/ClassRegisterCompletion';
 import InstructorRegisterCompletion from '@/pages/instructorRegisterCompletion/InstructorRegisterCompletion';
@@ -30,6 +31,7 @@ export const protectedRoutes = [
   { path: ROUTES_CONFIG.mypageCancelClass.path(':id'), element: <MyPageCancelClass /> },
   { path: ROUTES_CONFIG.mypageCancelConfirm.path(':id'), element: <MyPageCancelConfirm /> },
 
+  { path: ROUTES_CONFIG.accountRegister.path, element: <AccountRegister /> },
   { path: ROUTES_CONFIG.instructorClassList.path, element: <LessonManage /> },
   { path: ROUTES_CONFIG.classRegister.path, element: <ClassRegister /> },
   { path: ROUTES_CONFIG.classEdit.path(':id'), element: <ClassRegister /> },
