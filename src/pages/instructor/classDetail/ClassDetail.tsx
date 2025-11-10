@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useGetLessonDetail } from '@/pages/instructor/classDetail/apis/queries';
 import * as styles from '@/pages/instructor/classDetail/classDetail.css';
 import StudentList from '@/pages/instructor/classDetail/components/StudentList/StudentList';
 import ClassInfo from '@/pages/mypage/components/mypageReservationDetail/components/ClassInfo/ClassInfo';
+import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import ClassCard from '@/shared/components/ClassCard';
 import Divider from '@/shared/components/Divider/Divider';
@@ -17,6 +18,7 @@ import { sprinkles } from '@/shared/styles/sprinkles.css';
 export type TabStatus = 'APPROVE' | 'CANCEL';
 
 const ClassDetail = () => {
+  const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
 
   const [selectedTab, setSelectedTab] = useState<TabStatus>('APPROVE');
@@ -35,26 +37,31 @@ const ClassDetail = () => {
         </Head>
         <section className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 8 })}>
           {lessonData && (
-            <ClassCard>
-              <ClassCard.Header
-                role={USER_ROLE.TEACHER}
-                date={lessonData.startDateTime}
-                status={lessonData.applyStatus}
-              />
-              <ClassCard.Body
-                name={lessonData.name}
-                imageUrl={lessonData.imageUrl}
-                genre={lessonData.genre}
-                level={lessonData.level}
-              />
-              <ClassCard.Footer>
-                <ClassInfo
-                  lessonRound={lessonData.rounds}
-                  location={lessonData.location}
-                  locationDetail={lessonData.detailedAddress}
+            <div
+              onClick={() => {
+                navigate(ROUTES_CONFIG.class.path(lessonData.id.toString()));
+              }}>
+              <ClassCard>
+                <ClassCard.Header
+                  role={USER_ROLE.TEACHER}
+                  date={lessonData.startDateTime}
+                  status={lessonData.applyStatus}
                 />
-              </ClassCard.Footer>
-            </ClassCard>
+                <ClassCard.Body
+                  name={lessonData.name}
+                  imageUrl={lessonData.imageUrl}
+                  genre={lessonData.genre}
+                  level={lessonData.level}
+                />
+                <ClassCard.Footer>
+                  <ClassInfo
+                    lessonRound={lessonData.rounds}
+                    location={lessonData.location}
+                    locationDetail={lessonData.detailedAddress}
+                  />
+                </ClassCard.Footer>
+              </ClassCard>
+            </div>
           )}
           <BoxButton variant="transparency" onClick={() => notify({ message: '해당 기능은 추후 구현 예정입니다.' })}>
             수정하기
