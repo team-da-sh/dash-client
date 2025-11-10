@@ -4,7 +4,7 @@ import { useLessonApproveMutation, useLessonCancelMutation } from '@/pages/instr
 import * as styles from '@/pages/instructor/classDetail/components/StudentCard/studentCard.css';
 import type { Student } from '@/pages/instructor/classDetail/types/api';
 import { formatPhoneNumber } from '@/pages/instructor/utils/format';
-import { STATUS_KOREAN_MAP } from '@/pages/mypage/components/mypageReservation/MypageReservation';
+import { STATUS_KOREAN_MAP } from '@/pages/mypage/components/mypageReservation/constants/statusMap';
 import type { ReservationStatus } from '@/pages/mypage/components/mypageReservation/types/reservationStatus';
 import Modal from '@/common/components/Modal/Modal';
 import { useModalStore } from '@/common/stores/modal';
