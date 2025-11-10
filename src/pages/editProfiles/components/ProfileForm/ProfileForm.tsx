@@ -98,27 +98,30 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
         </div>
 
         <div className={styles.fieldStyle}>
-          <label>
-            <Text tag="b2_sb">이름</Text>
-          </label>
-          <Input
-            {...register('name')}
-            value={watch('name')}
-            placeholder="이름을 입력해주세요"
-            isError={!!errors.name}
-            helperText={errors.name?.message}
-            maxLength={MAX_NAME_LENGTH}
-            showMaxLength
-          />
+          <div className={styles.fieldStyle}>
+            <label htmlFor="name">
+              <Text tag="b2_sb">이름</Text>
+            </label>
+            <Input
+              id="name"
+              {...register('name')}
+              value={watch('name')}
+              placeholder="이름을 입력해주세요"
+              isError={!!errors.name}
+              helperText={errors.name?.message}
+              maxLength={MAX_NAME_LENGTH}
+              showMaxLength
+            />
+          </div>
         </div>
 
         <div className={styles.fieldStyle}>
-          <label>
+          <label htmlFor="phoneNumber">
             <Text tag="b2_sb">전화번호</Text>
           </label>
-
           <div className={styles.inputRowStyle}>
             <Input
+              id="phoneNumber"
               {...register('phoneNumber')}
               placeholder="01012345678"
               maxLength={MAX_PHONENUMBER_LENGTH}
@@ -136,12 +139,13 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
               className={styles.inputStyle}
             />
 
-            <BoxButton
+            <button
+              type="button"
               className={styles.buttonStyle({ type: isRunning ? 'resend' : 'default' })}
-              isDisabled={isRequestDisabled}
+              disabled={isRequestDisabled}
               onClick={handleRequestVerification}>
               {showAsResend ? '재요청' : '인증 요청'}
-            </BoxButton>
+            </button>
           </div>
 
           {isVerificationVisible && (
@@ -160,12 +164,13 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
                 onPointerDown={handleFocusAndNotify}
               />
 
-              <BoxButton
+              <button
+                type="button"
                 className={styles.buttonStyle({ type: 'default' })}
-                isDisabled={isVerifyButtonDisabled || isCodeVerified}
+                disabled={isVerifyButtonDisabled || isCodeVerified}
                 onClick={handleVerifyCode}>
                 확인
-              </BoxButton>
+              </button>
             </div>
           )}
         </div>

@@ -28,7 +28,7 @@ export const fieldStyle = style({
 
 export const inputRowStyle = style({
   display: 'flex',
-  gap: '0.4rem',
+  gap: '0.5rem',
 });
 
 export const inputStyle = style({
@@ -42,11 +42,23 @@ export const buttonStyle = recipe({
     padding: '0.3rem 1.6rem',
     whiteSpace: 'nowrap',
     textAlign: 'center',
+    borderRadius: '4px',
     ...vars.fonts.b2_sb_long,
   },
   variants: {
     type: {
-      default: {},
+      default: {
+        background: vars.colors.gray04,
+        color: vars.colors.white,
+        border: `1px solid ${vars.colors.gray04}`,
+
+        selectors: {
+          '&:not(:disabled)': {
+            background: vars.colors.main04,
+            border: `1px solid ${vars.colors.main04}`,
+          },
+        },
+      },
       resend: {
         border: `1px solid ${vars.colors.gray08}`,
         background: vars.colors.white,
