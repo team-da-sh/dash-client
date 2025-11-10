@@ -37,6 +37,10 @@ export const inputStyle = style({
 
 export const buttonStyle = recipe({
   base: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexShrink: 0,
     width: '8.2rem',
     height: '5.2rem',
     padding: '0.3rem 1.6rem',
