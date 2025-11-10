@@ -6,7 +6,7 @@ import {
   textStyle,
 } from '@/pages/instructor/classDetail/components/StudentList/StudentList.css';
 import type { Student } from '@/pages/instructor/classDetail/types/api';
-import { STATUS_KOREAN_MAP } from '@/pages/mypage/components/mypageReservation/MypageReservation';
+import { STATUS_KOREAN_MAP } from '@/pages/mypage/components/mypageReservation/constants/statusMap';
 import type { ReservationStatus } from '@/pages/mypage/components/mypageReservation/types/reservationStatus';
 import Divider from '@/shared/components/Divider/Divider';
 import Text from '@/shared/components/Text/Text';
