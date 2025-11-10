@@ -40,6 +40,7 @@ export const API_URL = {
 
   LESSONS: '/api/v1/lessons',
   LESSON_DETAIL: '/api/v1/lessons',
+  LESSON_UPDATE: '/api/v1/lessons',
   LESSONS_LATEST: '/api/v1/lessons/latest',
   LESSONS_POPULAR_GENRES: '/api/v1/lessons/popular-genres',
   LESSONS_UPCOMING: '/api/v1/lessons/upcoming',
