@@ -9,6 +9,7 @@ import {
   descriptionStyle,
 } from '@/common/components/Modal/modal.css';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
+import { vars } from '@/shared/styles/theme.css';
 
 interface DialogProps {
   content: ReactElement | string;
@@ -69,13 +70,21 @@ const Modal = ({
               <button onClick={handleLeftButtonClick} className={closeButtonStyle}>
                 {leftButtonText}
               </button>
-              <BoxButton variant="primary03" onClick={handleRightButtonClick}>
+              <BoxButton
+                variant="primary"
+                onClick={handleRightButtonClick}
+                style={{ backgroundColor: vars.colors.main03 }}
+              >
                 {rightButtonText}
               </BoxButton>
             </>
           )}
           {type === 'single' && (
-            <BoxButton variant="primary03" onClick={handleCheckButtonClick}>
+            <BoxButton
+              variant="primary"
+              onClick={handleCheckButtonClick}
+              style={{ backgroundColor: vars.colors.main03 }}
+            >
               {rightButtonText}
             </BoxButton>
           )}

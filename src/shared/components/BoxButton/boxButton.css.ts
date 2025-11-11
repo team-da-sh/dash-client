@@ -24,18 +24,6 @@ export const buttonStyle = recipe({
           cursor: 'default',
         },
       },
-      primary03: {
-        padding: '1.8rem 0',
-        backgroundColor: vars.colors.main03,
-
-        color: vars.colors.white,
-        ...vars.fonts.b1_sb,
-
-        '&:disabled': {
-          backgroundColor: vars.colors.gray05,
-          cursor: 'default',
-        },
-      },
       secondary: {
         display: 'flex',
         justifyContent: 'center',
