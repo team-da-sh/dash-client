@@ -76,7 +76,6 @@ const Onboarding = () => {
 
   return (
     <form
-      role="presentation"
       className={styles.containerStyle}
       onSubmit={handleOnboardSubmit}
       onKeyDown={(e) => {
