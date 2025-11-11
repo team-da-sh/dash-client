@@ -9,6 +9,7 @@ export const containerStyle = style({
 
 export const inputStyle = style({
   visibility: 'hidden',
+  height: '1.2rem',
 });
 
 export const imgWrapperStyle = style({

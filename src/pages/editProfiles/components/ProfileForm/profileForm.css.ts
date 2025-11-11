@@ -18,15 +18,26 @@ export const submitSectionStyle = style({
   padding: '2.4rem 0',
 });
 
-export const fieldStyle = style({
+export const labelStyle = style({
+  minWidth: '4.7rem',
+
+  whiteSpace: 'nowrap',
+});
+
+export const wrapperStyle = style({
   display: 'flex',
   flexDirection: 'column',
   gap: '0.8rem',
-  height: '12.4rem',
-  padding: '1.2rem 0',
 });
 
-export const inputRowStyle = style({
+export const inputWrapperStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '2.4rem',
+  width: '100%',
+});
+
+export const numberWrapperStyle = style({
   display: 'flex',
   gap: '0.5rem',
 });
@@ -40,33 +51,30 @@ export const buttonStyle = recipe({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    flexShrink: 0,
-    width: '8.2rem',
-    height: '5.2rem',
-    padding: '0.3rem 1.6rem',
-    whiteSpace: 'nowrap',
-    textAlign: 'center',
-    borderRadius: '4px',
-    ...vars.fonts.b2_sb_long,
+    selectors: {
+      [`${numberWrapperStyle} &`]: {
+        flexShrink: 0,
+        width: '8.2rem',
+        height: '5.2rem',
+        padding: '0.3rem 1.6rem',
+        whiteSpace: 'nowrap',
+        textAlign: 'center',
+        border: '1px solid transparent',
+        ...vars.fonts.b2_sb_long,
+      },
+    },
   },
   variants: {
     type: {
-      default: {
-        background: vars.colors.gray04,
-        color: vars.colors.white,
-        border: `1px solid ${vars.colors.gray04}`,
-
+      default: {},
+      resend: {
         selectors: {
-          '&:not(:disabled)': {
-            background: vars.colors.main04,
-            border: `1px solid ${vars.colors.main04}`,
+          [`${numberWrapperStyle} &`]: {
+            border: `1px solid ${vars.colors.gray08}`,
+            background: vars.colors.white,
+            color: vars.colors.gray09,
           },
         },
-      },
-      resend: {
-        border: `1px solid ${vars.colors.gray08}`,
-        background: vars.colors.white,
-        color: vars.colors.gray09,
       },
     },
   },
