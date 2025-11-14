@@ -1,13 +1,20 @@
 import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { useModalStore } from '@/common/stores/modal';
 
 const ModalProvider = () => {
   const { modalStore, resetStore, closeModal } = useModalStore();
+  const location = useLocation();
 
   // 언마운트시 모달 리셋
   useEffect(() => {
     return () => resetStore();
   }, [resetStore]);
+
+  // 라우팅 변경시 모달 리셋
+  useEffect(() => {
+    resetStore();
+  }, [location.pathname, resetStore]);
 
   // 모달 오버레이시 배경 스크롤 방지
   useEffect(() => {
