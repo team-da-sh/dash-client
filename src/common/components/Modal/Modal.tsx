@@ -30,13 +30,13 @@ const Modal = ({
       onClickHandler();
     }
 
-    onClose();
+    // onClose();
   };
 
   return (
     <ModalLayout onClose={onClose}>
-      {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
-      <div onClick={(e) => e.stopPropagation()} className={containerStyle}>
+      {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events */}
+      <dialog aria-modal="true" onClick={(e) => e.stopPropagation()} className={containerStyle}>
         <div className={contentStyle}>{content}</div>
         <div className={buttonWrapperStyle}>
           {type === 'default' && (
@@ -55,7 +55,7 @@ const Modal = ({
             </BoxButton>
           )}
         </div>
-      </div>
+      </dialog>
     </ModalLayout>
   );
 };

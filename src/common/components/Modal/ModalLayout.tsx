@@ -1,4 +1,5 @@
-import { useEffect, type PropsWithChildren } from 'react';
+import { ReactElement, useEffect, type PropsWithChildren } from 'react';
+import FocusTrap from '@/common/components/FocusTrap/FocusTrap';
 import { layoutStyle } from '@/common/components/Modal/modal.css';
 
 interface ModalLayoutProps extends PropsWithChildren {
@@ -24,7 +25,7 @@ const ModalLayout = ({ onClose, children }: ModalLayoutProps) => {
         onClose();
       }}
       className={layoutStyle}>
-      {children}
+      <FocusTrap>{children}</FocusTrap>
     </div>
   );
 };
