@@ -28,7 +28,9 @@ export const noticeCardStyle = style({
 });
 
 export const textPrimaryStyle = style({
-  marginBottom: '0.4rem',
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '0.4rem',
 });
 
 export const dividerStyle = style({
@@ -39,6 +41,7 @@ export const noticeListStyle = style({
   display: 'flex',
   flexDirection: 'column',
   gap: '2.4rem',
+  paddingRight: '2.2rem',
 });
 
 export const noticeTitleStyle = style({

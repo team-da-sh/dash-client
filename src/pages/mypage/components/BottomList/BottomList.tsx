@@ -75,7 +75,7 @@ const BottomList = ({ userRole }: BottomListPropTypes) => {
         {LIST_DATA.map((item) => (
           <div key={item.id}>
             <button className={styles.listStyle} onClick={() => handleClick(item.type)}>
-              <p>{item.label}</p>
+              <span>{item.label}</span>
               <IcArrowRightSmallGray0732 width={32} height={32} />
             </button>
             {item.hasDivider && (
