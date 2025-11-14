@@ -46,6 +46,7 @@ export const noticeTitleStyle = style({
   flexDirection: 'row',
   gap: '0.6rem',
   marginBottom: '1rem',
+  alignItems: 'center',
 });
 
 export const groupListStyle = style({

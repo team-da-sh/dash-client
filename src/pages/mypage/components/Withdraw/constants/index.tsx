@@ -44,7 +44,7 @@ export const NOTICE_CONTENTS: NoticeItem[] = [
   {
     id: 'g1',
     type: 'group',
-    icon: <IcNumberOne width={18} height={18} />,
+    icon: <IcNumberOne width={16} height={16} />,
     title: '탈퇴 시 정보 파기 및 연동 해제',
     sections: [
       {
@@ -70,7 +70,7 @@ export const NOTICE_CONTENTS: NoticeItem[] = [
   {
     id: 't1',
     type: 'text',
-    icon: <IcNumberTwo width={18} height={18} />,
+    icon: <IcNumberTwo width={16} height={16} />,
     title: '서비스 노출 및 재가입 시 복구 정책',
     content:
       '탈퇴 완료 시점부터 회원의 모든 활동 기록 및 콘텐츠는 서비스 상에서 더 이상 노출되지 않습니다. 다만, 동일한 카카오 이메일로 재가입 시 탈퇴와 동시에 삭제된 활동 기록 및 콘텐츠는 복구되어 원상태로 제공됩니다.',
@@ -78,7 +78,7 @@ export const NOTICE_CONTENTS: NoticeItem[] = [
   {
     id: 't2',
     type: 'text',
-    icon: <SvgIcNumberThree width={18} height={18} />,
+    icon: <SvgIcNumberThree width={16} height={16} />,
     title: '법적 의무 보존 및 익명 처리',
     content:
       '단, 전자상거래 등에서의 소비자 보호에 관한 법률 및 관련 법령에 의거하여 구매/거래 기록, 분쟁 해결 기록 등 일부 정보는 법이 정한 기간 (최대 5년) 동안 보존된 후 파기됩니다.',
