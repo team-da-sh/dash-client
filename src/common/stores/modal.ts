@@ -24,3 +24,7 @@ export const useModalStore = create<ModalStore>((set) => ({
 
   resetStore: () => set(() => ({ modalStore: [] })),
 }));
+
+export const useOpenModal = () => useModalStore((state) => state.openModal);
+export const useCloseModal = () => useModalStore((state) => state.closeModal);
+export const useResetModalStore = () => useModalStore((state) => state.resetStore);
