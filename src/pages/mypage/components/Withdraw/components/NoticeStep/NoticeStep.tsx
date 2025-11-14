@@ -57,8 +57,11 @@ const NoticeStep = ({ onNext }: NoticeStepPropTypes) => {
               close();
               onNext(data);
             },
-            onError: () => {
-              notify({ message: '탈퇴가 불가한 상태예요', bottomGap: 'large' });
+
+            onError: (error) => {
+              const serverMessage = error.response?.data?.message ?? '탈퇴 요청 중 오류가 발생했습니다.';
+
+              notify({ message: serverMessage, bottomGap: 'large' });
             },
           });
         }}

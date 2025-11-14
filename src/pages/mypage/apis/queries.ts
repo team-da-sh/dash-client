@@ -50,10 +50,10 @@ export const useGetMyLessonThumbnails = (
 };
 
 export const usePostValidateWithdraw = () => {
-  return useMutation({
+  return useMutation<AxiosError<{ message: string }>, void>({
     mutationFn: () => postValidateWithdraw(),
-    onError: (error: ApiError) => {
-      console.error(error.name, error.message);
+    onError: (error) => {
+      throw error;
     },
   });
 };
