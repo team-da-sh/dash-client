@@ -9,13 +9,17 @@ import {
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import Head from '@/shared/components/Head/Head';
 import Text from '@/shared/components/Text/Text';
+import { formatToYYYYMMDD } from '@/shared/utils/timeCalculate';
+import { getDateWithoutTime } from '@/shared/utils/timeUtils';
 
 interface CompleteStepPropTypes {
+  email: string;
   onGoHome: () => void;
 }
 
-const CompleteStep = ({ onGoHome }: CompleteStepPropTypes) => {
+const CompleteStep = ({ email, onGoHome }: CompleteStepPropTypes) => {
   const titleId = useId();
+  const today = formatToYYYYMMDD(getDateWithoutTime(new Date()));
 
   return (
     <>
@@ -37,7 +41,7 @@ const CompleteStep = ({ onGoHome }: CompleteStepPropTypes) => {
           </dt>
           <dd className={boxValueStyle}>
             <Text tag="b2_m_long" color="black">
-              Dash@naver.com
+              {email}
             </Text>
           </dd>
           <dt>
@@ -47,7 +51,7 @@ const CompleteStep = ({ onGoHome }: CompleteStepPropTypes) => {
           </dt>
           <dd>
             <Text tag="b2_m_long" color="black">
-              2025-10-28
+              {today}
             </Text>
           </dd>
         </dl>

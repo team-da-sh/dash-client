@@ -28,7 +28,7 @@ import { vars } from '@/shared/styles/theme.css';
 import { clearStorage } from '@/shared/utils/handleToken';
 
 interface NoticeStepPropTypes {
-  onNext: () => void;
+  onNext: (data: { email: string }) => void;
 }
 
 const NoticeStep = ({ onNext }: NoticeStepPropTypes) => {
@@ -46,20 +46,18 @@ const NoticeStep = ({ onNext }: NoticeStepPropTypes) => {
         key="withdraw-confirm"
         type="default"
         content="정말 탈퇴하시겠어요?"
-        // description="회원님은 현재 탈퇴 동의를 완료하셨습니다. 서비스를 떠나시면, 즉시 로그아웃되며 모든 활동 기록 및 데이터가 삭제됩니다."
         leftButtonText="이전"
         rightButtonText="탈퇴하기"
         onClose={close}
         onClickHandler={() => {
           if (isPending) return;
           withdraw(undefined, {
-            onSuccess: () => {
-              close();
+            onSuccess: (data) => {
               clearStorage();
-              onNext();
+              close();
+              onNext(data);
             },
             onError: () => {
-              close();
               notify({ message: '탈퇴가 불가한 상태예요', bottomGap: 'large' });
             },
           });
@@ -96,32 +94,36 @@ const NoticeStep = ({ onNext }: NoticeStepPropTypes) => {
             <ul key={item.id}>
               <li className={noticeTitleStyle}>
                 {item.icon}
-                <Text tag="b2_sb" color="gray10">
+                <Text as="span" tag="b2_sb" color="gray10">
                   {item.title}
                 </Text>
               </li>
 
-              <div className={groupListStyle}>
-                {item.type === 'group' &&
-                  item.sections?.map((section) => (
-                    <div key={section.id}>
-                      <Text tag="b3_m_narrow" color="gray9" className={textPrimaryStyle}>
+              {item.type === 'group' && (
+                <ul className={groupListStyle}>
+                  {item.sections?.map((section) => (
+                    <li key={section.id} className={textPrimaryStyle}>
+                      <Text as="span" tag="b3_m_narrow" color="gray9">
                         {section.subtitle}
                       </Text>
 
                       {section.contents.map((content) => (
-                        <Text key={content.id} tag="c1_r_narrow" color="gray7" className={bulletItemStyle}>
-                          {content.text}
-                        </Text>
+                        <div key={content.id} className={bulletItemStyle}>
+                          <Text as="span" tag="c1_r_narrow" color="gray7">
+                            {content.text}
+                          </Text>
+                        </div>
                       ))}
-                    </div>
+                    </li>
                   ))}
-              </div>
-
+                </ul>
+              )}
               {item.type === 'text' && (
-                <Text tag="c1_r_narrow" color="gray7">
-                  {item.content}
-                </Text>
+                <li>
+                  <Text as="span" tag="c1_r_narrow" color="gray7">
+                    {item.content}
+                  </Text>
+                </li>
               )}
             </ul>
           ))}
