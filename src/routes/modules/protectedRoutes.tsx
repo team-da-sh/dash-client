@@ -20,9 +20,12 @@ const LessonManage = lazy(() => import('@/pages/instructor/lessonManage/LessonMa
 const MyPageCancelClass = lazy(() => import('@/pages/mypage/components/mypageCancelClass/MypageCancelClass'));
 const MyPageCancelConfirm = lazy(() => import('@/pages/mypage/components/CancelConfirmPage/CancelConfirmPage'));
 
+const Class = lazy(() => import('@/pages/class/Class'));
+const Dancer = lazy(() => import('@/pages/dancer/Dancer'));
 export const protectedRoutes = [
   { path: ROUTES_CONFIG.reservation.path(':id'), element: <Reservation /> },
-
+  { path: ROUTES_CONFIG.class.path(':id'), element: <Class /> },
+  { path: ROUTES_CONFIG.dancer.path(':id'), element: <Dancer /> },
   { path: ROUTES_CONFIG.mypage.path, element: <MyPage /> },
   { path: ROUTES_CONFIG.mypage.withTab(':tab'), element: <MyPage /> }, // withTab은 같은 컴포넌트라 MyPage 그대로
   { path: ROUTES_CONFIG.editProfile.path, element: <EditProfile /> },
