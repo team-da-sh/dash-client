@@ -49,5 +49,5 @@ export const blurCapStyle = styleVariants({
 });
 
 export const wrapperStyle = style({
-  padding: '0 2.4rem 2rem',
+  padding: '0 2rem 2.4rem',
 });
