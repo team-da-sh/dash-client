@@ -78,6 +78,10 @@ const TeacherContent = () => {
     navigate(ROUTES_CONFIG.instructorClassList.path);
   };
 
+  const handleReviewClick = () => {
+    notify({ message: '해당 기능은 추후 구현 예정이에요' });
+  };
+
   if (!data || !lessonData) {
     return <div></div>;
   }
@@ -146,25 +150,15 @@ const TeacherContent = () => {
         </section>
       </div>
       <Divider color="gray1" thickness="0.4rem" />
-      <div
-        className={styles.reviewContainerStyle}
-        role="button"
-        tabIndex={0}
-        onClick={() => notify({ message: '해당 기능은 추후 구현 예정이에요' })}
-        onKeyDown={(e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            notify({ message: '해당 기능은 추후 구현 예정이에요' });
-          }
-        }}>
+      <button type="button" className={styles.reviewContainerStyle} onClick={handleReviewClick}>
         <div className={sprinkles({ display: 'flex', alignItems: 'center', gap: 4 })}>
           <IcReview width={24} />
-          <Text tag="b2_sb" color="gray11">
+          <Text as="span" tag="b2_sb" color="gray11">
             리뷰 확인
           </Text>
         </div>
         <IcArrowRightSmallGray0732 width={32} />
-      </div>
+      </button>
       <Divider color="gray1" thickness="0.4rem" />
       <BottomList userRole="TEACHER" />
       <button type="button" className={styles.classButtonStyle} onClick={handleClassButtonClick}>
