@@ -24,3 +24,15 @@ export const getMyLessonThumbnails = async () => {
 
   return data;
 };
+
+export const postValidateWithdraw = async () => {
+  const refreshToken = localStorage.getItem('refreshToken');
+
+  const { data } = await instance.post(
+    API_URL.MEMBERS_VALIDATE_WITHDRAW,
+    {},
+    { headers: { Authorization: `Bearer ${refreshToken}` } }
+  );
+
+  return data;
+};
