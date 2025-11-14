@@ -2,6 +2,11 @@ import { useState } from 'react';
 import { useGetReservationStatus } from '@/pages/mypage/components/mypageReservation/apis/queries';
 import ReservationList from '@/pages/mypage/components/mypageReservation/components/ReservationList';
 import {
+  options,
+  STATUS_ENGLISH_MAP,
+  STATUS_KOREAN_MAP,
+} from '@/pages/mypage/components/mypageReservation/constants/statusMap';
+import {
   containerStyle,
   layoutStyle,
   titleStyle,
@@ -10,20 +15,6 @@ import type { ReservationStatus } from '@/pages/mypage/components/mypageReservat
 import Dropdown from '@/common/components/Dropdown/Dropdown';
 import Head from '@/shared/components/Head/Head';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
-
-export const options = ['ALL', 'PENDING_APPROVAL', 'APPROVED', 'PENDING_CANCELLATION', 'CANCELLED'] as const;
-
-export const STATUS_KOREAN_MAP: Record<ReservationStatus, string> = {
-  ALL: '전체',
-  PENDING_APPROVAL: '승인대기',
-  APPROVED: '승인완료',
-  PENDING_CANCELLATION: '취소대기',
-  CANCELLED: '취소완료',
-};
-
-const STATUS_ENGLISH_MAP = Object.fromEntries(
-  Object.entries(STATUS_KOREAN_MAP).map(([key, value]) => [value, key])
-) as Record<string, ReservationStatus>;
 
 const MyPageReservation = () => {
   const { data: reservationStatus } = useGetReservationStatus();

@@ -21,6 +21,7 @@ const TeacherLessons = ({ data }: { data: LessonDataResponseTypes }) => {
       {data?.lessons?.map((lesson: lessonResponseTypes) => (
         <li key={lesson.id} onClickCapture={(e) => handleCardClick(lesson.id, e)}>
           <LessonItem
+            linkType="manage"
             id={lesson.id}
             genre={lesson.genre}
             level={lesson.level}

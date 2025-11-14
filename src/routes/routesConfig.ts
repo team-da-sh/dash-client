@@ -76,6 +76,10 @@ export const ROUTES_CONFIG = {
     title: 'ClassRegister',
     path: '/mypage/class-register',
   },
+  classEdit: {
+    title: 'ClassEdit',
+    path: (id: string) => `/mypage/class-register/${id}/edit`,
+  },
   classRegisterCompletion: {
     title: 'ClassRegisterCompletion',
     path: '/mypage/class-register/completion',

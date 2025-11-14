@@ -17,7 +17,7 @@ const LatestLessons = () => {
       </Head>
 
       <ul className={latestLessonWrapperStyle} aria-label="신상 클래스">
-        {latestLessonDatas?.lessons?.map((lesson) => <LessonItem key={lesson.id} {...lesson} />)}
+        {latestLessonDatas?.lessons?.map((lesson) => <LessonItem key={lesson.id} linkType="detail" {...lesson} />)}
       </ul>
     </section>
   );
