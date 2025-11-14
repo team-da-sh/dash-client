@@ -9,7 +9,7 @@ import { CANCEL_CONFIRM_MESSAGE } from '@/pages/mypage/constants/modalMessage';
 import ApplicantInfo from '@/pages/reservation/components/ApplicantInfo/ApplicantInfo';
 import ClassInfo from '@/pages/reservation/components/ClassInfo/ClassInfo';
 import Modal from '@/common/components/Modal/Modal';
-import { useModalStore } from '@/common/stores/modal';
+import { useOpenModal } from '@/common/stores/modal';
 import { useGetBankList } from '@/shared/apis/queries';
 import BankBottomSheet from '@/shared/components/BankBottomSheet/BankBottomSheet';
 import BlurBotton from '@/shared/components/BlurButton/BlurButton';
@@ -38,7 +38,7 @@ const CancelConfirmPage = () => {
   const { data: myPageData } = useGetMyPage();
   const { data: bankList } = useGetBankList();
 
-  const { openModal } = useModalStore();
+  const openModal = useOpenModal();
   const { mutate: cancelReservation, isPending } = useCancelReservation();
 
   const navigationState = location.state as NavigationState | null;

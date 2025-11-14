@@ -7,7 +7,7 @@ import { formatPhoneNumber } from '@/pages/instructor/utils/format';
 import { STATUS_KOREAN_MAP } from '@/pages/mypage/components/mypageReservation/constants/statusMap';
 import type { ReservationStatus } from '@/pages/mypage/components/mypageReservation/types/reservationStatus';
 import Modal from '@/common/components/Modal/Modal';
-import { useModalStore } from '@/common/stores/modal';
+import { useOpenModal } from '@/common/stores/modal';
 import ApplyTag from '@/shared/components/ApplyTag/ApplyTag';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import Head from '@/shared/components/Head/Head';
@@ -35,7 +35,7 @@ interface StudentCardPropTypes {
 }
 
 const StudentCard = ({ studentData, index, lessonId, selectedTab }: StudentCardPropTypes) => {
-  const { openModal } = useModalStore();
+  const openModal = useOpenModal();
 
   const { text: buttonText, variant: buttonVariant } = STATUS_BUTTON_MAP[studentData.reservationStatus];
 

@@ -13,7 +13,7 @@ import {
 } from '@/pages/mypage/components/Withdraw/components/NoticeStep/noticeStep.css';
 import { BULLET_LIST } from '@/pages/mypage/components/Withdraw/constants';
 import Modal from '@/common/components/Modal/Modal';
-import { useModalStore } from '@/common/stores/modal';
+import { useOpenModal } from '@/common/stores/modal';
 import IcCheckcircleGray0524 from '@/shared/assets/svg/IcCheckcircleGray0524';
 import IcCheckcircleMain0324 from '@/shared/assets/svg/IcCheckcircleMain0324';
 import BlurButton from '@/shared/components/BlurButton/BlurButton';
@@ -28,7 +28,7 @@ interface NoticeStepPropTypes {
 
 const NoticeStep = ({ onNext }: NoticeStepPropTypes) => {
   const [isAgreed, setIsAgreed] = useState(false);
-  const { openModal } = useModalStore();
+  const openModal = useOpenModal();
 
   const titleId = useId();
 
