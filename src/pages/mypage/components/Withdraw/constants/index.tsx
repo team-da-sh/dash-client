@@ -15,32 +15,7 @@ export const WITHDRAW_REASONS = [
 
 export type WithdrawReasonTypes = (typeof WITHDRAW_REASONS)[number];
 
-export interface ContentObj {
-  id: string;
-  text: string;
-}
-export interface SectionObj {
-  id: string;
-  subtitle: string;
-  contents: ContentObj[];
-}
-export interface GroupItem {
-  id: string;
-  type: 'group';
-  icon: React.ReactNode;
-  title: string;
-  sections: SectionObj[];
-}
-export interface TextItem {
-  id: string;
-  type: 'text';
-  icon: React.ReactNode;
-  title: string;
-  content: string;
-}
-export type NoticeItem = GroupItem | TextItem;
-
-export const NOTICE_CONTENTS: NoticeItem[] = [
+export const NOTICE_CONTENTS = [
   {
     id: 'g1',
     type: 'group',
@@ -83,4 +58,4 @@ export const NOTICE_CONTENTS: NoticeItem[] = [
     content:
       '단, 전자상거래 등에서의 소비자 보호에 관한 법률 및 관련 법령에 의거하여 구매/거래 기록, 분쟁 해결 기록 등 일부 정보는 법이 정한 기간 (최대 5년) 동안 보존된 후 파기됩니다.',
   },
-];
+] as const;

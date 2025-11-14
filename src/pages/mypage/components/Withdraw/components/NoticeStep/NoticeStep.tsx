@@ -14,7 +14,6 @@ import {
   agreeSectionStyle,
 } from '@/pages/mypage/components/Withdraw/components/NoticeStep/noticeStep.css';
 import { NOTICE_CONTENTS } from '@/pages/mypage/components/Withdraw/constants';
-import type { ContentObj, NoticeItem, SectionObj } from '@/pages/mypage/components/Withdraw/constants';
 import Modal from '@/common/components/Modal/Modal';
 import { useModalStore } from '@/common/stores/modal';
 import IcCheckcircleGray0524 from '@/shared/assets/svg/IcCheckcircleGray0524';
@@ -47,7 +46,7 @@ const NoticeStep = ({ onNext }: NoticeStepPropTypes) => {
         key="withdraw-confirm"
         type="default"
         content="정말 탈퇴하시겠어요?"
-        // description="회원님은 현재 탈퇴 동의를 완료하셨습니다. 모든 데이터는 영구 삭제되며 복구가 불가능합니다."
+        // description="회원님은 현재 탈퇴 동의를 완료하셨습니다. 서비스를 떠나시면, 즉시 로그아웃되며 모든 활동 기록 및 데이터가 삭제됩니다."
         leftButtonText="이전"
         rightButtonText="탈퇴하기"
         onClose={close}
@@ -93,7 +92,7 @@ const NoticeStep = ({ onNext }: NoticeStepPropTypes) => {
         <Divider color="gray1" className={dividerStyle} />
 
         <section className={noticeListStyle}>
-          {NOTICE_CONTENTS.map((item: NoticeItem) => (
+          {NOTICE_CONTENTS.map((item) => (
             <ul key={item.id}>
               <li className={noticeTitleStyle}>
                 {item.icon}
@@ -101,21 +100,24 @@ const NoticeStep = ({ onNext }: NoticeStepPropTypes) => {
                   {item.title}
                 </Text>
               </li>
+
               <div className={groupListStyle}>
                 {item.type === 'group' &&
-                  (item.sections || []).map((section: SectionObj) => (
+                  item.sections?.map((section) => (
                     <div key={section.id}>
                       <Text tag="b3_m_narrow" color="gray9" className={textPrimaryStyle}>
                         {section.subtitle}
                       </Text>
-                      {(section.contents || []).map((content: ContentObj) => (
-                        <Text tag="c1_r_narrow" color="gray7" className={bulletItemStyle}>
+
+                      {section.contents.map((content) => (
+                        <Text key={content.id} tag="c1_r_narrow" color="gray7" className={bulletItemStyle}>
                           {content.text}
                         </Text>
                       ))}
                     </div>
                   ))}
               </div>
+
               {item.type === 'text' && (
                 <Text tag="c1_r_narrow" color="gray7">
                   {item.content}
@@ -147,7 +149,7 @@ const NoticeStep = ({ onNext }: NoticeStepPropTypes) => {
       <BlurButton>
         <BoxButton
           onClick={handleOpenModal}
-          disabled={!isAgreed || isPending}
+          disabled={!isAgreed}
           aria-disabled={!isAgreed || isPending}
           aria-label="회원 탈퇴 확인 단계로 이동">
           다음
