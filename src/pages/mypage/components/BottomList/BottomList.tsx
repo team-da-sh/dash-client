@@ -74,7 +74,7 @@ const BottomList = ({ userRole }: BottomListPropTypes) => {
       <ul className={styles.ulStyle}>
         {LIST_DATA.map((item) => (
           <div key={item.id}>
-            <button className={styles.listStyle} onClick={() => handleClick(item.type)}>
+            <button className={styles.listStyle} onClick={() => handleClick(item.type)} aria-label={item.label}>
               <span>{item.label}</span>
               <IcArrowRightSmallGray0732 width={32} height={32} />
             </button>

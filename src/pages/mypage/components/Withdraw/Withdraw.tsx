@@ -10,7 +10,7 @@ import { useFunnel } from '@/shared/hooks/useFunnel';
 const Withdraw = () => {
   const navigate = useNavigate();
   const { Funnel, Step, setStep } = useFunnel(3, ROUTES_CONFIG.home.path);
-  const [email, setEmail] = useState<string>('');
+  const [email, setEmail] = useState('');
 
   return (
     <Funnel>

@@ -49,10 +49,7 @@ export const useGetMyLessonThumbnails = (
 };
 
 export const usePostValidateWithdraw = () => {
-  return useMutation<AxiosError<{ message: string }>, void>({
+  return useMutation<{ valid: boolean }, AxiosError<{ message: string }>, void>({
     mutationFn: () => postValidateWithdraw(),
-    onError: (error) => {
-      throw error;
-    },
   });
 };
