@@ -14,7 +14,6 @@ import type {
   MyTeacherInfoResponseTypes,
 } from '@/pages/mypage/types/api';
 import { memberKeys, teacherKeys } from '@/shared/constants/queryKey';
-import type { ApiError } from '@/shared/types/ApiError';
 
 export const useGetMyPage = (): UseQueryResult<MyPageResponseTypes, AxiosError> => {
   return useQuery<MyPageResponseTypes, AxiosError>({
