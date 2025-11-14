@@ -1,5 +1,6 @@
 import { instance } from '@/shared/apis/instance';
 import { API_URL } from '@/shared/constants/apiURL';
+import { getRefreshToken } from '@/shared/utils/handleToken';
 
 export const getMyPage = async () => {
   const { data } = await instance.get(API_URL.MEMBERS_ME);
@@ -26,7 +27,10 @@ export const getMyLessonThumbnails = async () => {
 };
 
 export const postValidateWithdraw = async () => {
-  const refreshToken = localStorage.getItem('refreshToken');
+  const refreshToken = getRefreshToken();
+  if (!refreshToken) {
+    throw new Error('Refresh Token이 존재하지 않습니다.');
+  }
 
   const { data } = await instance.post(
     API_URL.MEMBERS_VALIDATE_WITHDRAW,

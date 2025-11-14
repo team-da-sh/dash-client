@@ -1,4 +1,5 @@
 import { useState, useId } from 'react';
+import { usePostWithdraw } from '@/pages/mypage/components/Withdraw/apis/queries';
 import {
   containerStyle,
   titleStyle,
@@ -12,8 +13,8 @@ import {
   bulletItemStyle,
   agreeSectionStyle,
 } from '@/pages/mypage/components/Withdraw/components/NoticeStep/noticeStep.css';
-import type { ContentObj, NoticeItem, SectionObj } from '@/pages/mypage/components/Withdraw/constants/index';
-import { NOTICE_CONTENTS } from '@/pages/mypage/components/Withdraw/constants/index';
+import { NOTICE_CONTENTS } from '@/pages/mypage/components/Withdraw/constants';
+import type { ContentObj, NoticeItem, SectionObj } from '@/pages/mypage/components/Withdraw/constants';
 import Modal from '@/common/components/Modal/Modal';
 import { useModalStore } from '@/common/stores/modal';
 import IcCheckcircleGray0524 from '@/shared/assets/svg/IcCheckcircleGray0524';
@@ -23,7 +24,9 @@ import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import Divider from '@/shared/components/Divider/Divider';
 import Head from '@/shared/components/Head/Head';
 import Text from '@/shared/components/Text/Text';
+import { notify } from '@/shared/components/Toast/Toast';
 import { vars } from '@/shared/styles/theme.css';
+import { clearStorage } from '@/shared/utils/handleToken';
 
 interface NoticeStepPropTypes {
   onNext: () => void;
@@ -36,6 +39,8 @@ const NoticeStep = ({ onNext }: NoticeStepPropTypes) => {
 
   const handleAgreeToggle = () => setIsAgreed((prev) => !prev);
 
+  const { mutate: withdraw, isPending } = usePostWithdraw();
+
   const handleOpenModal = () => {
     openModal(({ close }) => (
       <Modal
@@ -47,8 +52,18 @@ const NoticeStep = ({ onNext }: NoticeStepPropTypes) => {
         rightButtonText="탈퇴하기"
         onClose={close}
         onClickHandler={() => {
-          close();
-          onNext();
+          if (isPending) return;
+          withdraw(undefined, {
+            onSuccess: () => {
+              close();
+              clearStorage();
+              onNext();
+            },
+            onError: () => {
+              close();
+              notify({ message: '탈퇴가 불가한 상태예요', bottomGap: 'large' });
+            },
+          });
         }}
       />
     ));
@@ -132,8 +147,8 @@ const NoticeStep = ({ onNext }: NoticeStepPropTypes) => {
       <BlurButton>
         <BoxButton
           onClick={handleOpenModal}
-          disabled={!isAgreed}
-          aria-disabled={!isAgreed}
+          disabled={!isAgreed || isPending}
+          aria-disabled={!isAgreed || isPending}
           aria-label="회원 탈퇴 확인 단계로 이동">
           다음
         </BoxButton>

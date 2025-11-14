@@ -14,6 +14,7 @@ import type {
   MyTeacherInfoResponseTypes,
 } from '@/pages/mypage/types/api';
 import { memberKeys, teacherKeys } from '@/shared/constants/queryKey';
+import type { ApiError } from '@/shared/types/ApiError';
 
 export const useGetMyPage = (): UseQueryResult<MyPageResponseTypes, AxiosError> => {
   return useQuery<MyPageResponseTypes, AxiosError>({
@@ -51,5 +52,8 @@ export const useGetMyLessonThumbnails = (
 export const usePostValidateWithdraw = () => {
   return useMutation({
     mutationFn: () => postValidateWithdraw(),
+    onError: (error: ApiError) => {
+      console.error(error.name, error.message);
+    },
   });
 };

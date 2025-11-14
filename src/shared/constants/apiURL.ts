@@ -9,7 +9,7 @@ export const API_URL = {
   AUTH_PHONE_VERIFY: '/api/v1/auth/phone/verify',
 
   MEMBERS_VALIDATE_WITHDRAW: '/api/v1/auth/validate-withdraw',
-  MEMBERS_WITHDRAW: '/api/v1/members/withdraw',
+  MEMBERS_WITHDRAW: '/api/v1/auth/withdraw',
   MEMBERS_ONBOARD: '/api/v1/members/onboard',
   MEMBERS_ME: '/api/v1/members/me',
   MEMBERS_RESERVATIONS: (status: ReservationStatus) => {
