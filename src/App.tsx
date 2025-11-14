@@ -33,10 +33,7 @@ const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={false} />
-      <GlobalErrorBoundary>
-        <RouterProvider router={router} />
-        <ModalProvider />
-      </GlobalErrorBoundary>
+      <RouterProvider router={router} />
       <Toaster containerStyle={{ margin: '0 auto' }} />
     </QueryClientProvider>
   );

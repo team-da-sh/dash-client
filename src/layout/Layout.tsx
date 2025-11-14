@@ -3,6 +3,7 @@ import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { ApiErrorBoundary } from '@/shared/components/ErrorBoundary/ApiErrorBoundary/ApiErrorBoundary';
 import GlobalErrorBoundary from '@/shared/components/ErrorBoundary/GlobalErrorBoundary/GlobalErrorBoundary';
 import Header from '@/shared/components/Header/Header';
+import ModalProvider from '@/shared/components/ModalProvider/ModalProvier';
 
 const Layout = () => {
   const { pathname } = useLocation();
@@ -19,6 +20,7 @@ const Layout = () => {
       <ApiErrorBoundary>
         {shouldShowHeader && <Header />}
         <Outlet />
+        <ModalProvider />
         <ScrollRestoration />
       </ApiErrorBoundary>
     </GlobalErrorBoundary>
