@@ -22,7 +22,7 @@ export const noticeCardStyle = style({
   flexDirection: 'column',
   padding: '1.8rem 2.7rem 2.4rem 2.2rem',
   marginBottom: '1.2rem',
-
+  gap: '0.4rem',
   borderRadius: '4px',
   backgroundColor: vars.colors.white,
 });
@@ -34,7 +34,7 @@ export const textPrimaryStyle = style({
 });
 
 export const dividerStyle = style({
-  margin: '1.8rem 0 1.9rem',
+  margin: '1.8rem 0 1.5rem',
 });
 
 export const noticeListStyle = style({
