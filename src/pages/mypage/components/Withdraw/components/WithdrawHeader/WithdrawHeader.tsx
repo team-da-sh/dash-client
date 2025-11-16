@@ -6,9 +6,10 @@ import IcHeaderLogoSmallBlack from '@/shared/assets/svg/IcHeaderLogoSmallBlack';
 
 interface WithdrawHeaderPropTypes {
   step: number;
+  onBack?: () => void;
 }
 
-const WithdrawHeader = ({ step }: WithdrawHeaderPropTypes) => {
+const WithdrawHeader = ({ step, onBack }: WithdrawHeaderPropTypes) => {
   const navigate = useNavigate();
 
   const handleLogoClick = () => {
@@ -16,7 +17,11 @@ const WithdrawHeader = ({ step }: WithdrawHeaderPropTypes) => {
   };
 
   const handleBackClick = () => {
-    navigate(-1);
+    if (onBack) {
+      onBack();
+    } else {
+      navigate(-1);
+    }
   };
 
   return (
