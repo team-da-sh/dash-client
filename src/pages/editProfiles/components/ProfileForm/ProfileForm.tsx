@@ -9,8 +9,6 @@ import type { ProfileFormValues } from '@/pages/editProfiles/schema/profileSchem
 import type { UpdateProfileRequestTypes } from '@/pages/editProfiles/types/api';
 import { allowOnlyNumberKey, allowOnlyNumberPaste } from '@/pages/editProfiles/utils/inputUtils';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
-import useBlockBackWithUnsavedChanges from '@/shared/hooks/useBlockBackWithUnsavedChanges';
-import useImageUploader from '@/shared/hooks/useImageUploader';
 import Input from '@/shared/components/Input/Input';
 import Text from '@/shared/components/Text/Text';
 import { notify } from '@/shared/components/Toast/Toast';
@@ -20,6 +18,7 @@ import {
   MAX_VERIFICATION_CODE,
   PHONE_AUTH_MESSAGES,
 } from '@/shared/constants/userInfo';
+import useBlockBackWithUnsavedChanges from '@/shared/hooks/useBlockBackWithUnsavedChanges';
 
 interface ProfileFormPropTypes {
   defaultValues: {
@@ -31,8 +30,6 @@ interface ProfileFormPropTypes {
 
 const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
   const { mutate: editMyProfile } = usePatchMyProfile();
-
-  const [isImageClick, setIsImageClick] = useState(false);
 
   const methods = useForm<ProfileFormValues>({
     resolver: zodResolver(profileSchema),
