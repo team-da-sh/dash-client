@@ -25,6 +25,10 @@ const MyPageReservationDetail = () => {
     navigate(ROUTES_CONFIG.mypageCancelClass.path(reservationId ?? ''));
   };
 
+  const handleGoClassDetailPage = () => {
+    navigate(ROUTES_CONFIG.class.path(data.lessonId.toString()));
+  };
+
   const handleGoAskPage = (e: React.MouseEvent) => {
     e.stopPropagation();
     window.open('https://forms.gle/JMYzQGxEdVHVogsE6', '_blank');
@@ -39,7 +43,7 @@ const MyPageReservationDetail = () => {
 
         <div className={styles.classInfoWrapper}>
           <ReservationProgress reservationStatus={data.reservationStatus} />
-          <div>
+          <button type="button" onClick={handleGoClassDetailPage}>
             <ClassCard>
               <ClassCard.Body
                 name={data.lessonName}
@@ -51,7 +55,7 @@ const MyPageReservationDetail = () => {
                 <ClassInfo lessonRound={data.rounds} location={data.location} locationDetail={data.detailedAddress} />
               </ClassCard.Footer>
             </ClassCard>
-          </div>
+          </button>
         </div>
       </section>
 
