@@ -16,6 +16,7 @@ import {
 import { NOTICE_CONTENTS } from '@/pages/mypage/components/Withdraw/constants';
 import Modal from '@/common/components/Modal/Modal';
 import { useModalStore } from '@/common/stores/modal';
+import { useWithdrawStore } from '@/common/stores/withdraw';
 import IcCheckcircleGray0524 from '@/shared/assets/svg/IcCheckcircleGray0524';
 import IcCheckcircleMain0324 from '@/shared/assets/svg/IcCheckcircleMain0324';
 import BlurButton from '@/shared/components/BlurButton/BlurButton';
@@ -53,6 +54,7 @@ const NoticeStep = ({ onNext }: NoticeStepPropTypes) => {
           if (isPending) return;
           withdraw(undefined, {
             onSuccess: (data) => {
+              useWithdrawStore.getState().allowPostWithdraw();
               clearStorage();
               close();
               onNext(data);

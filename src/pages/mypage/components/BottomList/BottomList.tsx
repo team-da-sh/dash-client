@@ -8,6 +8,7 @@ import { getBottomListData } from '@/pages/mypage/utils/getBottomList';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import Modal from '@/common/components/Modal/Modal';
 import { useModalStore } from '@/common/stores/modal';
+import { useWithdrawStore } from '@/common/stores/withdraw';
 import IcArrowRightSmallGray0732 from '@/shared/assets/svg/IcArrowRightSmallGray0732';
 import Divider from '@/shared/components/Divider/Divider';
 import { notify } from '@/shared/components/Toast/Toast';
@@ -43,7 +44,10 @@ const BottomList = ({ userRole }: BottomListPropTypes) => {
       case 'withdraw':
         if (isValidating) return;
         validateWithdraw(undefined, {
-          onSuccess: () => navigate(ROUTES_CONFIG.withdraw.path),
+          onSuccess: () => {
+            useWithdrawStore.getState().allowValidate();
+            navigate(ROUTES_CONFIG.withdraw.path);
+          },
           onError: () => {
             openModal(({ close }) => (
               <Modal
