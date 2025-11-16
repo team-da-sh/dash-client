@@ -26,6 +26,12 @@ const BottomList = ({ userRole }: BottomListPropTypes) => {
 
   const LIST_DATA = getBottomListData(userRole);
 
+  const handleLogoutConfirm = (close: () => void) => {
+    logout();
+    navigate(ROUTES_CONFIG.home.path);
+    close();
+  };
+
   const handleClick = (type?: BottomListItem['type']) => {
     switch (type) {
       case 'account':
@@ -38,8 +44,16 @@ const BottomList = ({ userRole }: BottomListPropTypes) => {
         window.open(GOOGLE_FORM_LINK, '_blank');
         break;
       case 'logout':
-        logout();
-        navigate(ROUTES_CONFIG.home.path);
+        openModal(({ close }) => (
+          <Modal
+            content="로그아웃 하시겠어요?"
+            type="default"
+            onClose={close}
+            onClickHandler={() => handleLogoutConfirm(close)}
+            leftButtonText="취소"
+            rightButtonText="로그아웃"
+          />
+        ));
         break;
       case 'withdraw':
         if (isValidating) return;
