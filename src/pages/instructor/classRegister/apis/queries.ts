@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { locationKeys } from '@/shared/constants/queryKey';
-import { getLocationList, postClassRegisterInfo } from './axios';
+import { getLocationList, patchClassInfo, postClassRegisterInfo } from './axios';
 
 // TODO: keyword 필수인지 질문
 export const useGetLocationList = (query: string) => {
@@ -25,7 +25,6 @@ interface ClassRegisterInfoTypes {
   imageUrls: string[];
   name: string;
   detail: string;
-  videoUrls: string[];
   maxReservationCount: number;
   genre: string;
   level: string;
@@ -42,5 +41,13 @@ export const usePostClassRegisterInfo = () => {
   return useMutation({
     mutationFn: (infoData: ClassRegisterInfoTypes) => postClassRegisterInfo(infoData),
     meta: { shouldShowToastMessage: true, errorMessage: '등록 권한이 없어요.' },
+  });
+};
+
+export const usePatchClassInfo = () => {
+  return useMutation({
+    mutationFn: ({ lessonId, infoData }: { lessonId: number; infoData: ClassRegisterInfoTypes }) =>
+      patchClassInfo(lessonId, infoData),
+    meta: { shouldShowToastMessage: true, errorMessage: '수정 권한이 없어요.' },
   });
 };

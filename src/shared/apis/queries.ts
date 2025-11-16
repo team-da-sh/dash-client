@@ -19,6 +19,8 @@ export const useGetRole = () => {
   return useQuery<RoleNameResponseTypes>({
     queryKey: authKeys.role.queryKey,
     queryFn: postRole,
+    retry: false,
+    refetchOnWindowFocus: false,
   });
 };
 

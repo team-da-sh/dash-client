@@ -1,16 +1,16 @@
 import { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useGetLessonDetail } from '@/pages/instructor/classDetail/apis/queries';
 import * as styles from '@/pages/instructor/classDetail/classDetail.css';
 import StudentList from '@/pages/instructor/classDetail/components/StudentList/StudentList';
 import ClassInfo from '@/pages/mypage/components/mypageReservationDetail/components/ClassInfo/ClassInfo';
+import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import ClassCard from '@/shared/components/ClassCard';
 import Divider from '@/shared/components/Divider/Divider';
 import Head from '@/shared/components/Head/Head';
 import { TabButton, TabList, TabPanel, TabRoot } from '@/shared/components/Tab';
 import Text from '@/shared/components/Text/Text';
-import { notify } from '@/shared/components/Toast/Toast';
 import { USER_ROLE } from '@/shared/constants/userRole';
 import { sprinkles } from '@/shared/styles/sprinkles.css';
 
@@ -18,6 +18,7 @@ export type TabStatus = 'APPROVE' | 'CANCEL';
 
 const ClassDetail = () => {
   const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
 
   const [selectedTab, setSelectedTab] = useState<TabStatus>('APPROVE');
 
@@ -26,6 +27,14 @@ const ClassDetail = () => {
   const handleTabClick = (tabId: TabStatus) => {
     setSelectedTab(tabId);
   };
+
+  const handleEditClick = () => {
+    if (id) {
+      navigate(ROUTES_CONFIG.classEdit.path(id));
+    }
+  };
+
+  const isClassStarted = lessonData ? new Date() >= new Date(lessonData.startDateTime) : false;
 
   return (
     <div className={styles.layoutStyle}>
@@ -56,7 +65,7 @@ const ClassDetail = () => {
               </ClassCard.Footer>
             </ClassCard>
           )}
-          <BoxButton variant="transparency" onClick={() => notify({ message: '해당 기능은 추후 구현 예정입니다.' })}>
+          <BoxButton variant="primary" onClick={handleEditClick} disabled={isClassStarted}>
             수정하기
           </BoxButton>
         </section>

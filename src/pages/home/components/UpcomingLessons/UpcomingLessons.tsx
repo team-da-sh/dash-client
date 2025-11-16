@@ -26,7 +26,7 @@ const UpcomingLessons = () => {
       </Head>
       <ul className={containerStyle}>
         {filteredUpcomingLessons.map((lesson) => (
-          <LessonItem key={lesson.id} useNewStyles={false} {...lesson} />
+          <LessonItem key={lesson.id} linkType="detail" useNewStyles={false} {...lesson} />
         ))}
       </ul>
     </section>

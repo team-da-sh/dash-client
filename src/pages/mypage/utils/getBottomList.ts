@@ -24,7 +24,9 @@ export const getBottomListData = (navigate: NavigateFunction, userRole: string, 
     {
       id: 5,
       label: '회원 탈퇴',
-      onClick: () => notify({ message: '해당 기능은 추후 구현 예정이에요' }),
+      onClick: () => {
+        navigate(ROUTES_CONFIG.withdraw.path);
+      },
     },
   ];
 
