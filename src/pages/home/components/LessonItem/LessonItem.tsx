@@ -65,7 +65,7 @@ const LessonItem = ({
       };
 
   return (
-    <li
+    <div
       className={clsx(
         styles.wrapper,
         sprinkles({ position: 'relative', display: 'flex', flexDirection: 'column', gap: 8 })
@@ -108,7 +108,7 @@ const LessonItem = ({
           </div>
         )}
       </div>
-    </li>
+    </div>
   );
 };
 
