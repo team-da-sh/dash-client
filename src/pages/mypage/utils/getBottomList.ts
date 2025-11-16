@@ -3,7 +3,7 @@ import { GOOGLE_FORM_LINK } from '@/pages/mypage/constants/link';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { notify } from '@/shared/components/Toast/Toast';
 
-export const getBottomListData = (navigate: NavigateFunction, logout: () => void, userRole: string) => {
+export const getBottomListData = (navigate: NavigateFunction, userRole: string, openLogoutModal: () => void) => {
   const baseList = [
     {
       id: 2,
@@ -19,10 +19,7 @@ export const getBottomListData = (navigate: NavigateFunction, logout: () => void
     {
       id: 4,
       label: '로그아웃',
-      onClick: () => {
-        logout();
-        navigate(ROUTES_CONFIG.home.path);
-      },
+      onClick: openLogoutModal,
     },
     {
       id: 5,

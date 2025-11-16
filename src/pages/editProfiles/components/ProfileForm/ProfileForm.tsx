@@ -29,6 +29,7 @@ import {
   MAX_VERIFICATION_CODE,
   PHONE_AUTH_MESSAGES,
 } from '@/shared/constants/userInfo';
+import useBlockBackWithUnsavedChanges from '@/shared/hooks/useBlockBackWithUnsavedChanges';
 
 interface ProfileFormPropTypes {
   defaultValues: {
@@ -41,17 +42,20 @@ interface ProfileFormPropTypes {
 const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
   const { mutate: editMyProfile } = usePatchMyProfile();
 
+  const methods = useForm<ProfileFormValues>({
+    resolver: zodResolver(profileSchema),
+    defaultValues,
+    mode: 'onChange',
+  });
   const {
     register,
     handleSubmit,
     control,
     formState: { errors },
     watch,
-  } = useForm<ProfileFormValues>({
-    resolver: zodResolver(profileSchema),
-    defaultValues,
-    mode: 'onChange',
-  });
+  } = methods;
+
+  useBlockBackWithUnsavedChanges<ProfileFormValues>({ methods, snapshotDeps: [defaultValues] });
 
   const phoneNumber = watch('phoneNumber');
 
