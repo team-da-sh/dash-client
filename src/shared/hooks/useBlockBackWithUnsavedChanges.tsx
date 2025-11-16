@@ -148,4 +148,16 @@ export default function useBlockBackWithUnsavedChanges<TFieldValues extends Fiel
     window.addEventListener('click', handleHeaderNavClickCapture, true);
     return () => window.removeEventListener('click', handleHeaderNavClickCapture, true);
   }, [navigate, openModal, content, description, leftButtonText, rightButtonText]);
+
+  useEffect(() => {
+    const handleBeforeUnload = (event: BeforeUnloadEvent) => {
+      if (!shouldBlockRef.current || !isDirtyRef.current) return;
+
+      event.preventDefault();
+      event.returnValue = '';
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    return () => window.removeEventListener('beforeunload', handleBeforeUnload);
+  }, []);
 }
