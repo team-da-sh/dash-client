@@ -68,12 +68,12 @@ const BottomList = ({ userRole }: BottomListPropTypes) => {
                 key="withdraw-failed"
                 type="default"
                 content="탈퇴가 불가능합니다."
-                // description="현재 수강 예정/진행 중인 클래스가 있습니다. 모든 클래스 종료 후에 탈퇴를 다시 시도해 주세요."
+                description="현재 수강 예정/진행 중인 클래스가 있습니다. 모든 클래스의 종료일이 지난 후에 탈퇴를 다시 시도해 주세요."
                 leftButtonText="문의하기"
-                // onLeftClickHandler={() => {
-                //   window.open(GOOGLE_FORM_LINK, '_blank');
-                //   close();
-                // }}
+                onLeftClickHandler={() => {
+                  window.open(GOOGLE_FORM_LINK, '_blank');
+                  close();
+                }}
                 rightButtonText="확인"
                 onClose={close}
                 onClickHandler={() => close()}

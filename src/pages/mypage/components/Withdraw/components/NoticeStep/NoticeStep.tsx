@@ -47,6 +47,7 @@ const NoticeStep = ({ onNext }: NoticeStepPropTypes) => {
         key="withdraw-confirm"
         type="default"
         content="정말 탈퇴하시겠어요?"
+        description="회원님은 현재 탈퇴 동의를 완료하셨습니다. 서비스를 떠나시면, 즉시 로그아웃되며 모든 활동 기록 및 데이터가 삭제됩니다."
         leftButtonText="이전"
         rightButtonText="탈퇴하기"
         onClose={close}
