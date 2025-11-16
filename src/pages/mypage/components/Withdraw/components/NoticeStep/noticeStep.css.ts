@@ -20,28 +20,42 @@ export const descriptionStyle = style({
 export const noticeCardStyle = style({
   display: 'flex',
   flexDirection: 'column',
-  padding: '2.4rem 2.7rem 2.4rem 2rem',
+  padding: '1.8rem 2.7rem 2.4rem 2.2rem',
   marginBottom: '1.2rem',
-
+  gap: '0.4rem',
   borderRadius: '4px',
   backgroundColor: vars.colors.white,
 });
 
 export const textPrimaryStyle = style({
-  marginBottom: '0.4rem',
-});
-
-export const textSecondaryStyle = style({
-  marginBottom: '2rem',
-});
-
-export const bulletListStyle = style({
   display: 'flex',
   flexDirection: 'column',
-  gap: '0.8rem',
+  gap: '0.4rem',
+});
 
-  color: vars.colors.gray10,
-  ...vars.fonts.b3_m_narrow,
+export const dividerStyle = style({
+  margin: '1.8rem 0 1.5rem',
+});
+
+export const noticeListStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '2.4rem',
+  paddingRight: '2.2rem',
+});
+
+export const noticeTitleStyle = style({
+  display: 'flex',
+  flexDirection: 'row',
+  gap: '0.6rem',
+  marginBottom: '1rem',
+  alignItems: 'center',
+});
+
+export const groupListStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '1.2rem',
 });
 
 export const bulletItemStyle = style({
@@ -57,10 +71,6 @@ export const bulletItemStyle = style({
       fontSize: '1.2em',
     },
   },
-});
-
-export const legalNoticeStyle = style({
-  marginTop: '2.4rem',
 });
 
 export const agreeSectionStyle = style({

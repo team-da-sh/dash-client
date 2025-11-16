@@ -1,4 +1,4 @@
-import { useId, useState } from 'react';
+import { useId } from 'react';
 import {
   containerStyle,
   titleStyle,
@@ -20,26 +20,28 @@ import Text from '@/shared/components/Text/Text';
 import { vars } from '@/shared/styles/theme.css';
 
 interface ReasonStepProps {
-  onNext: (data: { reasons: WithdrawReasonTypes[]; customReason?: string }) => void;
+  selectedReasons: WithdrawReasonTypes[];
+  customReason: string;
+  onChangeReasons: (reasons: WithdrawReasonTypes[]) => void;
+  onChangeCustomReason: (reason: string) => void;
+  onNext: () => void;
 }
 
-const ReasonStep = ({ onNext }: ReasonStepProps) => {
-  const [selectedReasons, setSelectedReasons] = useState<WithdrawReasonTypes[]>([]);
-  const [customReason, setCustomReason] = useState('');
-
+const ReasonStep = ({
+  selectedReasons,
+  customReason,
+  onChangeReasons,
+  onChangeCustomReason,
+  onNext,
+}: ReasonStepProps) => {
   const toggleReason = (reason: WithdrawReasonTypes) => {
-    setSelectedReasons((prev) => (prev.includes(reason) ? prev.filter((r) => r !== reason) : [...prev, reason]));
+    const updated = selectedReasons.includes(reason)
+      ? selectedReasons.filter((r) => r !== reason)
+      : [...selectedReasons, reason];
+    onChangeReasons(updated);
   };
 
   const isButtonActive = selectedReasons.length > 0;
-
-  const handleNext = () => {
-    onNext({
-      reasons: selectedReasons,
-      customReason: selectedReasons.includes('기타') ? customReason : undefined,
-    });
-  };
-
   const titleId = useId();
 
   return (
@@ -80,7 +82,7 @@ const ReasonStep = ({ onNext }: ReasonStepProps) => {
                 <Input
                   placeholder="탈퇴 사유를 작성해 주세요."
                   value={customReason}
-                  onChange={(e) => setCustomReason(e.target.value)}
+                  onChange={(e) => onChangeCustomReason(e.target.value)}
                   aria-label="기타 탈퇴 사유 입력"
                 />
               )}
@@ -90,7 +92,7 @@ const ReasonStep = ({ onNext }: ReasonStepProps) => {
       </div>
 
       <BlurButton>
-        <BoxButton onClick={handleNext} disabled={!isButtonActive}>
+        <BoxButton onClick={onNext} disabled={!isButtonActive}>
           다음
         </BoxButton>
       </BlurButton>
