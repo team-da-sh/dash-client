@@ -73,8 +73,7 @@ const Modal = ({
               <BoxButton
                 variant="primary"
                 onClick={handleRightButtonClick}
-                style={{ backgroundColor: vars.colors.main03 }}
-              >
+                style={{ backgroundColor: vars.colors.main03 }}>
                 {rightButtonText}
               </BoxButton>
             </>
@@ -83,8 +82,7 @@ const Modal = ({
             <BoxButton
               variant="primary"
               onClick={handleCheckButtonClick}
-              style={{ backgroundColor: vars.colors.main03 }}
-            >
+              style={{ backgroundColor: vars.colors.main03 }}>
               {rightButtonText}
             </BoxButton>
           )}
