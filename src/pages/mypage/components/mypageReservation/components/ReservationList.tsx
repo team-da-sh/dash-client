@@ -33,15 +33,13 @@ const ReservationList = ({ status, targetReservationId, showActions = true }: Re
     <>
       {filteredReservations?.length > 0 ? (
         filteredReservations?.map((reservation: Reservation) => (
-          <ClassCard
-            key={reservation.reservationId}
-            onClick={() => handleClassCardClick(navigate, reservation.reservationId)}>
+          <ClassCard key={reservation.reservationId}>
             <ClassCard.Header
               role={USER_ROLE.MEMBER}
               status={reservation.reservationStatus}
               date={reservation.reservationDateTime}
             />
-            <ClassCard.Body {...reservation} />
+            <ClassCard.Body {...reservation} onClick={() => handleClassCardClick(navigate, reservation.lessonId)} />
             {showActions && (
               <ClassCard.Footer showAsk={true}>
                 {(reservation.reservationStatus === 'PENDING_APPROVAL' ||
