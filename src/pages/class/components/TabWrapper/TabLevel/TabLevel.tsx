@@ -53,7 +53,7 @@ const TabLevel = ({ lessonData }: { lessonData: LessonDetailResponseTypes }) => 
       </div>
       <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 17 })}>
         <div className={sprinkles({ display: 'flex', justifyContent: 'flex-start', alignItems: 'center', gap: 4 })}>
-          <Suspense fallback={<div style={{ width: '2.4rem', height: '2.285rem' }} />}>
+          <Suspense fallback={<div style={{ width: '2.4rem', height: '22.85px' }} />}>
             <IcSparkleMain20 width={'2.4rem'} />
           </Suspense>
           <Head level="h5" tag="b1_sb">
