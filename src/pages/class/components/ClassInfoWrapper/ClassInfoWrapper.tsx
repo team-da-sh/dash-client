@@ -9,7 +9,6 @@ import Head from '@/shared/components/Head/Head';
 import Tag from '@/shared/components/Tag/Tag';
 import Text from '@/shared/components/Text/Text';
 import { levelMapping, genreMapping } from '@/shared/constants/index';
-import { sprinkles } from '@/shared/styles/sprinkles.css';
 
 const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetailResponseTypes }) => {
   const {
@@ -38,8 +37,8 @@ const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetailResponseType
   const MAX_DISPLAY_RESERVATION_COUNT = 999;
 
   return (
-    <section className={sprinkles({ flexDirection: 'column', pt: 20, pr: 20, pb: 24, pl: 20 })}>
-      <div className={sprinkles({ display: 'flex', mb: 12, gap: 6 })}>
+    <section className={styles.sectionContainer} aria-label={`${name} 클래스 정보`}>
+      <div className={styles.tagWrapper}>
         <Tag type="genre" size="medium">
           <Text tag="b3_m" color="white">
             {translatedGenre}
@@ -52,28 +51,20 @@ const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetailResponseType
         </Tag>
       </div>
 
-      <Head level="h2" tag="h5_sb" className={sprinkles({ mb: 18 })}>
+      <Head level="h2" tag="h5_sb" className={styles.classTitle}>
         {name}
       </Head>
 
-      <div
-        className={sprinkles({ display: 'flex', alignItems: 'center', marginBottom: 8, gap: 9 })}
-        onClick={() => handleTeacherClick(teacherId)}>
-        <img src={teacherImageUrl} alt={`${teacherNickname} 프로필`} className={styles.profileStyle} />
-        <Text tag="b2_m" color="gray9">
-          {teacherNickname}
-        </Text>
+      <div>
+        <button className={styles.teacherWrapper} onClick={() => handleTeacherClick(teacherId)}>
+          <img src={teacherImageUrl} alt={`${teacherNickname} 프로필`} className={styles.profileStyle} />
+          <Text as="span" tag="b2_m" color="gray9">
+            {teacherNickname}
+          </Text>
+        </button>
       </div>
 
-      <div
-        className={sprinkles({
-          display: 'flex',
-          justifyContent: 'flex-end',
-          width: '100%',
-          alignItems: 'center',
-          gap: 8,
-          mb: 24,
-        })}>
+      <div className={styles.priceWrapper}>
         <Head level="h4" tag="h6_sb" color="gray6">
           {lessonRounds.length}회
         </Head>
@@ -88,14 +79,7 @@ const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetailResponseType
       </div>
 
       <Card className={styles.cardStyle}>
-        <div
-          className={sprinkles({
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            width: 60,
-            gap: 6,
-          })}>
+        <div className={styles.cardItemStyle}>
           <Text tag="b3_sb" color="gray7">
             난이도
           </Text>
@@ -104,19 +88,12 @@ const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetailResponseType
           </Text>
         </div>
 
-        <div
-          className={sprinkles({
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            width: 60,
-            gap: 6,
-          })}>
+        <div className={styles.cardItemStyle}>
           <Text tag="b3_sb" color="gray7">
             인원
           </Text>
           <Text tag="h6_sb" color="gray10">
-            <Text tag="h6_sb" color="gray10">
+            <Text as="span" tag="h6_sb" color="gray10">
               {maxReservationCount > MAX_DISPLAY_RESERVATION_COUNT
                 ? `${MAX_DISPLAY_RESERVATION_COUNT}+`
                 : `${maxReservationCount}명`}
@@ -124,14 +101,7 @@ const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetailResponseType
           </Text>
         </div>
 
-        <div
-          className={sprinkles({
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            width: 60,
-            gap: 6,
-          })}>
+        <div className={styles.cardItemStyle}>
           <Text tag="b3_sb" color="gray7">
             리뷰
           </Text>

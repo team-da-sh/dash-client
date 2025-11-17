@@ -9,6 +9,7 @@ import type { LevelTypes } from '@/pages/onboarding/types/levelTypes';
 export interface ReservationDetailType {
   dDay: number;
   lessonName: string;
+  lessonId: number;
   nickname: string;
   rounds: RoundType[];
   location: string;

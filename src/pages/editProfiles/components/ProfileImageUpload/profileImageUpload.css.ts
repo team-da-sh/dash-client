@@ -9,6 +9,7 @@ export const containerStyle = style({
 
 export const inputStyle = style({
   visibility: 'hidden',
+  height: '1.2rem',
 });
 
 export const imgWrapperStyle = style({
@@ -21,6 +22,13 @@ export const imgWrapperStyle = style({
   borderRadius: '110px',
 
   cursor: 'pointer',
+
+  backgroundSize: 'cover',
+  backgroundPosition: 'center',
+
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
 });
 
 export const overlayStyle = style({

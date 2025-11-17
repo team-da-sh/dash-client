@@ -20,6 +20,8 @@ const memberStatus = (status: ReservationStatus) => {
       return [<SvgIcMeatball width={20} height={20} color={vars.colors.alert01} />, '취소 대기'];
     case 'CANCELLED':
       return [<SvgIcClear width={20} height={20} color={vars.colors.alert01} />, '취소 완료'];
+    case 'COMPLETED':
+      return [<SvgIcClear width={20} height={20} color={vars.colors.main03} />, '수강 완료'];
     default:
       return [null, '상태 불명'];
   }

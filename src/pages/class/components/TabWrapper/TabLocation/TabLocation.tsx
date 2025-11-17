@@ -60,7 +60,7 @@ const TabLocation = ({ lessonData }: { lessonData: LessonDetailResponseTypes }) 
               </div>
             </div>
 
-            <Suspense fallback={<div>Loading...</div>}>
+            <Suspense fallback={<div style={{ width: '6rem', height: '6rem' }} />}>
               <IcLocation60 width={'6rem'} />
             </Suspense>
           </div>

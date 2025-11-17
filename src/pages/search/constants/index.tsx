@@ -17,3 +17,5 @@ export const TAB = {
   CLASS: 'class',
   DANCER: 'dancer',
 };
+
+export type TAB_TYPES = (typeof TAB)[keyof typeof TAB];

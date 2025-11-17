@@ -35,9 +35,11 @@ const handleError = (error: Error | ApiError, errorInfo: ErrorInfo) => {
 };
 
 const FetchErrorFallback = ({ resetErrorBoundary, error }: FallbackProps) => {
+  const errorMessage = isAxiosError(error) ? error.response?.data?.message || error.message : '오류가 발생했습니다';
+
   return (
     <div className={errorContainerStyle}>
-      <Text>{error.response.data.message}</Text>
+      <Text>{errorMessage}</Text>
       <div className={buttonContainer}>
         <BoxButton variant="outline" onClick={resetErrorBoundary}>
           다시 시도하기

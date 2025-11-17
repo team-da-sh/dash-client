@@ -76,6 +76,10 @@ export const ROUTES_CONFIG = {
     title: 'ClassRegister',
     path: '/mypage/class-register',
   },
+  classEdit: {
+    title: 'ClassEdit',
+    path: (id: string) => `/mypage/class-register/${id}/edit`,
+  },
   classRegisterCompletion: {
     title: 'ClassRegisterCompletion',
     path: '/mypage/class-register/completion',
@@ -95,6 +99,10 @@ export const ROUTES_CONFIG = {
   instructorClassDetail: {
     title: 'instructorClassDetail',
     path: (id: string) => `/mypage/instructor/class-list/${id}`,
+  },
+  withdraw: {
+    title: 'Withdraw',
+    path: '/mypage/withdraw',
   },
   error: {
     title: 'Error',

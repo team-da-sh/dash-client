@@ -29,11 +29,7 @@ const TabLevel = ({ lessonData }: { lessonData: LessonDetailResponseTypes }) => 
         })}>
         <Card className={styles.cardStyle}>
           <div className={sprinkles({ display: 'flex', alignItems: 'center', gap: 8 })}>
-            {levelData?.icon || (
-              <Suspense fallback={<div>Loading...</div>}>
-                <IcLevelStarter width={'3.6rem'} />{' '}
-              </Suspense>
-            )}
+            {levelData?.icon || <IcLevelStarter width={'3.6rem'} />}
             <Head level="h6" tag="b1_sb" className={styles.levelStyle}>
               {levelMapping[level]}
             </Head>
@@ -57,7 +53,7 @@ const TabLevel = ({ lessonData }: { lessonData: LessonDetailResponseTypes }) => 
       </div>
       <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 17 })}>
         <div className={sprinkles({ display: 'flex', justifyContent: 'flex-start', alignItems: 'center', gap: 4 })}>
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense fallback={<div style={{ width: '2.4rem', height: '22.85px' }} />}>
             <IcSparkleMain20 width={'2.4rem'} />
           </Suspense>
           <Head level="h5" tag="b1_sb">

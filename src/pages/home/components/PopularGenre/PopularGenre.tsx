@@ -18,13 +18,13 @@ const PopularGenre = () => {
   };
 
   return (
-    <div className={genreWrapperStyle}>
-      <Head level="h2" tag="h5_sb">
+    <section className={genreWrapperStyle} aria-labelledby="popular-genre-title">
+      <Head level="h2" tag="h5_sb" id="popular-genre-title">
         지금 가장 인기있는 댄스 장르
       </Head>
 
       <ul className={sprinkles({ display: 'flex', justifyContent: 'space-between', gap: 7, marginTop: 20 })}>
-        {data?.genres.map((genre, index) => (
+        {data?.genres?.map((genre, index) => (
           <GenreItem
             key={genre}
             medalIcon={GENRE_ICONS[index]}
@@ -33,7 +33,7 @@ const PopularGenre = () => {
           />
         ))}
       </ul>
-    </div>
+    </section>
   );
 };
 

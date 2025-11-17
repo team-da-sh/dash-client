@@ -2,8 +2,13 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useQueryClient } from '@tanstack/react-query';
 import type { FormEvent } from 'react';
 import { FormProvider, useController, useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
-import { useGetLocationList, usePostClassRegisterInfo } from '@/pages/instructor/classRegister/apis/queries';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useGetLessonDetail } from '@/pages/class/apis/queries';
+import {
+  useGetLocationList,
+  usePatchClassInfo,
+  usePostClassRegisterInfo,
+} from '@/pages/instructor/classRegister/apis/queries';
 import * as styles from '@/pages/instructor/classRegister/classRegister.css';
 import ClassAmount from '@/pages/instructor/classRegister/components/ClassAmount/ClassAmount';
 import ClassDescription from '@/pages/instructor/classRegister/components/ClassDescription/ClassDescription';
@@ -16,6 +21,8 @@ import ClassRecommend from '@/pages/instructor/classRegister/components/ClassRec
 import ClassRepresentImage from '@/pages/instructor/classRegister/components/ClassRepresentImage/ClassRepresentImage';
 import ClassRegisterBottomSheet from '@/pages/instructor/classRegister/components/ClassSchedule/ClassRegisterBottomSheet/ClassRegisterBottomSheet';
 import ClassSchedule from '@/pages/instructor/classRegister/components/ClassSchedule/ClassSchedule';
+import { STATE_VALUE } from '@/pages/instructor/classRegister/constants/stateValue';
+import { useClassEditMode } from '@/pages/instructor/classRegister/hooks/useClassEditMode';
 import { useClassRegisterForm } from '@/pages/instructor/classRegister/hooks/useClassRegisterForm';
 import { classRegisterSchema } from '@/pages/instructor/classRegister/schema/classRegisterSchema';
 import type { ClassRegisterInfoTypes } from '@/pages/instructor/classRegister/types/api';
@@ -24,15 +31,26 @@ import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import { genreEngMapping, levelEngMapping } from '@/shared/constants';
 import { lessonKeys, memberKeys } from '@/shared/constants/queryKey';
+import useBlockBackWithUnsavedChanges from '@/shared/hooks/useBlockBackWithUnsavedChanges';
 import useBottomSheet from '@/shared/hooks/useBottomSheet';
 import useDebounce from '@/shared/hooks/useDebounce';
 import useImageUploader from '@/shared/hooks/useImageUploader';
 
 const ClassRegister = () => {
-  const queryClient = useQueryClient();
+  const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+
+  const lessonId = id ? Number(id) : null;
+  const isValidId = lessonId !== null && !isNaN(lessonId) && lessonId > 0;
+
+  const queryClient = useQueryClient();
   const { mutate: classRegisterMutate } = usePostClassRegisterInfo();
+  const { mutate: classUpdateMutate } = usePatchClassInfo();
   const { isBottomSheetOpen, openBottomSheet, closeBottomSheet } = useBottomSheet();
+
+  const { data: lessonData } = useGetLessonDetail(lessonId || 0, { enabled: isValidId });
+
+  const isEditMode = isValidId && !!lessonData;
 
   const methods = useForm({
     resolver: zodResolver(classRegisterSchema),
@@ -50,7 +68,8 @@ const ClassRegister = () => {
     },
   });
 
-  const { register, watch, setValue, control, clearErrors } = methods;
+  const { register, watch, setValue, control, clearErrors, reset, formState } = methods;
+  const { isDirty } = formState;
 
   const {
     className,
@@ -80,14 +99,12 @@ const ClassRegister = () => {
   const toggleCategory = (category: string) => {
     setValue('selectedGenre', category === selectedGenre ? '' : category, {
       shouldValidate: true,
-      shouldDirty: true,
     });
   };
 
   const toggleLevel = (level: string) => {
     setValue('selectedLevel', level === selectedLevel ? '' : level, {
       shouldValidate: true,
-      shouldDirty: true,
     });
   };
 
@@ -114,7 +131,20 @@ const ClassRegister = () => {
     handleDefaultPlace,
     setSelectedLocation,
     isButtonActive,
+    setTimes,
+    setIsUndecidedLocation,
   } = useClassRegisterForm();
+
+  // 수정 모드일 때 폼 필드 채우기
+  useClassEditMode({
+    isEditMode,
+    lessonData,
+    reset,
+    setImageUrls,
+    setTimes,
+    setSelectedLocation,
+    setIsUndecidedLocation,
+  });
 
   const handleLocationCheckboxClick = () => {
     handleNoneLocationCheck();
@@ -169,10 +199,9 @@ const ClassRegister = () => {
 
     if (selectedGenre && selectedLevel) {
       const updatedInfo: ClassRegisterInfoTypes = {
-        imageUrls: [imageUrls],
+        imageUrls: imageUrls ? [imageUrls] : [],
         name: className,
         detail: detail,
-        videoUrls: [],
         maxReservationCount: Number(maxReservationCount),
         genre: genreEngMapping[selectedGenre],
         level: levelEngMapping[selectedLevel],
@@ -189,17 +218,34 @@ const ClassRegister = () => {
         })),
       };
 
-      classRegisterMutate(updatedInfo, {
-        onSuccess: () => {
-          queryClient.invalidateQueries({ queryKey: memberKeys.me.queryKey });
-          queryClient.invalidateQueries({ queryKey: lessonKeys.list.queryKey });
+      if (isEditMode && lessonId) {
+        // 수정 모드일 때
+        classUpdateMutate(
+          { lessonId, infoData: updatedInfo },
+          {
+            onSuccess: () => {
+              queryClient.invalidateQueries({ queryKey: memberKeys.me.queryKey });
+              queryClient.invalidateQueries({ queryKey: lessonKeys.list.queryKey });
+              queryClient.invalidateQueries({ queryKey: lessonKeys.detail(lessonId).queryKey });
 
-          navigate(ROUTES_CONFIG.classRegisterCompletion.path);
-        },
-        // onError: () => {
-        //   navigate(ROUTES_CONFIG.error.path);
-        // },
-      });
+              navigate(ROUTES_CONFIG.instructorClassDetail.path(String(lessonId)));
+            },
+          }
+        );
+      } else {
+        // 등록 모드일 때
+        classRegisterMutate(updatedInfo, {
+          onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: memberKeys.me.queryKey });
+            queryClient.invalidateQueries({ queryKey: lessonKeys.list.queryKey });
+
+            navigate(ROUTES_CONFIG.classRegisterCompletion.path);
+          },
+          // onError: () => {
+          //   navigate(ROUTES_CONFIG.error.path);
+          // },
+        });
+      }
     }
   };
 
@@ -215,7 +261,8 @@ const ClassRegister = () => {
 
   const { imgFile, previewImg, imgRef, handleUploaderClick, uploadImgFile, deleteImgFile } = useImageUploader(
     handleImageUploadSuccess,
-    handleDeleteUrl
+    handleDeleteUrl,
+    lessonData?.imageUrl || null
   );
 
   const debouncedSearchValue = useDebounce({ value: defaultPlace, delay: 300 });
@@ -224,14 +271,15 @@ const ClassRegister = () => {
 
   const handleRemoveLocation = () => {
     setSelectedLocation(null);
-    setValue('selectedLocation', null, { shouldValidate: true });
+    setValue(STATE_VALUE.SELECTED_LOCATION, null, { shouldValidate: true });
     setDefaultPlace('');
   };
 
   const handleSelectLocation = (location: LocationTypes | null) => {
     setSelectedLocation(location);
-    setValue('selectedLocation', location, { shouldValidate: true });
+    setValue(STATE_VALUE.SELECTED_LOCATION, location, { shouldValidate: true });
   };
+  useBlockBackWithUnsavedChanges({ methods });
 
   return (
     <>
@@ -286,7 +334,8 @@ const ClassRegister = () => {
                   recommendation,
                   maxReservationCount,
                   price,
-                })
+                }) ||
+                (isEditMode && !isDirty)
               }>
               완료
             </BoxButton>

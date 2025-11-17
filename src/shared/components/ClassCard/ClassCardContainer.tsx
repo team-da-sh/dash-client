@@ -6,8 +6,14 @@ interface ClassCardContainerPropTypes {
 }
 
 const ClassCardContainer = ({ onClick, children }: ClassCardContainerPropTypes) => {
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      onClick?.();
+    }
+  };
+
   return (
-    <div className={styles.cardContainerStyle} onClick={onClick}>
+    <div className={styles.cardContainerStyle} onClick={onClick} role="button" tabIndex={0} onKeyDown={handleKeyDown}>
       {children}
     </div>
   );

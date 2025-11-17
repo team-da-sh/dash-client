@@ -186,7 +186,9 @@ const TabContainer = ({
             />
             <div className={styles.divCustomStyle}>
               {classList && classList.lessons && classList.lessons.length > 0 ? (
-                classList.lessons.map((data: ClassTypes) => <ClassItem key={data.id} {...data} useNewStyles={true} />)
+                classList.lessons.map((data: ClassTypes) => (
+                  <ClassItem key={data.id} linkType="detail" {...data} useNewStyles={true} />
+                ))
               ) : (
                 <EmptyView />
               )}

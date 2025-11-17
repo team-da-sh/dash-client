@@ -28,9 +28,9 @@ const LessonList = ({ status }: LessonListProps) => {
     <>
       {lessonData?.count > 0 ? (
         lessonData?.lessons.map((lesson: Lesson) => (
-          <ClassCard key={lesson.id} onClick={() => handleClassCardClick(lesson.id)}>
+          <ClassCard key={lesson.id}>
             <ClassCard.Header role={USER_ROLE.TEACHER} status={lesson.applyStatus} date={lesson.lessonDateTime} />
-            <ClassCard.Body {...lesson} />
+            <ClassCard.Body onClick={() => handleClassCardClick(lesson.id)} {...lesson} />
             <ClassCard.Footer showAsk={false}>
               <BoxButton variant="outline" onClick={() => handleClassCardClick(lesson.id)}>
                 상세보기

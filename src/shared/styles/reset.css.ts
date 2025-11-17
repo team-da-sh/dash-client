@@ -75,5 +75,12 @@ globalStyle('input, button, textarea, select', {
   padding: 0,
   border: 'none',
   background: 'none',
+});
+
+globalStyle('button', {
+  cursor: 'pointer',
+});
+
+globalStyle('input, textarea', {
   outline: 'none',
 });

@@ -2,7 +2,7 @@ import { style } from '@vanilla-extract/css';
 import { vars } from '@/shared/styles/theme.css';
 
 export const layoutStyle = style({
-  height: '100%',
+  minHeight: 'calc(100dvh - 6rem)',
   padding: '3.3rem 2rem',
 
   backgroundColor: vars.colors.gray01,

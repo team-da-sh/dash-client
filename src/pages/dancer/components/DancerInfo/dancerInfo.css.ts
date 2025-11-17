@@ -29,7 +29,9 @@ export const detailStyle = style({
 });
 
 export const linkStyle = style({
+  display: 'inline-block',
   overflow: 'hidden',
   textOverflow: 'ellipsis',
-  maxWidth: '15ch',
+  whiteSpace: 'nowrap',
+  maxWidth: '14ch',
 });

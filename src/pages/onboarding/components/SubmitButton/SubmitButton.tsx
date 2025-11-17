@@ -7,7 +7,7 @@ interface SubmitButtonPropTypes {
   currentStep: number;
   info: OnboardInfoTypes;
   onNextButtonClick: () => void;
-  isCodeVerified: boolean; 
+  isCodeVerified: boolean;
   isNameError: boolean;
 }
 

@@ -16,6 +16,7 @@ export const ulStyle = style({
 export const listStyle = style({
   display: 'flex',
   alignItems: 'center',
+  width: '100%',
   justifyContent: 'space-between',
 
   color: vars.colors.gray09,

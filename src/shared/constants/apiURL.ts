@@ -8,7 +8,8 @@ export const API_URL = {
   AUTH_PHONE_REQUEST: '/api/v1/auth/phone/request',
   AUTH_PHONE_VERIFY: '/api/v1/auth/phone/verify',
 
-  MEMBERS_WITHDRAW: '/api/v1/members/withdraw',
+  MEMBERS_VALIDATE_WITHDRAW: '/api/v1/auth/validate-withdraw',
+  MEMBERS_WITHDRAW: '/api/v1/auth/withdraw',
   MEMBERS_ONBOARD: '/api/v1/members/onboard',
   MEMBERS_ME: '/api/v1/members/me',
   MEMBERS_RESERVATIONS: (status: ReservationStatus) => {
@@ -40,6 +41,7 @@ export const API_URL = {
 
   LESSONS: '/api/v1/lessons',
   LESSON_DETAIL: '/api/v1/lessons',
+  LESSON_UPDATE: '/api/v1/lessons',
   LESSONS_LATEST: '/api/v1/lessons/latest',
   LESSONS_POPULAR_GENRES: '/api/v1/lessons/popular-genres',
   LESSONS_UPCOMING: '/api/v1/lessons/upcoming',

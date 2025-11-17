@@ -1,8 +1,16 @@
 import { useState } from 'react';
 import { usePostPhoneRequest, usePostPhoneVerify } from '@/pages/onboarding/apis/queries';
-import * as styles from '@/pages/onboarding/components/InfoStep/infoStep.css';
-import { INFO_KEY, REQUEST_DELAY, TIMER_DURATION } from '@/pages/onboarding/constants';
-import { useVerificationTimer } from '@/pages/onboarding/hooks/useVerificationTimer';
+import {
+  buttonStyle,
+  containerStyle,
+  inputStyle,
+  inputWrapperStyle,
+  labelStyle,
+  numberWrapperStyle,
+  timerStyle,
+  wrapperStyle,
+} from '@/pages/onboarding/components/InfoStep/infoStep.css';
+import { INFO_KEY } from '@/pages/onboarding/constants';
 import type { OnboardInfoTypes } from '@/pages/onboarding/types/onboardInfoTypes';
 import { validateTypingPhoneNumber } from '@/pages/onboarding/utils/validate';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
@@ -17,7 +25,10 @@ import {
   MIN_NAME_LENGTH,
   NAME_ERROR_MESSAGES,
   PHONE_AUTH_MESSAGES,
+  REQUEST_DELAY,
+  TIMER_DURATION,
 } from '@/shared/constants/userInfo';
+import { useVerificationTimer } from '@/shared/hooks/useVerificationTimer';
 
 interface InfoStepProps {
   name: string;
@@ -147,8 +158,8 @@ const InfoStep = ({
   const showAsResend = isRunning || isCodeVerified;
 
   return (
-    <div className={styles.containerStyle}>
-      <div className={styles.wrapperStyle}>
+    <div className={containerStyle}>
+      <div className={wrapperStyle}>
         <Head level="h1" tag="h3_sb">
           개인정보 입력
         </Head>
@@ -157,9 +168,9 @@ const InfoStep = ({
         </Text>
       </div>
 
-      <div className={styles.inputWrapperStyle}>
-        <div className={styles.wrapperStyle}>
-          <Text tag="b2_sb" className={styles.labelStyle}>
+      <div className={inputWrapperStyle}>
+        <div className={wrapperStyle}>
+          <Text tag="b2_sb" className={labelStyle}>
             이름
           </Text>
           <Input
@@ -172,35 +183,35 @@ const InfoStep = ({
             helperText={nameErrorMessage}
           />
         </div>
-        <div className={styles.wrapperStyle}>
-          <Text tag="b2_sb" className={styles.labelStyle}>
+        <div className={wrapperStyle}>
+          <Text tag="b2_sb" className={labelStyle}>
             전화번호
           </Text>
-          <div className={styles.numberWrapperStyle}>
+          <div className={numberWrapperStyle}>
             <Input
               placeholder="01012345678"
               value={phoneNumber}
               onChange={(e) => handlePhoneNumberChange(e.target.value)}
-              className={styles.inputStyle}
+              className={inputStyle}
               readOnly={isCodeVerified}
               onClick={isCodeVerified ? handleFocusAndNotify : undefined}
             />
 
             <BoxButton
-              className={styles.buttonStyle({ type: isRunning ? 'resend' : 'default' })}
+              className={buttonStyle({ type: isRunning ? 'resend' : 'default' })}
               isDisabled={isRequestDisabled}
               onClick={handleRequestVerification}>
               {showAsResend ? '재요청' : '인증 요청'}
             </BoxButton>
           </div>
           {isVerificationVisible && (
-            <div className={styles.numberWrapperStyle}>
+            <div className={numberWrapperStyle}>
               <Input
                 placeholder={`인증번호 ${MAX_VERIFICATION_CODE}자리`}
                 value={verificationCode}
                 onChange={(e) => handleVerificationCodeChange(e.target.value)}
                 rightAddOn={
-                  <Text tag="b2_m" color="gray8" className={styles.timerStyle}>
+                  <Text tag="b2_m" color="gray8" className={timerStyle}>
                     {formattedTime}
                   </Text>
                 }
@@ -208,7 +219,7 @@ const InfoStep = ({
                 onClick={isCodeVerified ? handleFocusAndNotify : undefined}
               />
               <BoxButton
-                className={styles.buttonStyle({ type: 'default' })}
+                className={buttonStyle({ type: 'default' })}
                 isDisabled={isVerifyButtonDisabled || isCodeVerified}
                 onClick={handleVerifyCode}>
                 확인
