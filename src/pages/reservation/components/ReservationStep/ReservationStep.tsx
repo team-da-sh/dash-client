@@ -31,13 +31,14 @@ const ReservationStep = ({ onNext }: ReservationStepPropTypes) => {
 
   const { id } = useParams<{ id: string }>();
   const { data, isError, isLoading } = useGetReservation(Number(id));
-  const { mutate: postReservation } = usePostReservation();
+  const { mutate: postReservation, isPending } = usePostReservation();
 
   if (!id) return <ErrorPage />;
   if (isLoading) return null;
   if (isError || !data) return <ErrorPage />;
 
   const handleSubmit = () => {
+    if (isPending) return;
     postReservation(
       { lessonId: id },
       {
@@ -123,7 +124,7 @@ const ReservationStep = ({ onNext }: ReservationStepPropTypes) => {
           필수 약관 전체 동의
         </Text>
         <div className={sprinkles({ pb: 20 })}>
-          <div onClick={handleToggleAll} className={agreementClassStyle}>
+          <button onClick={handleToggleAll} className={agreementClassStyle}>
             {isAllChecked ? (
               <IcCheckcircleMain0324 height={24} />
             ) : (
@@ -132,7 +133,7 @@ const ReservationStep = ({ onNext }: ReservationStepPropTypes) => {
             <Head level="h5" tag="b1_sb">
               전체동의
             </Head>
-          </div>
+          </button>
           {AGREEMENT_TERMS.map((term, index) => (
             <AgreeCheckBox
               key={index}

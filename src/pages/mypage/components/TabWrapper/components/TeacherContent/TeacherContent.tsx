@@ -36,8 +36,7 @@ const TeacherContent = () => {
   const { data } = useGetMyTeacherInfo(userRole);
   const { data: lessonData } = useGetMyLessonThumbnails(userRole);
   const { data: myData } = useGetMyPage();
-  const { data: accountData } = useGetTeacherAccount();
-
+  const { data: accountData } = useGetTeacherAccount(userRole);
   const isRegisteredTeacherProfile = userRole === 'TEACHER';
 
   if (isGetRoleLoading) {

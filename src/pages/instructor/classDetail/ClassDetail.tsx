@@ -17,6 +17,7 @@ import { sprinkles } from '@/shared/styles/sprinkles.css';
 export type TabStatus = 'APPROVE' | 'CANCEL';
 
 const ClassDetail = () => {
+  const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
 
@@ -44,26 +45,31 @@ const ClassDetail = () => {
         </Head>
         <section className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 8 })}>
           {lessonData && (
-            <ClassCard>
-              <ClassCard.Header
-                role={USER_ROLE.TEACHER}
-                date={lessonData.startDateTime}
-                status={lessonData.applyStatus}
-              />
-              <ClassCard.Body
-                name={lessonData.name}
-                imageUrl={lessonData.imageUrl}
-                genre={lessonData.genre}
-                level={lessonData.level}
-              />
-              <ClassCard.Footer>
-                <ClassInfo
-                  lessonRound={lessonData.rounds}
-                  location={lessonData.location}
-                  locationDetail={lessonData.detailedAddress}
+            <div
+              onClick={() => {
+                navigate(ROUTES_CONFIG.class.path(lessonData.id.toString()));
+              }}>
+              <ClassCard>
+                <ClassCard.Header
+                  role={USER_ROLE.TEACHER}
+                  date={lessonData.startDateTime}
+                  status={lessonData.applyStatus}
                 />
-              </ClassCard.Footer>
-            </ClassCard>
+                <ClassCard.Body
+                  name={lessonData.name}
+                  imageUrl={lessonData.imageUrl}
+                  genre={lessonData.genre}
+                  level={lessonData.level}
+                />
+                <ClassCard.Footer>
+                  <ClassInfo
+                    lessonRound={lessonData.rounds}
+                    location={lessonData.location}
+                    locationDetail={lessonData.detailedAddress}
+                  />
+                </ClassCard.Footer>
+              </ClassCard>
+            </div>
           )}
           <BoxButton variant="primary" onClick={handleEditClick} disabled={isClassStarted}>
             수정하기
