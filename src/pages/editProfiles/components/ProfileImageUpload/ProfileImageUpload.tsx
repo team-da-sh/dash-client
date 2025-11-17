@@ -60,7 +60,8 @@ const ProfileImageUpload = ({ defaultImageUrl, control }: ProfileImageUploadProp
   return (
     <>
       <div className={styles.containerStyle}>
-        <div
+        <button
+          type="button"
           className={styles.imgWrapperStyle}
           style={previewImg ? { backgroundImage: `url(${previewImg})` } : undefined}
           onClick={handleImageClick}>
@@ -68,8 +69,7 @@ const ProfileImageUpload = ({ defaultImageUrl, control }: ProfileImageUploadProp
           <Text tag="c1_sb" color="white" className={styles.overlayStyle}>
             수정
           </Text>
-        </div>
-
+        </button>
         <input
           id="file-input"
           type="file"
