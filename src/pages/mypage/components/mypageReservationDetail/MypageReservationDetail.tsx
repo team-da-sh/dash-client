@@ -1,4 +1,5 @@
 import { useNavigate, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useGetReservationsDetail } from '@/pages/mypage/components/mypageReservationDetail/apis/queries';
 import ApplicantInfo from '@/pages/mypage/components/mypageReservationDetail/components/ApplicantInfo/ApplicantInfo';
 import ClassInfo from '@/pages/mypage/components/mypageReservationDetail/components/ClassInfo/ClassInfo';
@@ -25,10 +26,6 @@ const MyPageReservationDetail = () => {
     navigate(ROUTES_CONFIG.mypageCancelClass.path(reservationId ?? ''));
   };
 
-  const handleGoClassDetailPage = () => {
-    navigate(ROUTES_CONFIG.class.path(data.lessonId.toString()));
-  };
-
   const handleGoAskPage = (e: React.MouseEvent) => {
     e.stopPropagation();
     window.open('https://forms.gle/JMYzQGxEdVHVogsE6', '_blank');
@@ -43,7 +40,7 @@ const MyPageReservationDetail = () => {
 
         <div className={styles.classInfoWrapper}>
           <ReservationProgress reservationStatus={data.reservationStatus} />
-          <button type="button" onClick={handleGoClassDetailPage}>
+          <Link to={ROUTES_CONFIG.class.path(data.lessonId.toString())}>
             <ClassCard>
               <ClassCard.Body
                 name={data.lessonName}
@@ -55,7 +52,7 @@ const MyPageReservationDetail = () => {
                 <ClassInfo lessonRound={data.rounds} location={data.location} locationDetail={data.detailedAddress} />
               </ClassCard.Footer>
             </ClassCard>
-          </button>
+          </Link>
         </div>
       </section>
 
