@@ -19,7 +19,6 @@ export type TabStatus = 'APPROVE' | 'CANCEL';
 const ClassDetail = () => {
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
-  const navigate = useNavigate();
 
   const [selectedTab, setSelectedTab] = useState<TabStatus>('APPROVE');
 
