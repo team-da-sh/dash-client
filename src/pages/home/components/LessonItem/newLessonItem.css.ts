@@ -14,7 +14,7 @@ export const newTeacherImageStyle = style({
   height: '2.4rem',
 
   objectFit: 'cover',
-  borderRadius: '10px',
+  borderRadius: '50%',
 });
 
 export const newWrapperStyle = style({
