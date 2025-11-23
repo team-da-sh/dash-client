@@ -10,15 +10,15 @@ const Footer = () => {
       <IcHeaderLogoSmallBlack width={53.3} height={18} />
 
       <div className={sprinkles({ display: 'flex', gap: 12, alignItems: 'center', marginTop: 14, marginBottom: 12 })}>
-        <a href="https://pastoral-can-e04.notion.site/ed5a3a0e3cc74fce908030819a98dc89">
-          <Text tag="b3_sb" color="gray8">
+        <a href="https://pastoral-can-e04.notion.site/ed5a3a0e3cc74fce908030819a98dc89" target="_blank">
+          <Text as="span" tag="b3_sb" color="gray8">
             개인정보처리방침
           </Text>
         </a>
 
         <Divider direction="vertical" length={'0.6rem'} color="gray5" />
-        <a href="https://pastoral-can-e04.notion.site/DASH-d53c54ca35424312a49a371ba39ee1a2">
-          <Text tag="b3_sb" color="gray8">
+        <a href="https://pastoral-can-e04.notion.site/DASH-d53c54ca35424312a49a371ba39ee1a2" target="_blank">
+          <Text as="span" tag="b3_sb" color="gray8">
             이용약관
           </Text>
         </a>
