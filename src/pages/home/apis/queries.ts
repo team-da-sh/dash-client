@@ -38,10 +38,17 @@ export const useGetPopularGenres = () => {
   });
 };
 
+const MAX_LESSON_COUNT = 15;
+
 export const useGetUpcomingLessons = () => {
   return useSuspenseQuery<UpcomingLessonsResponseTypes>({
     queryKey: lessonKeys.list._ctx.upcoming.queryKey,
     queryFn: () => getUpcomingLessons(),
+    select: (data) => {
+      return data.lessons.length > MAX_LESSON_COUNT
+        ? { ...data, lessons: data.lessons.slice(0, MAX_LESSON_COUNT) }
+        : data;
+    },
   });
 };
 
@@ -49,5 +56,10 @@ export const useGetLatestLessons = () => {
   return useQuery<LatestLessonsResponseTypes>({
     queryKey: lessonKeys.list._ctx.latest.queryKey,
     queryFn: () => getLatestLessons(),
+    select: (data) => {
+      return data.lessons.length > MAX_LESSON_COUNT
+        ? { ...data, lessons: data.lessons.slice(0, MAX_LESSON_COUNT) }
+        : data;
+    },
   });
 };
