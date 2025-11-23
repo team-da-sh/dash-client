@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import * as styles from '@/pages/accountRegister/accountRegister.css';
-import { usePostTeacherAccount } from '@/pages/accountRegister/apis/queries';
+import { useGetMyPage, usePostTeacherAccount } from '@/pages/accountRegister/apis/queries';
 import ConfirmBottomSheet from '@/pages/accountRegister/components/ConfirmBottomSheet/ConfirmBottomSheet';
 import { ACCOUNT_REGISTER_FORM_KEY } from '@/pages/accountRegister/constants/registerSection';
 import { accountRegisterSchema } from '@/pages/accountRegister/schema/accountRegisterSchema';
@@ -30,6 +30,7 @@ const AccountRegister = () => {
 
   const { data: bankList } = useGetBankList();
   const { data: accountData } = useGetTeacherAccount();
+  const { data: me } = useGetMyPage();
   const { mutate: teacherAccountMutate } = usePostTeacherAccount();
 
   // 수정 모드 여부
@@ -60,6 +61,31 @@ const AccountRegister = () => {
       accountNumber: '',
     },
   });
+
+  const resetDepositorOnlyRegister = () => {
+    const isRegisterMode = !isEditMode && me;
+
+    if (isRegisterMode) {
+      setValue('depositor', me.name);
+    }
+  };
+
+  const resetAccountRegisterForm = () => {
+    if (isEditMode && accountData && bankList) {
+      const existingBank = bankList.find((bank) => bank.bankId === accountData.bankId);
+      if (!existingBank) return;
+
+      reset({
+        depositor: accountData.depositor,
+        accountNumber: accountData.accountNumber,
+        bank: {
+          bankId: accountData.bankId,
+          bankName: accountData.bankName,
+          bankImageUrl: existingBank.bankImageUrl,
+        },
+      });
+    }
+  };
 
   const handleBankSelect = (selectedBankId: number, selectedBankName: string, imageUrl: string) => {
     setValue(
@@ -101,20 +127,8 @@ const AccountRegister = () => {
   };
 
   useEffect(() => {
-    if (isEditMode && accountData && bankList) {
-      const existingBank = bankList.find((bank) => bank.bankId === accountData.bankId);
-      if (!existingBank) return;
-
-      reset({
-        depositor: accountData.depositor,
-        accountNumber: accountData.accountNumber,
-        bank: {
-          bankId: accountData.bankId,
-          bankName: accountData.bankName,
-          bankImageUrl: existingBank.bankImageUrl,
-        },
-      });
-    }
+    resetDepositorOnlyRegister();
+    resetAccountRegisterForm();
   }, [isEditMode, accountData, bankList, reset]);
 
   return (
