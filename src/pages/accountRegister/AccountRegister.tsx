@@ -20,6 +20,7 @@ import Text from '@/shared/components/Text/Text';
 import { notify } from '@/shared/components/Toast/Toast';
 import { MAX_ACCOUNT_NUMBER_LENGTH } from '@/shared/constants/account';
 import { queryKeys } from '@/shared/constants/queryKey';
+import { allowOnlyNumberKey, allowOnlyNumberPaste } from '@/shared/utils/inputUtils';
 
 const AccountRegister = () => {
   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
@@ -165,6 +166,9 @@ const AccountRegister = () => {
             inputMode="numeric"
             {...register('accountNumber')}
             maxLength={MAX_ACCOUNT_NUMBER_LENGTH}
+            onKeyDown={allowOnlyNumberKey}
+            onPaste={allowOnlyNumberPaste}
+            value={accountNumber}
           />
         </div>
       </div>
