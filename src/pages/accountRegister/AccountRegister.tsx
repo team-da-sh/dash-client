@@ -162,7 +162,7 @@ const AccountRegister = () => {
             onClick={() => {
               setIsBankSheetOpen(true);
             }}>
-            {bank.bankImageUrl && bank.bankName ? (
+            {bank?.bankImageUrl && bank?.bankName ? (
               <div className={styles.bankInfoContainerStyle}>
                 <img src={bank.bankImageUrl} alt="은행 로고" className={styles.bankSelectImageStyle} />
                 <Text tag="b2_sb_long">{bank.bankName}</Text>
