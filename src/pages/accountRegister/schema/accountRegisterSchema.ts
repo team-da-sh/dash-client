@@ -15,5 +15,5 @@ export const accountRegisterSchema = z.object({
     },
     { required_error: '은행을 선택해주세요.' }
   ),
-  accountNumber: z.string().min(7).max(16).regex(ONLY_NUMBER, '숫자만 입력해주세요.'),
+  accountNumber: z.string().min(1).max(20).regex(ONLY_NUMBER, '숫자만 입력해주세요.'),
 });
