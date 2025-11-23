@@ -18,7 +18,6 @@ import { useVerification } from '@/pages/editProfiles/hooks/useVerification';
 import { profileSchema } from '@/pages/editProfiles/schema/profileSchema';
 import type { ProfileFormValues } from '@/pages/editProfiles/schema/profileSchema';
 import type { UpdateProfileRequestTypes } from '@/pages/editProfiles/types/api';
-import { allowOnlyNumberKey, allowOnlyNumberPaste } from '@/pages/editProfiles/utils/inputUtils';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import Input from '@/shared/components/Input/Input';
 import Text from '@/shared/components/Text/Text';
@@ -30,6 +29,7 @@ import {
   PHONE_AUTH_MESSAGES,
 } from '@/shared/constants/userInfo';
 import useBlockBackWithUnsavedChanges from '@/shared/hooks/useBlockBackWithUnsavedChanges';
+import { allowOnlyNumberKey, allowOnlyNumberPaste } from '@/shared/utils/inputUtils';
 
 interface ProfileFormPropTypes {
   defaultValues: {
