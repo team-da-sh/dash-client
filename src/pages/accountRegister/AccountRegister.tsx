@@ -84,7 +84,7 @@ const AccountRegister = () => {
 
     teacherAccountMutate(updateInfo, {
       onSuccess: () => {
-        navigate(ROUTES_CONFIG.mypage.withTab('student'));
+        navigate(ROUTES_CONFIG.mypage.withTab('teacher'));
         queryClient.invalidateQueries({ queryKey: queryKeys.teacher.me._ctx.account.queryKey });
 
         if (isEditMode) {
