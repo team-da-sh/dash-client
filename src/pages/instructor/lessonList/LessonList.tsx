@@ -19,6 +19,10 @@ const LessonList = ({ status }: LessonListProps) => {
   const navigate = useNavigate();
 
   const handleClassCardClick = (id: number) => {
+    navigate(ROUTES_CONFIG.class.path(id.toString()));
+  };
+
+  const handleDetailButtonClick = (id: number) => {
     navigate(ROUTES_CONFIG.instructorClassDetail.path(id.toString()));
   };
 
@@ -32,7 +36,7 @@ const LessonList = ({ status }: LessonListProps) => {
             <ClassCard.Header role={USER_ROLE.TEACHER} status={lesson.applyStatus} date={lesson.lessonDateTime} />
             <ClassCard.Body onClick={() => handleClassCardClick(lesson.id)} {...lesson} />
             <ClassCard.Footer showAsk={false}>
-              <BoxButton variant="outline" onClick={() => handleClassCardClick(lesson.id)}>
+              <BoxButton variant="outline" onClick={() => handleDetailButtonClick(lesson.id)}>
                 상세보기
               </BoxButton>
             </ClassCard.Footer>
