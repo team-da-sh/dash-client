@@ -1,4 +1,4 @@
-import { containerStyle } from '@/pages/home/components/Footer/footer.css';
+import { containerStyle, textStyle } from '@/pages/home/components/Footer/footer.css';
 import IcHeaderLogoSmallBlack from '@/shared/assets/svg/IcHeaderLogoSmallBlack';
 import Divider from '@/shared/components/Divider/Divider';
 import Text from '@/shared/components/Text/Text';
@@ -39,7 +39,7 @@ const Footer = () => {
             이메일
           </Text>
           <Divider direction="vertical" length={'0.6rem'} color="gray3" />
-          <Text tag="c1_r" color="gray5">
+          <Text tag="c1_r" color="gray5" className={textStyle}>
             doomchit1221@gmail.com
           </Text>
         </div>
@@ -48,7 +48,7 @@ const Footer = () => {
             전화번호
           </Text>
           <Divider direction="vertical" length={'0.6rem'} color="gray3" />
-          <Text tag="c1_r" color="gray5">
+          <Text tag="c1_r" color="gray5" className={textStyle}>
             010-5739-0233
           </Text>
         </div>
