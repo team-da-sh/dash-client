@@ -9,7 +9,7 @@ import ConfirmBottomSheet from '@/pages/accountRegister/components/ConfirmBottom
 import { ACCOUNT_REGISTER_FORM_KEY } from '@/pages/accountRegister/constants/registerSection';
 import { accountRegisterSchema } from '@/pages/accountRegister/schema/accountRegisterSchema';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import { useGetBankList, useGetTeacherAccount } from '@/shared/apis/queries';
+import { useGetBankList, useGetRole, useGetTeacherAccount } from '@/shared/apis/queries';
 import SvgIcArrowDownGray1032 from '@/shared/assets/svg/IcArrowDownGray1032';
 import BankBottomSheet from '@/shared/components/BankBottomSheet/BankBottomSheet';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
@@ -28,8 +28,11 @@ const AccountRegister = () => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
+  const { data: role } = useGetRole();
+  const userRole = role?.role;
+
   const { data: bankList } = useGetBankList();
-  const { data: accountData } = useGetTeacherAccount();
+  const { data: accountData } = useGetTeacherAccount(userRole);
   const { data: me } = useGetMyPage();
   const { mutate: teacherAccountMutate } = usePostTeacherAccount();
 
