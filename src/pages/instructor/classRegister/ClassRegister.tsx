@@ -29,6 +29,7 @@ import type { ClassRegisterInfoTypes } from '@/pages/instructor/classRegister/ty
 import type { LocationTypes } from '@/pages/instructor/classRegister/types/index';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
+import { notify } from '@/shared/components/Toast/Toast';
 import { genreEngMapping, levelEngMapping } from '@/shared/constants';
 import { lessonKeys, memberKeys } from '@/shared/constants/queryKey';
 import useBlockBackWithUnsavedChanges from '@/shared/hooks/useBlockBackWithUnsavedChanges';
@@ -231,6 +232,7 @@ const ClassRegister = () => {
               queryClient.invalidateQueries({ queryKey: lessonKeys.detail(lessonId).queryKey });
 
               navigate(ROUTES_CONFIG.instructorClassDetail.path(String(lessonId)));
+              notify({ message: '수정이 완료되었어요', icon: 'success' });
             },
           }
         );
@@ -242,6 +244,7 @@ const ClassRegister = () => {
             queryClient.invalidateQueries({ queryKey: lessonKeys.list.queryKey });
 
             navigate(ROUTES_CONFIG.classRegisterCompletion.path);
+            notify({ message: '개설이 완료되었어요', icon: 'success' });
           },
           // onError: () => {
           //   navigate(ROUTES_CONFIG.error.path);
