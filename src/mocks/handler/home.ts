@@ -1,8 +1,8 @@
 import { http, HttpResponse } from 'msw';
-import { POPULAR_GENRE_DATA, UPCOMING_LESSONS_DATA } from '@/mocks/data/home';
+import { POPULAR_GENRE_DATA } from '@/mocks/data/home';
 import { API_URL } from '@/shared/constants/apiURL';
 
-const isFirstCall = 0;
+// const isFirstCall = 0;
 let isSecondCall = 0;
 
 export const homeHandlers = [
