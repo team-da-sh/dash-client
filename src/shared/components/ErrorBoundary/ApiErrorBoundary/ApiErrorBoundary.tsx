@@ -35,14 +35,7 @@ const handleError = (error: Error | ApiError, errorInfo: ErrorInfo) => {
 export const ApiErrorBoundary = ({ children }: { children: ReactNode }) => {
   return (
     <ErrorBoundary FallbackComponent={ErrorPage} onError={handleError}>
-      <Suspense
-        fallback={
-          <div className={errorContainerStyle}>
-            <Spinner />
-          </div>
-        }>
-        {children}
-      </Suspense>
+      {children}
     </ErrorBoundary>
   );
 };
