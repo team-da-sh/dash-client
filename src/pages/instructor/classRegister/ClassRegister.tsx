@@ -44,13 +44,11 @@ const ClassRegister = () => {
   const isValidId = lessonId !== null && !isNaN(lessonId) && lessonId > 0;
 
   const queryClient = useQueryClient();
-  const { mutate: classRegisterMutate } = usePostClassRegisterInfo();
-  const { mutate: classUpdateMutate } = usePatchClassInfo();
+  const { mutate: classRegisterMutate, isPending: isRegistering } = usePostClassRegisterInfo();
+  const { mutate: classUpdateMutate, isPending: isEditting } = usePatchClassInfo();
   const { isBottomSheetOpen, openBottomSheet, closeBottomSheet } = useBottomSheet();
 
   const { data: lessonData } = useGetLessonDetail(lessonId || 0, { enabled: isValidId });
-
-  const isEditMode = isValidId && !!lessonData;
 
   const methods = useForm({
     resolver: zodResolver(classRegisterSchema),
@@ -70,6 +68,10 @@ const ClassRegister = () => {
 
   const { register, watch, setValue, control, clearErrors, reset, formState } = methods;
   const { isDirty } = formState;
+
+  const isEditMode = isValidId && !!lessonData;
+  const isSubmitting = isRegistering || isEditting;
+  const isNotChangedWithEdit = isEditMode && !isDirty;
 
   const {
     className,
@@ -335,7 +337,8 @@ const ClassRegister = () => {
                   maxReservationCount,
                   price,
                 }) ||
-                (isEditMode && !isDirty)
+                isNotChangedWithEdit ||
+                isSubmitting
               }>
               완료
             </BoxButton>
