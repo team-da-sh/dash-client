@@ -28,6 +28,9 @@ const InfoComponent = ({ type, profileImageUrl, mainText, subContent }: InfoComp
           src={profileImageUrl || 'images/image_profile_basic.png'}
           alt="프로필 이미지"
           className={styles.imgStyle}
+          loading="eager"
+          decoding="async"
+          fetchPriority="high"
         />
         <div className={styles.wrapperStyle}>
           <div className={styles.textWrapperStyle}>{mainText}</div>
