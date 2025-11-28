@@ -107,7 +107,7 @@ const InfoStep = ({
         onError: (error) => {
           if (error.response?.status === 400) {
             notify({ message: PHONE_AUTH_MESSAGES.LIMIT_EXCEEDED, icon: 'fail', bottomGap: 'large' });
-          } else if (error.response?.status === 404) {
+          } else if (error.response?.status === 409) {
             notify({ message: PHONE_AUTH_MESSAGES.DUPLICATE_PHONE, icon: 'fail', bottomGap: 'large' });
           } else {
             notify({ message: PHONE_AUTH_MESSAGES.SEND_FAILED, icon: 'fail', bottomGap: 'large' });
