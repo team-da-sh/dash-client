@@ -149,6 +149,7 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
                 }}
                 value={phoneNumber}
                 className={inputStyle}
+                showMaxLength
               />
               <BoxButton
                 className={buttonStyle({ type: isRunning ? 'resend' : 'default' })}
