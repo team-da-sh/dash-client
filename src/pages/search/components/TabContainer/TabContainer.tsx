@@ -117,6 +117,9 @@ const TabContainer = ({
 
   const tagSize: 'search' | 'sort' = activeTags.length > 0 ? 'search' : 'sort';
   const tagType: 'search' | 'sort' = activeTags.length > 0 ? 'search' : 'sort';
+  const lessons = classList?.lessons ?? [];
+  const shouldRenderLessons = lessons.length > 0;
+  const shouldRenderEmptyView = classList?.lessons !== undefined && !shouldRenderLessons;
 
   return (
     <section
@@ -185,13 +188,11 @@ const TabContainer = ({
               setEndDate={setEndDate}
             />
             <div className={styles.divCustomStyle}>
-              {classList && classList.lessons && classList.lessons.length > 0 ? (
-                classList.lessons.map((data: ClassTypes) => (
-                  <ClassItem key={data.id} linkType="detail" {...data} useNewStyles={true} />
-                ))
-              ) : (
-                <EmptyView />
-              )}
+              {shouldRenderLessons
+                ? lessons.map((data: ClassTypes) => (
+                    <ClassItem key={data.id} linkType="detail" {...data} useNewStyles={true} />
+                  ))
+                : shouldRenderEmptyView && <EmptyView />}
             </div>
           </TabPanel>
           <TabPanel isSelected={selectedTab === TAB.DANCER}>

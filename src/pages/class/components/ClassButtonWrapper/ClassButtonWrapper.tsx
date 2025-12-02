@@ -12,6 +12,7 @@ import BoxButton from '@/shared/components/BoxButton/BoxButton';
 const ClassButtonWrapper = ({ lessonData }: { lessonData: LessonDetailResponseTypes }) => {
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
+  const isMyLesson = lessonData.isMyLesson;
 
   const { isHeartFilled, toggleHeart } = useHeartToggle();
   const { buttonText, isDisabled } = useClassButtonState(lessonData.status, lessonData.bookStatus);
@@ -29,7 +30,7 @@ const ClassButtonWrapper = ({ lessonData }: { lessonData: LessonDetailResponseTy
         {isHeartFilled ? <IcHeartFilledGray07 width={28} /> : <IcHeartOutlinedGray07 width={28} />}
       </BoxButton>
 
-      <BoxButton variant="primary" isDisabled={isDisabled} onClick={handleApplyClick}>
+      <BoxButton variant="primary" isDisabled={isDisabled || isMyLesson} onClick={handleApplyClick}>
         {buttonText}
       </BoxButton>
     </BlurButton>

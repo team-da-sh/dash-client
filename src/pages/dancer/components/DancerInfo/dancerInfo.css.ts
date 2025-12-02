@@ -1,15 +1,19 @@
 import { style } from '@vanilla-extract/css';
+import { hideScrollbar } from '@/shared/styles/utils.css';
 
-export const rowScrollStyle = style({
-  display: 'flex',
-  flexDirection: 'row',
+export const rowScrollStyle = style([
+  hideScrollbar,
+  {
+    display: 'flex',
+    flexDirection: 'row',
 
-  width: '100%',
-  gap: '0.8rem',
-  paddingBottom: '3.6rem',
+    width: '100%',
+    gap: '0.8rem',
+    paddingBottom: '3.6rem',
 
-  overflowX: 'auto',
-});
+    overflowX: 'auto',
+  },
+]);
 
 export const classItemStyle = style({
   flex: '0 0 auto',

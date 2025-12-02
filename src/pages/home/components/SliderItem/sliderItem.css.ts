@@ -8,6 +8,18 @@ export const containerStyle = style({
   width: '100%',
   marginTop: '-6rem',
   aspectRatio: '1 / 1',
+
+  '::after': {
+    content: '""',
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    width: '100%',
+    height: '50%',
+    background: 'linear-gradient(180deg, rgba(44, 44, 44, 0.00) 0%, #000 100%)',
+    pointerEvents: 'none',
+    zIndex: vars.zIndex.one,
+  },
 });
 
 export const imageStyle = style({
@@ -26,6 +38,7 @@ export const descriptionStyle = style({
 
   wordBreak: 'keep-all',
   whiteSpace: 'pre-line',
+  zIndex: 2,
 });
 
 export const showDetailButtonStyle = style({
