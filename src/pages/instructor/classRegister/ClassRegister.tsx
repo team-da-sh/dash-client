@@ -36,6 +36,7 @@ import useBlockBackWithUnsavedChanges from '@/shared/hooks/useBlockBackWithUnsav
 import useBottomSheet from '@/shared/hooks/useBottomSheet';
 import useDebounce from '@/shared/hooks/useDebounce';
 import useImageUploader from '@/shared/hooks/useImageUploader';
+import { CLASS_REGISTER_EDIT_MESSAGE } from './constants/notifyMessage';
 
 const ClassRegister = () => {
   const { id } = useParams<{ id: string }>();
@@ -232,7 +233,7 @@ const ClassRegister = () => {
               queryClient.invalidateQueries({ queryKey: lessonKeys.detail(lessonId).queryKey });
 
               navigate(ROUTES_CONFIG.instructorClassDetail.path(String(lessonId)));
-              notify({ message: '수정이 완료되었어요', icon: 'success' });
+              notify({ message: CLASS_REGISTER_EDIT_MESSAGE.EDIT_SUCCESS, icon: 'success' });
             },
           }
         );
@@ -244,7 +245,7 @@ const ClassRegister = () => {
             queryClient.invalidateQueries({ queryKey: lessonKeys.list.queryKey });
 
             navigate(ROUTES_CONFIG.classRegisterCompletion.path);
-            notify({ message: '개설이 완료되었어요', icon: 'success' });
+            notify({ message: CLASS_REGISTER_EDIT_MESSAGE.REGISTER_SUCCESS, icon: 'success' });
           },
           // onError: () => {
           //   navigate(ROUTES_CONFIG.error.path);
