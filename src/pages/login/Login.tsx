@@ -14,7 +14,7 @@ const Login = () => {
         </div>
 
         <div className={styles.videoStyle}>
-          <video width={300} autoPlay muted loop playsInline>
+          <video width={300} autoPlay muted loop playsInline preload="auto">
             <source src={LoginWepm} type="video/webm" />
           </video>
         </div>
