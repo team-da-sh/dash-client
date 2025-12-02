@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { FieldValues, UseFormReturn } from 'react-hook-form';
+import type { FieldValues, UseFormReturn } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import Modal from '@/common/components/Modal/Modal';
@@ -30,6 +30,7 @@ export default function useBlockBackWithUnsavedChanges<TFieldValues extends Fiel
   const shouldBlockRef = useRef(true);
   const isDirtyRef = useRef(false);
   const armedRef = useRef(false);
+  const isModalOpenRef = useRef(false);
 
   useEffect(() => {
     initialValuesRef.current = methods.getValues();
@@ -75,24 +76,35 @@ export default function useBlockBackWithUnsavedChanges<TFieldValues extends Fiel
 
       if (!armedRef.current) return;
 
+      if (isModalOpenRef.current) {
+        history.pushState(null, '', location.href);
+        return;
+      }
+
       history.pushState(null, '', location.href);
 
+      isModalOpenRef.current = true;
       openModal(({ close }) => (
         <Modal
           content={content}
           description={description}
           type="default"
-          onClose={close}
+          onClose={() => {
+            isModalOpenRef.current = false;
+            close();
+          }}
           leftButtonText={leftButtonText}
           rightButtonText={rightButtonText}
           onLeftClickHandler={() => {
             shouldBlockRef.current = false;
+            isModalOpenRef.current = false;
             close();
             const steps = armedRef.current ? -2 : -1;
             armedRef.current = false;
             navigate(steps);
           }}
           onRightClickHandler={() => {
+            isModalOpenRef.current = false;
             close();
           }}
         />
@@ -106,6 +118,12 @@ export default function useBlockBackWithUnsavedChanges<TFieldValues extends Fiel
   useEffect(() => {
     const handleHeaderNavClickCapture = (event: MouseEvent) => {
       if (!shouldBlockRef.current || !isDirtyRef.current) return;
+
+      if (isModalOpenRef.current) {
+        event.preventDefault();
+        event.stopPropagation();
+        return;
+      }
 
       const target = event.target as HTMLElement | null;
       if (!target) return;
@@ -124,21 +142,27 @@ export default function useBlockBackWithUnsavedChanges<TFieldValues extends Fiel
       event.preventDefault();
       event.stopPropagation();
 
+      isModalOpenRef.current = true;
       openModal(({ close }) => (
         <Modal
           content={content}
           description={description}
           type="default"
-          onClose={close}
+          onClose={() => {
+            isModalOpenRef.current = false;
+            close();
+          }}
           leftButtonText={leftButtonText}
           rightButtonText={rightButtonText}
           onLeftClickHandler={() => {
             shouldBlockRef.current = false;
             armedRef.current = false;
+            isModalOpenRef.current = false;
             close();
             navigate(navigateTo!);
           }}
           onRightClickHandler={() => {
+            isModalOpenRef.current = false;
             close();
           }}
         />
