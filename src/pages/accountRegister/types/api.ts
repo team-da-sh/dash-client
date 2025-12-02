@@ -4,3 +4,9 @@ export interface TeacherAccountRequestTypes {
   bankName: string;
   accountNumber: string;
 }
+
+export interface MyPageResponseTypes {
+  profileImageUrl: string;
+  name: string;
+  phoneNumber: string;
+}
