@@ -6,3 +6,7 @@ export const containerStyle = style({
 
   backgroundColor: vars.colors.gray01,
 });
+
+export const textStyle = style({
+  textDecoration: 'none',
+});

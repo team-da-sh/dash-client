@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { MAX_ACCOUNT_NUMBER_LENGTH } from '@/shared/constants/account';
 import { ONLY_KOR_ENG_SPACE, ONLY_NUMBER } from '@/shared/constants/regex';
 
 export const accountRegisterSchema = z.object({
@@ -15,5 +16,5 @@ export const accountRegisterSchema = z.object({
     },
     { required_error: '은행을 선택해주세요.' }
   ),
-  accountNumber: z.string().min(7).max(16).regex(ONLY_NUMBER, '숫자만 입력해주세요.'),
+  accountNumber: z.string().min(1).max(MAX_ACCOUNT_NUMBER_LENGTH).regex(ONLY_NUMBER, '숫자만 입력해주세요.'),
 });

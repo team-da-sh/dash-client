@@ -85,8 +85,10 @@ export const useVerification = (phoneNumber: string) => {
           const status = error.response?.status;
           if (status === 400) {
             notify({ message: PHONE_AUTH_MESSAGES.LIMIT_EXCEEDED, icon: 'fail', bottomGap: 'large' });
-          } else if (status === 404) {
+          } else if (status === 409) {
             notify({ message: PHONE_AUTH_MESSAGES.DUPLICATE_PHONE, icon: 'fail', bottomGap: 'large' });
+          } else {
+            notify({ message: PHONE_AUTH_MESSAGES.SEND_FAILED, icon: 'fail', bottomGap: 'large' });
           }
         },
       }

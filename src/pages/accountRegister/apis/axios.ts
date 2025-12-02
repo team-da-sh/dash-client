@@ -7,3 +7,9 @@ export const postTeacherAccount = async (accountData: TeacherAccountRequestTypes
 
   return response;
 };
+
+export const getMyPage = async () => {
+  const { data } = await instance.get(API_URL.MEMBERS_ME);
+
+  return data;
+};

@@ -17,6 +17,8 @@ import { setStorage } from '@/shared/utils/handleToken';
 const Onboarding = () => {
   const location = useLocation();
   const tokenRef = useRef(location.state);
+  const isDeleted = tokenRef.current?.isDeleted ?? false;
+
   const { Funnel, Step, setStep, currentStep } = useFunnel(FINAL_ONBOARDING_STEP, ROUTES_CONFIG.home.path);
 
   const initialState: OnboardingState = {
@@ -100,7 +102,7 @@ const Onboarding = () => {
             />
           </Step>
           <Step name="2">
-            <FinishStep name={onboarding.info.name} />
+            <FinishStep name={onboarding.info.name} isDeleted={isDeleted} />
           </Step>
         </Funnel>
       </div>
