@@ -9,6 +9,11 @@ export const rowScrollStyle = style({
   paddingBottom: '3.6rem',
 
   overflowX: 'auto',
+  selectors: {
+    '&::-webkit-scrollbar': {
+      display: 'none',
+    },
+  },
 });
 
 export const classItemStyle = style({

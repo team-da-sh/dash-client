@@ -16,6 +16,9 @@ export const containerStyle = style({
       paddingLeft: '2rem',
       paddingRight: '2rem',
     },
+    '&::-webkit-scrollbar': {
+      display: 'none',
+    },
   },
 });
 
