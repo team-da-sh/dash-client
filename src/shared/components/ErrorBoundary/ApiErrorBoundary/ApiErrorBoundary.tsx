@@ -1,7 +1,7 @@
 import * as Sentry from '@sentry/react';
 import { isAxiosError } from 'axios';
 import type { ErrorInfo } from 'react';
-import { type ReactNode } from 'react';
+import { Suspense, type ReactNode } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import ErrorPage from '@/pages/error/ErrorPage';
 import type { ApiError } from '@/shared/types/ApiError';
@@ -33,7 +33,7 @@ const handleError = (error: Error | ApiError, errorInfo: ErrorInfo) => {
 export const ApiErrorBoundary = ({ children }: { children: ReactNode }) => {
   return (
     <ErrorBoundary FallbackComponent={ErrorPage} onError={handleError}>
-      {children}
+      <Suspense fallback={<div />}>{children}</Suspense>
     </ErrorBoundary>
   );
 };
