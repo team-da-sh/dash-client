@@ -135,7 +135,7 @@ const InfoStep = ({
         },
         onError: (error) => {
           if (error.response?.status === 409) {
-            notify({ message: PHONE_AUTH_MESSAGES.CODE_MISMATCH, icon: 'fail', bottomGap: 'large' });
+            notify({ message: PHONE_AUTH_MESSAGES.DUPLICATE_PHONE, icon: 'fail', bottomGap: 'large' });
           } else {
             const message = error.response?.data?.message || PHONE_AUTH_MESSAGES.TRY_AGAIN;
             notify({ message, icon: 'fail', bottomGap: 'large' });
