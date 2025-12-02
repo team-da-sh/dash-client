@@ -29,12 +29,14 @@ import type { ClassRegisterInfoTypes } from '@/pages/instructor/classRegister/ty
 import type { LocationTypes } from '@/pages/instructor/classRegister/types/index';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
+import { notify } from '@/shared/components/Toast/Toast';
 import { genreEngMapping, levelEngMapping } from '@/shared/constants';
 import { lessonKeys, memberKeys } from '@/shared/constants/queryKey';
 import useBlockBackWithUnsavedChanges from '@/shared/hooks/useBlockBackWithUnsavedChanges';
 import useBottomSheet from '@/shared/hooks/useBottomSheet';
 import useDebounce from '@/shared/hooks/useDebounce';
 import useImageUploader from '@/shared/hooks/useImageUploader';
+import { CLASS_REGISTER_EDIT_MESSAGE } from './constants/notifyMessage';
 
 const ClassRegister = () => {
   const { id } = useParams<{ id: string }>();
@@ -44,13 +46,11 @@ const ClassRegister = () => {
   const isValidId = lessonId !== null && !isNaN(lessonId) && lessonId > 0;
 
   const queryClient = useQueryClient();
-  const { mutate: classRegisterMutate } = usePostClassRegisterInfo();
-  const { mutate: classUpdateMutate } = usePatchClassInfo();
+  const { mutate: classRegisterMutate, isPending: isRegistering } = usePostClassRegisterInfo();
+  const { mutate: classUpdateMutate, isPending: isEditting } = usePatchClassInfo();
   const { isBottomSheetOpen, openBottomSheet, closeBottomSheet } = useBottomSheet();
 
   const { data: lessonData } = useGetLessonDetail(lessonId || 0, { enabled: isValidId });
-
-  const isEditMode = isValidId && !!lessonData;
 
   const methods = useForm({
     resolver: zodResolver(classRegisterSchema),
@@ -70,6 +70,10 @@ const ClassRegister = () => {
 
   const { register, watch, setValue, control, clearErrors, reset, formState } = methods;
   const { isDirty } = formState;
+
+  const isEditMode = isValidId && !!lessonData;
+  const isSubmitting = isRegistering || isEditting;
+  const isNotChangedWithEdit = isEditMode && !isDirty;
 
   const {
     className,
@@ -229,6 +233,7 @@ const ClassRegister = () => {
               queryClient.invalidateQueries({ queryKey: lessonKeys.detail(lessonId).queryKey });
 
               navigate(ROUTES_CONFIG.instructorClassDetail.path(String(lessonId)));
+              notify({ message: CLASS_REGISTER_EDIT_MESSAGE.EDIT_SUCCESS, icon: 'success' });
             },
           }
         );
@@ -240,6 +245,7 @@ const ClassRegister = () => {
             queryClient.invalidateQueries({ queryKey: lessonKeys.list.queryKey });
 
             navigate(ROUTES_CONFIG.classRegisterCompletion.path);
+            notify({ message: CLASS_REGISTER_EDIT_MESSAGE.REGISTER_SUCCESS, icon: 'success' });
           },
           // onError: () => {
           //   navigate(ROUTES_CONFIG.error.path);
@@ -335,7 +341,8 @@ const ClassRegister = () => {
                   maxReservationCount,
                   price,
                 }) ||
-                (isEditMode && !isDirty)
+                isNotChangedWithEdit ||
+                isSubmitting
               }>
               완료
             </BoxButton>

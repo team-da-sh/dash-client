@@ -30,6 +30,7 @@ export interface LessonDetailResponseTypes {
   oldStreetAddress: string;
   favoriteCount?: number;
   bookStatus: boolean;
+  isMyLesson: boolean;
   status: StatusType;
   applyStatus: RecruitingStatus;
   createdAt: string;
