@@ -1,5 +1,4 @@
 import { useQuery, useSuspenseQuery } from '@tanstack/react-query';
-import { useCallback } from 'react';
 import '@/pages/home/apis/axios';
 import { getAdvertisements, getLatestLessons, getPopularGenres, getUpcomingLessons } from '@/pages/home/apis/axios';
 import type {
