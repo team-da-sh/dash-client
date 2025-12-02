@@ -58,9 +58,9 @@ globalStyle('#root', {
 });
 
 // Webkit 스크롤바 숨기기
-globalStyle('::-webkit-scrollbar', {
-  display: 'none',
-});
+// globalStyle('::-webkit-scrollbar', {
+//   display: 'none',
+// });
 
 globalStyle('.swiper-pagination-bullet', {
   width: '4px',
