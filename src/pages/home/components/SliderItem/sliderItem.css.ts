@@ -18,7 +18,7 @@ export const containerStyle = style({
     height: '50%',
     background: 'linear-gradient(180deg, rgba(44, 44, 44, 0.00) 0%, #000 100%)',
     pointerEvents: 'none',
-    zIndex: 1,
+    zIndex: vars.zIndex.one,
   },
 });
 
