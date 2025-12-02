@@ -4,7 +4,7 @@ import { patchMyProfile } from '@/pages/editProfiles/api/axios';
 import type { UpdateProfileRequestTypes } from '@/pages/editProfiles/types/api';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { notify } from '@/shared/components/Toast/Toast';
-import { memberKeys } from '@/shared/constants/queryKey';
+import { lessonKeys, memberKeys } from '@/shared/constants/queryKey';
 
 export const usePatchMyProfile = () => {
   const navigate = useNavigate();
@@ -14,6 +14,7 @@ export const usePatchMyProfile = () => {
     mutationFn: (profileData: UpdateProfileRequestTypes) => patchMyProfile(profileData),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: memberKeys.me.queryKey });
+      queryClient.invalidateQueries({ queryKey: lessonKeys.list.queryKey });
       navigate(ROUTES_CONFIG.mypage.path);
 
       notify({ message: '수정이 완료되었어요', icon: 'success' });

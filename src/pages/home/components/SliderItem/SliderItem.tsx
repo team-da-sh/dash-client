@@ -1,12 +1,4 @@
-import { useNavigate } from 'react-router-dom';
-import {
-  containerStyle,
-  descriptionStyle,
-  imageStyle,
-  showDetailButtonStyle,
-} from '@/pages/home/components/SliderItem/sliderItem.css';
-import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import IcArrowRightWhite14 from '@/shared/assets/svg/IcArrowRightWhite14';
+import { containerStyle, descriptionStyle, imageStyle } from '@/pages/home/components/SliderItem/sliderItem.css';
 import Head from '@/shared/components/Head/Head';
 
 interface SliderItemPropTypes {
@@ -15,15 +7,15 @@ interface SliderItemPropTypes {
   id: number;
 }
 
-const SliderItem = ({ imageUrl, description, id }: SliderItemPropTypes) => {
-  const navigate = useNavigate();
+const SliderItem = ({ imageUrl, description }: SliderItemPropTypes) => {
+  // const navigate = useNavigate();
 
-  const handleShowDetailClick = () => {
-    if (id === 0) {
-      return;
-    }
-    navigate(ROUTES_CONFIG.class.path(`${id}`));
-  };
+  // const handleShowDetailClick = () => {
+  //   if (id === 0) {
+  //     return;
+  //   }
+  //   navigate(ROUTES_CONFIG.class.path(`${id}`));
+  // };
 
   return (
     <div className={containerStyle}>
@@ -33,10 +25,10 @@ const SliderItem = ({ imageUrl, description, id }: SliderItemPropTypes) => {
         {description}
       </Head>
 
-      <button className={showDetailButtonStyle} onClick={handleShowDetailClick}>
+      {/* <button className={showDetailButtonStyle} onClick={handleShowDetailClick}>
         자세히 보기
         <IcArrowRightWhite14 width={14} height={14} />
-      </button>
+      </button> */}
     </div>
   );
 };
