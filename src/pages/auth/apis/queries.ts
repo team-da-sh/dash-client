@@ -18,7 +18,7 @@ export const useLoginMutation = () => {
       instance.defaults.headers.Authorization = `Bearer ${accessToken}`;
       if (!isOnboarded || isDeleted) {
         clearStorage();
-        navigate(ROUTES_CONFIG.onboarding.path, { state: { accessToken, refreshToken } });
+        navigate(ROUTES_CONFIG.onboarding.path, { state: { accessToken, refreshToken, isDeleted } });
         return;
       }
 

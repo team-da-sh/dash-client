@@ -1,17 +1,17 @@
 import type { SVGProps } from 'react';
 
 const SvgIcProfileBasic = (props: SVGProps<SVGSVGElement>) => (
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 101 101" {...props}>
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 96 96" {...props}>
     <g clipPath="url(#ic_profile_basic_svg__a)">
-      <rect width={100} height={100} x={0.524} y={0.5} fill="#E5E7EB" rx={50} />
+      <rect width={96} height={96} fill="#E5E7EB" rx={48} />
       <path
         fill="#A7AFBF"
-        d="M50.524 60.668a18.488 18.488 0 1 0 0-36.976 18.488 18.488 0 0 0 0 36.976m0 5.279c-11.46 0-37.335 7.078-37.335 21.129l-7 20.564h88.67l-7-20.564c0-14.051-25.876-21.13-37.335-21.13"
+        d="M48 57.762a17.749 17.749 0 1 0 0-35.498 17.749 17.749 0 0 0 0 35.498m0 5.067c-11.001 0-35.841 6.795-35.841 20.284l-6.72 19.742H90.56l-6.72-19.742c0-13.49-24.84-20.284-35.841-20.284"
       />
     </g>
     <defs>
       <clipPath id="ic_profile_basic_svg__a">
-        <rect width={100} height={100} x={0.524} y={0.5} fill="#fff" rx={50} />
+        <rect width={96} height={96} fill="#fff" rx={48} />
       </clipPath>
     </defs>
   </svg>

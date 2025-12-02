@@ -16,17 +16,17 @@ const OnboardingHeader = ({ step }: OnboardingHeaderPropTypes) => {
   };
 
   const handleBackClick = () => {
-    navigate(-1);
+    navigate(ROUTES_CONFIG.login.path);
   };
 
   return (
     <header className={styles.onboardingHeaderStyle}>
       {step !== 2 && (
-        <button onClick={handleBackClick} aria-label="뒤로 이동">
+        <button type="button" onClick={handleBackClick} aria-label="로그인으로 이동">
           <IcBackBlack width={24} height={24} className={styles.svgStyle} />
         </button>
       )}
-      <button onClick={handleLogoClick} aria-label="홈으로 이동">
+      <button type="button" onClick={handleLogoClick} aria-label="홈으로 이동">
         <IcHeaderLogoSmallBlack width={58} height={20} className={styles.svgStyle} />
       </button>
     </header>

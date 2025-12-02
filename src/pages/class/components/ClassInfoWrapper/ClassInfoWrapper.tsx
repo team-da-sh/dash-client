@@ -1,6 +1,18 @@
 import { useNavigate } from 'react-router-dom';
 import Card from '@/pages/class/components/Card/Card';
-import * as styles from '@/pages/class/components/ClassInfoWrapper/classInfoWrapper.css';
+import {
+  cardItemStyle,
+  cardStyle,
+  classTitle,
+  priceTextStyle,
+  priceWrapper,
+  profileStyle,
+  reviewSubText,
+  reviewTextStyle,
+  sectionContainer,
+  tagWrapper,
+  teacherWrapper,
+} from '@/pages/class/components/ClassInfoWrapper/classInfoWrapper.css';
 import type { LessonDetailResponseTypes } from '@/pages/class/types/api';
 import { getDDayLabel } from '@/pages/class/utils/dDay';
 import type { GenreTypes } from '@/pages/onboarding/types/genreTypes';
@@ -37,8 +49,8 @@ const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetailResponseType
   const MAX_DISPLAY_RESERVATION_COUNT = 999;
 
   return (
-    <section className={styles.sectionContainer} aria-label={`${name} 클래스 정보`}>
-      <div className={styles.tagWrapper}>
+    <section className={sectionContainer} aria-label={`${name} 클래스 정보`}>
+      <div className={tagWrapper}>
         <Tag type="genre" size="medium">
           <Text tag="b3_m" color="white">
             {translatedGenre}
@@ -51,24 +63,24 @@ const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetailResponseType
         </Tag>
       </div>
 
-      <Head level="h2" tag="h5_sb" className={styles.classTitle}>
+      <Head level="h2" tag="h5_sb" className={classTitle}>
         {name}
       </Head>
 
       <div>
-        <button className={styles.teacherWrapper} onClick={() => handleTeacherClick(teacherId)}>
-          <img src={teacherImageUrl} alt={`${teacherNickname} 프로필`} className={styles.profileStyle} />
-          <Text as="span" tag="b2_m" color="gray9">
+        <button className={teacherWrapper} onClick={() => handleTeacherClick(teacherId)}>
+          <img src={teacherImageUrl} alt={`${teacherNickname} 프로필`} className={profileStyle} />
+          <Text as="span" tag="b1_sb" color="gray9">
             {teacherNickname}
           </Text>
         </button>
       </div>
 
-      <div className={styles.priceWrapper}>
+      <div className={priceWrapper}>
         <Head level="h4" tag="h6_sb" color="gray6">
           {lessonRounds.length}회
         </Head>
-        <div className={styles.priceTextStyle}>
+        <div className={priceTextStyle}>
           <Head level="h5" tag="h3_sb">
             {price.toLocaleString()}
           </Head>
@@ -78,8 +90,8 @@ const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetailResponseType
         </div>
       </div>
 
-      <Card className={styles.cardStyle}>
-        <div className={styles.cardItemStyle}>
+      <Card className={cardStyle}>
+        <div className={cardItemStyle}>
           <Text tag="b3_sb" color="gray7">
             난이도
           </Text>
@@ -88,7 +100,7 @@ const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetailResponseType
           </Text>
         </div>
 
-        <div className={styles.cardItemStyle}>
+        <div className={cardItemStyle}>
           <Text tag="b3_sb" color="gray7">
             인원
           </Text>
@@ -101,15 +113,15 @@ const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetailResponseType
           </Text>
         </div>
 
-        <div className={styles.cardItemStyle}>
+        <div className={cardItemStyle}>
           <Text tag="b3_sb" color="gray7">
             리뷰
           </Text>
-          <div className={styles.reviewTextStyle}>
+          <div className={reviewTextStyle}>
             <Text tag="h6_sb" color="gray10">
               -
             </Text>
-            <Text tag="c1_r" color="gray6" className={styles.reviewSubText}>
+            <Text tag="c1_r" color="gray6" className={reviewSubText}>
               (-)
             </Text>
           </div>
