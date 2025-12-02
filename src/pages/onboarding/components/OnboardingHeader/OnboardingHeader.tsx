@@ -11,18 +11,22 @@ interface OnboardingHeaderPropTypes {
 const OnboardingHeader = ({ step }: OnboardingHeaderPropTypes) => {
   const navigate = useNavigate();
 
-  const handleHeaderClick = () => {
+  const handleLogoClick = () => {
     navigate(ROUTES_CONFIG.home.path);
+  };
+
+  const handleBackClick = () => {
+    navigate(ROUTES_CONFIG.login.path);
   };
 
   return (
     <header className={styles.onboardingHeaderStyle}>
       {step !== 2 && (
-        <button type="button" onClick={handleHeaderClick} aria-label="뒤로 이동">
+        <button type="button" onClick={handleBackClick} aria-label="로그인으로 이동">
           <IcBackBlack width={24} height={24} className={styles.svgStyle} />
         </button>
       )}
-      <button type="button" onClick={handleHeaderClick} aria-label="홈으로 이동">
+      <button type="button" onClick={handleLogoClick} aria-label="홈으로 이동">
         <IcHeaderLogoSmallBlack width={58} height={20} className={styles.svgStyle} />
       </button>
     </header>
