@@ -32,7 +32,6 @@ globalStyle('html, body', {
   justifyContent: 'center',
   alignItems: 'center',
   fontSize: '62.5%',
-  scrollbarWidth: 'none',
   margin: '0 auto',
   scrollBehavior: 'smooth',
   backgroundColor: vars.colors.white,
@@ -56,11 +55,6 @@ globalStyle('#root', {
   minHeight: '100dvh',
   backgroundColor: '#fff',
 });
-
-// Webkit 스크롤바 숨기기
-// globalStyle('::-webkit-scrollbar', {
-//   display: 'none',
-// });
 
 globalStyle('.swiper-pagination-bullet', {
   width: '4px',
