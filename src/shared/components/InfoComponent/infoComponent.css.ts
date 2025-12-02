@@ -18,6 +18,7 @@ export const imgStyle = style({
   objectFit: 'cover',
   borderRadius: '68.75px',
   border: `0.833px solid ${vars.colors.gray04}`,
+  backgroundColor: vars.colors.gray02,
 });
 
 export const wrapperStyle = style({

@@ -80,6 +80,7 @@ const BankBottomSheet = ({ isOpen, onClose, banks, handleBankSelect }: BankBotto
               {banks.map(({ bankId, bankName, bankImageUrl }) => (
                 <li key={bankId}>
                   <button
+                    type="button"
                     className={styles.ListItemStyle}
                     onClick={() => {
                       handleBankSelect(bankId, bankName, bankImageUrl);
