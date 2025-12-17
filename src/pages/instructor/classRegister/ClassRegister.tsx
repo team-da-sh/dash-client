@@ -280,13 +280,13 @@ const ClassRegister = () => {
 
   const handleRemoveLocation = () => {
     setSelectedLocation(null);
-    setValue(STATE_VALUE.SELECTED_LOCATION, null, { shouldValidate: true });
+    setValue(STATE_VALUE.SELECTED_LOCATION, null, { shouldValidate: true, shouldDirty: true });
     setDefaultPlace('');
   };
 
   const handleSelectLocation = (location: LocationTypes | null) => {
     setSelectedLocation(location);
-    setValue(STATE_VALUE.SELECTED_LOCATION, location, { shouldValidate: true });
+    setValue(STATE_VALUE.SELECTED_LOCATION, location, { shouldValidate: true, shouldDirty: true });
   };
   useBlockBackWithUnsavedChanges({ methods });
 
