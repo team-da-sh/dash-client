@@ -103,12 +103,14 @@ const ClassRegister = () => {
   const toggleCategory = (category: string) => {
     setValue('selectedGenre', category === selectedGenre ? '' : category, {
       shouldValidate: true,
+      shouldDirty: true,
     });
   };
 
   const toggleLevel = (level: string) => {
     setValue('selectedLevel', level === selectedLevel ? '' : level, {
       shouldValidate: true,
+      shouldDirty: true,
     });
   };
 
