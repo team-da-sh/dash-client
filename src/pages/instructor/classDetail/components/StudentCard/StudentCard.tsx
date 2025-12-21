@@ -40,7 +40,7 @@ const StudentCard = ({ studentData, index, lessonId, selectedTab }: StudentCardP
   const { text: buttonText, variant: buttonVariant } = STATUS_BUTTON_MAP[studentData.reservationStatus];
 
   const status = studentData.reservationStatus;
-
+  const isWithdrawStudent = studentData.name === '알 수 없음';
   const { mutate: approveMutate, isPending: successPending } = useLessonApproveMutation();
   const { mutate: cancelMutate, isPending: cancelPending } = useLessonCancelMutation();
 
@@ -107,13 +107,13 @@ const StudentCard = ({ studentData, index, lessonId, selectedTab }: StudentCardP
   return (
     <section className={styles.cardContainerStyle}>
       <section className={styles.leftWrapper}>
-        <Head level="h2" tag="b1_sb">
+        <Head level="h2" tag="b1_sb" className={styles.indexStyle}>
           {index + 1}
         </Head>
 
         <div className={styles.infoWrapper}>
           <div className={styles.nameWrapper}>
-            <Head level="h2" tag="b1_sb">
+            <Head level="h2" tag="b1_sb" color={isWithdrawStudent ? 'gray6' : 'black'}>
               {studentData.name}
             </Head>
             <ApplyTag variant={studentData.reservationStatus}>

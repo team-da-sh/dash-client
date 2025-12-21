@@ -30,14 +30,14 @@ const Class = () => {
   }
 
   const imageUrl = data.imageUrl;
-  const isDeletedTeacher = !imageUrl;
+  const isWithdrawTeacher = !imageUrl;
   const remainingSeats = data.maxReservationCount - data.reservationCount;
   const shouldShowChip = data.status === 'OPEN' && remainingSeats < LOW_SEAT_THRESHOLD;
 
   return (
     <main>
       <section className={topImgStyle}>
-        {isDeletedTeacher ? (
+        {isWithdrawTeacher ? (
           <div className={withdrawImgStyle}>
             <IcCircleCautionFilled width={54} height={54} className={withdrawIconStyle} />
             <Text tag="b1_sb" color="gray6">

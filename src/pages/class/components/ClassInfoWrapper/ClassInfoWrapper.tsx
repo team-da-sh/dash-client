@@ -48,7 +48,7 @@ const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetailResponseType
   };
 
   const MAX_DISPLAY_RESERVATION_COUNT = 999;
-  const isDeletedTeacher = teacherNickname === '알 수 없음';
+  const isWithdrawTeacher = teacherNickname === '알 수 없음';
 
   return (
     <section className={sectionContainer} aria-label={`${name} 클래스 정보`}>
@@ -72,14 +72,14 @@ const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetailResponseType
       <div>
         <button
           className={teacherWrapper}
-          onClick={isDeletedTeacher ? undefined : () => handleTeacherClick(teacherId)}
-          disabled={isDeletedTeacher}>
-          {isDeletedTeacher ? (
+          onClick={isWithdrawTeacher ? undefined : () => handleTeacherClick(teacherId)}
+          disabled={isWithdrawTeacher}>
+          {isWithdrawTeacher ? (
             <IcCircleCautionFilled width={40} height={40} />
           ) : (
             teacherImageUrl && <img src={teacherImageUrl} alt={`${teacherNickname} 프로필`} className={profileStyle} />
           )}
-          <Text as="span" tag="b1_sb" color={isDeletedTeacher ? 'gray6' : 'gray9'}>
+          <Text as="span" tag="b1_sb" color={isWithdrawTeacher ? 'gray6' : 'gray9'}>
             {teacherNickname}
           </Text>
         </button>
