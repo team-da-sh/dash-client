@@ -119,12 +119,6 @@ export default function useBlockBackWithUnsavedChanges<TFieldValues extends Fiel
     const handleHeaderNavClickCapture = (event: MouseEvent) => {
       if (!shouldBlockRef.current || !isDirtyRef.current) return;
 
-      if (isModalOpenRef.current) {
-        event.preventDefault();
-        event.stopPropagation();
-        return;
-      }
-
       const target = event.target as HTMLElement | null;
       if (!target) return;
 
