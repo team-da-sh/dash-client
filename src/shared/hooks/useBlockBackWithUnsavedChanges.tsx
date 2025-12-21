@@ -78,6 +78,10 @@ export default function useBlockBackWithUnsavedChanges<TFieldValues extends Fiel
 
       if (isModalOpenRef.current) {
         history.pushState(null, '', location.href);
+
+        requestAnimationFrame(() => {
+          navigate(location.pathname + location.search, { replace: true });
+        });
         return;
       }
 
