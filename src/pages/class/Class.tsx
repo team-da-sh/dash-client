@@ -14,14 +14,12 @@ import { chipWrapperStyle, topImgStyle, withdrawIconStyle, withdrawImgStyle } fr
 const Class = () => {
   const { id } = useParams<{ id: string }>();
 
-  if (!id) {
-    return <ErrorPage />;
-  }
+  const lessonId = id ? +id : 0;
+  const { data, isError, isPending } = useGetLessonDetail(lessonId, {
+    enabled: Boolean(id),
+  });
 
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const { data, isError, isLoading } = useGetLessonDetail(+id);
-
-  if (isLoading) {
+  if (!id || isPending) {
     return <></>;
   }
 

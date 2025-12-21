@@ -20,7 +20,7 @@ const Dancer = () => {
     return <></>;
   }
 
-  if (isError || !data) {
+  if (isError || !data || data.detail === '탈퇴한 회원입니다.') {
     return <ErrorPage />;
   }
 
