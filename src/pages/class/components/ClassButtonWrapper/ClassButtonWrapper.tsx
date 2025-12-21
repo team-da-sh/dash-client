@@ -15,7 +15,12 @@ const ClassButtonWrapper = ({ lessonData }: { lessonData: LessonDetailResponseTy
   const isMyLesson = lessonData.isMyLesson;
 
   const { isHeartFilled, toggleHeart } = useHeartToggle();
+  const isDeletedTeacher = lessonData.teacherNickname === '알 수 없음' && lessonData.imageUrl === null;
+
   const { buttonText, isDisabled } = useClassButtonState(lessonData.status, lessonData.bookStatus);
+
+  const finalButtonText = isDeletedTeacher ? '신청불가' : buttonText;
+  const finalIsDisabled = isDeletedTeacher || isDisabled || isMyLesson;
 
   const handleApplyClick = () => {
     if (!isDisabled && id) {
@@ -30,8 +35,8 @@ const ClassButtonWrapper = ({ lessonData }: { lessonData: LessonDetailResponseTy
         {isHeartFilled ? <IcHeartFilledGray07 width={28} /> : <IcHeartOutlinedGray07 width={28} />}
       </BoxButton>
 
-      <BoxButton variant="primary" isDisabled={isDisabled || isMyLesson} onClick={handleApplyClick}>
-        {buttonText}
+      <BoxButton variant="primary" isDisabled={finalIsDisabled} onClick={handleApplyClick}>
+        {finalButtonText}
       </BoxButton>
     </BlurButton>
   );

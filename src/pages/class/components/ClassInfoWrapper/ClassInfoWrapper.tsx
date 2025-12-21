@@ -17,6 +17,7 @@ import type { LessonDetailResponseTypes } from '@/pages/class/types/api';
 import { getDDayLabel } from '@/pages/class/utils/dDay';
 import type { GenreTypes } from '@/pages/onboarding/types/genreTypes';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
+import IcCircleCautionFilled from '@/shared/assets/svg/IcCircleCautionFilled';
 import Head from '@/shared/components/Head/Head';
 import Tag from '@/shared/components/Tag/Tag';
 import Text from '@/shared/components/Text/Text';
@@ -47,6 +48,7 @@ const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetailResponseType
   };
 
   const MAX_DISPLAY_RESERVATION_COUNT = 999;
+  const isDeletedTeacher = teacherNickname === '알 수 없음';
 
   return (
     <section className={sectionContainer} aria-label={`${name} 클래스 정보`}>
@@ -68,9 +70,16 @@ const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetailResponseType
       </Head>
 
       <div>
-        <button className={teacherWrapper} onClick={() => handleTeacherClick(teacherId)}>
-          <img src={teacherImageUrl} alt={`${teacherNickname} 프로필`} className={profileStyle} />
-          <Text as="span" tag="b1_sb" color="gray9">
+        <button
+          className={teacherWrapper}
+          onClick={isDeletedTeacher ? undefined : () => handleTeacherClick(teacherId)}
+          disabled={isDeletedTeacher}>
+          {isDeletedTeacher ? (
+            <IcCircleCautionFilled width={40} height={40} />
+          ) : (
+            teacherImageUrl && <img src={teacherImageUrl} alt={`${teacherNickname} 프로필`} className={profileStyle} />
+          )}
+          <Text as="span" tag="b1_sb" color={isDeletedTeacher ? 'gray6' : 'gray9'}>
             {teacherNickname}
           </Text>
         </button>
