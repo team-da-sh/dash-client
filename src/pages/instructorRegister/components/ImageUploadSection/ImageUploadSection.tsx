@@ -1,5 +1,4 @@
 import * as styles from '@/pages/instructorRegister/components/ImageUploadSection/imageUploadSection.css';
-import IcCameraMain0624 from '@/shared/assets/svg/IcCameraMain0624';
 import IcProfileBasic from '@/shared/assets/svg/IcProfileBasic';
 import Text from '@/shared/components/Text/Text';
 
