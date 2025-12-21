@@ -1,6 +1,11 @@
 import { style } from '@vanilla-extract/css';
 import { vars } from '@/shared/styles/theme.css';
 
+export const cardStyle = style({
+  display: 'flex',
+  gap: '1.2rem',
+});
+
 export const cardContainerStyle = style({
   width: '100%',
 
@@ -19,7 +24,10 @@ export const cardImageStyle = style({
 
   borderRadius: 3.4,
 
-  backgroundColor: vars.colors.gray04,
+  backgroundColor: vars.colors.gray01,
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
 });
 
 export const cardContentStyle = style({
