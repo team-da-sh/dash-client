@@ -14,6 +14,7 @@ import Head from '@/shared/components/Head/Head';
 import Text from '@/shared/components/Text/Text';
 import { notify } from '@/shared/components/Toast/Toast';
 import { teacherKeys } from '@/shared/constants/queryKey';
+import { WITHDRAW_USER_NAME } from '@/shared/constants/withdrawUser';
 import { formatDateTime } from '@/shared/utils/timeUtils';
 
 const STATUS_BUTTON_MAP: Record<
@@ -40,7 +41,7 @@ const StudentCard = ({ studentData, index, lessonId, selectedTab }: StudentCardP
   const { text: buttonText, variant: buttonVariant } = STATUS_BUTTON_MAP[studentData.reservationStatus];
 
   const status = studentData.reservationStatus;
-  const isWithdrawStudent = studentData.name === '알 수 없음';
+  const isWithdrawStudent = studentData.name === WITHDRAW_USER_NAME;
   const { mutate: approveMutate, isPending: successPending } = useLessonApproveMutation();
   const { mutate: cancelMutate, isPending: cancelPending } = useLessonCancelMutation();
 

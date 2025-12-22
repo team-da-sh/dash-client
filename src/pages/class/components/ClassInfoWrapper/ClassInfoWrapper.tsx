@@ -21,7 +21,8 @@ import IcCircleCautionFilled from '@/shared/assets/svg/IcCircleCautionFilled';
 import Head from '@/shared/components/Head/Head';
 import Tag from '@/shared/components/Tag/Tag';
 import Text from '@/shared/components/Text/Text';
-import { levelMapping, genreMapping } from '@/shared/constants/index';
+import { genreMapping, levelMapping } from '@/shared/constants/index';
+import { WITHDRAW_USER_NAME } from '@/shared/constants/withdrawUser';
 
 const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetailResponseTypes }) => {
   const {
@@ -48,7 +49,7 @@ const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetailResponseType
   };
 
   const MAX_DISPLAY_RESERVATION_COUNT = 999;
-  const isWithdrawTeacher = teacherNickname === '알 수 없음';
+  const isWithdrawTeacher = teacherNickname === WITHDRAW_USER_NAME;
 
   return (
     <section className={sectionContainer} aria-label={`${name} 클래스 정보`}>

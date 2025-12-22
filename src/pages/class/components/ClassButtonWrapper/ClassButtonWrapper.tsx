@@ -8,6 +8,7 @@ import IcHeartFilledGray07 from '@/shared/assets/svg/IcHeartFilledGray07';
 import IcHeartOutlinedGray07 from '@/shared/assets/svg/IcHeartOutlinedGray07';
 import BlurButton from '@/shared/components/BlurButton/BlurButton';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
+import { WITHDRAW_USER_NAME } from '@/shared/constants/withdrawUser';
 
 const ClassButtonWrapper = ({ lessonData }: { lessonData: LessonDetailResponseTypes }) => {
   const navigate = useNavigate();
@@ -15,7 +16,7 @@ const ClassButtonWrapper = ({ lessonData }: { lessonData: LessonDetailResponseTy
   const isMyLesson = lessonData.isMyLesson;
 
   const { isHeartFilled, toggleHeart } = useHeartToggle();
-  const isDeletedTeacher = lessonData.teacherNickname === '알 수 없음' && lessonData.imageUrl === null;
+  const isDeletedTeacher = lessonData.teacherNickname === WITHDRAW_USER_NAME && lessonData.imageUrl === null;
 
   const { buttonText, isDisabled } = useClassButtonState(lessonData.status, lessonData.bookStatus);
 

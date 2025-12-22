@@ -1,6 +1,7 @@
 import { Navigate, Outlet, useParams } from 'react-router-dom';
 import { useGetLessonDetail } from '@/pages/class/apis/queries';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
+import { WITHDRAW_USER_NAME } from '@/shared/constants/withdrawUser';
 
 export const ReservationGuard = () => {
   const { id } = useParams<{ id: string }>();
@@ -21,7 +22,7 @@ export const ReservationGuard = () => {
   const { status, bookStatus, teacherNickname, isMyLesson } = data;
 
   const isButtonEnabled =
-    status === 'OPEN' && isMyLesson === false && bookStatus === false && teacherNickname !== '알 수 없음';
+    status === 'OPEN' && isMyLesson === false && bookStatus === false && teacherNickname !== WITHDRAW_USER_NAME;
 
   if (!isButtonEnabled) {
     return <Navigate to={ROUTES_CONFIG.class.path(lessonId.toString())} replace />;
