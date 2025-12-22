@@ -13,6 +13,10 @@ export const ReservationGuard = () => {
     enabled: isValidLessonId,
   });
 
+  if (!isValidLessonId) {
+    return <Navigate to={ROUTES_CONFIG.error.path} replace />;
+  }
+
   if (isPending) return null;
 
   if (isError || !data) {

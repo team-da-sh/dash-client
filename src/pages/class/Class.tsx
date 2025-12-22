@@ -13,13 +13,19 @@ import { chipWrapperStyle, topImgStyle, withdrawIconStyle, withdrawImgStyle } fr
 
 const Class = () => {
   const { id } = useParams<{ id: string }>();
+  const lessonId = Number(id);
 
-  const lessonId = id ? +id : 0;
-  const { data, isError, isPending } = useGetLessonDetail(lessonId, {
-    enabled: Boolean(id),
+  const isValidLessonId = Number.isInteger(lessonId) && lessonId > 0;
+
+  const { data, isPending, isError } = useGetLessonDetail(lessonId, {
+    enabled: Boolean(isValidLessonId),
   });
 
-  if (!id || isPending) {
+  if (!isValidLessonId) {
+    return <ErrorPage />;
+  }
+
+  if (isPending) {
     return <></>;
   }
 
