@@ -75,14 +75,16 @@ const ClassCardBody = ({
               </Text>
             </div>
           )}
-          <div className={sprinkles({ display: 'flex', gap: 8, alignItems: 'center' })}>
-            <Text tag="c1_sb" color="gray7">
-              장소
-            </Text>
-            <Text tag="c1_r" color="gray9">
-              {location || '미정'}
-            </Text>
-          </div>
+          {location && (
+            <div className={sprinkles({ display: 'flex', gap: 8, alignItems: 'center' })}>
+              <Text tag="c1_sb" color="gray7">
+                장소
+              </Text>
+              <Text tag="c1_r" color="gray9">
+                {location || '미정'}
+              </Text>
+            </div>
+          )}
         </div>
       </div>
     </div>
