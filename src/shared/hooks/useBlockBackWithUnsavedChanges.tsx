@@ -78,6 +78,10 @@ export default function useBlockBackWithUnsavedChanges<TFieldValues extends Fiel
 
       if (isModalOpenRef.current) {
         history.pushState(null, '', location.href);
+
+        requestAnimationFrame(() => {
+          navigate(location.pathname + location.search, { replace: true });
+        });
         return;
       }
 
@@ -118,12 +122,6 @@ export default function useBlockBackWithUnsavedChanges<TFieldValues extends Fiel
   useEffect(() => {
     const handleHeaderNavClickCapture = (event: MouseEvent) => {
       if (!shouldBlockRef.current || !isDirtyRef.current) return;
-
-      if (isModalOpenRef.current) {
-        event.preventDefault();
-        event.stopPropagation();
-        return;
-      }
 
       const target = event.target as HTMLElement | null;
       if (!target) return;
