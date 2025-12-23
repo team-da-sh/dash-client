@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useGetDancerDetail } from '@/pages/dancer/apis/queries';
 import DancerInfo from '@/pages/dancer/components/DancerInfo/DancerInfo';
 import TabWrapper from '@/pages/dancer/components/TabWrapper/TabWrapper';
-import { topImgStyle, gradientOverlayStyle, textWrapperStyle, genresWrapperStyle } from '@/pages/dancer/dancer.css';
+import { genresWrapperStyle, gradientOverlayStyle, textWrapperStyle, topImgStyle } from '@/pages/dancer/dancer.css';
 import ErrorPage from '@/pages/error/ErrorPage';
 import Head from '@/shared/components/Head/Head';
 import Tag from '@/shared/components/Tag/Tag';
@@ -11,16 +11,23 @@ import { genreMapping } from '@/shared/constants/index';
 
 const Dancer = () => {
   const { id } = useParams<{ id: string }>();
+  const dancerId = Number(id);
 
-  const { data, isError, isPending } = useGetDancerDetail(id ?? '', {
-    enabled: Boolean(id),
+  const isValidDancerId = Number.isInteger(dancerId) && dancerId > 0;
+
+  const { data, isPending, isError } = useGetDancerDetail(dancerId, {
+    enabled: Boolean(isValidDancerId),
   });
 
-  if (isPending || !id) {
+  if (!isValidDancerId) {
+    return <ErrorPage />;
+  }
+
+  if (isPending) {
     return <></>;
   }
 
-  if (isError || !data) {
+  if (isError || !data || data.detail === '탈퇴한 회원입니다.') {
     return <ErrorPage />;
   }
 

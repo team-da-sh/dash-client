@@ -30,6 +30,10 @@ export const infoWrapper = style({
   gap: '0.9rem',
 });
 
+export const indexStyle = style({
+  lineHeight: '2rem',
+});
+
 export const nameWrapper = style({
   display: 'flex',
   alignItems: 'center',

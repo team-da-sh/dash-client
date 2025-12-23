@@ -14,6 +14,7 @@ import Head from '@/shared/components/Head/Head';
 import Text from '@/shared/components/Text/Text';
 import { notify } from '@/shared/components/Toast/Toast';
 import { teacherKeys } from '@/shared/constants/queryKey';
+import { WITHDRAW_USER_NAME } from '@/shared/constants/withdrawUser';
 import { formatDateTime } from '@/shared/utils/timeUtils';
 
 const STATUS_BUTTON_MAP: Record<
@@ -40,7 +41,7 @@ const StudentCard = ({ studentData, index, lessonId, selectedTab }: StudentCardP
   const { text: buttonText, variant: buttonVariant } = STATUS_BUTTON_MAP[studentData.reservationStatus];
 
   const status = studentData.reservationStatus;
-
+  const isWithdrawStudent = studentData.name === WITHDRAW_USER_NAME;
   const { mutate: approveMutate, isPending: successPending } = useLessonApproveMutation();
   const { mutate: cancelMutate, isPending: cancelPending } = useLessonCancelMutation();
 
@@ -107,13 +108,13 @@ const StudentCard = ({ studentData, index, lessonId, selectedTab }: StudentCardP
   return (
     <section className={styles.cardContainerStyle}>
       <section className={styles.leftWrapper}>
-        <Head level="h2" tag="b1_sb">
+        <Head level="h2" tag="b1_sb" className={styles.indexStyle}>
           {index + 1}
         </Head>
 
         <div className={styles.infoWrapper}>
           <div className={styles.nameWrapper}>
-            <Head level="h2" tag="b1_sb">
+            <Head level="h2" tag="b1_sb" color={isWithdrawStudent ? 'gray6' : 'black'}>
               {studentData.name}
             </Head>
             <ApplyTag variant={studentData.reservationStatus}>
