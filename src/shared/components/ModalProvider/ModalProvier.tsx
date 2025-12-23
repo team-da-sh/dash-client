@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { Fragment, useEffect } from 'react';
 import { useModalStore } from '@/common/stores/modal';
 
 const ModalProvider = () => {
@@ -20,9 +20,11 @@ const ModalProvider = () => {
 
   return (
     <>
-      {modalStore.map(({ id, render }) =>
-        render({ isOpen: modalStore.some((modal) => modal.id === id), close: () => closeModal(id) })
-      )}
+      {modalStore.map(({ id, render }) => (
+        <Fragment key={id}>
+          {render({ isOpen: modalStore.some((modal) => modal.id === id), close: () => closeModal(id) })}
+        </Fragment>
+      ))}
     </>
   );
 };

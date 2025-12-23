@@ -1,6 +1,7 @@
 import clsx from 'clsx';
 import type { GenreTypes } from '@/pages/onboarding/types/genreTypes';
 import type { LevelTypes } from '@/pages/onboarding/types/levelTypes';
+import IcCircleCautionFilled from '@/shared/assets/svg/IcCircleCautionFilled';
 import * as styles from '@/shared/components/ClassCard/style.css';
 import Head from '@/shared/components/Head/Head';
 import Tag from '@/shared/components/Tag/Tag';
@@ -31,13 +32,14 @@ const ClassCardBody = ({
   onClick,
 }: ClassCardBodyProps) => {
   return (
-    <div
-      className={sprinkles({
-        display: 'flex',
-        gap: 12,
-      })}
-      onClick={onClick}>
-      <img src={imageUrl} className={styles.cardImageStyle} alt={`${name}`} />
+    <div className={styles.cardStyle} onClick={onClick}>
+      {imageUrl ? (
+        <img src={imageUrl} className={styles.cardImageStyle} alt={`${name}`} />
+      ) : (
+        <div className={styles.cardImageStyle}>
+          <IcCircleCautionFilled width={36} height={36} />
+        </div>
+      )}
       <div
         className={clsx(
           sprinkles({
@@ -73,16 +75,15 @@ const ClassCardBody = ({
               </Text>
             </div>
           )}
-          {location && (
-            <div className={sprinkles({ display: 'flex', gap: 8, alignItems: 'center' })}>
-              <Text tag="c1_sb" color="gray7">
-                장소
-              </Text>
-              <Text tag="c1_r" color="gray9">
-                {location || '미정'}
-              </Text>
-            </div>
-          )}
+
+          <div className={sprinkles({ display: 'flex', gap: 8, alignItems: 'center' })}>
+            <Text tag="c1_sb" color="gray7">
+              장소
+            </Text>
+            <Text tag="c1_r" color="gray9">
+              {location || '미정'}
+            </Text>
+          </div>
         </div>
       </div>
     </div>

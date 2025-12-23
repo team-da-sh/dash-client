@@ -185,6 +185,11 @@ const AccountRegister = () => {
             maxLength={MAX_ACCOUNT_NUMBER_LENGTH}
             onKeyDown={allowOnlyNumberKey}
             onPaste={allowOnlyNumberPaste}
+            onChange={(e) => {
+              const onlyNumbers = e.target.value.replace(/\D/g, '');
+              e.target.value = onlyNumbers;
+              register('accountNumber').onChange(e);
+            }}
             value={accountNumber}
           />
         </div>

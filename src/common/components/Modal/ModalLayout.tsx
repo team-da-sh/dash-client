@@ -12,8 +12,10 @@ const ModalLayout = ({ onClose, children }: ModalLayoutProps) => {
       tabIndex={0}
       aria-label="모달 닫기"
       onClick={(e) => {
-        e.stopPropagation();
-        onClose();
+        if (e.target === e.currentTarget) {
+          e.stopPropagation();
+          onClose();
+        }
       }}
       onKeyDown={(e) => {
         if (e.key === 'Escape') {
