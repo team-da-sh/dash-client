@@ -63,7 +63,6 @@ const InstructorRegister = () => {
               />
             </div>
           </div>
-          <Divider direction="horizontal" color="gray1" length={'100%'} thickness={'0.8rem'} />
 
           <div className={styles.sectionWrapperStyle}>
             <DancerNameSection duplicateState={duplicateState} setDuplicateState={setDuplicateState} />
