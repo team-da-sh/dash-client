@@ -5,7 +5,7 @@ import { useGetMyPage } from '@/pages/mypage/apis/queries';
 import { useCancelReservation } from '@/pages/mypage/components/CancelConfirmPage/apis/query/useCancelReservation';
 import * as styles from '@/pages/mypage/components/CancelConfirmPage/cancelConfirmPage.css';
 import { useGetReservationsDetail } from '@/pages/mypage/components/mypageReservationDetail/apis/queries';
-import { CANCEL_CONFIRM_MESSAGE } from '@/pages/mypage/constants/modalMessage';
+import { CANCEL_CONFIRM_DESCRIPTION, CANCEL_CONFIRM_MESSAGE } from '@/pages/mypage/constants/modalMessage';
 import ApplicantInfo from '@/pages/reservation/components/ApplicantInfo/ApplicantInfo';
 import ClassInfo from '@/pages/reservation/components/ClassInfo/ClassInfo';
 import Modal from '@/common/components/Modal/Modal';
@@ -99,6 +99,7 @@ const CancelConfirmPage = () => {
     openModal(({ close }) => (
       <Modal
         content={CANCEL_CONFIRM_MESSAGE}
+        description={CANCEL_CONFIRM_DESCRIPTION}
         type="single"
         onClose={close}
         onClickHandler={() => {
