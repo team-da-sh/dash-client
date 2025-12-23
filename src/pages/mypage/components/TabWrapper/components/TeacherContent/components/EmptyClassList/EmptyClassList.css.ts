@@ -5,5 +5,5 @@ export const layoutStyle = style({
   flexDirection: 'column',
   alignItems: 'center',
   gap: '1.2rem',
-  padding: '0rem 2rem 3.6rem 2rem',
+  padding: '2rem 2rem 3.6rem 2rem',
 });

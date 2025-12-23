@@ -31,7 +31,7 @@ import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import { notify } from '@/shared/components/Toast/Toast';
 import { genreEngMapping, levelEngMapping } from '@/shared/constants';
-import { lessonKeys, memberKeys } from '@/shared/constants/queryKey';
+import { lessonKeys, memberKeys, teacherKeys } from '@/shared/constants/queryKey';
 import useBlockBackWithUnsavedChanges from '@/shared/hooks/useBlockBackWithUnsavedChanges';
 import useBottomSheet from '@/shared/hooks/useBottomSheet';
 import useDebounce from '@/shared/hooks/useDebounce';
@@ -103,12 +103,14 @@ const ClassRegister = () => {
   const toggleCategory = (category: string) => {
     setValue('selectedGenre', category === selectedGenre ? '' : category, {
       shouldValidate: true,
+      shouldDirty: true,
     });
   };
 
   const toggleLevel = (level: string) => {
     setValue('selectedLevel', level === selectedLevel ? '' : level, {
       shouldValidate: true,
+      shouldDirty: true,
     });
   };
 
@@ -231,6 +233,7 @@ const ClassRegister = () => {
               queryClient.invalidateQueries({ queryKey: memberKeys.me.queryKey });
               queryClient.invalidateQueries({ queryKey: lessonKeys.list.queryKey });
               queryClient.invalidateQueries({ queryKey: lessonKeys.detail(lessonId).queryKey });
+              queryClient.invalidateQueries({ queryKey: teacherKeys.me._ctx.lesson.queryKey });
 
               navigate(ROUTES_CONFIG.instructorClassDetail.path(String(lessonId)));
               notify({ message: CLASS_REGISTER_EDIT_MESSAGE.EDIT_SUCCESS, icon: 'success' });
@@ -277,13 +280,13 @@ const ClassRegister = () => {
 
   const handleRemoveLocation = () => {
     setSelectedLocation(null);
-    setValue(STATE_VALUE.SELECTED_LOCATION, null, { shouldValidate: true });
+    setValue(STATE_VALUE.SELECTED_LOCATION, null, { shouldValidate: true, shouldDirty: true });
     setDefaultPlace('');
   };
 
   const handleSelectLocation = (location: LocationTypes | null) => {
     setSelectedLocation(location);
-    setValue(STATE_VALUE.SELECTED_LOCATION, location, { shouldValidate: true });
+    setValue(STATE_VALUE.SELECTED_LOCATION, location, { shouldValidate: true, shouldDirty: true });
   };
   useBlockBackWithUnsavedChanges({ methods });
 
