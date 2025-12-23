@@ -1,11 +1,9 @@
 import { lazy } from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 import Withdraw from '@/pages/mypage/components/Withdraw/Withdraw';
-import Reservation from '@/pages/reservation/Reservation';
 import AuthGuard from '@/routes/guards/authGuard';
 import GuestGuard from '@/routes/guards/guestGuard';
 import OnboardingGuard from '@/routes/guards/onboardingGuard';
-import { ReservationGuard } from '@/routes/guards/reservationGuard';
 import WithdrawGuard from '@/routes/guards/withdrawGuard';
 import { guestRoutes } from '@/routes/modules/guestRoutes';
 import { protectedRoutes } from '@/routes/modules/protectedRoutes';
@@ -40,11 +38,11 @@ export const router = createBrowserRouter([
         element: <WithdrawGuard />,
         children: [{ index: true, element: <Withdraw /> }],
       },
-      {
-        path: ROUTES_CONFIG.reservation.path(':id'),
-        element: <ReservationGuard />,
-        children: [{ index: true, element: <Reservation /> }],
-      },
+      // {
+      //   path: ROUTES_CONFIG.reservation.path(':id'),
+      //   element: <ReservationGuard />,
+      //   children: [{ index: true, element: <Reservation /> }],
+      // },
       { path: '*', element: <Error /> },
     ],
   },
