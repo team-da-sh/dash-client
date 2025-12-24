@@ -18,6 +18,13 @@ const KakaoButton = () => {
   const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${rest_api_key}&redirect_uri=${redirect_uri}&response_type=code`;
 
   const handleLogin = () => {
+    // TODO: 환경 변수 확인용 - 배포 확인 후 제거
+    console.log('🔍 카카오 로그인 버튼 클릭 - 환경 변수 확인:', {
+      VITE_KAKAO_REDIRECT_URI: redirect_uri || '❌ undefined',
+      VITE_REST_API_KEY: rest_api_key ? '✅ 설정됨' : '❌ undefined',
+      생성된_URL: kakaoURL,
+    });
+
     window.location.href = kakaoURL;
   };
 
