@@ -121,7 +121,7 @@ const StudentCard = ({ studentData, index, lessonId, selectedTab }: StudentCardP
               {STATUS_KOREAN_MAP[studentData.reservationStatus]}
             </ApplyTag>
           </div>
-          <Text tag="b3_r" color="gray7">
+          <Text tag="b3_r" color="gray7" className={isWithdrawStudent ? styles.hiddenStyle : undefined}>
             {formatPhoneNumber(studentData.phoneNumber)}
           </Text>
         </div>
@@ -131,7 +131,11 @@ const StudentCard = ({ studentData, index, lessonId, selectedTab }: StudentCardP
         <Text tag="c1_r" color="gray9">
           {formatDateTime(studentData.reservationDateTime)}
         </Text>
-        <BoxButton variant={buttonVariant} onClick={handleStatusChangeClick} disabled={successPending || cancelPending}>
+        <BoxButton
+          variant={buttonVariant}
+          onClick={handleStatusChangeClick}
+          disabled={successPending || cancelPending}
+          className={isWithdrawStudent ? styles.hiddenStyle : undefined}>
           {buttonText}
         </BoxButton>
       </section>
