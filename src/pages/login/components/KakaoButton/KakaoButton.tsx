@@ -5,9 +5,17 @@ import { sprinkles } from '@/shared/styles/sprinkles.css';
 
 const KakaoButton = () => {
   const redirect_uri = import.meta.env.VITE_KAKAO_REDIRECT_URI;
+  const rest_api_key = import.meta.env.VITE_REST_API_KEY;
+
+  // TODO: 환경 변수 확인용 - 배포 확인 후 제거
+  console.log('🔍 카카오 로그인 환경 변수 확인:', {
+    VITE_KAKAO_REDIRECT_URI: redirect_uri || '❌ undefined',
+    VITE_REST_API_KEY: rest_api_key ? '✅ 설정됨' : '❌ undefined',
+    전체_URL: `https://kauth.kakao.com/oauth/authorize?client_id=${rest_api_key}&redirect_uri=${redirect_uri}&response_type=code`,
+  });
 
   // auth 요청 URL
-  const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${import.meta.env.VITE_REST_API_KEY}&redirect_uri=${redirect_uri}&response_type=code`;
+  const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${rest_api_key}&redirect_uri=${redirect_uri}&response_type=code`;
 
   const handleLogin = () => {
     window.location.href = kakaoURL;
