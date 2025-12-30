@@ -30,7 +30,7 @@ export default function useBlockBackWithUnsavedChanges<TFieldValues extends Fiel
   const shouldBlockRef = useRef(true);
   const isDirtyRef = useRef(false);
   const armedRef = useRef(false);
-  const isModalOpenRef = useRef(false);
+  const closeModalRef = useRef<(() => void) | null>(null);
 
   useEffect(() => {
     initialValuesRef.current = methods.getValues();
@@ -64,6 +64,14 @@ export default function useBlockBackWithUnsavedChanges<TFieldValues extends Fiel
     const handlePopState = () => {
       if (!shouldBlockRef.current) return;
 
+      // 모달이 열려있으면 모달을 닫고 현재 위치 유지
+      if (closeModalRef.current) {
+        closeModalRef.current();
+        closeModalRef.current = null;
+        history.pushState(null, '', location.href);
+        return;
+      }
+
       if (!isDirtyRef.current) {
         if (armedRef.current) {
           shouldBlockRef.current = false;
@@ -76,43 +84,36 @@ export default function useBlockBackWithUnsavedChanges<TFieldValues extends Fiel
 
       if (!armedRef.current) return;
 
-      if (isModalOpenRef.current) {
-        history.pushState(null, '', location.href);
-
-        requestAnimationFrame(() => {
-          navigate(location.pathname + location.search, { replace: true });
-        });
-        return;
-      }
-
       history.pushState(null, '', location.href);
 
-      isModalOpenRef.current = true;
-      openModal(({ close }) => (
-        <Modal
-          content={content}
-          description={description}
-          type="default"
-          onClose={() => {
-            isModalOpenRef.current = false;
-            close();
-          }}
-          leftButtonText={leftButtonText}
-          rightButtonText={rightButtonText}
-          onLeftClickHandler={() => {
-            shouldBlockRef.current = false;
-            isModalOpenRef.current = false;
-            close();
-            const steps = armedRef.current ? -2 : -1;
-            armedRef.current = false;
-            navigate(steps);
-          }}
-          onRightClickHandler={() => {
-            isModalOpenRef.current = false;
-            close();
-          }}
-        />
-      ));
+      openModal(({ close }) => {
+        closeModalRef.current = close;
+        return (
+          <Modal
+            content={content}
+            description={description}
+            type="default"
+            onClose={() => {
+              closeModalRef.current = null;
+              close();
+            }}
+            leftButtonText={leftButtonText}
+            rightButtonText={rightButtonText}
+            onLeftClickHandler={() => {
+              shouldBlockRef.current = false;
+              closeModalRef.current = null;
+              close();
+              const steps = armedRef.current ? -2 : -1;
+              armedRef.current = false;
+              navigate(steps);
+            }}
+            onRightClickHandler={() => {
+              closeModalRef.current = null;
+              close();
+            }}
+          />
+        );
+      });
     };
 
     window.addEventListener('popstate', handlePopState);
@@ -140,31 +141,33 @@ export default function useBlockBackWithUnsavedChanges<TFieldValues extends Fiel
       event.preventDefault();
       event.stopPropagation();
 
-      isModalOpenRef.current = true;
-      openModal(({ close }) => (
-        <Modal
-          content={content}
-          description={description}
-          type="default"
-          onClose={() => {
-            isModalOpenRef.current = false;
-            close();
-          }}
-          leftButtonText={leftButtonText}
-          rightButtonText={rightButtonText}
-          onLeftClickHandler={() => {
-            shouldBlockRef.current = false;
-            armedRef.current = false;
-            isModalOpenRef.current = false;
-            close();
-            navigate(navigateTo!);
-          }}
-          onRightClickHandler={() => {
-            isModalOpenRef.current = false;
-            close();
-          }}
-        />
-      ));
+      openModal(({ close }) => {
+        closeModalRef.current = close;
+        return (
+          <Modal
+            content={content}
+            description={description}
+            type="default"
+            onClose={() => {
+              closeModalRef.current = null;
+              close();
+            }}
+            leftButtonText={leftButtonText}
+            rightButtonText={rightButtonText}
+            onLeftClickHandler={() => {
+              shouldBlockRef.current = false;
+              armedRef.current = false;
+              closeModalRef.current = null;
+              close();
+              navigate(navigateTo!);
+            }}
+            onRightClickHandler={() => {
+              closeModalRef.current = null;
+              close();
+            }}
+          />
+        );
+      });
     };
 
     window.addEventListener('click', handleHeaderNavClickCapture, true);
