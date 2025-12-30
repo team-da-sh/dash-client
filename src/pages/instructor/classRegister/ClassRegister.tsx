@@ -294,7 +294,7 @@ const ClassRegister = () => {
   useBlockBackWithUnsavedChanges({ methods });
 
   useEffect(() => {
-    if (isValidId && lessonData?.lessonRound?.lessonRounds?.length) {
+    if (isEditMode && lessonData?.lessonRound?.lessonRounds?.length) {
       const firstRound = lessonData.lessonRound.lessonRounds[0];
       const startDateTime = new Date(firstRound.startDateTime);
       const now = new Date();
@@ -311,7 +311,7 @@ const ClassRegister = () => {
         ));
       }
     }
-  }, [isValidId, lessonData, navigate, openModal]);
+  }, [isEditMode, lessonData, navigate, openModal]);
 
   return (
     <>
