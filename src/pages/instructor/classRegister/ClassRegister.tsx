@@ -157,6 +157,7 @@ const ClassRegister = () => {
 
   const handleLocationCheckboxClick = () => {
     handleNoneLocationCheck();
+    setValue('isUndecidedLocation', !isUndecidedLocation, { shouldValidate: true, shouldDirty: true });
     clearErrors('selectedLocation');
   };
 
