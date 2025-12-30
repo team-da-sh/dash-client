@@ -300,7 +300,6 @@ const ClassRegister = () => {
       const now = new Date();
 
       if (now >= startDateTime) {
-        console.log('비정상적인 접근입니다.');
         openModal(({ close }) => (
           <Modal
             type="single"
