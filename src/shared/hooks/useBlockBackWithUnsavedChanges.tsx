@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import type { FieldValues, UseFormReturn } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
+import { useBlocker, useNavigate } from 'react-router-dom';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import Modal from '@/common/components/Modal/Modal';
 import { useModalStore } from '@/common/stores/modal';
@@ -32,6 +32,12 @@ export default function useBlockBackWithUnsavedChanges<TFieldValues extends Fiel
   const armedRef = useRef(false);
   const closeModalRef = useRef<(() => void) | null>(null);
   const isModalOpenRef = useRef(false);
+
+  // 모달이 열려있을 때 네비게이션을 차단
+  const blocker = useBlocker(() => {
+    // 모달이 열려있으면 항상 차단
+    return isModalOpenRef.current;
+  });
 
   useEffect(() => {
     initialValuesRef.current = methods.getValues();
@@ -65,11 +71,14 @@ export default function useBlockBackWithUnsavedChanges<TFieldValues extends Fiel
     const handlePopState = () => {
       if (!shouldBlockRef.current) return;
 
-      // 모달이 열려있으면 히스토리를 복원하고 모달은 유지 (닫지 않음)
-      // 모달이 열려있을 때는 페이지 이탈을 방지해야 함
+      // 모달이 열려있으면 useBlocker를 통해 차단된 상태를 유지
+      // popstate 이벤트가 발생해도 모달은 유지하고 페이지 이탈을 방지
       if (isModalOpenRef.current && closeModalRef.current) {
-        // Chrome에서 popstate 발생 시 이미 페이지가 이동한 상태일 수 있으므로
-        // 즉시 히스토리를 복원해야 함
+        // useBlocker가 이미 차단했으므로 reset하여 차단 상태 유지
+        if (blocker.state === 'blocked') {
+          blocker.reset();
+        }
+        // 히스토리를 복원하여 페이지 이동 방지
         history.pushState(null, '', location.href);
         return;
       }
@@ -129,7 +138,7 @@ export default function useBlockBackWithUnsavedChanges<TFieldValues extends Fiel
 
     window.addEventListener('popstate', handlePopState);
     return () => window.removeEventListener('popstate', handlePopState);
-  }, [navigate, openModal, content, description, leftButtonText, rightButtonText]);
+  }, [navigate, openModal, content, description, leftButtonText, rightButtonText, blocker]);
 
   useEffect(() => {
     const handleHeaderNavClickCapture = (event: MouseEvent) => {
