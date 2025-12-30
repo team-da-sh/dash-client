@@ -39,6 +39,14 @@ export default function useBlockBackWithUnsavedChanges<TFieldValues extends Fiel
     return isModalOpenRef.current;
   });
 
+  // useBlocker가 차단한 네비게이션을 처리
+  useEffect(() => {
+    if (blocker.state === 'blocked' && isModalOpenRef.current) {
+      // 모달이 열려있을 때는 차단 상태를 유지 (proceed하지 않음)
+      blocker.reset();
+    }
+  }, [blocker]);
+
   useEffect(() => {
     initialValuesRef.current = methods.getValues();
   }, [methods, ...snapshotDeps]);
@@ -74,12 +82,14 @@ export default function useBlockBackWithUnsavedChanges<TFieldValues extends Fiel
       // 모달이 열려있으면 useBlocker를 통해 차단된 상태를 유지
       // popstate 이벤트가 발생해도 모달은 유지하고 페이지 이탈을 방지
       if (isModalOpenRef.current && closeModalRef.current) {
-        // useBlocker가 이미 차단했으므로 reset하여 차단 상태 유지
+        // 크롬에서는 popstate 발생 시 이미 페이지가 이동한 상태일 수 있으므로
+        // 즉시 히스토리를 복원하여 페이지 이동 방지
+        history.pushState(null, '', location.href);
+
+        // useBlocker가 차단한 상태라면 reset하여 차단 상태 유지
         if (blocker.state === 'blocked') {
           blocker.reset();
         }
-        // 히스토리를 복원하여 페이지 이동 방지
-        history.pushState(null, '', location.href);
         return;
       }
 
@@ -101,6 +111,9 @@ export default function useBlockBackWithUnsavedChanges<TFieldValues extends Fiel
 
       // 다음 이벤트 루프에서 모달을 열어서 히스토리 복원이 완료된 후 처리
       setTimeout(() => {
+        // 모달이 열리기 전에 히스토리에 엔트리를 추가하여 뒤로가기 시 이 위치로 이동하도록 함
+        history.pushState(null, '', location.href);
+
         openModal(({ close }) => {
           closeModalRef.current = close;
           isModalOpenRef.current = true;
@@ -160,6 +173,9 @@ export default function useBlockBackWithUnsavedChanges<TFieldValues extends Fiel
 
       event.preventDefault();
       event.stopPropagation();
+
+      // 모달이 열리기 전에 히스토리에 엔트리를 추가하여 뒤로가기 시 이 위치로 이동하도록 함
+      history.pushState(null, '', location.href);
 
       openModal(({ close }) => {
         closeModalRef.current = close;
