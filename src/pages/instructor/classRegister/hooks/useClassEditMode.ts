@@ -115,6 +115,14 @@ export const useClassEditMode = ({
     });
 
     // 외부 state 업데이트
-    updateExternalStates(lessonData, formattedTimes, locationData, setImageUrls, setTimes, setSelectedLocation, setIsUndecidedLocation);
+    updateExternalStates(
+      lessonData,
+      formattedTimes,
+      locationData,
+      setImageUrls,
+      setTimes,
+      setSelectedLocation,
+      setIsUndecidedLocation
+    );
   }, [isEditMode, lessonData, reset, setImageUrls, setTimes, setSelectedLocation, setIsUndecidedLocation]);
 };
