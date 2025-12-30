@@ -300,11 +300,11 @@ const ClassRegister = () => {
       const now = new Date();
 
       if (now >= startDateTime) {
-        openModal(({ close }) => (
+        openModal(() => (
           <Modal
             type="single"
             content={'비정상적인 접근입니다.'}
-            onClose={close}
+            onClose={() => navigate(-1)}
             rightButtonText="뒤로가기"
             onClickHandler={() => navigate(-1)}
           />
