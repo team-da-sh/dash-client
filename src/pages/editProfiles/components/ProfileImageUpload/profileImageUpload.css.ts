@@ -41,5 +41,5 @@ export const overlayStyle = style({
 
   padding: '0.2rem 0rem 0.5rem 0rem',
 
-  backgroundColor: vars.colors.black70,
+  backgroundColor: vars.colors.black50,
 });
