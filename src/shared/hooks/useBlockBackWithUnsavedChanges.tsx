@@ -31,6 +31,7 @@ export default function useBlockBackWithUnsavedChanges<TFieldValues extends Fiel
   const isDirtyRef = useRef(false);
   const armedRef = useRef(false);
   const closeModalRef = useRef<(() => void) | null>(null);
+  const isModalOpenRef = useRef(false);
 
   useEffect(() => {
     initialValuesRef.current = methods.getValues();
@@ -64,18 +65,12 @@ export default function useBlockBackWithUnsavedChanges<TFieldValues extends Fiel
     const handlePopState = () => {
       if (!shouldBlockRef.current) return;
 
-      // 모달이 열려있으면 먼저 히스토리를 복원한 후 모달을 닫고 현재 위치 유지
-      if (closeModalRef.current) {
+      // 모달이 열려있으면 히스토리를 복원하고 모달은 유지 (닫지 않음)
+      // 모달이 열려있을 때는 페이지 이탈을 방지해야 함
+      if (isModalOpenRef.current && closeModalRef.current) {
         // Chrome에서 popstate 발생 시 이미 페이지가 이동한 상태일 수 있으므로
         // 즉시 히스토리를 복원해야 함
         history.pushState(null, '', location.href);
-        // 다음 이벤트 루프에서 모달을 닫아서 히스토리 복원이 완료된 후 처리
-        setTimeout(() => {
-          if (closeModalRef.current) {
-            closeModalRef.current();
-            closeModalRef.current = null;
-          }
-        }, 0);
         return;
       }
 
@@ -99,6 +94,7 @@ export default function useBlockBackWithUnsavedChanges<TFieldValues extends Fiel
       setTimeout(() => {
         openModal(({ close }) => {
           closeModalRef.current = close;
+          isModalOpenRef.current = true;
           return (
             <Modal
               content={content}
@@ -106,6 +102,7 @@ export default function useBlockBackWithUnsavedChanges<TFieldValues extends Fiel
               type="default"
               onClose={() => {
                 closeModalRef.current = null;
+                isModalOpenRef.current = false;
                 close();
               }}
               leftButtonText={leftButtonText}
@@ -113,6 +110,7 @@ export default function useBlockBackWithUnsavedChanges<TFieldValues extends Fiel
               onLeftClickHandler={() => {
                 shouldBlockRef.current = false;
                 closeModalRef.current = null;
+                isModalOpenRef.current = false;
                 close();
                 const steps = armedRef.current ? -2 : -1;
                 armedRef.current = false;
@@ -120,6 +118,7 @@ export default function useBlockBackWithUnsavedChanges<TFieldValues extends Fiel
               }}
               onRightClickHandler={() => {
                 closeModalRef.current = null;
+                isModalOpenRef.current = false;
                 close();
               }}
             />
@@ -155,6 +154,7 @@ export default function useBlockBackWithUnsavedChanges<TFieldValues extends Fiel
 
       openModal(({ close }) => {
         closeModalRef.current = close;
+        isModalOpenRef.current = true;
         return (
           <Modal
             content={content}
@@ -162,6 +162,7 @@ export default function useBlockBackWithUnsavedChanges<TFieldValues extends Fiel
             type="default"
             onClose={() => {
               closeModalRef.current = null;
+              isModalOpenRef.current = false;
               close();
             }}
             leftButtonText={leftButtonText}
@@ -170,11 +171,13 @@ export default function useBlockBackWithUnsavedChanges<TFieldValues extends Fiel
               shouldBlockRef.current = false;
               armedRef.current = false;
               closeModalRef.current = null;
+              isModalOpenRef.current = false;
               close();
               navigate(navigateTo!);
             }}
             onRightClickHandler={() => {
               closeModalRef.current = null;
+              isModalOpenRef.current = false;
               close();
             }}
           />
