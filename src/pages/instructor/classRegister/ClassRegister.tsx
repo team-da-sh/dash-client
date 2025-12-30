@@ -1,6 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useQueryClient } from '@tanstack/react-query';
-import type { FormEvent } from 'react';
+import { useEffect, type FormEvent } from 'react';
 import { FormProvider, useController, useForm } from 'react-hook-form';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useGetLessonDetail } from '@/pages/class/apis/queries';
@@ -28,6 +28,8 @@ import { classRegisterSchema } from '@/pages/instructor/classRegister/schema/cla
 import type { ClassRegisterInfoTypes } from '@/pages/instructor/classRegister/types/api';
 import type { LocationTypes } from '@/pages/instructor/classRegister/types/index';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
+import Modal from '@/common/components/Modal/Modal';
+import { useModalStore } from '@/common/stores/modal';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import { notify } from '@/shared/components/Toast/Toast';
 import { genreEngMapping, levelEngMapping } from '@/shared/constants';
@@ -41,6 +43,7 @@ import { CLASS_REGISTER_EDIT_MESSAGE } from './constants/notifyMessage';
 const ClassRegister = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  const { openModal } = useModalStore();
 
   const lessonId = id ? Number(id) : null;
   const isValidId = lessonId !== null && !isNaN(lessonId) && lessonId > 0;
@@ -289,6 +292,26 @@ const ClassRegister = () => {
     setValue(STATE_VALUE.SELECTED_LOCATION, location, { shouldValidate: true, shouldDirty: true });
   };
   useBlockBackWithUnsavedChanges({ methods });
+
+  useEffect(() => {
+    if (isEditMode && lessonData?.lessonRound?.lessonRounds?.length) {
+      const firstRound = lessonData.lessonRound.lessonRounds[0];
+      const startDateTime = new Date(firstRound.startDateTime);
+      const now = new Date();
+
+      if (now >= startDateTime) {
+        openModal(() => (
+          <Modal
+            type="single"
+            content={'비정상적인 접근입니다.'}
+            onClose={() => navigate(-1)}
+            rightButtonText="뒤로가기"
+            onClickHandler={() => navigate(-1)}
+          />
+        ));
+      }
+    }
+  }, [isEditMode, lessonData, navigate, openModal]);
 
   return (
     <>
