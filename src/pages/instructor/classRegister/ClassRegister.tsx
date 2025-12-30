@@ -162,12 +162,12 @@ const ClassRegister = () => {
 
   const handleAddTime = () => {
     const newTimes = originalHandleAddTime();
-    setValue('times', newTimes, { shouldValidate: true });
+    setValue('times', newTimes, { shouldValidate: true, shouldDirty: true });
   };
 
   const handleRemoveTime = (idx: number) => {
     const newTimes = originalHandleRemoveTime(idx);
-    setValue('times', newTimes, { shouldValidate: true });
+    setValue('times', newTimes, { shouldValidate: true, shouldDirty: true });
   };
 
   const initTimeAndOpenBottomSheet = () => {
