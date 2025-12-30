@@ -48,3 +48,8 @@ export const rightWrapper = style({
 
   minWidth: '13.2rem',
 });
+
+export const hiddenStyle = style({
+  visibility: 'hidden',
+  pointerEvents: 'none',
+});
