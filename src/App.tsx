@@ -4,8 +4,6 @@ import { useEffect } from 'react';
 import { Toaster } from 'react-hot-toast';
 import { RouterProvider } from 'react-router-dom';
 import { router } from '@/routes/router.tsx';
-import GlobalErrorBoundary from '@/shared/components/ErrorBoundary/GlobalErrorBoundary/GlobalErrorBoundary';
-import ModalProvider from '@/shared/components/ModalProvider/ModalProvier';
 import queryClient from './queryClient';
 import './shared/styles/index.css';
 
