@@ -1,5 +1,5 @@
 import type { ReactElement } from 'react';
-import ModalLayout from '@/common/components/Modal/ModalLayout';
+import FocusTrap from '@/common/components/FocusTrap/FocusTrap';
 import {
   contentStyle,
   containerStyle,
@@ -34,8 +34,8 @@ const Modal = ({
   };
 
   return (
-    <ModalLayout onClose={onClose}>
-      {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events */}
+    <FocusTrap>
+      {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions */}
       <dialog aria-modal="true" onClick={(e) => e.stopPropagation()} className={containerStyle}>
         <div className={contentStyle}>{content}</div>
         <div className={buttonWrapperStyle}>
@@ -56,7 +56,7 @@ const Modal = ({
           )}
         </div>
       </dialog>
-    </ModalLayout>
+    </FocusTrap>
   );
 };
 

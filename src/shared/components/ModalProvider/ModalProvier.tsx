@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import ModalLayout from '@/common/components/Modal/ModalLayout';
 import { useModalStore } from '@/common/stores/modal';
 
 const ModalProvider = () => {
@@ -25,12 +26,14 @@ const ModalProvider = () => {
     }
   }, [modalStore]);
 
+  if (modalStore.length === 0) return null;
+
   return (
-    <>
+    <ModalLayout>
       {modalStore.map(({ id, render }) =>
         render({ isOpen: modalStore.some((modal) => modal.id === id), close: () => closeModal(id) })
       )}
-    </>
+    </ModalLayout>
   );
 };
 

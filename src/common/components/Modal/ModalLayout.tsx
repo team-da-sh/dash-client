@@ -1,31 +1,30 @@
-import { ReactElement, useEffect, type PropsWithChildren } from 'react';
-import FocusTrap from '@/common/components/FocusTrap/FocusTrap';
+import { useEffect, type PropsWithChildren } from 'react';
 import { layoutStyle } from '@/common/components/Modal/modal.css';
+import { useModalStore } from '@/common/stores/modal';
 
-interface ModalLayoutProps extends PropsWithChildren {
-  onClose: () => void;
-}
+const ModalLayout = ({ children }: PropsWithChildren) => {
+  const { closeLastModal } = useModalStore();
 
-const ModalLayout = ({ onClose, children }: ModalLayoutProps) => {
   // esc 키 누르면 모달 닫기
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
-        onClose();
+        closeLastModal();
       }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [onClose]);
+  }, [closeLastModal]);
 
   return (
+    // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
     <div
       onClick={(e) => {
         e.stopPropagation();
-        onClose();
+        closeLastModal();
       }}
       className={layoutStyle}>
-      <FocusTrap>{children}</FocusTrap>
+      {children}
     </div>
   );
 };
