@@ -20,7 +20,7 @@ const FocusTrap = ({ children }: { children: ReactNode }) => {
     const lastFocusableElement = focusableElements[focusableElements.length - 1];
 
     // 랜더링시 첫 요소에 포커스 줘서 포커스 가두기
-    focusableElements[0].focus();
+    firstFocusableElement.focus();
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key !== 'Tab') return;
