@@ -49,3 +49,9 @@ export const tabPanelStyle = style({
   gap: '1.2rem',
   padding: '0rem 2rem 3.6rem',
 });
+
+export const classInfoSectionStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '0.8rem',
+});

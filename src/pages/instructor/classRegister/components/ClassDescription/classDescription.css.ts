@@ -40,3 +40,22 @@ export const textareaErrorStyle = style({
     outline: `1px solid ${vars.colors.alert03}`,
   },
 });
+
+export const containerStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '2rem',
+  width: '100%',
+  marginBottom: '4rem',
+});
+
+export const textareaWrapperStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '0.4rem',
+});
+
+export const textareaFooterStyle = style({
+  display: 'flex',
+  justifyContent: 'space-between',
+});

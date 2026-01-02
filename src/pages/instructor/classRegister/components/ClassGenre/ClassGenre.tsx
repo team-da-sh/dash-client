@@ -1,12 +1,16 @@
 import type { FieldError } from 'react-hook-form';
 import { useFormContext } from 'react-hook-form';
-import { genreButtonContainerStyle } from '@/pages/instructor/classRegister/components/ClassGenre/classGenre.css';
+import {
+  genreButtonContainerStyle,
+  containerStyle,
+  buttonWrapperStyle,
+  errorMessageStyle,
+} from '@/pages/instructor/classRegister/components/ClassGenre/classGenre.css';
 import Description from '@/pages/instructor/classRegister/components/Description';
 import { CLASS_GENRE_SUBTITLE } from '@/pages/instructor/classRegister/constants/registerSectionText';
 import GenreButton from '@/pages/search/components/TabContainer/TagSection/BottomSheet/GenreButton/GenreButton';
 import Text from '@/shared/components/Text/Text';
 import { GENRE_CATEGORY } from '@/shared/constants';
-import { sprinkles } from '@/shared/styles/sprinkles.css';
 
 interface ClassGenrePropTypes {
   selectedGenre: string | null;
@@ -20,16 +24,10 @@ const ClassGenre = ({ selectedGenre, toggleCategory }: ClassGenrePropTypes) => {
   const error = errors.selectedGenre as FieldError | undefined;
 
   return (
-    <div
-      className={sprinkles({
-        display: 'flex',
-        flexDirection: 'column',
-        width: '100%',
-        mb: 40,
-      })}>
+    <div className={containerStyle}>
       <Description title="장르" subTitle={CLASS_GENRE_SUBTITLE} />
 
-      <div className={sprinkles({ mt: 20 })}>
+      <div className={buttonWrapperStyle}>
         <div className={genreButtonContainerStyle}>
           {GENRE_CATEGORY.flatMap((categoryArray) =>
             categoryArray.map((category, index) => (
@@ -45,7 +43,7 @@ const ClassGenre = ({ selectedGenre, toggleCategory }: ClassGenrePropTypes) => {
       </div>
 
       {error && (
-        <div className={sprinkles({ mt: 4 })}>
+        <div className={errorMessageStyle}>
           <Text tag="b3_r" color="alert3">
             {error.message}
           </Text>

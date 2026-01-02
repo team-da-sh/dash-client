@@ -14,21 +14,21 @@ const DancerClassItem = ({ imageUrl, remainingDays, genre, level, name }: ClassI
   const renderDeadlineTag = () => {
     if (remainingDays < 0) {
       return (
-        <Tag type="deadline" size="thumbnail" className={styles.deadlineTagStyle}>
+        <Tag type="deadline" size="thumbnail" className={deadlineTagStyle}>
           마감
         </Tag>
       );
     }
     if (remainingDays === 0) {
       return (
-        <Tag type="deadline" size="thumbnail" className={styles.deadlineTagStyle}>
+        <Tag type="deadline" size="thumbnail" className={deadlineTagStyle}>
           D-DAY
         </Tag>
       );
     }
     if (remainingDays <= 4) {
       return (
-        <Tag type="deadline" size="thumbnail" className={styles.deadlineTagStyle}>
+        <Tag type="deadline" size="thumbnail" className={deadlineTagStyle}>
           마감 D-{remainingDays}
         </Tag>
       );
