@@ -10,3 +10,23 @@ export const containerStyle = style({
 export const textStyle = style({
   textDecoration: 'none',
 });
+
+export const linkWrapperStyle = style({
+  display: 'flex',
+  gap: '1.2rem',
+  alignItems: 'center',
+  marginTop: '1.4rem',
+  marginBottom: '1.2rem',
+});
+
+export const infoWrapperStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '0.4rem',
+});
+
+export const infoRowStyle = style({
+  display: 'flex',
+  gap: '0.8rem',
+  alignItems: 'center',
+});
