@@ -1,7 +1,7 @@
-import { sprinkles } from '@/shared/styles/sprinkles.css';
+import { reviewSectionStyle } from '@/pages/class/components/TabWrapper/TabReview/tabReview.css';
 
 const TabReview = () => {
-  return <section className={sprinkles({ height: 100 })} />;
+  return <section className={reviewSectionStyle} />;
 };
 
 export default TabReview;
