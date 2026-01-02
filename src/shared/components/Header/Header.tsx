@@ -3,9 +3,8 @@ import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import IcHeaderLogoSmallBlack from '@/shared/assets/svg/IcHeaderLogoSmallBlack';
 import IcMypageBlack24 from '@/shared/assets/svg/IcMypageBlack24';
 import IcSearchBlack24 from '@/shared/assets/svg/IcSearchBlack24';
-import { sprinkles } from '@/shared/styles/sprinkles.css';
 import { isLoggedIn } from '@/shared/utils/authUtil';
-import { headerStyle } from './header.css';
+import { headerStyle, buttonWrapperStyle } from './header.css';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -32,7 +31,7 @@ const Header = () => {
       <button onClick={handleLogoClick} aria-label="홈으로 이동">
         <IcHeaderLogoSmallBlack width={58} height={20} />
       </button>
-      <div className={sprinkles({ display: 'flex', gap: 20 })}>
+      <div className={buttonWrapperStyle}>
         <button onClick={handleSearchClick} aria-label="검색 페이지로 이동">
           <IcSearchBlack24 width={24} height={24} />
         </button>
