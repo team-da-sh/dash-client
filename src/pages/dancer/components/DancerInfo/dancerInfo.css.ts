@@ -39,3 +39,41 @@ export const linkStyle = style({
   whiteSpace: 'nowrap',
   maxWidth: '14ch',
 });
+
+export const infoSectionStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  paddingTop: '2rem',
+  paddingRight: '2rem',
+  paddingLeft: '2rem',
+  paddingBottom: '3.2rem',
+  gap: '2rem',
+});
+
+export const socialLinksStyle = style({
+  display: 'flex',
+  gap: '2.8rem',
+});
+
+export const socialLinkStyle = style({
+  display: 'flex',
+  flexDirection: 'row',
+  gap: '0.9rem',
+});
+
+export const classSectionStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '1.2rem',
+});
+
+export const classTitleStyle = style({
+  paddingLeft: '2rem',
+});
+
+export const emptyClassMessageStyle = style({
+  display: 'flex',
+  justifyContent: 'center',
+  paddingTop: '5.2rem',
+  paddingBottom: '7.2rem',
+});

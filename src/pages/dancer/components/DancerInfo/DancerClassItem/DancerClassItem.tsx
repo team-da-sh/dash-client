@@ -1,9 +1,14 @@
-import * as styles from '@/pages/dancer/components/DancerInfo/DancerClassItem/dancerClassItem.css';
+import {
+  classImageStyle,
+  deadlineTagStyle,
+  lessonNameStyle,
+  sectionStyle,
+  tagWrapperStyle,
+} from '@/pages/dancer/components/DancerInfo/DancerClassItem/dancerClassItem.css';
 import type { ClassItemPropTypes } from '@/pages/dancer/types/api';
 import Head from '@/shared/components/Head/Head';
 import Tag from '@/shared/components/Tag/Tag';
 import { genreMapping, levelMapping } from '@/shared/constants/index';
-import { sprinkles } from '@/shared/styles/sprinkles.css';
 
 const DancerClassItem = ({ imageUrl, remainingDays, genre, level, name }: ClassItemPropTypes) => {
   const renderDeadlineTag = () => {
@@ -35,18 +40,11 @@ const DancerClassItem = ({ imageUrl, remainingDays, genre, level, name }: ClassI
   const translatedLevel = levelMapping[level] || level;
 
   return (
-    <section
-      className={sprinkles({
-        display: 'flex',
-        position: 'relative',
-        flexDirection: 'column',
-        width: 164,
-        gap: 8,
-      })}>
-      <img src={imageUrl} alt="클래스 섬네일" className={styles.classImageStyle} />
+    <section className={sectionStyle}>
+      <img src={imageUrl} alt="클래스 섬네일" className={classImageStyle} />
       {renderDeadlineTag()}
 
-      <div className={sprinkles({ display: 'flex', gap: 4 })}>
+      <div className={tagWrapperStyle}>
         <Tag type="genre" size="small">
           {translatedGenre}
         </Tag>
@@ -54,7 +52,7 @@ const DancerClassItem = ({ imageUrl, remainingDays, genre, level, name }: ClassI
           {translatedLevel}
         </Tag>
       </div>
-      <span className={styles.lessonNameStyle}>
+      <span className={lessonNameStyle}>
         <Head level="h5" tag="b1_sb_long">
           {name}
         </Head>

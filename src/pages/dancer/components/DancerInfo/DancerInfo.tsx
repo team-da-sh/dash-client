@@ -1,6 +1,19 @@
 import { useNavigate } from 'react-router-dom';
 import DancerClassItem from '@/pages/dancer/components/DancerInfo/DancerClassItem/DancerClassItem';
-import * as styles from '@/pages/dancer/components/DancerInfo/dancerInfo.css';
+import {
+  rowScrollStyle,
+  classItemStyle,
+  firstClassItemStyle,
+  lastClassItemStyle,
+  detailStyle,
+  linkStyle,
+  infoSectionStyle,
+  socialLinksStyle,
+  socialLinkStyle,
+  classSectionStyle,
+  classTitleStyle,
+  emptyClassMessageStyle,
+} from '@/pages/dancer/components/DancerInfo/dancerInfo.css';
 import type { DancerDetailResponseTypes } from '@/pages/dancer/types/api';
 import { expandInstagramUrl, expandYouTubeUrl } from '@/pages/dancer/utils/url';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
@@ -9,7 +22,6 @@ import IcYoutube20 from '@/shared/assets/svg/IcYoutube20';
 import Divider from '@/shared/components/Divider/Divider';
 import Head from '@/shared/components/Head/Head';
 import Text from '@/shared/components/Text/Text';
-import { sprinkles } from '@/shared/styles/sprinkles.css';
 
 const DancerInfo = ({ dancerData }: { dancerData: DancerDetailResponseTypes }) => {
   const { instagram, youtube, detail, nickname, lessons } = dancerData;
@@ -23,15 +35,14 @@ const DancerInfo = ({ dancerData }: { dancerData: DancerDetailResponseTypes }) =
 
   return (
     <>
-      <section
-        className={sprinkles({ display: 'flex', flexDirection: 'column', pt: 20, pr: 20, pl: 20, pb: 32, gap: 20 })}>
+      <section className={infoSectionStyle}>
         {(instagram || youtube) && (
-          <div className={sprinkles({ display: 'flex', gap: 28 })}>
+          <div className={socialLinksStyle}>
             {instagram && (
               <a href={expandInstagramUrl(instagram)} target="_blank" rel="noopener noreferrer">
-                <div className={sprinkles({ display: 'flex', flexDirection: 'row', gap: 9 })}>
+                <div className={socialLinkStyle}>
                   <IcInstagram20 width="2rem" />
-                  <Text tag="b2_m" color="gray5" className={styles.linkStyle}>
+                  <Text tag="b2_m" color="gray5" className={linkStyle}>
                     {instagram}
                   </Text>
                 </div>
@@ -40,9 +51,9 @@ const DancerInfo = ({ dancerData }: { dancerData: DancerDetailResponseTypes }) =
 
             {youtube && (
               <a href={expandYouTubeUrl(youtube)} target="_blank" rel="noopener noreferrer">
-                <div className={sprinkles({ display: 'flex', flexDirection: 'row', gap: 9 })}>
+                <div className={socialLinkStyle}>
                   <IcYoutube20 width="2rem" height="2rem" />
-                  <Text tag="b2_m" color="gray5" className={styles.linkStyle}>
+                  <Text tag="b2_m" color="gray5" className={linkStyle}>
                     {youtube}
                   </Text>
                 </div>
@@ -50,27 +61,23 @@ const DancerInfo = ({ dancerData }: { dancerData: DancerDetailResponseTypes }) =
             )}
           </div>
         )}
-        <Text tag="b2_m_long" color="gray8" className={styles.detailStyle}>
+        <Text tag="b2_m_long" color="gray8" className={detailStyle}>
           {detail}
         </Text>
       </section>
 
-      <section className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 12 })}>
-        <Head level="h4" tag="h6_sb" className={sprinkles({ pl: 20 })}>
+      <section className={classSectionStyle}>
+        <Head level="h4" tag="h6_sb" className={classTitleStyle}>
           {nickname}님의 클래스
         </Head>
 
         {/* 개설한 클래스 없을 때 */}
         {lessons.length === 0 ? (
-          <Head
-            level="h5"
-            tag="b1_sb"
-            color="gray9"
-            className={sprinkles({ display: 'flex', justifyContent: 'center', pt: 52, pb: 72 })}>
+          <Head level="h5" tag="b1_sb" color="gray9" className={emptyClassMessageStyle}>
             아직 개설한 클래스가 없어요
           </Head>
         ) : (
-          <div className={styles.rowScrollStyle}>
+          <div className={rowScrollStyle}>
             {lessons.map((data, id) => {
               const isFirst = id === 0;
               const isLast = id === lessons.length - 1;
@@ -79,9 +86,9 @@ const DancerInfo = ({ dancerData }: { dancerData: DancerDetailResponseTypes }) =
                 <div
                   key={data.id}
                   className={[
-                    styles.classItemStyle,
-                    isFirst && styles.firstClassItemStyle,
-                    isLast && styles.lastClassItemStyle,
+                    classItemStyle,
+                    isFirst && firstClassItemStyle,
+                    isLast && lastClassItemStyle,
                   ]
                     .filter(Boolean)
                     .join(' ')}
