@@ -56,3 +56,19 @@ export const counterColorStyle = recipe({
     color: 'gray4',
   },
 });
+
+export const textareaWrapperStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '0.8rem',
+});
+
+export const textareaFooterStyle = style({
+  display: 'flex',
+  justifyContent: 'space-between',
+});
+
+export const counterWrapperStyle = style({
+  display: 'flex',
+  gap: '0.2rem',
+});

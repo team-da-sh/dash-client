@@ -1,7 +1,7 @@
 import { style } from '@vanilla-extract/css';
 import { vars } from '@/shared/styles/theme.css';
 
-export const containerStyle = style({
+export const inputContainerStyle = style({
   display: 'flex',
   flexDirection: 'column',
   gap: '0.8rem',
@@ -37,7 +37,10 @@ export const hiddenCheckboxStyle = style({
   height: 0,
   pointerEvents: 'none',
 });
-export const inputContainerStyle = style({
+
+export const containerStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
   width: '100%',
-  position: 'relative',
+  paddingBottom: '2rem',
 });
