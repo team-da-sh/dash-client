@@ -18,3 +18,8 @@ export const textLabelStyle = style({
   width: '4.4rem',
   whiteSpace: 'nowrap',
 });
+
+export const rowStyle = style({
+  display: 'flex',
+  gap: '1.2rem',
+});
