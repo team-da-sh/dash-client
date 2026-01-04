@@ -6,14 +6,14 @@ import {
   INSTRUCTOR_REGISTER_PLACEHOLDER,
   MAX_VIDEO_INPUT_COUNT,
 } from '@/pages/instructorRegister/constants/registerSection';
-import { sprinkles } from '@/shared/styles/sprinkles.css';
+import { sectionStyle } from '@/pages/instructorRegister/components/VideoLinkSection/videoLinkSection.css';
 import type { instructorRegisterFormTypes } from '../../types/instructorRegisterForm';
 
 const VideoLinkSection = () => {
   const { setValue, watch } = useFormContext<instructorRegisterFormTypes>();
   const { videoUrls, isVideoNoneChecked } = watch();
   return (
-    <section className={sprinkles({ display: 'flex', flexDirection: 'column', width: '100%', pb: 27 })}>
+    <section className={sectionStyle}>
       <Description title="유튜브 영상 등록" subTitle="나를 대표하는 댄스 영상을 최대 5개 등록해 주세요" />
 
       <InputSection

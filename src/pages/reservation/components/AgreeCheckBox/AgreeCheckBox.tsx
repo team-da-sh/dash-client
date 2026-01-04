@@ -3,7 +3,7 @@ import IcArrowRightSmallMain0332New from '@/shared/assets/svg/IcArrowRightSmallM
 import IcCheckGray0724 from '@/shared/assets/svg/IcCheckGray0724';
 import IcCheckMain0324 from '@/shared/assets/svg/IcCheckMain0324';
 import Text from '@/shared/components/Text/Text';
-import { sprinkles } from '@/shared/styles/sprinkles.css';
+import { containerStyle, contentStyle } from '@/pages/reservation/components/AgreeCheckBox/agreeCheckBox.css';
 
 interface AgreeCheckBoxPropTypes {
   text: string;
@@ -20,10 +20,8 @@ const AgreeCheckBox = ({ text, isChecked, onToggle, link = '' }: AgreeCheckBoxPr
     }
   };
   return (
-    <div
-      className={sprinkles({ display: 'flex', width: '100%', p: 8, justifyContent: 'space-between', height: 48 })}
-      onClick={onToggle}>
-      <div className={sprinkles({ display: 'flex', gap: 12, alignItems: 'center' })}>
+    <div className={containerStyle} onClick={onToggle}>
+      <div className={contentStyle}>
         {isChecked ? <IcCheckMain0324 width={24} height={24} /> : <IcCheckGray0724 width={24} height={24} />}
         <Text tag="b2_m" color={isChecked ? 'main4' : 'gray7'}>
           {text}

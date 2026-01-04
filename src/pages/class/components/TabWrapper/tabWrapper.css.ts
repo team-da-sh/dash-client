@@ -10,3 +10,9 @@ export const tabPanelStyle = style({
 
   borderColor: vars.colors.gray01,
 });
+
+export const tabListWrapperStyle = style({
+  display: 'flex',
+  paddingTop: '2.4rem',
+  justifyContent: 'center',
+});

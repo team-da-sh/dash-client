@@ -2,7 +2,7 @@ import { useRef, useState } from 'react';
 import {
   addButtonStyle,
   checkboxStyle,
-  containerStyle,
+  inputContainerStyle,
   hiddenCheckboxStyle,
 } from '@/pages/instructorRegister/components/CareerSection/careerSection.css';
 import type { InputItemTypes } from '@/pages/instructorRegister/types/inputItemTypes';
@@ -70,7 +70,7 @@ const InputSection = ({
   };
 
   return (
-    <div className={containerStyle}>
+    <div className={inputContainerStyle}>
       <Flex justify="spaceBetween" width="100%">
         <Text tag="b2_sb" color="gray10">
           {title}

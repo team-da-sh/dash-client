@@ -2,11 +2,10 @@ import type { RecruitingStatus } from '@/pages/mypage/components/mypageReservati
 import type { ReservationStatus } from '@/pages/mypage/components/mypageReservation/types/reservationStatus';
 import SvgIcClear from '@/shared/assets/svg/IcClear';
 import SvgIcMeatball from '@/shared/assets/svg/IcMeatball';
-import * as styles from '@/shared/components/ClassCard/style.css';
+import { dividerStyle, headerWrapperStyle, headerContentStyle } from '@/shared/components/ClassCard/style.css';
 import Divider from '@/shared/components/Divider/Divider';
 import Text from '@/shared/components/Text/Text';
 import { USER_ROLE } from '@/shared/constants/userRole';
-import { sprinkles } from '@/shared/styles/sprinkles.css';
 import { vars } from '@/shared/styles/theme.css';
 import { formatDate } from '@/shared/utils/timeCalculate';
 
@@ -50,18 +49,8 @@ const ClassCardHeader = ({ role, status, date }: ClassCardHeaderProps) => {
 
   return (
     <>
-      <div
-        className={sprinkles({
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-        })}>
-        <div
-          className={sprinkles({
-            display: 'flex',
-            alignItems: 'center',
-            gap: 8,
-          })}>
+      <div className={headerWrapperStyle}>
+        <div className={headerContentStyle}>
           {statusIcon}
           <Text tag="b1_sb">{statusText}</Text>
           {date && (
@@ -71,7 +60,7 @@ const ClassCardHeader = ({ role, status, date }: ClassCardHeaderProps) => {
           )}
         </div>
       </div>
-      <Divider color="gray1" className={styles.dividerStyle} />
+      <Divider color="gray1" className={dividerStyle} />
     </>
   );
 };

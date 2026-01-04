@@ -13,3 +13,10 @@ export const containerStyle = style({
 export const titleStyle = style({
   marginBottom: '1.2rem',
 });
+
+export const reservationListSectionStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '1.2rem',
+  marginTop: '1.6rem',
+});

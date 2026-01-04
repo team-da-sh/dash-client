@@ -4,13 +4,16 @@ import {
   closeIconStyle,
   inputStyle,
   previewImgStyle,
+  containerStyle,
+  contentWrapperStyle,
+  uploadIconWrapperStyle,
+  errorMessageStyle,
 } from '@/pages/instructor/classRegister/components/ClassRepresentImage/classRepresentImage.css';
 import Description from '@/pages/instructor/classRegister/components/Description';
 import { CLASS_REPRESENT_IMAGE_SUBTITLE } from '@/pages/instructor/classRegister/constants/registerSectionText';
 import IcPlusGray0524 from '@/shared/assets/svg/IcPlusGray0524';
 import IcXCircleMain0324 from '@/shared/assets/svg/IcXCircleMain0324';
 import Text from '@/shared/components/Text/Text';
-import { sprinkles } from '@/shared/styles/sprinkles.css';
 
 interface ClassRepresentImagePropTypes {
   handleUploaderClick: () => void;
@@ -35,15 +38,15 @@ const ClassRepresentImage = ({
   const error = errors.imageUrls as FieldError | undefined;
 
   return (
-    <div className={sprinkles({ display: 'flex', flexDirection: 'column', width: '100%', mb: 40 })}>
-      <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 20 })}>
+    <div className={containerStyle}>
+      <div className={contentWrapperStyle}>
         <Description title="클래스 대표 이미지" subTitle={CLASS_REPRESENT_IMAGE_SUBTITLE} />
         <div
           className={previewImgStyle({ hasImage: !!previewImg })}
           style={previewImg ? { backgroundImage: `url(${previewImg})` } : {}}
           onClick={handleUploaderClick}>
           {!previewImg && (
-            <div className={sprinkles({ display: 'flex', flexDirection: 'column', alignItems: 'center' })}>
+            <div className={uploadIconWrapperStyle}>
               <IcPlusGray0524 width={'2.4rem'} />
             </div>
           )}
@@ -65,7 +68,7 @@ const ClassRepresentImage = ({
         />
       </div>
       {error && (
-        <div className={sprinkles({ mt: 4 })}>
+        <div className={errorMessageStyle}>
           <Text tag="b3_r" color="alert3">
             {error.message}
           </Text>

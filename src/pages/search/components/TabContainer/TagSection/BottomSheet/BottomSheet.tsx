@@ -1,13 +1,26 @@
 import { useState } from 'react';
 import CalendarCustom from '@/pages/search/components/Calendar/Calendar';
 import GenreButton from '@/pages/search/components/TabContainer/TagSection/BottomSheet/GenreButton/GenreButton';
-import * as styles from '@/pages/search/components/TabContainer/TagSection/BottomSheet/bottomSheet.css';
+import {
+  bottomSheetContainerStyle,
+  overlayStyle,
+  overlayVisible,
+  overlayHidden,
+  bottomSheetStyle,
+  bottomSheetVisible,
+  bottomSheetHidden,
+  genreButtonContainerStyle,
+  tabListCustomStyle,
+  bottomSheetContentStyle,
+  tabListWrapperStyle,
+  levelButtonWrapperStyle,
+  buttonWrapperStyle,
+} from '@/pages/search/components/TabContainer/TagSection/BottomSheet/bottomSheet.css';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import LevelButton from '@/shared/components/LevelButton/LevelButton';
 import { TabButton, TabList, TabPanel, TabRoot } from '@/shared/components/Tab';
 import { LEVEL } from '@/shared/constants';
 import { GENRE_CATEGORY } from '@/shared/constants/index';
-import { sprinkles } from '@/shared/styles/sprinkles.css';
 
 interface BottomSheetPropTypes {
   onClose: () => void;
@@ -80,16 +93,16 @@ const BottomSheet = ({
   };
 
   return (
-    <div className={styles.bottomSheetContainerStyle}>
+    <div className={bottomSheetContainerStyle}>
       <div
-        className={`${styles.overlayStyle} ${isClosing ? styles.overlayHidden : styles.overlayVisible}`}
+        className={`${overlayStyle} ${isClosing ? overlayHidden : overlayVisible}`}
         onClick={handleClose}
       />
       <div
-        className={`${styles.bottomSheetStyle} ${isClosing ? styles.bottomSheetHidden : styles.bottomSheetVisible} ${sprinkles({ display: 'flex', flexDirection: 'column' })}`}>
+        className={`${bottomSheetStyle} ${isClosing ? bottomSheetHidden : bottomSheetVisible} ${bottomSheetContentStyle}`}>
         <TabRoot>
-          <div className={sprinkles({ display: 'flex', paddingBottom: 10, paddingLeft: 20 })}>
-            <TabList className={styles.tabListCustomStyle}>
+          <div className={tabListWrapperStyle}>
+            <TabList className={tabListCustomStyle}>
               <TabButton isSelected={selectedTab === 0} onClick={() => setSelectedTab(0)} colorScheme="secondary">
                 장르
               </TabButton>
@@ -102,7 +115,7 @@ const BottomSheet = ({
             </TabList>
           </div>
           <TabPanel isSelected={selectedTab === 0}>
-            <div className={styles.genreButtonContainerStyle}>
+            <div className={genreButtonContainerStyle}>
               {GENRE_CATEGORY.flat().map((category, index) => (
                 <GenreButton
                   key={index}
@@ -114,16 +127,7 @@ const BottomSheet = ({
             </div>
           </TabPanel>
           <TabPanel isSelected={selectedTab === 1}>
-            <div
-              className={sprinkles({
-                display: 'flex',
-                flexDirection: 'column',
-                gap: 8,
-                paddingBottom: 46,
-                paddingTop: 8,
-                paddingLeft: 20,
-                paddingRight: 20,
-              })}>
+            <div className={levelButtonWrapperStyle}>
               {LEVEL.map((level) => (
                 <LevelButton
                   key={level.title}
@@ -144,7 +148,7 @@ const BottomSheet = ({
             />
           </TabPanel>
         </TabRoot>
-        <div className={sprinkles({ display: 'flex', width: '100%', gap: 8, paddingLeft: 20, paddingRight: 20 })}>
+        <div className={buttonWrapperStyle}>
           <BoxButton variant="secondary" onClick={handleReset}>
             초기화
           </BoxButton>

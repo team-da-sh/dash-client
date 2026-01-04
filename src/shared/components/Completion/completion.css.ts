@@ -13,3 +13,8 @@ export const clearStyle = style({
   alignSelf: 'center',
   marginTop: '5.9rem',
 });
+
+export const titleWrapperStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+});

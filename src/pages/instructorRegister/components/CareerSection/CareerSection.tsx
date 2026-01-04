@@ -1,12 +1,12 @@
 import { useFormContext } from 'react-hook-form';
 import InputSection from '@/pages/instructorRegister/components/CareerSection/InputSection/InputSection';
+import { containerStyle } from '@/pages/instructorRegister/components/CareerSection/careerSection.css';
 import Description from '@/pages/instructorRegister/components/Description/Description';
 import {
   INSTRUCTOR_REGISTER_FORM_KEY,
   INSTRUCTOR_REGISTER_PLACEHOLDER,
   MAX_CAREER_INPUT_LENGTH,
 } from '@/pages/instructorRegister/constants/registerSection';
-import { sprinkles } from '@/shared/styles/sprinkles.css';
 import type { instructorRegisterFormTypes } from '../../types/instructorRegisterForm';
 
 const CareerSection = () => {
@@ -19,7 +19,7 @@ const CareerSection = () => {
   };
 
   return (
-    <div className={sprinkles({ display: 'flex', flexDirection: 'column', width: '100%', pb: 20 })}>
+    <div className={containerStyle}>
       <Description title="댄서 이력 등록" subTitle="춤에 관련된 것이라면 자유롭게 입력해 보세요" />
 
       <InputSection

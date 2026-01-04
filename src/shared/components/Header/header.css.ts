@@ -13,3 +13,8 @@ export const headerStyle = style({
   padding: '2rem',
   background: vars.colors.white,
 });
+
+export const buttonWrapperStyle = style({
+  display: 'flex',
+  gap: '2rem',
+});

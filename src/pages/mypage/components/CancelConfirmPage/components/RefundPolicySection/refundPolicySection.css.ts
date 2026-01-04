@@ -34,3 +34,10 @@ export const agreementContainerStyle = style({
 export const agreementContainerSelectedStyle = style({
   border: `1.133px solid ${vars.colors.main04}`,
 });
+
+export const contentWrapperStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '1.6rem',
+  paddingTop: '4rem',
+});

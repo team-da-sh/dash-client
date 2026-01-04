@@ -13,3 +13,21 @@ export const buttonContainerStyle = style({
   width: '100%',
   padding: '2.4rem 2rem',
 });
+
+export const mainContainerStyle = style({
+  paddingRight: '2rem',
+  paddingLeft: '2rem',
+});
+
+export const contentWrapperStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '0.8rem',
+  width: '100%',
+  marginTop: '4.4rem',
+});
+
+export const titleWrapperStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+});

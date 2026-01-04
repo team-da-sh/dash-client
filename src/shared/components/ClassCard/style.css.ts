@@ -60,3 +60,44 @@ export const askTextStyle = style({
 export const dividerStyle = style({
   margin: '1.2rem 0',
 });
+
+export const cardContentWrapperStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '0.8rem',
+});
+
+export const tagWrapperStyle = style({
+  display: 'flex',
+  gap: '0.3rem',
+});
+
+export const infoWrapperStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '0.4rem',
+});
+
+export const infoRowStyle = style({
+  display: 'flex',
+  gap: '0.8rem',
+  alignItems: 'center',
+});
+
+export const headerWrapperStyle = style({
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+});
+
+export const headerContentStyle = style({
+  display: 'flex',
+  alignItems: 'center',
+  gap: '0.8rem',
+});
+
+export const footerWrapperStyle = style({
+  display: 'flex',
+  gap: '0.7rem',
+  marginTop: '1.2rem',
+});

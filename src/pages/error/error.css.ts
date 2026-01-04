@@ -16,3 +16,22 @@ export const buttonContainerStyle = style({
   width: '100%',
   padding: '2.4rem 2rem',
 });
+
+export const headerStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  gap: '1.4rem',
+  marginBottom: '2.9rem',
+});
+
+export const messageSectionStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  gap: '0.2rem',
+});
+
+export const errorIconStyle = style({
+  width: '100%',
+});

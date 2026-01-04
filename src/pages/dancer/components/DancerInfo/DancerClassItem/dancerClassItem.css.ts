@@ -19,3 +19,16 @@ export const lessonNameStyle = style({
   overflowWrap: 'break-word',
   wordBreak: 'break-all',
 });
+
+export const sectionStyle = style({
+  display: 'flex',
+  position: 'relative',
+  flexDirection: 'column',
+  width: '16.4rem',
+  gap: '0.8rem',
+});
+
+export const tagWrapperStyle = style({
+  display: 'flex',
+  gap: '0.4rem',
+});

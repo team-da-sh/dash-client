@@ -1,11 +1,15 @@
 import { useState } from 'react';
-import * as styles from '@/pages/mypage/components/CancelConfirmPage/components/RefundPolicySection/refundPolicySection.css.ts';
+import {
+  containerStyle,
+  agreementContainerStyle,
+  agreementContainerSelectedStyle,
+  contentWrapperStyle,
+} from '@/pages/mypage/components/CancelConfirmPage/components/RefundPolicySection/refundPolicySection.css';
 import IcCheckcircleGray0524 from '@/shared/assets/svg/IcCheckcircleGray0524';
 import IcCheckcircleMain0324 from '@/shared/assets/svg/IcCheckcircleMain0324';
 import IcFrame from '@/shared/assets/svg/IcFrame';
 import Head from '@/shared/components/Head/Head';
 import Text from '@/shared/components/Text/Text';
-import { sprinkles } from '@/shared/styles/sprinkles.css';
 import { vars } from '@/shared/styles/theme.css';
 
 interface RefundPolicySectionProps {
@@ -25,8 +29,8 @@ const RefundPolicySection = ({ isVisible, onAgreementChange }: RefundPolicySecti
   if (!isVisible) return null;
 
   return (
-    <div className={styles.containerStyle}>
-      <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 16, pt: 40 })}>
+    <div className={containerStyle}>
+      <div className={contentWrapperStyle}>
         <Head tag="h6_sb" color="black">
           취소 및 환불 약관 안내
         </Head>
@@ -36,7 +40,7 @@ const RefundPolicySection = ({ isVisible, onAgreementChange }: RefundPolicySecti
         <button
           type="button"
           aria-label="취소 및 환불 약관 동의"
-          className={`${styles.agreementContainerStyle} ${isAgreed ? styles.agreementContainerSelectedStyle : ''}`}
+          className={`${agreementContainerStyle} ${isAgreed ? agreementContainerSelectedStyle : ''}`}
           onClick={handleAgreementToggle}>
           {isAgreed ? (
             <IcCheckcircleMain0324 width={24} height={24} />

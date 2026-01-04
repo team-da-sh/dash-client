@@ -1,8 +1,16 @@
-import * as styles from '@/pages/reservation/components/ClassInfo/classInfo.css';
+import {
+  infoContainerStyle,
+  textLabelStyle,
+  contentWrapperStyle,
+  infoSectionStyle,
+  rowStyle,
+  scheduleWrapperStyle,
+  scheduleItemStyle,
+  locationInfoStyle,
+} from '@/pages/reservation/components/ClassInfo/classInfo.css';
 import Head from '@/shared/components/Head/Head';
 import Text from '@/shared/components/Text/Text';
 import { levelMapping } from '@/shared/constants';
-import { sprinkles } from '@/shared/styles/sprinkles.css';
 import { calculatePeriod, formatSimpleDate } from '@/shared/utils/dateCalculate';
 
 interface ClassInfoPropTypes {
@@ -28,32 +36,32 @@ const ClassInfo = ({
   lessonRound = [],
 }: ClassInfoPropTypes) => {
   return (
-    <div className={styles.infoContainerStyle}>
-      <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 20 })}>
+    <div className={infoContainerStyle}>
+      <div className={contentWrapperStyle}>
         <Head level="h5" tag="b1_sb">
           {lessonName}
         </Head>
-        <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 10 })}>
-          <div className={sprinkles({ display: 'flex', gap: 12 })}>
-            <Text tag="b3_sb_narrow" color="gray7" className={styles.textLabelStyle}>
+        <div className={infoSectionStyle}>
+          <div className={rowStyle}>
+            <Text tag="b3_sb_narrow" color="gray7" className={textLabelStyle}>
               강사
             </Text>
             <Text tag="b3_m" color="gray10">
               {teacherNickname}
             </Text>
           </div>
-          <div className={sprinkles({ display: 'flex', gap: 12 })}>
-            <Text tag="b3_sb_narrow" color="gray7" className={styles.textLabelStyle}>
+          <div className={rowStyle}>
+            <Text tag="b3_sb_narrow" color="gray7" className={textLabelStyle}>
               일정
             </Text>
-            <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 12 })}>
+            <div className={scheduleWrapperStyle}>
               {lessonRound.map((round, id) => {
                 const { startTime, formattedEndTime, durationString } = calculatePeriod(
                   round.startDateTime,
                   round.endDateTime
                 );
                 return (
-                  <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 4 })} key={id}>
+                  <div className={scheduleItemStyle} key={id}>
                     <Text tag="b3_m" color="gray10">
                       {id + 1}회차: {formatSimpleDate(round.startDateTime)}
                     </Text>
@@ -66,11 +74,11 @@ const ClassInfo = ({
             </div>
           </div>
 
-          <div className={sprinkles({ display: 'flex', gap: 12 })}>
-            <Text tag="b3_sb_narrow" color="gray7" className={styles.textLabelStyle}>
+          <div className={rowStyle}>
+            <Text tag="b3_sb_narrow" color="gray7" className={textLabelStyle}>
               장소
             </Text>
-            <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 4 })}>
+            <div className={locationInfoStyle}>
               <Text tag="b3_m" color="gray10">
                 {location ? location : '미정'}
               </Text>
@@ -81,8 +89,8 @@ const ClassInfo = ({
               )}
             </div>
           </div>
-          <div className={sprinkles({ display: 'flex', gap: 12 })}>
-            <Text tag="b3_sb_narrow" color="gray7" className={styles.textLabelStyle}>
+          <div className={rowStyle}>
+            <Text tag="b3_sb_narrow" color="gray7" className={textLabelStyle}>
               난이도
             </Text>
             <Text tag="b3_m" color="gray10">

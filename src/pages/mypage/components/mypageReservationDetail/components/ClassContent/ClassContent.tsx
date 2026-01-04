@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useGetReservationsDetail } from '@/pages/mypage/components/mypageReservationDetail/apis/queries';
+import { containerStyle } from '@/pages/mypage/components/mypageReservationDetail/components/ClassContent/ClassContent.css';
 import Text from '@/shared/components/Text/Text';
-import { sprinkles } from '@/shared/styles/sprinkles.css';
 import { getStatusMessage } from '@/shared/utils/getStatusMessage';
 import { getClassStatus } from '@/shared/utils/timeCalculate';
 
@@ -20,7 +20,7 @@ const ClassContent = () => {
   const { status } = getClassStatus(lessonStartDateTime, lessonEndDateTime);
 
   return (
-    <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 16 })}>
+    <div className={containerStyle}>
       <Text tag="b2_m_long" color="gray8">
         {getStatusMessage(status, data?.dDay)}
       </Text>

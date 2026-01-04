@@ -4,14 +4,19 @@ import DancerList from '@/pages/search/components/TabContainer/DancerList/Dancer
 import EmptyView from '@/pages/search/components/TabContainer/EmptyView/EmptyView';
 import Dropdown from '@/pages/search/components/TabContainer/TagSection/Dropdown';
 import TagSection from '@/pages/search/components/TabContainer/TagSection/TagSection';
-import * as styles from '@/pages/search/components/TabContainer/tabContainer.css';
+import {
+  divCustomStyle,
+  sectionStyle,
+  headerWrapperStyle,
+  tabListWrapperStyle,
+  dropdownTriggerStyle,
+} from '@/pages/search/components/TabContainer/tabContainer.css';
 import { TAB } from '@/pages/search/constants';
 import type { ClassListResponseTypes, DancerListResponseTypes } from '@/pages/search/types/api';
 import IcArrowUnderGray from '@/shared/assets/svg/IcArrowUnderGray';
 import IcXMain04 from '@/shared/assets/svg/IcXMain04';
 import { TabButton, TabList, TabPanel, TabRoot } from '@/shared/components/Tab';
 import Text from '@/shared/components/Text/Text';
-import { sprinkles } from '@/shared/styles/sprinkles.css';
 
 interface TagItem {
   label: string;
@@ -122,25 +127,10 @@ const TabContainer = ({
   const shouldRenderEmptyView = classList?.lessons !== undefined && !shouldRenderLessons;
 
   return (
-    <section
-      className={sprinkles({
-        display: 'flex',
-        flexDirection: 'column',
-        width: '100%',
-        paddingTop: 84,
-        paddingLeft: 20,
-        paddingRight: 20,
-      })}>
-      <div
-        className={sprinkles({
-          display: 'flex',
-          alignItems: 'center',
-          width: '100%',
-          justifyContent: 'space-between',
-          position: 'relative',
-        })}>
+    <section className={sectionStyle}>
+      <div className={headerWrapperStyle}>
         <TabRoot>
-          <div className={sprinkles({ display: 'flex', justifyContent: 'space-between' })}>
+          <div className={tabListWrapperStyle}>
             <TabList>
               <TabButton
                 isSelected={selectedTab === TAB.CLASS}
@@ -157,7 +147,7 @@ const TabContainer = ({
             </TabList>
             <Dropdown.Root>
               <Dropdown.Trigger>
-                <div className={sprinkles({ display: 'flex', alignItems: 'center' })}>
+                <div className={dropdownTriggerStyle}>
                   <Text tag="b3_m" color="gray7">
                     {selectedLabel}
                   </Text>
@@ -187,7 +177,7 @@ const TabContainer = ({
               setStartDate={setStartDate}
               setEndDate={setEndDate}
             />
-            <div className={styles.divCustomStyle}>
+            <div className={divCustomStyle}>
               {shouldRenderLessons
                 ? lessons.map((data: ClassTypes) => (
                     <ClassItem key={data.id} linkType="detail" {...data} useNewStyles={true} />

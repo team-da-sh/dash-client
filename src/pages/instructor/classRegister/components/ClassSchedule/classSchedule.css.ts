@@ -35,3 +35,39 @@ export const tagStyle = style({
   color: vars.colors.white,
   ...vars.fonts.b3_sb_narrow,
 });
+
+export const containerStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  width: '100%',
+  marginBottom: '5rem',
+});
+
+export const contentWrapperStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '2rem',
+});
+
+export const scheduleListStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '0.8rem',
+  width: '100%',
+});
+
+export const scheduleItemContentStyle = style({
+  display: 'flex',
+  gap: '1.6rem',
+  alignItems: 'center',
+});
+
+export const scheduleInfoStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '0.4rem',
+});
+
+export const errorMessageStyle = style({
+  marginTop: '0.4rem',
+});

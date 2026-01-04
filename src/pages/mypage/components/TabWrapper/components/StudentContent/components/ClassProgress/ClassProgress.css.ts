@@ -28,3 +28,8 @@ export const wrapperStyle = style({
   width: '6.3rem',
   gap: '0.8rem',
 });
+
+export const arrowIconStyle = style({
+  width: '1.4rem',
+  height: '1.4rem',
+});

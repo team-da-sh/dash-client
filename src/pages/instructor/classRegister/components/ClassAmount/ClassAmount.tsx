@@ -6,7 +6,6 @@ import { CLASS_AMOUNT_SUBTITLE } from '@/pages/instructor/classRegister/constant
 import Input from '@/shared/components/Input/Input';
 import Text from '@/shared/components/Text/Text';
 import { ONLY_NUMBER } from '@/shared/constants/regex';
-import { sprinkles } from '@/shared/styles/sprinkles.css';
 import type { ClassRegisterFormTypes } from '../../types/classRegisterForm';
 
 interface ClassAmountPropTypes {
@@ -28,7 +27,7 @@ const ClassAmount = ({ price, register }: ClassAmountPropTypes) => {
   };
 
   return (
-    <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 20, width: '100%' })}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', width: '100%' }}>
       <Description title="수강료" subTitle={CLASS_AMOUNT_SUBTITLE} />
       <Input
         name={name}

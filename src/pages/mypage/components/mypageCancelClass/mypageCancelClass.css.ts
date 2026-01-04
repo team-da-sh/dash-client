@@ -18,3 +18,22 @@ export const containerStyle = style({
 export const scrollAreaStyle = style({
   padding: '2rem 2rem 2.4rem 2rem',
 });
+
+export const titleWrapperStyle = style({
+  paddingBottom: '2rem',
+});
+
+export const reservationListWrapperStyle = style({
+  marginBottom: '2.6rem',
+});
+
+export const depositButtonWrapperStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '1.5rem',
+  marginBottom: '2rem',
+});
+
+export const buttonStyle = style({
+  width: '100%',
+});

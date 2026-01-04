@@ -34,3 +34,8 @@ export const disabledStyle = style({
 
   color: vars.colors.gray04,
 });
+
+export const sectionStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+});

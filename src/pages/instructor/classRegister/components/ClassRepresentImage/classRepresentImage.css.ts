@@ -34,3 +34,26 @@ export const closeIconStyle = style({
   left: '6.8rem',
   top: '-0.8rem',
 });
+
+export const containerStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  width: '100%',
+  marginBottom: '4rem',
+});
+
+export const contentWrapperStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '2rem',
+});
+
+export const uploadIconWrapperStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+});
+
+export const errorMessageStyle = style({
+  marginTop: '0.4rem',
+});

@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { usePostLogout } from '@/pages/auth/apis/queries';
 import { usePostValidateWithdraw } from '@/pages/mypage/apis/queries';
-import * as styles from '@/pages/mypage/components/BottomList/bottomList.css';
+import { ulStyle, listStyle, dividerStyle, sectionStyle } from '@/pages/mypage/components/BottomList/bottomList.css';
 import { GOOGLE_FORM_LINK } from '@/pages/mypage/constants/link';
 import type { BottomListItem } from '@/pages/mypage/utils/getBottomList';
 import { getBottomListData } from '@/pages/mypage/utils/getBottomList';
@@ -12,7 +12,6 @@ import { useWithdrawStore } from '@/common/stores/withdraw';
 import IcArrowRightSmallGray0732 from '@/shared/assets/svg/IcArrowRightSmallGray0732';
 import Divider from '@/shared/components/Divider/Divider';
 import { notify } from '@/shared/components/Toast/Toast';
-import { sprinkles } from '@/shared/styles/sprinkles.css';
 
 interface BottomListPropTypes {
   userRole: 'STUDENT' | 'TEACHER';
@@ -95,19 +94,19 @@ const BottomList = ({ userRole }: BottomListPropTypes) => {
   };
 
   return (
-    <section className={sprinkles({ display: 'flex', flexDirection: 'column' })}>
-      <ul className={styles.ulStyle}>
+    <section className={sectionStyle}>
+      <ul className={ulStyle}>
         {LIST_DATA.map((item) => (
           <div key={item.id}>
             <button
-              className={styles.listStyle}
+              className={listStyle}
               onClick={() => handleBottomListItemClick(item.type)}
               aria-label={item.label}>
               <span>{item.label}</span>
               <IcArrowRightSmallGray0732 width={32} height={32} />
             </button>
             {item.hasDivider && (
-              <div className={styles.dividerStyle}>
+              <div className={dividerStyle}>
                 <Divider color="gray2" thickness="0.1rem" />
               </div>
             )}

@@ -28,3 +28,10 @@ export const buttonStyle = style({
 
   cursor: 'default',
 });
+
+export const lessonListSectionStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '1.2rem',
+  marginTop: '1.6rem',
+});

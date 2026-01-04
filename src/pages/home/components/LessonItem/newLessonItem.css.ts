@@ -18,6 +18,10 @@ export const newTeacherImageStyle = style({
 });
 
 export const newWrapperStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '0.8rem',
+
   position: 'relative',
   width: '50%',
   padding: '0.35rem',
@@ -39,6 +43,10 @@ export const newGenreWrapperStyle = style({
 });
 
 export const myPageWrapperStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '0.8rem',
+
   position: 'relative',
   width: '12.3rem',
 

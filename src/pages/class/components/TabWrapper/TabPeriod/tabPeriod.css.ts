@@ -16,3 +16,22 @@ export const roundBoxStyle = style({
 export const cardStyle = style({
   border: `0.5px solid ${vars.colors.gray02}`,
 });
+
+export const sectionStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  gap: '1.2rem',
+});
+
+export const cardContentStyle = style({
+  display: 'flex',
+  alignItems: 'center',
+  width: '100%',
+});
+
+export const periodInfoStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '0.4rem',
+});
