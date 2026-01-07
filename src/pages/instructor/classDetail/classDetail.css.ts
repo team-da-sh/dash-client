@@ -30,3 +30,8 @@ export const dividerStyle = style({
 
   transform: 'translate(-20px, -3px)',
 });
+
+export const tabTitleStyle = style({
+  marginLeft: '2rem',
+  marginBottom: '2rem',
+});

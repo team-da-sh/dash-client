@@ -2,10 +2,10 @@ import { useId } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useGetLessonDetail } from '@/pages/instructor/classDetail/apis/queries';
 import * as styles from '@/pages/instructor/classDetail/classDetail.css';
+import InfoEditButton from '@/pages/instructor/classDetail/components/InfoEditButton/InfoEditButton';
 import StudentTab from '@/pages/instructor/classDetail/components/StudentTab/StudentTab';
 import ClassInfo from '@/pages/mypage/components/mypageReservationDetail/components/ClassInfo/ClassInfo';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import ClassCard from '@/shared/components/ClassCard';
 import Head from '@/shared/components/Head/Head';
 import { USER_ROLE } from '@/shared/constants/userRole';
@@ -21,14 +21,6 @@ const ClassDetail = () => {
   const { id } = useParams<{ id: string }>();
 
   const { data: lessonData } = useGetLessonDetail(Number(id), 'APPROVE');
-
-  const handleEditClick = () => {
-    if (id) {
-      navigate(ROUTES_CONFIG.classEdit.path(id));
-    }
-  };
-
-  const isClassStarted = lessonData ? new Date() >= new Date(lessonData.startDateTime) : false;
 
   return (
     <div className={styles.layoutStyle}>
@@ -71,14 +63,12 @@ const ClassDetail = () => {
               </ClassCard>
             </div>
           )}
-          <BoxButton variant="primary" onClick={handleEditClick} disabled={isClassStarted}>
-            수정하기
-          </BoxButton>
+          <InfoEditButton id={id ?? ''} startDateTime={lessonData?.startDateTime ?? ''} />
         </div>
       </section>
 
       <section aria-labelledby={studentTabId}>
-        <Head level="h2" tag="h6_sb" color="black" id={studentTabId}>
+        <Head level="h2" tag="h6_sb" color="black" id={studentTabId} className={styles.tabTitleStyle}>
           수강생 관리
         </Head>
         <StudentTab lessonId={Number(id)} />
