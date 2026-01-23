@@ -1,5 +1,5 @@
 import { useId } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useGetLessonDetail } from '@/pages/instructor/classDetail/apis/queries';
 import * as styles from '@/pages/instructor/classDetail/classDetail.css';
 import InfoEditButton from '@/pages/instructor/classDetail/components/InfoEditButton/InfoEditButton';
@@ -17,7 +17,6 @@ const ClassDetail = () => {
   const classInfoId = useId();
   const studentTabId = useId();
 
-  const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
 
   const { data: lessonData } = useGetLessonDetail(Number(id), 'APPROVE');
@@ -30,17 +29,7 @@ const ClassDetail = () => {
         </Head>
         <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 8 })}>
           {lessonData && (
-            <div
-              role="button"
-              tabIndex={0}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                  navigate(ROUTES_CONFIG.class.path(lessonData.id.toString()));
-                }
-              }}
-              onClick={() => {
-                navigate(ROUTES_CONFIG.class.path(lessonData.id.toString()));
-              }}>
+            <Link to={ROUTES_CONFIG.class.path(lessonData.id.toString())}>
               <ClassCard>
                 <ClassCard.Header
                   role={USER_ROLE.TEACHER}
@@ -61,7 +50,7 @@ const ClassDetail = () => {
                   />
                 </ClassCard.Footer>
               </ClassCard>
-            </div>
+            </Link>
           )}
           <InfoEditButton id={id ?? ''} startDateTime={lessonData?.startDateTime ?? ''} />
         </div>

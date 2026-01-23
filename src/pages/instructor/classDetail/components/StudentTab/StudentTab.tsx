@@ -19,6 +19,21 @@ const StudentTab = ({ lessonId }: StudentTabProps) => {
   const [selectedTab, setSelectedTab] = useState<TabStatus>('APPROVE');
 
   const { data: lessonData } = useGetLessonDetail(lessonId, selectedTab);
+
+  const pendingApprovalStudents =
+    lessonData?.students.filter((student) => student.reservationStatus === 'PENDING_APPROVAL') ?? [];
+
+  const approvedStudents = lessonData?.students.filter((student) => student.reservationStatus === 'APPROVED') ?? [];
+
+  const pendingCancellationStudents =
+    lessonData?.students.filter((student) => student.reservationStatus === 'PENDING_CANCELLATION') ?? [];
+
+  const cancelledStudents = lessonData?.students.filter((student) => student.reservationStatus === 'CANCELLED') ?? [];
+
+  const hasApproveStudents = pendingApprovalStudents.length > 0 || approvedStudents.length > 0;
+
+  const hasCancelStudents = pendingCancellationStudents.length > 0 || cancelledStudents.length > 0;
+
   const handleTabClick = (tabId: TabStatus) => {
     setSelectedTab(tabId);
   };
@@ -43,22 +58,18 @@ const StudentTab = ({ lessonId }: StudentTabProps) => {
       <Divider direction="horizontal" color="gray3" length="100%" thickness="0.1rem" />
 
       <TabPanel key={1} isSelected={selectedTab === 'APPROVE'} className={tabPanelStyle}>
-        {lessonData?.students.some(
-          (student) => student.reservationStatus === 'PENDING_APPROVAL' || student.reservationStatus === 'APPROVED'
-        ) ? (
+        {hasApproveStudents ? (
           <>
             <StudentList
               reservationStatus="PENDING_APPROVAL"
-              studentList={
-                lessonData?.students.filter((student) => student.reservationStatus === 'PENDING_APPROVAL') ?? []
-              }
-              lessonId={lessonData.id}
+              studentList={pendingApprovalStudents}
+              lessonId={lessonData?.id ?? lessonId}
               selectedTab={selectedTab}
             />
             <StudentList
               reservationStatus="APPROVED"
-              studentList={lessonData?.students.filter((student) => student.reservationStatus === 'APPROVED') ?? []}
-              lessonId={lessonData.id}
+              studentList={approvedStudents}
+              lessonId={lessonData?.id ?? lessonId}
               selectedTab={selectedTab}
             />
           </>
@@ -69,22 +80,18 @@ const StudentTab = ({ lessonId }: StudentTabProps) => {
         )}
       </TabPanel>
       <TabPanel key={2} isSelected={selectedTab === 'CANCEL'} className={tabPanelStyle}>
-        {lessonData?.students.some(
-          (student) => student.reservationStatus === 'PENDING_CANCELLATION' || student.reservationStatus === 'CANCELLED'
-        ) ? (
+        {hasCancelStudents ? (
           <>
             <StudentList
               reservationStatus="PENDING_CANCELLATION"
-              studentList={
-                lessonData?.students.filter((student) => student.reservationStatus === 'PENDING_CANCELLATION') ?? []
-              }
-              lessonId={lessonData.id}
+              studentList={pendingCancellationStudents}
+              lessonId={lessonData?.id ?? lessonId}
               selectedTab={selectedTab}
             />
             <StudentList
               reservationStatus="CANCELLED"
-              studentList={lessonData?.students.filter((student) => student.reservationStatus === 'CANCELLED') ?? []}
-              lessonId={lessonData.id}
+              studentList={cancelledStudents}
+              lessonId={lessonData?.id ?? lessonId}
               selectedTab={selectedTab}
             />
           </>

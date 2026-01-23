@@ -16,7 +16,7 @@ const InfoEditButton = ({ id, startDateTime }: InfoEditButtonProps) => {
     }
   };
 
-  const isClassStarted = new Date() >= new Date(startDateTime) ? true : false;
+  const isClassStarted = new Date() >= new Date(startDateTime);
 
   return (
     <BoxButton variant="primary" onClick={handleEditClick} disabled={isClassStarted}>
