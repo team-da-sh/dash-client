@@ -35,3 +35,9 @@ export const tabTitleStyle = style({
   marginLeft: '2rem',
   marginBottom: '2rem',
 });
+
+export const classInfoSectionStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '0.8rem',
+});

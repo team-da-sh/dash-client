@@ -13,6 +13,12 @@ export const containerStyle = style({
   backgroundColor: vars.colors.gray01,
 });
 
+export const inputWrapperStyle = style({
+  display: 'flex',
+  width: '100%',
+  gap: '0.6rem',
+});
+
 export const inputStyle = style({
   width: '21rem',
   ...vars.fonts.b2_m,

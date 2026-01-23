@@ -72,3 +72,45 @@ export const locationEmptyContainerStyle = style({
   borderRadius: '8px',
   ...vars.fonts.b2_sb_long,
 });
+
+export const containerStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  width: '100%',
+  marginBottom: '4rem',
+});
+
+export const contentWrapperStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '2rem',
+});
+
+export const headerWrapperStyle = style({
+  display: 'flex',
+  width: '100%',
+  justifyContent: 'space-between',
+});
+
+export const locationInputWrapperStyle = style({
+  display: 'flex',
+  width: '100%',
+  flexDirection: 'column',
+  gap: '0.8rem',
+});
+
+export const locationListStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '1rem',
+});
+
+export const locationItemWrapperStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  width: '100%',
+});
+
+export const errorMessageStyle = style({
+  marginTop: '0.4rem',
+});

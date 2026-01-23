@@ -1,7 +1,12 @@
 import { useId } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useGetLessonDetail } from '@/pages/instructor/classDetail/apis/queries';
-import * as styles from '@/pages/instructor/classDetail/classDetail.css';
+import {
+  layoutStyle,
+  containerStyle,
+  classInfoSectionStyle,
+  tabTitleStyle,
+} from '@/pages/instructor/classDetail/classDetail.css';
 import InfoEditButton from '@/pages/instructor/classDetail/components/InfoEditButton/InfoEditButton';
 import StudentTab from '@/pages/instructor/classDetail/components/StudentTab/StudentTab';
 import ClassInfo from '@/pages/mypage/components/mypageReservationDetail/components/ClassInfo/ClassInfo';
@@ -9,7 +14,6 @@ import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import ClassCard from '@/shared/components/ClassCard';
 import Head from '@/shared/components/Head/Head';
 import { USER_ROLE } from '@/shared/constants/userRole';
-import { sprinkles } from '@/shared/styles/sprinkles.css';
 
 export type TabStatus = 'APPROVE' | 'CANCEL';
 
@@ -22,12 +26,12 @@ const ClassDetail = () => {
   const { data: lessonData } = useGetLessonDetail(Number(id), 'APPROVE');
 
   return (
-    <div className={styles.layoutStyle}>
-      <section className={styles.containerStyle} aria-labelledby={classInfoId}>
+    <div className={layoutStyle}>
+      <section className={containerStyle} aria-labelledby={classInfoId}>
         <Head level="h2" tag="h6_sb" color="black" id={classInfoId}>
           내 클래스 정보
         </Head>
-        <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 8 })}>
+        <div className={classInfoSectionStyle}>
           {lessonData && (
             <Link to={ROUTES_CONFIG.class.path(lessonData.id.toString())}>
               <ClassCard>
@@ -57,9 +61,10 @@ const ClassDetail = () => {
       </section>
 
       <section aria-labelledby={studentTabId}>
-        <Head level="h2" tag="h6_sb" color="black" id={studentTabId} className={styles.tabTitleStyle}>
+        <Head level="h2" tag="h6_sb" color="black" id={studentTabId} className={tabTitleStyle}>
           수강생 관리
         </Head>
+
         <StudentTab lessonId={Number(id)} />
       </section>
     </div>

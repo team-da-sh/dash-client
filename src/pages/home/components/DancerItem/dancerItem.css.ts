@@ -9,3 +9,17 @@ export const dancerImageStyle = style({
   objectFit: 'cover',
   borderRadius: '50%',
 });
+
+export const dancerItemStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '1.2rem',
+  alignItems: 'center',
+});
+
+export const dancerInfoStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '0.4rem',
+  alignItems: 'center',
+});

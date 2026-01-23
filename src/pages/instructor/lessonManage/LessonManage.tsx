@@ -2,10 +2,9 @@ import { useState } from 'react';
 import LessonList from '@/pages/instructor/lessonList/LessonList';
 import { useGetLessonStatus } from '@/pages/instructor/lessonList/apis/queries';
 import type { LessonStatus } from '@/pages/instructor/lessonList/types/lessonStatus';
-import * as styles from '@/pages/instructor/lessonManage/lessonManage.css';
+import { layoutStyle, containerStyle, titleStyle, lessonListSectionStyle } from '@/pages/instructor/lessonManage/lessonManage.css';
 import Dropdown from '@/common/components/Dropdown/Dropdown';
 import Head from '@/shared/components/Head/Head';
-import { sprinkles } from '@/shared/styles/sprinkles.css';
 
 const options = ['ALL', 'APPLYING', 'FINISHED'] as const;
 
@@ -39,9 +38,9 @@ const LessonManage = () => {
   };
 
   return (
-    <div className={styles.layoutStyle}>
-      <main className={styles.containerStyle}>
-        <Head level="h2" tag="h6_sb" color="black" className={styles.titleStyle}>
+    <div className={layoutStyle}>
+      <main className={containerStyle}>
+        <Head level="h2" tag="h6_sb" color="black" className={titleStyle}>
           내 클래스 관리
         </Head>
 
@@ -51,7 +50,7 @@ const LessonManage = () => {
           handleSelectedOption={handleSelectedOption}
         />
 
-        <section className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 12, marginTop: 16 })}>
+        <section className={lessonListSectionStyle}>
           <LessonList status={selectedStatus} />
         </section>
       </main>

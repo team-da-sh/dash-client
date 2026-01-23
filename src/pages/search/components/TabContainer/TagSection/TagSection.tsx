@@ -1,9 +1,8 @@
 import { useState } from 'react';
 import BottomSheet from '@/pages/search/components/TabContainer/TagSection/BottomSheet/BottomSheet';
-import * as styles from '@/pages/search/components/TabContainer/TagSection/tagSection.css';
+import { tagCustomStyle, containerStyle, tagWrapperStyle } from '@/pages/search/components/TabContainer/TagSection/tagSection.css';
 import IcFilterGray from '@/shared/assets/svg/IcFilterGray';
 import Tag from '@/shared/components/Tag/Tag';
-import { sprinkles } from '@/shared/styles/sprinkles.css';
 
 interface TagItemTypes {
   label: string;
@@ -66,18 +65,11 @@ const TagSection = ({
 
   return (
     <>
-      <div
-        className={sprinkles({
-          display: 'flex',
-          justifyContent: 'space-between',
-          paddingTop: 12,
-          paddingBottom: 16,
-          width: '100%',
-        })}>
-        <div className={sprinkles({ display: 'flex', gap: 6 })}>
+      <div className={containerStyle}>
+        <div className={tagWrapperStyle}>
           {displayTags.map((tag, index) => (
             <Tag
-              className={styles.tagCustomStyle}
+              className={tagCustomStyle}
               key={index}
               size={tagSize}
               type={tagType}

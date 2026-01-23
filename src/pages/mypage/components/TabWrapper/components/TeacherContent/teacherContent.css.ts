@@ -59,3 +59,29 @@ export const snsUrlStyle = style({
   overflow: 'hidden',
   textOverflow: 'ellipsis',
 });
+
+export const snsLinksStyle = style({
+  display: 'flex',
+  alignItems: 'center',
+  gap: '0.4rem',
+});
+
+export const snsLinkStyle = style({
+  display: 'flex',
+  gap: '0.4rem',
+  alignItems: 'center',
+});
+
+export const classListHeaderStyle = style({
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  paddingLeft: '2rem',
+  paddingRight: '2rem',
+});
+
+export const reviewButtonContentStyle = style({
+  display: 'flex',
+  alignItems: 'center',
+  gap: '0.4rem',
+});

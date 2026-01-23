@@ -7,6 +7,10 @@ import {
   layoutStyle,
   containerStyle,
   scrollAreaStyle,
+  titleWrapperStyle,
+  reservationListWrapperStyle,
+  depositButtonWrapperStyle,
+  buttonStyle,
 } from '@/pages/mypage/components/mypageCancelClass/mypageCancelClass.css';
 import ReservationList from '@/pages/mypage/components/mypageReservation/components/ReservationList';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
@@ -15,7 +19,6 @@ import BankBottomSheet from '@/shared/components/BankBottomSheet/BankBottomSheet
 import BlurButton from '@/shared/components/BlurButton/BlurButton';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import Head from '@/shared/components/Head/Head';
-import { sprinkles } from '@/shared/styles/sprinkles.css';
 
 const MypageCancelClass = () => {
   const navigate = useNavigate();
@@ -84,17 +87,17 @@ const MypageCancelClass = () => {
       <div className={containerStyle}>
         <div className={scrollAreaStyle}>
           <div>
-            <div className={sprinkles({ paddingBottom: 20 })}>
+            <div className={titleWrapperStyle}>
               <Head tag="h6_sb" color="black">
                 클래스 취소하기
               </Head>
             </div>
 
-            <div className={sprinkles({ marginBottom: 26 })}>
+            <div className={reservationListWrapperStyle}>
               <ReservationList status="ALL" targetReservationId={reservationId} showActions={false} />
             </div>
 
-            <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 15, marginBottom: 20 })}>
+            <div className={depositButtonWrapperStyle}>
               <DepositeButton
                 text="입금 전"
                 isSelected={selectedStatus === 'before'}
@@ -116,11 +119,7 @@ const MypageCancelClass = () => {
           </div>
 
           <BlurButton>
-            <BoxButton
-              variant="primary"
-              onClick={handleNext}
-              disabled={!isButtonActive()}
-              className={sprinkles({ width: '100%' })}>
+            <BoxButton variant="primary" onClick={handleNext} disabled={!isButtonActive()} className={buttonStyle}>
               다음
             </BoxButton>
           </BlurButton>

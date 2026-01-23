@@ -3,13 +3,15 @@ import { useFormContext } from 'react-hook-form';
 import {
   containerStyle,
   textAreaStyle,
+  textareaWrapperStyle,
+  textareaFooterStyle,
+  counterWrapperStyle,
 } from '@/pages/instructorRegister/components/IntroductionSection/introductionSection.css';
 import {
   INSTRUCTOR_REGISTER_PLACEHOLDER,
   MAX_INTRODUCTION_LENGTH,
 } from '@/pages/instructorRegister/constants/registerSection';
 import Text from '@/shared/components/Text/Text';
-import { sprinkles } from '@/shared/styles/sprinkles.css';
 import type { instructorRegisterFormTypes } from '../../types/instructorRegisterForm';
 
 const IntroductionSection = () => {
@@ -59,7 +61,7 @@ const IntroductionSection = () => {
   return (
     <section className={containerStyle}>
       <Text tag="b2_sb">강사 소개</Text>
-      <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 8 })}>
+      <div className={textareaWrapperStyle}>
         <textarea
           id="introduction-textarea"
           name={name}
@@ -77,12 +79,12 @@ const IntroductionSection = () => {
           rows={1}
         />
 
-        <div className={sprinkles({ display: 'flex', justifyContent: 'space-between' })}>
+        <div className={textareaFooterStyle}>
           <Text tag="b3_r" color="alert3">
             {error?.message}
           </Text>
 
-          <div className={sprinkles({ display: 'flex', gap: 2 })}>
+          <div className={counterWrapperStyle}>
             <Text tag="c1_m" color={counterColor}>
               {detail.length}
             </Text>

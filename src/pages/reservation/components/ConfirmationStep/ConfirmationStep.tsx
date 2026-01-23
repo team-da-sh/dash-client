@@ -1,13 +1,24 @@
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import ConfirmationBottomSheet from '@/pages/reservation/components/ConfirmationBottomSheet/ConfirmationBottomSheet';
-import * as styles from '@/pages/reservation/components/ConfirmationStep/confirmationStep.css';
+import {
+  mainContainer,
+  gapBetweenHeadAndNote,
+  gapBeforeSection,
+  confirmSection,
+  rowItem,
+  rowItemTitle,
+  copyButtonStyle,
+  confirmButtonContainer,
+  underline,
+  breakWord,
+  accountNumberWrapperStyle,
+} from '@/pages/reservation/components/ConfirmationStep/confirmationStep.css';
 import SvgIcCopy from '@/shared/assets/svg/IcCopy';
 import BoxButton from '@/shared/components/BoxButton/BoxButton';
 import Head from '@/shared/components/Head/Head';
 import Text from '@/shared/components/Text/Text';
 import { notify } from '@/shared/components/Toast/Toast';
-import { sprinkles } from '@/shared/styles/sprinkles.css';
 
 interface ConfirmationStepPropTypes {
   onNext: () => void;
@@ -43,46 +54,46 @@ const ConfirmationStep = ({ onNext, depositor, bankName, accountNumber, price }:
     <main>
       <ConfirmationBottomSheet isOpen={isBottomSheetOpen} onClose={handleCloseBottomSheet} />
 
-      <div className={styles.mainContainer}>
+      <div className={mainContainer}>
         <Head level="h2" tag="h3_sb" color="black">
           입금안내
         </Head>
 
-        <Text tag="b2_m" color="gray7" className={styles.gapBetweenHeadAndNote}>
+        <Text tag="b2_m" color="gray7" className={gapBetweenHeadAndNote}>
           신청자명과 동일한 이름으로 입금해 주세요
         </Text>
 
-        <Head level="h5" tag="h6_sb" color="black" className={styles.gapBeforeSection}>
+        <Head level="h5" tag="h6_sb" color="black" className={gapBeforeSection}>
           입금정보
         </Head>
 
-        <section className={styles.confirmSection}>
-          <div className={styles.rowItem}>
-            <Text tag="b2_m_long" color="gray6" className={styles.rowItemTitle}>
+        <section className={confirmSection}>
+          <div className={rowItem}>
+            <Text tag="b2_m_long" color="gray6" className={rowItemTitle}>
               예금주
             </Text>
-            <Text tag="b2_m_long" color="black" className={styles.breakWord}>
+            <Text tag="b2_m_long" color="black" className={breakWord}>
               {depositor}
             </Text>
           </div>
-          <div className={styles.rowItem}>
-            <Text tag="b2_m_long" color="gray6" className={styles.rowItemTitle}>
+          <div className={rowItem}>
+            <Text tag="b2_m_long" color="gray6" className={rowItemTitle}>
               계좌번호
             </Text>
-            <div className={sprinkles({ display: 'flex', gap: 6, alignItems: 'center' })}>
+            <div className={accountNumberWrapperStyle}>
               <Text tag="b2_m_long" color="black">
                 {bankName}
               </Text>
-              <Text tag="b2_m_long" color="black" className={styles.underline}>
+              <Text tag="b2_m_long" color="black" className={underline}>
                 {accountNumber}
               </Text>
-              <button onClick={handleCopy} className={styles.copyButtonStyle} aria-label="계좌번호 복사">
+              <button onClick={handleCopy} className={copyButtonStyle} aria-label="계좌번호 복사">
                 <SvgIcCopy width={16} height={16} />
               </button>
             </div>
           </div>
-          <div className={styles.rowItem}>
-            <Text tag="b2_m_long" color="gray6" className={styles.rowItemTitle}>
+          <div className={rowItem}>
+            <Text tag="b2_m_long" color="gray6" className={rowItemTitle}>
               수강료
             </Text>
             <Text tag="b2_m_long" color="black">
@@ -92,7 +103,7 @@ const ConfirmationStep = ({ onNext, depositor, bankName, accountNumber, price }:
         </section>
       </div>
 
-      <div className={styles.confirmButtonContainer}>
+      <div className={confirmButtonContainer}>
         <BoxButton onClick={onNext}>확인</BoxButton>
       </div>
     </main>

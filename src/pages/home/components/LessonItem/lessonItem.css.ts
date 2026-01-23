@@ -29,6 +29,9 @@ export const teacherImageStyle = style({
 
 export const wrapperStyle = style({
   position: 'relative',
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '0.8rem',
 });
 
 export const deadlineTagStyle = style({
@@ -68,4 +71,21 @@ export const linkStyle = style({
       outlineOffset: '2px',
     },
   },
+});
+
+export const tagWrapperStyle = style({
+  display: 'flex',
+  gap: '0.4rem',
+});
+
+export const teacherInfoWrapperStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '0.4rem',
+});
+
+export const teacherWrapperStyle = style({
+  display: 'flex',
+  gap: '0.6rem',
+  alignItems: 'center',
 });
