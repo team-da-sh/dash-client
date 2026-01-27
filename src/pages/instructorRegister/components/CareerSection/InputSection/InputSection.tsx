@@ -2,16 +2,19 @@ import { useRef, useState } from 'react';
 import {
   addButtonStyle,
   checkboxStyle,
-  inputContainerStyle,
   hiddenCheckboxStyle,
+  inputCheckboxLabelStyle,
+  inputContainerStyle,
+  inputHeaderRightStyle,
+  inputHeaderRowStyle,
+  inputListWrapperStyle,
 } from '@/pages/instructorRegister/components/CareerSection/careerSection.css';
 import type { InputItemTypes } from '@/pages/instructorRegister/types/inputItemTypes';
+import Input from '@/common/components/Input/Input';
 import BtnCheck from '@/shared/assets/svg/BtnCheck';
 import IcPlusGray0524 from '@/shared/assets/svg/IcPlusGray0524';
 import IcXCircleGray from '@/shared/assets/svg/IcXCircleGray';
-import Flex from '@/shared/components/Flex/Flex';
-import Input from '@/shared/components/Input/Input';
-import Text from '@/shared/components/Text/Text';
+import Text from '@/common/components/Text/Text';
 
 interface InputSectionPropTypes {
   title: string;
@@ -71,24 +74,24 @@ const InputSection = ({
 
   return (
     <div className={inputContainerStyle}>
-      <Flex justify="spaceBetween" width="100%">
+      <div className={inputHeaderRowStyle}>
         <Text tag="b2_sb" color="gray10">
           {title}
         </Text>
-        <Flex gap="0.8rem" align="center">
+        <div className={inputHeaderRightStyle}>
           <Text tag="b3_m" color="gray6">
             해당없음
           </Text>
-          <label style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', cursor: 'pointer' }}>
+          <label className={inputCheckboxLabelStyle}>
             <input onClick={onToggleActive} type="checkbox" className={hiddenCheckboxStyle} />
 
             {isNoneChecked ? <BtnCheck width="2rem" /> : <div className={checkboxStyle} />}
           </label>
-        </Flex>
-      </Flex>
+        </div>
+      </div>
 
       {!isNoneChecked && (
-        <Flex direction="column" gap="0.8rem" width="100%">
+        <div className={inputListWrapperStyle}>
           {inputItems.map(({ id, value }, index) => (
             <Input
               key={id}
@@ -123,7 +126,7 @@ const InputSection = ({
               <IcPlusGray0524 width={'2.4rem'} />
             </button>
           )}
-        </Flex>
+        </div>
       )}
     </div>
   );

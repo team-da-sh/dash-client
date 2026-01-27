@@ -6,7 +6,7 @@ import ReasonStep from '@/pages/mypage/components/Withdraw/components/ReasonStep
 import WithdrawHeader from '@/pages/mypage/components/Withdraw/components/WithdrawHeader/WithdrawHeader';
 import type { WithdrawReasonTypes } from '@/pages/mypage/components/Withdraw/constants';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import { useFunnel } from '@/shared/hooks/useFunnel';
+import { useFunnel } from '@/common/hooks/useFunnel';
 
 const Withdraw = () => {
   const navigate = useNavigate();

@@ -1,9 +1,9 @@
 import type { UseFormRegister } from 'react-hook-form';
 import * as styles from '@/pages/mypage/components/CancelConfirmPage/components/RefundAccountSection/refundAccountSection.css.ts';
+import Input from '@/common/components/Input/Input';
 import SvgIcArrowDownGray1032 from '@/shared/assets/svg/IcArrowDownGray1032';
-import Head from '@/shared/components/Head/Head';
-import Input from '@/shared/components/Input/Input';
-import Text from '@/shared/components/Text/Text';
+import Head from '@/common/components/Head/Head';
+import Text from '@/common/components/Text/Text';
 import { MAX_ACCOUNT_NUMBER_LENGTH } from '@/shared/constants/account';
 import { ONLY_NUMBER } from '@/shared/constants/regex';
 

@@ -6,16 +6,16 @@ import type { Student } from '@/pages/instructor/classDetail/types/api';
 import { formatPhoneNumber } from '@/pages/instructor/utils/format';
 import { STATUS_KOREAN_MAP } from '@/pages/mypage/components/mypageReservation/constants/statusMap';
 import type { ReservationStatus } from '@/pages/mypage/components/mypageReservation/types/reservationStatus';
+import BoxButton from '@/common/components/BoxButton/BoxButton';
+import Head from '@/common/components/Head/Head';
 import Modal from '@/common/components/Modal/Modal';
+import Text from '@/common/components/Text/Text';
+import { notify } from '@/common/components/Toast/Toast';
 import { useModalStore } from '@/common/stores/modal';
 import ApplyTag from '@/shared/components/ApplyTag/ApplyTag';
-import BoxButton from '@/shared/components/BoxButton/BoxButton';
-import Head from '@/shared/components/Head/Head';
-import Text from '@/shared/components/Text/Text';
-import { notify } from '@/shared/components/Toast/Toast';
 import { teacherKeys } from '@/shared/constants/queryKey';
 import { WITHDRAW_USER_NAME } from '@/shared/constants/withdrawUser';
-import { formatDateTime } from '@/shared/utils/timeUtils';
+import { formatDateToKRWithTime } from '@/shared/utils/date';
 
 const STATUS_BUTTON_MAP: Record<
   Exclude<ReservationStatus, 'ALL'>,
@@ -129,7 +129,7 @@ const StudentCard = ({ studentData, index, lessonId, selectedTab }: StudentCardP
 
       <section className={styles.rightWrapper}>
         <Text tag="c1_r" color="gray9">
-          {formatDateTime(studentData.reservationDateTime)}
+          {formatDateToKRWithTime(studentData.reservationDateTime)}
         </Text>
         <BoxButton
           variant={buttonVariant}

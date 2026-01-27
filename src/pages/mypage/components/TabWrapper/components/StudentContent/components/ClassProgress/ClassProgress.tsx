@@ -6,8 +6,8 @@ import {
   arrowIconStyle,
 } from '@/pages/mypage/components/TabWrapper/components/StudentContent/components/ClassProgress/ClassProgress.css';
 import SvgIcArrowRightGray0614 from '@/shared/assets/svg/IcArrowRightGray0614';
-import Head from '@/shared/components/Head/Head';
-import Text from '@/shared/components/Text/Text';
+import Head from '@/common/components/Head/Head';
+import Text from '@/common/components/Text/Text';
 
 const ClassProgress = () => {
   const { data, isLoading } = useGetMyLessonCounts();

@@ -1,6 +1,6 @@
 import * as styles from '@/pages/instructorRegister/components/ImageUploadSection/imageUploadSection.css';
+import Text from '@/common/components/Text/Text';
 import IcProfileBasic from '@/shared/assets/svg/IcProfileBasic';
-import Text from '@/shared/components/Text/Text';
 
 interface ImageUploadSectionPropTypes {
   handleUploaderClick?: () => void;

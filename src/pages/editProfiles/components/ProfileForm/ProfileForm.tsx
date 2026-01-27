@@ -18,10 +18,10 @@ import { useVerification } from '@/pages/editProfiles/hooks/useVerification';
 import { profileSchema } from '@/pages/editProfiles/schema/profileSchema';
 import type { ProfileFormValues } from '@/pages/editProfiles/schema/profileSchema';
 import type { UpdateProfileRequestTypes } from '@/pages/editProfiles/types/api';
-import BoxButton from '@/shared/components/BoxButton/BoxButton';
-import Input from '@/shared/components/Input/Input';
-import Text from '@/shared/components/Text/Text';
-import { notify } from '@/shared/components/Toast/Toast';
+import Input from '@/common/components/Input/Input';
+import BoxButton from '@/common/components/BoxButton/BoxButton';
+import Text from '@/common/components/Text/Text';
+import { notify } from '@/common/components/Toast/Toast';
 import {
   MAX_NAME_LENGTH,
   MAX_PHONENUMBER_LENGTH,

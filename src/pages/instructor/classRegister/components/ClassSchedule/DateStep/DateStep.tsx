@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react';
 import CalendarCustom from '@/pages/search/components/Calendar/Calendar';
-import { getDateWithoutTime } from '@/shared/utils/timeUtils';
+import { getDateWithoutTime } from '@/shared/utils/date';
 
 interface DateStepProps {
   startDate: string;

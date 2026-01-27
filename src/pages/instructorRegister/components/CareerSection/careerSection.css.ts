@@ -10,6 +10,25 @@ export const inputContainerStyle = style({
   padding: '1.2rem 0',
 });
 
+export const inputHeaderRowStyle = style({
+  display: 'flex',
+  justifyContent: 'space-between',
+  width: '100%',
+});
+
+export const inputHeaderRightStyle = style({
+  display: 'flex',
+  gap: '0.8rem',
+  alignItems: 'center',
+});
+
+export const inputCheckboxLabelStyle = style({
+  display: 'flex',
+  alignItems: 'center',
+  gap: '0.4rem',
+  cursor: 'pointer',
+});
+
 export const addButtonStyle = style({
   display: 'flex',
   justifyContent: 'center',
@@ -43,4 +62,11 @@ export const containerStyle = style({
   flexDirection: 'column',
   width: '100%',
   paddingBottom: '2rem',
+});
+
+export const inputListWrapperStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '0.8rem',
+  width: '100%',
 });

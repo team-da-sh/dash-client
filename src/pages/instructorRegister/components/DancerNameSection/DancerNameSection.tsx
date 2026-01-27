@@ -6,9 +6,9 @@ import type {
   duplicateStateTypes,
   instructorRegisterFormTypes,
 } from '@/pages/instructorRegister/types/instructorRegisterForm';
-import BoxButton from '@/shared/components/BoxButton/BoxButton';
-import Input from '@/shared/components/Input/Input';
-import Text from '@/shared/components/Text/Text';
+import Input from '@/common/components/Input/Input';
+import BoxButton from '@/common/components/BoxButton/BoxButton';
+import Text from '@/common/components/Text/Text';
 
 interface DancerNameSectionPropTypes {
   duplicateState: duplicateStateTypes;

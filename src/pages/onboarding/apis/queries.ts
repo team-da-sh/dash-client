@@ -3,7 +3,7 @@ import type { AxiosError } from 'axios';
 import { postOnboard, postPhoneRequest, postPhoneVerify } from '@/pages/onboarding/apis/axios';
 import type { tokenTypes } from '@/pages/onboarding/types/api';
 import type { OnboardInfoTypes, PhoneRequestTypes, phoneVerifyTypes } from '@/pages/onboarding/types/onboardInfoTypes';
-import { notify } from '@/shared/components/Toast/Toast';
+import { notify } from '@/common/components/Toast/Toast';
 import { PHONE_AUTH_MESSAGES } from '@/shared/constants/userInfo';
 import type { ApiError } from '@/shared/types/api';
 

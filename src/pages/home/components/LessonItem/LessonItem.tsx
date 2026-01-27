@@ -22,11 +22,11 @@ import {
 import { MAX_REMAINING_DAYS, MIN_REMAINING_DAYS } from '@/pages/home/constants/index';
 import type { LessonTypes } from '@/pages/home/types/classTypes';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import Head from '@/shared/components/Head/Head';
-import Tag from '@/shared/components/Tag/Tag';
-import Text from '@/shared/components/Text/Text';
+import Head from '@/common/components/Head/Head';
+import Tag from '@/common/components/Tag/Tag';
+import Text from '@/common/components/Text/Text';
 import { genreMapping, levelMapping } from '@/shared/constants';
-import { calculateRemainingDate } from '@/shared/utils/dateCalculate';
+import { calculateRemainingDate } from '@/shared/utils/date';
 
 const LessonItem = ({
   id,

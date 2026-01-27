@@ -12,10 +12,10 @@ import {
   recommendationHeaderStyle,
 } from '@/pages/class/components/TabWrapper/TabLevel/tabLevel.css';
 import type { LessonDetailResponseTypes } from '@/pages/class/types/api';
+import Head from '@/common/components/Head/Head';
+import Text from '@/common/components/Text/Text';
+import { notify } from '@/common/components/Toast/Toast';
 import IcQuesitonmark from '@/shared/assets/svg/IcQuesitonmark';
-import Head from '@/shared/components/Head/Head';
-import Text from '@/shared/components/Text/Text';
-import { notify } from '@/shared/components/Toast/Toast';
 import { LEVEL, levelMapping } from '@/shared/constants/index';
 
 const IcSparkleMain20 = lazy(() => import('@/shared/assets/svg/IcSparkleMain20'));

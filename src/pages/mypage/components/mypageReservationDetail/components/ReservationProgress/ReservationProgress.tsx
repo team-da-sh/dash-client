@@ -10,9 +10,9 @@ import {
   statusWrapper,
   textStyle,
 } from '@/pages/mypage/components/mypageReservationDetail/components/ReservationProgress/ReservationProgress.css';
+import Text from '@/common/components/Text/Text';
 import SvgIcClear from '@/shared/assets/svg/IcClear';
 import SvgIcMeatball from '@/shared/assets/svg/IcMeatball';
-import Text from '@/shared/components/Text/Text';
 import { vars } from '@/shared/styles/theme.css';
 
 interface ReservationProgressProps {

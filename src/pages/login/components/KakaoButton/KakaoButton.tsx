@@ -1,6 +1,6 @@
 import { buttonStyle, kakaoButtonStyle, buttonContentStyle } from '@/pages/login/components/KakaoButton/kakaoButton.css';
 import IcKakaoKakaobrown28 from '@/shared/assets/svg/IcKakaoKakaobrown28';
-import Head from '@/shared/components/Head/Head';
+import Head from '@/common/components/Head/Head';
 
 const KakaoButton = () => {
   const redirect_uri = import.meta.env.VITE_KAKAO_REDIRECT_URI;

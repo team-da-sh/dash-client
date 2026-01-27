@@ -8,8 +8,8 @@ import {
 import type { Student } from '@/pages/instructor/classDetail/types/api';
 import { STATUS_KOREAN_MAP } from '@/pages/mypage/components/mypageReservation/constants/statusMap';
 import type { ReservationStatus } from '@/pages/mypage/components/mypageReservation/types/reservationStatus';
-import Divider from '@/shared/components/Divider/Divider';
-import Text from '@/shared/components/Text/Text';
+import Divider from '@/common/components/Divider/Divider';
+import Text from '@/common/components/Text/Text';
 
 interface StudentListProps {
   reservationStatus: ReservationStatus;

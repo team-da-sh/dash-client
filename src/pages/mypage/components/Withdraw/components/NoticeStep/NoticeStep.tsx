@@ -14,17 +14,17 @@ import {
   agreeSectionStyle,
 } from '@/pages/mypage/components/Withdraw/components/NoticeStep/noticeStep.css';
 import { NOTICE_CONTENTS } from '@/pages/mypage/components/Withdraw/constants';
+import BlurButton from '@/common/components/BlurButton/BlurButton';
 import Modal from '@/common/components/Modal/Modal';
 import { useModalStore } from '@/common/stores/modal';
 import { useWithdrawStore } from '@/common/stores/withdraw';
 import IcCheckcircleGray0524 from '@/shared/assets/svg/IcCheckcircleGray0524';
 import IcCheckcircleMain0324 from '@/shared/assets/svg/IcCheckcircleMain0324';
-import BlurButton from '@/shared/components/BlurButton/BlurButton';
-import BoxButton from '@/shared/components/BoxButton/BoxButton';
-import Divider from '@/shared/components/Divider/Divider';
-import Head from '@/shared/components/Head/Head';
-import Text from '@/shared/components/Text/Text';
-import { notify } from '@/shared/components/Toast/Toast';
+import BoxButton from '@/common/components/BoxButton/BoxButton';
+import Divider from '@/common/components/Divider/Divider';
+import Head from '@/common/components/Head/Head';
+import Text from '@/common/components/Text/Text';
+import { notify } from '@/common/components/Toast/Toast';
 import { vars } from '@/shared/styles/theme.css';
 import { clearStorage } from '@/shared/utils/handleToken';
 

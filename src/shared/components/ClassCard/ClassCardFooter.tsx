@@ -1,7 +1,7 @@
 import type { PropsWithChildren } from 'react';
+import Text from '@/common/components/Text/Text';
 import IcArrowRightGray0614 from '@/shared/assets/svg/IcArrowRightGray0614';
 import { askTextStyle, footerWrapperStyle } from '@/shared/components/ClassCard/style.css';
-import Text from '@/shared/components/Text/Text';
 
 interface ClassCardFooterProps extends PropsWithChildren {
   showAsk?: boolean;

@@ -28,15 +28,15 @@ import { classRegisterSchema } from '@/pages/instructor/classRegister/schema/cla
 import type { ClassRegisterInfoTypes } from '@/pages/instructor/classRegister/types/api';
 import type { LocationTypes } from '@/pages/instructor/classRegister/types/index';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
+import BoxButton from '@/common/components/BoxButton/BoxButton';
 import Modal from '@/common/components/Modal/Modal';
+import { notify } from '@/common/components/Toast/Toast';
+import useDebounce from '@/common/hooks/useDebounce';
 import { useModalStore } from '@/common/stores/modal';
-import BoxButton from '@/shared/components/BoxButton/BoxButton';
-import { notify } from '@/shared/components/Toast/Toast';
 import { genreEngMapping, levelEngMapping } from '@/shared/constants';
 import { lessonKeys, memberKeys, teacherKeys } from '@/shared/constants/queryKey';
 import useBlockBackWithUnsavedChanges from '@/shared/hooks/useBlockBackWithUnsavedChanges';
 import useBottomSheet from '@/shared/hooks/useBottomSheet';
-import useDebounce from '@/shared/hooks/useDebounce';
 import useImageUploader from '@/shared/hooks/useImageUploader';
 import { CLASS_REGISTER_EDIT_MESSAGE } from './constants/notifyMessage';
 

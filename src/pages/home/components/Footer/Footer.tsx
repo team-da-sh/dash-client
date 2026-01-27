@@ -6,8 +6,8 @@ import {
   infoRowStyle,
 } from '@/pages/home/components/Footer/footer.css';
 import IcHeaderLogoSmallBlack from '@/shared/assets/svg/IcHeaderLogoSmallBlack';
-import Divider from '@/shared/components/Divider/Divider';
-import Text from '@/shared/components/Text/Text';
+import Divider from '@/common/components/Divider/Divider';
+import Text from '@/common/components/Text/Text';
 
 const Footer = () => {
   return (

@@ -13,7 +13,7 @@ import Description from '@/pages/instructor/classRegister/components/Description
 import { CLASS_REPRESENT_IMAGE_SUBTITLE } from '@/pages/instructor/classRegister/constants/registerSectionText';
 import IcPlusGray0524 from '@/shared/assets/svg/IcPlusGray0524';
 import IcXCircleMain0324 from '@/shared/assets/svg/IcXCircleMain0324';
-import Text from '@/shared/components/Text/Text';
+import Text from '@/common/components/Text/Text';
 
 interface ClassRepresentImagePropTypes {
   handleUploaderClick: () => void;

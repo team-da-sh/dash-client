@@ -14,11 +14,11 @@ import {
 } from '@/pages/mypage/components/mypageCancelClass/mypageCancelClass.css';
 import ReservationList from '@/pages/mypage/components/mypageReservation/components/ReservationList';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
+import BlurButton from '@/common/components/BlurButton/BlurButton';
+import BoxButton from '@/common/components/BoxButton/BoxButton';
+import Head from '@/common/components/Head/Head';
 import { useGetBankList } from '@/shared/apis/queries';
 import BankBottomSheet from '@/shared/components/BankBottomSheet/BankBottomSheet';
-import BlurButton from '@/shared/components/BlurButton/BlurButton';
-import BoxButton from '@/shared/components/BoxButton/BoxButton';
-import Head from '@/shared/components/Head/Head';
 
 const MypageCancelClass = () => {
   const navigate = useNavigate();

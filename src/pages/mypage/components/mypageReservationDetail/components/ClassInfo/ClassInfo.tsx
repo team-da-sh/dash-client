@@ -7,8 +7,8 @@ import {
   scheduleWrapperStyle,
   scheduleItemStyle,
 } from '@/pages/mypage/components/mypageReservationDetail/components/ClassInfo/ClassInfo.css';
-import Text from '@/shared/components/Text/Text';
-import { calculatePeriod, formatSimpleDate } from '@/shared/utils/dateCalculate';
+import Text from '@/common/components/Text/Text';
+import { calculatePeriod, formatDateToSimpleKR } from '@/shared/utils/date';
 
 interface ClassInfoPropTypes {
   location: string;
@@ -54,7 +54,7 @@ const ClassInfo = ({ location, locationDetail, lessonRound = [] }: ClassInfoProp
               return (
                 <div className={scheduleItemStyle} key={id}>
                   <Text tag="b3_m" color="gray10">
-                    {id + 1}회차: {formatSimpleDate(round.startDateTime)}
+                    {id + 1}회차: {formatDateToSimpleKR(round.startDateTime)}
                   </Text>
                   <Text tag="b3_m" color="gray6">
                     {startTime} - {formattedEndTime} ({durationString})

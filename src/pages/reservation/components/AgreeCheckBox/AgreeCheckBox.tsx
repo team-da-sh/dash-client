@@ -1,9 +1,9 @@
+import { containerStyle, contentStyle } from '@/pages/reservation/components/AgreeCheckBox/agreeCheckBox.css';
+import Text from '@/common/components/Text/Text';
 import IcArrowRightSmallGray0732 from '@/shared/assets/svg/IcArrowRightSmallGray0732';
 import IcArrowRightSmallMain0332New from '@/shared/assets/svg/IcArrowRightSmallMain0332New';
 import IcCheckGray0724 from '@/shared/assets/svg/IcCheckGray0724';
 import IcCheckMain0324 from '@/shared/assets/svg/IcCheckMain0324';
-import Text from '@/shared/components/Text/Text';
-import { containerStyle, contentStyle } from '@/pages/reservation/components/AgreeCheckBox/agreeCheckBox.css';
 
 interface AgreeCheckBoxPropTypes {
   text: string;

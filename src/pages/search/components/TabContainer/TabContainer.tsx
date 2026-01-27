@@ -13,10 +13,10 @@ import {
 } from '@/pages/search/components/TabContainer/tabContainer.css';
 import { TAB } from '@/pages/search/constants';
 import type { ClassListResponseTypes, DancerListResponseTypes } from '@/pages/search/types/api';
+import { TabButton, TabList, TabPanel, TabRoot } from '@/common/components/Tab';
+import Text from '@/common/components/Text/Text';
 import IcArrowUnderGray from '@/shared/assets/svg/IcArrowUnderGray';
 import IcXMain04 from '@/shared/assets/svg/IcXMain04';
-import { TabButton, TabList, TabPanel, TabRoot } from '@/shared/components/Tab';
-import Text from '@/shared/components/Text/Text';
 
 interface TagItem {
   label: string;

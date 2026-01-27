@@ -8,10 +8,10 @@ import {
   scheduleItemStyle,
   locationInfoStyle,
 } from '@/pages/reservation/components/ClassInfo/classInfo.css';
-import Head from '@/shared/components/Head/Head';
-import Text from '@/shared/components/Text/Text';
+import Head from '@/common/components/Head/Head';
+import Text from '@/common/components/Text/Text';
 import { levelMapping } from '@/shared/constants';
-import { calculatePeriod, formatSimpleDate } from '@/shared/utils/dateCalculate';
+import { calculatePeriod, formatDateToSimpleKR } from '@/shared/utils/date';
 
 interface ClassInfoPropTypes {
   lessonName: string;
@@ -63,7 +63,7 @@ const ClassInfo = ({
                 return (
                   <div className={scheduleItemStyle} key={id}>
                     <Text tag="b3_m" color="gray10">
-                      {id + 1}회차: {formatSimpleDate(round.startDateTime)}
+                      {id + 1}회차: {formatDateToSimpleKR(round.startDateTime)}
                     </Text>
                     <Text tag="b3_m" color="gray6">
                       {startTime} - {formattedEndTime} ({durationString})

@@ -1,5 +1,5 @@
+import Head from '@/common/components/Head/Head';
 import IcMyEmpty from '@/shared/assets/svg/IcMyEmpty';
-import Head from '@/shared/components/Head/Head';
 import * as styles from './EmptyClassList.css';
 
 const EmptyClassList = () => {

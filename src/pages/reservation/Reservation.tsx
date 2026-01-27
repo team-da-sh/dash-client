@@ -6,7 +6,7 @@ import ReservationStep from '@/pages/reservation/components/ReservationStep/Rese
 import SuccessStep from '@/pages/reservation/components/SuccessStep/SuccessStep';
 import type { ClassReservationResponseTypes } from '@/pages/reservation/types/api';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import { useFunnel } from '@/shared/hooks/useFunnel';
+import { useFunnel } from '@/common/hooks/useFunnel';
 
 const Reservation = () => {
   const navigate = useNavigate();

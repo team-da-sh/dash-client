@@ -7,8 +7,8 @@ import {
   periodInfoStyle,
 } from '@/pages/class/components/TabWrapper/TabPeriod/tabPeriod.css';
 import type { LessonDetailResponseTypes } from '@/pages/class/types/api';
-import Text from '@/shared/components/Text/Text';
-import { calculatePeriod, formatDate } from '@/shared/utils/dateCalculate';
+import Text from '@/common/components/Text/Text';
+import { calculatePeriod, formatDateToKR } from '@/shared/utils/date';
 
 const TabPeriod = ({ lessonData }: { lessonData: LessonDetailResponseTypes }) => {
   const { lessonRound } = lessonData;
@@ -29,7 +29,7 @@ const TabPeriod = ({ lessonData }: { lessonData: LessonDetailResponseTypes }) =>
               </div>
               <div className={periodInfoStyle}>
                 <Text tag="b2_sb" color="black">
-                  {formatDate(startDateTime)}
+                  {formatDateToKR(startDateTime)}
                 </Text>
                 <Text tag="b3_m" color="gray7">
                   {startTime} - {formattedEndTime} ({durationString})

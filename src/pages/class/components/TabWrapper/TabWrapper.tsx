@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { tabPanelStyle, tabListWrapperStyle } from '@/pages/class/components/TabWrapper/tabWrapper.css';
 import type { LessonDetailResponseTypes } from '@/pages/class/types/api';
-import { TabButton, TabList, TabPanel, TabRoot } from '@/shared/components/Tab';
-import { notify } from '@/shared/components/Toast/Toast';
+import { TabButton, TabList, TabPanel, TabRoot } from '@/common/components/Tab';
+import { notify } from '@/common/components/Toast/Toast';
 import { CLASS_TABS } from '@/shared/constants';
 
 interface TabWrapperPropTypes {

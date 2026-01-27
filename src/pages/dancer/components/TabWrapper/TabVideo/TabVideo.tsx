@@ -1,6 +1,6 @@
 import { iframeStyle, sectionStyle, emptyMessageStyle, videoWrapperStyle } from '@/pages/dancer/components/TabWrapper/TabVideo/tabVideo.css';
 import type { DancerDetailResponseTypes } from '@/pages/dancer/types/api';
-import Head from '@/shared/components/Head/Head';
+import Head from '@/common/components/Head/Head';
 import { getYoutubeEmbedUrl } from '@/shared/constants/regex';
 
 const TabVideo = ({ dancerData }: { dancerData: DancerDetailResponseTypes }) => {

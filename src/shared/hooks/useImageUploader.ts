@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
+import { notify } from '@/common/components/Toast/Toast';
 import { useImageMutation } from '@/shared/apis/queries';
 import { resizeImage } from '@/shared/utils/resizeImage';
-import { notify } from '../components/Toast/Toast';
 
 const useImageUploader = (
   onSuccess: (url: string) => void,

@@ -3,9 +3,9 @@ import {
   contentWrapperStyle,
   titleWrapperStyle,
 } from '@/pages/search/components/SearchIntro/searchIntro.css';
+import Head from '@/common/components/Head/Head';
+import Text from '@/common/components/Text/Text';
 import IcSpeaker3D from '@/shared/assets/svg/IcSpeaker3D';
-import Head from '@/shared/components/Head/Head';
-import Text from '@/shared/components/Text/Text';
 
 const SearchIntro = () => {
   return (

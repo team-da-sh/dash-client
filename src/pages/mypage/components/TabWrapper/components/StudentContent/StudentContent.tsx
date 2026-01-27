@@ -4,9 +4,9 @@ import ClassProgress from '@/pages/mypage/components/TabWrapper/components/Stude
 import MenuButton from '@/pages/mypage/components/TabWrapper/components/StudentContent/components/MenuButton/MenuButton';
 import * as styles from '@/pages/mypage/components/TabWrapper/components/StudentContent/studentContent.css';
 import { MENU_LIST } from '@/pages/mypage/constants/myPageList';
-import Divider from '@/shared/components/Divider/Divider';
+import Divider from '@/common/components/Divider/Divider';
 import InfoComponent from '@/shared/components/InfoComponent/InfoComponent';
-import Text from '@/shared/components/Text/Text';
+import Text from '@/common/components/Text/Text';
 import { formatPhoneNumberNoSpace } from '@/shared/utils/formatPhoneNumber';
 
 const StudentContent = () => {

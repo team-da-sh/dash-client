@@ -11,7 +11,7 @@ import {
   INSTRUCTOR_REGISTER_PLACEHOLDER,
   MAX_INTRODUCTION_LENGTH,
 } from '@/pages/instructorRegister/constants/registerSection';
-import Text from '@/shared/components/Text/Text';
+import Text from '@/common/components/Text/Text';
 import type { instructorRegisterFormTypes } from '../../types/instructorRegisterForm';
 
 const IntroductionSection = () => {

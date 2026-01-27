@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { patchMyProfile } from '@/pages/editProfiles/api/axios';
 import type { UpdateProfileRequestTypes } from '@/pages/editProfiles/types/api';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import { notify } from '@/shared/components/Toast/Toast';
+import { notify } from '@/common/components/Toast/Toast';
 import { lessonKeys, memberKeys } from '@/shared/constants/queryKey';
 
 export const usePatchMyProfile = () => {

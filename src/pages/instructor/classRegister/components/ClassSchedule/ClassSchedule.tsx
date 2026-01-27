@@ -13,11 +13,10 @@ import {
 import Description from '@/pages/instructor/classRegister/components/Description';
 import { CLASS_SCHEDULE_SUBTITLE } from '@/pages/instructor/classRegister/constants/registerSectionText';
 import type { TimesTypes } from '@/pages/instructor/classRegister/types/classSchedule';
+import Text from '@/common/components/Text/Text';
 import IcPlusGray0524 from '@/shared/assets/svg/IcPlusGray0524';
 import IcXCircleGray0424 from '@/shared/assets/svg/IcXCircleGray0424';
-import Text from '@/shared/components/Text/Text';
-import { calculatePeriod, formatDate } from '@/shared/utils/dateCalculate';
-import { formatDuration } from '@/shared/utils/timeUtils';
+import { calculatePeriod, formatDateToKR, formatDuration } from '@/shared/utils/date';
 
 interface ClassSchedulePropTypes {
   openBottomSheet: () => void;
@@ -42,7 +41,7 @@ const ClassSchedule = ({ openBottomSheet, times, handleRemoveTime }: ClassSchedu
               <div className={scheduleItemContentStyle}>
                 <div className={tagStyle}>{idx + 1}회차</div>
                 <div className={scheduleInfoStyle}>
-                  <Text tag="b2_sb"> {formatDate(time.date)}</Text>
+                  <Text tag="b2_sb"> {formatDateToKR(time.date)}</Text>
                   <Text tag="b3_m" color="gray7">
                     {`${calculatePeriod(time.startTime, time.endTime).startTime} ~ ${
                       calculatePeriod(time.startTime, time.endTime).formattedEndTime

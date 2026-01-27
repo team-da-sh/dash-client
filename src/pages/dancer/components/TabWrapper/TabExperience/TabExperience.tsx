@@ -1,7 +1,11 @@
-import { textStyle, sectionStyle, emptyMessageStyle } from '@/pages/dancer/components/TabWrapper/TabExperience/TabExperience.css';
+import {
+  textStyle,
+  sectionStyle,
+  emptyMessageStyle,
+} from '@/pages/dancer/components/TabWrapper/TabExperience/TabExperience.css';
 import type { DancerDetailResponseTypes } from '@/pages/dancer/types/api';
-import Head from '@/shared/components/Head/Head';
-import Text from '@/shared/components/Text/Text';
+import Head from '@/common/components/Head/Head';
+import Text from '@/common/components/Text/Text';
 
 const TabExperience = ({ dancerData }: { dancerData: DancerDetailResponseTypes }) => {
   const { experiences } = dancerData;

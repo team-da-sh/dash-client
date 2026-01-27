@@ -6,7 +6,7 @@ import {
   deadlineLessonWrapperStyle,
   titleStyle,
 } from '@/pages/home/components/UpcomingLessons/upcomingLessons.css';
-import Head from '@/shared/components/Head/Head';
+import Head from '@/common/components/Head/Head';
 
 const UpcomingLessons = () => {
   const { data: upcomingLessonList } = useGetUpcomingLessons();

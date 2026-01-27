@@ -1,8 +1,12 @@
 import { useState } from 'react';
 import BottomSheet from '@/pages/search/components/TabContainer/TagSection/BottomSheet/BottomSheet';
-import { tagCustomStyle, containerStyle, tagWrapperStyle } from '@/pages/search/components/TabContainer/TagSection/tagSection.css';
+import {
+  tagCustomStyle,
+  containerStyle,
+  tagWrapperStyle,
+} from '@/pages/search/components/TabContainer/TagSection/tagSection.css';
+import Tag from '@/common/components/Tag/Tag';
 import IcFilterGray from '@/shared/assets/svg/IcFilterGray';
-import Tag from '@/shared/components/Tag/Tag';
 
 interface TagItemTypes {
   label: string;

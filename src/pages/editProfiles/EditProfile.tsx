@@ -1,7 +1,7 @@
 import ProfileForm from '@/pages/editProfiles/components/ProfileForm/ProfileForm';
 import { containerStyle } from '@/pages/editProfiles/editProfile.css';
 import { useGetMyPage } from '@/pages/mypage/apis/queries';
-import Head from '@/shared/components/Head/Head';
+import Head from '@/common/components/Head/Head';
 
 const EditProfile = () => {
   const { data } = useGetMyPage();

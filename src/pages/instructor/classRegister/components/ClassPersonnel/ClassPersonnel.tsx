@@ -3,8 +3,8 @@ import { useFormContext } from 'react-hook-form';
 import Description from '@/pages/instructor/classRegister/components/Description';
 import { CLASS_PERSONNEL_SUBTITLE } from '@/pages/instructor/classRegister/constants/registerSectionText';
 import type { ClassRegisterFormTypes } from '@/pages/instructor/classRegister/types/classRegisterForm';
-import Input from '@/shared/components/Input/Input';
-import Text from '@/shared/components/Text/Text';
+import Input from '@/common/components/Input/Input';
+import Text from '@/common/components/Text/Text';
 import { ONLY_NUMBER } from '@/shared/constants/regex';
 
 interface ClassPersonnelPropTypes {

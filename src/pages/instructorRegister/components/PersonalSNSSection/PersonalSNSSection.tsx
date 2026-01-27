@@ -10,7 +10,7 @@ import {
   inputWrapperStyle,
 } from '@/pages/instructorRegister/components/PersonalSNSSection/personalSNSSection.css';
 import SvgIcAt12 from '@/shared/assets/svg/IcAt12';
-import Text from '@/shared/components/Text/Text';
+import Text from '@/common/components/Text/Text';
 import { vars } from '@/shared/styles/theme.css';
 import { INSTRUCTOR_REGISTER_PLACEHOLDER } from '../../constants/registerSection';
 
