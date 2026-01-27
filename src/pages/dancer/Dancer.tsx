@@ -4,9 +4,9 @@ import DancerInfo from '@/pages/dancer/components/DancerInfo/DancerInfo';
 import TabWrapper from '@/pages/dancer/components/TabWrapper/TabWrapper';
 import { genresWrapperStyle, gradientOverlayStyle, textWrapperStyle, topImgStyle } from '@/pages/dancer/dancer.css';
 import ErrorPage from '@/pages/error/ErrorPage';
-import Head from '@/shared/components/Head/Head';
-import Tag from '@/shared/components/Tag/Tag';
-import Text from '@/shared/components/Text/Text';
+import Tag from '@/common/components/Tag/Tag';
+import Head from '@/common/components/Head/Head';
+import Text from '@/common/components/Text/Text';
 import { genreMapping } from '@/shared/constants/index';
 
 const Dancer = () => {

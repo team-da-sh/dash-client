@@ -1,8 +1,8 @@
 import { Outlet, ScrollRestoration, useLocation } from 'react-router-dom';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
+import Header from '@/common/components/Header/Header';
 import { ApiErrorBoundary } from '@/shared/components/ErrorBoundary/ApiErrorBoundary/ApiErrorBoundary';
 import GlobalErrorBoundary from '@/shared/components/ErrorBoundary/GlobalErrorBoundary/GlobalErrorBoundary';
-import Header from '@/shared/components/Header/Header';
 
 const Layout = () => {
   const { pathname } = useLocation();

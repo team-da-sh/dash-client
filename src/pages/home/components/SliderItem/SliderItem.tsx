@@ -1,5 +1,5 @@
 import { containerStyle, descriptionStyle, imageStyle } from '@/pages/home/components/SliderItem/sliderItem.css';
-import Head from '@/shared/components/Head/Head';
+import Head from '@/common/components/Head/Head';
 
 interface SliderItemPropTypes {
   imageUrl: string;

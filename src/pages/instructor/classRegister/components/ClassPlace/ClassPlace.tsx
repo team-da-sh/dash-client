@@ -25,11 +25,11 @@ import {
 } from '@/pages/instructor/classRegister/constants/registerSectionText';
 import type { ClassRegisterFormTypes } from '@/pages/instructor/classRegister/types/classRegisterForm';
 import type { LocationsData, LocationTypes } from '@/pages/instructor/classRegister/types/index';
+import Input from '@/common/components/Input/Input';
+import Text from '@/common/components/Text/Text';
 import BtnCheck from '@/shared/assets/svg/BtnCheck';
 import IcSearchGray from '@/shared/assets/svg/IcSearchGray';
 import IcXCircleGray0424 from '@/shared/assets/svg/IcXCircleGray0424';
-import Input from '@/shared/components/Input/Input';
-import Text from '@/shared/components/Text/Text';
 
 interface ClassPlacePropTypes {
   register: UseFormRegister<ClassRegisterFormTypes>;

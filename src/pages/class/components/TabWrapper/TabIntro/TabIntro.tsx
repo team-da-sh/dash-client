@@ -1,6 +1,6 @@
 import * as styles from '@/pages/class/components/TabWrapper/TabIntro/tabIntro.css';
 import type { LessonDetailResponseTypes } from '@/pages/class/types/api';
-import Text from '@/shared/components/Text/Text';
+import Text from '@/common/components/Text/Text';
 
 const TabIntro = ({ lessonData }: { lessonData: LessonDetailResponseTypes }) => {
   const { detail } = lessonData;

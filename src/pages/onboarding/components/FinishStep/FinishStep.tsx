@@ -1,7 +1,7 @@
 import * as styles from '@/pages/onboarding/components/FinishStep/finishStep.css';
+import Head from '@/common/components/Head/Head';
+import Text from '@/common/components/Text/Text';
 import { ClearGif } from '@/shared/assets/gif';
-import Head from '@/shared/components/Head/Head';
-import Text from '@/shared/components/Text/Text';
 
 interface FinishStepProps {
   name: string;

@@ -13,8 +13,8 @@ import {
   textGroupStyle,
 } from '@/pages/class/components/TabWrapper/TabLocation/tabLocation.css';
 import type { LessonDetailResponseTypes } from '@/pages/class/types/api';
-import Head from '@/shared/components/Head/Head';
-import Text from '@/shared/components/Text/Text';
+import Head from '@/common/components/Head/Head';
+import Text from '@/common/components/Text/Text';
 
 const IcLocation60 = lazy(() => import('@/shared/assets/svg/IcLocation60'));
 

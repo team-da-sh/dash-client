@@ -7,9 +7,9 @@ import {
   tabListStyle,
   tabPanelStyle,
 } from '@/pages/instructor/classDetail/components/StudentTab/StudentTab.css';
-import Divider from '@/shared/components/Divider/Divider';
-import { TabButton, TabList, TabPanel, TabRoot } from '@/shared/components/Tab';
-import Text from '@/shared/components/Text/Text';
+import Divider from '@/common/components/Divider/Divider';
+import { TabButton, TabList, TabPanel, TabRoot } from '@/common/components/Tab';
+import Text from '@/common/components/Text/Text';
 
 interface StudentTabProps {
   lessonId: number;

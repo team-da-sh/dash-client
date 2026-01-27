@@ -5,7 +5,7 @@ import { genreWrapperStyle } from '@/pages/home/components/LessonItem/lessonItem
 import { genreListStyle } from '@/pages/home/components/PopularGenre/popularGenre.css';
 import { GENRE_ICONS } from '@/pages/home/constants';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import Head from '@/shared/components/Head/Head';
+import Head from '@/common/components/Head/Head';
 import { genreMapping } from '@/shared/constants';
 
 const PopularGenre = () => {

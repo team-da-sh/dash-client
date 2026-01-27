@@ -3,8 +3,8 @@ import {
   descriptionWrapperStyle,
   essentialTextStyle,
 } from '@/pages/instructor/classRegister/components/Description/index.css';
-import Head from '@/shared/components/Head/Head';
-import Text from '@/shared/components/Text/Text';
+import Head from '@/common/components/Head/Head';
+import Text from '@/common/components/Text/Text';
 
 interface DescriptionProps {
   title: string;

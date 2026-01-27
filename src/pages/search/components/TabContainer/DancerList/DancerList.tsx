@@ -8,8 +8,8 @@ import {
 } from '@/pages/search/components/TabContainer/DancerList/dancerList.css';
 import type { DancerTypes } from '@/pages/search/types/dancer';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import Head from '@/shared/components/Head/Head';
-import Tag from '@/shared/components/Tag/Tag';
+import Head from '@/common/components/Head/Head';
+import Tag from '@/common/components/Tag/Tag';
 import { genreMapping } from '@/shared/constants/index';
 import { vars } from '@/shared/styles/theme.css';
 

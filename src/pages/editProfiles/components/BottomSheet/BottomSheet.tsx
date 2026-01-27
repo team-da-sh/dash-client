@@ -1,8 +1,8 @@
 import { AnimatePresence, motion } from 'motion/react';
 import * as styles from '@/pages/editProfiles/components/BottomSheet/bottomSheet.css';
 import IcCloseBlack24 from '@/shared/assets/svg/IcCloseBlack24';
-import Head from '@/shared/components/Head/Head';
-import Text from '@/shared/components/Text/Text';
+import Head from '@/common/components/Head/Head';
+import Text from '@/common/components/Text/Text';
 
 interface BottomSheetPropTypes {
   onClose: () => void;

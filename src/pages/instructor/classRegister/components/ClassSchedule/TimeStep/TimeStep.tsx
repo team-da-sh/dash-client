@@ -6,9 +6,9 @@ import {
   timeStepTagListStyle,
   timeStepWrapperStyle,
 } from '@/pages/instructor/classRegister/components/ClassSchedule/TimeStep/timeStep.css';
-import Head from '@/shared/components/Head/Head';
-import Tag from '@/shared/components/Tag/Tag';
-import Text from '@/shared/components/Text/Text';
+import Head from '@/common/components/Head/Head';
+import Tag from '@/common/components/Tag/Tag';
+import Text from '@/common/components/Text/Text';
 import { TIME_RANGE } from '@/shared/constants';
 import {
   decreaseHour,

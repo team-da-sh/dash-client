@@ -4,7 +4,7 @@ import { useGetLessonStatus } from '@/pages/instructor/lessonList/apis/queries';
 import type { LessonStatus } from '@/pages/instructor/lessonList/types/lessonStatus';
 import { layoutStyle, containerStyle, titleStyle, lessonListSectionStyle } from '@/pages/instructor/lessonManage/lessonManage.css';
 import Dropdown from '@/common/components/Dropdown/Dropdown';
-import Head from '@/shared/components/Head/Head';
+import Head from '@/common/components/Head/Head';
 
 const options = ['ALL', 'APPLYING', 'FINISHED'] as const;
 

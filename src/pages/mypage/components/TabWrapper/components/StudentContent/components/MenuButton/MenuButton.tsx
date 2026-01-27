@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { buttonStyle } from '@/pages/mypage/components/TabWrapper/components/StudentContent/components/MenuButton/menuButton.css';
-import Text from '@/shared/components/Text/Text';
-import { notify } from '@/shared/components/Toast/Toast';
+import Text from '@/common/components/Text/Text';
+import { notify } from '@/common/components/Toast/Toast';
 
 interface MenuButtonPropTypes {
   path?: string;

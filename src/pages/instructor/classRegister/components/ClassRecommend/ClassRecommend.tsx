@@ -15,7 +15,7 @@ import {
   CLASS_RECOMMEND_PLACEHOLDER,
   CLASS_RECOMMEND_SUBTITLE,
 } from '@/pages/instructor/classRegister/constants/registerSectionText';
-import Text from '@/shared/components/Text/Text';
+import Text from '@/common/components/Text/Text';
 import type { ClassRegisterFormTypes } from '../../types/classRegisterForm';
 
 interface ClassRecommendPropTypes {

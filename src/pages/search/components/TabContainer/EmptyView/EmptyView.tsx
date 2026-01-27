@@ -1,6 +1,6 @@
-import { EmptyGif } from '@/shared/assets/gif';
-import Head from '@/shared/components/Head/Head';
 import { containerStyle, textWrapperStyle } from '@/pages/search/components/TabContainer/EmptyView/EmptyView.css';
+import Head from '@/common/components/Head/Head';
+import { EmptyGif } from '@/shared/assets/gif';
 
 const EmptyView = () => {
   return (

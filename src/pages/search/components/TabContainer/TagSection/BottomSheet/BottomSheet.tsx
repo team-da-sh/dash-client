@@ -16,9 +16,9 @@ import {
   levelButtonWrapperStyle,
   buttonWrapperStyle,
 } from '@/pages/search/components/TabContainer/TagSection/BottomSheet/bottomSheet.css';
-import BoxButton from '@/shared/components/BoxButton/BoxButton';
+import BoxButton from '@/common/components/BoxButton/BoxButton';
 import LevelButton from '@/shared/components/LevelButton/LevelButton';
-import { TabButton, TabList, TabPanel, TabRoot } from '@/shared/components/Tab';
+import { TabButton, TabList, TabPanel, TabRoot } from '@/common/components/Tab';
 import { LEVEL } from '@/shared/constants';
 import { GENRE_CATEGORY } from '@/shared/constants/index';
 

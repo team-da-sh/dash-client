@@ -6,9 +6,9 @@ import LimitedChip from '@/pages/class/components/LimitedChip/LimitedChip';
 import TabWrapper from '@/pages/class/components/TabWrapper/TabWrapper';
 import { LOW_SEAT_THRESHOLD } from '@/pages/class/constants';
 import ErrorPage from '@/pages/error/ErrorPage';
+import Divider from '@/common/components/Divider/Divider';
+import Text from '@/common/components/Text/Text';
 import IcCircleCautionFilled from '@/shared/assets/svg/IcCircleCautionFilled';
-import Divider from '@/shared/components/Divider/Divider';
-import Text from '@/shared/components/Text/Text';
 import { chipWrapperStyle, topImgStyle, withdrawIconStyle, withdrawImgStyle } from './class.css';
 
 const Class = () => {

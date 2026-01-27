@@ -17,10 +17,10 @@ import type { LessonDetailResponseTypes } from '@/pages/class/types/api';
 import { getDDayLabel } from '@/pages/class/utils/dDay';
 import type { GenreTypes } from '@/pages/onboarding/types/genreTypes';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
+import Head from '@/common/components/Head/Head';
+import Tag from '@/common/components/Tag/Tag';
+import Text from '@/common/components/Text/Text';
 import IcCircleCautionFilled from '@/shared/assets/svg/IcCircleCautionFilled';
-import Head from '@/shared/components/Head/Head';
-import Tag from '@/shared/components/Tag/Tag';
-import Text from '@/shared/components/Text/Text';
 import { genreMapping, levelMapping } from '@/shared/constants/index';
 import { WITHDRAW_USER_NAME } from '@/shared/constants/withdrawUser';
 

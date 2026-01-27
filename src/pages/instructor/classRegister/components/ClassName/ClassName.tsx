@@ -5,7 +5,7 @@ import Description from '@/pages/instructor/classRegister/components/Description
 import { MAX_CLASS_NAME_LENGTH } from '@/pages/instructor/classRegister/constants/formLimit';
 import { CLASS_NAME_SUBTITLE } from '@/pages/instructor/classRegister/constants/registerSectionText';
 import type { ClassRegisterFormTypes } from '@/pages/instructor/classRegister/types/classRegisterForm';
-import Input from '@/shared/components/Input/Input';
+import Input from '@/common/components/Input/Input';
 
 interface ClassNamePropTypes {
   className: string;

@@ -19,9 +19,9 @@ import { expandInstagramUrl, expandYouTubeUrl } from '@/pages/dancer/utils/url';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import IcInstagram20 from '@/shared/assets/svg/IcInstagram20';
 import IcYoutube20 from '@/shared/assets/svg/IcYoutube20';
-import Divider from '@/shared/components/Divider/Divider';
-import Head from '@/shared/components/Head/Head';
-import Text from '@/shared/components/Text/Text';
+import Divider from '@/common/components/Divider/Divider';
+import Head from '@/common/components/Head/Head';
+import Text from '@/common/components/Text/Text';
 
 const DancerInfo = ({ dancerData }: { dancerData: DancerDetailResponseTypes }) => {
   const { instagram, youtube, detail, nickname, lessons } = dancerData;

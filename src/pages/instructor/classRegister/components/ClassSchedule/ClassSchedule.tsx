@@ -15,7 +15,7 @@ import { CLASS_SCHEDULE_SUBTITLE } from '@/pages/instructor/classRegister/consta
 import type { TimesTypes } from '@/pages/instructor/classRegister/types/classSchedule';
 import IcPlusGray0524 from '@/shared/assets/svg/IcPlusGray0524';
 import IcXCircleGray0424 from '@/shared/assets/svg/IcXCircleGray0424';
-import Text from '@/shared/components/Text/Text';
+import Text from '@/common/components/Text/Text';
 import { calculatePeriod, formatDate } from '@/shared/utils/dateCalculate';
 import { formatDuration } from '@/shared/utils/timeUtils';
 

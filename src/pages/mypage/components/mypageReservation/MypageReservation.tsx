@@ -2,19 +2,19 @@ import { useState } from 'react';
 import { useGetReservationStatus } from '@/pages/mypage/components/mypageReservation/apis/queries';
 import ReservationList from '@/pages/mypage/components/mypageReservation/components/ReservationList';
 import {
-  options,
-  STATUS_ENGLISH_MAP,
-  STATUS_KOREAN_MAP,
-} from '@/pages/mypage/components/mypageReservation/constants/statusMap';
-import {
   containerStyle,
   layoutStyle,
   titleStyle,
   reservationListSectionStyle,
 } from '@/pages/mypage/components/mypageReservation/mypageReservation.css';
 import type { ReservationStatus } from '@/pages/mypage/components/mypageReservation/types/reservationStatus';
+import {
+  options,
+  STATUS_ENGLISH_MAP,
+  STATUS_KOREAN_MAP,
+} from '@/pages/mypage/components/mypageReservation/constants/statusMap';
 import Dropdown from '@/common/components/Dropdown/Dropdown';
-import Head from '@/shared/components/Head/Head';
+import Head from '@/common/components/Head/Head';
 
 const MyPageReservation = () => {
   const { data: reservationStatus } = useGetReservationStatus();

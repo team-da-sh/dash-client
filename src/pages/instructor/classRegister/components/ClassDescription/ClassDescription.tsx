@@ -16,7 +16,7 @@ import {
   CLASS_DESCRIPTION_SUBTITLE,
 } from '@/pages/instructor/classRegister/constants/registerSectionText';
 import type { ClassRegisterFormTypes } from '@/pages/instructor/classRegister/types/classRegisterForm';
-import Text from '@/shared/components/Text/Text';
+import Text from '@/common/components/Text/Text';
 
 interface ClassDescriptionPropTypes {
   register: UseFormRegister<ClassRegisterFormTypes>;

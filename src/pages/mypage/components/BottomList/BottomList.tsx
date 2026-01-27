@@ -6,12 +6,12 @@ import { GOOGLE_FORM_LINK } from '@/pages/mypage/constants/link';
 import type { BottomListItem } from '@/pages/mypage/utils/getBottomList';
 import { getBottomListData } from '@/pages/mypage/utils/getBottomList';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
+import Divider from '@/common/components/Divider/Divider';
 import Modal from '@/common/components/Modal/Modal';
+import { notify } from '@/common/components/Toast/Toast';
 import { useModalStore } from '@/common/stores/modal';
 import { useWithdrawStore } from '@/common/stores/withdraw';
 import IcArrowRightSmallGray0732 from '@/shared/assets/svg/IcArrowRightSmallGray0732';
-import Divider from '@/shared/components/Divider/Divider';
-import { notify } from '@/shared/components/Toast/Toast';
 
 interface BottomListPropTypes {
   userRole: 'STUDENT' | 'TEACHER';
@@ -98,10 +98,7 @@ const BottomList = ({ userRole }: BottomListPropTypes) => {
       <ul className={ulStyle}>
         {LIST_DATA.map((item) => (
           <div key={item.id}>
-            <button
-              className={listStyle}
-              onClick={() => handleBottomListItemClick(item.type)}
-              aria-label={item.label}>
+            <button className={listStyle} onClick={() => handleBottomListItemClick(item.type)} aria-label={item.label}>
               <span>{item.label}</span>
               <IcArrowRightSmallGray0732 width={32} height={32} />
             </button>

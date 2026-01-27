@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { tabPanelStyle, tabListWrapperStyle } from '@/pages/dancer/components/TabWrapper/tabWrapper.css';
 import type { DancerDetailResponseTypes } from '@/pages/dancer/types/api';
-import { TabButton, TabList, TabPanel, TabRoot } from '@/shared/components/Tab';
+import { TabButton, TabList, TabPanel, TabRoot } from '@/common/components/Tab';
 import { DANCER_TABS } from '@/shared/constants';
 
 interface TabWrapperPropTypes {

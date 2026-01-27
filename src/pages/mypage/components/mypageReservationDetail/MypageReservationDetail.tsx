@@ -6,9 +6,9 @@ import ClassInfo from '@/pages/mypage/components/mypageReservationDetail/compone
 import ReservationProgress from '@/pages/mypage/components/mypageReservationDetail/components/ReservationProgress/ReservationProgress';
 import * as styles from '@/pages/mypage/components/mypageReservationDetail/mypageReservationDetail.css';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import BoxButton from '@/shared/components/BoxButton/BoxButton';
+import BoxButton from '@/common/components/BoxButton/BoxButton';
 import ClassCard from '@/shared/components/ClassCard';
-import Head from '@/shared/components/Head/Head';
+import Head from '@/common/components/Head/Head';
 
 const MyPageReservationDetail = () => {
   const { id: reservationId } = useParams<{ id: string }>();

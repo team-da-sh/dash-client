@@ -9,7 +9,7 @@ import {
 import Description from '@/pages/instructor/classRegister/components/Description';
 import { CLASS_GENRE_SUBTITLE } from '@/pages/instructor/classRegister/constants/registerSectionText';
 import GenreButton from '@/pages/search/components/TabContainer/TagSection/BottomSheet/GenreButton/GenreButton';
-import Text from '@/shared/components/Text/Text';
+import Text from '@/common/components/Text/Text';
 import { GENRE_CATEGORY } from '@/shared/constants';
 
 interface ClassGenrePropTypes {

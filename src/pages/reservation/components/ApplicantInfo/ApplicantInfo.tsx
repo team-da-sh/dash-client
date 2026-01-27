@@ -1,5 +1,9 @@
-import { bookerComponentStyle, textLabelStyle, rowStyle } from '@/pages/reservation/components/ApplicantInfo/applicantInfo.css';
-import Text from '@/shared/components/Text/Text';
+import {
+  bookerComponentStyle,
+  textLabelStyle,
+  rowStyle,
+} from '@/pages/reservation/components/ApplicantInfo/applicantInfo.css';
+import Text from '@/common/components/Text/Text';
 import { formatPhoneNumberNoSpace } from '@/shared/utils/formatPhoneNumber';
 
 interface ApplicantInfoPropTypes {

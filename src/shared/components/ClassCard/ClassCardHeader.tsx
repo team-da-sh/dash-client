@@ -1,10 +1,10 @@
 import type { RecruitingStatus } from '@/pages/mypage/components/mypageReservation/types/recruitingStatus';
 import type { ReservationStatus } from '@/pages/mypage/components/mypageReservation/types/reservationStatus';
+import Divider from '@/common/components/Divider/Divider';
+import Text from '@/common/components/Text/Text';
 import SvgIcClear from '@/shared/assets/svg/IcClear';
 import SvgIcMeatball from '@/shared/assets/svg/IcMeatball';
 import { dividerStyle, headerWrapperStyle, headerContentStyle } from '@/shared/components/ClassCard/style.css';
-import Divider from '@/shared/components/Divider/Divider';
-import Text from '@/shared/components/Text/Text';
 import { USER_ROLE } from '@/shared/constants/userRole';
 import { vars } from '@/shared/styles/theme.css';
 import { formatDate } from '@/shared/utils/timeCalculate';

@@ -8,7 +8,7 @@ import {
   closeButtonStyle,
   descriptionStyle,
 } from '@/common/components/Modal/modal.css';
-import BoxButton from '@/shared/components/BoxButton/BoxButton';
+import BoxButton from '@/common/components/BoxButton/BoxButton';
 import { vars } from '@/shared/styles/theme.css';
 
 interface DialogProps {

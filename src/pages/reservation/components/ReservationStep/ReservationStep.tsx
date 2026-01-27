@@ -24,14 +24,14 @@ import {
 } from '@/pages/reservation/components/ReservationStep/reservationStep.css';
 import TopInfoContent from '@/pages/reservation/components/TopInfoContent/TopInfoContent';
 import { AGREEMENT_TERMS } from '@/pages/reservation/constants/index';
+import BlurBotton from '@/common/components/BlurButton/BlurButton';
 import IcCheckcircleGray0524 from '@/shared/assets/svg/IcCheckcircleGray0524';
 import IcCheckcircleMain0324 from '@/shared/assets/svg/IcCheckcircleMain0324';
-import BlurBotton from '@/shared/components/BlurButton/BlurButton';
-import BoxButton from '@/shared/components/BoxButton/BoxButton';
-import Divider from '@/shared/components/Divider/Divider';
-import Head from '@/shared/components/Head/Head';
-import Text from '@/shared/components/Text/Text';
-import { notify } from '@/shared/components/Toast/Toast';
+import BoxButton from '@/common/components/BoxButton/BoxButton';
+import Divider from '@/common/components/Divider/Divider';
+import Head from '@/common/components/Head/Head';
+import Text from '@/common/components/Text/Text';
+import { notify } from '@/common/components/Toast/Toast';
 import { vars } from '@/shared/styles/theme.css';
 import type { ClassReservationResponseTypes } from '../../types/api';
 
@@ -82,9 +82,7 @@ const ReservationStep = ({ onNext }: ReservationStepPropTypes) => {
     setIsAllChecked(newAgreements.every((isChecked) => isChecked));
   };
 
-  const agreementClassStyle = `${agreementBoxStyle} ${
-    isAllChecked ? agreementCheckedStyle : agreementUncheckedStyle
-  }`;
+  const agreementClassStyle = `${agreementBoxStyle} ${isAllChecked ? agreementCheckedStyle : agreementUncheckedStyle}`;
 
   return (
     <main className={`${mainStyle} ${reservationStyle}`}>

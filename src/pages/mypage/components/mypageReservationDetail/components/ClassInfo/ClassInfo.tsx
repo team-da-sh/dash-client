@@ -7,7 +7,7 @@ import {
   scheduleWrapperStyle,
   scheduleItemStyle,
 } from '@/pages/mypage/components/mypageReservationDetail/components/ClassInfo/ClassInfo.css';
-import Text from '@/shared/components/Text/Text';
+import Text from '@/common/components/Text/Text';
 import { calculatePeriod, formatSimpleDate } from '@/shared/utils/dateCalculate';
 
 interface ClassInfoPropTypes {

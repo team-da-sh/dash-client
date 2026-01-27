@@ -7,7 +7,7 @@ import {
   periodInfoStyle,
 } from '@/pages/class/components/TabWrapper/TabPeriod/tabPeriod.css';
 import type { LessonDetailResponseTypes } from '@/pages/class/types/api';
-import Text from '@/shared/components/Text/Text';
+import Text from '@/common/components/Text/Text';
 import { calculatePeriod, formatDate } from '@/shared/utils/dateCalculate';
 
 const TabPeriod = ({ lessonData }: { lessonData: LessonDetailResponseTypes }) => {

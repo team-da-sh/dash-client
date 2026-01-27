@@ -23,16 +23,16 @@ import {
 import { VISIT_KEY } from '@/pages/mypage/constants/storageKey';
 import { getUser } from '@/pages/mypage/utils/storage';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
+import Divider from '@/common/components/Divider/Divider';
+import Text from '@/common/components/Text/Text';
+import { notify } from '@/common/components/Toast/Toast';
 import { useGetRole, useGetTeacherAccount } from '@/shared/apis/queries';
 import IcArrowRightSmallGray0732 from '@/shared/assets/svg/IcArrowRightSmallGray0732';
 import IcInstagram20 from '@/shared/assets/svg/IcInstagram20';
 import IcPlusWhite24 from '@/shared/assets/svg/IcPlusWhite24';
 import IcReview from '@/shared/assets/svg/IcReview';
 import IcYoutube20 from '@/shared/assets/svg/IcYoutube20';
-import Divider from '@/shared/components/Divider/Divider';
 import InfoComponent from '@/shared/components/InfoComponent/InfoComponent';
-import Text from '@/shared/components/Text/Text';
-import { notify } from '@/shared/components/Toast/Toast';
 
 const TeacherContent = () => {
   const navigate = useNavigate();

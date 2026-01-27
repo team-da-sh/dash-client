@@ -2,7 +2,7 @@ import type { MouseEvent } from 'react';
 import * as styles from '@/pages/instructor/classRegister/components/ClassSchedule/ClassRegisterBottomSheet/classRegisterBottomSheet.css';
 import ClassRegisterFunnel from '@/pages/instructor/classRegister/components/ClassSchedule/ClassRegisterFunnel/ClassRegisterFunnel';
 import { useLocalFunnel } from '@/pages/instructor/classRegister/hooks/useLocalFunnel';
-import BoxButton from '@/shared/components/BoxButton/BoxButton';
+import BoxButton from '@/common/components/BoxButton/BoxButton';
 import { CLASS_REGISTER_TOTAL_STEP } from '@/shared/constants';
 
 interface ClassRegisterBottomSheetPropTypes {

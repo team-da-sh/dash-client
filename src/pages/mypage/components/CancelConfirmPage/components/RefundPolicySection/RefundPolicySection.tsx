@@ -5,11 +5,11 @@ import {
   agreementContainerSelectedStyle,
   contentWrapperStyle,
 } from '@/pages/mypage/components/CancelConfirmPage/components/RefundPolicySection/refundPolicySection.css';
+import Head from '@/common/components/Head/Head';
+import Text from '@/common/components/Text/Text';
 import IcCheckcircleGray0524 from '@/shared/assets/svg/IcCheckcircleGray0524';
 import IcCheckcircleMain0324 from '@/shared/assets/svg/IcCheckcircleMain0324';
 import IcFrame from '@/shared/assets/svg/IcFrame';
-import Head from '@/shared/components/Head/Head';
-import Text from '@/shared/components/Text/Text';
 import { vars } from '@/shared/styles/theme.css';
 
 interface RefundPolicySectionProps {

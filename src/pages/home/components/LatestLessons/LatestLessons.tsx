@@ -5,7 +5,7 @@ import {
   titleStyle,
 } from '@/pages/home/components/LatestLessons/latestLessons.css';
 import LessonItem from '@/pages/home/components/LessonItem/LessonItem';
-import Head from '@/shared/components/Head/Head';
+import Head from '@/common/components/Head/Head';
 
 const LatestLessons = () => {
   const { data: latestLessonDatas } = useGetLatestLessons();

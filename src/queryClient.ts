@@ -1,6 +1,6 @@
 import { MutationCache, QueryClient } from '@tanstack/react-query';
 import { isAxiosError } from 'axios';
-import { notify } from '@/shared/components/Toast/Toast';
+import { notify } from '@/common/components/Toast/Toast';
 
 const DEFAULT_ERROR_MESSAGE = '요청에 실패했어요.';
 

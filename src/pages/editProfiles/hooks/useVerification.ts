@@ -5,7 +5,7 @@ import { usePostPhoneRequest, usePostPhoneVerify } from '@/pages/onboarding/apis
 import type { tokenTypes } from '@/pages/onboarding/types/api';
 import type { phoneVerifyTypes } from '@/pages/onboarding/types/onboardInfoTypes';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import { notify } from '@/shared/components/Toast/Toast';
+import { notify } from '@/common/components/Toast/Toast';
 import { PHONE_AUTH_MESSAGES, REQUEST_DELAY, TIMER_DURATION } from '@/shared/constants/userInfo';
 import { useVerificationTimer } from '@/shared/hooks/useVerificationTimer';
 import { getAccessToken } from '@/shared/utils/handleToken';

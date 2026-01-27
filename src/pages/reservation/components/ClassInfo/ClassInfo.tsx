@@ -8,8 +8,8 @@ import {
   scheduleItemStyle,
   locationInfoStyle,
 } from '@/pages/reservation/components/ClassInfo/classInfo.css';
-import Head from '@/shared/components/Head/Head';
-import Text from '@/shared/components/Text/Text';
+import Head from '@/common/components/Head/Head';
+import Text from '@/common/components/Text/Text';
 import { levelMapping } from '@/shared/constants';
 import { calculatePeriod, formatSimpleDate } from '@/shared/utils/dateCalculate';
 

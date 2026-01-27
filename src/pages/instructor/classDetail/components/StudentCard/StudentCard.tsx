@@ -9,10 +9,10 @@ import type { ReservationStatus } from '@/pages/mypage/components/mypageReservat
 import Modal from '@/common/components/Modal/Modal';
 import { useModalStore } from '@/common/stores/modal';
 import ApplyTag from '@/shared/components/ApplyTag/ApplyTag';
-import BoxButton from '@/shared/components/BoxButton/BoxButton';
-import Head from '@/shared/components/Head/Head';
-import Text from '@/shared/components/Text/Text';
-import { notify } from '@/shared/components/Toast/Toast';
+import BoxButton from '@/common/components/BoxButton/BoxButton';
+import Head from '@/common/components/Head/Head';
+import Text from '@/common/components/Text/Text';
+import { notify } from '@/common/components/Toast/Toast';
 import { teacherKeys } from '@/shared/constants/queryKey';
 import { WITHDRAW_USER_NAME } from '@/shared/constants/withdrawUser';
 import { formatDateTime } from '@/shared/utils/timeUtils';

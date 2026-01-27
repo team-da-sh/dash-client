@@ -19,13 +19,13 @@ import { useGetReservationsDetail } from '@/pages/mypage/components/mypageReserv
 import { CANCEL_CONFIRM_DESCRIPTION, CANCEL_CONFIRM_MESSAGE } from '@/pages/mypage/constants/modalMessage';
 import ApplicantInfo from '@/pages/reservation/components/ApplicantInfo/ApplicantInfo';
 import ClassInfo from '@/pages/reservation/components/ClassInfo/ClassInfo';
+import BlurBotton from '@/common/components/BlurButton/BlurButton';
 import Modal from '@/common/components/Modal/Modal';
 import { useModalStore } from '@/common/stores/modal';
 import { useGetBankList } from '@/shared/apis/queries';
 import BankBottomSheet from '@/shared/components/BankBottomSheet/BankBottomSheet';
-import BlurBotton from '@/shared/components/BlurButton/BlurButton';
-import BoxButton from '@/shared/components/BoxButton/BoxButton';
-import Head from '@/shared/components/Head/Head';
+import BoxButton from '@/common/components/BoxButton/BoxButton';
+import Head from '@/common/components/Head/Head';
 import RefundAccountSection from './components/RefundAccountSection/RefundAccountSection';
 import RefundPolicySection from './components/RefundPolicySection/RefundPolicySection';
 

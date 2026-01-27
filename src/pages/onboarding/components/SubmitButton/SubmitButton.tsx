@@ -1,7 +1,7 @@
 import { FINAL_ONBOARDING_STEP } from '@/pages/onboarding/constants';
 import type { OnboardInfoTypes } from '@/pages/onboarding/types/onboardInfoTypes';
 import { validatePhoneNumber } from '@/pages/onboarding/utils/validate';
-import BoxButton from '@/shared/components/BoxButton/BoxButton';
+import BoxButton from '@/common/components/BoxButton/BoxButton';
 
 interface SubmitButtonPropTypes {
   currentStep: number;

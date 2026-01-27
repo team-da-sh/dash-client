@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useGetReservationsDetail } from '@/pages/mypage/components/mypageReservationDetail/apis/queries';
 import { containerStyle } from '@/pages/mypage/components/mypageReservationDetail/components/ClassContent/ClassContent.css';
-import Text from '@/shared/components/Text/Text';
+import Text from '@/common/components/Text/Text';
 import { getStatusMessage } from '@/shared/utils/getStatusMessage';
 import { getClassStatus } from '@/shared/utils/timeCalculate';
 

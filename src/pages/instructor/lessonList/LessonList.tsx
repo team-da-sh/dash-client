@@ -3,9 +3,9 @@ import { useGetMyLessons } from '@/pages/instructor/lessonList/apis/queries';
 import { emptyTextStyle } from '@/pages/instructor/lessonList/lessonList.css';
 import type { LessonStatus } from '@/pages/instructor/lessonList/types/lessonStatus';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import BoxButton from '@/shared/components/BoxButton/BoxButton';
+import BoxButton from '@/common/components/BoxButton/BoxButton';
+import Text from '@/common/components/Text/Text';
 import ClassCard from '@/shared/components/ClassCard';
-import Text from '@/shared/components/Text/Text';
 import { USER_ROLE } from '@/shared/constants/userRole';
 import type { Lesson } from '@/shared/types/lessonTypes';
 

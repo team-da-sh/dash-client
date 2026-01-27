@@ -1,4 +1,4 @@
-import Text from '@/shared/components/Text/Text';
+import Text from '@/common/components/Text/Text';
 import { statusMessageStyle } from '@/shared/utils/getStatusMessage.css';
 
 type Status = 'upcoming' | 'ongoing' | 'completed';

@@ -10,13 +10,13 @@ import {
 } from '@/pages/mypage/components/Withdraw/components/ReasonStep/reasonStep.css';
 import type { WithdrawReasonTypes } from '@/pages/mypage/components/Withdraw/constants';
 import { WITHDRAW_REASONS } from '@/pages/mypage/components/Withdraw/constants';
+import BlurButton from '@/common/components/BlurButton/BlurButton';
+import Input from '@/common/components/Input/Input';
 import IcCheckcircleGray0524 from '@/shared/assets/svg/IcCheckcircleGray0524';
 import IcCheckcircleMain0324 from '@/shared/assets/svg/IcCheckcircleMain0324';
-import BlurButton from '@/shared/components/BlurButton/BlurButton';
-import BoxButton from '@/shared/components/BoxButton/BoxButton';
-import Head from '@/shared/components/Head/Head';
-import Input from '@/shared/components/Input/Input';
-import Text from '@/shared/components/Text/Text';
+import BoxButton from '@/common/components/BoxButton/BoxButton';
+import Head from '@/common/components/Head/Head';
+import Text from '@/common/components/Text/Text';
 import { vars } from '@/shared/styles/theme.css';
 
 interface ReasonStepProps {

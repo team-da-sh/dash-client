@@ -6,8 +6,8 @@ import {
   tagWrapperStyle,
 } from '@/pages/dancer/components/DancerInfo/DancerClassItem/dancerClassItem.css';
 import type { ClassItemPropTypes } from '@/pages/dancer/types/api';
-import Head from '@/shared/components/Head/Head';
-import Tag from '@/shared/components/Tag/Tag';
+import Tag from '@/common/components/Tag/Tag';
+import Head from '@/common/components/Head/Head';
 import { genreMapping, levelMapping } from '@/shared/constants/index';
 
 const DancerClassItem = ({ imageUrl, remainingDays, genre, level, name }: ClassItemPropTypes) => {

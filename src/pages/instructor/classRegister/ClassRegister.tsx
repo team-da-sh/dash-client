@@ -30,8 +30,8 @@ import type { LocationTypes } from '@/pages/instructor/classRegister/types/index
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import Modal from '@/common/components/Modal/Modal';
 import { useModalStore } from '@/common/stores/modal';
-import BoxButton from '@/shared/components/BoxButton/BoxButton';
-import { notify } from '@/shared/components/Toast/Toast';
+import BoxButton from '@/common/components/BoxButton/BoxButton';
+import { notify } from '@/common/components/Toast/Toast';
 import { genreEngMapping, levelEngMapping } from '@/shared/constants';
 import { lessonKeys, memberKeys, teacherKeys } from '@/shared/constants/queryKey';
 import useBlockBackWithUnsavedChanges from '@/shared/hooks/useBlockBackWithUnsavedChanges';

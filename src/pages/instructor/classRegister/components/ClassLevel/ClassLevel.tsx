@@ -3,7 +3,7 @@ import { useFormContext } from 'react-hook-form';
 import Description from '@/pages/instructor/classRegister/components/Description';
 import { CLASS_LEVEL_SUBTITLE } from '@/pages/instructor/classRegister/constants/registerSectionText';
 import LevelButton from '@/shared/components/LevelButton/LevelButton';
-import Text from '@/shared/components/Text/Text';
+import Text from '@/common/components/Text/Text';
 import { LEVEL } from '@/shared/constants';
 
 interface ClassLevelPropTypes {

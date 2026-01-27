@@ -5,7 +5,7 @@ import {
 } from '@/pages/instructor/classRegister/components/ClassSchedule/TimeStep/TimeControl/timeControl.css';
 import IcArrowDownGray1032 from '@/shared/assets/svg/IcArrowDownGray1032';
 import IcArrowUpGray1032 from '@/shared/assets/svg/IcArrowUpGray1032';
-import Head from '@/shared/components/Head/Head';
+import Head from '@/common/components/Head/Head';
 
 interface TimeControlProps {
   label: string;
