@@ -16,7 +16,7 @@ import {
   infoRowStyle,
 } from '@/shared/components/ClassCard/style.css';
 import { genreMapping, levelMapping } from '@/shared/constants';
-import { formatLessonDateRange } from '@/shared/utils/timeCalculate';
+import { formatLessonDateRange } from '@/shared/utils/date';
 
 interface ClassCardBodyProps {
   name: string;

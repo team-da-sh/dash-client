@@ -2,8 +2,8 @@ import clsx from 'clsx';
 import { AnimatePresence, motion } from 'motion/react';
 import { useEffect, useRef, useState } from 'react';
 import Text from '@/common/components/Text/Text';
+import useOutsideClick from '@/common/hooks/useOutsideClick';
 import * as styles from '@/shared/components/BankBottomSheet/bankBottomSheet.css';
-import useOutsideClick from '@/shared/hooks/useOutsideClick';
 import type { BankListResponseTypes } from '@/shared/types/api';
 
 interface BankBottomSheetPropTypes {

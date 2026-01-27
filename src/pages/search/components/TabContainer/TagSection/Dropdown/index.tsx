@@ -1,6 +1,6 @@
 import type { ButtonHTMLAttributes, ReactNode } from 'react';
 import { createContext, useContext, useState } from 'react';
-import useOutsideClick from '@/shared/hooks/useOutsideClick';
+import useOutsideClick from '@/common/hooks/useOutsideClick';
 import * as styles from './index.css';
 
 interface DropdownContextPropTypes {

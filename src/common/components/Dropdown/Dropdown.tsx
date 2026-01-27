@@ -7,8 +7,8 @@ import {
   listStyle,
   triggerStyle,
 } from '@/common/components/Dropdown/dropdown.css';
+import useOutsideClick from '@/common/hooks/useOutsideClick';
 import SvgIcArrowDownGray1032 from '@/shared/assets/svg/IcArrowDownGray1032';
-import useOutsideClick from '@/shared/hooks/useOutsideClick';
 
 interface DropdownProps {
   selectedOption: string;

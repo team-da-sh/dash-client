@@ -1,10 +1,10 @@
 import { AnimatePresence, motion } from 'motion/react';
 import * as styles from '@/pages/accountRegister/components/ConfirmBottomSheet/confirmBottomSheet.css';
-import SvgIcClear from '@/shared/assets/svg/IcClear';
 import BoxButton from '@/common/components/BoxButton/BoxButton';
 import Head from '@/common/components/Head/Head';
 import Text from '@/common/components/Text/Text';
-import useOutsideClick from '@/shared/hooks/useOutsideClick';
+import useOutsideClick from '@/common/hooks/useOutsideClick';
+import SvgIcClear from '@/shared/assets/svg/IcClear';
 import { vars } from '@/shared/styles/theme.css';
 
 interface ConfirmBottomSheetPropTypes {

@@ -8,8 +8,8 @@ import type { TAB_TYPES } from '@/pages/search/constants/index';
 import { DEFAULT_SORT_TAGS, SORT_LABELS, TAB } from '@/pages/search/constants/index';
 import { formatDateEndTime, formatDateStartTime } from '@/pages/search/utils/formatDate';
 import { handleSearchChange } from '@/pages/search/utils/searchHandlers';
+import useDebounce from '@/common/hooks/useDebounce';
 import { genreEngMapping, labelToSortOptionMap, levelEngMapping } from '@/shared/constants';
-import useDebounce from '@/shared/hooks/useDebounce';
 import { useTabNavigation } from '@/shared/hooks/useTabNavigation';
 import SearchHeader from './components/SearchHeader/SearchHeader';
 

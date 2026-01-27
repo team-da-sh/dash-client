@@ -10,8 +10,8 @@ import * as styles from '@/pages/onboarding/onboarding.css';
 import type { OnboardInfoTypes, OnboardingState } from '@/pages/onboarding/types/onboardInfoTypes';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { notify } from '@/common/components/Toast/Toast';
+import { useFunnel } from '@/common/hooks/useFunnel';
 import { PHONE_AUTH_MESSAGES } from '@/shared/constants/userInfo';
-import { useFunnel } from '@/shared/hooks/useFunnel';
 import { setStorage } from '@/shared/utils/handleToken';
 
 const Onboarding = () => {

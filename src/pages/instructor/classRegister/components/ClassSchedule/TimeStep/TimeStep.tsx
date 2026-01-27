@@ -22,7 +22,7 @@ import {
   formatTimeDisplay,
   getDateWithoutTime,
   HOURS_IN_HALF_DAY,
-} from '@/shared/utils/timeUtils';
+} from '@/shared/utils/date';
 
 interface TimeStepPropTypes {
   hour: number;

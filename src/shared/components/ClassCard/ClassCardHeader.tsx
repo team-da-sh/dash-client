@@ -7,7 +7,7 @@ import SvgIcMeatball from '@/shared/assets/svg/IcMeatball';
 import { dividerStyle, headerWrapperStyle, headerContentStyle } from '@/shared/components/ClassCard/style.css';
 import { USER_ROLE } from '@/shared/constants/userRole';
 import { vars } from '@/shared/styles/theme.css';
-import { formatDate } from '@/shared/utils/timeCalculate';
+import { formatDateToKR } from '@/shared/utils/date';
 
 const memberStatus = (status: ReservationStatus) => {
   switch (status) {
@@ -55,7 +55,7 @@ const ClassCardHeader = ({ role, status, date }: ClassCardHeaderProps) => {
           <Text tag="b1_sb">{statusText}</Text>
           {date && (
             <Text tag="b3_r" color="gray7">
-              {`${formatDate(date)} ${role === USER_ROLE.MEMBER ? '신청' : '개설'}`}
+              {`${formatDateToKR(date)} ${role === USER_ROLE.MEMBER ? '신청' : '개설'}`}
             </Text>
           )}
         </div>
