@@ -1,6 +1,11 @@
 import { useMemo } from 'react';
 import TimeControl from '@/pages/instructor/classRegister/components/ClassSchedule/TimeStep/TimeControl/TimeControl';
-import Flex from '@/shared/components/Flex/Flex';
+import {
+  timeStepControlsRowStyle,
+  timeStepMessageWrapperStyle,
+  timeStepTagListStyle,
+  timeStepWrapperStyle,
+} from '@/pages/instructor/classRegister/components/ClassSchedule/TimeStep/timeStep.css';
 import Head from '@/shared/components/Head/Head';
 import Tag from '@/shared/components/Tag/Tag';
 import Text from '@/shared/components/Text/Text';
@@ -313,21 +318,21 @@ const TimeStep = ({
   };
 
   return (
-    <Flex direction="column">
+    <div className={timeStepWrapperStyle}>
       <Head level="h2" tag="b1_sb">
         클래스 시작 시간
       </Head>
 
       {/* 메시지가 있을 경우에만 표시 */}
       {minTimeConstraints && minTimeDisplay && getConstraintMessage() && (
-        <Flex paddingTop="0.8rem">
+        <div className={timeStepMessageWrapperStyle}>
           <Text tag="b3_r" color="main3">
             {getConstraintMessage()}
           </Text>
-        </Flex>
+        </div>
       )}
 
-      <Flex justify="center" gap="1rem" paddingTop="1.6rem" paddingBottom="2.4rem" width="100%">
+      <div className={timeStepControlsRowStyle}>
         <TimeControl
           label="hour"
           value={hour}
@@ -350,13 +355,13 @@ const TimeStep = ({
           disableIncrease={willAmpmToggleViolateMinTime()}
           disableDecrease={willAmpmToggleViolateMinTime()}
         />
-      </Flex>
+      </div>
 
       <Head level="h2" tag="b1_sb">
         클래스 진행 시간
       </Head>
 
-      <Flex wrap="wrap" gap="0.8rem" paddingTop="1.6rem">
+      <div className={timeStepTagListStyle}>
         {TIME_RANGE.map((time) => {
           const timeConflict = hasTimeConflict(hour, minute, ampm, time.id);
           return (
@@ -370,8 +375,8 @@ const TimeStep = ({
             </Tag>
           );
         })}
-      </Flex>
-    </Flex>
+      </div>
+    </div>
   );
 };
 
