@@ -1,4 +1,3 @@
-import clsx from 'clsx';
 import { useId } from 'react';
 import { Link } from 'react-router-dom';
 import {
@@ -8,6 +7,9 @@ import {
   titleStyle,
   wrapperStyle,
   linkStyle,
+  tagWrapperStyle,
+  teacherInfoWrapperStyle,
+  teacherWrapperStyle,
 } from '@/pages/home/components/LessonItem/lessonItem.css';
 import {
   newClassImageStyle,
@@ -20,12 +22,11 @@ import {
 import { MAX_REMAINING_DAYS, MIN_REMAINING_DAYS } from '@/pages/home/constants/index';
 import type { LessonTypes } from '@/pages/home/types/classTypes';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import Head from '@/shared/components/Head/Head';
-import Tag from '@/shared/components/Tag/Tag';
-import Text from '@/shared/components/Text/Text';
+import Head from '@/common/components/Head/Head';
+import Tag from '@/common/components/Tag/Tag';
+import Text from '@/common/components/Text/Text';
 import { genreMapping, levelMapping } from '@/shared/constants';
-import { sprinkles } from '@/shared/styles/sprinkles.css';
-import { calculateRemainingDate } from '@/shared/utils/dateCalculate';
+import { calculateRemainingDate } from '@/shared/utils/date';
 
 const LessonItem = ({
   id,
@@ -65,12 +66,7 @@ const LessonItem = ({
       };
 
   return (
-    <li
-      className={clsx(
-        styles.wrapper,
-        sprinkles({ position: 'relative', display: 'flex', flexDirection: 'column', gap: 8 })
-      )}
-      aria-labelledby={`${nameId} ${genreId} ${levelId} ${teacherId}`}>
+    <div className={styles.wrapper} aria-labelledby={`${nameId} ${genreId} ${levelId} ${teacherId}`}>
       <img src={imageUrl} alt="클래스 섬네일" className={styles.classImage} />
 
       {remainingDays < MAX_REMAINING_DAYS && remainingDays >= MIN_REMAINING_DAYS && (
@@ -79,7 +75,7 @@ const LessonItem = ({
         </Tag>
       )}
 
-      <div className={sprinkles({ display: 'flex', gap: 4 })}>
+      <div className={tagWrapperStyle}>
         <Tag type="genre" size="small" id={genreId}>
           {genreMapping[genre]}
         </Tag>
@@ -100,15 +96,15 @@ const LessonItem = ({
         </Link>
       </Head>
 
-      <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 4 })}>
+      <div className={teacherInfoWrapperStyle}>
         {teacherProfileImage && teacherName && (
-          <div className={sprinkles({ display: 'flex', gap: 6, alignItems: 'center' })}>
+          <div className={teacherWrapperStyle}>
             <img src={teacherProfileImage} alt="강사프로필" className={styles.teacherImage} />
             <Text tag="b3_m">{teacherName}</Text>
           </div>
         )}
       </div>
-    </li>
+    </div>
   );
 };
 

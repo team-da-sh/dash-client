@@ -1,6 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useQueryClient } from '@tanstack/react-query';
-import type { FormEvent } from 'react';
+import { useEffect, type FormEvent } from 'react';
 import { FormProvider, useController, useForm } from 'react-hook-form';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useGetLessonDetail } from '@/pages/class/apis/queries';
@@ -28,28 +28,32 @@ import { classRegisterSchema } from '@/pages/instructor/classRegister/schema/cla
 import type { ClassRegisterInfoTypes } from '@/pages/instructor/classRegister/types/api';
 import type { LocationTypes } from '@/pages/instructor/classRegister/types/index';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import BoxButton from '@/shared/components/BoxButton/BoxButton';
+import BoxButton from '@/common/components/BoxButton/BoxButton';
+import Modal from '@/common/components/Modal/Modal';
+import { notify } from '@/common/components/Toast/Toast';
+import useDebounce from '@/common/hooks/useDebounce';
+import { useModalStore } from '@/common/stores/modal';
 import { genreEngMapping, levelEngMapping } from '@/shared/constants';
-import { lessonKeys, memberKeys } from '@/shared/constants/queryKey';
+import { lessonKeys, memberKeys, teacherKeys } from '@/shared/constants/queryKey';
+import useBlockBackWithUnsavedChanges from '@/shared/hooks/useBlockBackWithUnsavedChanges';
 import useBottomSheet from '@/shared/hooks/useBottomSheet';
-import useDebounce from '@/shared/hooks/useDebounce';
 import useImageUploader from '@/shared/hooks/useImageUploader';
+import { CLASS_REGISTER_EDIT_MESSAGE } from './constants/notifyMessage';
 
 const ClassRegister = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  const { openModal } = useModalStore();
 
   const lessonId = id ? Number(id) : null;
   const isValidId = lessonId !== null && !isNaN(lessonId) && lessonId > 0;
 
   const queryClient = useQueryClient();
-  const { mutate: classRegisterMutate } = usePostClassRegisterInfo();
-  const { mutate: classUpdateMutate } = usePatchClassInfo();
+  const { mutate: classRegisterMutate, isPending: isRegistering } = usePostClassRegisterInfo();
+  const { mutate: classUpdateMutate, isPending: isEditting } = usePatchClassInfo();
   const { isBottomSheetOpen, openBottomSheet, closeBottomSheet } = useBottomSheet();
 
   const { data: lessonData } = useGetLessonDetail(lessonId || 0, { enabled: isValidId });
-
-  const isEditMode = isValidId && !!lessonData;
 
   const methods = useForm({
     resolver: zodResolver(classRegisterSchema),
@@ -69,6 +73,10 @@ const ClassRegister = () => {
 
   const { register, watch, setValue, control, clearErrors, reset, formState } = methods;
   const { isDirty } = formState;
+
+  const isEditMode = isValidId && !!lessonData;
+  const isSubmitting = isRegistering || isEditting;
+  const isNotChangedWithEdit = isEditMode && !isDirty;
 
   const {
     className,
@@ -98,12 +106,14 @@ const ClassRegister = () => {
   const toggleCategory = (category: string) => {
     setValue('selectedGenre', category === selectedGenre ? '' : category, {
       shouldValidate: true,
+      shouldDirty: true,
     });
   };
 
   const toggleLevel = (level: string) => {
     setValue('selectedLevel', level === selectedLevel ? '' : level, {
       shouldValidate: true,
+      shouldDirty: true,
     });
   };
 
@@ -147,17 +157,18 @@ const ClassRegister = () => {
 
   const handleLocationCheckboxClick = () => {
     handleNoneLocationCheck();
+    setValue('isUndecidedLocation', !isUndecidedLocation, { shouldValidate: true, shouldDirty: true });
     clearErrors('selectedLocation');
   };
 
   const handleAddTime = () => {
     const newTimes = originalHandleAddTime();
-    setValue('times', newTimes, { shouldValidate: true });
+    setValue('times', newTimes, { shouldValidate: true, shouldDirty: true });
   };
 
   const handleRemoveTime = (idx: number) => {
     const newTimes = originalHandleRemoveTime(idx);
-    setValue('times', newTimes, { shouldValidate: true });
+    setValue('times', newTimes, { shouldValidate: true, shouldDirty: true });
   };
 
   const initTimeAndOpenBottomSheet = () => {
@@ -226,8 +237,10 @@ const ClassRegister = () => {
               queryClient.invalidateQueries({ queryKey: memberKeys.me.queryKey });
               queryClient.invalidateQueries({ queryKey: lessonKeys.list.queryKey });
               queryClient.invalidateQueries({ queryKey: lessonKeys.detail(lessonId).queryKey });
+              queryClient.invalidateQueries({ queryKey: teacherKeys.me._ctx.lesson.queryKey });
 
               navigate(ROUTES_CONFIG.instructorClassDetail.path(String(lessonId)));
+              notify({ message: CLASS_REGISTER_EDIT_MESSAGE.EDIT_SUCCESS, icon: 'success' });
             },
           }
         );
@@ -239,6 +252,7 @@ const ClassRegister = () => {
             queryClient.invalidateQueries({ queryKey: lessonKeys.list.queryKey });
 
             navigate(ROUTES_CONFIG.classRegisterCompletion.path);
+            notify({ message: CLASS_REGISTER_EDIT_MESSAGE.REGISTER_SUCCESS, icon: 'success' });
           },
           // onError: () => {
           //   navigate(ROUTES_CONFIG.error.path);
@@ -270,14 +284,35 @@ const ClassRegister = () => {
 
   const handleRemoveLocation = () => {
     setSelectedLocation(null);
-    setValue(STATE_VALUE.SELECTED_LOCATION, null, { shouldValidate: true });
+    setValue(STATE_VALUE.SELECTED_LOCATION, null, { shouldValidate: true, shouldDirty: true });
     setDefaultPlace('');
   };
 
   const handleSelectLocation = (location: LocationTypes | null) => {
     setSelectedLocation(location);
-    setValue(STATE_VALUE.SELECTED_LOCATION, location, { shouldValidate: true });
+    setValue(STATE_VALUE.SELECTED_LOCATION, location, { shouldValidate: true, shouldDirty: true });
   };
+  useBlockBackWithUnsavedChanges({ methods });
+
+  useEffect(() => {
+    if (isEditMode && lessonData?.lessonRound?.lessonRounds?.length) {
+      const firstRound = lessonData.lessonRound.lessonRounds[0];
+      const startDateTime = new Date(firstRound.startDateTime);
+      const now = new Date();
+
+      if (now >= startDateTime) {
+        openModal(() => (
+          <Modal
+            type="single"
+            content={'비정상적인 접근입니다.'}
+            onClose={() => navigate(-1)}
+            rightButtonText="뒤로가기"
+            onClickHandler={() => navigate(-1)}
+          />
+        ));
+      }
+    }
+  }, [isEditMode, lessonData, navigate, openModal]);
 
   return (
     <>
@@ -333,7 +368,8 @@ const ClassRegister = () => {
                   maxReservationCount,
                   price,
                 }) ||
-                (isEditMode && !isDirty)
+                isNotChangedWithEdit ||
+                isSubmitting
               }>
               완료
             </BoxButton>

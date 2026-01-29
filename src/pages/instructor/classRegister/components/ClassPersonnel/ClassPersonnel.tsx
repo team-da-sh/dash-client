@@ -3,10 +3,9 @@ import { useFormContext } from 'react-hook-form';
 import Description from '@/pages/instructor/classRegister/components/Description';
 import { CLASS_PERSONNEL_SUBTITLE } from '@/pages/instructor/classRegister/constants/registerSectionText';
 import type { ClassRegisterFormTypes } from '@/pages/instructor/classRegister/types/classRegisterForm';
-import Input from '@/shared/components/Input/Input';
-import Text from '@/shared/components/Text/Text';
+import Input from '@/common/components/Input/Input';
+import Text from '@/common/components/Text/Text';
 import { ONLY_NUMBER } from '@/shared/constants/regex';
-import { sprinkles } from '@/shared/styles/sprinkles.css';
 
 interface ClassPersonnelPropTypes {
   maxReservationCount: string;
@@ -27,14 +26,7 @@ const ClassPersonnel = ({ register, maxReservationCount }: ClassPersonnelPropTyp
   };
 
   return (
-    <div
-      className={sprinkles({
-        display: 'flex',
-        flexDirection: 'column',
-        width: '100%',
-        gap: 20,
-        mb: 40,
-      })}>
+    <div style={{ display: 'flex', flexDirection: 'column', width: '100%', gap: '2rem', marginBottom: '4rem' }}>
       <Description title="모집 인원" subTitle={CLASS_PERSONNEL_SUBTITLE} />
       <Input
         value={maxReservationCount}

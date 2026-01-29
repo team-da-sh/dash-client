@@ -44,3 +44,16 @@ export const inputStyle = style({
     color: vars.colors.gray05,
   },
 });
+
+export const sectionStyle = style({
+  display: 'flex',
+  width: '100%',
+  flexDirection: 'column',
+  paddingBottom: '2rem',
+});
+
+export const inputWrapperStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  width: '100%',
+});

@@ -12,3 +12,10 @@ export const addInputBoxStyle = style({
 
   cursor: 'pointer',
 });
+
+export const sectionStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  width: '100%',
+  paddingBottom: '2.7rem',
+});

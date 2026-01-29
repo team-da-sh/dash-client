@@ -4,9 +4,9 @@ import { useGetReservations } from '@/pages/mypage/components/mypageReservation/
 import { type ReservationStatus } from '@/pages/mypage/components/mypageReservation/types/reservationStatus';
 import { type Reservation } from '@/pages/mypage/components/mypageReservation/types/reservationTypes';
 import { handleBoxButtonClick, handleCancelClick, handleClassCardClick } from '@/pages/mypage/utils/clickUtils';
-import BoxButton from '@/shared/components/BoxButton/BoxButton';
+import BoxButton from '@/common/components/BoxButton/BoxButton';
 import ClassCard from '@/shared/components/ClassCard';
-import Text from '@/shared/components/Text/Text';
+import Text from '@/common/components/Text/Text';
 import { USER_ROLE } from '@/shared/constants/userRole';
 
 interface ReservationListProps {
@@ -33,15 +33,13 @@ const ReservationList = ({ status, targetReservationId, showActions = true }: Re
     <>
       {filteredReservations?.length > 0 ? (
         filteredReservations?.map((reservation: Reservation) => (
-          <ClassCard
-            key={reservation.reservationId}
-            onClick={() => handleClassCardClick(navigate, reservation.reservationId)}>
+          <ClassCard key={reservation.reservationId}>
             <ClassCard.Header
               role={USER_ROLE.MEMBER}
               status={reservation.reservationStatus}
               date={reservation.reservationDateTime}
             />
-            <ClassCard.Body {...reservation} />
+            <ClassCard.Body {...reservation} onClick={() => handleClassCardClick(navigate, reservation.lessonId)} />
             {showActions && (
               <ClassCard.Footer showAsk={true}>
                 {(reservation.reservationStatus === 'PENDING_APPROVAL' ||

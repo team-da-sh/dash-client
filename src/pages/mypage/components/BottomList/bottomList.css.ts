@@ -16,6 +16,7 @@ export const ulStyle = style({
 export const listStyle = style({
   display: 'flex',
   alignItems: 'center',
+  width: '100%',
   justifyContent: 'space-between',
 
   color: vars.colors.gray09,
@@ -32,4 +33,9 @@ export const disabledStyle = style({
   cursor: 'not-allowed',
 
   color: vars.colors.gray04,
+});
+
+export const sectionStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
 });

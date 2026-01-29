@@ -1,10 +1,16 @@
 import { useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 import Description from '@/pages/instructorRegister/components/Description/Description';
-import * as styles from '@/pages/instructorRegister/components/PersonalSNSSection/personalSNSSection.css';
+import {
+  textAreaContainerStyle,
+  containerStyle,
+  prefixIconStyle,
+  inputStyle,
+  sectionStyle,
+  inputWrapperStyle,
+} from '@/pages/instructorRegister/components/PersonalSNSSection/personalSNSSection.css';
 import SvgIcAt12 from '@/shared/assets/svg/IcAt12';
-import Text from '@/shared/components/Text/Text';
-import { sprinkles } from '@/shared/styles/sprinkles.css';
+import Text from '@/common/components/Text/Text';
 import { vars } from '@/shared/styles/theme.css';
 import { INSTRUCTOR_REGISTER_PLACEHOLDER } from '../../constants/registerSection';
 
@@ -25,19 +31,19 @@ const PersonalSNSSection = () => {
   const { ref: youtubeRef, onChange: youtubeOnChange, name: youtubeName } = register('youtube');
 
   return (
-    <section className={sprinkles({ width: '100%', flexDirection: 'column', pb: 20 })}>
+    <section className={sectionStyle}>
       <Description title="개인 SNS 등록" subTitle="두 항목 중 하나는 반드시 입력해 주세요" />
 
-      <div className={sprinkles({ flexDirection: 'column', width: '100%' })}>
-        <div className={styles.textAreaContainerStyle}>
+      <div className={inputWrapperStyle}>
+        <div className={textAreaContainerStyle}>
           <Text tag="b2_sb">인스타그램</Text>
-          <div className={styles.containerStyle({ isFocused: isInstagramFocused })}>
+          <div className={containerStyle({ isFocused: isInstagramFocused })}>
             {isInstagramFocused || instagram ? (
-              <div className={styles.prefixIconStyle}>
+              <div className={prefixIconStyle}>
                 <SvgIcAt12 width={'1.2rem'} height={'1.2rem'} style={{ display: 'block' }} />
               </div>
             ) : (
-              <div className={styles.prefixIconStyle}>
+              <div className={prefixIconStyle}>
                 <SvgIcAt12 width={'1.2rem'} height={'1.2rem'} fill={vars.colors.gray05} style={{ display: 'block' }} />
               </div>
             )}
@@ -45,7 +51,7 @@ const PersonalSNSSection = () => {
               ref={instagramRef}
               type="text"
               name={instagramName}
-              className={styles.inputStyle}
+              className={inputStyle}
               onChange={instagramOnChange}
               onFocus={handleInstagramFocus}
               onBlur={handleInstagramBlur}
@@ -55,15 +61,15 @@ const PersonalSNSSection = () => {
           </div>
         </div>
 
-        <div className={styles.textAreaContainerStyle}>
+        <div className={textAreaContainerStyle}>
           <Text tag="b2_sb">유튜브 채널</Text>
-          <div className={styles.containerStyle({ isFocused: isYoutubeFocused })}>
+          <div className={containerStyle({ isFocused: isYoutubeFocused })}>
             {isYoutubeFocused || youtube ? (
-              <div className={styles.prefixIconStyle}>
+              <div className={prefixIconStyle}>
                 <SvgIcAt12 width={'1.2rem'} height={'1.2rem'} style={{ display: 'block' }} />
               </div>
             ) : (
-              <div className={styles.prefixIconStyle}>
+              <div className={prefixIconStyle}>
                 <SvgIcAt12 width={'1.2rem'} height={'1.2rem'} fill={vars.colors.gray05} style={{ display: 'block' }} />
               </div>
             )}
@@ -71,7 +77,7 @@ const PersonalSNSSection = () => {
               ref={youtubeRef}
               type="text"
               name={youtubeName}
-              className={styles.inputStyle}
+              className={inputStyle}
               onChange={youtubeOnChange}
               onFocus={handleYoutubeFocus}
               onBlur={handleYoutubeBlur}

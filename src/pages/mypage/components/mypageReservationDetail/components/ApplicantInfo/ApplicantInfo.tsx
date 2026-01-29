@@ -1,7 +1,7 @@
 import * as styles from '@/pages/mypage/components/mypageReservationDetail/components/ApplicantInfo/applicantInfo.css';
-import Text from '@/shared/components/Text/Text';
+import Text from '@/common/components/Text/Text';
+import { formatDateToKRWithTime } from '@/shared/utils/date';
 import { formatPhoneNumberNoSpace } from '@/shared/utils/formatPhoneNumber';
-import { formatDateTime } from '@/shared/utils/timeCalculate';
 
 interface ApplicantInfoPropTypes {
   memberName: string;
@@ -33,7 +33,7 @@ const ApplicantInfo = ({ memberName, memberPhoneNumber, reservationDateTime }: A
           신청일시
         </Text>
         <Text tag="b3_m" color="gray10">
-          {formatDateTime(reservationDateTime)}
+          {formatDateToKRWithTime(reservationDateTime)}
         </Text>
       </div>
     </section>

@@ -93,3 +93,32 @@ export const tabListCustomStyle = style({
   display: 'flex',
   gap: '3.3rem',
 });
+
+export const bottomSheetContentStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+});
+
+export const tabListWrapperStyle = style({
+  display: 'flex',
+  paddingBottom: '1rem',
+  paddingLeft: '2rem',
+});
+
+export const levelButtonWrapperStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '0.8rem',
+  paddingBottom: '4.6rem',
+  paddingTop: '0.8rem',
+  paddingLeft: '2rem',
+  paddingRight: '2rem',
+});
+
+export const buttonWrapperStyle = style({
+  display: 'flex',
+  width: '100%',
+  gap: '0.8rem',
+  paddingLeft: '2rem',
+  paddingRight: '2rem',
+});

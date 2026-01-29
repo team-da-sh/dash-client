@@ -1,6 +1,12 @@
-import { useQuery, type UseQueryResult } from '@tanstack/react-query';
+import { useMutation, useQuery, type UseQueryResult } from '@tanstack/react-query';
 import type { AxiosError } from 'axios';
-import { getMyLessons, getMyLessonThumbnails, getMyPage, getMyTeacherInfo } from '@/pages/mypage/apis/axios';
+import {
+  getMyLessons,
+  getMyLessonThumbnails,
+  getMyPage,
+  getMyTeacherInfo,
+  postValidateWithdraw,
+} from '@/pages/mypage/apis/axios';
 import type {
   LessonCountResponseTypes,
   LessonThumbnailsResponseTypes,
@@ -39,5 +45,11 @@ export const useGetMyLessonThumbnails = (
 
     queryFn: getMyLessonThumbnails,
     enabled: currentRole === 'TEACHER',
+  });
+};
+
+export const usePostValidateWithdraw = () => {
+  return useMutation<{ valid: boolean }, AxiosError<{ message: string }>, void>({
+    mutationFn: () => postValidateWithdraw(),
   });
 };

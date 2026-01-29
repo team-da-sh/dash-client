@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
-import Text from '@/shared/components/Text/Text';
-import { notify } from '@/shared/components/Toast/Toast';
-import { sprinkles } from '@/shared/styles/sprinkles.css';
+import { buttonStyle } from '@/pages/mypage/components/TabWrapper/components/StudentContent/components/MenuButton/menuButton.css';
+import Text from '@/common/components/Text/Text';
+import { notify } from '@/common/components/Toast/Toast';
 
 interface MenuButtonPropTypes {
   path?: string;
@@ -18,9 +18,7 @@ const MenuButton = ({ path, icon: Icon, label, inActive }: MenuButtonPropTypes) 
   };
 
   return (
-    <div
-      onClick={handleClick}
-      className={sprinkles({ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 12 })}>
+    <div onClick={handleClick} className={buttonStyle}>
       <Icon width={36} height={36} />
       <Text tag="b2_m_long" color="gray10">
         {label}

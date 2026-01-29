@@ -1,5 +1,5 @@
 import * as styles from '@/pages/mypage/components/mypageCancelClass/DepositeButton/depositeButton.css';
-import Text from '@/shared/components/Text/Text';
+import Text from '@/common/components/Text/Text';
 
 interface DepositeButtonProps {
   text: string;

@@ -11,7 +11,7 @@ import type {
   instructorRegisterFormTypes,
 } from '@/pages/instructorRegister/types/instructorRegisterForm';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import { notify } from '@/shared/components/Toast/Toast';
+import { notify } from '@/common/components/Toast/Toast';
 import { authKeys, teacherKeys } from '@/shared/constants/queryKey';
 import { USER_ROLE } from '@/shared/constants/userRole';
 import { setAccessToken, setRefreshToken } from '@/shared/utils/handleToken';

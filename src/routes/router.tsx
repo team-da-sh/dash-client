@@ -1,13 +1,17 @@
 import { lazy } from 'react';
 import { createBrowserRouter } from 'react-router-dom';
+import Withdraw from '@/pages/mypage/components/Withdraw/Withdraw';
+import Reservation from '@/pages/reservation/Reservation';
 import AuthGuard from '@/routes/guards/authGuard';
 import GuestGuard from '@/routes/guards/guestGuard';
+import OnboardingGuard from '@/routes/guards/onboardingGuard';
+import { ReservationGuard } from '@/routes/guards/reservationGuard';
+import WithdrawGuard from '@/routes/guards/withdrawGuard';
 import { guestRoutes } from '@/routes/modules/guestRoutes';
 import { protectedRoutes } from '@/routes/modules/protectedRoutes';
 import { publicRoutes } from '@/routes/modules/publicRoutes';
+import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import Layout from '@/layout/Layout';
-import OnboardingGuard from './guards/onboardingGuard';
-import { ROUTES_CONFIG } from './routesConfig';
 
 /* eslint-disable react-refresh/only-export-components */
 const Error = lazy(() => import('@/pages/error/ErrorPage'));
@@ -31,6 +35,16 @@ export const router = createBrowserRouter([
         children: [...protectedRoutes],
       },
 
+      {
+        path: ROUTES_CONFIG.withdraw.path,
+        element: <WithdrawGuard />,
+        children: [{ index: true, element: <Withdraw /> }],
+      },
+      {
+        path: ROUTES_CONFIG.reservation.path(':id'),
+        element: <ReservationGuard />,
+        children: [{ index: true, element: <Reservation /> }],
+      },
       { path: '*', element: <Error /> },
     ],
   },

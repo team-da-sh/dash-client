@@ -13,3 +13,11 @@ export const successButtonContainer = style({
   padding: '2.4rem 2rem',
   width: '100%',
 });
+
+export const sectionStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  paddingLeft: '2rem',
+  paddingRight: '2rem',
+  width: '100%',
+});

@@ -4,7 +4,7 @@ import { VISIT_KEY } from '@/pages/mypage/constants/storageKey';
 import { setUser } from '@/pages/mypage/utils/storage';
 import IcTriangle from '@/shared/assets/svg/IcTriangle';
 import IcXBlack from '@/shared/assets/svg/IcXBlack';
-import Text from '@/shared/components/Text/Text';
+import Text from '@/common/components/Text/Text';
 
 interface ToolTipPropTypes {
   title: string;

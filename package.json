@@ -10,6 +10,7 @@
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
+    "analyze": "vite-bundle-visualizer",
     "svgr": "npx @svgr/cli -d src/shared/assets/svg --no-prettier --ignore-existing --typescript --no-dimensions --no-index --jsx-runtime automatic public/svg"
   },
   "dependencies": {

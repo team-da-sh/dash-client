@@ -6,16 +6,20 @@ import {
   boxValueStyle,
   buttonContainerStyle,
 } from '@/pages/mypage/components/Withdraw/components/CompleteStep/completeStep.css';
-import BoxButton from '@/shared/components/BoxButton/BoxButton';
-import Head from '@/shared/components/Head/Head';
-import Text from '@/shared/components/Text/Text';
+import BoxButton from '@/common/components/BoxButton/BoxButton';
+import Head from '@/common/components/Head/Head';
+import Text from '@/common/components/Text/Text';
+import { formatToYYYYMMDD } from '@/shared/utils/date';
+import { getDateWithoutTime } from '@/shared/utils/date';
 
 interface CompleteStepPropTypes {
+  email: string;
   onGoHome: () => void;
 }
 
-const CompleteStep = ({ onGoHome }: CompleteStepPropTypes) => {
+const CompleteStep = ({ email, onGoHome }: CompleteStepPropTypes) => {
   const titleId = useId();
+  const today = formatToYYYYMMDD(getDateWithoutTime(new Date()));
 
   return (
     <>
@@ -26,7 +30,7 @@ const CompleteStep = ({ onGoHome }: CompleteStepPropTypes) => {
           서비스를 이용해 주셔서 감사합니다.
         </Head>
         <Text tag="b2_m" color="gray7" className={descriptionStyle}>
-          언제든 다시 춤추고 싶으실 때, 다시 찾아주세요!
+          다시 춤추고 싶으실 때, 언제든 이곳을 찾아주세요.
           <br />더 나은 모습으로 회원님을 기다리겠습니다.
         </Text>
         <dl className={boxStyle}>
@@ -37,7 +41,7 @@ const CompleteStep = ({ onGoHome }: CompleteStepPropTypes) => {
           </dt>
           <dd className={boxValueStyle}>
             <Text tag="b2_m_long" color="black">
-              Dash@naver.com
+              {email}
             </Text>
           </dd>
           <dt>
@@ -47,7 +51,7 @@ const CompleteStep = ({ onGoHome }: CompleteStepPropTypes) => {
           </dt>
           <dd>
             <Text tag="b2_m_long" color="black">
-              2025-10-28
+              {today}
             </Text>
           </dd>
         </dl>

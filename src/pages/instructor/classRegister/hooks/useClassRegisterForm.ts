@@ -1,8 +1,7 @@
 import type { ChangeEvent } from 'react';
 import { useState } from 'react';
 import type { LocationTypes, RepresentImageUrlsTypes } from '@/pages/instructor/classRegister/types';
-// import { ONLY_NUMERIC } from '@/shared/constants/regex';
-import { formatToISOString } from '@/shared/utils/timeUtils';
+import { formatToISOString } from '@/shared/utils/date';
 
 export const useClassRegisterForm = () => {
   const [imageUrls, setImageUrls] = useState<RepresentImageUrlsTypes>({ imageUrls: '' });

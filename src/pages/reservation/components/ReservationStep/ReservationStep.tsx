@@ -6,18 +6,32 @@ import { useGetReservation, usePostReservation } from '@/pages/reservation/apis/
 import AgreeCheckBox from '@/pages/reservation/components/AgreeCheckBox/AgreeCheckBox';
 import ApplicantInfo from '@/pages/reservation/components/ApplicantInfo/ApplicantInfo';
 import ClassInfo from '@/pages/reservation/components/ClassInfo/ClassInfo';
-import * as styles from '@/pages/reservation/components/ReservationStep/reservationStep.css';
+import {
+  reservationStyle,
+  agreementBoxStyle,
+  agreementCheckedStyle,
+  agreementUncheckedStyle,
+  totalPriceContainerStyle,
+  priceWrapperStyle,
+  mainStyle,
+  sectionStyle,
+  sectionContentStyle,
+  agreementSectionStyle,
+  titleStyle,
+  agreementWrapperStyle,
+  noticeWrapperStyle,
+  dividerWrapperStyle,
+} from '@/pages/reservation/components/ReservationStep/reservationStep.css';
 import TopInfoContent from '@/pages/reservation/components/TopInfoContent/TopInfoContent';
 import { AGREEMENT_TERMS } from '@/pages/reservation/constants/index';
+import BlurBotton from '@/common/components/BlurButton/BlurButton';
 import IcCheckcircleGray0524 from '@/shared/assets/svg/IcCheckcircleGray0524';
 import IcCheckcircleMain0324 from '@/shared/assets/svg/IcCheckcircleMain0324';
-import BlurBotton from '@/shared/components/BlurButton/BlurButton';
-import BoxButton from '@/shared/components/BoxButton/BoxButton';
-import Divider from '@/shared/components/Divider/Divider';
-import Head from '@/shared/components/Head/Head';
-import Text from '@/shared/components/Text/Text';
-import { notify } from '@/shared/components/Toast/Toast';
-import { sprinkles } from '@/shared/styles/sprinkles.css';
+import BoxButton from '@/common/components/BoxButton/BoxButton';
+import Divider from '@/common/components/Divider/Divider';
+import Head from '@/common/components/Head/Head';
+import Text from '@/common/components/Text/Text';
+import { notify } from '@/common/components/Toast/Toast';
 import { vars } from '@/shared/styles/theme.css';
 import type { ClassReservationResponseTypes } from '../../types/api';
 
@@ -31,13 +45,14 @@ const ReservationStep = ({ onNext }: ReservationStepPropTypes) => {
 
   const { id } = useParams<{ id: string }>();
   const { data, isError, isLoading } = useGetReservation(Number(id));
-  const { mutate: postReservation } = usePostReservation();
+  const { mutate: postReservation, isPending } = usePostReservation();
 
   if (!id) return <ErrorPage />;
   if (isLoading) return null;
   if (isError || !data) return <ErrorPage />;
 
   const handleSubmit = () => {
+    if (isPending) return;
     postReservation(
       { lessonId: id },
       {
@@ -67,33 +82,20 @@ const ReservationStep = ({ onNext }: ReservationStepPropTypes) => {
     setIsAllChecked(newAgreements.every((isChecked) => isChecked));
   };
 
-  const agreementClassStyle = `${styles.agreementBoxStyle} ${
-    isAllChecked ? styles.agreementCheckedStyle : styles.agreementUncheckedStyle
-  }`;
+  const agreementClassStyle = `${agreementBoxStyle} ${isAllChecked ? agreementCheckedStyle : agreementUncheckedStyle}`;
 
   return (
-    <main
-      className={`${sprinkles({ display: 'flex', flexDirection: 'column', width: '100%' })} ${styles.reservationStyle}`}>
+    <main className={`${mainStyle} ${reservationStyle}`}>
       <TopInfoContent name={data.name} teacherNickname={data.teacherNickname} imageUrl={data.imageUrl} />
-      <section
-        className={sprinkles({
-          display: 'flex',
-          width: '100%',
-          flexDirection: 'column',
-          pt: 24,
-          pr: 20,
-          pb: 40,
-          pl: 20,
-          gap: 40,
-        })}>
-        <div className={sprinkles({ display: 'flex', flexDirection: 'column', width: '100%', gap: 16 })}>
+      <section className={sectionStyle}>
+        <div className={sectionContentStyle}>
           <Text tag="h6_sb" color="black">
             신청자 정보
           </Text>
           <ApplicantInfo memberName={data.memberName} memberPhoneNumber={data.memberPhoneNumber} />
         </div>
 
-        <div className={sprinkles({ display: 'flex', flexDirection: 'column', width: '100%', gap: 16 })}>
+        <div className={sectionContentStyle}>
           <Text tag="h6_sb" color="black">
             클래스 정보
           </Text>
@@ -110,20 +112,12 @@ const ReservationStep = ({ onNext }: ReservationStepPropTypes) => {
 
       <Divider direction="horizontal" length="100%" thickness="1.1rem" color="gray2" />
 
-      <section
-        className={sprinkles({
-          display: 'flex',
-          flexDirection: 'column',
-          width: '100%',
-          pt: 34,
-          pr: 20,
-          pl: 20,
-        })}>
-        <Text tag="h6_sb" color="black" className={sprinkles({ pb: 16 })}>
+      <section className={agreementSectionStyle}>
+        <Text tag="h6_sb" color="black" className={titleStyle}>
           필수 약관 전체 동의
         </Text>
-        <div className={sprinkles({ pb: 20 })}>
-          <div onClick={handleToggleAll} className={agreementClassStyle}>
+        <div className={agreementWrapperStyle}>
+          <button onClick={handleToggleAll} className={agreementClassStyle}>
             {isAllChecked ? (
               <IcCheckcircleMain0324 height={24} />
             ) : (
@@ -132,7 +126,7 @@ const ReservationStep = ({ onNext }: ReservationStepPropTypes) => {
             <Head level="h5" tag="b1_sb">
               전체동의
             </Head>
-          </div>
+          </button>
           {AGREEMENT_TERMS.map((term, index) => (
             <AgreeCheckBox
               key={index}
@@ -143,7 +137,7 @@ const ReservationStep = ({ onNext }: ReservationStepPropTypes) => {
             />
           ))}
         </div>
-        <div className={sprinkles({ pb: 42 })}>
+        <div className={noticeWrapperStyle}>
           <Text tag="b2_m_long" color="gray6">
             * 서비스 이용을 위한 이용약관, 개인정보 수집 및 이용과 제3자
           </Text>
@@ -153,15 +147,15 @@ const ReservationStep = ({ onNext }: ReservationStepPropTypes) => {
         </div>
       </section>
 
-      <div className={sprinkles({ pl: 20, pr: 20 })}>
+      <div className={dividerWrapperStyle}>
         <Divider direction="horizontal" length="100%" thickness="0.1rem" color="gray3" />
       </div>
 
-      <div className={styles.totalPriceContainerStyle}>
+      <div className={totalPriceContainerStyle}>
         <Head level="h3" tag="h5_sb" color="gray9">
           총 결제 금액
         </Head>
-        <div className={styles.priceWrapperStyle}>
+        <div className={priceWrapperStyle}>
           <Head level="h2" tag="h3_sb" color="main4">
             {data.price.toLocaleString()}
           </Head>

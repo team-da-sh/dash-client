@@ -1,14 +1,28 @@
 import { useNavigate } from 'react-router-dom';
 import Card from '@/pages/class/components/Card/Card';
-import * as styles from '@/pages/class/components/ClassInfoWrapper/classInfoWrapper.css';
+import {
+  cardItemStyle,
+  cardStyle,
+  classTitle,
+  priceTextStyle,
+  priceWrapper,
+  profileStyle,
+  reviewSubText,
+  reviewTextStyle,
+  sectionContainer,
+  tagWrapper,
+  teacherWrapper,
+} from '@/pages/class/components/ClassInfoWrapper/classInfoWrapper.css';
 import type { LessonDetailResponseTypes } from '@/pages/class/types/api';
 import { getDDayLabel } from '@/pages/class/utils/dDay';
 import type { GenreTypes } from '@/pages/onboarding/types/genreTypes';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import Head from '@/shared/components/Head/Head';
-import Tag from '@/shared/components/Tag/Tag';
-import Text from '@/shared/components/Text/Text';
-import { levelMapping, genreMapping } from '@/shared/constants/index';
+import Head from '@/common/components/Head/Head';
+import Tag from '@/common/components/Tag/Tag';
+import Text from '@/common/components/Text/Text';
+import IcCircleCautionFilled from '@/shared/assets/svg/IcCircleCautionFilled';
+import { genreMapping, levelMapping } from '@/shared/constants/index';
+import { WITHDRAW_USER_NAME } from '@/shared/constants/withdrawUser';
 
 const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetailResponseTypes }) => {
   const {
@@ -35,10 +49,11 @@ const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetailResponseType
   };
 
   const MAX_DISPLAY_RESERVATION_COUNT = 999;
+  const isWithdrawTeacher = teacherNickname === WITHDRAW_USER_NAME;
 
   return (
-    <section className={styles.sectionContainer} aria-label={`${name} 클래스 정보`}>
-      <div className={styles.tagWrapper}>
+    <section className={sectionContainer} aria-label={`${name} 클래스 정보`}>
+      <div className={tagWrapper}>
         <Tag type="genre" size="medium">
           <Text tag="b3_m" color="white">
             {translatedGenre}
@@ -51,24 +66,31 @@ const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetailResponseType
         </Tag>
       </div>
 
-      <Head level="h2" tag="h5_sb" className={styles.classTitle}>
+      <Head level="h2" tag="h5_sb" className={classTitle}>
         {name}
       </Head>
 
       <div>
-        <button className={styles.teacherWrapper} onClick={() => handleTeacherClick(teacherId)}>
-          <img src={teacherImageUrl} alt={`${teacherNickname} 프로필`} className={styles.profileStyle} />
-          <Text as="span" tag="b2_m" color="gray9">
+        <button
+          className={teacherWrapper}
+          onClick={isWithdrawTeacher ? undefined : () => handleTeacherClick(teacherId)}
+          disabled={isWithdrawTeacher}>
+          {isWithdrawTeacher ? (
+            <IcCircleCautionFilled width={40} height={40} />
+          ) : (
+            teacherImageUrl && <img src={teacherImageUrl} alt={`${teacherNickname} 프로필`} className={profileStyle} />
+          )}
+          <Text as="span" tag="b1_sb" color={isWithdrawTeacher ? 'gray6' : 'gray9'}>
             {teacherNickname}
           </Text>
         </button>
       </div>
 
-      <div className={styles.priceWrapper}>
+      <div className={priceWrapper}>
         <Head level="h4" tag="h6_sb" color="gray6">
           {lessonRounds.length}회
         </Head>
-        <div className={styles.priceTextStyle}>
+        <div className={priceTextStyle}>
           <Head level="h5" tag="h3_sb">
             {price.toLocaleString()}
           </Head>
@@ -78,8 +100,8 @@ const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetailResponseType
         </div>
       </div>
 
-      <Card className={styles.cardStyle}>
-        <div className={styles.cardItemStyle}>
+      <Card className={cardStyle}>
+        <div className={cardItemStyle}>
           <Text tag="b3_sb" color="gray7">
             난이도
           </Text>
@@ -88,12 +110,12 @@ const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetailResponseType
           </Text>
         </div>
 
-        <div className={styles.cardItemStyle}>
+        <div className={cardItemStyle}>
           <Text tag="b3_sb" color="gray7">
             인원
           </Text>
           <Text tag="h6_sb" color="gray10">
-            <Text tag="h6_sb" color="gray10">
+            <Text as="span" tag="h6_sb" color="gray10">
               {maxReservationCount > MAX_DISPLAY_RESERVATION_COUNT
                 ? `${MAX_DISPLAY_RESERVATION_COUNT}+`
                 : `${maxReservationCount}명`}
@@ -101,15 +123,15 @@ const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetailResponseType
           </Text>
         </div>
 
-        <div className={styles.cardItemStyle}>
+        <div className={cardItemStyle}>
           <Text tag="b3_sb" color="gray7">
             리뷰
           </Text>
-          <div className={styles.reviewTextStyle}>
+          <div className={reviewTextStyle}>
             <Text tag="h6_sb" color="gray10">
               -
             </Text>
-            <Text tag="c1_r" color="gray6" className={styles.reviewSubText}>
+            <Text tag="c1_r" color="gray6" className={reviewSubText}>
               (-)
             </Text>
           </div>

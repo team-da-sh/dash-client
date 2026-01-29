@@ -8,21 +8,31 @@ import TeacherLessons from '@/pages/mypage/components/TabWrapper/components/Teac
 import ToolTip from '@/pages/mypage/components/TabWrapper/components/TeacherContent/components/ToolTip/ToolTip';
 import OverlayPage from '@/pages/mypage/components/TabWrapper/components/TeacherContent/components/ToolTip/components/OverlayPage';
 import UnregisteredTeacher from '@/pages/mypage/components/TabWrapper/components/TeacherContent/components/UnregisteredTeacher/UnregisteredTeacher';
-import * as styles from '@/pages/mypage/components/TabWrapper/components/TeacherContent/teacherContent.css';
+import {
+  containerStyle,
+  topContainerStyle,
+  reviewContainerStyle,
+  classButtonStyle,
+  allButtonStyle,
+  snsUrlStyle,
+  snsLinksStyle,
+  snsLinkStyle,
+  classListHeaderStyle,
+  reviewButtonContentStyle,
+} from '@/pages/mypage/components/TabWrapper/components/TeacherContent/teacherContent.css';
 import { VISIT_KEY } from '@/pages/mypage/constants/storageKey';
 import { getUser } from '@/pages/mypage/utils/storage';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
+import Divider from '@/common/components/Divider/Divider';
+import Text from '@/common/components/Text/Text';
+import { notify } from '@/common/components/Toast/Toast';
 import { useGetRole, useGetTeacherAccount } from '@/shared/apis/queries';
 import IcArrowRightSmallGray0732 from '@/shared/assets/svg/IcArrowRightSmallGray0732';
 import IcInstagram20 from '@/shared/assets/svg/IcInstagram20';
 import IcPlusWhite24 from '@/shared/assets/svg/IcPlusWhite24';
 import IcReview from '@/shared/assets/svg/IcReview';
 import IcYoutube20 from '@/shared/assets/svg/IcYoutube20';
-import Divider from '@/shared/components/Divider/Divider';
 import InfoComponent from '@/shared/components/InfoComponent/InfoComponent';
-import Text from '@/shared/components/Text/Text';
-import { notify } from '@/shared/components/Toast/Toast';
-import { sprinkles } from '@/shared/styles/sprinkles.css';
 
 const TeacherContent = () => {
   const navigate = useNavigate();
@@ -36,8 +46,7 @@ const TeacherContent = () => {
   const { data } = useGetMyTeacherInfo(userRole);
   const { data: lessonData } = useGetMyLessonThumbnails(userRole);
   const { data: myData } = useGetMyPage();
-  const { data: accountData } = useGetTeacherAccount();
-
+  const { data: accountData } = useGetTeacherAccount(userRole);
   const isRegisteredTeacherProfile = userRole === 'TEACHER';
 
   if (isGetRoleLoading) {
@@ -46,7 +55,7 @@ const TeacherContent = () => {
 
   if (!isRegisteredTeacherProfile && myData) {
     return (
-      <div className={styles.containerStyle}>
+      <div className={containerStyle}>
         {isFirstVisit && (
           <>
             <OverlayPage isVisible={isFirstVisit} />
@@ -56,7 +65,7 @@ const TeacherContent = () => {
             </ToolTip>
           </>
         )}
-        <div className={styles.topContainerStyle}>
+        <div className={topContainerStyle}>
           <UnregisteredTeacher name={myData.name} />
           <Divider color="gray1" thickness="0.4rem" />
         </div>
@@ -78,27 +87,31 @@ const TeacherContent = () => {
     navigate(ROUTES_CONFIG.instructorClassList.path);
   };
 
+  const handleReviewClick = () => {
+    notify({ message: '해당 기능은 추후 구현 예정이에요' });
+  };
+
   if (!data || !lessonData) {
     return <div></div>;
   }
 
   return (
-    <div className={styles.containerStyle}>
-      <div className={styles.topContainerStyle}>
+    <div className={containerStyle}>
+      <div className={topContainerStyle}>
         <InfoComponent
           type="teacher"
           profileImageUrl={data.profileImage}
           mainText={<Text tag="b1_sb">{data.nickname}</Text>}
           subContent={
-            <div className={sprinkles({ display: 'flex', alignItems: 'center', gap: 4 })}>
+            <div className={snsLinksStyle}>
               {data.instagram && (
                 <a
                   href={expandInstagramUrl(data.instagram)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={sprinkles({ display: 'flex', gap: 4, alignItems: 'center' })}>
+                  className={snsLinkStyle}>
                   <IcInstagram20 width={16} height={12} />
-                  <Text tag="b3_m" color="gray6" className={styles.snsUrlStyle}>
+                  <Text tag="b3_m" color="gray6" className={snsUrlStyle}>
                     {data.instagram}
                   </Text>
                 </a>
@@ -115,9 +128,9 @@ const TeacherContent = () => {
                   href={expandYouTubeUrl(data.youtube)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={sprinkles({ display: 'flex', gap: 4, alignItems: 'center' })}>
+                  className={snsLinkStyle}>
                   <IcYoutube20 width={16} height={12} />
-                  <Text tag="b3_m" color="gray6" className={styles.snsUrlStyle}>
+                  <Text tag="b3_m" color="gray6" className={snsUrlStyle}>
                     {data.youtube}
                   </Text>
                 </a>
@@ -126,18 +139,12 @@ const TeacherContent = () => {
           }
         />
         <section>
-          <div
-            className={sprinkles({
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              px: 20,
-            })}>
+          <div className={classListHeaderStyle}>
             <Text tag="b1_sb" color="black">
               내 클래스 목록
             </Text>
             {!!lessonData.lessons?.length && (
-              <button className={styles.allButtonStyle} type="button" onClick={handleAllButtonClick}>
+              <button className={allButtonStyle} type="button" onClick={handleAllButtonClick}>
                 모두 보기
               </button>
             )}
@@ -146,20 +153,18 @@ const TeacherContent = () => {
         </section>
       </div>
       <Divider color="gray1" thickness="0.4rem" />
-      <div
-        className={styles.reviewContainerStyle}
-        onClick={() => notify({ message: '해당 기능은 추후 구현 예정이에요' })}>
-        <div className={sprinkles({ display: 'flex', alignItems: 'center', gap: 4 })}>
+      <button type="button" className={reviewContainerStyle} onClick={handleReviewClick}>
+        <div className={reviewButtonContentStyle}>
           <IcReview width={24} />
-          <Text tag="b2_sb" color="gray11">
+          <Text as="span" tag="b2_sb" color="gray11">
             리뷰 확인
           </Text>
         </div>
         <IcArrowRightSmallGray0732 width={32} />
-      </div>
+      </button>
       <Divider color="gray1" thickness="0.4rem" />
       <BottomList userRole="TEACHER" />
-      <button type="button" className={styles.classButtonStyle} onClick={handleClassButtonClick}>
+      <button type="button" className={classButtonStyle} onClick={handleClassButtonClick}>
         <IcPlusWhite24 width={24} />
         <Text tag="b1_sb_long" color="white">
           클래스 개설

@@ -31,21 +31,13 @@ export const dividerStyle = style({
   transform: 'translate(-20px, -3px)',
 });
 
-export const emptyTextStyle = style({
-  width: '17rem',
-
-  margin: '5.4rem auto 0 auto',
+export const tabTitleStyle = style({
+  marginLeft: '2rem',
+  marginBottom: '2rem',
 });
 
-export const tabListStyle = style({
-  display: 'flex',
-  gap: '1.6rem',
-  paddingLeft: '2rem',
-});
-
-export const tabPanelStyle = style({
+export const classInfoSectionStyle = style({
   display: 'flex',
   flexDirection: 'column',
-  gap: '1.2rem',
-  padding: '0rem 2rem 3.6rem',
+  gap: '0.8rem',
 });

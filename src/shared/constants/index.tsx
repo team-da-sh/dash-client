@@ -19,7 +19,7 @@ const IcLevelAdvanced = lazy(() => import('@/shared/assets/svg/IcLevelAdvanced')
 export const LEVEL = [
   {
     icon: (
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<div style={{ width: '3.6rem', height: '3.502rem' }} />}>
         <IcLevelStarter width={36} />
       </Suspense>
     ),
@@ -28,7 +28,7 @@ export const LEVEL = [
   },
   {
     icon: (
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<div style={{ width: '3.6rem', height: '3.502rem' }} />}>
         <IcLevelBasic width={36} />
       </Suspense>
     ),
@@ -37,7 +37,7 @@ export const LEVEL = [
   },
   {
     icon: (
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<div style={{ width: '3.6rem', height: '3.502rem' }} />}>
         <IcLevelIntermediate width={36} />
       </Suspense>
     ),
@@ -46,7 +46,7 @@ export const LEVEL = [
   },
   {
     icon: (
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<div style={{ width: '3.6rem', height: '3.502rem' }} />}>
         <IcLevelAdvanced width={36} />
       </Suspense>
     ),
@@ -127,7 +127,7 @@ export const CLASS_TABS = [
 // 장르 영한 변환
 export const genreMapping: { [key: string]: string } = {
   HIPHOP: '힙합',
-  FEMALE_HIPHOP: '피메일힙합',
+  FEMALE_HIPHOP: '피메일 힙합',
   POPPING: '팝핑',
   BRAKING: '브레이킹',
   WAACKING: '왁킹',
@@ -137,7 +137,7 @@ export const genreMapping: { [key: string]: string } = {
   KRUMP: '크럼프',
   SOUL: '소울',
   CHOREOGRAPHY: '코레오그래피',
-  KPOP: '케이팝',
+  KPOP: 'K-POP',
 };
 
 // 레벨 영한 변환

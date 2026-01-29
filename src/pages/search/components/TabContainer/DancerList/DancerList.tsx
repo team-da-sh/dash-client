@@ -1,11 +1,16 @@
 import { useNavigate } from 'react-router-dom';
-import * as styles from '@/pages/search/components/TabContainer/DancerList/dancerList.css';
+import {
+  dancerImageStyle,
+  listStyle,
+  listItemStyle,
+  dancerInfoStyle,
+  tagWrapperStyle,
+} from '@/pages/search/components/TabContainer/DancerList/dancerList.css';
 import type { DancerTypes } from '@/pages/search/types/dancer';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import Head from '@/shared/components/Head/Head';
-import Tag from '@/shared/components/Tag/Tag';
+import Head from '@/common/components/Head/Head';
+import Tag from '@/common/components/Tag/Tag';
 import { genreMapping } from '@/shared/constants/index';
-import { sprinkles } from '@/shared/styles/sprinkles.css';
 import { vars } from '@/shared/styles/theme.css';
 
 interface DancerListPropTypes {
@@ -19,26 +24,19 @@ const DancerList = ({ dancers }: DancerListPropTypes) => {
     navigate(ROUTES_CONFIG.dancer.path(`${id}`));
   };
   return (
-    <ul className={sprinkles({ display: 'flex', width: '100%', flexDirection: 'column' })}>
+    <ul className={listStyle}>
       {dancers.map((dancer) => (
         <li
-          className={sprinkles({
-            display: 'flex',
-            alignItems: 'center',
-            paddingTop: 16,
-            paddingBottom: 16,
-            gap: 20,
-            width: '100%',
-          })}
+          className={listItemStyle}
           style={{ borderBottom: `1px solid ${vars.colors.gray01}` }}
           key={dancer.id}
           onClick={() => handleDancerClick(dancer.id)}>
-          <img src={dancer.profileImage} alt={dancer.nickname} className={styles.dancerImageStyle} />
-          <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 8 })}>
+          <img src={dancer.profileImage} alt={dancer.nickname} className={dancerImageStyle} />
+          <div className={dancerInfoStyle}>
             <Head level="h6" tag="b1_sb">
               {dancer.nickname}
             </Head>
-            <div className={sprinkles({ display: 'flex', gap: 5 })}>
+            <div className={tagWrapperStyle}>
               {dancer.genres.map((genre, index) => (
                 <Tag key={index} type="search" size="large">
                   {genreMapping[genre] || genre}

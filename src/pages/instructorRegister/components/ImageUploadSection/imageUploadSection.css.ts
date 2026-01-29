@@ -15,6 +15,8 @@ export const previewImgStyle = style({
   alignItems: 'center',
   justifyContent: 'center',
 
+  overflow: 'hidden',
+
   width: '100%',
   height: '100%',
   position: 'relative',
@@ -37,4 +39,17 @@ export const icCameraStyle = style({
   position: 'absolute',
   bottom: '0.6rem',
   right: '0.6rem',
+});
+
+export const overlayStyle = style({
+  position: 'absolute',
+  bottom: 0,
+  left: 0,
+
+  textAlign: 'center',
+  width: '100%',
+
+  padding: '0.2rem 0rem 0.5rem 0rem',
+
+  backgroundColor: vars.colors.black50,
 });

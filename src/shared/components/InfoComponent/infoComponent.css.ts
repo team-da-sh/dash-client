@@ -18,6 +18,7 @@ export const imgStyle = style({
   objectFit: 'cover',
   borderRadius: '68.75px',
   border: `0.833px solid ${vars.colors.gray04}`,
+  backgroundColor: vars.colors.gray02,
 });
 
 export const wrapperStyle = style({
@@ -31,4 +32,15 @@ export const textWrapperStyle = style({
   display: 'flex',
   flexDirection: 'column',
   gap: '0.8rem',
+});
+
+export const profileWrapperStyle = style({
+  display: 'flex',
+  gap: '1.2rem',
+  alignItems: 'center',
+});
+
+export const arrowIconStyle = style({
+  width: '2.4rem',
+  height: '2.4rem',
 });

@@ -1,0 +1,3 @@
+import type { SVGProps } from "react";
+const SvgIcNumberTwo = (props: SVGProps<SVGSVGElement>) => <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 16" {...props}><rect width={16} height={16} fill="#E5E7EB" rx={8} /><path fill="#363E4D" d="m4.698 12-.004-1.09 2.95-2.843c.844-.845 1.285-1.342 1.289-2.04-.004-.783-.62-1.273-1.44-1.273-.857 0-1.412.539-1.408 1.387H4.657c-.008-1.583 1.179-2.61 2.856-2.61 1.701 0 2.852 1.02 2.856 2.419-.004.946-.457 1.709-2.101 3.26l-1.481 1.472v.061h3.708V12z" /></svg>;
+export default SvgIcNumberTwo;

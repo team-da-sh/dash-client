@@ -1,5 +1,5 @@
 import * as styles from '@/pages/reservation/components/TopInfoContent/topInfoContent.css';
-import Head from '@/shared/components/Head/Head';
+import Head from '@/common/components/Head/Head';
 
 interface TopInfoContentPropTypes {
   name: string;

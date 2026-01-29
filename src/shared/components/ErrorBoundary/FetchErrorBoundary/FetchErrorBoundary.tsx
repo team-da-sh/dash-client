@@ -4,13 +4,13 @@ import { isAxiosError } from 'axios';
 import type { ErrorInfo } from 'react';
 import { Suspense, type ReactNode } from 'react';
 import { ErrorBoundary, type FallbackProps } from 'react-error-boundary';
-import BoxButton from '@/shared/components/BoxButton/BoxButton';
+import BoxButton from '@/common/components/BoxButton/BoxButton';
 import {
   errorContainerStyle,
   buttonContainer,
 } from '@/shared/components/ErrorBoundary/FetchErrorBoundary/fetchErrorBoundary.css';
-import Spinner from '@/shared/components/Spinner/Spinner';
-import Text from '@/shared/components/Text/Text';
+import Spinner from '@/common/components/Spinner/Spinner';
+import Text from '@/common/components/Text/Text';
 import type { ApiError } from '@/shared/types/ApiError';
 import { ERROR_LEVEL } from '@/shared/types/errorLevel';
 

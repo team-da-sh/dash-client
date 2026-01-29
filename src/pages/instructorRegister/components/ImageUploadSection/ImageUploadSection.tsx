@@ -1,5 +1,5 @@
 import * as styles from '@/pages/instructorRegister/components/ImageUploadSection/imageUploadSection.css';
-import IcCameraMain0624 from '@/shared/assets/svg/IcCameraMain0624';
+import Text from '@/common/components/Text/Text';
 import IcProfileBasic from '@/shared/assets/svg/IcProfileBasic';
 
 interface ImageUploadSectionPropTypes {
@@ -15,17 +15,19 @@ const ImageUploadSection = ({
   previewImg,
   uploadImgFile,
   handleUploaderClick,
-  onClick,
 }: ImageUploadSectionPropTypes) => {
   return (
-    <section className={styles.containerStyle} onClick={onClick}>
-      <div
+    <section className={styles.containerStyle}>
+      <button
+        type="button"
         className={styles.previewImgStyle}
         onClick={handleUploaderClick}
         style={previewImg ? { backgroundImage: `url(${previewImg})` } : undefined}>
         {!previewImg && <IcProfileBasic width={96} height={96} />}
-        <IcCameraMain0624 width={24} height={24} className={styles.icCameraStyle} />
-      </div>
+        <Text tag="c1_sb" color="white" className={styles.overlayStyle}>
+          수정
+        </Text>
+      </button>
 
       <input
         type="file"

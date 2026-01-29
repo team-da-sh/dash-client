@@ -59,3 +59,9 @@ export const underline = style({
 export const breakWord = style({
   wordBreak: 'break-word',
 });
+
+export const accountNumberWrapperStyle = style({
+  display: 'flex',
+  gap: '0.6rem',
+  alignItems: 'center',
+});

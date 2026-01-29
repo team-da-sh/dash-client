@@ -3,9 +3,9 @@ import { useGetMyLessons } from '@/pages/instructor/lessonList/apis/queries';
 import { emptyTextStyle } from '@/pages/instructor/lessonList/lessonList.css';
 import type { LessonStatus } from '@/pages/instructor/lessonList/types/lessonStatus';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import BoxButton from '@/shared/components/BoxButton/BoxButton';
+import BoxButton from '@/common/components/BoxButton/BoxButton';
+import Text from '@/common/components/Text/Text';
 import ClassCard from '@/shared/components/ClassCard';
-import Text from '@/shared/components/Text/Text';
 import { USER_ROLE } from '@/shared/constants/userRole';
 import type { Lesson } from '@/shared/types/lessonTypes';
 
@@ -19,6 +19,10 @@ const LessonList = ({ status }: LessonListProps) => {
   const navigate = useNavigate();
 
   const handleClassCardClick = (id: number) => {
+    navigate(ROUTES_CONFIG.class.path(id.toString()));
+  };
+
+  const handleDetailButtonClick = (id: number) => {
     navigate(ROUTES_CONFIG.instructorClassDetail.path(id.toString()));
   };
 
@@ -28,11 +32,11 @@ const LessonList = ({ status }: LessonListProps) => {
     <>
       {lessonData?.count > 0 ? (
         lessonData?.lessons.map((lesson: Lesson) => (
-          <ClassCard key={lesson.id} onClick={() => handleClassCardClick(lesson.id)}>
+          <ClassCard key={lesson.id}>
             <ClassCard.Header role={USER_ROLE.TEACHER} status={lesson.applyStatus} date={lesson.lessonDateTime} />
-            <ClassCard.Body {...lesson} />
+            <ClassCard.Body onClick={() => handleClassCardClick(lesson.id)} {...lesson} />
             <ClassCard.Footer showAsk={false}>
-              <BoxButton variant="outline" onClick={() => handleClassCardClick(lesson.id)}>
+              <BoxButton variant="outline" onClick={() => handleDetailButtonClick(lesson.id)}>
                 상세보기
               </BoxButton>
             </ClassCard.Footer>

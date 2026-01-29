@@ -1,20 +1,21 @@
 import { useNavigate, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useGetReservationsDetail } from '@/pages/mypage/components/mypageReservationDetail/apis/queries';
 import ApplicantInfo from '@/pages/mypage/components/mypageReservationDetail/components/ApplicantInfo/ApplicantInfo';
 import ClassInfo from '@/pages/mypage/components/mypageReservationDetail/components/ClassInfo/ClassInfo';
 import ReservationProgress from '@/pages/mypage/components/mypageReservationDetail/components/ReservationProgress/ReservationProgress';
 import * as styles from '@/pages/mypage/components/mypageReservationDetail/mypageReservationDetail.css';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import BoxButton from '@/shared/components/BoxButton/BoxButton';
+import BoxButton from '@/common/components/BoxButton/BoxButton';
 import ClassCard from '@/shared/components/ClassCard';
-import Head from '@/shared/components/Head/Head';
+import Head from '@/common/components/Head/Head';
 
 const MyPageReservationDetail = () => {
-  const { id: lessonId } = useParams<{ id: string }>();
+  const { id: reservationId } = useParams<{ id: string }>();
 
   const navigate = useNavigate();
 
-  const { data } = useGetReservationsDetail(Number(lessonId));
+  const { data } = useGetReservationsDetail(Number(reservationId));
 
   if (!data) {
     return <div>오류 data 없음 </div>;
@@ -22,7 +23,7 @@ const MyPageReservationDetail = () => {
 
   const handleGoCancleClassPage = () => {
     // TODO: 취소 페이지 path 입력
-    navigate(ROUTES_CONFIG.mypageCancelClass.path(lessonId ?? ''));
+    navigate(ROUTES_CONFIG.mypageCancelClass.path(reservationId ?? ''));
   };
 
   const handleGoAskPage = (e: React.MouseEvent) => {
@@ -39,17 +40,19 @@ const MyPageReservationDetail = () => {
 
         <div className={styles.classInfoWrapper}>
           <ReservationProgress reservationStatus={data.reservationStatus} />
-          <ClassCard>
-            <ClassCard.Body
-              name={data.lessonName}
-              level={data.level}
-              genre={data.genre}
-              imageUrl={data.lessonImageUrl}
-            />
-            <ClassCard.Footer>
-              <ClassInfo lessonRound={data.rounds} location={data.location} locationDetail={data.detailedAddress} />
-            </ClassCard.Footer>
-          </ClassCard>
+          <Link to={ROUTES_CONFIG.class.path(data.lessonId.toString())}>
+            <ClassCard>
+              <ClassCard.Body
+                name={data.lessonName}
+                level={data.level}
+                genre={data.genre}
+                imageUrl={data.lessonImageUrl}
+              />
+              <ClassCard.Footer>
+                <ClassInfo lessonRound={data.rounds} location={data.location} locationDetail={data.detailedAddress} />
+              </ClassCard.Footer>
+            </ClassCard>
+          </Link>
         </div>
       </section>
 

@@ -1,9 +1,9 @@
 import { Outlet, ScrollRestoration, useLocation } from 'react-router-dom';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
+import Header from '@/common/components/Header/Header';
+import ModalProvider from '@/common/components/Modal/ModalProvider';
 import { ApiErrorBoundary } from '@/shared/components/ErrorBoundary/ApiErrorBoundary/ApiErrorBoundary';
 import GlobalErrorBoundary from '@/shared/components/ErrorBoundary/GlobalErrorBoundary/GlobalErrorBoundary';
-import Header from '@/shared/components/Header/Header';
-import ModalProvider from '@/shared/components/ModalProvider/ModalProvier';
 
 const Layout = () => {
   const { pathname } = useLocation();

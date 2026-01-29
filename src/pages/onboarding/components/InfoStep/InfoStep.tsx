@@ -1,14 +1,23 @@
 import { useState } from 'react';
 import { usePostPhoneRequest, usePostPhoneVerify } from '@/pages/onboarding/apis/queries';
-import * as styles from '@/pages/onboarding/components/InfoStep/infoStep.css';
+import {
+  buttonStyle,
+  containerStyle,
+  inputStyle,
+  inputWrapperStyle,
+  labelStyle,
+  numberWrapperStyle,
+  timerStyle,
+  wrapperStyle,
+} from '@/pages/onboarding/components/InfoStep/infoStep.css';
 import { INFO_KEY } from '@/pages/onboarding/constants';
 import type { OnboardInfoTypes } from '@/pages/onboarding/types/onboardInfoTypes';
 import { validateTypingPhoneNumber } from '@/pages/onboarding/utils/validate';
-import BoxButton from '@/shared/components/BoxButton/BoxButton';
-import Head from '@/shared/components/Head/Head';
-import Input from '@/shared/components/Input/Input';
-import Text from '@/shared/components/Text/Text';
-import { notify } from '@/shared/components/Toast/Toast';
+import Input from '@/common/components/Input/Input';
+import BoxButton from '@/common/components/BoxButton/BoxButton';
+import Head from '@/common/components/Head/Head';
+import Text from '@/common/components/Text/Text';
+import { notify } from '@/common/components/Toast/Toast';
 import { ONLY_KOREAN_AND_ENGLISH } from '@/shared/constants/regex';
 import {
   MAX_PHONENUMBER_LENGTH,
@@ -98,7 +107,7 @@ const InfoStep = ({
         onError: (error) => {
           if (error.response?.status === 400) {
             notify({ message: PHONE_AUTH_MESSAGES.LIMIT_EXCEEDED, icon: 'fail', bottomGap: 'large' });
-          } else if (error.response?.status === 404) {
+          } else if (error.response?.status === 409) {
             notify({ message: PHONE_AUTH_MESSAGES.DUPLICATE_PHONE, icon: 'fail', bottomGap: 'large' });
           } else {
             notify({ message: PHONE_AUTH_MESSAGES.SEND_FAILED, icon: 'fail', bottomGap: 'large' });
@@ -126,7 +135,7 @@ const InfoStep = ({
         },
         onError: (error) => {
           if (error.response?.status === 409) {
-            notify({ message: PHONE_AUTH_MESSAGES.CODE_MISMATCH, icon: 'fail', bottomGap: 'large' });
+            notify({ message: PHONE_AUTH_MESSAGES.DUPLICATE_PHONE, icon: 'fail', bottomGap: 'large' });
           } else {
             const message = error.response?.data?.message || PHONE_AUTH_MESSAGES.TRY_AGAIN;
             notify({ message, icon: 'fail', bottomGap: 'large' });
@@ -149,8 +158,8 @@ const InfoStep = ({
   const showAsResend = isRunning || isCodeVerified;
 
   return (
-    <div className={styles.containerStyle}>
-      <div className={styles.wrapperStyle}>
+    <div className={containerStyle}>
+      <div className={wrapperStyle}>
         <Head level="h1" tag="h3_sb">
           개인정보 입력
         </Head>
@@ -159,9 +168,9 @@ const InfoStep = ({
         </Text>
       </div>
 
-      <div className={styles.inputWrapperStyle}>
-        <div className={styles.wrapperStyle}>
-          <Text tag="b2_sb" className={styles.labelStyle}>
+      <div className={inputWrapperStyle}>
+        <div className={wrapperStyle}>
+          <Text tag="b2_sb" className={labelStyle}>
             이름
           </Text>
           <Input
@@ -174,35 +183,35 @@ const InfoStep = ({
             helperText={nameErrorMessage}
           />
         </div>
-        <div className={styles.wrapperStyle}>
-          <Text tag="b2_sb" className={styles.labelStyle}>
+        <div className={wrapperStyle}>
+          <Text tag="b2_sb" className={labelStyle}>
             전화번호
           </Text>
-          <div className={styles.numberWrapperStyle}>
+          <div className={numberWrapperStyle}>
             <Input
               placeholder="01012345678"
               value={phoneNumber}
               onChange={(e) => handlePhoneNumberChange(e.target.value)}
-              className={styles.inputStyle}
+              className={inputStyle}
               readOnly={isCodeVerified}
               onClick={isCodeVerified ? handleFocusAndNotify : undefined}
             />
 
             <BoxButton
-              className={styles.buttonStyle({ type: isRunning ? 'resend' : 'default' })}
+              className={buttonStyle({ type: isRunning ? 'resend' : 'default' })}
               isDisabled={isRequestDisabled}
               onClick={handleRequestVerification}>
               {showAsResend ? '재요청' : '인증 요청'}
             </BoxButton>
           </div>
           {isVerificationVisible && (
-            <div className={styles.numberWrapperStyle}>
+            <div className={numberWrapperStyle}>
               <Input
                 placeholder={`인증번호 ${MAX_VERIFICATION_CODE}자리`}
                 value={verificationCode}
                 onChange={(e) => handleVerificationCodeChange(e.target.value)}
                 rightAddOn={
-                  <Text tag="b2_m" color="gray8" className={styles.timerStyle}>
+                  <Text tag="b2_m" color="gray8" className={timerStyle}>
                     {formattedTime}
                   </Text>
                 }
@@ -210,7 +219,7 @@ const InfoStep = ({
                 onClick={isCodeVerified ? handleFocusAndNotify : undefined}
               />
               <BoxButton
-                className={styles.buttonStyle({ type: 'default' })}
+                className={buttonStyle({ type: 'default' })}
                 isDisabled={isVerifyButtonDisabled || isCodeVerified}
                 onClick={handleVerifyCode}>
                 확인

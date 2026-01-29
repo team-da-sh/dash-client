@@ -3,19 +3,29 @@ import { useForm } from 'react-hook-form';
 import { useLocation, useParams } from 'react-router-dom';
 import { useGetMyPage } from '@/pages/mypage/apis/queries';
 import { useCancelReservation } from '@/pages/mypage/components/CancelConfirmPage/apis/query/useCancelReservation';
-import * as styles from '@/pages/mypage/components/CancelConfirmPage/cancelConfirmPage.css';
+import {
+  layoutStyle,
+  containerStyle,
+  dividerStyle,
+  mainWrapperStyle,
+  contentWrapperStyle,
+  titleWrapperStyle,
+  titleContentStyle,
+  sectionWrapperStyle,
+  classInfoSectionStyle,
+  buttonStyle,
+} from '@/pages/mypage/components/CancelConfirmPage/cancelConfirmPage.css';
 import { useGetReservationsDetail } from '@/pages/mypage/components/mypageReservationDetail/apis/queries';
-import { CANCEL_CONFIRM_MESSAGE } from '@/pages/mypage/constants/modalMessage';
+import { CANCEL_CONFIRM_DESCRIPTION, CANCEL_CONFIRM_MESSAGE } from '@/pages/mypage/constants/modalMessage';
 import ApplicantInfo from '@/pages/reservation/components/ApplicantInfo/ApplicantInfo';
 import ClassInfo from '@/pages/reservation/components/ClassInfo/ClassInfo';
+import BlurBotton from '@/common/components/BlurButton/BlurButton';
 import Modal from '@/common/components/Modal/Modal';
 import { useOpenModal } from '@/common/stores/modal';
 import { useGetBankList } from '@/shared/apis/queries';
 import BankBottomSheet from '@/shared/components/BankBottomSheet/BankBottomSheet';
-import BlurBotton from '@/shared/components/BlurButton/BlurButton';
-import BoxButton from '@/shared/components/BoxButton/BoxButton';
-import Head from '@/shared/components/Head/Head';
-import { sprinkles } from '@/shared/styles/sprinkles.css';
+import BoxButton from '@/common/components/BoxButton/BoxButton';
+import Head from '@/common/components/Head/Head';
 import RefundAccountSection from './components/RefundAccountSection/RefundAccountSection';
 import RefundPolicySection from './components/RefundPolicySection/RefundPolicySection';
 
@@ -99,6 +109,7 @@ const CancelConfirmPage = () => {
     openModal(({ close }) => (
       <Modal
         content={CANCEL_CONFIRM_MESSAGE}
+        description={CANCEL_CONFIRM_DESCRIPTION}
         type="single"
         onClose={close}
         onClickHandler={() => {
@@ -117,34 +128,12 @@ const CancelConfirmPage = () => {
   };
 
   return (
-    <div className={styles.layoutStyle}>
-      <div className={styles.containerStyle}>
-        <div
-          className={sprinkles({
-            display: 'flex',
-            flexDirection: 'column',
-            height: '100%',
-            justifyContent: 'space-between',
-          })}>
-          <div
-            className={sprinkles({
-              display: 'flex',
-              flexDirection: 'column',
-              width: '100%',
-              gap: 40,
-              pt: 24,
-              pr: 20,
-              pl: 20,
-            })}>
-            <div className={sprinkles({ display: 'flex', flexDirection: 'column' })}>
-              <div
-                className={sprinkles({
-                  display: 'flex',
-                  gap: 4,
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  pb: 8,
-                })}>
+    <div className={layoutStyle}>
+      <div className={containerStyle}>
+        <div className={mainWrapperStyle}>
+          <div className={contentWrapperStyle}>
+            <div className={titleWrapperStyle}>
+              <div className={titleContentStyle}>
                 <Head tag="h6_sb" color="black">
                   해당 클래스 신청을
                 </Head>
@@ -155,14 +144,14 @@ const CancelConfirmPage = () => {
                   하시겠습니까?
                 </Head>
               </div>
-              <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 16, pt: 24 })}>
+              <div className={sectionWrapperStyle}>
                 <Head tag="h6_sb" color="black">
                   신청자 정보
                 </Head>
                 <ApplicantInfo memberName={myPageData?.name || ''} memberPhoneNumber={myPageData?.phoneNumber || ''} />
               </div>
 
-              <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 16, pt: 40, pb: 40 })}>
+              <div className={classInfoSectionStyle}>
                 <Head tag="h6_sb" color="black">
                   클래스 정보
                 </Head>
@@ -178,7 +167,7 @@ const CancelConfirmPage = () => {
 
               {isAfterDeposit && (
                 <>
-                  <hr className={styles.dividerStyle} />
+                  <hr className={dividerStyle} />
                   <RefundAccountSection
                     isVisible={isAfterDeposit}
                     selectedBank={selectedBank}
@@ -195,7 +184,7 @@ const CancelConfirmPage = () => {
               <BoxButton
                 variant="primary"
                 onClick={handleConfirm}
-                className={sprinkles({ width: '100%' })}
+                className={buttonStyle}
                 disabled={isPending || !isButtonActive()}>
                 {isPending ? '처리 중...' : '취소하기'}
               </BoxButton>

@@ -14,11 +14,11 @@ export const useLoginMutation = () => {
   return useMutation({
     mutationFn: ({ redirectUrl, code }: loginTypes) => kakaoLogin(redirectUrl, code),
 
-    onSuccess: ({ data: { accessToken, refreshToken, isOnboarded } }) => {
+    onSuccess: ({ data: { accessToken, refreshToken, isOnboarded, isDeleted } }) => {
       instance.defaults.headers.Authorization = `Bearer ${accessToken}`;
-      if (!isOnboarded) {
+      if (!isOnboarded || isDeleted) {
         clearStorage();
-        navigate(ROUTES_CONFIG.onboarding.path, { state: { accessToken, refreshToken } });
+        navigate(ROUTES_CONFIG.onboarding.path, { state: { accessToken, refreshToken, isDeleted } });
         return;
       }
 

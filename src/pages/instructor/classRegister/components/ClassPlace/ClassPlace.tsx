@@ -1,7 +1,22 @@
 import { type ChangeEvent } from 'react';
 import type { UseFormRegister } from 'react-hook-form';
 import { useFormContext } from 'react-hook-form';
-import * as styles from '@/pages/instructor/classRegister/components/ClassPlace/classPlace.css';
+import {
+  checkboxContainerStyle,
+  checkboxStyle,
+  selectedLocationContainerStyle,
+  locationEmptyContainerStyle,
+  locationListContainerStyle,
+  locationItemContainerStyle,
+  dividerStyle,
+  containerStyle,
+  contentWrapperStyle,
+  headerWrapperStyle,
+  locationInputWrapperStyle,
+  locationListStyle,
+  locationItemWrapperStyle,
+  errorMessageStyle,
+} from '@/pages/instructor/classRegister/components/ClassPlace/classPlace.css';
 import Description from '@/pages/instructor/classRegister/components/Description';
 import {
   CLASS_DEFAULT_PLACE_PLACEHOLDER,
@@ -10,12 +25,11 @@ import {
 } from '@/pages/instructor/classRegister/constants/registerSectionText';
 import type { ClassRegisterFormTypes } from '@/pages/instructor/classRegister/types/classRegisterForm';
 import type { LocationsData, LocationTypes } from '@/pages/instructor/classRegister/types/index';
+import Input from '@/common/components/Input/Input';
+import Text from '@/common/components/Text/Text';
 import BtnCheck from '@/shared/assets/svg/BtnCheck';
 import IcSearchGray from '@/shared/assets/svg/IcSearchGray';
 import IcXCircleGray0424 from '@/shared/assets/svg/IcXCircleGray0424';
-import Input from '@/shared/components/Input/Input';
-import Text from '@/shared/components/Text/Text';
-import { sprinkles } from '@/shared/styles/sprinkles.css';
 
 interface ClassPlacePropTypes {
   register: UseFormRegister<ClassRegisterFormTypes>;
@@ -51,32 +65,26 @@ const ClassPlace = ({
   const { onChange, ref, name } = register('detailedAddress');
 
   return (
-    <div
-      className={sprinkles({
-        display: 'flex',
-        flexDirection: 'column',
-        width: '100%',
-        mb: 40,
-      })}>
-      <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 20 })}>
-        <div className={sprinkles({ display: 'flex', width: '100%', justifyContent: 'space-between' })}>
+    <div className={containerStyle}>
+      <div className={contentWrapperStyle}>
+        <div className={headerWrapperStyle}>
           <Description title="클래스 장소" subTitle={CLASS_PLACE_SUBTITLE} />
-          <div className={styles.checkboxContainerStyle}>
+          <div className={checkboxContainerStyle}>
             <Text tag="b3_m" color="gray8">
               장소 미정
             </Text>
             {isUndecidedLocation ? (
               <BtnCheck width={'2rem'} onClick={handleHasLocation} />
             ) : (
-              <div className={styles.checkboxStyle} onClick={handleHasLocation} />
+              <div className={checkboxStyle} onClick={handleHasLocation} />
             )}
           </div>
         </div>
 
         {!isUndecidedLocation && (
-          <div className={sprinkles({ display: 'flex', width: '100%', flexDirection: 'column', gap: 8 })}>
+          <div className={locationInputWrapperStyle}>
             {selectedLocation ? (
-              <div className={styles.selectedLocationContainerStyle}>
+              <div className={selectedLocationContainerStyle}>
                 <Text tag="b2_sb_long">{selectedLocation.location}</Text>
                 <IcXCircleGray0424 width={'2.4rem'} onClick={handleRemoveLocation} />
               </div>
@@ -95,19 +103,19 @@ const ClassPlace = ({
                 />
 
                 {shouldShowEmptyMessage && (
-                  <div className={styles.locationEmptyContainerStyle}>해당 검색어에 대한 검색 결과가 없어요!</div>
+                  <div className={locationEmptyContainerStyle}>해당 검색어에 대한 검색 결과가 없어요!</div>
                 )}
 
                 {shouldShowLocationList && (
-                  <div className={styles.locationListContainerStyle}>
-                    <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 10 })}>
+                  <div className={locationListContainerStyle}>
+                    <div className={locationListStyle}>
                       {locationList.locations.map((location, idx) => (
                         <div
                           key={idx}
                           onClick={() => setSelectedLocation(location)}
-                          className={styles.locationItemContainerStyle}>
-                          {idx !== 0 && <div className={styles.dividerStyle} />}
-                          <div className={sprinkles({ display: 'flex', flexDirection: 'column', width: '100%' })}>
+                          className={locationItemContainerStyle}>
+                          {idx !== 0 && <div className={dividerStyle} />}
+                          <div className={locationItemWrapperStyle}>
                             <Text tag="b2_sb_long" color="gray10">
                               {location.location}
                             </Text>
@@ -128,7 +136,7 @@ const ClassPlace = ({
         )}
       </div>
       {error?.message && (
-        <div className={sprinkles({ mt: 4 })}>
+        <div className={errorMessageStyle}>
           <Text tag="b3_r" color="alert3">
             {error.message}
           </Text>

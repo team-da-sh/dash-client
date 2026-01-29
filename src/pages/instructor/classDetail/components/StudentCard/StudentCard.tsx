@@ -6,15 +6,16 @@ import type { Student } from '@/pages/instructor/classDetail/types/api';
 import { formatPhoneNumber } from '@/pages/instructor/utils/format';
 import { STATUS_KOREAN_MAP } from '@/pages/mypage/components/mypageReservation/constants/statusMap';
 import type { ReservationStatus } from '@/pages/mypage/components/mypageReservation/types/reservationStatus';
+import BoxButton from '@/common/components/BoxButton/BoxButton';
+import Head from '@/common/components/Head/Head';
 import Modal from '@/common/components/Modal/Modal';
+import Text from '@/common/components/Text/Text';
+import { notify } from '@/common/components/Toast/Toast';
 import { useOpenModal } from '@/common/stores/modal';
 import ApplyTag from '@/shared/components/ApplyTag/ApplyTag';
-import BoxButton from '@/shared/components/BoxButton/BoxButton';
-import Head from '@/shared/components/Head/Head';
-import Text from '@/shared/components/Text/Text';
-import { notify } from '@/shared/components/Toast/Toast';
 import { teacherKeys } from '@/shared/constants/queryKey';
-import { formatDateTime } from '@/shared/utils/timeUtils';
+import { WITHDRAW_USER_NAME } from '@/shared/constants/withdrawUser';
+import { formatDateToKRWithTime } from '@/shared/utils/date';
 
 const STATUS_BUTTON_MAP: Record<
   Exclude<ReservationStatus, 'ALL'>,
@@ -40,7 +41,7 @@ const StudentCard = ({ studentData, index, lessonId, selectedTab }: StudentCardP
   const { text: buttonText, variant: buttonVariant } = STATUS_BUTTON_MAP[studentData.reservationStatus];
 
   const status = studentData.reservationStatus;
-
+  const isWithdrawStudent = studentData.name === WITHDRAW_USER_NAME;
   const { mutate: approveMutate, isPending: successPending } = useLessonApproveMutation();
   const { mutate: cancelMutate, isPending: cancelPending } = useLessonCancelMutation();
 
@@ -107,20 +108,20 @@ const StudentCard = ({ studentData, index, lessonId, selectedTab }: StudentCardP
   return (
     <section className={styles.cardContainerStyle}>
       <section className={styles.leftWrapper}>
-        <Head level="h2" tag="b1_sb">
+        <Head level="h2" tag="b1_sb" className={styles.indexStyle}>
           {index + 1}
         </Head>
 
         <div className={styles.infoWrapper}>
           <div className={styles.nameWrapper}>
-            <Head level="h2" tag="b1_sb">
+            <Head level="h2" tag="b1_sb" color={isWithdrawStudent ? 'gray6' : 'black'}>
               {studentData.name}
             </Head>
             <ApplyTag variant={studentData.reservationStatus}>
               {STATUS_KOREAN_MAP[studentData.reservationStatus]}
             </ApplyTag>
           </div>
-          <Text tag="b3_r" color="gray7">
+          <Text tag="b3_r" color="gray7" className={isWithdrawStudent ? styles.hiddenStyle : undefined}>
             {formatPhoneNumber(studentData.phoneNumber)}
           </Text>
         </div>
@@ -128,9 +129,13 @@ const StudentCard = ({ studentData, index, lessonId, selectedTab }: StudentCardP
 
       <section className={styles.rightWrapper}>
         <Text tag="c1_r" color="gray9">
-          {formatDateTime(studentData.reservationDateTime)}
+          {formatDateToKRWithTime(studentData.reservationDateTime)}
         </Text>
-        <BoxButton variant={buttonVariant} onClick={handleStatusChangeClick} disabled={successPending || cancelPending}>
+        <BoxButton
+          variant={buttonVariant}
+          onClick={handleStatusChangeClick}
+          disabled={successPending || cancelPending}
+          className={isWithdrawStudent ? styles.hiddenStyle : undefined}>
           {buttonText}
         </BoxButton>
       </section>

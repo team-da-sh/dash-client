@@ -2,7 +2,7 @@ import StudentContent from '@/pages/mypage/components/TabWrapper/components/Stud
 import TeacherContent from '@/pages/mypage/components/TabWrapper/components/TeacherContent/TeacherContent';
 import * as styles from '@/pages/mypage/components/TabWrapper/tabWrapper.css';
 import { MYPAGE_TABS } from '@/pages/mypage/constants/tabs';
-import { TabButton, TabList, TabPanel } from '@/shared/components/Tab';
+import { TabButton, TabList, TabPanel } from '@/common/components/Tab';
 import { useTabNavigation } from '@/shared/hooks/useTabNavigation';
 
 const TabWrapper = () => {

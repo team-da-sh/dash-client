@@ -8,10 +8,11 @@ import PersonalSNSSection from '@/pages/instructorRegister/components/PersonalSN
 import VideoLinkSection from '@/pages/instructorRegister/components/VideoLinkSection/VideoLinkSection';
 import useInstructorRegisterForm from '@/pages/instructorRegister/hooks/useInstructorRegisterForm';
 import * as styles from '@/pages/instructorRegister/instructorRegister.css';
+import BoxButton from '@/common/components/BoxButton/BoxButton';
+import Divider from '@/common/components/Divider/Divider';
+import Head from '@/common/components/Head/Head';
 import { useGetRole } from '@/shared/apis/queries';
-import BoxButton from '@/shared/components/BoxButton/BoxButton';
-import Divider from '@/shared/components/Divider/Divider';
-import Head from '@/shared/components/Head/Head';
+import useBlockBackWithUnsavedChanges from '@/shared/hooks/useBlockBackWithUnsavedChanges';
 import useImageUploader from '@/shared/hooks/useImageUploader';
 
 const InstructorRegister = () => {
@@ -40,6 +41,8 @@ const InstructorRegister = () => {
     prevInstructorData?.profileImage
   );
 
+  useBlockBackWithUnsavedChanges({ methods, snapshotDeps: [prevInstructorData] });
+
   return (
     <FormProvider {...methods}>
       <form onSubmit={handleSubmit}>
@@ -60,7 +63,6 @@ const InstructorRegister = () => {
               />
             </div>
           </div>
-          <Divider direction="horizontal" color="gray1" length={'100%'} thickness={'0.8rem'} />
 
           <div className={styles.sectionWrapperStyle}>
             <DancerNameSection duplicateState={duplicateState} setDuplicateState={setDuplicateState} />

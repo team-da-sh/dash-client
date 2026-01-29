@@ -21,3 +21,9 @@ export const buttonContainerStyle = style({
   width: '100%',
   padding: '2.4rem 2rem 6.6rem 2rem',
 });
+
+export const titleWrapperStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  width: '100%',
+});

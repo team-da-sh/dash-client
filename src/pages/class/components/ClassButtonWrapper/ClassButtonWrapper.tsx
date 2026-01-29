@@ -4,17 +4,24 @@ import { useClassButtonState } from '@/pages/class/hooks/useClassButtonState';
 import { useHeartToggle } from '@/pages/class/hooks/useHeartToggle';
 import type { LessonDetailResponseTypes } from '@/pages/class/types/api';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
+import BlurButton from '@/common/components/BlurButton/BlurButton';
 import IcHeartFilledGray07 from '@/shared/assets/svg/IcHeartFilledGray07';
 import IcHeartOutlinedGray07 from '@/shared/assets/svg/IcHeartOutlinedGray07';
-import BlurButton from '@/shared/components/BlurButton/BlurButton';
-import BoxButton from '@/shared/components/BoxButton/BoxButton';
+import BoxButton from '@/common/components/BoxButton/BoxButton';
+import { WITHDRAW_USER_NAME } from '@/shared/constants/withdrawUser';
 
 const ClassButtonWrapper = ({ lessonData }: { lessonData: LessonDetailResponseTypes }) => {
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
+  const isMyLesson = lessonData.isMyLesson;
 
   const { isHeartFilled, toggleHeart } = useHeartToggle();
+  const isDeletedTeacher = lessonData.teacherNickname === WITHDRAW_USER_NAME && lessonData.imageUrl === null;
+
   const { buttonText, isDisabled } = useClassButtonState(lessonData.status, lessonData.bookStatus);
+
+  const finalButtonText = isDeletedTeacher ? '신청불가' : buttonText;
+  const finalIsDisabled = isDeletedTeacher || isDisabled || isMyLesson;
 
   const handleApplyClick = () => {
     if (!isDisabled && id) {
@@ -29,8 +36,8 @@ const ClassButtonWrapper = ({ lessonData }: { lessonData: LessonDetailResponseTy
         {isHeartFilled ? <IcHeartFilledGray07 width={28} /> : <IcHeartOutlinedGray07 width={28} />}
       </BoxButton>
 
-      <BoxButton variant="primary" isDisabled={isDisabled} onClick={handleApplyClick}>
-        {buttonText}
+      <BoxButton variant="primary" isDisabled={finalIsDisabled} onClick={handleApplyClick}>
+        {finalButtonText}
       </BoxButton>
     </BlurButton>
   );

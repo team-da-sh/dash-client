@@ -25,13 +25,22 @@ export const gradientOverlayStyle = style({
 });
 
 export const textWrapperStyle = style({
+  position: 'absolute',
+  bottom: '2rem',
+  left: '2rem',
+  right: '2rem',
+
   display: 'flex',
   flexDirection: 'column',
-  position: 'relative',
-
-  gap: '0.8rem',
-  paddingTop: '28.9rem',
-  paddingLeft: '2rem',
+  gap: '0.4rem',
 
   zIndex: vars.zIndex.one,
+  overflowWrap: 'break-word',
+});
+
+export const genresWrapperStyle = style({
+  display: 'flex',
+  flexDirection: 'row',
+  gap: 4,
+  flexWrap: 'wrap',
 });

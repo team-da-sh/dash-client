@@ -26,7 +26,7 @@ export type FontKey =
 export const vars = createGlobalTheme(':root', {
   colors: {
     // main
-    main01: '#C3B9FF',
+    main01: '#EAE5FF',
     main02: '#9D8DFF',
     main03: '#8349FF',
     main04: '#7700FF',

@@ -5,6 +5,9 @@ import { useFormContext } from 'react-hook-form';
 import {
   textareaStyle,
   textareaErrorStyle,
+  containerStyle,
+  textareaWrapperStyle,
+  textareaFooterStyle,
 } from '@/pages/instructor/classRegister/components/ClassDescription/classDescription.css';
 import Description from '@/pages/instructor/classRegister/components/Description';
 import { MAX_CLASS_DESCRIPTION_LENGTH } from '@/pages/instructor/classRegister/constants/formLimit';
@@ -13,8 +16,7 @@ import {
   CLASS_DESCRIPTION_SUBTITLE,
 } from '@/pages/instructor/classRegister/constants/registerSectionText';
 import type { ClassRegisterFormTypes } from '@/pages/instructor/classRegister/types/classRegisterForm';
-import Text from '@/shared/components/Text/Text';
-import { sprinkles } from '@/shared/styles/sprinkles.css';
+import Text from '@/common/components/Text/Text';
 
 interface ClassDescriptionPropTypes {
   register: UseFormRegister<ClassRegisterFormTypes>;
@@ -30,16 +32,9 @@ const ClassDescription = ({ register, handleTextAreaHeight, detail = '' }: Class
   const error = errors.detail as FieldError | undefined;
 
   return (
-    <div
-      className={sprinkles({
-        display: 'flex',
-        flexDirection: 'column',
-        gap: 20,
-        width: '100%',
-        mb: 40,
-      })}>
+    <div className={containerStyle}>
       <Description title="클래스 설명" subTitle={CLASS_DESCRIPTION_SUBTITLE} />
-      <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 4 })}>
+      <div className={textareaWrapperStyle}>
         <textarea
           {...register('detail', {
             onChange: handleTextAreaHeight,
@@ -50,7 +45,7 @@ const ClassDescription = ({ register, handleTextAreaHeight, detail = '' }: Class
           onFocus={() => setIsInputFocused(true)}
           onBlur={() => setIsInputFocused(false)}
         />
-        <div className={sprinkles({ display: 'flex', justifyContent: 'space-between' })}>
+        <div className={textareaFooterStyle}>
           <Text tag="b3_r" color="alert3">
             {error && error.message}
           </Text>

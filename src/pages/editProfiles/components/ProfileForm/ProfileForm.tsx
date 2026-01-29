@@ -1,23 +1,35 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { usePatchMyProfile } from '@/pages/editProfiles/api/queries';
-import * as styles from '@/pages/editProfiles/components/ProfileForm/profileForm.css';
+import {
+  inputStyle,
+  buttonStyle,
+  formStyle,
+  imageSectionStyle,
+  timerStyle,
+  submitSectionStyle,
+  inputWrapperStyle,
+  wrapperStyle,
+  labelStyle,
+  numberWrapperStyle,
+} from '@/pages/editProfiles/components/ProfileForm/profileForm.css';
 import ProfileImageUpload from '@/pages/editProfiles/components/ProfileImageUpload/ProfileImageUpload';
 import { useVerification } from '@/pages/editProfiles/hooks/useVerification';
 import { profileSchema } from '@/pages/editProfiles/schema/profileSchema';
 import type { ProfileFormValues } from '@/pages/editProfiles/schema/profileSchema';
 import type { UpdateProfileRequestTypes } from '@/pages/editProfiles/types/api';
-import { allowOnlyNumberKey, allowOnlyNumberPaste } from '@/pages/editProfiles/utils/inputUtils';
-import BoxButton from '@/shared/components/BoxButton/BoxButton';
-import Input from '@/shared/components/Input/Input';
-import Text from '@/shared/components/Text/Text';
-import { notify } from '@/shared/components/Toast/Toast';
+import Input from '@/common/components/Input/Input';
+import BoxButton from '@/common/components/BoxButton/BoxButton';
+import Text from '@/common/components/Text/Text';
+import { notify } from '@/common/components/Toast/Toast';
 import {
   MAX_NAME_LENGTH,
   MAX_PHONENUMBER_LENGTH,
   MAX_VERIFICATION_CODE,
   PHONE_AUTH_MESSAGES,
 } from '@/shared/constants/userInfo';
+import useBlockBackWithUnsavedChanges from '@/shared/hooks/useBlockBackWithUnsavedChanges';
+import { allowOnlyNumberKey, allowOnlyNumberPaste } from '@/shared/utils/inputUtils';
 
 interface ProfileFormPropTypes {
   defaultValues: {
@@ -30,17 +42,20 @@ interface ProfileFormPropTypes {
 const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
   const { mutate: editMyProfile } = usePatchMyProfile();
 
+  const methods = useForm<ProfileFormValues>({
+    resolver: zodResolver(profileSchema),
+    defaultValues,
+    mode: 'onChange',
+  });
   const {
     register,
     handleSubmit,
     control,
     formState: { errors },
     watch,
-  } = useForm<ProfileFormValues>({
-    resolver: zodResolver(profileSchema),
-    defaultValues,
-    mode: 'onChange',
-  });
+  } = methods;
+
+  useBlockBackWithUnsavedChanges<ProfileFormValues>({ methods, snapshotDeps: [defaultValues] });
 
   const phoneNumber = watch('phoneNumber');
 
@@ -91,87 +106,86 @@ const ProfileForm = ({ defaultValues }: ProfileFormPropTypes) => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className={styles.formStyle}>
+    <form onSubmit={handleSubmit(onSubmit)} className={formStyle}>
       <div>
-        <div className={styles.imageSectionStyle}>
+        <div className={imageSectionStyle}>
           <ProfileImageUpload defaultImageUrl={defaultValues.profileImageUrl ?? ''} control={control} />
         </div>
 
-        <div className={styles.fieldStyle}>
-          <label>
+        <div className={inputWrapperStyle}>
+          <div className={wrapperStyle}>
             <Text tag="b2_sb">이름</Text>
-          </label>
-          <Input
-            {...register('name')}
-            value={watch('name')}
-            placeholder="이름을 입력해주세요"
-            isError={!!errors.name}
-            helperText={errors.name?.message}
-            maxLength={MAX_NAME_LENGTH}
-            showMaxLength
-          />
-        </div>
-
-        <div className={styles.fieldStyle}>
-          <label>
-            <Text tag="b2_sb">전화번호</Text>
-          </label>
-
-          <div className={styles.inputRowStyle}>
             <Input
-              {...register('phoneNumber')}
-              placeholder="01012345678"
-              maxLength={MAX_PHONENUMBER_LENGTH}
-              inputMode="numeric"
-              onKeyDown={allowOnlyNumberKey}
-              onPaste={allowOnlyNumberPaste}
-              readOnly={isCodeVerified}
-              onPointerDown={handleFocusAndNotify}
-              onChange={(e) => {
-                const onlyNumbers = e.target.value.replace(/\D/g, '');
-                e.target.value = onlyNumbers;
-                register('phoneNumber').onChange(e);
-              }}
-              value={phoneNumber}
-              className={styles.inputStyle}
+              id="name"
+              {...register('name')}
+              value={watch('name')}
+              placeholder="이름을 입력해주세요"
+              isError={!!errors.name}
+              helperText={errors.name?.message}
+              maxLength={MAX_NAME_LENGTH}
+              showMaxLength
             />
-
-            <BoxButton
-              className={styles.buttonStyle({ type: isRunning ? 'resend' : 'default' })}
-              isDisabled={isRequestDisabled}
-              onClick={handleRequestVerification}>
-              {showAsResend ? '재요청' : '인증 요청'}
-            </BoxButton>
           </div>
 
-          {isVerificationVisible && (
-            <div className={styles.inputRowStyle}>
+          <div className={wrapperStyle}>
+            <Text tag="b2_sb" className={labelStyle}>
+              전화번호
+            </Text>
+            <div className={numberWrapperStyle}>
               <Input
-                placeholder={`인증번호 ${MAX_VERIFICATION_CODE}자리`}
-                value={verificationCode}
-                onChange={(e) => dispatch({ type: 'CODE_CHANGE', payload: e.target.value.replace(/\D/g, '') })}
-                rightAddOn={
-                  <Text tag="b2_m" color="gray8" className={styles.timerStyle}>
-                    {formattedTime}
-                  </Text>
-                }
-                maxLength={MAX_VERIFICATION_CODE}
+                id="phoneNumber"
+                {...register('phoneNumber')}
+                placeholder="01012345678"
+                maxLength={MAX_PHONENUMBER_LENGTH}
+                inputMode="numeric"
+                onKeyDown={allowOnlyNumberKey}
+                onPaste={allowOnlyNumberPaste}
                 readOnly={isCodeVerified}
                 onPointerDown={handleFocusAndNotify}
+                onChange={(e) => {
+                  const onlyNumbers = e.target.value.replace(/\D/g, '');
+                  e.target.value = onlyNumbers;
+                  register('phoneNumber').onChange(e);
+                }}
+                value={phoneNumber}
+                className={inputStyle}
               />
-
               <BoxButton
-                className={styles.buttonStyle({ type: 'default' })}
-                isDisabled={isVerifyButtonDisabled || isCodeVerified}
-                onClick={handleVerifyCode}>
-                확인
+                className={buttonStyle({ type: isRunning ? 'resend' : 'default' })}
+                isDisabled={isRequestDisabled}
+                onClick={handleRequestVerification}>
+                {showAsResend ? '재요청' : '인증 요청'}
               </BoxButton>
             </div>
-          )}
+
+            {isVerificationVisible && (
+              <div className={numberWrapperStyle}>
+                <Input
+                  placeholder={`인증번호 ${MAX_VERIFICATION_CODE}자리`}
+                  value={verificationCode}
+                  onChange={(e) => dispatch({ type: 'CODE_CHANGE', payload: e.target.value.replace(/\D/g, '') })}
+                  rightAddOn={
+                    <Text tag="b2_m" color="gray8" className={timerStyle}>
+                      {formattedTime}
+                    </Text>
+                  }
+                  maxLength={MAX_VERIFICATION_CODE}
+                  readOnly={isCodeVerified}
+                  onPointerDown={handleFocusAndNotify}
+                />
+                <BoxButton
+                  className={buttonStyle({ type: 'default' })}
+                  isDisabled={isVerifyButtonDisabled || isCodeVerified}
+                  onClick={handleVerifyCode}>
+                  확인
+                </BoxButton>
+              </div>
+            )}
+          </div>
         </div>
       </div>
 
-      <div className={styles.submitSectionStyle}>
+      <div className={submitSectionStyle}>
         <BoxButton variant="primary" isDisabled={!isButtonActive} type="submit">
           확인
         </BoxButton>

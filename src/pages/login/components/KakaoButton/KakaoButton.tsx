@@ -1,7 +1,6 @@
-import { buttonStyle, kakaoButtonStyle } from '@/pages/login/components/KakaoButton/kakaoButton.css';
+import { buttonStyle, kakaoButtonStyle, buttonContentStyle } from '@/pages/login/components/KakaoButton/kakaoButton.css';
 import IcKakaoKakaobrown28 from '@/shared/assets/svg/IcKakaoKakaobrown28';
-import Head from '@/shared/components/Head/Head';
-import { sprinkles } from '@/shared/styles/sprinkles.css';
+import Head from '@/common/components/Head/Head';
 
 const KakaoButton = () => {
   const redirect_uri = import.meta.env.VITE_KAKAO_REDIRECT_URI;
@@ -15,7 +14,7 @@ const KakaoButton = () => {
 
   return (
     <button className={kakaoButtonStyle} onClick={handleLogin}>
-      <div className={sprinkles({ display: 'flex', gap: 8, alignItems: 'center', justifyContent: 'center' })}>
+      <div className={buttonContentStyle}>
         <IcKakaoKakaobrown28 width={28} height={28} />
         <Head tag="b1_sb" color="kakao2" className={buttonStyle}>
           카카오로 계속하기

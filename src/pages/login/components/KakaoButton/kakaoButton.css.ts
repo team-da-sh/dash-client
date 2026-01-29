@@ -14,3 +14,10 @@ export const kakaoButtonStyle = style({
 export const buttonStyle = style({
   whiteSpace: 'nowrap',
 });
+
+export const buttonContentStyle = style({
+  display: 'flex',
+  gap: '0.8rem',
+  alignItems: 'center',
+  justifyContent: 'center',
+});

@@ -44,11 +44,25 @@ export const containerStyle = style({
   animation: `0.28s ease-in-out ${modalAnimation}`,
 });
 
+export const containerNoGapStyle = style([
+  containerStyle,
+  {
+    gap: '0',
+  },
+]);
+
 export const contentStyle = style({
-  paddingLeft: '0.8rem',
+  padding: '0 0.8rem',
 
   ...vars.fonts.h6_sb,
   color: vars.colors.gray11,
+});
+
+export const descriptionStyle = style({
+  padding: '1rem 0.8rem 2.4rem',
+
+  ...vars.fonts.b2_m_long,
+  color: vars.colors.gray07,
 });
 
 export const buttonWrapperStyle = style({

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { searchPageWrapperStyle } from '@/pages/search/Search.css';
 import { useGetClassList, useGetDancerList } from '@/pages/search/apis/queries';
 import SearchBar from '@/pages/search/components/SearchBar/SearchBar';
 import TabContainer from '@/pages/search/components/TabContainer/TabContainer';
@@ -7,9 +8,8 @@ import type { TAB_TYPES } from '@/pages/search/constants/index';
 import { DEFAULT_SORT_TAGS, SORT_LABELS, TAB } from '@/pages/search/constants/index';
 import { formatDateEndTime, formatDateStartTime } from '@/pages/search/utils/formatDate';
 import { handleSearchChange } from '@/pages/search/utils/searchHandlers';
-import Flex from '@/shared/components/Flex/Flex';
+import useDebounce from '@/common/hooks/useDebounce';
 import { genreEngMapping, labelToSortOptionMap, levelEngMapping } from '@/shared/constants';
-import useDebounce from '@/shared/hooks/useDebounce';
 import { useTabNavigation } from '@/shared/hooks/useTabNavigation';
 import SearchHeader from './components/SearchHeader/SearchHeader';
 
@@ -46,7 +46,7 @@ const Search = () => {
   });
 
   return (
-    <Flex>
+    <div className={searchPageWrapperStyle}>
       <SearchHeader.Root>
         <SearchHeader.BackIcon />
         <SearchBar searchValue={searchValue} handleSearchChange={handleSearchChange(setSearchValue)} />
@@ -70,7 +70,7 @@ const Search = () => {
         selectedTab={selectedTab}
         setSelectedTab={setSelectedTab}
       />
-    </Flex>
+    </div>
   );
 };
 

@@ -1,38 +1,47 @@
 import { useState, useId } from 'react';
+import { usePostWithdraw } from '@/pages/mypage/components/Withdraw/apis/queries';
 import {
   containerStyle,
   titleStyle,
   descriptionStyle,
   noticeCardStyle,
   textPrimaryStyle,
-  textSecondaryStyle,
-  bulletListStyle,
+  dividerStyle,
+  noticeListStyle,
+  noticeTitleStyle,
+  groupListStyle,
   bulletItemStyle,
-  legalNoticeStyle,
   agreeSectionStyle,
 } from '@/pages/mypage/components/Withdraw/components/NoticeStep/noticeStep.css';
-import { BULLET_LIST } from '@/pages/mypage/components/Withdraw/constants';
+import { NOTICE_CONTENTS } from '@/pages/mypage/components/Withdraw/constants';
+import BlurButton from '@/common/components/BlurButton/BlurButton';
+import BoxButton from '@/common/components/BoxButton/BoxButton';
+import Divider from '@/common/components/Divider/Divider';
+import Head from '@/common/components/Head/Head';
 import Modal from '@/common/components/Modal/Modal';
+import Text from '@/common/components/Text/Text';
+import { notify } from '@/common/components/Toast/Toast';
 import { useOpenModal } from '@/common/stores/modal';
+import { useWithdrawStore } from '@/common/stores/withdraw';
 import IcCheckcircleGray0524 from '@/shared/assets/svg/IcCheckcircleGray0524';
 import IcCheckcircleMain0324 from '@/shared/assets/svg/IcCheckcircleMain0324';
-import BlurButton from '@/shared/components/BlurButton/BlurButton';
-import BoxButton from '@/shared/components/BoxButton/BoxButton';
-import Head from '@/shared/components/Head/Head';
-import Text from '@/shared/components/Text/Text';
 import { vars } from '@/shared/styles/theme.css';
+import { clearStorage } from '@/shared/utils/handleToken';
 
 interface NoticeStepPropTypes {
-  onNext: () => void;
+  onNext: (data: { email: string }) => void;
 }
 
 const NoticeStep = ({ onNext }: NoticeStepPropTypes) => {
   const [isAgreed, setIsAgreed] = useState(false);
+
   const openModal = useOpenModal();
 
   const titleId = useId();
 
   const handleAgreeToggle = () => setIsAgreed((prev) => !prev);
+
+  const { mutate: withdraw, isPending } = usePostWithdraw();
 
   const handleOpenModal = () => {
     openModal(({ close }) => (
@@ -40,13 +49,26 @@ const NoticeStep = ({ onNext }: NoticeStepPropTypes) => {
         key="withdraw-confirm"
         type="default"
         content="정말 탈퇴하시겠어요?"
-        // description="회원님은 현재 탈퇴 동의를 완료하셨습니다. 모든 데이터는 영구 삭제되며 복구가 불가능합니다."
+        description="회원님은 현재 탈퇴 동의를 완료하셨습니다. 서비스를 떠나시면, 즉시 로그아웃되며 모든 활동 기록 및 데이터가 삭제됩니다."
         leftButtonText="이전"
         rightButtonText="탈퇴하기"
         onClose={close}
         onClickHandler={() => {
-          close();
-          onNext();
+          if (isPending) return;
+          withdraw(undefined, {
+            onSuccess: (data) => {
+              useWithdrawStore.getState().allowPostWithdraw();
+              clearStorage();
+              close();
+              onNext(data);
+            },
+
+            onError: (error) => {
+              const serverMessage = error.response?.data?.message ?? '탈퇴 요청 중 오류가 발생했습니다.';
+
+              notify({ message: serverMessage, bottomGap: 'large' });
+            },
+          });
         }}
       />
     ));
@@ -64,32 +86,56 @@ const NoticeStep = ({ onNext }: NoticeStepPropTypes) => {
 
       <section className={noticeCardStyle} aria-label="회원 탈퇴 유의사항 안내">
         <Text tag="b2_sb" color="gray10" className={textPrimaryStyle}>
-          회원 탈퇴를 진행하면 계정과 관련된
+          회원 탈퇴를 진행할 경우,
         </Text>
-        <Text tag="b2_sb" color="alert3" className={textSecondaryStyle}>
-          모든 활동 정보가 삭제되며, 복구는 불가능합니다.
+        <Text tag="b2_sb" color="gray10" className={textPrimaryStyle}>
+          관련 법령 및 본 서비스의 정책에 따라
+        </Text>
+        <Text tag="b2_sb" color="alert3">
+          회원 계정과 관련된 모든 정보는 다음과 같이 처리됩니다.
         </Text>
 
-        <ul className={bulletListStyle}>
-          {BULLET_LIST.map((item) => (
-            <li key={item} className={bulletItemStyle}>
-              {item.split('\n').map((line, i) => (
-                <span key={i}>
-                  {line}
-                  <br />
-                </span>
-              ))}
-            </li>
+        <Divider color="gray1" className={dividerStyle} />
+
+        <section className={noticeListStyle}>
+          {NOTICE_CONTENTS.map((item) => (
+            <ul key={item.id}>
+              <li className={noticeTitleStyle}>
+                {item.icon}
+                <Text as="span" tag="b2_sb" color="gray10">
+                  {item.title}
+                </Text>
+              </li>
+
+              {item.type === 'group' && (
+                <ul className={groupListStyle}>
+                  {item.sections?.map((section) => (
+                    <li key={section.id} className={textPrimaryStyle}>
+                      <Text as="span" tag="b3_m_narrow" color="gray9">
+                        {section.subtitle}
+                      </Text>
+
+                      {section.contents.map((content) => (
+                        <div key={content.id} className={bulletItemStyle}>
+                          <Text as="span" tag="c1_r_narrow" color="gray7">
+                            {content.text}
+                          </Text>
+                        </div>
+                      ))}
+                    </li>
+                  ))}
+                </ul>
+              )}
+              {item.type === 'text' && (
+                <li>
+                  <Text as="span" tag="c1_r_narrow" color="gray7">
+                    {item.content}
+                  </Text>
+                </li>
+              )}
+            </ul>
           ))}
-        </ul>
-
-        <Text tag="b3_m" color="gray8" className={legalNoticeStyle}>
-          단, 전자상거래 등에서의 소비자 보호에 관한 법률 및 관련 법령에
-          <br />
-          의거하여 구매/거래 기록, 분쟁 해결 기록 등 일부 정보는 법이 정한
-          <br />
-          기간(최대 5년) 동안 보존된 후 파기됩니다.
-        </Text>
+        </section>
       </section>
 
       <button
@@ -114,7 +160,7 @@ const NoticeStep = ({ onNext }: NoticeStepPropTypes) => {
         <BoxButton
           onClick={handleOpenModal}
           disabled={!isAgreed}
-          aria-disabled={!isAgreed}
+          aria-disabled={!isAgreed || isPending}
           aria-label="회원 탈퇴 확인 단계로 이동">
           다음
         </BoxButton>

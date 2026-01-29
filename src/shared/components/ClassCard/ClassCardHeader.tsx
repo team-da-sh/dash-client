@@ -1,14 +1,13 @@
 import type { RecruitingStatus } from '@/pages/mypage/components/mypageReservation/types/recruitingStatus';
 import type { ReservationStatus } from '@/pages/mypage/components/mypageReservation/types/reservationStatus';
+import Divider from '@/common/components/Divider/Divider';
+import Text from '@/common/components/Text/Text';
 import SvgIcClear from '@/shared/assets/svg/IcClear';
 import SvgIcMeatball from '@/shared/assets/svg/IcMeatball';
-import * as styles from '@/shared/components/ClassCard/style.css';
-import Divider from '@/shared/components/Divider/Divider';
-import Text from '@/shared/components/Text/Text';
+import { dividerStyle, headerWrapperStyle, headerContentStyle } from '@/shared/components/ClassCard/style.css';
 import { USER_ROLE } from '@/shared/constants/userRole';
-import { sprinkles } from '@/shared/styles/sprinkles.css';
 import { vars } from '@/shared/styles/theme.css';
-import { formatDate } from '@/shared/utils/timeCalculate';
+import { formatDateToKR } from '@/shared/utils/date';
 
 const memberStatus = (status: ReservationStatus) => {
   switch (status) {
@@ -50,28 +49,18 @@ const ClassCardHeader = ({ role, status, date }: ClassCardHeaderProps) => {
 
   return (
     <>
-      <div
-        className={sprinkles({
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-        })}>
-        <div
-          className={sprinkles({
-            display: 'flex',
-            alignItems: 'center',
-            gap: 8,
-          })}>
+      <div className={headerWrapperStyle}>
+        <div className={headerContentStyle}>
           {statusIcon}
           <Text tag="b1_sb">{statusText}</Text>
           {date && (
             <Text tag="b3_r" color="gray7">
-              {`${formatDate(date)} ${role === USER_ROLE.MEMBER ? '신청' : '개설'}`}
+              {`${formatDateToKR(date)} ${role === USER_ROLE.MEMBER ? '신청' : '개설'}`}
             </Text>
           )}
         </div>
       </div>
-      <Divider color="gray1" className={styles.dividerStyle} />
+      <Divider color="gray1" className={dividerStyle} />
     </>
   );
 };
