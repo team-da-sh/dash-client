@@ -5,9 +5,9 @@ import {
   wrapperStyle,
   arrowIconStyle,
 } from '@/pages/mypage/components/TabWrapper/components/StudentContent/components/ClassProgress/ClassProgress.css';
-import SvgIcArrowRightGray0614 from '@/shared/assets/svg/IcArrowRightGray0614';
 import Head from '@/common/components/Head/Head';
 import Text from '@/common/components/Text/Text';
+import SvgIcArrowRightGray0614 from '@/shared/assets/svg/IcArrowRightGray0614';
 
 const ClassProgress = () => {
   const { data, isLoading } = useGetMyLessonCounts();

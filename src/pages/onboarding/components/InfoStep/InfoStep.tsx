@@ -13,9 +13,9 @@ import {
 import { INFO_KEY } from '@/pages/onboarding/constants';
 import type { OnboardInfoTypes } from '@/pages/onboarding/types/onboardInfoTypes';
 import { validateTypingPhoneNumber } from '@/pages/onboarding/utils/validate';
-import Input from '@/common/components/Input/Input';
 import BoxButton from '@/common/components/BoxButton/BoxButton';
 import Head from '@/common/components/Head/Head';
+import Input from '@/common/components/Input/Input';
 import Text from '@/common/components/Text/Text';
 import { notify } from '@/common/components/Toast/Toast';
 import { ONLY_KOREAN_AND_ENGLISH } from '@/shared/constants/regex';

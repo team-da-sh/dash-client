@@ -24,4 +24,3 @@ export const timeStepTagListStyle = style({
   gap: '0.8rem',
   paddingTop: '1.6rem',
 });
-

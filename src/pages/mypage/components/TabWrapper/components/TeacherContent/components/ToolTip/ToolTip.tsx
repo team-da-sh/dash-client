@@ -2,9 +2,9 @@ import { useEffect, type ReactNode } from 'react';
 import * as styles from '@/pages/mypage/components/TabWrapper/components/TeacherContent/components/ToolTip/tooltip.css';
 import { VISIT_KEY } from '@/pages/mypage/constants/storageKey';
 import { setUser } from '@/pages/mypage/utils/storage';
+import Text from '@/common/components/Text/Text';
 import IcTriangle from '@/shared/assets/svg/IcTriangle';
 import IcXBlack from '@/shared/assets/svg/IcXBlack';
-import Text from '@/common/components/Text/Text';
 
 interface ToolTipPropTypes {
   title: string;

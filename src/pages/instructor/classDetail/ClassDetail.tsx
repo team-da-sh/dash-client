@@ -11,8 +11,8 @@ import InfoEditButton from '@/pages/instructor/classDetail/components/InfoEditBu
 import StudentTab from '@/pages/instructor/classDetail/components/StudentTab/StudentTab';
 import ClassInfo from '@/pages/mypage/components/mypageReservationDetail/components/ClassInfo/ClassInfo';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import ClassCard from '@/shared/components/ClassCard';
 import Head from '@/common/components/Head/Head';
+import ClassCard from '@/shared/components/ClassCard';
 import { USER_ROLE } from '@/shared/constants/userRole';
 
 export type TabStatus = 'APPROVE' | 'CANCEL';

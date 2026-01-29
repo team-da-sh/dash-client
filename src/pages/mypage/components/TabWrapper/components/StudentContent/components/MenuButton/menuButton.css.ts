@@ -6,4 +6,3 @@ export const buttonStyle = style({
   alignItems: 'center',
   gap: '1.2rem',
 });
-

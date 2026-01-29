@@ -17,8 +17,8 @@ import {
   buttonWrapperStyle,
 } from '@/pages/search/components/TabContainer/TagSection/BottomSheet/bottomSheet.css';
 import BoxButton from '@/common/components/BoxButton/BoxButton';
-import LevelButton from '@/shared/components/LevelButton/LevelButton';
 import { TabButton, TabList, TabPanel, TabRoot } from '@/common/components/Tab';
+import LevelButton from '@/shared/components/LevelButton/LevelButton';
 import { LEVEL } from '@/shared/constants';
 import { GENRE_CATEGORY } from '@/shared/constants/index';
 
@@ -94,10 +94,7 @@ const BottomSheet = ({
 
   return (
     <div className={bottomSheetContainerStyle}>
-      <div
-        className={`${overlayStyle} ${isClosing ? overlayHidden : overlayVisible}`}
-        onClick={handleClose}
-      />
+      <div className={`${overlayStyle} ${isClosing ? overlayHidden : overlayVisible}`} onClick={handleClose} />
       <div
         className={`${bottomSheetStyle} ${isClosing ? bottomSheetHidden : bottomSheetVisible} ${bottomSheetContentStyle}`}>
         <TabRoot>

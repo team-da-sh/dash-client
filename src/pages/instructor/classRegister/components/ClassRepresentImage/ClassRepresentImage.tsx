@@ -11,9 +11,9 @@ import {
 } from '@/pages/instructor/classRegister/components/ClassRepresentImage/classRepresentImage.css';
 import Description from '@/pages/instructor/classRegister/components/Description';
 import { CLASS_REPRESENT_IMAGE_SUBTITLE } from '@/pages/instructor/classRegister/constants/registerSectionText';
+import Text from '@/common/components/Text/Text';
 import IcPlusGray0524 from '@/shared/assets/svg/IcPlusGray0524';
 import IcXCircleMain0324 from '@/shared/assets/svg/IcXCircleMain0324';
-import Text from '@/common/components/Text/Text';
 
 interface ClassRepresentImagePropTypes {
   handleUploaderClick: () => void;

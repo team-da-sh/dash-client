@@ -1,6 +1,6 @@
 import { loadingContainerStyle, loadingInnerWrapperStyle } from '@/pages/loading/loading.css';
-import { LoadingGif } from '@/shared/assets/gif';
 import Head from '@/common/components/Head/Head';
+import { LoadingGif } from '@/shared/assets/gif';
 
 const Loading = () => {
   return (

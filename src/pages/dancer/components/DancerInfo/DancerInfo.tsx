@@ -17,11 +17,11 @@ import {
 import type { DancerDetailResponseTypes } from '@/pages/dancer/types/api';
 import { expandInstagramUrl, expandYouTubeUrl } from '@/pages/dancer/utils/url';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import IcInstagram20 from '@/shared/assets/svg/IcInstagram20';
-import IcYoutube20 from '@/shared/assets/svg/IcYoutube20';
 import Divider from '@/common/components/Divider/Divider';
 import Head from '@/common/components/Head/Head';
 import Text from '@/common/components/Text/Text';
+import IcInstagram20 from '@/shared/assets/svg/IcInstagram20';
+import IcYoutube20 from '@/shared/assets/svg/IcYoutube20';
 
 const DancerInfo = ({ dancerData }: { dancerData: DancerDetailResponseTypes }) => {
   const { instagram, youtube, detail, nickname, lessons } = dancerData;
@@ -85,11 +85,7 @@ const DancerInfo = ({ dancerData }: { dancerData: DancerDetailResponseTypes }) =
               return (
                 <div
                   key={data.id}
-                  className={[
-                    classItemStyle,
-                    isFirst && firstClassItemStyle,
-                    isLast && lastClassItemStyle,
-                  ]
+                  className={[classItemStyle, isFirst && firstClassItemStyle, isLast && lastClassItemStyle]
                     .filter(Boolean)
                     .join(' ')}
                   onClick={() => handleClassClick(data.id)}>

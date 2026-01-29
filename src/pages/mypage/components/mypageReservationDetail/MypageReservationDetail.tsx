@@ -7,8 +7,8 @@ import ReservationProgress from '@/pages/mypage/components/mypageReservationDeta
 import * as styles from '@/pages/mypage/components/mypageReservationDetail/mypageReservationDetail.css';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import BoxButton from '@/common/components/BoxButton/BoxButton';
-import ClassCard from '@/shared/components/ClassCard';
 import Head from '@/common/components/Head/Head';
+import ClassCard from '@/shared/components/ClassCard';
 
 const MyPageReservationDetail = () => {
   const { id: reservationId } = useParams<{ id: string }>();

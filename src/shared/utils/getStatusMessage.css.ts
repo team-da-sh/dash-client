@@ -5,4 +5,3 @@ export const statusMessageStyle = style({
   gap: '0.2rem',
   alignItems: 'center',
 });
-

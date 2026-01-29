@@ -5,8 +5,8 @@ import MenuButton from '@/pages/mypage/components/TabWrapper/components/StudentC
 import * as styles from '@/pages/mypage/components/TabWrapper/components/StudentContent/studentContent.css';
 import { MENU_LIST } from '@/pages/mypage/constants/myPageList';
 import Divider from '@/common/components/Divider/Divider';
-import InfoComponent from '@/shared/components/InfoComponent/InfoComponent';
 import Text from '@/common/components/Text/Text';
+import InfoComponent from '@/shared/components/InfoComponent/InfoComponent';
 import { formatPhoneNumberNoSpace } from '@/shared/utils/formatPhoneNumber';
 
 const StudentContent = () => {

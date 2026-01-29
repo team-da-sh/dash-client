@@ -1,4 +1,8 @@
-import { flexCustomStyle, successButtonContainer, sectionStyle } from '@/pages/reservation/components/SuccessStep/successStep.css';
+import {
+  flexCustomStyle,
+  successButtonContainer,
+  sectionStyle,
+} from '@/pages/reservation/components/SuccessStep/successStep.css';
 import BoxButton from '@/common/components/BoxButton/BoxButton';
 import Completion from '@/shared/components/Completion/Completion';
 

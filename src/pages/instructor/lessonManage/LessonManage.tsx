@@ -2,7 +2,12 @@ import { useState } from 'react';
 import LessonList from '@/pages/instructor/lessonList/LessonList';
 import { useGetLessonStatus } from '@/pages/instructor/lessonList/apis/queries';
 import type { LessonStatus } from '@/pages/instructor/lessonList/types/lessonStatus';
-import { layoutStyle, containerStyle, titleStyle, lessonListSectionStyle } from '@/pages/instructor/lessonManage/lessonManage.css';
+import {
+  layoutStyle,
+  containerStyle,
+  titleStyle,
+  lessonListSectionStyle,
+} from '@/pages/instructor/lessonManage/lessonManage.css';
 import Dropdown from '@/common/components/Dropdown/Dropdown';
 import Head from '@/common/components/Head/Head';
 

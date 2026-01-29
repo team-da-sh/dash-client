@@ -15,4 +15,3 @@ export const contentWrapperStyle = style({
 export const titleWrapperStyle = style({
   display: 'flex',
 });
-

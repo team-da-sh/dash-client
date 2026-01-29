@@ -1,8 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import IcProfile from '@/shared/assets/svg/IcProfile';
 import Head from '@/common/components/Head/Head';
 import Text from '@/common/components/Text/Text';
+import IcProfile from '@/shared/assets/svg/IcProfile';
 import * as styles from './unregisteredTeacher.css';
 
 interface UnregisteredTeacherPropTypes {

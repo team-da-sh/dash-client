@@ -25,13 +25,13 @@ import {
 import TopInfoContent from '@/pages/reservation/components/TopInfoContent/TopInfoContent';
 import { AGREEMENT_TERMS } from '@/pages/reservation/constants/index';
 import BlurBotton from '@/common/components/BlurButton/BlurButton';
-import IcCheckcircleGray0524 from '@/shared/assets/svg/IcCheckcircleGray0524';
-import IcCheckcircleMain0324 from '@/shared/assets/svg/IcCheckcircleMain0324';
 import BoxButton from '@/common/components/BoxButton/BoxButton';
 import Divider from '@/common/components/Divider/Divider';
 import Head from '@/common/components/Head/Head';
 import Text from '@/common/components/Text/Text';
 import { notify } from '@/common/components/Toast/Toast';
+import IcCheckcircleGray0524 from '@/shared/assets/svg/IcCheckcircleGray0524';
+import IcCheckcircleMain0324 from '@/shared/assets/svg/IcCheckcircleMain0324';
 import { vars } from '@/shared/styles/theme.css';
 import type { ClassReservationResponseTypes } from '../../types/api';
 

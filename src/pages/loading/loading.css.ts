@@ -18,4 +18,3 @@ export const loadingInnerWrapperStyle = style({
   justifyContent: 'center',
   gap: '1.3rem',
 });
-

@@ -18,8 +18,8 @@ import { useVerification } from '@/pages/editProfiles/hooks/useVerification';
 import { profileSchema } from '@/pages/editProfiles/schema/profileSchema';
 import type { ProfileFormValues } from '@/pages/editProfiles/schema/profileSchema';
 import type { UpdateProfileRequestTypes } from '@/pages/editProfiles/types/api';
-import Input from '@/common/components/Input/Input';
 import BoxButton from '@/common/components/BoxButton/BoxButton';
+import Input from '@/common/components/Input/Input';
 import Text from '@/common/components/Text/Text';
 import { notify } from '@/common/components/Toast/Toast';
 import {

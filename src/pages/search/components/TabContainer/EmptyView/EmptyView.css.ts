@@ -16,4 +16,3 @@ export const textWrapperStyle = style({
   justifyContent: 'center',
   alignItems: 'center',
 });
-

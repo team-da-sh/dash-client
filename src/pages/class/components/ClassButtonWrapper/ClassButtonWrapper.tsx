@@ -5,9 +5,9 @@ import { useHeartToggle } from '@/pages/class/hooks/useHeartToggle';
 import type { LessonDetailResponseTypes } from '@/pages/class/types/api';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import BlurButton from '@/common/components/BlurButton/BlurButton';
+import BoxButton from '@/common/components/BoxButton/BoxButton';
 import IcHeartFilledGray07 from '@/shared/assets/svg/IcHeartFilledGray07';
 import IcHeartOutlinedGray07 from '@/shared/assets/svg/IcHeartOutlinedGray07';
-import BoxButton from '@/common/components/BoxButton/BoxButton';
 import { WITHDRAW_USER_NAME } from '@/shared/constants/withdrawUser';
 
 const ClassButtonWrapper = ({ lessonData }: { lessonData: LessonDetailResponseTypes }) => {
