@@ -1,9 +1,9 @@
 import { AnimatePresence, motion } from 'motion/react';
 import * as styles from '@/pages/reservation/components/ConfirmationBottomSheet/confirmationBottomSheet.css';
-import SvgIcClear from '@/shared/assets/svg/IcClear';
 import BoxButton from '@/common/components/BoxButton/BoxButton';
 import Head from '@/common/components/Head/Head';
 import Text from '@/common/components/Text/Text';
+import SvgIcClear from '@/shared/assets/svg/IcClear';
 import { vars } from '@/shared/styles/theme.css';
 
 interface ConfirmationBottomSheetPropTypes {

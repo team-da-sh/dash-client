@@ -5,12 +5,12 @@ import type { ErrorInfo } from 'react';
 import { Suspense, type ReactNode } from 'react';
 import { ErrorBoundary, type FallbackProps } from 'react-error-boundary';
 import BoxButton from '@/common/components/BoxButton/BoxButton';
+import Spinner from '@/common/components/Spinner/Spinner';
+import Text from '@/common/components/Text/Text';
 import {
   errorContainerStyle,
   buttonContainer,
 } from '@/shared/components/ErrorBoundary/FetchErrorBoundary/fetchErrorBoundary.css';
-import Spinner from '@/common/components/Spinner/Spinner';
-import Text from '@/common/components/Text/Text';
 import type { ApiError } from '@/shared/types/ApiError';
 import { ERROR_LEVEL } from '@/shared/types/errorLevel';
 

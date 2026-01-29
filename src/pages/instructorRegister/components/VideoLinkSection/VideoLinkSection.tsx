@@ -1,12 +1,12 @@
 import { useFormContext } from 'react-hook-form';
 import InputSection from '@/pages/instructorRegister/components/CareerSection/InputSection/InputSection';
 import Description from '@/pages/instructorRegister/components/Description/Description';
+import { sectionStyle } from '@/pages/instructorRegister/components/VideoLinkSection/videoLinkSection.css';
 import {
   INSTRUCTOR_REGISTER_FORM_KEY,
   INSTRUCTOR_REGISTER_PLACEHOLDER,
   MAX_VIDEO_INPUT_COUNT,
 } from '@/pages/instructorRegister/constants/registerSection';
-import { sectionStyle } from '@/pages/instructorRegister/components/VideoLinkSection/videoLinkSection.css';
 import type { instructorRegisterFormTypes } from '../../types/instructorRegisterForm';
 
 const VideoLinkSection = () => {

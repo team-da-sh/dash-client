@@ -6,10 +6,10 @@ import {
   contentWrapperStyle,
 } from '@/pages/instructorRegisterCompletion/instructorRegisterCompletion.css';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import { ClearGif } from '@/shared/assets/gif';
 import BoxButton from '@/common/components/BoxButton/BoxButton';
 import Head from '@/common/components/Head/Head';
 import Text from '@/common/components/Text/Text';
+import { ClearGif } from '@/shared/assets/gif';
 
 const InstructorRegisterCompletion = () => {
   const navigate = useNavigate();

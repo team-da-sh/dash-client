@@ -7,10 +7,10 @@ import {
   titleWrapperStyle,
 } from '@/pages/instructor/classRegisterCompletion/classRegisterCompletion.css';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
-import { ClearGif } from '@/shared/assets/gif';
 import BoxButton from '@/common/components/BoxButton/BoxButton';
 import Head from '@/common/components/Head/Head';
 import Text from '@/common/components/Text/Text';
+import { ClearGif } from '@/shared/assets/gif';
 
 const ClassRegisterCompletion = () => {
   const navigate = useNavigate();

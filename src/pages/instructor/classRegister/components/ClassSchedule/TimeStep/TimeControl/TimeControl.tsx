@@ -3,9 +3,9 @@ import {
   timeValueWrapperStyle,
   buttonStyle,
 } from '@/pages/instructor/classRegister/components/ClassSchedule/TimeStep/TimeControl/timeControl.css';
+import Head from '@/common/components/Head/Head';
 import IcArrowDownGray1032 from '@/shared/assets/svg/IcArrowDownGray1032';
 import IcArrowUpGray1032 from '@/shared/assets/svg/IcArrowUpGray1032';
-import Head from '@/common/components/Head/Head';
 
 interface TimeControlProps {
   label: string;

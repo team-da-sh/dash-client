@@ -14,11 +14,11 @@ import {
   breakWord,
   accountNumberWrapperStyle,
 } from '@/pages/reservation/components/ConfirmationStep/confirmationStep.css';
-import SvgIcCopy from '@/shared/assets/svg/IcCopy';
 import BoxButton from '@/common/components/BoxButton/BoxButton';
 import Head from '@/common/components/Head/Head';
 import Text from '@/common/components/Text/Text';
 import { notify } from '@/common/components/Toast/Toast';
+import SvgIcCopy from '@/shared/assets/svg/IcCopy';
 
 interface ConfirmationStepPropTypes {
   onNext: () => void;

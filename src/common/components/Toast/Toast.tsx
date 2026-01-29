@@ -1,7 +1,7 @@
 import toast from 'react-hot-toast';
+import { toastContentStyle } from '@/common/components/Toast/toast.css';
 import SvgIcCautionAlert0120 from '@/shared/assets/svg/IcCautionAlert0120';
 import SvgIcClear from '@/shared/assets/svg/IcClear';
-import { toastContentStyle } from '@/common/components/Toast/toast.css';
 import { vars } from '@/shared/styles/theme.css';
 
 export type iconType = 'success' | 'fail' | 'default';

@@ -1,4 +1,8 @@
-import { textStyle, sectionStyle, emptyMessageStyle } from '@/pages/dancer/components/TabWrapper/TabEducation/TabEducation.css';
+import {
+  textStyle,
+  sectionStyle,
+  emptyMessageStyle,
+} from '@/pages/dancer/components/TabWrapper/TabEducation/TabEducation.css';
 import type { DancerDetailResponseTypes } from '@/pages/dancer/types/api';
 import Head from '@/common/components/Head/Head';
 import Text from '@/common/components/Text/Text';

@@ -11,10 +11,10 @@ import {
 } from '@/pages/instructorRegister/components/CareerSection/careerSection.css';
 import type { InputItemTypes } from '@/pages/instructorRegister/types/inputItemTypes';
 import Input from '@/common/components/Input/Input';
+import Text from '@/common/components/Text/Text';
 import BtnCheck from '@/shared/assets/svg/BtnCheck';
 import IcPlusGray0524 from '@/shared/assets/svg/IcPlusGray0524';
 import IcXCircleGray from '@/shared/assets/svg/IcXCircleGray';
-import Text from '@/common/components/Text/Text';
 
 interface InputSectionPropTypes {
   title: string;

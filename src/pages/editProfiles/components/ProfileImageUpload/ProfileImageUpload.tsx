@@ -4,8 +4,8 @@ import { useController } from 'react-hook-form';
 import BottomSheet from '@/pages/editProfiles/components/BottomSheet/BottomSheet';
 import * as styles from '@/pages/editProfiles/components/ProfileImageUpload/profileImageUpload.css';
 import type { ProfileFormValues } from '@/pages/editProfiles/schema/profileSchema';
-import IcProfileBasic from '@/shared/assets/svg/IcProfileBasic';
 import Text from '@/common/components/Text/Text';
+import IcProfileBasic from '@/shared/assets/svg/IcProfileBasic';
 import useImageUploader from '@/shared/hooks/useImageUploader';
 
 interface ProfileImageUploadPropTypes {

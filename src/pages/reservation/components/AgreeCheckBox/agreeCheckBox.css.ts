@@ -13,4 +13,3 @@ export const contentStyle = style({
   gap: '1.2rem',
   alignItems: 'center',
 });
-

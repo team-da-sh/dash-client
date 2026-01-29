@@ -5,9 +5,9 @@ import {
   infoWrapperStyle,
   infoRowStyle,
 } from '@/pages/home/components/Footer/footer.css';
-import IcHeaderLogoSmallBlack from '@/shared/assets/svg/IcHeaderLogoSmallBlack';
 import Divider from '@/common/components/Divider/Divider';
 import Text from '@/common/components/Text/Text';
+import IcHeaderLogoSmallBlack from '@/shared/assets/svg/IcHeaderLogoSmallBlack';
 
 const Footer = () => {
   return (

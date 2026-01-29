@@ -30,4 +30,3 @@ export const timeValueWrapperStyle = style({
   borderRadius: '4px',
   border: `1px solid ${vars.colors.gray02}`,
 });
-

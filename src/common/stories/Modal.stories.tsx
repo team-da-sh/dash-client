@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import type { ReactElement } from 'react';
+import BoxButton from '@/common/components/BoxButton/BoxButton';
 import Modal from '@/common/components/Modal/Modal';
 import { useModalStore } from '@/common/stores/modal';
-import BoxButton from '@/common/components/BoxButton/BoxButton';
 
 const meta = {
   title: 'Common/Modal',

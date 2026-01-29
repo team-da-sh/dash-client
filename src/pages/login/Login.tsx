@@ -1,7 +1,7 @@
 import KakaoButton from '@/pages/login/components/KakaoButton/KakaoButton';
 import { containerStyle, videoStyle, buttonContainerStyle, titleWrapperStyle } from '@/pages/login/login.css';
-import LoginWepm from '@/shared/assets/webm/login.webm';
 import Head from '@/common/components/Head/Head';
+import LoginWepm from '@/shared/assets/webm/login.webm';
 
 const Login = () => {
   return (

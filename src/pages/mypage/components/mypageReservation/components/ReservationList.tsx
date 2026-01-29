@@ -5,8 +5,8 @@ import { type ReservationStatus } from '@/pages/mypage/components/mypageReservat
 import { type Reservation } from '@/pages/mypage/components/mypageReservation/types/reservationTypes';
 import { handleBoxButtonClick, handleCancelClick, handleClassCardClick } from '@/pages/mypage/utils/clickUtils';
 import BoxButton from '@/common/components/BoxButton/BoxButton';
-import ClassCard from '@/shared/components/ClassCard';
 import Text from '@/common/components/Text/Text';
+import ClassCard from '@/shared/components/ClassCard';
 import { USER_ROLE } from '@/shared/constants/userRole';
 
 interface ReservationListProps {
