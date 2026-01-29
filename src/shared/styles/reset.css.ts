@@ -84,3 +84,7 @@ globalStyle('button', {
 globalStyle('input, textarea', {
   outline: 'none',
 });
+
+globalStyle('dialog', {
+  border: 'none',
+});

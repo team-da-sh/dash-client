@@ -11,7 +11,7 @@ import Head from '@/common/components/Head/Head';
 import Modal from '@/common/components/Modal/Modal';
 import Text from '@/common/components/Text/Text';
 import { notify } from '@/common/components/Toast/Toast';
-import { useModalStore } from '@/common/stores/modal';
+import { useOpenModal } from '@/common/stores/modal';
 import ApplyTag from '@/shared/components/ApplyTag/ApplyTag';
 import { teacherKeys } from '@/shared/constants/queryKey';
 import { WITHDRAW_USER_NAME } from '@/shared/constants/withdrawUser';
@@ -36,7 +36,7 @@ interface StudentCardPropTypes {
 }
 
 const StudentCard = ({ studentData, index, lessonId, selectedTab }: StudentCardPropTypes) => {
-  const { openModal } = useModalStore();
+  const openModal = useOpenModal();
 
   const { text: buttonText, variant: buttonVariant } = STATUS_BUTTON_MAP[studentData.reservationStatus];
 

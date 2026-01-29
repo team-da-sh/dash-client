@@ -1,13 +1,21 @@
-import { Fragment, useEffect } from 'react';
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import ModalLayout from '@/common/components/Modal/ModalLayout';
 import { useModalStore } from '@/common/stores/modal';
 
 const ModalProvider = () => {
   const { modalStore, resetStore, closeModal } = useModalStore();
+  const location = useLocation();
 
   // 언마운트시 모달 리셋
   useEffect(() => {
     return () => resetStore();
   }, [resetStore]);
+
+  // 라우팅 변경시 모달 리셋
+  useEffect(() => {
+    resetStore();
+  }, [location.pathname, resetStore]);
 
   // 모달 오버레이시 배경 스크롤 방지
   useEffect(() => {
@@ -18,14 +26,14 @@ const ModalProvider = () => {
     }
   }, [modalStore]);
 
+  if (modalStore.length === 0) return null;
+
   return (
-    <>
-      {modalStore.map(({ id, render }) => (
-        <Fragment key={id}>
-          {render({ isOpen: modalStore.some((modal) => modal.id === id), close: () => closeModal(id) })}
-        </Fragment>
-      ))}
-    </>
+    <ModalLayout>
+      {modalStore.map(({ id, render }) =>
+        render({ isOpen: modalStore.some((modal) => modal.id === id), close: () => closeModal(id) })
+      )}
+    </ModalLayout>
   );
 };
 

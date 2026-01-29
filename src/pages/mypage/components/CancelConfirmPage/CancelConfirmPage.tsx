@@ -21,7 +21,7 @@ import ApplicantInfo from '@/pages/reservation/components/ApplicantInfo/Applican
 import ClassInfo from '@/pages/reservation/components/ClassInfo/ClassInfo';
 import BlurBotton from '@/common/components/BlurButton/BlurButton';
 import Modal from '@/common/components/Modal/Modal';
-import { useModalStore } from '@/common/stores/modal';
+import { useOpenModal } from '@/common/stores/modal';
 import { useGetBankList } from '@/shared/apis/queries';
 import BankBottomSheet from '@/shared/components/BankBottomSheet/BankBottomSheet';
 import BoxButton from '@/common/components/BoxButton/BoxButton';
@@ -48,7 +48,7 @@ const CancelConfirmPage = () => {
   const { data: myPageData } = useGetMyPage();
   const { data: bankList } = useGetBankList();
 
-  const { openModal } = useModalStore();
+  const openModal = useOpenModal();
   const { mutate: cancelReservation, isPending } = useCancelReservation();
 
   const navigationState = location.state as NavigationState | null;

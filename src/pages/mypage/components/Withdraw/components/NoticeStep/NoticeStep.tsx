@@ -15,16 +15,16 @@ import {
 } from '@/pages/mypage/components/Withdraw/components/NoticeStep/noticeStep.css';
 import { NOTICE_CONTENTS } from '@/pages/mypage/components/Withdraw/constants';
 import BlurButton from '@/common/components/BlurButton/BlurButton';
-import Modal from '@/common/components/Modal/Modal';
-import { useModalStore } from '@/common/stores/modal';
-import { useWithdrawStore } from '@/common/stores/withdraw';
-import IcCheckcircleGray0524 from '@/shared/assets/svg/IcCheckcircleGray0524';
-import IcCheckcircleMain0324 from '@/shared/assets/svg/IcCheckcircleMain0324';
 import BoxButton from '@/common/components/BoxButton/BoxButton';
 import Divider from '@/common/components/Divider/Divider';
 import Head from '@/common/components/Head/Head';
+import Modal from '@/common/components/Modal/Modal';
 import Text from '@/common/components/Text/Text';
 import { notify } from '@/common/components/Toast/Toast';
+import { useOpenModal } from '@/common/stores/modal';
+import { useWithdrawStore } from '@/common/stores/withdraw';
+import IcCheckcircleGray0524 from '@/shared/assets/svg/IcCheckcircleGray0524';
+import IcCheckcircleMain0324 from '@/shared/assets/svg/IcCheckcircleMain0324';
 import { vars } from '@/shared/styles/theme.css';
 import { clearStorage } from '@/shared/utils/handleToken';
 
@@ -34,7 +34,9 @@ interface NoticeStepPropTypes {
 
 const NoticeStep = ({ onNext }: NoticeStepPropTypes) => {
   const [isAgreed, setIsAgreed] = useState(false);
-  const { openModal } = useModalStore();
+
+  const openModal = useOpenModal();
+
   const titleId = useId();
 
   const handleAgreeToggle = () => setIsAgreed((prev) => !prev);

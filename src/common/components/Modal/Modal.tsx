@@ -1,5 +1,6 @@
 import type { ReactElement } from 'react';
-import ModalLayout from '@/common/components/Modal/ModalLayout';
+import BoxButton from '@/common/components/BoxButton/BoxButton';
+import FocusTrap from '@/common/components/FocusTrap/FocusTrap';
 import {
   contentStyle,
   containerStyle,
@@ -8,7 +9,6 @@ import {
   closeButtonStyle,
   descriptionStyle,
 } from '@/common/components/Modal/modal.css';
-import BoxButton from '@/common/components/BoxButton/BoxButton';
 import { vars } from '@/shared/styles/theme.css';
 
 interface DialogProps {
@@ -60,8 +60,12 @@ const Modal = ({
   };
 
   return (
-    <ModalLayout onClose={onClose}>
-      <div className={description ? containerNoGapStyle : containerStyle}>
+    <FocusTrap>
+      {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions */}
+      <dialog
+        aria-modal="true"
+        onClick={(e) => e.stopPropagation()}
+        className={description ? containerNoGapStyle : containerStyle}>
         <div className={contentStyle}>{content}</div>
         {description && <div className={descriptionStyle}>{description}</div>}
         <div className={buttonWrapperStyle}>
@@ -87,8 +91,8 @@ const Modal = ({
             </BoxButton>
           )}
         </div>
-      </div>
-    </ModalLayout>
+      </dialog>
+    </FocusTrap>
   );
 };
 

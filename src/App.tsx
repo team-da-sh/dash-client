@@ -4,8 +4,6 @@ import { useEffect } from 'react';
 import { Toaster } from 'react-hot-toast';
 import { RouterProvider } from 'react-router-dom';
 import { router } from '@/routes/router.tsx';
-import ModalProvider from '@/common/components/Modal/ModalProvider';
-import GlobalErrorBoundary from '@/shared/components/ErrorBoundary/GlobalErrorBoundary/GlobalErrorBoundary';
 import queryClient from './queryClient';
 import './shared/styles/index.css';
 
@@ -33,10 +31,7 @@ const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={false} />
-      <GlobalErrorBoundary>
-        <RouterProvider router={router} />
-        <ModalProvider />
-      </GlobalErrorBoundary>
+      <RouterProvider router={router} />
       <Toaster containerStyle={{ margin: '0 auto' }} />
     </QueryClientProvider>
   );
