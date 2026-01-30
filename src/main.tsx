@@ -4,7 +4,7 @@ import { createRoot } from 'react-dom/client';
 import App from './App.tsx';
 
 async function enableMocks() {
-  // if (import.meta.env.MODE === 'development') {
+  // if (process.env.NODE_ENV !== 'production') {
   //   const { worker } = await import('@/mocks/browser.ts');
   //   await worker.start();
   // }
