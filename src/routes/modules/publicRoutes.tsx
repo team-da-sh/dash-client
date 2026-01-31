@@ -1,8 +1,8 @@
 import { lazy } from 'react';
-import Home from '@/pages/home/Home';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
+import Home from '@/app/pages';
 
-const Search = lazy(() => import('@/pages/search/Search'));
+const Search = lazy(() => import('@/app/search/page'));
 const Dancer = lazy(() => import('@/pages/dancer/Dancer'));
 
 export const publicRoutes = [

@@ -1,4 +1,4 @@
-import type { LessonStatus } from '@/pages/instructor/lessonList/types/lessonStatus';
+import type { LessonStatus } from '@/pages/instructor/lessonManage/types/lessonStatus';
 import type { GenreTypes } from '@/pages/onboarding/types/genreTypes';
 import type { LevelTypes } from '@/pages/onboarding/types/levelTypes';
 

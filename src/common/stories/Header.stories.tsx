@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { within, userEvent } from '@storybook/testing-library';
-import { BrowserRouter } from 'react-router-dom';
 import Header from '@/common/components/Header/Header';
 
 const meta: Meta<typeof Header> = {
@@ -9,13 +8,6 @@ const meta: Meta<typeof Header> = {
   parameters: {
     layout: 'fullscreen',
   },
-  decorators: [
-    (Story) => (
-      <BrowserRouter>
-        <Story />
-      </BrowserRouter>
-    ),
-  ],
 };
 
 export default meta;
@@ -26,12 +18,6 @@ export const Default: Story = {
 };
 
 export const WithMyPageOpen: Story = {
-  parameters: {
-    reactRouter: {
-      browserPath: '/',
-      routePath: '/',
-    },
-  },
   render: () => <Header />,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
@@ -41,11 +27,5 @@ export const WithMyPageOpen: Story = {
 };
 
 export const InSearchPage: Story = {
-  parameters: {
-    reactRouter: {
-      browserPath: '/search',
-      routePath: '/search',
-    },
-  },
   render: () => <Header />,
 };

@@ -1,6 +1,5 @@
 import { lazy } from 'react';
 import { createBrowserRouter } from 'react-router-dom';
-import Withdraw from '@/pages/mypage/components/Withdraw/Withdraw';
 import Reservation from '@/pages/reservation/Reservation';
 import AuthGuard from '@/routes/guards/authGuard';
 import GuestGuard from '@/routes/guards/guestGuard';
@@ -11,6 +10,7 @@ import { guestRoutes } from '@/routes/modules/guestRoutes';
 import { protectedRoutes } from '@/routes/modules/protectedRoutes';
 import { publicRoutes } from '@/routes/modules/publicRoutes';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
+import Withdraw from '@/app/mypage/components/Withdraw/Withdraw';
 import Layout from '@/layout/Layout';
 
 /* eslint-disable react-refresh/only-export-components */

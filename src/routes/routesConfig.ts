@@ -74,15 +74,15 @@ export const ROUTES_CONFIG = {
   },
   classRegister: {
     title: 'ClassRegister',
-    path: '/mypage/class-register',
+    path: '/class-register',
   },
   classEdit: {
     title: 'ClassEdit',
-    path: (id: string) => `/mypage/class-register/${id}/edit`,
+    path: (id: string) => `/class-register/${id}/edit`,
   },
   classRegisterCompletion: {
     title: 'ClassRegisterCompletion',
-    path: '/mypage/class-register/completion',
+    path: '/class-register/completion',
   },
   instructorRegister: {
     title: 'InstructorRegister',
@@ -94,11 +94,11 @@ export const ROUTES_CONFIG = {
   },
   instructorClassList: {
     title: 'instructorClassList',
-    path: '/mypage/instructor/class-list',
+    path: '/instructor/class-list',
   },
   instructorClassDetail: {
     title: 'instructorClassDetail',
-    path: (id: string) => `/mypage/instructor/class-list/${id}`,
+    path: (id: string) => `/instructor/class-list/${id}`,
   },
   withdraw: {
     title: 'Withdraw',

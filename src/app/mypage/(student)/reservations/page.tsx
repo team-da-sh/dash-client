@@ -1,0 +1,61 @@
+'use client';
+
+import { useState } from 'react';
+import { useGetReservationStatus } from '@/app/mypage/(student)/reservations/apis/queries';
+import ReservationList from '@/app/mypage/(student)/reservations/components/ReservationList';
+import {
+  options,
+  STATUS_ENGLISH_MAP,
+  STATUS_KOREAN_MAP,
+} from '@/app/mypage/(student)/reservations/constants/statusMap';
+import {
+  containerStyle,
+  layoutStyle,
+  titleStyle,
+  reservationListSectionStyle,
+} from '@/app/mypage/(student)/reservations/index.css';
+import type { ReservationStatus } from '@/app/mypage/(student)/reservations/types/reservationStatus';
+import Dropdown from '@/common/components/Dropdown/Dropdown';
+import Head from '@/common/components/Head/Head';
+
+export default function Page() {
+  const { data: reservationStatus } = useGetReservationStatus();
+
+  const [selectedStatus, setSelectedStatus] = useState<ReservationStatus>(options[0]);
+
+  const combineCountAndStatus = (status: ReservationStatus) => {
+    const count = reservationStatus?.reservationStatusCounts.filter(
+      (reservationStatus) => reservationStatus.status === status
+    )[0].count;
+
+    return `${STATUS_KOREAN_MAP[status]}(${count})`;
+  };
+
+  const statusOptions = options.map((option: ReservationStatus) => combineCountAndStatus(option));
+
+  const handleSelectedOption = (countAndStatus: string) => {
+    const status = countAndStatus.split('(')[0];
+
+    setSelectedStatus(STATUS_ENGLISH_MAP[status]);
+  };
+
+  return (
+    <div className={layoutStyle}>
+      <div className={containerStyle}>
+        <Head tag="h6_sb" color="black" className={titleStyle}>
+          클래스 수강 목록
+        </Head>
+
+        <Dropdown
+          selectedOption={combineCountAndStatus(selectedStatus)}
+          options={statusOptions}
+          handleSelectedOption={handleSelectedOption}
+        />
+
+        <section className={reservationListSectionStyle}>
+          <ReservationList status={selectedStatus} />
+        </section>
+      </div>
+    </div>
+  );
+}

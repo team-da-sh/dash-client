@@ -2,23 +2,23 @@
 import { lazy } from 'react';
 import AccountRegister from '@/pages/accountRegister/AccountRegister';
 import EditProfile from '@/pages/editProfiles/EditProfile';
-import ClassRegisterCompletion from '@/pages/instructor/classRegisterCompletion/ClassRegisterCompletion';
 import InstructorRegisterCompletion from '@/pages/instructorRegisterCompletion/InstructorRegisterCompletion';
-import MyPage from '@/pages/mypage/MyPage';
-import Withdraw from '@/pages/mypage/components/Withdraw/Withdraw';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
+import ClassRegisterCompletion from '@/app/mypage/(instructor)/class-register/completion/ClassRegisterCompletion';
+import MyPage from '@/app/mypage/MyPage';
+import Withdraw from '@/app/mypage/components/Withdraw/Withdraw';
 
 const Reservation = lazy(() => import('@/pages/reservation/Reservation'));
-const MyPageReservation = lazy(() => import('@/pages/mypage/components/mypageReservation/MypageReservation.tsx'));
+const MyPageReservation = lazy(() => import('@/app/mypage/components/mypageReservation/MypageReservation'));
 const MyPageReservationDetail = lazy(
-  () => import('@/pages/mypage/components/mypageReservationDetail/MypageReservationDetail.tsx')
+  () => import('@/app/mypage/components/mypageReservationDetail/MypageReservationDetail')
 );
-const ClassRegister = lazy(() => import('@/pages/instructor/classRegister/ClassRegister'));
+const ClassRegister = lazy(() => import('@/app/mypage/(instructor)/class-register/ClassRegister'));
 const InstructorRegister = lazy(() => import('@/pages/instructorRegister/InstructorRegister'));
-const ClassDetail = lazy(() => import('@/pages/instructor/classDetail/ClassDetail'));
-const LessonManage = lazy(() => import('@/pages/instructor/lessonManage/LessonManage'));
-const MyPageCancelClass = lazy(() => import('@/pages/mypage/components/mypageCancelClass/MypageCancelClass'));
-const MyPageCancelConfirm = lazy(() => import('@/pages/mypage/components/CancelConfirmPage/CancelConfirmPage'));
+const ClassDetail = lazy(() => import('@/app/instructor/class-list/[id]/ClassDetail'));
+const LessonManage = lazy(() => import('@/app/instructor/class-list/LessonManage'));
+const MyPageCancelClass = lazy(() => import('@/app/mypage/components/mypageCancelClass/MypageCancelClass'));
+const MyPageCancelConfirm = lazy(() => import('@/app/mypage/components/CancelConfirmPage/CancelConfirmPage'));
 
 const Class = lazy(() => import('@/pages/class/Class'));
 

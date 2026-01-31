@@ -20,13 +20,16 @@
     "allowJs": true,
     "forceConsistentCasingInFileNames": true,
     "incremental": true,
-    "plugins": [{ "name": "next" }],
-
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]
     }
   },
-  "include": ["./src", "./dist/types/**/*.ts", "./next-env.d.ts", "custom.d.ts"],
-  "exclude": ["./node_modules"]
+  "include": ["./dist/types/**/*.ts", "./next-env.d.ts", "./src", "custom.d.ts", ".next/types/**/*.ts"],
+  "exclude": ["./node_modules", ".next/types/validator.ts", "./dist/types/validator.ts"]
 }

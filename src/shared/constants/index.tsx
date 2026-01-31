@@ -1,15 +1,15 @@
 import { lazy, Suspense } from 'react';
-import TabIntro from '@/pages/class/components/TabWrapper/TabIntro/TabIntro';
-import TabLevel from '@/pages/class/components/TabWrapper/TabLevel/TabLevel';
-import TabLocationInfo from '@/pages/class/components/TabWrapper/TabLocation/TabLocation';
-import TabPeriod from '@/pages/class/components/TabWrapper/TabPeriod/TabPeriod';
-import TabReview from '@/pages/class/components/TabWrapper/TabReview/tabReview';
-import type { LessonDetailResponseTypes } from '@/pages/class/types/api';
-import TabEducation from '@/pages/dancer/components/TabWrapper/TabEducation/TabEducation';
-import TabHistory from '@/pages/dancer/components/TabWrapper/TabExperience/TabExperience';
-import TabPrize from '@/pages/dancer/components/TabWrapper/TabPrize/TabPrize';
-import TabVideo from '@/pages/dancer/components/TabWrapper/TabVideo/TabVideo';
-import type { DancerDetailResponseTypes } from '@/pages/dancer/types/api';
+import TabIntro from '@/app/class/[id]/components/TabWrapper/TabIntro/TabIntro';
+import TabLevel from '@/app/class/[id]/components/TabWrapper/TabLevel/TabLevel';
+import TabLocationInfo from '@/app/class/[id]/components/TabWrapper/TabLocation/TabLocation';
+import TabPeriod from '@/app/class/[id]/components/TabWrapper/TabPeriod/TabPeriod';
+import TabReview from '@/app/class/[id]/components/TabWrapper/TabReview/tabReview';
+import type { LessonDetailResponseTypes } from '@/app/class/[id]/types/api';
+import TabEducation from '@/app/dancer/[id]/components/TabWrapper/TabEducation/TabEducation';
+import TabHistory from '@/app/dancer/[id]/components/TabWrapper/TabExperience/TabExperience';
+import TabPrize from '@/app/dancer/[id]/components/TabWrapper/TabPrize/TabPrize';
+import TabVideo from '@/app/dancer/[id]/components/TabWrapper/TabVideo/TabVideo';
+import type { DancerDetailResponseTypes } from '@/app/dancer/[id]/types/api';
 
 const IcLevelStarter = lazy(() => import('@/shared/assets/svg/IcLevelStarter'));
 const IcLevelBasic = lazy(() => import('@/shared/assets/svg/IcLevelBasic'));

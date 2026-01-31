@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import IcArrowRightGray0614 from '@/shared/assets/svg/IcArrowRightGray0614';
 import {
@@ -18,12 +18,12 @@ interface InfoComponentPropTypes {
 }
 
 const InfoComponent = ({ type, profileImageUrl, mainText, subContent }: InfoComponentPropTypes) => {
-  const navigate = useNavigate();
+  const router = useRouter();
   const handleEditProfileClick = () => {
     if (type === 'student') {
-      navigate(ROUTES_CONFIG.editProfile.path);
+      router.push(ROUTES_CONFIG.editProfile.path);
     } else {
-      navigate(ROUTES_CONFIG.instructorRegister.path);
+      router.push(ROUTES_CONFIG.instructorRegister.path);
     }
   };
 

@@ -1,24 +1,23 @@
-import type { Metadata } from 'next';
+'use client';
+
+import { usePathname } from 'next/navigation';
 import Script from 'next/script';
+import { ROUTES_CONFIG } from '@/routes/routesConfig';
+import Providers from '@/app/Providers';
+import Header from '@/common/components/Header/Header';
+import ModalProvider from '@/common/components/Modal/ModalProvider';
 import '@/shared/styles/index.css';
 
-/* eslint-disable react-refresh/only-export-components -- Next.js layout metadata */
-export const metadata: Metadata = {
-  title: 'da-sh.kr',
-  description: '당신에게 춤을 더 가까이, 꿈꾸던 댄스 클래스를 만나다',
-  openGraph: {
-    title: 'dash',
-    description: '당신에게 춤을 더 가까이, 꿈꾸던 댄스 클래스를 만나다',
-    type: 'website',
-    url: 'https://www.da-sh.kr/',
-    images: ['/dash-Thumbnail.png'],
-  },
-  metadataBase: new URL('https://www.da-sh.kr/'),
-  viewport: 'width=device-width, initial-scale=1.0, user-scalable=no',
-  other: { 'format-detection': 'no' },
-};
-
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname();
+
+  const isSearchPath = pathname === ROUTES_CONFIG.search.path;
+  const isOnboardingPath = pathname === ROUTES_CONFIG.onboarding.path;
+  const isReservationPath = pathname?.startsWith('/reservation/');
+  const isWithdrawPath = pathname === ROUTES_CONFIG.withdraw.path;
+
+  const shouldShowHeader = !isSearchPath && !isOnboardingPath && !isReservationPath && !isWithdrawPath;
+
   return (
     <html lang="ko">
       <head>
@@ -30,20 +29,26 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body>
-        {children}
-        <Script
-          id="clarity"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
+        <div id="root">
+          <Providers>
+            {shouldShowHeader && <Header />}
+            {children}
+            <ModalProvider />
+          </Providers>
+          {/* <Script
+            id="clarity"
+            strategy="afterInteractive"
+            dangerouslySetInnerHTML={{
+              __html: `
               (function(c,l,a,r,i,t,y){
                 c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
                 t=l.createElement(r);t.async=1;t.src='https://www.clarity.ms/tag/'+i;
                 y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
               })(window,document,'clarity','script','tw3shhhgdn');
             `,
-          }}
-        />
+            }}
+          /> */}
+        </div>
       </body>
     </html>
   );
