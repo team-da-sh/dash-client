@@ -19,6 +19,7 @@ import {
   titleContentStyle,
   sectionWrapperStyle,
   classInfoSectionStyle,
+  classInfoWrapper,
   buttonStyle,
 } from '@/app/mypage/(student)/reservations/[id]/cancel-confirm/index.css';
 import ApplicantInfo from '@/app/mypage/(student)/reservations/[id]/components/ApplicantInfo/ApplicantInfo';
@@ -59,8 +60,8 @@ function getCancelConfirmState(): NavigationState | null {
 }
 
 const CancelConfirmPage = () => {
-  const params = useParams() ?? {};
-  const id = (params as { id?: string }).id;
+  const params = useParams<{ id: string }>();
+  const id = params.id;
   const reservationId = Number(id);
 
   const [navigationState] = useState<NavigationState | null>(() => getCancelConfirmState());
@@ -174,11 +175,13 @@ const CancelConfirmPage = () => {
                 <Head tag="h6_sb" color="black">
                   클래스 정보
                 </Head>
-                <ClassInfo
-                  location={reservationData?.location || ''}
-                  locationDetail={reservationData?.detailedAddress}
-                  lessonRound={reservationData?.rounds}
-                />
+                <div className={classInfoWrapper}>
+                  <ClassInfo
+                    location={reservationData?.location || ''}
+                    locationDetail={reservationData?.detailedAddress}
+                    lessonRound={reservationData?.rounds}
+                  />
+                </div>
               </div>
 
               {isAfterDeposit && (

@@ -1,7 +1,6 @@
 import { useRouter } from 'next/navigation';
 import { useEffect, useRef } from 'react';
 import type { FieldValues, UseFormReturn } from 'react-hook-form';
-import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import Modal from '@/common/components/Modal/Modal';
 import { useModalStore } from '@/common/stores/modal';
 import { isLoggedIn } from '@/shared/utils/authUtil';
@@ -149,9 +148,9 @@ export default function useBlockBackWithUnsavedChanges<TFieldValues extends Fiel
       const mypageButton = target.closest('[aria-label="마이페이지로 이동"]') as HTMLElement | null;
 
       let navigateTo: string | null = null;
-      if (logoButton) navigateTo = ROUTES_CONFIG.home.path;
-      else if (searchButton) navigateTo = ROUTES_CONFIG.search.path;
-      else if (mypageButton) navigateTo = isLoggedIn() ? ROUTES_CONFIG.mypage.path : ROUTES_CONFIG.login.path;
+      if (logoButton) navigateTo = '/';
+      else if (searchButton) navigateTo = '/search';
+      else if (mypageButton) navigateTo = isLoggedIn() ? '/mypage' : '/auth/login';
 
       if (!navigateTo) return;
 

@@ -1,7 +1,6 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import BoxButton from '@/common/components/BoxButton/BoxButton';
 
 interface InfoEditButtonProps {
@@ -14,7 +13,7 @@ const InfoEditButton = ({ id, startDateTime }: InfoEditButtonProps) => {
 
   const handleEditClick = () => {
     if (id) {
-      router.push(ROUTES_CONFIG.classEdit.path(id));
+      router.push(`/mypage/class-register/${id}/edit`);
     }
   };
 

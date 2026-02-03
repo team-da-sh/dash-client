@@ -1,9 +1,8 @@
 import axios from 'axios';
 import { onErrorExpand, onErrorResponse, onResponse } from '@/shared/apis/interceptor';
 
-// 개발환경에서는 Next.js 프록시(/api)를 사용하여 CORS 우회
-const isDevelopment = process.env.NODE_ENV === 'development';
-const baseURL = isDevelopment ? '/api' : process.env.NEXT_PUBLIC_DEV_BASE_URL;
+// Next.js rewrites를 통해 CORS 우회 (dev/production 모두 동일)
+const baseURL = '/api';
 
 export const instance = axios.create({
   baseURL,

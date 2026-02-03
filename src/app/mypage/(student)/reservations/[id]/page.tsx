@@ -2,7 +2,6 @@
 
 import Link from 'next/link';
 import { useParams, useRouter } from 'next/navigation';
-import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { useGetReservationsDetail } from '@/app/mypage/(student)/reservations/[id]/apis/queries';
 import ApplicantInfo from '@/app/mypage/(student)/reservations/[id]/components/ApplicantInfo/ApplicantInfo';
 import ClassInfo from '@/app/mypage/(student)/reservations/[id]/components/ClassInfo/ClassInfo';
@@ -13,8 +12,8 @@ import Head from '@/common/components/Head/Head';
 import ClassCard from '@/shared/components/ClassCard';
 
 export default function Page() {
-  const params = useParams() ?? {};
-  const reservationId = (params as { id?: string }).id;
+  const params = useParams<{ id: string }>();
+  const reservationId = params.id;
   const router = useRouter();
 
   const { data } = useGetReservationsDetail(Number(reservationId));
@@ -24,7 +23,7 @@ export default function Page() {
   }
 
   const handleGoCancleClassPage = () => {
-    router.push(ROUTES_CONFIG.mypageCancelClass.path(reservationId ?? ''));
+    router.push(`/mypage/reservations/${reservationId ?? ''}/cancel`);
   };
 
   const handleGoAskPage = (e: React.MouseEvent) => {
@@ -41,7 +40,7 @@ export default function Page() {
 
         <div className={styles.classInfoWrapper}>
           <ReservationProgress reservationStatus={data.reservationStatus} />
-          <Link href={ROUTES_CONFIG.class.path(data.lessonId.toString())}>
+          <Link href={`/class/${data.lessonId}`}>
             <ClassCard>
               <ClassCard.Body
                 name={data.lessonName}

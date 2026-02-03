@@ -1,24 +1,14 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
-import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import LessonItem from '@/app/(home)/components/LessonItem/LessonItem';
 import type { lessonResponseTypes, LessonDataResponseTypes } from '@/app/mypage/components/TeacherContent/types/api';
 import * as styles from './teacherLessons.css';
 
 const TeacherLessons = ({ data }: { data: LessonDataResponseTypes }) => {
-  const router = useRouter();
-
-  const handleCardClick = (id: number, e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
-    e.stopPropagation();
-
-    router.push(ROUTES_CONFIG.instructorClassDetail.path(id.toString()));
-  };
-
   return (
     <ul className={styles.containerStyle}>
       {data?.lessons?.map((lesson: lessonResponseTypes) => (
-        <li key={lesson.id} onClickCapture={(e) => handleCardClick(lesson.id, e)}>
+        <li key={lesson.id}>
           <LessonItem
             linkType="manage"
             id={lesson.id}

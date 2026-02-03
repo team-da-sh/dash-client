@@ -3,7 +3,6 @@
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { useId } from 'react';
-import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { useGetLessonDetail } from '@/app/mypage/(instructor)/classes/[id]/apis/queries';
 import InfoEditButton from '@/app/mypage/(instructor)/classes/[id]/components/InfoEditButton/InfoEditButton';
 import StudentTab from '@/app/mypage/(instructor)/classes/[id]/components/StudentTab/StudentTab';
@@ -19,11 +18,10 @@ import ClassCard from '@/shared/components/ClassCard';
 import { USER_ROLE } from '@/shared/constants/userRole';
 
 export default function Page() {
+  const params = useParams<{ id: string }>();
+  const id = params.id;
   const classInfoId = useId();
   const studentTabId = useId();
-
-  const params = useParams() ?? {};
-  const id = (params as { id?: string }).id;
 
   const { data: lessonData } = useGetLessonDetail(Number(id), 'APPROVE');
 
@@ -35,7 +33,7 @@ export default function Page() {
         </Head>
         <div className={classInfoSectionStyle}>
           {lessonData && (
-            <Link href={ROUTES_CONFIG.class.path(lessonData.id.toString())}>
+            <Link href={`/class/${lessonData.id}`}>
               <ClassCard>
                 <ClassCard.Header
                   role={USER_ROLE.TEACHER}

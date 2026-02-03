@@ -1,5 +1,4 @@
 import { useRouter } from 'next/navigation';
-import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import IcHeaderLogoSmallBlack from '@/shared/assets/svg/IcHeaderLogoSmallBlack';
 import IcMypageBlack24 from '@/shared/assets/svg/IcMypageBlack24';
 import IcSearchBlack24 from '@/shared/assets/svg/IcSearchBlack24';
@@ -10,20 +9,20 @@ const Header = () => {
   const router = useRouter();
 
   const handleLogoClick = () => {
-    router.push(ROUTES_CONFIG.home.path);
+    router.push('/');
   };
 
   const handleSearchClick = () => {
-    router.push(ROUTES_CONFIG.search.path);
+    router.push('/search');
   };
 
   const handleMypageClick = () => {
     if (!isLoggedIn()) {
-      router.push(ROUTES_CONFIG.login.path);
+      router.push('/login');
       return;
     }
 
-    router.push(ROUTES_CONFIG.mypage.path);
+    router.push('/mypage');
   };
 
   return (

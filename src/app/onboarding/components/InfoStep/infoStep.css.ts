@@ -37,7 +37,7 @@ export const inputStyle = style({
   flex: 1,
 });
 
-export const buttonStyle = recipe({
+export const verificationButtonStyle = recipe({
   base: {
     display: 'flex',
     justifyContent: 'center',
@@ -49,20 +49,31 @@ export const buttonStyle = recipe({
     whiteSpace: 'nowrap',
     textAlign: 'center',
     border: '1px solid transparent',
+    borderRadius: '4px',
+    backgroundColor: vars.colors.main04,
+    color: vars.colors.white,
+    cursor: 'pointer',
     ...vars.fonts.b2_sb_long,
+
+    selectors: {
+      '&:disabled': {
+        backgroundColor: vars.colors.gray05,
+        cursor: 'default',
+      },
+    },
   },
   variants: {
-    type: {
+    variant: {
       default: {},
       resend: {
         border: `1px solid ${vars.colors.gray08}`,
-        background: vars.colors.white,
+        backgroundColor: vars.colors.white,
         color: vars.colors.gray09,
       },
     },
   },
   defaultVariants: {
-    type: 'default',
+    variant: 'default',
   },
 });
 

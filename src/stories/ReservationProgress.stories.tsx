@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import ReservationProgress from '@/pages/mypage/components/mypageReservationDetail/components/ReservationProgress/ReservationProgress';
+import ReservationProgress from '@/app/mypage/(student)/reservations/[id]/components/ReservationProgress/ReservationProgress';
 
 const meta = {
   title: 'Common/ReservationProgress',

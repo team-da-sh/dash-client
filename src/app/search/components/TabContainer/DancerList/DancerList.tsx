@@ -1,7 +1,6 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import {
   dancerImageStyle,
   listStyle,
@@ -23,7 +22,7 @@ const DancerList = ({ dancers }: DancerListPropTypes) => {
   const router = useRouter();
 
   const handleDancerClick = (id: number) => {
-    router.push(ROUTES_CONFIG.dancer.path(`${id}`));
+    router.push(`/dancer/${id}`);
   };
   return (
     <ul className={listStyle}>

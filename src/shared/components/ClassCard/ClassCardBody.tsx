@@ -1,6 +1,6 @@
 import clsx from 'clsx';
-import type { GenreTypes } from '@/pages/onboarding/types/genreTypes';
-import type { LevelTypes } from '@/pages/onboarding/types/levelTypes';
+import type { GenreTypes } from '@/app/onboarding/types/genreTypes';
+import type { LevelTypes } from '@/app/onboarding/types/levelTypes';
 import Head from '@/common/components/Head/Head';
 import Tag from '@/common/components/Tag/Tag';
 import Text from '@/common/components/Text/Text';

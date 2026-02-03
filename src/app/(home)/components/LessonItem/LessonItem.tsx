@@ -2,7 +2,6 @@
 
 import Link from 'next/link';
 import { useId } from 'react';
-import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import {
   classImageStyle,
   deadlineTagStyle,
@@ -87,13 +86,7 @@ const LessonItem = ({
       </div>
 
       <Head level="h3" tag="b1_sb_long" className={titleStyle} id={nameId}>
-        <Link
-          href={
-            linkType === 'detail'
-              ? ROUTES_CONFIG.class.path(`${id}`)
-              : ROUTES_CONFIG.instructorClassDetail.path(id.toString())
-          }
-          className={linkStyle}>
+        <Link href={linkType === 'detail' ? `/class/${id}` : `/mypage/classes/${id}`} className={linkStyle}>
           {name}
         </Link>
       </Head>

@@ -1,5 +1,4 @@
 import type { AxiosError, InternalAxiosRequestConfig } from 'axios';
-import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { postReissue } from '@/app/auth/apis/axios';
 import { instance } from '@/shared/apis/instance';
 import { HTTP_STATUS_CODE } from '@/shared/constants/api';
@@ -67,7 +66,7 @@ export const onErrorResponse = async (error: AxiosError) => {
       failedRequests.forEach((prom) => prom.reject(reissueError as AxiosError));
       failedRequests = [];
 
-      window.location.replace(ROUTES_CONFIG.login.path);
+      window.location.replace('/auth/login');
 
       clearStorage();
     } finally {

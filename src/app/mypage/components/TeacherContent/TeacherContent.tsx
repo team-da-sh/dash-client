@@ -2,7 +2,6 @@
 
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { expandInstagramUrl, expandYouTubeUrl } from '@/app/dancer/[id]/utils/url';
 import { useGetMyLessonThumbnails, useGetMyPage, useGetMyTeacherInfo } from '@/app/mypage/apis/queries';
 import BottomList from '@/app/mypage/components/BottomList/BottomList';
@@ -78,15 +77,15 @@ const TeacherContent = () => {
 
   const handleClassButtonClick = () => {
     if (accountData?.isRegistered) {
-      router.push(ROUTES_CONFIG.classRegister.path);
+      router.push('/mypage/class-register');
     } else {
       notify({ message: '클래스 개설 전 계좌를 먼저 등록해 주세요', icon: 'success', bottomGap: 'large' });
-      router.push(ROUTES_CONFIG.accountRegister.path);
+      router.push('/mypage/account-register');
     }
   };
 
   const handleAllButtonClick = () => {
-    router.push(ROUTES_CONFIG.instructorClassList.path);
+    router.push('/mypage/classes');
   };
 
   const handleReviewClick = () => {

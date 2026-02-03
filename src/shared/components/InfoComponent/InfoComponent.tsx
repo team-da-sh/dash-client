@@ -1,5 +1,4 @@
 import { useRouter } from 'next/navigation';
-import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import IcArrowRightGray0614 from '@/shared/assets/svg/IcArrowRightGray0614';
 import {
   infoContainerStyle,
@@ -21,9 +20,9 @@ const InfoComponent = ({ type, profileImageUrl, mainText, subContent }: InfoComp
   const router = useRouter();
   const handleEditProfileClick = () => {
     if (type === 'student') {
-      router.push(ROUTES_CONFIG.editProfile.path);
+      router.push('/mypage/edit-profile');
     } else {
-      router.push(ROUTES_CONFIG.instructorRegister.path);
+      router.push('/mypage/profile-register');
     }
   };
 

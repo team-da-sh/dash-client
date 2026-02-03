@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p 8080",
     "lint": "eslint .",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
@@ -27,7 +27,7 @@
     "axios": "^1.7.9",
     "clsx": "^2.1.1",
     "motion": "^12.23.12",
-    "next": "15",
+    "next": "15.5.7",
     "react": "^18.3.1",
     "react-calendar": "^5.1.0",
     "react-dom": "^18.3.1",

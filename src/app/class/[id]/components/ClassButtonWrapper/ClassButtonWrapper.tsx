@@ -1,7 +1,6 @@
 'use client';
 
 import { useParams, useRouter } from 'next/navigation';
-import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { flexGapStyle } from '@/app/class/[id]/components/ClassButtonWrapper/classButtonWrapper.css';
 import { useClassButtonState } from '@/app/class/[id]/hooks/useClassButtonState';
 import { useHeartToggle } from '@/app/class/[id]/hooks/useHeartToggle';
@@ -28,8 +27,7 @@ const ClassButtonWrapper = ({ lessonData }: { lessonData: LessonDetailResponseTy
 
   const handleApplyClick = () => {
     if (!isDisabled && id) {
-      const path = ROUTES_CONFIG.reservation.path(id);
-      router.push(path);
+      router.push(`/class/${id}/register`);
     }
   };
 

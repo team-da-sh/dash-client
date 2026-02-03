@@ -1,7 +1,6 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import * as styles from '@/app/onboarding/components/OnboardingHeader/onboardingHeaderStyle.css';
 import IcBackBlack from '@/shared/assets/svg/IcBack';
 import IcHeaderLogoSmallBlack from '@/shared/assets/svg/IcHeaderLogoSmallBlack';
@@ -14,11 +13,11 @@ const OnboardingHeader = ({ step }: OnboardingHeaderPropTypes) => {
   const router = useRouter();
 
   const handleLogoClick = () => {
-    router.push(ROUTES_CONFIG.home.path);
+    router.push('/');
   };
 
   const handleBackClick = () => {
-    router.push(ROUTES_CONFIG.login.path);
+    router.push('/auth/login');
   };
 
   return (

@@ -1,4 +1,4 @@
-import type { LessonStatus } from '@/pages/instructor/lessonManage/types/lessonStatus';
+import type { LessonStatus } from '@/app/mypage/(instructor)/classes/types/lessonStatus';
 import type { ReservationStatus } from '@/app/mypage/(student)/reservations/types/reservationStatus';
 
 export const API_URL = {

@@ -57,6 +57,13 @@ export const sectionWrapperStyle = style({
   paddingTop: '2.4rem',
 });
 
+export const classInfoWrapper = style({
+  padding: '2rem',
+
+  background: vars.colors.white,
+  borderRadius: '4px',
+});
+
 export const classInfoSectionStyle = style({
   display: 'flex',
   flexDirection: 'column',

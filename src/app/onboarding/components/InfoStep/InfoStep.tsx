@@ -2,8 +2,8 @@
 
 import { useState } from 'react';
 import { usePostPhoneRequest, usePostPhoneVerify } from '@/app/onboarding/apis/queries';
+import VerificationButton from '@/app/onboarding/components/InfoStep/VerificationButton';
 import {
-  buttonStyle,
   containerStyle,
   inputStyle,
   inputWrapperStyle,
@@ -15,7 +15,6 @@ import {
 import { INFO_KEY } from '@/app/onboarding/constants';
 import type { OnboardInfoTypes } from '@/app/onboarding/types/onboardInfoTypes';
 import { validateTypingPhoneNumber } from '@/app/onboarding/utils/validate';
-import BoxButton from '@/common/components/BoxButton/BoxButton';
 import Head from '@/common/components/Head/Head';
 import Input from '@/common/components/Input/Input';
 import Text from '@/common/components/Text/Text';
@@ -191,6 +190,7 @@ const InfoStep = ({
           </Text>
           <div className={numberWrapperStyle}>
             <Input
+              id="phoneNumber"
               placeholder="01012345678"
               value={phoneNumber}
               onChange={(e) => handlePhoneNumberChange(e.target.value)}
@@ -198,13 +198,12 @@ const InfoStep = ({
               readOnly={isCodeVerified}
               onClick={isCodeVerified ? handleFocusAndNotify : undefined}
             />
-
-            <BoxButton
-              className={buttonStyle({ type: isRunning ? 'resend' : 'default' })}
+            <VerificationButton
+              variant={isRunning ? 'resend' : 'default'}
               isDisabled={isRequestDisabled}
               onClick={handleRequestVerification}>
               {showAsResend ? '재요청' : '인증 요청'}
-            </BoxButton>
+            </VerificationButton>
           </div>
           {isVerificationVisible && (
             <div className={numberWrapperStyle}>
@@ -220,12 +219,9 @@ const InfoStep = ({
                 readOnly={isCodeVerified}
                 onClick={isCodeVerified ? handleFocusAndNotify : undefined}
               />
-              <BoxButton
-                className={buttonStyle({ type: 'default' })}
-                isDisabled={isVerifyButtonDisabled || isCodeVerified}
-                onClick={handleVerifyCode}>
+              <VerificationButton isDisabled={isVerifyButtonDisabled || isCodeVerified} onClick={handleVerifyCode}>
                 확인
-              </BoxButton>
+              </VerificationButton>
             </div>
           )}
         </div>

@@ -3,7 +3,6 @@
 import { useParams, useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import AccountInputSection from '@/app/mypage/(student)/reservations/[id]/cancel/components/AccountInputSection/AccountInputSection';
 import DepositeButton from '@/app/mypage/(student)/reservations/[id]/cancel/components/DepositeButton/DepositeButton';
 import {
@@ -14,7 +13,7 @@ import {
   reservationListWrapperStyle,
   depositButtonWrapperStyle,
   buttonStyle,
-} from '@/app/mypage/(student)/reservations/[id]/cancel/mypageCancelClass.css';
+} from '@/app/mypage/(student)/reservations/[id]/cancel/index.css';
 import ReservationList from '@/app/mypage/(student)/reservations/components/ReservationList';
 import BlurButton from '@/common/components/BlurButton/BlurButton';
 import BoxButton from '@/common/components/BoxButton/BoxButton';
@@ -73,7 +72,7 @@ const MypageCancelClass = () => {
           })
         );
       }
-      router.push(ROUTES_CONFIG.mypageCancelConfirm.path(id));
+      router.push(`/mypage/reservations/${id}/cancel-confirm`);
     }
   };
 

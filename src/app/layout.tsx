@@ -2,7 +2,6 @@
 
 import { usePathname } from 'next/navigation';
 import Script from 'next/script';
-import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import Providers from '@/app/Providers';
 import Header from '@/common/components/Header/Header';
 import ModalProvider from '@/common/components/Modal/ModalProvider';
@@ -11,10 +10,10 @@ import '@/shared/styles/index.css';
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
 
-  const isSearchPath = pathname === ROUTES_CONFIG.search.path;
-  const isOnboardingPath = pathname === ROUTES_CONFIG.onboarding.path;
+  const isSearchPath = pathname === '/search';
+  const isOnboardingPath = pathname === '/onboarding';
   const isReservationPath = pathname?.startsWith('/reservation/');
-  const isWithdrawPath = pathname === ROUTES_CONFIG.withdraw.path;
+  const isWithdrawPath = pathname === '/mypage/withdraw';
 
   const shouldShowHeader = !isSearchPath && !isOnboardingPath && !isReservationPath && !isWithdrawPath;
 
@@ -35,7 +34,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             {children}
             <ModalProvider />
           </Providers>
-          {/* <Script
+          <Script
             id="clarity"
             strategy="afterInteractive"
             dangerouslySetInnerHTML={{
@@ -47,7 +46,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               })(window,document,'clarity','script','tw3shhhgdn');
             `,
             }}
-          /> */}
+          />
         </div>
       </body>
     </html>

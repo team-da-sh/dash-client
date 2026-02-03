@@ -1,8 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
-import { ROUTES_CONFIG } from '@/routes/routesConfig';
+import { Suspense, useState } from 'react';
 import CompleteStep from '@/app/mypage/withdraw/components/CompleteStep/CompleteStep';
 import NoticeStep from '@/app/mypage/withdraw/components/NoticeStep/NoticeStep';
 import ReasonStep from '@/app/mypage/withdraw/components/ReasonStep/ReasonStep';
@@ -10,9 +9,9 @@ import WithdrawHeader from '@/app/mypage/withdraw/components/WithdrawHeader/With
 import type { WithdrawReasonTypes } from '@/app/mypage/withdraw/constants';
 import { useFunnel } from '@/common/hooks/useFunnel';
 
-export default function Page() {
+function WithdrawContent() {
   const router = useRouter();
-  const { Funnel, Step, setStep } = useFunnel(3, ROUTES_CONFIG.home.path);
+  const { Funnel, Step, setStep } = useFunnel(3, '/');
   const [email, setEmail] = useState('');
   const [selectedReasons, setSelectedReasons] = useState<WithdrawReasonTypes[]>([]);
   const [customReason, setCustomReason] = useState('');
@@ -42,8 +41,16 @@ export default function Page() {
 
       <Step name="3">
         <WithdrawHeader step={3} />
-        <CompleteStep email={email} onGoHome={() => router.push(ROUTES_CONFIG.home.path)} />
+        <CompleteStep email={email} onGoHome={() => router.push('/')} />
       </Step>
     </Funnel>
+  );
+}
+
+export default function Page() {
+  return (
+    <Suspense fallback={null}>
+      <WithdrawContent />
+    </Suspense>
   );
 }

@@ -1,7 +1,6 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
 import type { AxiosError } from 'axios';
 import { useRouter } from 'next/navigation';
-import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { kakaoLogin, postLogout, postReissue } from '@/app/auth/apis/axios';
 import type { loginTypes } from '@/app/auth/types/api';
 import { instance } from '@/shared/apis/instance';
@@ -22,11 +21,11 @@ export const useLoginMutation = () => {
         if (typeof window !== 'undefined') {
           sessionStorage.setItem(ONBOARDING_TOKENS_KEY, JSON.stringify({ accessToken, refreshToken, isDeleted }));
         }
-        router.push(ROUTES_CONFIG.onboarding.path);
+        router.push('/onboarding');
         return;
       }
 
-      router.push(ROUTES_CONFIG.home.path);
+      router.push('/');
       setStorage(accessToken, refreshToken);
     },
 

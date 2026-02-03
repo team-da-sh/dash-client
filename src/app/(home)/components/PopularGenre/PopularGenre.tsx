@@ -1,7 +1,6 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { useGetPopularGenres } from '@/app/(home)/apis/queries';
 import GenreItem from '@/app/(home)/components/GenreItem/GenreItem';
 import { genreWrapperStyle } from '@/app/(home)/components/LessonItem/lessonItem.css';
@@ -16,7 +15,7 @@ const PopularGenre = () => {
   const router = useRouter();
 
   const handleGenreClick = (genre: string) => {
-    router.push(`${ROUTES_CONFIG.search.path}?genre=${encodeURIComponent(genre)}`);
+    router.push(`/search?genre=${encodeURIComponent(genre)}`);
   };
 
   return (

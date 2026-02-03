@@ -58,6 +58,8 @@ const DancerNameSection = ({ duplicateState, setDuplicateState }: DancerNameSect
   const shouldDisableButton = !!error || duplicateState === 'available';
   const buttonVariant = shouldDisableButton ? 'temp' : 'primary';
 
+  console.log(watch('nickname'));
+
   return (
     <section className={styles.containerStyle}>
       <Text tag="b2_sb">댄서네임</Text>

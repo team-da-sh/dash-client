@@ -1,6 +1,6 @@
-import type { LessonStatus } from '@/pages/instructor/lessonManage/types/lessonStatus';
-import type { GenreTypes } from '@/pages/onboarding/types/genreTypes';
-import type { LevelTypes } from '@/pages/onboarding/types/levelTypes';
+import type { LessonStatus } from '@/app/mypage/(instructor)/classes/types/lessonStatus';
+import type { GenreTypes } from '@/app/onboarding/types/genreTypes';
+import type { LevelTypes } from '@/app/onboarding/types/levelTypes';
 
 export interface Lesson {
   id: number;

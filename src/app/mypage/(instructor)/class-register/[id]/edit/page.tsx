@@ -5,7 +5,6 @@ import { useQueryClient } from '@tanstack/react-query';
 import { useParams, useRouter } from 'next/navigation';
 import { useEffect, type FormEvent } from 'react';
 import { FormProvider, useController, useForm } from 'react-hook-form';
-import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { useGetLessonDetail } from '@/app/class/[id]/apis/queries';
 import {
   useGetLocationList,
@@ -43,13 +42,13 @@ import useBottomSheet from '@/shared/hooks/useBottomSheet';
 import useImageUploader from '@/shared/hooks/useImageUploader';
 
 export default function Page() {
-  const params = useParams() ?? {};
-  const id = (params as { id?: string }).id;
+  const params = useParams<{ id: string }>();
+  const id = params.id;
   const router = useRouter();
   const { openModal } = useModalStore();
 
-  const lessonId = id ? Number(id) : null;
-  const isValidId = lessonId !== null && !isNaN(lessonId) && lessonId > 0;
+  const lessonId = Number(id);
+  const isValidId = !isNaN(lessonId) && lessonId > 0;
 
   const queryClient = useQueryClient();
   const { mutate: classRegisterMutate, isPending: isRegistering } = usePostClassRegisterInfo();
@@ -230,7 +229,7 @@ export default function Page() {
               queryClient.invalidateQueries({ queryKey: lessonKeys.list.queryKey });
               queryClient.invalidateQueries({ queryKey: lessonKeys.detail(lessonId).queryKey });
               queryClient.invalidateQueries({ queryKey: teacherKeys.me._ctx.lesson.queryKey });
-              router.push(ROUTES_CONFIG.instructorClassDetail.path(String(lessonId)));
+              router.push(`/mypage/classes/${lessonId}`);
               notify({ message: CLASS_REGISTER_EDIT_MESSAGE.EDIT_SUCCESS, icon: 'success' });
             },
           }
@@ -240,7 +239,7 @@ export default function Page() {
           onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: memberKeys.me.queryKey });
             queryClient.invalidateQueries({ queryKey: lessonKeys.list.queryKey });
-            router.push(ROUTES_CONFIG.classRegisterCompletion.path);
+            router.push('/mypage/class-register/completion');
             notify({ message: CLASS_REGISTER_EDIT_MESSAGE.REGISTER_SUCCESS, icon: 'success' });
           },
         });

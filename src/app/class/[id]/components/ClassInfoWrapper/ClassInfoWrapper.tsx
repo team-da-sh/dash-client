@@ -1,7 +1,6 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import Card from '@/app/class/[id]/components/Card/Card';
 import {
   cardItemStyle,
@@ -46,8 +45,7 @@ const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetailResponseType
   const router = useRouter();
 
   const handleTeacherClick = (dancerId: number) => {
-    const path = ROUTES_CONFIG.dancer.path(dancerId.toString());
-    router.push(path);
+    router.push(`/dancer/${dancerId}`);
   };
 
   const MAX_DISPLAY_RESERVATION_COUNT = 999;

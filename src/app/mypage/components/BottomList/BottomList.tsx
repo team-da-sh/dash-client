@@ -1,7 +1,6 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { usePostLogout } from '@/app/auth/apis/queries';
 import { usePostValidateWithdraw } from '@/app/mypage/apis/queries';
 import { ulStyle, listStyle, dividerStyle, sectionStyle } from '@/app/mypage/components/BottomList/bottomList.css';
@@ -27,13 +26,13 @@ const BottomList = ({ userRole }: BottomListPropTypes) => {
 
   const LIST_DATA = getBottomListData(userRole);
 
-  const handleNavigateAccount = () => router.push(ROUTES_CONFIG.accountRegister.path);
+  const handleNavigateAccount = () => router.push('/mypage/account-register');
   const handleShowFAQ = () => notify({ message: '해당 기능은 추후 구현 예정이에요' });
   const handleOpenCenter = () => window.open(GOOGLE_FORM_LINK, '_blank');
 
   const handleLogout = (close: () => void) => {
     logout();
-    router.push(ROUTES_CONFIG.home.path);
+    router.push('/');
     close();
   };
   const handleLogoutClick = () => {
@@ -55,7 +54,7 @@ const BottomList = ({ userRole }: BottomListPropTypes) => {
     validateWithdraw(undefined, {
       onSuccess: () => {
         useWithdrawStore.getState().allowValidate();
-        router.push(ROUTES_CONFIG.withdraw.path);
+        router.push('/mypage/withdraw');
       },
       onError: () => {
         openModal(({ close }) => (

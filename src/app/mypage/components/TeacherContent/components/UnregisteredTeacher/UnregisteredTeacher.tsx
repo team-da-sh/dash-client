@@ -1,5 +1,4 @@
-import { useNavigate } from 'react-router-dom';
-import { ROUTES_CONFIG } from '@/routes/routesConfig';
+import { useRouter } from 'next/navigation';
 import Head from '@/common/components/Head/Head';
 import Text from '@/common/components/Text/Text';
 import IcProfile from '@/shared/assets/svg/IcProfile';
@@ -9,9 +8,9 @@ interface UnregisteredTeacherPropTypes {
   name: string;
 }
 const UnregisteredTeacher = ({ name }: UnregisteredTeacherPropTypes) => {
-  const navigate = useNavigate();
+  const router = useRouter();
   const handleRegisterButtonClick = () => {
-    navigate(ROUTES_CONFIG.instructorRegister.path);
+    router.push('/mypage/profile-register');
   };
 
   return (

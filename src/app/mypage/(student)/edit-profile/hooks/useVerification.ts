@@ -1,7 +1,6 @@
 import type { AxiosError } from 'axios';
 import { useRouter } from 'next/navigation';
 import { useReducer } from 'react';
-import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { usePostPhoneRequest, usePostPhoneVerify } from '@/app/onboarding/apis/queries';
 import type { tokenTypes } from '@/app/onboarding/types/api';
 import type { phoneVerifyTypes } from '@/app/onboarding/types/onboardInfoTypes';
@@ -64,7 +63,7 @@ export const useVerification = (phoneNumber: string) => {
   const handleRequestVerification = (): void => {
     if (!accessToken) {
       notify({ message: '로그인이 필요합니다.', icon: 'fail', bottomGap: 'large' });
-      router.push(ROUTES_CONFIG.login.path);
+      router.push('/auth/login');
       return;
     }
 
@@ -98,7 +97,7 @@ export const useVerification = (phoneNumber: string) => {
   const handleVerifyCode = (): void => {
     if (!accessToken) {
       notify({ message: '로그인이 필요합니다.', icon: 'fail', bottomGap: 'large' });
-      router.push(ROUTES_CONFIG.login.path);
+      router.push('/auth/login');
       return;
     }
 

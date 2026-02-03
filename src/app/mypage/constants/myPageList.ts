@@ -1,4 +1,3 @@
-import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import IcList from '@/shared/assets/svg/IcList';
 import IcRecent from '@/shared/assets/svg/IcRecent';
 import IcReview from '@/shared/assets/svg/IcReview';
@@ -8,7 +7,7 @@ export const MENU_LIST = [
   {
     icon: IcList,
     label: '수강 목록',
-    path: ROUTES_CONFIG.mypageReservation.path,
+    path: '/mypage/reservations',
   },
   {
     icon: IcWish,

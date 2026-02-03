@@ -1,4 +1,4 @@
-import { useQuery, useSuspenseQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import '@/app/(home)/apis/axios';
 import { getAdvertisements, getLatestLessons, getPopularGenres, getUpcomingLessons } from '@/app/(home)/apis/axios';
 import type {
@@ -31,7 +31,7 @@ const selectLimitedLessons = <T extends { lessons: LessonTypes[] }>(data: T): T 
 };
 
 export const useGetUpcomingLessons = () => {
-  return useSuspenseQuery<UpcomingLessonsResponseTypes>({
+  return useQuery<UpcomingLessonsResponseTypes>({
     queryKey: lessonKeys.list._ctx.upcoming.queryKey,
     queryFn: () => getUpcomingLessons(),
     select: selectLimitedLessons,

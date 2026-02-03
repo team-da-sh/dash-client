@@ -3,7 +3,6 @@ import { useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import {
   usePatchInstructorRegisterInfo,
   usePostInstructor,
@@ -92,7 +91,7 @@ const useInstructorRegisterForm = ({ userRole, prevInstructorData }: UseInstruct
 
       queryClient.invalidateQueries({ queryKey: authKeys.role.queryKey });
 
-      router.push(ROUTES_CONFIG.instructorRegisterCompletion.path);
+      router.push('/mypage/profile-register-completion');
     };
 
     // 강사 수정 성공 함수
@@ -103,12 +102,12 @@ const useInstructorRegisterForm = ({ userRole, prevInstructorData }: UseInstruct
       // 댄서 조회 API invalidate
       queryClient.invalidateQueries({ queryKey: teacherKeys.list.queryKey });
 
-      router.push(ROUTES_CONFIG.mypage.withTab('teacher'));
+      router.push('/mypage?tab=teacher');
       notify({ message: '수정이 완료되었어요.', icon: 'success' });
     };
 
     const onError = () => {
-      router.push(ROUTES_CONFIG.error.path);
+      router.push('/error');
     };
 
     if (isEditMode) {

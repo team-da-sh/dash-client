@@ -1,5 +1,6 @@
 'use client';
 
+import { Suspense } from 'react';
 import StudentContent from '@/app/mypage/components/StudentContent/StudentContent';
 import TeacherContent from '@/app/mypage/components/TeacherContent/TeacherContent';
 import { MYPAGE_TABS } from '@/app/mypage/constants/tabs';
@@ -7,7 +8,7 @@ import { containerStyle, tabPanelStyle } from '@/app/mypage/index.css';
 import { TabButton, TabList, TabPanel } from '@/common/components/Tab';
 import { useTabNavigation } from '@/shared/hooks/useTabNavigation';
 
-export default function MyPage() {
+function MyPageContent() {
   const { selectedTab, setSelectedTab } = useTabNavigation('student');
 
   return (
@@ -37,5 +38,13 @@ export default function MyPage() {
         </TabPanel>
       </section>
     </main>
+  );
+}
+
+export default function MyPage() {
+  return (
+    <Suspense fallback={null}>
+      <MyPageContent />
+    </Suspense>
   );
 }

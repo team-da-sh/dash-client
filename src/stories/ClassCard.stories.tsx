@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import type { ComponentProps } from 'react';
-import type { GenreTypes } from '@/pages/onboarding/types/genreTypes';
-import type { LevelTypes } from '@/pages/onboarding/types/levelTypes';
+import type { GenreTypes } from '@/app/onboarding/types/genreTypes';
+import type { LevelTypes } from '@/app/onboarding/types/levelTypes';
 import BoxButton from '@/common/components/BoxButton/BoxButton';
 import ClassCard from '@/shared/components/ClassCard';
 import { USER_ROLE } from '@/shared/constants/userRole';

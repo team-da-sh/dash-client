@@ -1,7 +1,6 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import DancerClassItem from '@/app/dancer/[id]/components/DancerInfo/DancerClassItem/DancerClassItem';
 import {
   rowScrollStyle,
@@ -31,8 +30,7 @@ const DancerInfo = ({ dancerData }: { dancerData: DancerDetailResponseTypes }) =
   const router = useRouter();
 
   const handleClassClick = (lessonId: number) => {
-    const path = ROUTES_CONFIG.class.path(lessonId.toString());
-    router.push(path);
+    router.push(`/class/${lessonId}`);
   };
 
   return (

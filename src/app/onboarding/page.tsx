@@ -1,7 +1,6 @@
 'use client';
 
-import { useRef, useState } from 'react';
-import { ROUTES_CONFIG } from '@/routes/routesConfig';
+import { Suspense, useRef, useState } from 'react';
 import { usePostOnboard } from '@/app/onboarding/apis/queries';
 import FinishStep from '@/app/onboarding/components/FinishStep/FinishStep';
 import InfoStep from '@/app/onboarding/components/InfoStep/InfoStep';
@@ -29,11 +28,11 @@ function getOnboardingTokens(): { accessToken: string; refreshToken: string; isD
   }
 }
 
-export default function Page() {
+function OnboardingContent() {
   const tokenRef = useRef(getOnboardingTokens());
   const isDeleted = tokenRef.current?.isDeleted ?? false;
 
-  const { Funnel, Step, setStep, currentStep } = useFunnel(FINAL_ONBOARDING_STEP, ROUTES_CONFIG.home.path);
+  const { Funnel, Step, setStep, currentStep } = useFunnel(FINAL_ONBOARDING_STEP, '/');
 
   const initialState: OnboardingState = {
     info: { name: '', phoneNumber: '', verificationCode: '' },
@@ -135,5 +134,13 @@ export default function Page() {
         />
       </div>
     </form>
+  );
+}
+
+export default function Page() {
+  return (
+    <Suspense fallback={null}>
+      <OnboardingContent />
+    </Suspense>
   );
 }

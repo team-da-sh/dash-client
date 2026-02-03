@@ -1,7 +1,7 @@
 'use client';
 
 import { useSearchParams } from 'next/navigation';
-import { useState } from 'react';
+import { Suspense, useState } from 'react';
 import { useGetClassList, useGetDancerList } from '@/app/search/apis/queries';
 import SearchBar from '@/app/search/components/SearchBar/SearchBar';
 import SearchHeader from '@/app/search/components/SearchHeader/SearchHeader';
@@ -77,5 +77,9 @@ const Search = () => {
 };
 
 export default function Page() {
-  return <Search />;
+  return (
+    <Suspense fallback={null}>
+      <Search />
+    </Suspense>
+  );
 }

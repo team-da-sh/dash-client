@@ -2,7 +2,6 @@
 
 import { useRouter } from 'next/navigation';
 import { lazy, Suspense } from 'react';
-import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import {
   containerStyle,
   buttonContainerStyle,
@@ -20,7 +19,7 @@ export default function ErrorPage() {
   const router = useRouter();
 
   const handleHomeNavigation = () => {
-    router.push(ROUTES_CONFIG.home.path);
+    router.push('/');
     window.location.reload();
   };
 

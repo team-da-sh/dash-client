@@ -5,7 +5,6 @@ import { useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { useGetMyPage, usePostTeacherAccount } from '@/app/mypage/(instructor)/account-register/apis/queries';
 import ConfirmBottomSheet from '@/app/mypage/(instructor)/account-register/components/ConfirmBottomSheet/ConfirmBottomSheet';
 import { ACCOUNT_REGISTER_FORM_KEY } from '@/app/mypage/(instructor)/account-register/constants/registerSection';
@@ -109,7 +108,7 @@ export default function Page() {
 
     teacherAccountMutate(updateInfo, {
       onSuccess: () => {
-        router.push(ROUTES_CONFIG.mypage.withTab('teacher'));
+        router.push('/mypage?tab=teacher');
         queryClient.invalidateQueries({ queryKey: queryKeys.teacher.me._ctx.account.queryKey });
         if (isEditMode) {
           notify({ message: '계좌정보 수정이 완료되었어요', icon: 'success' });
@@ -118,7 +117,7 @@ export default function Page() {
         }
       },
       onError: () => {
-        router.push(ROUTES_CONFIG.error.path);
+        router.push('/error');
       },
     });
   };

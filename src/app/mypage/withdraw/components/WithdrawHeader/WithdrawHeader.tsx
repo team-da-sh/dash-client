@@ -1,7 +1,6 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import * as styles from '@/app/mypage/withdraw/components/WithdrawHeader/withdrawHeader.css';
 import IcBackBlack from '@/shared/assets/svg/IcBack';
 import IcHeaderLogoSmallBlack from '@/shared/assets/svg/IcHeaderLogoSmallBlack';
@@ -15,7 +14,7 @@ const WithdrawHeader = ({ step, onBack }: WithdrawHeaderPropTypes) => {
   const router = useRouter();
 
   const handleLogoClick = () => {
-    router.push(ROUTES_CONFIG.home.path);
+    router.push('/');
   };
 
   const handleBackClick = () => {

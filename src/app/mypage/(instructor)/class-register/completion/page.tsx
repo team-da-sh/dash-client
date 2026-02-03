@@ -1,7 +1,6 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import {
   clearGifStyle,
   buttonContainerStyle,
@@ -18,7 +17,7 @@ export default function Page() {
   const router = useRouter();
 
   const handleComplete = () => {
-    router.push(ROUTES_CONFIG.home.path);
+    router.push('/');
   };
 
   return (

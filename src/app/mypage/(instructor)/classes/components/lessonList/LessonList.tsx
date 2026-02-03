@@ -1,7 +1,6 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import { useGetMyLessons } from '@/app/mypage/(instructor)/classes/apis/queries';
 import { emptyTextStyle } from '@/app/mypage/(instructor)/classes/components/lessonList/lessonList.css';
 import type { LessonStatus } from '@/app/mypage/(instructor)/classes/types/lessonStatus';
@@ -21,11 +20,11 @@ const LessonList = ({ status }: LessonListProps) => {
   const router = useRouter();
 
   const handleClassCardClick = (id: number) => {
-    router.push(ROUTES_CONFIG.class.path(id.toString()));
+    router.push(`/class/${id}`);
   };
 
   const handleDetailButtonClick = (id: number) => {
-    router.push(ROUTES_CONFIG.instructorClassDetail.path(id.toString()));
+    router.push(`/mypage/classes/${id}`);
   };
 
   if (!lessonData) return <></>;
