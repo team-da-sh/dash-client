@@ -50,7 +50,7 @@ function ReservationContent() {
 
       <Step name="3">
         <ReservationHeader step={3} />
-        <SuccessStep onGoHome={() => router.push('/mypage/reservations')} />
+        <SuccessStep onGoHome={() => router.push('/my/reservations')} />
       </Step>
     </Funnel>
   );

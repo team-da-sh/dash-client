@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import type { ComponentPropsWithoutRef } from 'react';
-import type { ReservationStatus } from '@/app/mypage/(student)/reservations/types/reservationStatus';
+import type { ReservationStatus } from '@/app/my/(student)/classes/types/reservationStatus';
 import { tagStyle } from '@/shared/components/ApplyTag/applyTag.css';
 
 interface TagProps extends ComponentPropsWithoutRef<'div'> {

@@ -1,5 +1,5 @@
-import type { RecruitingStatus } from '@/app/mypage/(student)/reservations/types/recruitingStatus';
-import type { ReservationStatus } from '@/app/mypage/(student)/reservations/types/reservationStatus';
+import type { RecruitingStatus } from '@/app/my/(student)/classes/types/recruitingStatus';
+import type { ReservationStatus } from '@/app/my/(student)/classes/types/reservationStatus';
 import Divider from '@/common/components/Divider/Divider';
 import Text from '@/common/components/Text/Text';
 import SvgIcClear from '@/shared/assets/svg/IcClear';

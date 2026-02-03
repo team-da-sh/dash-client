@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
 import type { AxiosError } from 'axios';
-import queryClient from '@/queryClient';
+import queryClient from '@/app/queryClient';
 import { getBankList, getTeacherAccount, postImage, postRole } from '@/shared/apis/axios';
 import { authKeys, bankKeys, teacherKeys } from '@/shared/constants/queryKey';
 import type { BankListResponseTypes, TeacherAccountResponseTypes } from '@/shared/types/api';

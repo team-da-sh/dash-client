@@ -150,7 +150,7 @@ export default function useBlockBackWithUnsavedChanges<TFieldValues extends Fiel
       let navigateTo: string | null = null;
       if (logoButton) navigateTo = '/';
       else if (searchButton) navigateTo = '/search';
-      else if (mypageButton) navigateTo = isLoggedIn() ? '/mypage' : '/auth/login';
+      else if (mypageButton) navigateTo = isLoggedIn() ? '/my' : '/auth/login';
 
       if (!navigateTo) return;
 

@@ -86,7 +86,7 @@ const LessonItem = ({
       </div>
 
       <Head level="h3" tag="b1_sb_long" className={titleStyle} id={nameId}>
-        <Link href={linkType === 'detail' ? `/class/${id}` : `/mypage/classes/${id}`} className={linkStyle}>
+        <Link href={linkType === 'detail' ? `/class/${id}` : `/my/manage-classes/${id}`} className={linkStyle}>
           {name}
         </Link>
       </Head>

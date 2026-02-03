@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { createQueryKeys, mergeQueryKeys } from '@lukemorales/query-key-factory';
-import type { TabStatus } from '@/app/mypage/(instructor)/classes/[id]/types/api';
-import type { LessonStatus } from '@/app/mypage/(instructor)/classes/types/lessonStatus';
-import type { ReservationStatus } from '@/app/mypage/(student)/reservations/types/reservationStatus';
+import type { TabStatus } from '@/app/my/(instructor)/manage-classes/[id]/types/api';
+import type { LessonStatus } from '@/app/my/(instructor)/manage-classes/types/lessonStatus';
+import type { ReservationStatus } from '@/app/my/(student)/classes/types/reservationStatus';
 import type { ClassListParamsTypes } from '@/app/search/types/api';
 
 type SearchKeyword = string | number | ClassListParamsTypes;

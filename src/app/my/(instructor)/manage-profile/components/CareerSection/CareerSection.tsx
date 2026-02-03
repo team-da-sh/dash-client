@@ -1,0 +1,93 @@
+'use client';
+
+import { useFormContext } from 'react-hook-form';
+import InputSection from '@/app/my/(instructor)/manage-profile/components/CareerSection/InputSection/InputSection';
+import { containerStyle } from '@/app/my/(instructor)/manage-profile/components/CareerSection/careerSection.css';
+import Description from '@/app/my/(instructor)/manage-profile/components/Description/Description';
+import {
+  INSTRUCTOR_REGISTER_FORM_KEY,
+  INSTRUCTOR_REGISTER_PLACEHOLDER,
+  MAX_CAREER_INPUT_LENGTH,
+} from '@/app/my/(instructor)/manage-profile/constants/registerSection';
+import type { instructorRegisterFormTypes } from '@/app/my/(instructor)/manage-profile/types/instructorRegisterForm';
+
+const CareerSection = () => {
+  const { setValue, watch } = useFormContext<instructorRegisterFormTypes>();
+  const { educations, experiences, prizes, isEduNoneChecked, isCareerNoneChecked, isPrizeNoneChecked } = watch();
+  const defaultSetValueOptions = {
+    shouldValidate: true,
+    shouldTouch: true,
+    shouldDirty: true,
+  };
+
+  return (
+    <div className={containerStyle}>
+      <Description title="댄서 이력 등록" subTitle="춤에 관련된 것이라면 자유롭게 입력해 보세요" />
+
+      <InputSection
+        title="학력"
+        placeholder={INSTRUCTOR_REGISTER_PLACEHOLDER.EDUCATION}
+        isNoneChecked={isEduNoneChecked}
+        onToggleActive={() => {
+          setValue(INSTRUCTOR_REGISTER_FORM_KEY.IS_EDU_NONE_CHECKED, !isEduNoneChecked, {
+            shouldValidate: true,
+            shouldDirty: true,
+          });
+        }}
+        inputItems={educations.map((value, id) => ({ id: id + 1, value }))}
+        onItemsChange={(updatedItems) =>
+          setValue(
+            INSTRUCTOR_REGISTER_FORM_KEY.EDUCATIONS,
+            updatedItems.map((item) => item.value),
+            defaultSetValueOptions
+          )
+        }
+        maxInputLength={MAX_CAREER_INPUT_LENGTH}
+      />
+
+      <InputSection
+        title="경력"
+        placeholder={INSTRUCTOR_REGISTER_PLACEHOLDER.CAREER}
+        isNoneChecked={isCareerNoneChecked}
+        onToggleActive={() => {
+          setValue(INSTRUCTOR_REGISTER_FORM_KEY.IS_CAREER_NONE_CHECKED, !isCareerNoneChecked, {
+            shouldValidate: true,
+            shouldDirty: true,
+          });
+        }}
+        inputItems={experiences.map((value, id) => ({ id: id + 1, value }))}
+        onItemsChange={(updatedItems) =>
+          setValue(
+            INSTRUCTOR_REGISTER_FORM_KEY.EXPERIENCES,
+            updatedItems.map((item) => item.value),
+            defaultSetValueOptions
+          )
+        }
+        maxInputLength={MAX_CAREER_INPUT_LENGTH}
+      />
+
+      <InputSection
+        title="수상"
+        placeholder={INSTRUCTOR_REGISTER_PLACEHOLDER.PRIZE}
+        isNoneChecked={isPrizeNoneChecked}
+        onToggleActive={() => {
+          setValue(INSTRUCTOR_REGISTER_FORM_KEY.IS_PRIZE_NONE_CHECKED, !isPrizeNoneChecked, {
+            shouldValidate: true,
+            shouldDirty: true,
+          });
+        }}
+        inputItems={prizes.map((value, id) => ({ id: id + 1, value }))}
+        onItemsChange={(updatedItems) =>
+          setValue(
+            INSTRUCTOR_REGISTER_FORM_KEY.PRIZES,
+            updatedItems.map((item) => item.value),
+            defaultSetValueOptions
+          )
+        }
+        maxInputLength={MAX_CAREER_INPUT_LENGTH}
+      />
+    </div>
+  );
+};
+
+export default CareerSection;

@@ -1,4 +1,4 @@
-import type { RecruitingStatus } from '@/app/mypage/(student)/reservations/types/recruitingStatus';
+import type { RecruitingStatus } from '@/app/my/(student)/classes/types/recruitingStatus';
 import type { GenreTypes } from '@/app/onboarding/types/genreTypes';
 import type { LevelTypes } from '@/app/onboarding/types/levelTypes';
 

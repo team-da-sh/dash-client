@@ -20,9 +20,9 @@ const InfoComponent = ({ type, profileImageUrl, mainText, subContent }: InfoComp
   const router = useRouter();
   const handleEditProfileClick = () => {
     if (type === 'student') {
-      router.push('/mypage/edit-profile');
+      router.push('/my/edit-profile');
     } else {
-      router.push('/mypage/profile-register');
+      router.push('/my/manage-profile');
     }
   };
 

@@ -13,7 +13,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   const isSearchPath = pathname === '/search';
   const isOnboardingPath = pathname === '/onboarding';
   const isReservationPath = pathname?.startsWith('/reservation/');
-  const isWithdrawPath = pathname === '/mypage/withdraw';
+  const isWithdrawPath = pathname === '/my/withdraw';
 
   const shouldShowHeader = !isSearchPath && !isOnboardingPath && !isReservationPath && !isWithdrawPath;
 

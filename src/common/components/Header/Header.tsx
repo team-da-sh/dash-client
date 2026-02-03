@@ -22,7 +22,7 @@ const Header = () => {
       return;
     }
 
-    router.push('/mypage');
+    router.push('/my');
   };
 
   return (
