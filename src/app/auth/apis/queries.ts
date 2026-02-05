@@ -3,10 +3,9 @@ import type { AxiosError } from 'axios';
 import { useRouter } from 'next/navigation';
 import { kakaoLogin, postLogout, postReissue } from '@/app/auth/apis/axios';
 import type { loginTypes } from '@/app/auth/types/api';
-import { instance } from '@/shared/apis/instance';
 import { ONBOARDING_TOKENS_KEY } from '@/shared/constants/api';
 import { authKeys } from '@/shared/constants/queryKey';
-import { clearStorage, setStorage } from '@/shared/utils/handleToken';
+import { clearStorage } from '@/shared/utils/handleToken';
 
 export const useLoginMutation = () => {
   const router = useRouter();
@@ -15,7 +14,6 @@ export const useLoginMutation = () => {
     mutationFn: ({ redirectUrl, code }: loginTypes) => kakaoLogin(redirectUrl, code),
 
     onSuccess: ({ data: { accessToken, refreshToken, isOnboarded, isDeleted } }) => {
-      instance.defaults.headers.Authorization = `Bearer ${accessToken}`;
       if (!isOnboarded || isDeleted) {
         clearStorage();
         if (typeof window !== 'undefined') {
@@ -26,7 +24,6 @@ export const useLoginMutation = () => {
       }
 
       router.push('/');
-      setStorage(accessToken, refreshToken);
     },
 
     onError: (error: AxiosError) => {

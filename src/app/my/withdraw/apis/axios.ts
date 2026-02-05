@@ -1,8 +1,9 @@
 import { instance } from '@/shared/apis/instance';
-import { API_URL } from '@/shared/constants/apiURL';
 
 export const postWithdraw = async () => {
-  const { data } = await instance.post(API_URL.MEMBERS_WITHDRAW);
+  // Next BFF Route Handler (/api/auth/withdraw)를 통해
+  // 서버에 탈퇴 요청을 전달하고, 완료 상태를 쿠키로 관리한다.
+  const { data } = await instance.post('/auth/withdraw');
 
   return data;
 };
