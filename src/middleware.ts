@@ -8,8 +8,8 @@ import {
 } from '@/shared/constants/api';
 import { API_URL } from '@/shared/constants/apiURL';
 
-// 로그인 필요 라우트 (AuthGuard 대응)
-const AUTH_REQUIRED_PATHS: RegExp[] = [/^\/my(\/|$)/, /^\/onboarding(\/|$)/, /^\/class(\/|$)/, /^\/dancer(\/|$)/];
+// 로그인 필요 라우트 (AuthGuard 대응). /onboarding은 쿠키 없이 접근 허용(토큰은 sessionStorage)
+const AUTH_REQUIRED_PATHS: RegExp[] = [/^\/my(\/|$)/, /^\/class(\/|$)/, /^\/dancer(\/|$)/];
 
 // 비로그인 사용자 전용 라우트 (GuestGuard 대응)
 const GUEST_ONLY_PATHS: RegExp[] = [/^\/login(\/|$)/, /^\/auth(\/|$)/];
@@ -51,7 +51,12 @@ export async function middleware(request: NextRequest) {
   const isWithdrawRoute = isWithdrawPath(pathname);
 
   // 1. AuthGuard: 비로그인 사용자가 보호 라우트 접근 시 로그인 페이지로 리다이렉트
+  // 단, 탈퇴 완료 페이지(step=3)는 예외 — 탈퇴 API에서 쿠키 삭제 후 완료 화면을 보여주기 위함
   if (!accessToken && isProtectedRoute) {
+    const step = getStepParam(request);
+    if (pathname === '/my/withdraw' && step === '3') {
+      return NextResponse.next();
+    }
     const loginUrl = new URL('/login', request.url);
     return NextResponse.redirect(loginUrl);
   }
@@ -101,7 +106,9 @@ export async function middleware(request: NextRequest) {
       const isDeleted = data?.isDeleted ?? false;
 
       // 온보딩이 이미 완료되고 탈퇴 상태가 아니라면 온보딩 페이지 접근 차단
-      if (isOnboarded && !isDeleted) {
+      // 단, step=2(온보딩 성공 화면)는 허용 — 방금 완료한 사용자가 성공 화면을 보도록
+      const onboardingStep = getStepParam(request);
+      if (isOnboarded && !isDeleted && onboardingStep !== '2') {
         const homeUrl = new URL('/', request.url);
         return NextResponse.redirect(homeUrl);
       }
@@ -190,6 +197,11 @@ export async function middleware(request: NextRequest) {
     const step = getStepParam(request) ?? '1';
     const withdrawValidated = request.cookies.get(WITHDRAW_VALIDATED_KEY)?.value === 'true';
     const withdrawCompleted = request.cookies.get(WITHDRAW_COMPLETED_KEY)?.value === 'true';
+
+    // 탈퇴 완료 직후: API에서 쿠키를 삭제한 상태로 step=3 요청이 오면 완료 페이지 허용
+    if (!accessToken && step === '3') {
+      return NextResponse.next();
+    }
 
     // 이미 탈퇴가 완료된 사용자는 언제나 완료 페이지(step=3)로만 접근 허용
     if (withdrawCompleted) {
