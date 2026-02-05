@@ -30,16 +30,31 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(data ?? { message: 'Login failed' }, { status: response.status });
     }
 
-    // body에서 토큰 지우고, 쿠키 설정하여 반환
-    const res = NextResponse.json({ isOnboarded: data.isOnboarded }, { status: response.status });
-    if (data.accessToken) {
-      res.cookies.set(ACCESS_TOKEN_KEY, data.accessToken, COOKIE_OPTIONS);
-    }
-    if (data.refreshToken) {
-      res.cookies.set(REFRESH_TOKEN_KEY, data.refreshToken, COOKIE_OPTIONS);
+    const isOnboarded = data.isOnboarded === true;
+    const isDeleted = data.isDeleted === true;
+
+    // 온보딩 완료된 사용자만 쿠키 설정; 미완료/재가입 시 토큰은 body로만 전달
+    if (isOnboarded && !isDeleted) {
+      const res = NextResponse.json({ isOnboarded: true }, { status: response.status });
+      if (data.accessToken) {
+        res.cookies.set(ACCESS_TOKEN_KEY, data.accessToken, COOKIE_OPTIONS);
+      }
+      if (data.refreshToken) {
+        res.cookies.set(REFRESH_TOKEN_KEY, data.refreshToken, COOKIE_OPTIONS);
+      }
+      return res;
     }
 
-    return res;
+    // isOnboarded false 또는 isDeleted: 쿠키 설정하지 않음, 토큰을 body로 반환
+    return NextResponse.json(
+      {
+        isOnboarded: data.isOnboarded,
+        isDeleted: data.isDeleted,
+        accessToken: data.accessToken,
+        refreshToken: data.refreshToken,
+      },
+      { status: response.status }
+    );
   } catch {
     return NextResponse.json({ message: 'Login failed' }, { status: 500 });
   }

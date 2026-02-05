@@ -13,16 +13,13 @@ import { notify } from '@/common/components/Toast/Toast';
 import { useFunnel } from '@/common/hooks/useFunnel';
 import { ONBOARDING_TOKENS_KEY } from '@/shared/constants/api';
 import { PHONE_AUTH_MESSAGES } from '@/shared/constants/userInfo';
-import { setStorage } from '@/shared/utils/handleToken';
 
 function getOnboardingTokens(): { accessToken: string; refreshToken: string; isDeleted?: boolean } | null {
   if (typeof window === 'undefined') return null;
   try {
     const raw = sessionStorage.getItem(ONBOARDING_TOKENS_KEY);
     if (!raw) return null;
-    const parsed = JSON.parse(raw);
-    sessionStorage.removeItem(ONBOARDING_TOKENS_KEY);
-    return parsed;
+    return JSON.parse(raw);
   } catch {
     return null;
   }
@@ -75,9 +72,24 @@ function OnboardingContent() {
         accessToken: tokens.accessToken,
       },
       {
-        onSuccess: () => {
-          if (tokenRef.current) {
-            setStorage(tokenRef.current.accessToken, tokenRef.current.refreshToken);
+        onSuccess: async () => {
+          const tokens = tokenRef.current;
+          if (tokens?.accessToken) {
+            try {
+              const res = await fetch('/api/auth/set-cookies', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  accessToken: tokens.accessToken,
+                  refreshToken: tokens.refreshToken,
+                }),
+              });
+              if (res.ok) {
+                sessionStorage.removeItem(ONBOARDING_TOKENS_KEY);
+              }
+            } catch {
+              // set-cookies 실패 시에도 성공 화면은 보여줌
+            }
           }
           setStep(1);
         },

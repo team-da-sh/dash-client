@@ -19,7 +19,7 @@ export const useLoginMutation = () => {
         if (typeof window !== 'undefined') {
           sessionStorage.setItem(ONBOARDING_TOKENS_KEY, JSON.stringify({ accessToken, refreshToken, isDeleted }));
         }
-        router.push('/onboarding');
+        router.push(isDeleted ? '/onboarding?isDeleted=true' : '/onboarding');
         return;
       }
 

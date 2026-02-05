@@ -11,7 +11,11 @@ async function proxyToBackend(request: NextRequest, params: RouteParams) {
   const targetUrl = new URL(joinedPath + search, process.env.NEXT_PUBLIC_DEV_BASE_URL);
 
   const proxyRequest = new Request(targetUrl, request);
-  const accessToken = request.cookies.get(ACCESS_TOKEN_KEY)?.value;
+
+  // 온보딩 과정에서는 쿠키에 토큰이 없으므로 헤더에서 토큰을 가져옴
+  const cookieToken = request.cookies.get(ACCESS_TOKEN_KEY)?.value;
+  const headerToken = request.headers.get('Authorization')?.replace(/^Bearer\s+/i, '');
+  const accessToken = cookieToken ?? headerToken;
   proxyRequest.headers.delete('cookie');
   if (accessToken) {
     proxyRequest.headers.set('Authorization', `Bearer ${accessToken}`);
