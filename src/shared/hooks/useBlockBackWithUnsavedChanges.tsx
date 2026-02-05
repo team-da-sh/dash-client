@@ -3,7 +3,6 @@ import { useEffect, useRef } from 'react';
 import type { FieldValues, UseFormReturn } from 'react-hook-form';
 import Modal from '@/common/components/Modal/Modal';
 import { useModalStore } from '@/common/stores/modal';
-import { isLoggedIn } from '@/shared/utils/authUtil';
 
 type UseBlockBackWithUnsavedChangesParams<TFieldValues extends FieldValues> = {
   methods: UseFormReturn<TFieldValues>;
@@ -150,7 +149,7 @@ export default function useBlockBackWithUnsavedChanges<TFieldValues extends Fiel
       let navigateTo: string | null = null;
       if (logoButton) navigateTo = '/';
       else if (searchButton) navigateTo = '/search';
-      else if (mypageButton) navigateTo = isLoggedIn() ? '/my' : '/auth/login';
+      else if (mypageButton) navigateTo = '/my';
 
       if (!navigateTo) return;
 
