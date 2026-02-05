@@ -13,7 +13,7 @@ export const useCancelReservation = () => {
       cancelReservation(reservationId, requestData),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: memberKeys.me._ctx.reservation.queryKey });
-      router.push('/my/reservations');
+      router.push('/my/classes');
     },
     onError: (error) => {
       console.error('예약 취소 실패:', error);

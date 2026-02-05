@@ -7,7 +7,7 @@ export const MENU_LIST = [
   {
     icon: IcList,
     label: '수강 목록',
-    path: '/my/reservations',
+    path: '/my/classes',
   },
   {
     icon: IcWish,

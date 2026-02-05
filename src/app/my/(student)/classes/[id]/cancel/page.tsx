@@ -72,7 +72,7 @@ const MypageCancelClass = () => {
           })
         );
       }
-      router.push(`/my/reservations/${id}/cancel-confirm`);
+      router.push(`/my/classes/${id}/cancel-confirm`);
     }
   };
 

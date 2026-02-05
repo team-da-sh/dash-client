@@ -12,7 +12,7 @@ export const handleClassCardClick = (push: PushFn, lessonId: number | undefined)
 
 export const handleDetailClick = (push: PushFn, id: number | undefined, isReservation: boolean) => {
   if (id !== undefined) {
-    const path = isReservation ? `/my/reservations/${id}` : `/my/manage-classes/${id}`;
+    const path = isReservation ? `/my/classes/${id}` : `/my/manage-classes/${id}`;
     push(path);
   } else {
     push('/error');
@@ -21,7 +21,7 @@ export const handleDetailClick = (push: PushFn, id: number | undefined, isReserv
 
 export const handleCancelClick = (e: React.MouseEvent, push: PushFn, reservation: Reservation) => {
   e.stopPropagation();
-  push(`/my/reservations/${reservation.reservationId}/cancel`);
+  push(`/my/classes/${reservation.reservationId}/cancel`);
 };
 
 export const handleBoxButtonClick = (

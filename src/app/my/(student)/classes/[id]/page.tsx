@@ -23,7 +23,7 @@ export default function Page() {
   }
 
   const handleGoCancleClassPage = () => {
-    router.push(`/my/reservations/${reservationId ?? ''}/cancel`);
+    router.push(`/my/classes/${reservationId ?? ''}/cancel`);
   };
 
   const handleGoAskPage = (e: React.MouseEvent) => {
