@@ -21,15 +21,6 @@ const nextConfig = {
     // 마이그레이션 단계에서 기존 a11y/훅 규칙으로 빌드 실패하지 않도록 무시 (추후 규칙 수정 후 제거 권장)
     ignoreDuringBuilds: true,
   },
-  // 개발환경에서만 API 프록시 설정 (CORS 우회)
-  async rewrites() {
-    return [
-      {
-        source: '/api/:path*',
-        destination: `${process.env.NEXT_PUBLIC_DEV_BASE_URL}/:path*`,
-      },
-    ];
-  },
 };
 
 export default withVanillaExtract(nextConfig);
