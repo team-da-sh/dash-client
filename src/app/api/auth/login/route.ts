@@ -31,7 +31,7 @@ export async function POST(request: NextRequest) {
     }
 
     // body에서 토큰 지우고, 쿠키 설정하여 반환
-    const res = NextResponse.json({ ok: true }, { status: response.status });
+    const res = NextResponse.json({ isOnboarded: data.isOnboarded }, { status: response.status });
     if (data.accessToken) {
       res.cookies.set(ACCESS_TOKEN_KEY, data.accessToken, COOKIE_OPTIONS);
     }
