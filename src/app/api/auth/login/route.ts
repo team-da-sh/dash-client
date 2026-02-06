@@ -1,14 +1,8 @@
 import { NextResponse, type NextRequest } from 'next/server';
 import { authFetch } from '@/app/api/auth/_authFetch';
+import { COOKIE_OPTIONS } from '@/app/api/auth/_cookieOptions';
 import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY, TEMP_ACCESS_TOKEN_KEY } from '@/shared/constants/api';
 import { API_URL } from '@/shared/constants/apiURL';
-
-const COOKIE_OPTIONS = {
-  httpOnly: true,
-  sameSite: 'lax' as const,
-  secure: process.env.NODE_ENV === 'production',
-  path: '/',
-};
 
 export async function POST(request: NextRequest) {
   try {
