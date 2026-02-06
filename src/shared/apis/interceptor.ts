@@ -46,7 +46,7 @@ export const onErrorResponse = async (error: AxiosError) => {
       failedRequests = [];
 
       await postLogout().catch(() => {});
-      window.location.replace('/auth/login');
+      window.location.replace('/login');
     } finally {
       isRefreshing = false;
     }
