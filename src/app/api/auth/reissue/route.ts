@@ -1,4 +1,5 @@
 import { NextResponse, type NextRequest } from 'next/server';
+import { authFetch } from '@/app/api/auth/_authFetch';
 import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from '@/shared/constants/api';
 import { API_URL } from '@/shared/constants/apiURL';
 
@@ -16,13 +17,11 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ message: 'Missing refresh token' }, { status: 401 });
     }
 
-    const response = await fetch(new URL(API_URL.AUTH_REISSUE, process.env.NEXT_PUBLIC_DEV_BASE_URL), {
+    const response = await authFetch(API_URL.AUTH_REISSUE, {
       method: 'POST',
       headers: {
-        Accept: 'application/json',
         Authorization: `Bearer ${refreshToken}`,
       },
-      cache: 'no-store',
     });
 
     const data = await response.json().catch(() => null);

@@ -1,4 +1,5 @@
 import { NextResponse, type NextRequest } from 'next/server';
+import { authFetch } from '@/app/api/auth/_authFetch';
 import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from '@/shared/constants/api';
 import { API_URL } from '@/shared/constants/apiURL';
 
@@ -6,12 +7,11 @@ export async function POST(request: NextRequest) {
   try {
     const accessToken = request.cookies.get(ACCESS_TOKEN_KEY)?.value;
 
-    const response = await fetch(new URL(API_URL.AUTH_LOGOUT, process.env.NEXT_PUBLIC_DEV_BASE_URL), {
+    const response = await authFetch(API_URL.AUTH_LOGOUT, {
       method: 'POST',
       headers: {
         ...(accessToken ? { Authorization: `Bearer ${accessToken}` } : {}),
       },
-      cache: 'no-store',
     });
 
     if (!response.ok) {
