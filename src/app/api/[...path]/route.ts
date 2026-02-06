@@ -1,6 +1,6 @@
 import { type NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
-import { ACCESS_TOKEN_KEY } from '@/shared/constants/api';
+import { ACCESS_TOKEN_KEY, TEMP_ACCESS_TOKEN_KEY } from '@/shared/constants/api';
 
 type RouteParams = {
   path: string[];
@@ -13,10 +13,9 @@ async function proxyToBackend(request: NextRequest, params: RouteParams) {
 
     const proxyRequest = new Request(targetUrl, request);
 
-    // 온보딩 과정에서는 쿠키에 토큰이 없으므로 헤더에서 토큰을 가져옴
-    const cookieToken = request.cookies.get(ACCESS_TOKEN_KEY)?.value;
-    const headerToken = request.headers.get('Authorization')?.replace(/^Bearer\s+/i, '');
-    const accessToken = cookieToken ?? headerToken;
+    const cookieAccessToken = request.cookies.get(ACCESS_TOKEN_KEY)?.value;
+    const cookieTempAccessToken = request.cookies.get(TEMP_ACCESS_TOKEN_KEY)?.value;
+    const accessToken = cookieAccessToken ?? cookieTempAccessToken;
 
     if (accessToken) {
       proxyRequest.headers.set('Authorization', `Bearer ${accessToken}`);

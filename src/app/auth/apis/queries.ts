@@ -3,7 +3,6 @@ import type { AxiosError } from 'axios';
 import { useRouter } from 'next/navigation';
 import { kakaoLogin, postLogout, postReissue } from '@/app/auth/apis/axios';
 import type { loginTypes } from '@/app/auth/types/api';
-import { ONBOARDING_TOKENS_KEY } from '@/shared/constants/api';
 import { authKeys } from '@/shared/constants/queryKey';
 import { clearStorage } from '@/shared/utils/handleToken';
 
@@ -13,12 +12,11 @@ export const useLoginMutation = () => {
   return useMutation({
     mutationFn: ({ redirectUrl, code }: loginTypes) => kakaoLogin(redirectUrl, code),
 
-    onSuccess: ({ data: { accessToken, refreshToken, isOnboarded, isDeleted } }) => {
+    onSuccess: ({ data: { isOnboarded, isDeleted } }) => {
+      console.log('성공은 하니??');
       if (!isOnboarded || isDeleted) {
+        console.log('여기야?');
         clearStorage();
-        if (typeof window !== 'undefined') {
-          sessionStorage.setItem(ONBOARDING_TOKENS_KEY, JSON.stringify({ accessToken, refreshToken, isDeleted }));
-        }
         router.push(isDeleted ? '/onboarding?isDeleted=true' : '/onboarding');
         return;
       }

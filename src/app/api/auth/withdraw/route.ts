@@ -3,6 +3,7 @@ import { authFetch } from '@/app/api/auth/_authFetch';
 import {
   ACCESS_TOKEN_KEY,
   REFRESH_TOKEN_KEY,
+  TEMP_ACCESS_TOKEN_KEY,
   WITHDRAW_COMPLETED_KEY,
   WITHDRAW_VALIDATED_KEY,
 } from '@/shared/constants/api';
@@ -34,6 +35,7 @@ export async function POST(request: NextRequest) {
     // 탈퇴 성공 시 인증·탈퇴 플로우 관련 쿠키 전부 삭제
     const cookiePath = { path: '/' };
     res.cookies.delete({ name: ACCESS_TOKEN_KEY, ...cookiePath });
+    res.cookies.delete({ name: TEMP_ACCESS_TOKEN_KEY, ...cookiePath });
     res.cookies.delete({ name: REFRESH_TOKEN_KEY, ...cookiePath });
     res.cookies.delete({ name: WITHDRAW_VALIDATED_KEY, ...cookiePath });
     res.cookies.delete({ name: WITHDRAW_COMPLETED_KEY, ...cookiePath });

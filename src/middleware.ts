@@ -2,33 +2,26 @@ import { NextResponse, type NextRequest } from 'next/server';
 import type { LessonDetailResponseTypes } from '@/app/class/[id]/types/api';
 import {
   ACCESS_TOKEN_KEY,
+  TEMP_ACCESS_TOKEN_KEY,
   HTTP_STATUS_CODE,
   WITHDRAW_COMPLETED_KEY,
   WITHDRAW_VALIDATED_KEY,
 } from '@/shared/constants/api';
 import { API_URL } from '@/shared/constants/apiURL';
 
-// 로그인 필요 라우트 (AuthGuard 대응). onboarding은 쿠키 없이 접근 허용(토큰은 sessionStorage)
 const AUTH_REQUIRED_PATHS: RegExp[] = [/^\/my(\/|$)/, /^\/class(\/|$)/, /^\/dancer(\/|$)/];
-
-// 비로그인 사용자 전용 라우트 (GuestGuard 대응)
 const GUEST_ONLY_PATHS: RegExp[] = [/^\/login(\/|$)/, /^\/auth(\/|$)/];
-
-// 온보딩 가드 대상 라우트
 const ONBOARDING_PATHS: RegExp[] = [/^\/onboarding(\/|$)/];
-
-// 예약 가드 대상 라우트
 const RESERVATION_PATHS: RegExp[] = [/^\/class\/[^/]+\/register(\/|$)/];
-
-// 탈퇴 플로우 가드 대상 라우트
 const WITHDRAW_PATHS: RegExp[] = [/^\/my\/withdraw(\/|$)/];
 
 const isMatch = (pathname: string, patterns: RegExp[]) => patterns.some((regex) => regex.test(pathname));
 
-// 공통: 액세스 토큰 존재 여부 체크
-export const hasAccessToken = (request: NextRequest) => Boolean(request.cookies.get(ACCESS_TOKEN_KEY)?.value);
+const getAccessTokenFromCookies = (request: NextRequest) =>
+  request.cookies.get(ACCESS_TOKEN_KEY)?.value ?? request.cookies.get(TEMP_ACCESS_TOKEN_KEY)?.value;
 
-// 공통: 경로 카테고리 헬퍼
+export const hasAccessToken = (request: NextRequest) => Boolean(getAccessTokenFromCookies(request));
+
 export const isAuthRequiredPath = (pathname: string) => isMatch(pathname, AUTH_REQUIRED_PATHS);
 export const isGuestOnlyPath = (pathname: string) => isMatch(pathname, GUEST_ONLY_PATHS);
 export const isOnboardingPath = (pathname: string) => isMatch(pathname, ONBOARDING_PATHS);
@@ -69,55 +62,7 @@ export async function middleware(request: NextRequest) {
 
   // 2. 온보딩 가드: 로그인 상태에서 온보딩 페이지 접근 시 서버 상태 확인
   if (accessToken && isOnboardingPath(pathname)) {
-    try {
-      const accessTokenValue = request.cookies.get(ACCESS_TOKEN_KEY)?.value;
-
-      const response = await fetch(new URL(API_URL.AUTH_ROLE, process.env.NEXT_PUBLIC_DEV_BASE_URL), {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          ...(accessTokenValue ? { Authorization: `Bearer ${accessTokenValue}` } : {}),
-        },
-        cache: 'no-store',
-      });
-
-      if (!response.ok) {
-        // 인증 실패 시 로그인 페이지로 이동
-        if (response.status === HTTP_STATUS_CODE.UNAUTHORIZED || response.status === HTTP_STATUS_CODE.FORBIDDEN) {
-          const loginUrl = new URL('/login', request.url);
-          const redirectTarget = pathname + search;
-          if (redirectTarget !== '/') {
-            loginUrl.searchParams.set('redirectUrl', redirectTarget);
-          }
-          return NextResponse.redirect(loginUrl);
-        }
-
-        // 그 외 서버 오류 시 홈으로 이동
-        const homeUrl = new URL('/', request.url);
-        return NextResponse.redirect(homeUrl);
-      }
-
-      const data = (await response.json().catch(() => null)) as {
-        isOnboarded?: boolean;
-        isDeleted?: boolean;
-      } | null;
-
-      const isOnboarded = data?.isOnboarded ?? true;
-      const isDeleted = data?.isDeleted ?? false;
-
-      // 온보딩이 이미 완료되고 탈퇴 상태가 아니라면 온보딩 페이지 접근 차단
-      // 단, step=2(온보딩 성공 화면)는 허용 — 방금 완료한 사용자가 성공 화면을 보도록
-      const onboardingStep = getStepParam(request);
-      if (isOnboarded && !isDeleted && onboardingStep !== '2') {
-        const homeUrl = new URL('/', request.url);
-        return NextResponse.redirect(homeUrl);
-      }
-      // 온보딩이 필요하거나 탈퇴 후 재온보딩 상태(isOnboarded === false || isDeleted === true)는 그대로 통과
-    } catch {
-      // 예기치 못한 오류 시에도 사용성을 위해 홈으로 이동
-      const homeUrl = new URL('/', request.url);
-      return NextResponse.redirect(homeUrl);
-    }
+    
   }
 
   // 3. 예약 가드: 예약 페이지(step=1) 진입 전 수업 상태 검증
@@ -136,7 +81,7 @@ export async function middleware(request: NextRequest) {
     // step=1일 때만 서버에서 예약 가능 상태 검증
     if (step === '1') {
       try {
-        const accessTokenValue = request.cookies.get(ACCESS_TOKEN_KEY)?.value;
+        const accessTokenValue = getAccessTokenFromCookies(request);
 
         const response = await fetch(
           new URL(`${API_URL.LESSON_DETAIL}/${lessonId}`, process.env.NEXT_PUBLIC_DEV_BASE_URL),

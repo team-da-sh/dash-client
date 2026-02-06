@@ -38,7 +38,6 @@ interface InfoStepProps {
   onInfoChange: <K extends keyof OnboardInfoTypes>(key: K, value: OnboardInfoTypes[K]) => void;
   isCodeVerified: boolean;
   setIsCodeVerified: (verified: boolean) => void;
-  accessToken: string;
   isNameError: boolean;
   handleNameErrorChange: (isError: boolean) => void;
 }
@@ -50,7 +49,6 @@ const InfoStep = ({
   onInfoChange,
   isCodeVerified,
   setIsCodeVerified,
-  accessToken,
   isNameError,
   handleNameErrorChange,
 }: InfoStepProps) => {
@@ -97,7 +95,7 @@ const InfoStep = ({
     }
 
     requestPhoneMutate(
-      { phoneNumber, accessToken },
+      { phoneNumber },
       {
         onSuccess: () => {
           notify({ message: PHONE_AUTH_MESSAGES.CODE_SENT, icon: 'success', bottomGap: 'large' });
@@ -120,7 +118,7 @@ const InfoStep = ({
 
   const handleVerifyCode = () => {
     verifyPhoneMutate(
-      { phoneNumber, code: verificationCode, accessToken },
+      { phoneNumber, code: verificationCode },
       {
         onSuccess: (data) => {
           if (!data) return;
