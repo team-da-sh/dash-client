@@ -8,7 +8,7 @@ import {
 } from '@/shared/constants/api';
 import { API_URL } from '@/shared/constants/apiURL';
 
-// 로그인 필요 라우트 (AuthGuard 대응). /onboarding은 쿠키 없이 접근 허용(토큰은 sessionStorage)
+// 로그인 필요 라우트 (AuthGuard 대응). onboarding은 쿠키 없이 접근 허용(토큰은 sessionStorage)
 const AUTH_REQUIRED_PATHS: RegExp[] = [/^\/my(\/|$)/, /^\/class(\/|$)/, /^\/dancer(\/|$)/];
 
 // 비로그인 사용자 전용 라우트 (GuestGuard 대응)

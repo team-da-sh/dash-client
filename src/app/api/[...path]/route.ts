@@ -9,7 +9,7 @@ type RouteParams = {
 async function proxyToBackend(request: NextRequest, params: RouteParams) {
   try {
     const path = `/${(params.path ?? []).join('/')}`;
-    const targetUrl = new URL(path + request.nextUrl.search, process.env.NEXT_PUBLIC_DEV_BASE_URL);
+    const targetUrl = new URL(path + request.nextUrl.search, process.env.BACKEND_BASE_URL);
 
     const proxyRequest = new Request(targetUrl, request);
 
