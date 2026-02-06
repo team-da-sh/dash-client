@@ -52,3 +52,12 @@ export const postPhoneVerify = async ({ phoneNumber, code, accessToken }: phoneV
 
   return response.data;
 };
+
+export const postSetCookies = async ({ accessToken, refreshToken }: { accessToken: string; refreshToken: string }) => {
+  const response = await instance.post('/api/auth/set-cookies', {
+    accessToken,
+    refreshToken,
+  });
+
+  return response.data;
+};

@@ -1,6 +1,7 @@
 'use client';
 
 import { Suspense, useRef, useState } from 'react';
+import { postSetCookies } from '@/app/onboarding/apis/axios';
 import { usePostOnboard } from '@/app/onboarding/apis/queries';
 import FinishStep from '@/app/onboarding/components/FinishStep/FinishStep';
 import InfoStep from '@/app/onboarding/components/InfoStep/InfoStep';
@@ -76,17 +77,11 @@ function OnboardingContent() {
           const tokens = tokenRef.current;
           if (tokens?.accessToken) {
             try {
-              const res = await fetch('/api/auth/set-cookies', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                  accessToken: tokens.accessToken,
-                  refreshToken: tokens.refreshToken,
-                }),
+              await postSetCookies({
+                accessToken: tokens.accessToken,
+                refreshToken: tokens.refreshToken,
               });
-              if (res.ok) {
-                sessionStorage.removeItem(ONBOARDING_TOKENS_KEY);
-              }
+              sessionStorage.removeItem(ONBOARDING_TOKENS_KEY);
             } catch {
               // set-cookies 실패 시에도 성공 화면은 보여줌
             }
