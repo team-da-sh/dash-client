@@ -28,7 +28,6 @@ export const isOnboardingPath = (pathname: string) => isMatch(pathname, ONBOARDI
 export const isReservationPath = (pathname: string) => isMatch(pathname, RESERVATION_PATHS);
 export const isWithdrawPath = (pathname: string) => isMatch(pathname, WITHDRAW_PATHS);
 
-// 공통: 예약/탈퇴 등에서 사용하는 step 쿼리 추출
 export const getStepParam = (request: NextRequest) => request.nextUrl.searchParams.get('step');
 
 // 미들웨어 가드 우선순위
@@ -37,21 +36,33 @@ export const getStepParam = (request: NextRequest) => request.nextUrl.searchPara
 // 3. 예약 가드
 export async function middleware(request: NextRequest) {
   const { pathname, search } = request.nextUrl;
+  const cookieAccessToken = request.cookies.get(ACCESS_TOKEN_KEY)?.value;
+  const cookieTempAccessToken = request.cookies.get(TEMP_ACCESS_TOKEN_KEY)?.value;
   const accessToken = hasAccessToken(request);
 
   const isProtectedRoute = isAuthRequiredPath(pathname);
   const isAuthPage = isGuestOnlyPath(pathname);
   const isWithdrawRoute = isWithdrawPath(pathname);
 
-  // 1. AuthGuard: 비로그인 사용자가 보호 라우트 접근 시 로그인 페이지로 리다이렉트
-  // 단, 탈퇴 완료 페이지(step=3)는 예외 — 탈퇴 API에서 쿠키 삭제 후 완료 화면을 보여주기 위함
-  if (!accessToken && isProtectedRoute) {
+  // 1. AuthGuard: 보호 라우트 접근 제어
+  if (isProtectedRoute) {
     const step = getStepParam(request);
-    if (pathname === '/my/withdraw' && step === '3') {
-      return NextResponse.next();
+
+    // 1-1. 온보딩 진행 중(TEMP 토큰만 있는) 사용자는 보호 라우트 접근 시 온보딩 페이지로 리다이렉트
+    if (!cookieAccessToken && cookieTempAccessToken) {
+      const onboardingUrl = new URL('/onboarding', request.url);
+      return NextResponse.redirect(onboardingUrl);
     }
-    const loginUrl = new URL('/login', request.url);
-    return NextResponse.redirect(loginUrl);
+
+    // 1-2. 비로그인 사용자가 보호 라우트 접근 시 로그인 페이지로 리다이렉트
+    // 단, 탈퇴 완료 페이지(step=3)는 예외 — 탈퇴 API에서 쿠키 삭제 후 완료 화면을 보여주기 위함
+    if (!accessToken) {
+      if (pathname === '/my/withdraw' && step === '3') {
+        return NextResponse.next();
+      }
+      const loginUrl = new URL('/login', request.url);
+      return NextResponse.redirect(loginUrl);
+    }
   }
 
   // 1-2. GuestGuard: 로그인 사용자가 로그인/인증 페이지로 접근 시 홈으로 리다이렉트
@@ -60,9 +71,31 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(homeUrl);
   }
 
-  // 2. 온보딩 가드: 로그인 상태에서 온보딩 페이지 접근 시 서버 상태 확인
-  if (accessToken && isOnboardingPath(pathname)) {
-    
+  // 2. 온보딩 가드: 쿠키 기반으로 온보딩 접근 제어
+  if (isOnboardingPath(pathname)) {
+    // 2-1. 비로그인 사용자: 온보딩 페이지 접근 시 로그인 페이지로 리다이렉트
+    if (!cookieAccessToken && !cookieTempAccessToken) {
+      const loginUrl = new URL('/login', request.url);
+      const redirectTarget = pathname + search;
+
+      if (redirectTarget !== '/') {
+        loginUrl.searchParams.set('redirectUrl', redirectTarget);
+      }
+
+      return NextResponse.redirect(loginUrl);
+    }
+
+    // 2-2. TEMP 토큰 사용자: 온보딩/재가입 진행 중이므로 온보딩 페이지 접근 허용
+    if (!cookieAccessToken && cookieTempAccessToken) {
+      return NextResponse.next();
+    }
+
+    // 2-3. ACCESS 토큰 사용자: 온보딩 완료 유저
+    // 온보딩 성공 화면(step=2)만 예외적으로 허용하고, 그 외에는 홈으로 리다이렉트
+    if (cookieAccessToken) {
+      const homeUrl = new URL('/', request.url);
+      return NextResponse.redirect(homeUrl);
+    }
   }
 
   // 3. 예약 가드: 예약 페이지(step=1) 진입 전 수업 상태 검증
