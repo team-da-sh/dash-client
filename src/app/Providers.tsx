@@ -5,6 +5,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { useEffect } from 'react';
 import { Toaster } from 'react-hot-toast';
 import queryClient from '@/app/queryClient';
+import ModalProvider from '@/common/components/Modal/ModalProvider';
 
 const setScreenSize = () => {
   // vh 관련
@@ -31,6 +32,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={false} />
       {children}
+      <ModalProvider />
       <Toaster containerStyle={{ margin: '0 auto' }} />
     </QueryClientProvider>
   );
