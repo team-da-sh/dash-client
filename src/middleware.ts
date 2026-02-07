@@ -93,6 +93,10 @@ export async function middleware(request: NextRequest) {
     // 2-3. ACCESS 토큰 사용자: 온보딩 완료 유저
     // 온보딩 성공 화면(step=2)만 예외적으로 허용하고, 그 외에는 홈으로 리다이렉트
     if (cookieAccessToken) {
+      const step = getStepParam(request);
+      if (step === '2') {
+        return NextResponse.next();
+      }
       const homeUrl = new URL('/', request.url);
       return NextResponse.redirect(homeUrl);
     }
