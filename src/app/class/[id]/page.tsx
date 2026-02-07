@@ -8,7 +8,6 @@ import LimitedChip from '@/app/class/[id]/components/LimitedChip/LimitedChip';
 import TabWrapper from '@/app/class/[id]/components/TabWrapper/TabWrapper';
 import { LOW_SEAT_THRESHOLD } from '@/app/class/[id]/constants';
 import { chipWrapperStyle, topImgStyle, withdrawIconStyle, withdrawImgStyle } from '@/app/class/[id]/index.css';
-import ErrorPage from '@/app/error/ErrorPage';
 import Divider from '@/common/components/Divider/Divider';
 import Text from '@/common/components/Text/Text';
 import IcCircleCautionFilled from '@/shared/assets/svg/IcCircleCautionFilled';
@@ -24,7 +23,7 @@ export default function Page({ params }: { params: Promise<{ id: string }> }) {
   });
 
   if (!isValidLessonId) {
-    return <ErrorPage />;
+    throw new Error('Invalid lesson id');
   }
 
   if (isPending) {
@@ -32,7 +31,7 @@ export default function Page({ params }: { params: Promise<{ id: string }> }) {
   }
 
   if (isError || !data) {
-    return <ErrorPage />;
+    throw new Error('Failed to load lesson');
   }
 
   const imageUrl = data.imageUrl;

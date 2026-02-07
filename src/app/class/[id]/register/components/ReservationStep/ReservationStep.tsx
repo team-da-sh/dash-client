@@ -26,7 +26,6 @@ import {
 import TopInfoContent from '@/app/class/[id]/register/components/TopInfoContent/TopInfoContent';
 import { AGREEMENT_TERMS } from '@/app/class/[id]/register/constant';
 import type { ClassReservationResponseTypes } from '@/app/class/[id]/register/types';
-import ErrorPage from '@/app/error/page';
 import BlurBotton from '@/common/components/BlurButton/BlurButton';
 import BoxButton from '@/common/components/BoxButton/BoxButton';
 import Divider from '@/common/components/Divider/Divider';
@@ -50,9 +49,9 @@ const ReservationStep = ({ onNext }: ReservationStepPropTypes) => {
   const { data, isError, isLoading } = useGetReservation(Number(id));
   const { mutate: postReservation, isPending } = usePostReservation();
 
-  if (!id) return <ErrorPage />;
+  if (!id) throw new Error('Missing reservation id');
   if (isLoading) return null;
-  if (isError || !data) return <ErrorPage />;
+  if (isError || !data) throw new Error('Failed to load reservation');
 
   const handleSubmit = () => {
     if (isPending) return;
