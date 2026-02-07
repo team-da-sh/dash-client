@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { within, userEvent } from '@storybook/testing-library';
 import Header from '@/common/components/Header/Header';
 

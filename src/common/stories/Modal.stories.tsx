@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import type { ReactElement } from 'react';
 import BoxButton from '@/common/components/BoxButton/BoxButton';
 import Modal from '@/common/components/Modal/Modal';
