@@ -1,25 +1,16 @@
-import type { StorybookConfig } from '@storybook/react-vite';
-import path from 'path';
+import type { StorybookConfig } from '@storybook/nextjs-vite';
+import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin';
 
 const config: StorybookConfig = {
   stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
-  addons: [
-    '@storybook/addon-onboarding',
-    '@storybook/addon-essentials',
-    '@chromatic-com/storybook',
-    '@storybook/addon-interactions',
-  ],
-  framework: {
-    name: '@storybook/react-vite',
-    options: {},
-  },
+  addons: ['@chromatic-com/storybook', '@storybook/addon-a11y', '@storybook/addon-docs'],
+  framework: '@storybook/nextjs-vite',
+  staticDirs: ['../public'],
   async viteFinal(config) {
-    config.resolve = config.resolve || {};
-    config.resolve.alias = {
-      ...config.resolve.alias,
-      'next/navigation': path.resolve(__dirname, 'next-navigation-mock.ts'),
+    return {
+      ...config,
+      plugins: [...(config.plugins ?? []), ...vanillaExtractPlugin({ identifiers: 'debug' })],
     };
-    return config;
   },
 };
 export default config;

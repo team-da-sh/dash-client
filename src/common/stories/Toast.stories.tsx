@@ -1,4 +1,4 @@
-import type { Meta, StoryFn, StoryObj } from '@storybook/react';
+import type { Meta, StoryFn, StoryObj } from '@storybook/nextjs-vite';
 import { Toaster } from 'react-hot-toast';
 import type { iconType, notifyProps } from '@/common/components/Toast/Toast';
 import { notify } from '@/common/components/Toast/Toast';
