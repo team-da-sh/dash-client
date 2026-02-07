@@ -23,7 +23,7 @@ const Completion = ({ title, subTitle, description }: CompletionPropTypes) => {
       <Text tag="b2_m" color="gray7">
         {description}
       </Text>
-      <img src={ClearGif} alt="완료 페이지 캐릭터" className={clearStyle} />
+      <img src={ClearGif.src} alt="완료 페이지 캐릭터" className={clearStyle} />
     </section>
   );
 };

@@ -1,5 +1,4 @@
-import { useNavigate } from 'react-router-dom';
-import { ROUTES_CONFIG } from '@/routes/routesConfig';
+import { useRouter } from 'next/navigation';
 import IcHeaderLogoSmallBlack from '@/shared/assets/svg/IcHeaderLogoSmallBlack';
 import IcMypageBlack24 from '@/shared/assets/svg/IcMypageBlack24';
 import IcSearchBlack24 from '@/shared/assets/svg/IcSearchBlack24';
@@ -7,23 +6,23 @@ import { isLoggedIn } from '@/shared/utils/authUtil';
 import { headerStyle, buttonWrapperStyle } from './header.css';
 
 const Header = () => {
-  const navigate = useNavigate();
+  const router = useRouter();
 
   const handleLogoClick = () => {
-    navigate(ROUTES_CONFIG.home.path);
+    router.push('/');
   };
 
   const handleSearchClick = () => {
-    navigate(ROUTES_CONFIG.search.path);
+    router.push('/search');
   };
 
   const handleMypageClick = () => {
     if (!isLoggedIn()) {
-      navigate(ROUTES_CONFIG.login.path);
+      router.push('/login');
       return;
     }
 
-    navigate(ROUTES_CONFIG.mypage.path);
+    router.push('/my');
   };
 
   return (

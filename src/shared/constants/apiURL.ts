@@ -1,5 +1,5 @@
-import type { LessonStatus } from '@/pages/instructor/lessonList/types/lessonStatus';
-import type { ReservationStatus } from '@/pages/mypage/components/mypageReservation/types/reservationStatus';
+import type { LessonStatus } from '@/app/my/(instructor)/manage-classes/types/lessonStatus';
+import type { ReservationStatus } from '@/app/my/(student)/classes/types/reservationStatus';
 
 export const API_URL = {
   AUTH_LOGIN: '/api/v1/auth/login',

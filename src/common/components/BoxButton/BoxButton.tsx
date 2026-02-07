@@ -1,3 +1,5 @@
+'use client';
+
 import clsx from 'clsx';
 import type { ButtonHTMLAttributes } from 'react';
 import { buttonStyle } from '@/common/components/BoxButton/boxButton.css';
@@ -19,10 +21,10 @@ const BoxButton = ({
   return (
     <button
       className={clsx(
-        className,
         buttonStyle({
           variant,
-        })
+        }),
+        className
       )}
       disabled={isDisabled}
       type={type}

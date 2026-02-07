@@ -1,7 +1,5 @@
 import type { AxiosError, InternalAxiosRequestConfig } from 'axios';
-import type { ErrorResponse } from 'react-router-dom';
-import { postReissue } from '@/pages/auth/apis/axios';
-import { ROUTES_CONFIG } from '@/routes/routesConfig';
+import { postReissue } from '@/app/auth/apis/axios';
 import { instance } from '@/shared/apis/instance';
 import { HTTP_STATUS_CODE } from '@/shared/constants/api';
 import { API_URL } from '@/shared/constants/apiURL';
@@ -68,7 +66,7 @@ export const onErrorResponse = async (error: AxiosError) => {
       failedRequests.forEach((prom) => prom.reject(reissueError as AxiosError));
       failedRequests = [];
 
-      window.location.replace(ROUTES_CONFIG.login.path);
+      window.location.replace('/auth/login');
 
       clearStorage();
     } finally {
@@ -80,7 +78,9 @@ export const onErrorResponse = async (error: AxiosError) => {
   return Promise.reject(error);
 };
 
-export const onErrorExpand = (error: AxiosError<ErrorResponse>) => {
+type ApiErrorResponse = { message?: string; [key: string]: unknown };
+
+export const onErrorExpand = (error: AxiosError<ApiErrorResponse>) => {
   if (!error.response) throw error;
 
   throw new ApiError(error);

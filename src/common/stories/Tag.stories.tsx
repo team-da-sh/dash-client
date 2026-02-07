@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import Tag from '@/common/components/Tag/Tag';
 import IcCalendarcheckColor3D24 from '@/shared/assets/svg/IcCalendarcheckColor3D24';
 import IcCalendarcheckMono3D24 from '@/shared/assets/svg/IcCalendarcheckMono3D24';

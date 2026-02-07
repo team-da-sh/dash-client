@@ -3,7 +3,7 @@ import { isAxiosError } from 'axios';
 import type { ErrorInfo } from 'react';
 import { Suspense, type ReactNode } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
-import ErrorPage from '@/pages/error/ErrorPage';
+import ErrorPage from '@/app/error/ErrorPage';
 import type { ApiError } from '@/shared/types/ApiError';
 import { ERROR_LEVEL } from '@/shared/types/errorLevel';
 
