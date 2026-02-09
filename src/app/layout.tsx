@@ -1,22 +1,9 @@
-'use client';
-
-import { usePathname } from 'next/navigation';
 import Script from 'next/script';
 import Providers from '@/app/Providers';
 import Header from '@/common/components/Header/Header';
-import ModalProvider from '@/common/components/Modal/ModalProvider';
 import '@/shared/styles/index.css';
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const pathname = usePathname();
-
-  const isSearchPath = pathname === '/search';
-  const isOnboardingPath = pathname === '/onboarding';
-  const isReservationPath = pathname?.startsWith('/reservation/');
-  const isWithdrawPath = pathname === '/my/withdraw';
-
-  const shouldShowHeader = !isSearchPath && !isOnboardingPath && !isReservationPath && !isWithdrawPath;
-
   return (
     <html lang="ko">
       <head>
@@ -30,9 +17,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <div id="root">
           <Providers>
-            {shouldShowHeader && <Header />}
+            <Header />
             {children}
-            <ModalProvider />
           </Providers>
           <Script
             id="clarity"

@@ -1,8 +1,13 @@
+import bundleAnalyzer from '@next/bundle-analyzer';
 import { createVanillaExtractPlugin } from '@vanilla-extract/next-plugin';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+const withBundleAnalyzer = bundleAnalyzer({
+  enabled: process.env.ANALYZE === 'true',
+});
 
 const withVanillaExtract = createVanillaExtractPlugin({
   identifiers: 'debug', // 기존 Vite 설정과 동일 (short | debug | custom)
@@ -23,4 +28,4 @@ const nextConfig = {
   },
 };
 
-export default withVanillaExtract(nextConfig);
+export default withBundleAnalyzer(withVanillaExtract(nextConfig));

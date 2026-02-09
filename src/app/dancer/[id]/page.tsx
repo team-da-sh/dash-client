@@ -5,7 +5,6 @@ import { useGetDancerDetail } from '@/app/dancer/[id]/apis/queries';
 import DancerInfo from '@/app/dancer/[id]/components/DancerInfo/DancerInfo';
 import TabWrapper from '@/app/dancer/[id]/components/TabWrapper/TabWrapper';
 import { genresWrapperStyle, gradientOverlayStyle, textWrapperStyle, topImgStyle } from '@/app/dancer/[id]/index.css';
-import ErrorPage from '@/app/error/ErrorPage';
 import Head from '@/common/components/Head/Head';
 import Tag from '@/common/components/Tag/Tag';
 import Text from '@/common/components/Text/Text';
@@ -22,7 +21,7 @@ export default function Page({ params }: { params: Promise<{ id: string }> }) {
   });
 
   if (!isValidDancerId) {
-    return <ErrorPage />;
+    throw new Error('Invalid dancer id');
   }
 
   if (isPending) {
@@ -30,7 +29,7 @@ export default function Page({ params }: { params: Promise<{ id: string }> }) {
   }
 
   if (isError || !data || data.detail === '탈퇴한 회원입니다.') {
-    return <ErrorPage />;
+    throw new Error('Failed to load dancer');
   }
 
   const { imageUrls, genres, nickname } = data;
