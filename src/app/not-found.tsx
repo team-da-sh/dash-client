@@ -9,7 +9,6 @@ import {
 import BoxButton from '@/common/components/BoxButton/BoxButton';
 import Head from '@/common/components/Head/Head';
 import Text from '@/common/components/Text/Text';
-import SvgIcError from '@/shared/assets/svg/IcError';
 
 export default function NotFoundPage() {
   return (
@@ -23,7 +22,13 @@ export default function NotFoundPage() {
             <Text tag="b3_m">홈으로 이동해 다시 이용해 주세요.</Text>
           </section>
         </header>
-        <SvgIcError width={300} height={300} className={errorIconStyle} />
+        <img
+          src="/images/image_error.png"
+          alt="페이지를 찾을 수 없음"
+          width={300}
+          height={300}
+          className={errorIconStyle}
+        />
       </div>
 
       <div className={buttonContainerStyle}>
