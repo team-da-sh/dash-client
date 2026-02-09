@@ -1,7 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import Tag from '@/common/components/Tag/Tag';
-import IcCalendarcheckColor3D24 from '@/shared/assets/svg/IcCalendarcheckColor3D24';
-import IcCalendarcheckMono3D24 from '@/shared/assets/svg/IcCalendarcheckMono3D24';
 
 const meta = {
   title: 'Common/Tag',
@@ -86,31 +84,5 @@ export const DeadlineTag: Story = {
   args: {
     type: 'deadline',
     children: '힙합',
-  },
-};
-
-export const AuthorityTag: Story = {
-  args: {
-    size: 'mypage',
-    hasAuth: true,
-    children: (
-      <>
-        <IcCalendarcheckColor3D24 width={24} />
-        클래스 신청 가능
-      </>
-    ),
-  },
-};
-
-export const AuthDisabledTag: Story = {
-  args: {
-    size: 'mypage',
-    hasAuth: false,
-    children: (
-      <>
-        <IcCalendarcheckMono3D24 width={24} />
-        클래스 개설 불가
-      </>
-    ),
   },
 };
