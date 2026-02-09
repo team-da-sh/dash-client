@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "next dev",
+    "analyze": "ANALYZE=true next build",
     "build": "next build",
     "start": "next start -p 8080",
     "lint": "eslint .",
@@ -41,6 +42,7 @@
   "devDependencies": {
     "@chromatic-com/storybook": "^5.0.0",
     "@eslint/js": "^9.17.0",
+    "@next/bundle-analyzer": "^16.1.6",
     "@storybook/addon-a11y": "^10.2.7",
     "@storybook/addon-docs": "^10.2.7",
     "@storybook/blocks": "^8.4.7",
