@@ -26,7 +26,9 @@ export const getMyLessonThumbnails = async () => {
 };
 
 export const postValidateWithdraw = async () => {
-  const { data } = await instance.post(API_URL.MEMBERS_VALIDATE_WITHDRAW);
+  // Next BFF Route Handler (/api/auth/validate-withdraw)를 통해
+  // 서버에서 탈퇴 가능 여부를 검증하고, 미들웨어가 읽을 수 있는 쿠키를 설정한다.
+  const { data } = await instance.post('/auth/validate-withdraw');
 
   return data;
 };

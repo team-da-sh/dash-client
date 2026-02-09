@@ -1,7 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 import type { AxiosError } from 'axios';
 import { postOnboard, postPhoneRequest, postPhoneVerify } from '@/app/onboarding/apis/axios';
-import type { tokenTypes } from '@/app/onboarding/types/api';
 import type { OnboardInfoTypes, PhoneRequestTypes, phoneVerifyTypes } from '@/app/onboarding/types/onboardInfoTypes';
 import { notify } from '@/common/components/Toast/Toast';
 import { PHONE_AUTH_MESSAGES } from '@/shared/constants/userInfo';
@@ -9,11 +8,10 @@ import type { ApiError } from '@/shared/types/api';
 
 export const usePostOnboard = () => {
   return useMutation({
-    mutationFn: ({ name, phoneNumber, accessToken }: OnboardInfoTypes & tokenTypes) =>
+    mutationFn: ({ name, phoneNumber }: OnboardInfoTypes) =>
       postOnboard({
         name,
         phoneNumber,
-        accessToken,
       }),
 
     onError: (error: AxiosError) => {
@@ -25,10 +23,9 @@ export const usePostOnboard = () => {
 
 export const usePostPhoneRequest = () => {
   return useMutation({
-    mutationFn: ({ phoneNumber, accessToken }: PhoneRequestTypes & tokenTypes) =>
+    mutationFn: ({ phoneNumber }: PhoneRequestTypes) =>
       postPhoneRequest({
         phoneNumber,
-        accessToken,
       }),
     onError: (error: AxiosError) => {
       if (!error.response) return;
@@ -39,11 +36,10 @@ export const usePostPhoneRequest = () => {
 
 export const usePostPhoneVerify = () => {
   return useMutation({
-    mutationFn: ({ phoneNumber, code, accessToken }: phoneVerifyTypes & tokenTypes) =>
+    mutationFn: ({ phoneNumber, code }: phoneVerifyTypes) =>
       postPhoneVerify({
         phoneNumber,
         code,
-        accessToken,
       }),
     onError: (error: AxiosError<ApiError>) => {
       if (!error.response) return;

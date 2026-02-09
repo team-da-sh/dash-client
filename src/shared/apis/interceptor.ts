@@ -1,10 +1,8 @@
 import type { AxiosError, InternalAxiosRequestConfig } from 'axios';
-import { postReissue } from '@/app/auth/apis/axios';
+import { postLogout, postReissue } from '@/app/auth/apis/axios';
 import { instance } from '@/shared/apis/instance';
 import { HTTP_STATUS_CODE } from '@/shared/constants/api';
-import { API_URL } from '@/shared/constants/apiURL';
 import { ApiError } from '@/shared/types/ApiError';
-import { clearStorage, getAccessToken, getRefreshToken, setStorage } from '@/shared/utils/handleToken';
 
 type FailedRequest = {
   resolve: (token?: string) => void;
@@ -14,27 +12,12 @@ type FailedRequest = {
 let isRefreshing = false;
 let failedRequests: FailedRequest[] = [];
 
-// 요청 전 header에 accesstoken 입력
-export const onResponse = (config: InternalAxiosRequestConfig) => {
-  // reissue의 경우 헤더에 refresh 토큰 넣어주기
-  if (config.url === API_URL.AUTH_REISSUE) {
-    config.headers.Authorization = `Bearer ${getRefreshToken()}`;
+const isReissueRequest = (url?: string) => url?.includes('auth/reissue') ?? false;
 
-    return config;
-  }
+// BFF + HttpOnly 쿠키: 토큰은 쿠키로 자동 전송되므로 Authorization 헤더를 주입하지 않음
+export const onResponse = (config: InternalAxiosRequestConfig) => config;
 
-  // 로그인을 해서 accessToken이 있는 경우
-  const accessToken = getAccessToken();
-  if (accessToken) {
-    config.headers.Authorization = `Bearer ${accessToken}`;
-    return config;
-  }
-
-  // 로그인을 안한 경우
-  return config;
-};
-
-// 401 에러시 token 갱신 로직
+// 401 에러 시 /api/auth/reissue 호출 후 재시도 (BFF가 HttpOnly 쿠키로 토큰 갱신)
 export const onErrorResponse = async (error: AxiosError) => {
   const originRequest = error.config;
 
@@ -42,22 +25,18 @@ export const onErrorResponse = async (error: AxiosError) => {
 
   const statusCode = error.response?.status;
 
-  if (statusCode === HTTP_STATUS_CODE.UNAUTHORIZED && originRequest.url !== API_URL.AUTH_REISSUE) {
-    // 토큰 갱신중인 경우
+  if (statusCode === HTTP_STATUS_CODE.UNAUTHORIZED && !isReissueRequest(originRequest.url)) {
     if (isRefreshing) {
       return new Promise((resolve, reject) => {
         failedRequests.push({ resolve, reject });
       }).then(() => instance(originRequest));
     }
 
-    // 토큰 갱신을 안하고 있는 경우
     isRefreshing = true;
 
     try {
-      const { accessToken, refreshToken } = await postReissue();
-      setStorage(accessToken, refreshToken);
+      await postReissue();
 
-      // 대기열 실행 및 초기화
       failedRequests.forEach((prom) => prom.resolve());
       failedRequests = [];
 
@@ -66,11 +45,9 @@ export const onErrorResponse = async (error: AxiosError) => {
       failedRequests.forEach((prom) => prom.reject(reissueError as AxiosError));
       failedRequests = [];
 
-      window.location.replace('/auth/login');
-
-      clearStorage();
+      await postLogout().catch(() => {});
+      window.location.replace('/login');
     } finally {
-      // 요청 완료 후 상태 초기화
       isRefreshing = false;
     }
   }

@@ -1,13 +1,10 @@
 import type { AxiosError } from 'axios';
-import { useRouter } from 'next/navigation';
 import { useReducer } from 'react';
 import { usePostPhoneRequest, usePostPhoneVerify } from '@/app/onboarding/apis/queries';
-import type { tokenTypes } from '@/app/onboarding/types/api';
 import type { phoneVerifyTypes } from '@/app/onboarding/types/onboardInfoTypes';
 import { notify } from '@/common/components/Toast/Toast';
 import { PHONE_AUTH_MESSAGES, REQUEST_DELAY, TIMER_DURATION } from '@/shared/constants/userInfo';
 import { useVerificationTimer } from '@/shared/hooks/useVerificationTimer';
-import { getAccessToken } from '@/shared/utils/handleToken';
 
 interface VerificationState {
   code: string;
@@ -46,9 +43,6 @@ function verificationReducer(state: VerificationState, action: VerificationActio
 }
 
 export const useVerification = (phoneNumber: string) => {
-  const router = useRouter();
-  const accessToken = getAccessToken();
-
   const { mutate: requestPhoneMutate } = usePostPhoneRequest();
   const { mutate: verifyPhoneMutate } = usePostPhoneVerify();
 
@@ -61,19 +55,13 @@ export const useVerification = (phoneNumber: string) => {
   const shouldSendRequest = isRunning && isApproachingTimerEnd;
 
   const handleRequestVerification = (): void => {
-    if (!accessToken) {
-      notify({ message: '로그인이 필요합니다.', icon: 'fail', bottomGap: 'large' });
-      router.push('/auth/login');
-      return;
-    }
-
     if (shouldSendRequest) {
       notify({ message: PHONE_AUTH_MESSAGES.TRY_AGAIN, icon: 'fail', bottomGap: 'large' });
       return;
     }
 
     requestPhoneMutate(
-      { phoneNumber, accessToken },
+      { phoneNumber },
       {
         onSuccess: () => {
           dispatch({ type: 'REQUEST_START' });
@@ -95,13 +83,7 @@ export const useVerification = (phoneNumber: string) => {
   };
 
   const handleVerifyCode = (): void => {
-    if (!accessToken) {
-      notify({ message: '로그인이 필요합니다.', icon: 'fail', bottomGap: 'large' });
-      router.push('/auth/login');
-      return;
-    }
-
-    verifyPhoneMutate({ phoneNumber, code, accessToken } as phoneVerifyTypes & tokenTypes, {
+    verifyPhoneMutate({ phoneNumber, code } as phoneVerifyTypes, {
       onSuccess: (data: { success?: boolean }) => {
         if (data?.success) {
           dispatch({ type: 'VERIFY_SUCCESS' });

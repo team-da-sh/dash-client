@@ -1,6 +1,8 @@
 'use client';
 
-import { Suspense, useRef, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
+import { Suspense, useState } from 'react';
+import { postPromoteTempToken } from '@/app/auth/apis/axios';
 import { usePostOnboard } from '@/app/onboarding/apis/queries';
 import FinishStep from '@/app/onboarding/components/FinishStep/FinishStep';
 import InfoStep from '@/app/onboarding/components/InfoStep/InfoStep';
@@ -11,26 +13,11 @@ import * as styles from '@/app/onboarding/index.css';
 import type { OnboardInfoTypes, OnboardingState } from '@/app/onboarding/types/onboardInfoTypes';
 import { notify } from '@/common/components/Toast/Toast';
 import { useFunnel } from '@/common/hooks/useFunnel';
-import { ONBOARDING_TOKENS_KEY } from '@/shared/constants/api';
 import { PHONE_AUTH_MESSAGES } from '@/shared/constants/userInfo';
-import { setStorage } from '@/shared/utils/handleToken';
-
-function getOnboardingTokens(): { accessToken: string; refreshToken: string; isDeleted?: boolean } | null {
-  if (typeof window === 'undefined') return null;
-  try {
-    const raw = sessionStorage.getItem(ONBOARDING_TOKENS_KEY);
-    if (!raw) return null;
-    const parsed = JSON.parse(raw);
-    sessionStorage.removeItem(ONBOARDING_TOKENS_KEY);
-    return parsed;
-  } catch {
-    return null;
-  }
-}
 
 function OnboardingContent() {
-  const tokenRef = useRef(getOnboardingTokens());
-  const isDeleted = tokenRef.current?.isDeleted ?? false;
+  const searchParams = useSearchParams();
+  const isDeleted = searchParams.get('isDeleted') === 'true';
 
   const { Funnel, Step, setStep, currentStep } = useFunnel(FINAL_ONBOARDING_STEP, '/');
 
@@ -66,18 +53,16 @@ function OnboardingContent() {
   const handleOnboardSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setOnboarding((prev) => ({ ...prev, isSubmitting: true }));
-
-    const tokens = tokenRef.current;
-    if (!tokens?.accessToken) return;
     onboardMutate(
       {
         ...onboarding.info,
-        accessToken: tokens.accessToken,
       },
       {
-        onSuccess: () => {
-          if (tokenRef.current) {
-            setStorage(tokenRef.current.accessToken, tokenRef.current.refreshToken);
+        onSuccess: async () => {
+          try {
+            await postPromoteTempToken();
+          } catch (error) {
+            console.error('Failed to promote onboarding token', error);
           }
           setStep(1);
         },
@@ -113,7 +98,6 @@ function OnboardingContent() {
               onInfoChange={handleInfoChange}
               setIsCodeVerified={handleCodeVerifiedChange}
               isCodeVerified={onboarding.isCodeVerified}
-              accessToken={tokenRef.current?.accessToken ?? ''}
               isNameError={isNameError}
               handleNameErrorChange={handleNameErrorChange}
             />

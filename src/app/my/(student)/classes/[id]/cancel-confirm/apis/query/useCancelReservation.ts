@@ -13,7 +13,7 @@ export const useCancelReservation = () => {
       postCancelReservation(reservationId, requestData),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: memberKeys.me._ctx.reservation.queryKey });
-      router.push('/my/reservations');
+      router.push('/my/classes');
     },
     onError: () => {
       router.push('/error');

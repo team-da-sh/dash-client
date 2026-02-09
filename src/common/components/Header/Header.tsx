@@ -2,7 +2,6 @@ import { useRouter } from 'next/navigation';
 import IcHeaderLogoSmallBlack from '@/shared/assets/svg/IcHeaderLogoSmallBlack';
 import IcMypageBlack24 from '@/shared/assets/svg/IcMypageBlack24';
 import IcSearchBlack24 from '@/shared/assets/svg/IcSearchBlack24';
-import { isLoggedIn } from '@/shared/utils/authUtil';
 import { headerStyle, buttonWrapperStyle } from './header.css';
 
 const Header = () => {
@@ -17,11 +16,6 @@ const Header = () => {
   };
 
   const handleMypageClick = () => {
-    if (!isLoggedIn()) {
-      router.push('/login');
-      return;
-    }
-
     router.push('/my');
   };
 

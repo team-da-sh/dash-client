@@ -1,0 +1,29 @@
+import { NextResponse, type NextRequest } from 'next/server';
+import { authFetch } from '@/app/api/auth/_authFetch';
+import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from '@/shared/constants/api';
+import { API_URL } from '@/shared/constants/apiURL';
+
+export async function POST(request: NextRequest) {
+  try {
+    const accessToken = request.cookies.get(ACCESS_TOKEN_KEY)?.value;
+
+    const response = await authFetch(API_URL.AUTH_LOGOUT, {
+      method: 'POST',
+      headers: {
+        ...(accessToken ? { Authorization: `Bearer ${accessToken}` } : {}),
+      },
+    });
+
+    if (!response.ok) {
+      const data = await response.json().catch(() => null);
+      return NextResponse.json(data ?? { message: 'Logout failed' }, { status: response.status });
+    }
+
+    const res = NextResponse.json({ ok: true });
+    res.cookies.delete({ name: ACCESS_TOKEN_KEY, path: '/' });
+    res.cookies.delete({ name: REFRESH_TOKEN_KEY, path: '/' });
+    return res;
+  } catch {
+    return NextResponse.json({ message: 'Logout failed' }, { status: 500 });
+  }
+}
