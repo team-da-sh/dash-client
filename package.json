@@ -7,7 +7,7 @@
     "dev": "next dev",
     "analyze": "ANALYZE=true next build",
     "build": "next build",
-    "start": "next start -p 8080",
+    "start": "next build && next start -p 8080",
     "lint": "eslint .",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",

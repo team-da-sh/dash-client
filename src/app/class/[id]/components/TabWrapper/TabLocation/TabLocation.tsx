@@ -1,6 +1,5 @@
 'use client';
 
-import { lazy, Suspense } from 'react';
 import Card from '@/app/class/[id]/components/Card/Card';
 import {
   addressContainerStyle,
@@ -17,8 +16,6 @@ import {
 import type { LessonDetailResponseTypes } from '@/app/class/[id]/types/api';
 import Head from '@/common/components/Head/Head';
 import Text from '@/common/components/Text/Text';
-
-const IcLocation60 = lazy(() => import('@/shared/assets/svg/IcLocation60'));
 
 const TabLocation = ({ lessonData }: { lessonData: LessonDetailResponseTypes }) => {
   const { location, streetAddress, streetDetailAddress, oldStreetAddress } = lessonData;
@@ -66,11 +63,9 @@ const TabLocation = ({ lessonData }: { lessonData: LessonDetailResponseTypes }) 
               </div>
             </div>
 
-            <Suspense fallback={<div className={iconWrapper} />}>
-              <div className={iconWrapper}>
-                <IcLocation60 width="6rem" height="6rem" />
-              </div>
-            </Suspense>
+            <div className={iconWrapper}>
+              <img src="/images/image_location_60.png" alt="클래스 위치" width={60} height={60} />
+            </div>
           </div>
         </Card>
       )}

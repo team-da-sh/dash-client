@@ -37,10 +37,10 @@ const HomeCarousel = () => {
         delay: 4500,
         disableOnInteraction: false,
       }}>
-      {ADVERTISEMENTS.map((advertisement) => {
+      {ADVERTISEMENTS.map((advertisement, index) => {
         return (
           <SwiperSlide key={`${advertisement.id}`}>
-            <SliderItem {...advertisement} />
+            <SliderItem {...advertisement} priority={index === 0} />
           </SwiperSlide>
         );
       })}
