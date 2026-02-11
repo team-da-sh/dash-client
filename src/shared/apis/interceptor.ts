@@ -1,4 +1,4 @@
-import type { AxiosError, InternalAxiosRequestConfig } from 'axios';
+import type { AxiosError } from 'axios';
 import { postLogout, postReissue } from '@/app/auth/apis/axios';
 import { instance } from '@/shared/apis/instance';
 import { HTTP_STATUS_CODE } from '@/shared/constants/api';
@@ -13,9 +13,6 @@ let isRefreshing = false;
 let failedRequests: FailedRequest[] = [];
 
 const isReissueRequest = (url?: string) => url?.includes('auth/reissue') ?? false;
-
-// BFF + HttpOnly 쿠키: 토큰은 쿠키로 자동 전송되므로 Authorization 헤더를 주입하지 않음
-export const onResponse = (config: InternalAxiosRequestConfig) => config;
 
 // 401 에러 시 /api/auth/reissue 호출 후 재시도 (BFF가 HttpOnly 쿠키로 토큰 갱신)
 export const onErrorResponse = async (error: AxiosError) => {

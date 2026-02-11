@@ -1,5 +1,3 @@
-'use client';
-
 import Footer from '@/app/(home)/components/Footer/Footer';
 import HomeCarousel from '@/app/(home)/components/HomeCarousel/HomeCarousel';
 import LatestLessons from '@/app/(home)/components/LatestLessons/LatestLessons';

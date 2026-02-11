@@ -1,5 +1,3 @@
-'use client';
-
 import IcAssetTop1 from '@/shared/assets/svg/IcAssetTop1';
 import IcAssetTop2 from '@/shared/assets/svg/IcAssetTop2';
 import IcAssetTop3 from '@/shared/assets/svg/IcAssetTop3';

@@ -1,7 +1,4 @@
-'use client';
-
-import { useMemo } from 'react';
-import { useGetUpcomingLessons } from '@/app/(home)/apis/queries';
+import { fetchUpcomingLessons } from '@/app/(home)/apis/serverFetch';
 import LessonItem from '@/app/(home)/components/LessonItem/LessonItem';
 import {
   containerStyle,
@@ -10,16 +7,9 @@ import {
 } from '@/app/(home)/components/UpcomingLessons/upcomingLessons.css';
 import Head from '@/common/components/Head/Head';
 
-const UpcomingLessons = () => {
-  const { data: upcomingLessonList } = useGetUpcomingLessons();
-
-  const filteredUpcomingLessons = useMemo(() => {
-    if (!upcomingLessonList?.lessons) {
-      return [];
-    }
-
-    return upcomingLessonList.lessons.filter((lesson) => lesson.remainingDays <= 3);
-  }, [upcomingLessonList]);
+const UpcomingLessons = async () => {
+  const upcomingLessons = await fetchUpcomingLessons();
+  const lessons = upcomingLessons.lessons.filter((lesson) => lesson.remainingDays <= 3);
 
   return (
     <section className={deadlineLessonWrapperStyle} aria-labelledby="upcoming-lessons-title">
@@ -27,7 +17,7 @@ const UpcomingLessons = () => {
         놓치면 아쉬울 마지막 기회
       </Head>
       <ul className={containerStyle}>
-        {filteredUpcomingLessons.map((lesson) => (
+        {lessons.map((lesson) => (
           <LessonItem key={lesson.id} linkType="detail" useNewStyles={false} {...lesson} />
         ))}
       </ul>
