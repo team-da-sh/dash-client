@@ -14,5 +14,5 @@ jobs:
 
       - name: Push to fork
         run: |
-          git remote add fork https://x-access-token:${{ secrets.AUTO_SYNK }}@github.com/hongmac/dash-client.git
+          git remote add fork https://x-access-token:${{ secrets.AUTO_SYNK }}@github.com/rtttr1/dash-client.git
           git push fork main
