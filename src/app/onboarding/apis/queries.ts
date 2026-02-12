@@ -1,10 +1,9 @@
 import { useMutation } from '@tanstack/react-query';
-import type { AxiosError } from 'axios';
-import { postOnboard, postPhoneRequest, postPhoneVerify } from '@/app/onboarding/apis/axios';
+import { postOnboard, postPhoneRequest, postPhoneVerify } from '@/app/onboarding/apis/ky';
 import type { OnboardInfoTypes, PhoneRequestTypes, phoneVerifyTypes } from '@/app/onboarding/types/onboardInfoTypes';
 import { notify } from '@/common/components/Toast/Toast';
 import { PHONE_AUTH_MESSAGES } from '@/shared/constants/userInfo';
-import type { ApiError } from '@/shared/types/api';
+import type { ApiError } from '@/shared/types/ApiError';
 
 export const usePostOnboard = () => {
   return useMutation({
@@ -14,7 +13,7 @@ export const usePostOnboard = () => {
         phoneNumber,
       }),
 
-    onError: (error: AxiosError) => {
+    onError: (error: ApiError) => {
       if (!error.response) return;
       console.log(error);
     },
@@ -27,7 +26,7 @@ export const usePostPhoneRequest = () => {
       postPhoneRequest({
         phoneNumber,
       }),
-    onError: (error: AxiosError) => {
+    onError: (error: ApiError) => {
       if (!error.response) return;
       notify({ message: PHONE_AUTH_MESSAGES.SEND_FAILED, icon: 'fail', bottomGap: 'large' });
     },
@@ -41,7 +40,7 @@ export const usePostPhoneVerify = () => {
         phoneNumber,
         code,
       }),
-    onError: (error: AxiosError<ApiError>) => {
+    onError: (error: ApiError) => {
       if (!error.response) return;
       notify({ message: PHONE_AUTH_MESSAGES.CODE_MISMATCH, icon: 'fail', bottomGap: 'large' });
     },

@@ -1,3 +1,8 @@
+export interface InstructorRegisterResponseTypes {
+  accessToken: string;
+  refreshToken: string;
+}
+
 export interface InstructorRegisterRequestTypes {
   nickname: string;
   imageUrls: string[];

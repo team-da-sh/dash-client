@@ -1,12 +1,11 @@
 import { useMutation, useQuery, type UseQueryResult } from '@tanstack/react-query';
-import type { AxiosError } from 'axios';
 import {
   getMyLessons,
   getMyLessonThumbnails,
   getMyPage,
   getMyTeacherInfo,
   postValidateWithdraw,
-} from '@/app/my/apis/axios';
+} from '@/app/my/apis/ky';
 import type {
   LessonCountResponseTypes,
   LessonThumbnailsResponseTypes,
@@ -14,23 +13,24 @@ import type {
   MyTeacherInfoResponseTypes,
 } from '@/app/my/types/api';
 import { memberKeys, teacherKeys } from '@/shared/constants/queryKey';
+import type { ApiError } from '@/shared/types/ApiError';
 
-export const useGetMyPage = (): UseQueryResult<MyPageResponseTypes, AxiosError> => {
-  return useQuery<MyPageResponseTypes, AxiosError>({
+export const useGetMyPage = (): UseQueryResult<MyPageResponseTypes, ApiError> => {
+  return useQuery<MyPageResponseTypes, ApiError>({
     queryKey: memberKeys.me.queryKey,
     queryFn: getMyPage,
   });
 };
 
-export const useGetMyLessonCounts = (): UseQueryResult<LessonCountResponseTypes, AxiosError> => {
-  return useQuery<LessonCountResponseTypes, AxiosError>({
+export const useGetMyLessonCounts = (): UseQueryResult<LessonCountResponseTypes, ApiError> => {
+  return useQuery<LessonCountResponseTypes, ApiError>({
     queryKey: memberKeys.me._ctx.reservation._ctx.statistics.queryKey,
     queryFn: getMyLessons,
   });
 };
 
-export const useGetMyTeacherInfo = (currentRole?: string): UseQueryResult<MyTeacherInfoResponseTypes, AxiosError> => {
-  return useQuery<MyTeacherInfoResponseTypes, AxiosError>({
+export const useGetMyTeacherInfo = (currentRole?: string): UseQueryResult<MyTeacherInfoResponseTypes, ApiError> => {
+  return useQuery<MyTeacherInfoResponseTypes, ApiError>({
     queryKey: teacherKeys.me.queryKey,
     queryFn: getMyTeacherInfo,
     enabled: currentRole === 'TEACHER',
@@ -39,8 +39,8 @@ export const useGetMyTeacherInfo = (currentRole?: string): UseQueryResult<MyTeac
 
 export const useGetMyLessonThumbnails = (
   currentRole?: string
-): UseQueryResult<LessonThumbnailsResponseTypes, AxiosError> => {
-  return useQuery<LessonThumbnailsResponseTypes, AxiosError>({
+): UseQueryResult<LessonThumbnailsResponseTypes, ApiError> => {
+  return useQuery<LessonThumbnailsResponseTypes, ApiError>({
     queryKey: teacherKeys.me._ctx.lesson._ctx.thumbnails.queryKey,
 
     queryFn: getMyLessonThumbnails,
@@ -49,7 +49,7 @@ export const useGetMyLessonThumbnails = (
 };
 
 export const usePostValidateWithdraw = () => {
-  return useMutation<{ valid: boolean }, AxiosError<{ message: string }>, void>({
+  return useMutation<{ valid: boolean }, ApiError<{ message: string }>, void>({
     mutationFn: () => postValidateWithdraw(),
   });
 };

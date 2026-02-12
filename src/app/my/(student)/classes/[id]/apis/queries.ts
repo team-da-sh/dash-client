@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { getReservationsDetail } from '@/app/my/(student)/classes/[id]/apis/axios';
+import { getReservationsDetail } from '@/app/my/(student)/classes/[id]/apis/ky';
 import type { ReservationDetailType } from '@/app/my/(student)/classes/[id]/types/api';
 import { memberKeys } from '@/shared/constants/queryKey';
 

@@ -1,8 +1,8 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
-import type { AxiosError } from 'axios';
 import queryClient from '@/app/queryClient';
-import { getBankList, getTeacherAccount, postImage, postRole } from '@/shared/apis/axios';
+import { getBankList, getTeacherAccount, postImage, postRole } from '@/shared/apis/ky';
 import { authKeys, bankKeys, teacherKeys } from '@/shared/constants/queryKey';
+import type { ApiError } from '@/shared/types/ApiError';
 import type { BankListResponseTypes, TeacherAccountResponseTypes } from '@/shared/types/api';
 import type { RoleNameResponseTypes } from '@/shared/types/myPageTypes';
 
@@ -25,14 +25,14 @@ export const useGetRole = () => {
 };
 
 export const useGetBankList = () => {
-  return useQuery<BankListResponseTypes[], AxiosError>({
+  return useQuery<BankListResponseTypes[], ApiError>({
     queryKey: bankKeys._def,
     queryFn: () => getBankList(),
   });
 };
 
 export const useGetTeacherAccount = (currentRole?: string) => {
-  return useQuery<TeacherAccountResponseTypes, AxiosError>({
+  return useQuery<TeacherAccountResponseTypes, ApiError>({
     queryKey: teacherKeys.me._ctx.account.queryKey,
     queryFn: () => getTeacherAccount(),
     enabled: currentRole === 'TEACHER',

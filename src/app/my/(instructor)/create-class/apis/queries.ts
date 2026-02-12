@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { locationKeys } from '@/shared/constants/queryKey';
-import { getLocationList, patchClassInfo, postClassRegisterInfo } from './axios';
+import { getLocationList, patchClassInfo, postClassRegisterInfo } from './ky';
 
 // TODO: keyword 필수인지 질문
 export const useGetLocationList = (query: string) => {

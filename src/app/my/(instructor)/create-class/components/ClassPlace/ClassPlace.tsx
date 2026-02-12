@@ -38,7 +38,7 @@ interface ClassPlacePropTypes {
   handleHasLocation: () => void;
   handleDefaultPlace: (e: ChangeEvent<HTMLInputElement>) => void;
   selectedLocation: LocationTypes | null;
-  locationList: LocationsData;
+  locationList: LocationsData | null | undefined;
   setSelectedLocation: (location: LocationTypes | null) => void;
   handleRemoveLocation: () => void;
 }

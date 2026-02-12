@@ -2,7 +2,7 @@
 
 import { useSearchParams } from 'next/navigation';
 import { Suspense, useState } from 'react';
-import { postPromoteTempToken } from '@/app/auth/apis/axios';
+import { postPromoteTempToken } from '@/app/auth/apis/ky';
 import { usePostOnboard } from '@/app/onboarding/apis/queries';
 import FinishStep from '@/app/onboarding/components/FinishStep/FinishStep';
 import InfoStep from '@/app/onboarding/components/InfoStep/InfoStep';

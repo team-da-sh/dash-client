@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { getReservations, getReservationStatus, getReservationsClassCard } from '@/app/my/(student)/classes/apis/axios';
+import { getReservations, getReservationStatus, getReservationsClassCard } from '@/app/my/(student)/classes/apis/ky';
 import type {
   ReservationClassCardResponseTypes,
   ReservationStatusResponseTypes,
