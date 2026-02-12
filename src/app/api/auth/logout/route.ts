@@ -14,12 +14,11 @@ export async function POST(request: NextRequest) {
       },
     });
 
-    if (!response.ok) {
-      const data = await response.json().catch(() => null);
-      return NextResponse.json(data ?? { message: 'Logout failed' }, { status: response.status });
-    }
+    const res = response.ok
+      ? NextResponse.json({ ok: true })
+      : NextResponse.json({ message: 'Logout failed' }, { status: response.status });
 
-    const res = NextResponse.json({ ok: true });
+    // 백엔드 응답과 무관하게 쿠키는 항상 삭제 (토큰 만료 상태에서도 로그아웃 가능하도록)
     res.cookies.delete({ name: ACCESS_TOKEN_KEY, path: '/' });
     res.cookies.delete({ name: REFRESH_TOKEN_KEY, path: '/' });
     return res;
