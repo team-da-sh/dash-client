@@ -13,6 +13,10 @@ async function proxyToBackend(request: NextRequest, params: RouteParams) {
 
     const proxyRequest = new Request(targetUrl, request);
 
+    // 원본 요청의 Host 헤더(da-sh.kr)가 그대로 전달되면
+    // 백엔드 서버가 잘못된 vhost로 라우팅할 수 있으므로 대상 서버의 host로 덮어쓴다
+    proxyRequest.headers.set('Host', targetUrl.host);
+
     const cookieAccessToken = request.cookies.get(ACCESS_TOKEN_KEY)?.value;
     const cookieTempAccessToken = request.cookies.get(TEMP_ACCESS_TOKEN_KEY)?.value;
     const accessToken = cookieAccessToken ?? cookieTempAccessToken;
