@@ -1,4 +1,4 @@
-import { fetchUpcomingLessons } from '@/app/(home)/apis/serverFetch';
+import { getUpcomingLessons } from '@/app/(home)/apis/ky';
 import LessonItem from '@/app/(home)/components/LessonItem/LessonItem';
 import {
   containerStyle,
@@ -8,7 +8,7 @@ import {
 import Head from '@/common/components/Head/Head';
 
 const UpcomingLessons = async () => {
-  const upcomingLessons = await fetchUpcomingLessons();
+  const upcomingLessons = await getUpcomingLessons();
   const lessons = upcomingLessons.lessons.filter((lesson) => lesson.remainingDays <= 3);
 
   return (

@@ -1,4 +1,4 @@
-import { fetchLatestLessons } from '@/app/(home)/apis/serverFetch';
+import { getLatestLessons } from '@/app/(home)/apis/ky';
 import {
   containerStyle,
   latestLessonWrapperStyle,
@@ -8,7 +8,7 @@ import LessonItem from '@/app/(home)/components/LessonItem/LessonItem';
 import Head from '@/common/components/Head/Head';
 
 const LatestLessons = async () => {
-  const latestLessons = await fetchLatestLessons();
+  const latestLessons = await getLatestLessons();
 
   return (
     <section className={containerStyle} aria-labelledby="latest-lessons-title">
