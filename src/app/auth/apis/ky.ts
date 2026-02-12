@@ -1,7 +1,6 @@
 import type { LoginResponseTypes } from '@/app/auth/types/api';
 import { kyInstance } from '@/shared/apis/kyInstance';
 
-// Next BFF Route Handler (/api/auth/*) 기반 인증 API
 export const kakaoLogin = async (redirectUrl: string, code: string) => {
   const response = await kyInstance.post('auth/login', {
     json: { provider: 'KAKAO', redirectUrl, code },
@@ -10,7 +9,6 @@ export const kakaoLogin = async (redirectUrl: string, code: string) => {
   return { data: await response.json<LoginResponseTypes>() };
 };
 
-// 로그아웃
 export const postLogout = async () => {
   await kyInstance.post('auth/logout');
 };
