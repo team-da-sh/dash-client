@@ -335,6 +335,6 @@ const InfoText = () => {
 
 - button 태그에 **`type`**은 명시적으로 작성
 - 비교 연산자는 **`===`**와 **`!==`**만을 사용
-- axios 안에서 **`then/catch`** 대신 **`async/await`** 지향
+- API 호출 시 **`then/catch`** 대신 **`async/await`** 지향
 
     </details>

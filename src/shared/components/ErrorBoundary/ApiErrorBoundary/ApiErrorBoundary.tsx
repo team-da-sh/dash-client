@@ -1,16 +1,14 @@
 import * as Sentry from '@sentry/react';
-import { isAxiosError } from 'axios';
 import type { ErrorInfo } from 'react';
 import { Suspense, type ReactNode } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import ErrorPage from '@/app/error';
-import type { ApiError } from '@/shared/types/ApiError';
+import { isApiError, type ApiError } from '@/shared/types/ApiError';
 import { ERROR_LEVEL } from '@/shared/types/errorLevel';
 
 // sentry 로깅을 위한 핸들러
 const handleError = (error: Error | ApiError, errorInfo: ErrorInfo) => {
-  // Api 통신 에러가 아니면 GlobalErrorBoundary로 에러처리 위임
-  if (!isAxiosError(error)) {
+  if (!isApiError(error)) {
     throw error;
   }
 

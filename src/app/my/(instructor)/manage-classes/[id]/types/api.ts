@@ -31,7 +31,7 @@ export interface LessonDetailGetResponse {
 }
 
 export interface ChangeApproveResponse {
-  isFull: true;
+  isFull: boolean;
 }
 
 export interface RoundType {

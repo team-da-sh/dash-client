@@ -1,5 +1,3 @@
-'use client';
-
 import Link from 'next/link';
 import { useId } from 'react';
 import {
@@ -67,7 +65,7 @@ const LessonItem = ({
       };
 
   return (
-    <div className={styles.wrapper} aria-labelledby={`${nameId} ${genreId} ${levelId} ${teacherId}`}>
+    <li className={styles.wrapper} aria-labelledby={`${nameId} ${genreId} ${levelId} ${teacherId}`}>
       <img src={imageUrl} alt="클래스 섬네일" className={styles.classImage} />
 
       {remainingDays < MAX_REMAINING_DAYS && remainingDays >= MIN_REMAINING_DAYS && (
@@ -99,7 +97,7 @@ const LessonItem = ({
           </div>
         )}
       </div>
-    </div>
+    </li>
   );
 };
 

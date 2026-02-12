@@ -3,7 +3,7 @@ import {
   getLessonDetail,
   postLessonApprove,
   postLessonCancel,
-} from '@/app/my/(instructor)/manage-classes/[id]/apis/axios';
+} from '@/app/my/(instructor)/manage-classes/[id]/apis/ky';
 import type { TabStatus } from '@/app/my/(instructor)/manage-classes/[id]/types/api';
 import type { LessonDetailGetResponse } from '@/app/my/(instructor)/manage-classes/[id]/types/api';
 import { teacherKeys } from '@/shared/constants/queryKey';

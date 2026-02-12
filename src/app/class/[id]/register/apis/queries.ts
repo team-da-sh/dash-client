@@ -1,7 +1,7 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
-import type { AxiosError } from 'axios';
-import { getReservation, postReservation } from '@/app/class/[id]/register/apis/axios';
+import { getReservation, postReservation } from '@/app/class/[id]/register/apis/ky';
 import type { ClassReservationResponseTypes, ReservationDetailResponseTypes } from '@/app/class/[id]/register/types';
+import type { ApiError } from '@/shared/types/ApiError';
 
 export const useGetReservation = (lessonId: number) => {
   return useQuery<ReservationDetailResponseTypes>({
@@ -12,7 +12,7 @@ export const useGetReservation = (lessonId: number) => {
 };
 
 export const usePostReservation = () => {
-  return useMutation<ClassReservationResponseTypes, AxiosError<{ message: string }>, { lessonId: string }>({
+  return useMutation<ClassReservationResponseTypes, ApiError<{ message: string }>, { lessonId: string }>({
     mutationFn: ({ lessonId }) => postReservation(lessonId),
   });
 };

@@ -1,10 +1,10 @@
-import type { AxiosError } from 'axios';
 import { useReducer } from 'react';
 import { usePostPhoneRequest, usePostPhoneVerify } from '@/app/onboarding/apis/queries';
 import type { phoneVerifyTypes } from '@/app/onboarding/types/onboardInfoTypes';
 import { notify } from '@/common/components/Toast/Toast';
 import { PHONE_AUTH_MESSAGES, REQUEST_DELAY, TIMER_DURATION } from '@/shared/constants/userInfo';
 import { useVerificationTimer } from '@/shared/hooks/useVerificationTimer';
+import type { ApiError } from '@/shared/types/ApiError';
 
 interface VerificationState {
   code: string;
@@ -68,7 +68,7 @@ export const useVerification = (phoneNumber: string) => {
           startTimer();
           notify({ message: PHONE_AUTH_MESSAGES.CODE_SENT, icon: 'success', bottomGap: 'large' });
         },
-        onError: (error: AxiosError) => {
+        onError: (error: ApiError) => {
           const status = error.response?.status;
           if (status === 400) {
             notify({ message: PHONE_AUTH_MESSAGES.LIMIT_EXCEEDED, icon: 'fail', bottomGap: 'large' });
@@ -94,7 +94,7 @@ export const useVerification = (phoneNumber: string) => {
           notify({ message: PHONE_AUTH_MESSAGES.CODE_MISMATCH, icon: 'fail', bottomGap: 'large' });
         }
       },
-      onError: (error: AxiosError<{ message?: string }>) => {
+      onError: (error: ApiError<{ message?: string }>) => {
         const status = error.response?.status;
         const message =
           status === 409

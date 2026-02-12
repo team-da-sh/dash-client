@@ -1,6 +1,5 @@
 'use client';
 
-import type { AxiosError } from 'axios';
 import { useParams } from 'next/navigation';
 import { useState } from 'react';
 import { useGetReservation, usePostReservation } from '@/app/class/[id]/register/apis/queries';
@@ -35,6 +34,7 @@ import { notify } from '@/common/components/Toast/Toast';
 import IcCheckcircleGray0524 from '@/shared/assets/svg/IcCheckcircleGray0524';
 import IcCheckcircleMain0324 from '@/shared/assets/svg/IcCheckcircleMain0324';
 import { vars } from '@/shared/styles/theme.css';
+import type { ApiError } from '@/shared/types/ApiError';
 
 interface ReservationStepPropTypes {
   onNext: (detail: ClassReservationResponseTypes) => void;
@@ -59,7 +59,7 @@ const ReservationStep = ({ onNext }: ReservationStepPropTypes) => {
       { lessonId: id },
       {
         onSuccess: onNext,
-        onError: (error: AxiosError<{ message: string }>) => {
+        onError: (error: ApiError<{ message: string }>) => {
           const message = error?.response?.data?.message || '예약 중 오류가 발생했어요. 다시 시도해주세요.';
           notify({
             message,

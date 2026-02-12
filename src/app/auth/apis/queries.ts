@@ -1,9 +1,9 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
-import type { AxiosError } from 'axios';
 import { useRouter } from 'next/navigation';
-import { kakaoLogin, postLogout, postReissue } from '@/app/auth/apis/axios';
+import { kakaoLogin, postLogout, postReissue } from '@/app/auth/apis/ky';
 import type { loginTypes } from '@/app/auth/types/api';
 import { authKeys } from '@/shared/constants/queryKey';
+import type { ApiError } from '@/shared/types/ApiError';
 import { clearStorage } from '@/shared/utils/handleToken';
 
 export const useLoginMutation = () => {
@@ -24,7 +24,7 @@ export const useLoginMutation = () => {
       router.push('/');
     },
 
-    onError: (error: AxiosError) => {
+    onError: (error: ApiError) => {
       if (!error.response) return;
     },
   });
@@ -38,7 +38,7 @@ export const usePostLogout = () => {
       clearStorage();
       window.location.reload();
     },
-    onError: (error: AxiosError) => {
+    onError: (error: ApiError) => {
       console.error('Logout failed:', error);
     },
   });

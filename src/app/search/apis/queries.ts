@@ -1,16 +1,16 @@
 import type { UseQueryResult } from '@tanstack/react-query';
 import { useQuery } from '@tanstack/react-query';
-import type { AxiosError } from 'axios';
-import { getClassList, getDancerList } from '@/app/search/apis/axios';
+import { getClassList, getDancerList } from '@/app/search/apis/ky';
 import type { TAB_TYPES } from '@/app/search/constants';
 import type { ClassListParamsTypes, ClassListResponseTypes, DancerListResponseTypes } from '@/app/search/types/api';
 import { lessonKeys, teacherKeys } from '@/shared/constants/queryKey';
+import type { ApiError } from '@/shared/types/ApiError';
 
 export const useGetDancerList = (params: {
   keyword?: string;
   selectedTab?: TAB_TYPES;
-}): UseQueryResult<DancerListResponseTypes, AxiosError> => {
-  return useQuery<DancerListResponseTypes, AxiosError>({
+}): UseQueryResult<DancerListResponseTypes, ApiError> => {
+  return useQuery<DancerListResponseTypes, ApiError>({
     queryKey: teacherKeys.list._ctx.search(params).queryKey,
     queryFn: async () => {
       return await getDancerList(params);
@@ -22,8 +22,8 @@ export const useGetDancerList = (params: {
 
 export const useGetClassList = (
   params: ClassListParamsTypes & { selectedTab?: TAB_TYPES }
-): UseQueryResult<ClassListResponseTypes, AxiosError> => {
-  return useQuery<ClassListResponseTypes, AxiosError>({
+): UseQueryResult<ClassListResponseTypes, ApiError> => {
+  return useQuery<ClassListResponseTypes, ApiError>({
     queryKey: lessonKeys.list._ctx.search(params).queryKey,
     queryFn: async () => {
       return await getClassList(params);

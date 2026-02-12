@@ -1,12 +1,11 @@
 import type { UseMutationResult, UseQueryResult } from '@tanstack/react-query';
 import { useMutation, useQuery } from '@tanstack/react-query';
-import type { AxiosError } from 'axios';
 import {
   getInstructorRegisterInfo,
   getNicknameDuplicate,
   patchInstructorRegisterInfo,
   postInstructorRegisterInfo,
-} from '@/app/my/(instructor)/manage-profile/apis/axios';
+} from '@/app/my/(instructor)/manage-profile/apis/ky';
 import type {
   InstructorRegisterInfoResponseTypes,
   InstructorRegisterRequestTypes,
@@ -14,6 +13,7 @@ import type {
 } from '@/app/my/(instructor)/manage-profile/types/api';
 import { teacherKeys } from '@/shared/constants/queryKey';
 import { USER_ROLE } from '@/shared/constants/userRole';
+import type { ApiError } from '@/shared/types/ApiError';
 
 export const usePostInstructor = () => {
   return useMutation({
@@ -23,7 +23,7 @@ export const usePostInstructor = () => {
 
 export const useGetInstructorRegisterInfo = (
   userRole: string
-): UseQueryResult<InstructorRegisterInfoResponseTypes, AxiosError> => {
+): UseQueryResult<InstructorRegisterInfoResponseTypes, ApiError> => {
   return useQuery({
     queryKey: teacherKeys.me._ctx.detail.queryKey,
     queryFn: () => getInstructorRegisterInfo(),
@@ -37,7 +37,7 @@ export const usePatchInstructorRegisterInfo = () => {
   });
 };
 
-export const useGetNicknameDuplicate = (): UseMutationResult<NicknameDuplicateResponseTypes, AxiosError, string> => {
+export const useGetNicknameDuplicate = (): UseMutationResult<NicknameDuplicateResponseTypes, ApiError, string> => {
   return useMutation({
     mutationFn: (nickname: string) => getNicknameDuplicate(nickname),
   });
