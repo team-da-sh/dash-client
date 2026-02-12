@@ -1,4 +1,4 @@
-import type { PopularGenreResponseTypes } from '@/pages/home/types/api';
+import type { PopularGenreResponseTypes } from '@/app/(home)/types/api';
 
 export const POPULAR_GENRE_DATA: PopularGenreResponseTypes = { genres: ['HIPHOP', 'CHOREOGRAPHY'] };
 

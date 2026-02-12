@@ -9,6 +9,7 @@ interface ModalStore {
 
   openModal: (render: RenderProps) => void;
   closeModal: (id: string) => void;
+  closeLastModal: () => void;
   resetStore: () => void;
 }
 
@@ -22,5 +23,12 @@ export const useModalStore = create<ModalStore>((set) => ({
 
   closeModal: (id) => set((state) => ({ modalStore: state.modalStore.filter((modal) => modal.id !== id) })),
 
+  closeLastModal: () => set((state) => ({ modalStore: state.modalStore.slice(0, -1) })),
+
   resetStore: () => set(() => ({ modalStore: [] })),
 }));
+
+export const useOpenModal = () => useModalStore((state) => state.openModal);
+export const useCloseModal = () => useModalStore((state) => state.closeModal);
+export const useCloseLastModal = () => useModalStore((state) => state.closeLastModal);
+export const useResetModalStore = () => useModalStore((state) => state.resetStore);

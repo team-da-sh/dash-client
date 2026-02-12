@@ -1,21 +1,20 @@
 import * as Sentry from '@sentry/react';
 import { useQueryErrorResetBoundary } from '@tanstack/react-query';
-import { isAxiosError } from 'axios';
 import type { ErrorInfo } from 'react';
 import { Suspense, type ReactNode } from 'react';
 import { ErrorBoundary, type FallbackProps } from 'react-error-boundary';
-import BoxButton from '@/shared/components/BoxButton/BoxButton';
+import BoxButton from '@/common/components/BoxButton/BoxButton';
+import Spinner from '@/common/components/Spinner/Spinner';
+import Text from '@/common/components/Text/Text';
 import {
   errorContainerStyle,
   buttonContainer,
 } from '@/shared/components/ErrorBoundary/FetchErrorBoundary/fetchErrorBoundary.css';
-import Spinner from '@/shared/components/Spinner/Spinner';
-import Text from '@/shared/components/Text/Text';
-import type { ApiError } from '@/shared/types/ApiError';
+import { isApiError, type ApiError } from '@/shared/types/ApiError';
 import { ERROR_LEVEL } from '@/shared/types/errorLevel';
 
 const handleError = (error: Error | ApiError, errorInfo: ErrorInfo) => {
-  if (!isAxiosError(error)) {
+  if (!isApiError(error)) {
     throw error;
   }
 
@@ -34,8 +33,15 @@ const handleError = (error: Error | ApiError, errorInfo: ErrorInfo) => {
   });
 };
 
+const getErrorMessage = (error: Error) => {
+  if (isApiError(error)) {
+    return error.response?.data?.message || error.message;
+  }
+  return '오류가 발생했습니다';
+};
+
 const FetchErrorFallback = ({ resetErrorBoundary, error }: FallbackProps) => {
-  const errorMessage = isAxiosError(error) ? error.response?.data?.message || error.message : '오류가 발생했습니다';
+  const errorMessage = getErrorMessage(error);
 
   return (
     <div className={errorContainerStyle}>

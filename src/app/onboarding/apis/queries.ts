@@ -1,0 +1,48 @@
+import { useMutation } from '@tanstack/react-query';
+import { postOnboard, postPhoneRequest, postPhoneVerify } from '@/app/onboarding/apis/ky';
+import type { OnboardInfoTypes, PhoneRequestTypes, phoneVerifyTypes } from '@/app/onboarding/types/onboardInfoTypes';
+import { notify } from '@/common/components/Toast/Toast';
+import { PHONE_AUTH_MESSAGES } from '@/shared/constants/userInfo';
+import type { ApiError } from '@/shared/types/ApiError';
+
+export const usePostOnboard = () => {
+  return useMutation({
+    mutationFn: ({ name, phoneNumber }: OnboardInfoTypes) =>
+      postOnboard({
+        name,
+        phoneNumber,
+      }),
+
+    onError: (error: ApiError) => {
+      if (!error.response) return;
+      console.log(error);
+    },
+  });
+};
+
+export const usePostPhoneRequest = () => {
+  return useMutation({
+    mutationFn: ({ phoneNumber }: PhoneRequestTypes) =>
+      postPhoneRequest({
+        phoneNumber,
+      }),
+    onError: (error: ApiError) => {
+      if (!error.response) return;
+      notify({ message: PHONE_AUTH_MESSAGES.SEND_FAILED, icon: 'fail', bottomGap: 'large' });
+    },
+  });
+};
+
+export const usePostPhoneVerify = () => {
+  return useMutation({
+    mutationFn: ({ phoneNumber, code }: phoneVerifyTypes) =>
+      postPhoneVerify({
+        phoneNumber,
+        code,
+      }),
+    onError: (error: ApiError) => {
+      if (!error.response) return;
+      notify({ message: PHONE_AUTH_MESSAGES.CODE_MISMATCH, icon: 'fail', bottomGap: 'large' });
+    },
+  });
+};

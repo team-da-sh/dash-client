@@ -1,15 +1,4 @@
 import { lazy, Suspense } from 'react';
-import TabIntro from '@/pages/class/components/TabWrapper/TabIntro/TabIntro';
-import TabLevel from '@/pages/class/components/TabWrapper/TabLevel/TabLevel';
-import TabLocationInfo from '@/pages/class/components/TabWrapper/TabLocation/TabLocation';
-import TabPeriod from '@/pages/class/components/TabWrapper/TabPeriod/TabPeriod';
-import TabReview from '@/pages/class/components/TabWrapper/TabReview/tabReview';
-import type { LessonDetailResponseTypes } from '@/pages/class/types/api';
-import TabEducation from '@/pages/dancer/components/TabWrapper/TabEducation/TabEducation';
-import TabHistory from '@/pages/dancer/components/TabWrapper/TabExperience/TabExperience';
-import TabPrize from '@/pages/dancer/components/TabWrapper/TabPrize/TabPrize';
-import TabVideo from '@/pages/dancer/components/TabWrapper/TabVideo/TabVideo';
-import type { DancerDetailResponseTypes } from '@/pages/dancer/types/api';
 
 const IcLevelStarter = lazy(() => import('@/shared/assets/svg/IcLevelStarter'));
 const IcLevelBasic = lazy(() => import('@/shared/assets/svg/IcLevelBasic'));
@@ -70,58 +59,6 @@ export const GENRE_CATEGORY = [
     '코레오그래피',
     'K-POP',
   ],
-];
-
-export const DANCER_TABS = [
-  {
-    id: 1,
-    label: '학력',
-    component: (dancerData: DancerDetailResponseTypes) => <TabEducation dancerData={dancerData} />,
-  },
-  {
-    id: 2,
-    label: '경력',
-    component: (dancerData: DancerDetailResponseTypes) => <TabHistory dancerData={dancerData} />,
-  },
-  {
-    id: 3,
-    label: '수상',
-    component: (dancerData: DancerDetailResponseTypes) => <TabPrize dancerData={dancerData} />,
-  },
-  { id: 4, label: '영상', component: (dancerData: DancerDetailResponseTypes) => <TabVideo dancerData={dancerData} /> },
-];
-
-export const CLASS_TABS = [
-  {
-    id: 1,
-    label: '소개',
-    component: (lessonData: LessonDetailResponseTypes) => <TabIntro lessonData={lessonData} />,
-    isImplemented: true,
-  },
-  {
-    id: 2,
-    label: '난이도',
-    component: (lessonData: LessonDetailResponseTypes) => <TabLevel lessonData={lessonData} />,
-    isImplemented: true,
-  },
-  {
-    id: 3,
-    label: '일정',
-    component: (lessonData: LessonDetailResponseTypes) => <TabPeriod lessonData={lessonData} />,
-    isImplemented: true,
-  },
-  {
-    id: 4,
-    label: '장소',
-    component: (lessonData: LessonDetailResponseTypes) => <TabLocationInfo lessonData={lessonData} />,
-    isImplemented: true,
-  },
-  {
-    id: 5,
-    label: '리뷰',
-    component: () => <TabReview />,
-    isImplemented: false,
-  },
 ];
 
 // 장르 영한 변환

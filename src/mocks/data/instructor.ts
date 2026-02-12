@@ -1,4 +1,4 @@
-import type { LessonDetailGetResponse } from '@/pages/instructor/classDetail/types/api';
+import type { LessonDetailGetResponse } from '@/app/instructor/class-list/[id]/types/api';
 
 export const LESSON_DETAIL_MOCK: LessonDetailGetResponse = {
   id: 12345,

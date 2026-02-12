@@ -1,10 +1,8 @@
+import { useRouter } from 'next/navigation';
 import { useEffect, useRef } from 'react';
 import type { FieldValues, UseFormReturn } from 'react-hook-form';
-import { useBlocker, useNavigate } from 'react-router-dom';
-import { ROUTES_CONFIG } from '@/routes/routesConfig';
 import Modal from '@/common/components/Modal/Modal';
 import { useModalStore } from '@/common/stores/modal';
-import { isLoggedIn } from '@/shared/utils/authUtil';
 
 type UseBlockBackWithUnsavedChangesParams<TFieldValues extends FieldValues> = {
   methods: UseFormReturn<TFieldValues>;
@@ -23,7 +21,7 @@ export default function useBlockBackWithUnsavedChanges<TFieldValues extends Fiel
   leftButtonText = '나가기',
   rightButtonText = '계속 작성',
 }: UseBlockBackWithUnsavedChangesParams<TFieldValues>) {
-  const navigate = useNavigate();
+  const router = useRouter();
   const { openModal } = useModalStore();
 
   const initialValuesRef = useRef<Record<string, unknown> | null>(null);
@@ -32,20 +30,6 @@ export default function useBlockBackWithUnsavedChanges<TFieldValues extends Fiel
   const armedRef = useRef(false);
   const closeModalRef = useRef<(() => void) | null>(null);
   const isModalOpenRef = useRef(false);
-
-  // 모달이 열려있을 때 네비게이션을 차단
-  const blocker = useBlocker(() => {
-    // 모달이 열려있으면 항상 차단
-    return isModalOpenRef.current;
-  });
-
-  // useBlocker가 차단한 네비게이션을 처리
-  useEffect(() => {
-    if (blocker.state === 'blocked' && isModalOpenRef.current) {
-      // 모달이 열려있을 때는 차단 상태를 유지 (proceed하지 않음)
-      blocker.reset();
-    }
-  }, [blocker]);
 
   useEffect(() => {
     initialValuesRef.current = methods.getValues();
@@ -79,17 +63,11 @@ export default function useBlockBackWithUnsavedChanges<TFieldValues extends Fiel
     const handlePopState = () => {
       if (!shouldBlockRef.current) return;
 
-      // 모달이 열려있으면 useBlocker를 통해 차단된 상태를 유지
-      // popstate 이벤트가 발생해도 모달은 유지하고 페이지 이탈을 방지
+      // 모달이 열려있으면 popstate 이벤트가 발생해도 모달은 유지하고 페이지 이탈을 방지
       if (isModalOpenRef.current && closeModalRef.current) {
         // 크롬에서는 popstate 발생 시 이미 페이지가 이동한 상태일 수 있으므로
         // 즉시 히스토리를 복원하여 페이지 이동 방지
         history.pushState(null, '', location.href);
-
-        // useBlocker가 차단한 상태라면 reset하여 차단 상태 유지
-        if (blocker.state === 'blocked') {
-          blocker.reset();
-        }
         return;
       }
 
@@ -97,7 +75,7 @@ export default function useBlockBackWithUnsavedChanges<TFieldValues extends Fiel
         if (armedRef.current) {
           shouldBlockRef.current = false;
           armedRef.current = false;
-          navigate(-1);
+          router.back();
           return;
         }
         return;
@@ -136,7 +114,11 @@ export default function useBlockBackWithUnsavedChanges<TFieldValues extends Fiel
                 close();
                 const steps = armedRef.current ? -2 : -1;
                 armedRef.current = false;
-                navigate(steps);
+                if (steps === -1) {
+                  router.back();
+                } else {
+                  window.history.go(steps);
+                }
               }}
               onRightClickHandler={() => {
                 closeModalRef.current = null;
@@ -151,7 +133,7 @@ export default function useBlockBackWithUnsavedChanges<TFieldValues extends Fiel
 
     window.addEventListener('popstate', handlePopState);
     return () => window.removeEventListener('popstate', handlePopState);
-  }, [navigate, openModal, content, description, leftButtonText, rightButtonText, blocker]);
+  }, [router, openModal, content, description, leftButtonText, rightButtonText]);
 
   useEffect(() => {
     const handleHeaderNavClickCapture = (event: MouseEvent) => {
@@ -165,9 +147,9 @@ export default function useBlockBackWithUnsavedChanges<TFieldValues extends Fiel
       const mypageButton = target.closest('[aria-label="마이페이지로 이동"]') as HTMLElement | null;
 
       let navigateTo: string | null = null;
-      if (logoButton) navigateTo = ROUTES_CONFIG.home.path;
-      else if (searchButton) navigateTo = ROUTES_CONFIG.search.path;
-      else if (mypageButton) navigateTo = isLoggedIn() ? ROUTES_CONFIG.mypage.path : ROUTES_CONFIG.login.path;
+      if (logoButton) navigateTo = '/';
+      else if (searchButton) navigateTo = '/search';
+      else if (mypageButton) navigateTo = '/my';
 
       if (!navigateTo) return;
 
@@ -198,7 +180,7 @@ export default function useBlockBackWithUnsavedChanges<TFieldValues extends Fiel
               closeModalRef.current = null;
               isModalOpenRef.current = false;
               close();
-              navigate(navigateTo!);
+              router.push(navigateTo!);
             }}
             onRightClickHandler={() => {
               closeModalRef.current = null;
@@ -212,7 +194,7 @@ export default function useBlockBackWithUnsavedChanges<TFieldValues extends Fiel
 
     window.addEventListener('click', handleHeaderNavClickCapture, true);
     return () => window.removeEventListener('click', handleHeaderNavClickCapture, true);
-  }, [navigate, openModal, content, description, leftButtonText, rightButtonText]);
+  }, [router, openModal, content, description, leftButtonText, rightButtonText]);
 
   useEffect(() => {
     const handleBeforeUnload = (event: BeforeUnloadEvent) => {

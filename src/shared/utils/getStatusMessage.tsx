@@ -1,5 +1,5 @@
-import Text from '@/shared/components/Text/Text';
-import { sprinkles } from '@/shared/styles/sprinkles.css';
+import Text from '@/common/components/Text/Text';
+import { statusMessageStyle } from '@/shared/utils/getStatusMessage.css';
 
 type Status = 'upcoming' | 'ongoing' | 'completed';
 
@@ -7,7 +7,7 @@ export const getStatusMessage = (status: Status, remainingDays: number | undefin
   switch (status) {
     case 'upcoming':
       return (
-        <div className={sprinkles({ display: 'flex', gap: 2, alignItems: 'center' })}>
+        <div className={statusMessageStyle}>
           {'클래스 시작까지'}
           <Text tag="b2_sb" color="main4">
             {remainingDays}일
@@ -17,7 +17,7 @@ export const getStatusMessage = (status: Status, remainingDays: number | undefin
       );
     case 'ongoing':
       return (
-        <div className={sprinkles({ display: 'flex', gap: 2, alignItems: 'center' })}>
+        <div className={statusMessageStyle}>
           {'클래스가'}
           <Text tag="b2_sb" color="main4">
             진행 중

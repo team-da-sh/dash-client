@@ -1,0 +1,144 @@
+'use client';
+
+import { useRouter } from 'next/navigation';
+import Card from '@/app/class/[id]/components/Card/Card';
+import {
+  cardItemStyle,
+  cardStyle,
+  classTitle,
+  priceTextStyle,
+  priceWrapper,
+  profileStyle,
+  reviewSubText,
+  reviewTextStyle,
+  sectionContainer,
+  tagWrapper,
+  teacherWrapper,
+} from '@/app/class/[id]/components/ClassInfoWrapper/classInfoWrapper.css';
+import type { LessonDetailResponseTypes } from '@/app/class/[id]/types/api';
+import { getDDayLabel } from '@/app/class/[id]/utils/dDay';
+import type { GenreTypes } from '@/app/onboarding/types/genreTypes';
+import Head from '@/common/components/Head/Head';
+import Tag from '@/common/components/Tag/Tag';
+import Text from '@/common/components/Text/Text';
+import IcCircleCautionFilled from '@/shared/assets/svg/IcCircleCautionFilled';
+import { genreMapping, levelMapping } from '@/shared/constants/index';
+import { WITHDRAW_USER_NAME } from '@/shared/constants/withdrawUser';
+
+const ClassInfoWrapper = ({ lessonData }: { lessonData: LessonDetailResponseTypes }) => {
+  const {
+    genre,
+    name,
+    teacherId,
+    teacherImageUrl,
+    teacherNickname,
+    lessonRound: { lessonRounds },
+    price,
+    remainingDays,
+    maxReservationCount,
+    level,
+  } = lessonData;
+
+  const translatedGenre = genreMapping[genre as Exclude<GenreTypes, null>] || genre;
+  const dDay = getDDayLabel(remainingDays);
+
+  const router = useRouter();
+
+  const handleTeacherClick = (dancerId: number) => {
+    router.push(`/dancer/${dancerId}`);
+  };
+
+  const MAX_DISPLAY_RESERVATION_COUNT = 999;
+  const isWithdrawTeacher = teacherNickname === WITHDRAW_USER_NAME;
+
+  return (
+    <section className={sectionContainer} aria-label={`${name} 클래스 정보`}>
+      <div className={tagWrapper}>
+        <Tag type="genre" size="medium">
+          <Text tag="b3_m" color="white">
+            {translatedGenre}
+          </Text>
+        </Tag>
+        <Tag type="deadline" size="medium">
+          <Text tag="b3_m" color="white">
+            {dDay}
+          </Text>
+        </Tag>
+      </div>
+
+      <Head level="h2" tag="h5_sb" className={classTitle}>
+        {name}
+      </Head>
+
+      <div>
+        <button
+          className={teacherWrapper}
+          onClick={isWithdrawTeacher ? undefined : () => handleTeacherClick(teacherId)}
+          disabled={isWithdrawTeacher}>
+          {isWithdrawTeacher ? (
+            <IcCircleCautionFilled width={40} height={40} />
+          ) : (
+            teacherImageUrl && <img src={teacherImageUrl} alt={`${teacherNickname} 프로필`} className={profileStyle} />
+          )}
+          <Text as="span" tag="b1_sb" color={isWithdrawTeacher ? 'gray6' : 'gray9'}>
+            {teacherNickname}
+          </Text>
+        </button>
+      </div>
+
+      <div className={priceWrapper}>
+        <Head level="h4" tag="h6_sb" color="gray6">
+          {lessonRounds.length}회
+        </Head>
+        <div className={priceTextStyle}>
+          <Head level="h5" tag="h3_sb">
+            {price.toLocaleString()}
+          </Head>
+          <Head level="h5" tag="h3_sb">
+            원
+          </Head>
+        </div>
+      </div>
+
+      <Card className={cardStyle}>
+        <div className={cardItemStyle}>
+          <Text tag="b3_sb" color="gray7">
+            난이도
+          </Text>
+          <Text tag="h6_sb" color="gray10">
+            {levelMapping[level]}
+          </Text>
+        </div>
+
+        <div className={cardItemStyle}>
+          <Text tag="b3_sb" color="gray7">
+            인원
+          </Text>
+          <Text tag="h6_sb" color="gray10">
+            <Text as="span" tag="h6_sb" color="gray10">
+              {maxReservationCount > MAX_DISPLAY_RESERVATION_COUNT
+                ? `${MAX_DISPLAY_RESERVATION_COUNT}+`
+                : `${maxReservationCount}명`}
+            </Text>
+          </Text>
+        </div>
+
+        <div className={cardItemStyle}>
+          <Text tag="b3_sb" color="gray7">
+            리뷰
+          </Text>
+          <div className={reviewTextStyle}>
+            <Text tag="h6_sb" color="gray10">
+              -
+            </Text>
+            <Text tag="c1_r" color="gray6" className={reviewSubText}>
+              (-)
+            </Text>
+          </div>
+        </div>
+      </Card>
+    </section>
+  );
+};
+
+export default ClassInfoWrapper;

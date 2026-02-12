@@ -1,5 +1,16 @@
 export const ACCESS_TOKEN_KEY = 'ACCESS_TOKEN' as const;
+// 온보딩/재가입 사용자의 임시 accessToken용 httpOnly 쿠키 키
+export const TEMP_ACCESS_TOKEN_KEY = 'TEMP_ACCESS_TOKEN' as const;
 export const REFRESH_TOKEN_KEY = 'REFRESH_TOKEN' as const;
+
+// 회원 탈퇴 플로우 서버 가드용 쿠키 키
+export const WITHDRAW_VALIDATED_KEY = 'WITHDRAW_VALIDATED' as const;
+export const WITHDRAW_COMPLETED_KEY = 'WITHDRAW_COMPLETED' as const;
+
+export const ONBOARDING_TOKENS_KEY = 'onboarding-tokens' as const;
+
+/** Next.js: 클래스 취소 확인 페이지로 리다이렉트 시 입금/계좌 정보 전달용 */
+export const MYPAGE_CANCEL_CONFIRM_STATE_KEY = 'mypage-cancel-confirm-state' as const;
 
 export const HTTP_STATUS_CODE = {
   SUCCESS: 200,

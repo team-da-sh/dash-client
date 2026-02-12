@@ -1,0 +1,65 @@
+import { funnelContainerStyle } from '@/app/my/(instructor)/create-class/components/ClassSchedule/ClassRegisterFunnel/classRegisterFunnel.css';
+import DateStep from '@/app/my/(instructor)/create-class/components/ClassSchedule/DateStep/DateStep';
+import TimeStep from '@/app/my/(instructor)/create-class/components/ClassSchedule/TimeStep/TimeStep';
+import type { FunnelProps, StepProps } from '@/app/search/types/funnel';
+
+interface ClassRegisterBottomSheetProps {
+  // currentStep: number;
+  Funnel: ({ children }: FunnelProps) => JSX.Element;
+  // setStep: (step: number) => void;
+  Step: ({ children }: StepProps) => JSX.Element;
+  // onClose: () => void;
+  startDate: string;
+  hour: number;
+  minute: number;
+  ampm: string;
+  setStartDate: (value: string) => void;
+  setHour: React.Dispatch<React.SetStateAction<number>>;
+  setMinute: React.Dispatch<React.SetStateAction<number>>;
+  setAmpm: (value: string) => void;
+  setSelectedTime: (value: number | null) => void;
+  selectedTime: number | null;
+  times?: { startTime: string; endTime: string; date: string; duration: number }[];
+}
+
+const ClassRegisterFunnel = ({
+  Funnel,
+  Step,
+  startDate,
+  hour,
+  minute,
+  ampm,
+  setStartDate,
+  setHour,
+  setMinute,
+  setAmpm,
+  setSelectedTime,
+  selectedTime,
+  times = [],
+}: ClassRegisterBottomSheetProps) => {
+  return (
+    <div className={funnelContainerStyle}>
+      <Funnel>
+        <Step name="1">
+          <DateStep startDate={startDate} setStartDate={setStartDate} times={times} />
+        </Step>
+        <Step name="2">
+          <TimeStep
+            hour={hour}
+            minute={minute}
+            ampm={ampm}
+            setHour={setHour}
+            setMinute={setMinute}
+            setAmpm={setAmpm}
+            setSelectedTime={setSelectedTime}
+            selectedTime={selectedTime}
+            times={times}
+            startDate={startDate}
+          />
+        </Step>
+      </Funnel>
+    </div>
+  );
+};
+
+export default ClassRegisterFunnel;

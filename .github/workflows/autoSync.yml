@@ -5,28 +5,14 @@ on:
     branches: [main]
 
 jobs:
-  build:
+  sync:
     runs-on: ubuntu-latest
-    container: pandoc/latex
     steps:
-      - uses: actions/checkout@v2
-      - name: Install mustache (to update the date)
-        run: apk add ruby && gem install mustache
-      - name: creates output
-        run: sh ./build.sh
-      - name: Pushes to another repository
-        if: github.event_name == 'push'
-        id: push_directory
-        uses: cpina/github-action-push-to-another-repository@main
-        env:
-          API_TOKEN_GITHUB: ${{ secrets.AUTO_SYNC }}
+      - uses: actions/checkout@v4
         with:
-          source-directory: 'output'
-          destination-github-username: constantly-dev
-          destination-repository-name: 35-APPJAM-WEB-DASH
-          user-email: ${{ secrets.EMAIL }}
-          commit-message: ${{ github.event.commits[0].message }}
-          target-branch: main
+          fetch-depth: 0
 
-      - name: Test get variable exported by push-to-another-repository
-        run: echo $DESTINATION_CLONED_DIRECTORY
+      - name: Push to fork
+        run: |
+          git remote add fork https://x-access-token:${{ secrets.AUTO_SYNK }}@github.com/hongmac/dash-client.git
+          git push fork main

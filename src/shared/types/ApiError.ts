@@ -1,56 +1,103 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import type { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
+import type { HTTPError } from 'ky';
 import { HTTP_STATUS_CODE } from '@/shared/constants/api';
 
-// Error name status 별로 확장한 ApiError class
-export class ApiError<T = unknown> extends Error implements AxiosError<T> {
-  config?: InternalAxiosRequestConfig;
-  code?: string;
-  request?: any;
-  response?: AxiosResponse<T>;
-  status?: number;
-  isAxiosError: boolean;
-  toJSON: () => any;
+/** Response body 파싱 결과 (에러 메시지 등) */
+type ApiErrorData = { message?: string; [key: string]: unknown };
 
-  constructor(error: AxiosError<T>, message?: string) {
-    super(message ?? error.message);
+/** error.response.data?.message 등 기존 호환용 response 형태 */
+export type ApiErrorResponseShape<T = ApiErrorData> = {
+  status: number;
+  statusText: string;
+  data?: T;
+  headers: Record<string, string>;
+};
 
-    const errorStatus = error.response?.status || 0;
-    let name = 'ApiError';
+/**
+ * ky HTTPError를 래핑하는 에러 클래스.
+ * Sentry에서 상태코드별로 그룹화할 수 있도록 name을 'ApiError: BAD_REQUEST' 등으로 설정.
+ */
+export class ApiError<T = ApiErrorData> extends Error {
+  readonly response: ApiErrorResponseShape<T>;
+  readonly request: Request;
+  readonly status: number;
 
-    switch (errorStatus) {
-      case HTTP_STATUS_CODE.BAD_REQUEST: // 400
-        name += ': BAD_REQUEST';
-        break;
-      case HTTP_STATUS_CODE.UNAUTHORIZED: // 401
-        name += ': UNAUTHORIZED';
-        break;
-      case HTTP_STATUS_CODE.FORBIDDEN: // 403
-        name += ': FORBIDDEN';
-        break;
-      case HTTP_STATUS_CODE.NOT_FOUND: // 404
-        name += ': NOT_FOUND';
-        break;
-      case HTTP_STATUS_CODE.METHOD_NOT_ALLOWED: // 405
-        name += ': METHOD_NOT_ALLOWED';
-        break;
-      case HTTP_STATUS_CODE.CONFLICT: // 409
-        name += ': CONFLICT';
-        break;
-      case HTTP_STATUS_CODE.INTERNAL_SERVER_ERROR: // 500
-        name += ': INTERNAL_SERVER_ERROR';
-        break;
+  private constructor(
+    response: ApiErrorResponseShape<T>,
+    request: Request,
+    message: string,
+    status: number,
+    stack?: string
+  ) {
+    super(message);
+    this.name = 'ApiError';
+    this.response = response;
+    this.request = request;
+    this.status = status;
+    if (stack) {
+      this.stack = stack;
     }
 
-    this.name = name;
-    this.stack = error.stack;
-
-    this.config = error.config;
-    this.code = error.code;
-    this.request = error.request;
-    this.response = error.response;
-    this.status = error.status;
-    this.isAxiosError = error.isAxiosError;
-    this.toJSON = error.toJSON;
+    switch (status) {
+      case HTTP_STATUS_CODE.BAD_REQUEST:
+        this.name = 'ApiError: BAD_REQUEST';
+        break;
+      case HTTP_STATUS_CODE.UNAUTHORIZED:
+        this.name = 'ApiError: UNAUTHORIZED';
+        break;
+      case HTTP_STATUS_CODE.FORBIDDEN:
+        this.name = 'ApiError: FORBIDDEN';
+        break;
+      case HTTP_STATUS_CODE.NOT_FOUND:
+        this.name = 'ApiError: NOT_FOUND';
+        break;
+      case HTTP_STATUS_CODE.METHOD_NOT_ALLOWED:
+        this.name = 'ApiError: METHOD_NOT_ALLOWED';
+        break;
+      case HTTP_STATUS_CODE.CONFLICT:
+        this.name = 'ApiError: CONFLICT';
+        break;
+      case HTTP_STATUS_CODE.INTERNAL_SERVER_ERROR:
+        this.name = 'ApiError: INTERNAL_SERVER_ERROR';
+        break;
+    }
   }
+
+  /**
+   * ky HTTPError 또는 fetch Response로부터 ApiError 생성.
+   * response body를 파싱해 error.response.data?.message 호환 형태로 제공.
+   */
+  static async from<T = ApiErrorData>(
+    source: HTTPError<T> | { response: Response; request: Request }
+  ): Promise<ApiError<T>> {
+    const { response, request } = source;
+
+    let data: T | undefined;
+    try {
+      data = (await response.clone().json()) as T;
+    } catch {
+      data = undefined;
+    }
+
+    const message = (data as ApiErrorData)?.message ?? '';
+
+    const responseShape: ApiErrorResponseShape<T> = {
+      status: response.status,
+      statusText: response.statusText,
+      data,
+      headers: Object.fromEntries(response.headers.entries()),
+    };
+
+    const err = new ApiError<T>(responseShape, request, message, response.status);
+    err.stack = source instanceof Error ? source.stack : undefined;
+    return err;
+  }
+
+  /** HTTPError로부터 생성 (생성자 대신 from 사용 권장) */
+  static async fromHTTPError<T = ApiErrorData>(error: HTTPError<T>): Promise<ApiError<T>> {
+    return ApiError.from(error);
+  }
+}
+
+export function isApiError(error: unknown): error is ApiError {
+  return error instanceof ApiError;
 }

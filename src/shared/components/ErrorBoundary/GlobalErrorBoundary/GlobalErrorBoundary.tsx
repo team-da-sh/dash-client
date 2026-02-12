@@ -1,7 +1,7 @@
 import * as Sentry from '@sentry/react';
 import type { ErrorInfo, ReactNode } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
-import ErrorPage from '@/pages/error/ErrorPage';
+import ErrorPage from '@/app/error';
 import { ERROR_LEVEL } from '@/shared/types/errorLevel';
 
 const handleError = (error: Error, errorInfo: ErrorInfo) => {

@@ -1,14 +1,22 @@
 import clsx from 'clsx';
-import type { GenreTypes } from '@/pages/onboarding/types/genreTypes';
-import type { LevelTypes } from '@/pages/onboarding/types/levelTypes';
+import type { GenreTypes } from '@/app/onboarding/types/genreTypes';
+import type { LevelTypes } from '@/app/onboarding/types/levelTypes';
+import Head from '@/common/components/Head/Head';
+import Tag from '@/common/components/Tag/Tag';
+import Text from '@/common/components/Text/Text';
 import IcCircleCautionFilled from '@/shared/assets/svg/IcCircleCautionFilled';
-import * as styles from '@/shared/components/ClassCard/style.css';
-import Head from '@/shared/components/Head/Head';
-import Tag from '@/shared/components/Tag/Tag';
-import Text from '@/shared/components/Text/Text';
+import {
+  cardStyle,
+  cardImageStyle,
+  cardContentStyle,
+  lessonNameStyle,
+  cardContentWrapperStyle,
+  tagWrapperStyle,
+  infoWrapperStyle,
+  infoRowStyle,
+} from '@/shared/components/ClassCard/style.css';
 import { genreMapping, levelMapping } from '@/shared/constants';
-import { sprinkles } from '@/shared/styles/sprinkles.css';
-import { formatLessonDateRange } from '@/shared/utils/timeCalculate';
+import { formatLessonDateRange } from '@/shared/utils/date';
 
 interface ClassCardBodyProps {
   name: string;
@@ -32,24 +40,16 @@ const ClassCardBody = ({
   onClick,
 }: ClassCardBodyProps) => {
   return (
-    <div className={styles.cardStyle} onClick={onClick}>
+    <div className={cardStyle} onClick={onClick}>
       {imageUrl ? (
-        <img src={imageUrl} className={styles.cardImageStyle} alt={`${name}`} />
+        <img src={imageUrl} className={cardImageStyle} alt={`${name}`} />
       ) : (
-        <div className={styles.cardImageStyle}>
+        <div className={cardImageStyle}>
           <IcCircleCautionFilled width={36} height={36} />
         </div>
       )}
-      <div
-        className={clsx(
-          sprinkles({
-            display: 'flex',
-            flexDirection: 'column',
-            gap: 8,
-          }),
-          styles.cardContentStyle
-        )}>
-        <div className={sprinkles({ display: 'flex', gap: 3 })}>
+      <div className={clsx(cardContentWrapperStyle, cardContentStyle)}>
+        <div className={tagWrapperStyle}>
           {genre && (
             <Tag type="genre" size="small">
               {genreMapping[genre]}
@@ -61,12 +61,12 @@ const ClassCardBody = ({
             </Tag>
           )}
         </div>
-        <Head level="h2" tag="b1_sb" className={styles.lessonNameStyle}>
+        <Head level="h2" tag="b1_sb" className={lessonNameStyle}>
           {name}
         </Head>
-        <div className={sprinkles({ display: 'flex', flexDirection: 'column', gap: 4 })}>
+        <div className={infoWrapperStyle}>
           {startDateTime && endDateTime && (
-            <div className={sprinkles({ display: 'flex', gap: 8, alignItems: 'center' })}>
+            <div className={infoRowStyle}>
               <Text tag="c1_sb" color="gray7">
                 일정
               </Text>
@@ -76,7 +76,7 @@ const ClassCardBody = ({
             </div>
           )}
 
-          <div className={sprinkles({ display: 'flex', gap: 8, alignItems: 'center' })}>
+          <div className={infoRowStyle}>
             <Text tag="c1_sb" color="gray7">
               장소
             </Text>

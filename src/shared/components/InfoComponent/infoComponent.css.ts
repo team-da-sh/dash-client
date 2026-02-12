@@ -33,3 +33,14 @@ export const textWrapperStyle = style({
   flexDirection: 'column',
   gap: '0.8rem',
 });
+
+export const profileWrapperStyle = style({
+  display: 'flex',
+  gap: '1.2rem',
+  alignItems: 'center',
+});
+
+export const arrowIconStyle = style({
+  width: '2.4rem',
+  height: '2.4rem',
+});

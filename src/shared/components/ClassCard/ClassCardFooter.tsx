@@ -1,8 +1,7 @@
 import type { PropsWithChildren } from 'react';
+import Text from '@/common/components/Text/Text';
 import IcArrowRightGray0614 from '@/shared/assets/svg/IcArrowRightGray0614';
-import { askTextStyle } from '@/shared/components/ClassCard/style.css';
-import Text from '@/shared/components/Text/Text';
-import { sprinkles } from '@/shared/styles/sprinkles.css';
+import { askTextStyle, footerWrapperStyle } from '@/shared/components/ClassCard/style.css';
 
 interface ClassCardFooterProps extends PropsWithChildren {
   showAsk?: boolean;
@@ -16,7 +15,7 @@ const ClassCardFooter = ({ showAsk = false, children }: ClassCardFooterProps) =>
 
   return (
     <>
-      {children && <div className={sprinkles({ display: 'flex', gap: 7, mt: 12 })}>{children}</div>}
+      {children && <div className={footerWrapperStyle}>{children}</div>}
       {showAsk && (
         <div className={askTextStyle}>
           <Text tag="b3_m" color="gray7" onClick={handleTextClick}>
