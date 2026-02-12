@@ -121,7 +121,7 @@ export async function middleware(request: NextRequest) {
         const accessTokenValue = getAccessTokenFromCookies(request);
 
         const response = await fetch(
-          new URL(`${API_URL.LESSON_DETAIL}/${lessonId}`, process.env.NEXT_PUBLIC_DEV_BASE_URL),
+          new URL(`api/${API_URL.LESSON_DETAIL}/${lessonId}`, process.env.NEXT_PUBLIC_DEV_BASE_URL),
           {
             method: 'GET',
             headers: {

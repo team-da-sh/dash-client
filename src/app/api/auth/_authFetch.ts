@@ -3,7 +3,7 @@ type AuthFetchInit = RequestInit & {
 };
 
 export async function authFetch(path: string, init: AuthFetchInit = {}) {
-  const url = new URL(path, process.env.BACKEND_BASE_URL);
+  const url = new URL(`api/${path}`, process.env.BACKEND_BASE_URL);
 
   const headers = new Headers(init.headers ?? {});
 
