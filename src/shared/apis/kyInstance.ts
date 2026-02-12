@@ -5,7 +5,10 @@ import { afterResponse } from '@/shared/apis/afterResponse';
 const getPrefixUrl = (): string => {
   if (isServer) {
     const base = process.env.BACKEND_BASE_URL;
-    if (base) return base.endsWith('/') ? base.slice(0, -1) : base;
+    if (base) {
+      const normalized = base.endsWith('/') ? base.slice(0, -1) : base;
+      return `${normalized}/api`;
+    }
   }
   return '/api';
 };
