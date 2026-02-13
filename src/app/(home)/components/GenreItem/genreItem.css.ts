@@ -11,6 +11,12 @@ export const containerStyle = style({
   backgroundColor: vars.colors.white,
 });
 
+export const linkStyle = style({
+  display: 'block',
+  width: '100%',
+  height: '100%',
+});
+
 export const medalStyle = style({
   position: 'absolute',
   top: 0,
