@@ -14,7 +14,7 @@ interface SliderItemPropTypes {
 const SliderItem = ({ imageUrl, description, priority = false }: SliderItemPropTypes) => {
   return (
     <div className={containerStyle}>
-      <Image src={imageUrl} alt={`${description} 배너`} className={imageStyle} fill priority={priority} unoptimized />
+      <Image src={imageUrl} alt={`${description} 배너`} className={imageStyle} fill priority={priority} />
 
       <Head level="h2" tag="h3_sb" color="white" className={descriptionStyle}>
         {description}
