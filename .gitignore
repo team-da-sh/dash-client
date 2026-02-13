@@ -32,3 +32,5 @@ storybook-static/
 
 .next
 next-env.d.ts
+
+.claude/*

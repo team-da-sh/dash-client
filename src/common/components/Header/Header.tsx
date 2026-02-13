@@ -28,7 +28,7 @@ const Header = () => {
         <Link href="/search" aria-label="검색 페이지로 이동">
           <IcSearchBlack24 width={24} height={24} />
         </Link>
-        <Link href="/my" aria-label="마이페이지로 이동">
+        <Link href="/my" aria-label="마이페이지로 이동" prefetch={false}>
           <IcMypageBlack24 width={24} height={24} />
         </Link>
       </div>

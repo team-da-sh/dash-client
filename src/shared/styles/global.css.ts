@@ -58,13 +58,13 @@ globalStyle('#root', {
 });
 
 globalStyle('.swiper-pagination-bullet', {
-  width: '4px',
-  height: '4px',
-  backgroundColor: vars.colors.white50,
+  width: '4px !important',
+  height: '4px !important',
+  backgroundColor: `${vars.colors.white50} !important`,
 });
 
-globalStyle('.swiper-pagination-bullet:active', {
-  width: '4px',
-  height: '4px',
-  backgroundColor: vars.colors.white,
+globalStyle('.swiper-pagination-bullet-active', {
+  width: '4px !important',
+  height: '4px !important',
+  backgroundColor: `${vars.colors.white} !important`,
 });
