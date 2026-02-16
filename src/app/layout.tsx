@@ -4,7 +4,7 @@ import Providers from '@/app/Providers';
 import Header from '@/common/components/Header/Header';
 import '@/shared/styles/index.css';
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://da-sh.kr';
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.da-sh.kr';
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
