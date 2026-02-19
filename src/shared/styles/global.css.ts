@@ -17,13 +17,6 @@ globalStyle(':root:has(#storybook-root)', {
   },
 });
 
-globalStyle(':root', {
-  vars: {
-    '--swiper-theme-color': vars.colors.white,
-    '--swiper-pagination-bullet-inactive-color': vars.colors.white50,
-  },
-});
-
 // HTML, Body 스타일
 globalStyle('html, body', {
   minWidth: 'var(--min-width)',
@@ -55,16 +48,4 @@ globalStyle('#root', {
   width: '100%',
   minHeight: '100dvh',
   backgroundColor: '#fff',
-});
-
-globalStyle('.swiper-pagination-bullet', {
-  width: '4px !important',
-  height: '4px !important',
-  backgroundColor: `${vars.colors.white50} !important`,
-});
-
-globalStyle('.swiper-pagination-bullet-active', {
-  width: '4px !important',
-  height: '4px !important',
-  backgroundColor: `${vars.colors.white} !important`,
 });
