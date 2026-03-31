@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import { Toaster } from 'react-hot-toast';
 import queryClient from '@/app/queryClient';
 import ModalProvider from '@/common/components/Modal/ModalProvider';
+import { AnalyticsProvider } from '@/lib/analytics';
 
 const setScreenSize = () => {
   // vh 관련
@@ -29,11 +30,13 @@ export default function Providers({ children }: { children: React.ReactNode }) {
   }, []);
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <ReactQueryDevtools initialIsOpen={false} />
-      {children}
-      <ModalProvider />
-      <Toaster containerStyle={{ margin: '0 auto' }} />
-    </QueryClientProvider>
+    <AnalyticsProvider>
+      <QueryClientProvider client={queryClient}>
+        <ReactQueryDevtools initialIsOpen={false} />
+        {children}
+        <ModalProvider />
+        <Toaster containerStyle={{ margin: '0 auto' }} />
+      </QueryClientProvider>
+    </AnalyticsProvider>
   );
 }
