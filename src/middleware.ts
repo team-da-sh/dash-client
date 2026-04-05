@@ -9,7 +9,7 @@ import {
 } from '@/shared/constants/api';
 import { API_URL } from '@/shared/constants/apiURL';
 
-const AUTH_REQUIRED_PATHS: RegExp[] = [/^\/my(\/|$)/, /^\/class(\/|$)/, /^\/dancer(\/|$)/];
+const AUTH_REQUIRED_PATHS: RegExp[] = [/^\/my(\/|$)/, /^\/class\/[^/]+\/register(\/|$)/];
 const GUEST_ONLY_PATHS: RegExp[] = [/^\/login(\/|$)/, /^\/auth(\/|$)/];
 const ONBOARDING_PATHS: RegExp[] = [/^\/onboarding(\/|$)/];
 const RESERVATION_PATHS: RegExp[] = [/^\/class\/[^/]+\/register(\/|$)/];
