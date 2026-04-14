@@ -30,13 +30,14 @@ export default function Providers({ children }: { children: React.ReactNode }) {
   }, []);
 
   return (
-    <AnalyticsProvider>
-      <QueryClientProvider client={queryClient}>
-        <ReactQueryDevtools initialIsOpen={false} />
+    <QueryClientProvider client={queryClient}>
+      <ReactQueryDevtools initialIsOpen={false} />
+      {/* TODO-userproperty: AnalyticsProvider가 useGetMe(React Query)를 사용하므로 QueryClientProvider 안에 위치해야 함 */}
+      <AnalyticsProvider>
         {children}
         <ModalProvider />
         <Toaster containerStyle={{ margin: '0 auto' }} />
-      </QueryClientProvider>
-    </AnalyticsProvider>
+      </AnalyticsProvider>
+    </QueryClientProvider>
   );
 }

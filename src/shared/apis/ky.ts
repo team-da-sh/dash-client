@@ -26,3 +26,15 @@ export const getTeacherAccount = async (): Promise<TeacherAccountResponseTypes> 
   const data = await kyInstance.get(API_URL.TEACHER_ME_ACCOUNT).json<TeacherAccountResponseTypes>();
   return data;
 };
+
+// TODO-userproperty: GET v1/users/me 백엔드 생성 후 실제 응답 타입으로 교체
+export interface MeResponseTypes {
+  userId: number;
+  role: '수강생' | '강사';
+  teacherId?: number;
+}
+
+export const getMe = async (): Promise<MeResponseTypes> => {
+  const data = await kyInstance.get(API_URL.USERS_ME).json<MeResponseTypes>();
+  return data;
+};

@@ -11,6 +11,7 @@ const useEventLogger = () => {
     logSubmitEvent: controller.submitEvent,
     logPageViewEvent: controller.pageViewEvent,
     logImpressionEvent: controller.impressionEvent,
+    setUserId: controller.setUserId,
     setUserProperties: controller.setUserProperties,
     reset: controller.reset,
   };

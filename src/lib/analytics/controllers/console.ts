@@ -13,6 +13,9 @@ export const createConsoleController = (): EventLoggerController => ({
   impressionEvent(key, ...params) {
     console.log('[Analytics:impression]', key, ...params);
   },
+  setUserId(userId) {
+    console.log('[Analytics:setUserId]', userId);
+  },
   setUserProperties(properties) {
     console.log('[Analytics:identify]', properties);
   },

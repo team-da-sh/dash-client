@@ -1,4 +1,4 @@
-import { Identify, identify, initAll, reset, setUserId, track } from '@amplitude/unified';
+import { Identify, identify, initAll, reset, setUserId as amplitudeSetUserId, track } from '@amplitude/unified';
 import type { UserProperties } from '../events';
 import type { EventLoggerController } from '../types';
 
@@ -30,11 +30,12 @@ export const createAmplitudeController = (apiKey: string): EventLoggerController
     impressionEvent(key, ...params) {
       track(key, params[0] ?? {});
     },
-    setUserProperties({ user_id, ...rest }: UserProperties) {
-      setUserId(String(user_id));
-
+    setUserId(userId: number) {
+      amplitudeSetUserId(String(userId));
+    },
+    setUserProperties(properties: UserProperties) {
       const identifyEvent = new Identify();
-      for (const [key, value] of Object.entries(rest)) {
+      for (const [key, value] of Object.entries(properties)) {
         if (value !== undefined && value !== null) {
           identifyEvent.set(key, value as string | number | boolean);
         }

@@ -8,6 +8,7 @@ export interface EventLoggerController {
   submitEvent<K extends keyof SubmitEvents>(key: K, ...params: ParamTuple<SubmitEvents[K]>): void;
   pageViewEvent<K extends keyof PageViewEvents>(key: K, ...params: ParamTuple<PageViewEvents[K]>): void;
   impressionEvent<K extends keyof ImpressionEvents>(key: K, ...params: ParamTuple<ImpressionEvents[K]>): void;
+  setUserId: (userId: number) => void;
   setUserProperties: (properties: UserProperties) => void;
   reset: () => void;
 }

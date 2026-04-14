@@ -2,15 +2,14 @@
 
 type UserType = '수강생' | '강사';
 
-type ReservationStatus = '승인대기' | '승인확정' | '취소대기' | '취소확정';
-
-type StatusChanger = '강사' | '수강생' | '시스템';
+export type ReservationStatus = '승인대기' | '승인완료' | '취소대기' | '취소완료' | '수강완료';
 
 // ─── User Properties (Amplitude identify) ─────────────────────────────────────
 
 export interface UserProperties {
-  user_id: number;
   user_type: UserType;
+  // 강사인 경우에만 설정됨 (v1/teachers/me 응답에 teacherId 추가 후 활성화 예정)
+  teacher_id?: number;
 }
 
 // ─── Lesson 관련 공통 프로퍼티 ──────────────────────────────────────────────────
@@ -20,22 +19,9 @@ type LessonBaseProps = {
   lesson_name: string;
   teacher_name: string;
   teacher_id: number;
-  has_sns: boolean;
-  has_video: boolean;
-  has_experience: boolean;
   lesson_price: number;
   lesson_session_count: number;
   lesson_capacity: number;
-};
-
-// ─── 예약 상태 변경 공통 프로퍼티 ────────────────────────────────────────────────
-
-type StatusChangeProps = {
-  lesson_id: number;
-  teacher_id: number;
-  status_from: ReservationStatus;
-  status_to: ReservationStatus;
-  status_changer: StatusChanger;
 };
 
 // ─── Click ────────────────────────────────────────────────────────────────────
@@ -68,17 +54,19 @@ export interface ClickEvents {
   status_change: {
     lesson_name: string;
     lesson_id: number;
-    reservation_status: ReservationStatus;
-    teacher_name: string;
-    teacher_id: number;
+    status_from: ReservationStatus;
+    status_to: ReservationStatus;
   };
   exit_modal_click: {
-    modal_action: '나가기' | '계속 작성';
+    action: 'exit' | 'stay';
   };
-  approve_reservation: StatusChangeProps;
-  request_cancel: StatusChangeProps;
-  approve_cancel_click: StatusChangeProps;
-  request_reservation: Omit<StatusChangeProps, 'status_from'>;
+  request_cancel: {
+    lesson_id: number;
+    status_from: ReservationStatus;
+    status_to: ReservationStatus;
+    // TODO: 강사별 취소 분석 필요 시 예약 상세 API에 teacherId 추가 요청 후 활성화
+    // teacher_id?: number;
+  };
 }
 
 // ─── Submit ───────────────────────────────────────────────────────────────────
@@ -102,7 +90,6 @@ export interface SubmitEvents {
   // 마이페이지
   teacher_register_done: {
     teacher_name: string;
-    teacher_id: number;
     has_experience: boolean;
     has_video: boolean;
     has_sns: boolean;
@@ -125,6 +112,9 @@ export interface PageViewEvents {
     teacher_name: string;
     teacher_id: number;
     referrer_page: string;
+    has_sns: boolean;
+    has_video: boolean;
+    has_experience: boolean;
   };
 
   // 마이페이지
