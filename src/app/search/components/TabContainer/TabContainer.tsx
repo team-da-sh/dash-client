@@ -17,6 +17,7 @@ import { TAB } from '@/app/search/constants';
 import type { ClassListResponseTypes, DancerListResponseTypes } from '@/app/search/types/api';
 import { TabButton, TabList, TabPanel, TabRoot } from '@/common/components/Tab';
 import Text from '@/common/components/Text/Text';
+import { useEventLogger } from '@/lib/analytics';
 import IcArrowUnderGray from '@/shared/assets/svg/IcArrowUnderGray';
 import IcXMain04 from '@/shared/assets/svg/IcXMain04';
 
@@ -77,6 +78,8 @@ const TabContainer = ({
   selectedTab,
   setSelectedTab,
 }: TabContainerPropTypes) => {
+  const { logClickEvent } = useEventLogger();
+
   const handleTagReset = (type: string) => {
     switch (type) {
       case 'genre':
@@ -136,13 +139,19 @@ const TabContainer = ({
             <TabList>
               <TabButton
                 isSelected={selectedTab === TAB.CLASS}
-                onClick={() => setSelectedTab(TAB.CLASS)}
+                onClick={() => {
+                  setSelectedTab(TAB.CLASS);
+                  logClickEvent('search_tab_click', { search_tab_name: '클래스' });
+                }}
                 colorScheme="primary">
                 클래스
               </TabButton>
               <TabButton
                 isSelected={selectedTab === TAB.DANCER}
-                onClick={() => setSelectedTab(TAB.DANCER)}
+                onClick={() => {
+                  setSelectedTab(TAB.DANCER);
+                  logClickEvent('search_tab_click', { search_tab_name: '강사' });
+                }}
                 colorScheme="primary">
                 댄서
               </TabButton>
