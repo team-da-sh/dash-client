@@ -35,6 +35,7 @@ import Modal from '@/common/components/Modal/Modal';
 import { notify } from '@/common/components/Toast/Toast';
 import useDebounce from '@/common/hooks/useDebounce';
 import { useModalStore } from '@/common/stores/modal';
+import { useEventLogger } from '@/lib/analytics';
 import { genreEngMapping, levelEngMapping } from '@/shared/constants';
 import { lessonKeys, memberKeys, teacherKeys } from '@/shared/constants/queryKey';
 import useBlockBackWithUnsavedChanges from '@/shared/hooks/useBlockBackWithUnsavedChanges';
@@ -44,6 +45,7 @@ import useImageUploader from '@/shared/hooks/useImageUploader';
 export default function Page() {
   const router = useRouter();
   const { openModal } = useModalStore();
+  const { logSubmitEvent } = useEventLogger();
 
   // 클래스 등록 페이지는 신규 등록용이므로 lessonId가 없음
   const lessonId = null;
@@ -236,6 +238,12 @@ export default function Page() {
       } else {
         classRegisterMutate(updatedInfo, {
           onSuccess: () => {
+            logSubmitEvent('lesson_create_done', {
+              // TODO: 등록 API 응답에 lesson_id 없음
+              lesson_id: 0,
+              lesson_name: updatedInfo.name,
+              is_edit: false,
+            });
             queryClient.invalidateQueries({ queryKey: memberKeys.me.queryKey });
             queryClient.invalidateQueries({ queryKey: lessonKeys.list.queryKey });
             router.push('/my/create-class/completion');

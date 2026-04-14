@@ -2,21 +2,36 @@
 
 import Link from 'next/link';
 import { useParams, useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 import { useGetReservationsDetail } from '@/app/my/(student)/classes/[id]/apis/queries';
 import ApplicantInfo from '@/app/my/(student)/classes/[id]/components/ApplicantInfo/ApplicantInfo';
 import ClassInfo from '@/app/my/(student)/classes/[id]/components/ClassInfo/ClassInfo';
 import ReservationProgress from '@/app/my/(student)/classes/[id]/components/ReservationProgress/ReservationProgress';
 import * as styles from '@/app/my/(student)/classes/[id]/index.css';
+import { STATUS_KOREAN_MAP } from '@/app/my/(student)/classes/constants/statusMap';
 import BoxButton from '@/common/components/BoxButton/BoxButton';
 import Head from '@/common/components/Head/Head';
+import { useEventLogger } from '@/lib/analytics';
+import type { ReservationStatus } from '@/lib/analytics/events';
 import ClassCard from '@/shared/components/ClassCard';
 
 export default function Page() {
   const params = useParams<{ id: string }>();
-  const reservationId = params.id;
+  const reservationId = params?.id;
   const router = useRouter();
 
+  const { logPageViewEvent } = useEventLogger();
   const { data } = useGetReservationsDetail(Number(reservationId));
+
+  useEffect(() => {
+    if (!data || !(data.reservationStatus in STATUS_KOREAN_MAP)) return;
+    logPageViewEvent('reservation_detail_view', {
+      lesson_id: data.lessonId,
+      reservation_status: STATUS_KOREAN_MAP[
+        data.reservationStatus as keyof typeof STATUS_KOREAN_MAP
+      ] as ReservationStatus,
+    });
+  }, [data]);
 
   if (!data) {
     return <div>오류 data 없음 </div>;

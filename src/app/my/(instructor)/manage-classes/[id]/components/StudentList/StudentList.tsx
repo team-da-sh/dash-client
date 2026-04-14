@@ -15,10 +15,11 @@ interface StudentListProps {
   reservationStatus: ReservationStatus;
   studentList: Student[];
   lessonId: number;
+  lessonName: string;
   selectedTab: TabStatus;
 }
 
-const StudentList = ({ reservationStatus, studentList, lessonId, selectedTab }: StudentListProps) => {
+const StudentList = ({ reservationStatus, studentList, lessonId, lessonName, selectedTab }: StudentListProps) => {
   return (
     <>
       {studentList.length > 0 && (
@@ -32,7 +33,13 @@ const StudentList = ({ reservationStatus, studentList, lessonId, selectedTab }: 
 
           <ul className={studentListWrapper}>
             {studentList.map((student, index) => (
-              <StudentCard index={index} studentData={student} lessonId={lessonId} selectedTab={selectedTab} />
+              <StudentCard
+                index={index}
+                studentData={student}
+                lessonId={lessonId}
+                lessonName={lessonName}
+                selectedTab={selectedTab}
+              />
             ))}
           </ul>
         </div>

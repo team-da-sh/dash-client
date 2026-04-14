@@ -3,6 +3,7 @@ import { useEffect, useRef } from 'react';
 import type { FieldValues, UseFormReturn } from 'react-hook-form';
 import Modal from '@/common/components/Modal/Modal';
 import { useModalStore } from '@/common/stores/modal';
+import { useEventLogger } from '@/lib/analytics';
 
 type UseBlockBackWithUnsavedChangesParams<TFieldValues extends FieldValues> = {
   methods: UseFormReturn<TFieldValues>;
@@ -23,6 +24,7 @@ export default function useBlockBackWithUnsavedChanges<TFieldValues extends Fiel
 }: UseBlockBackWithUnsavedChangesParams<TFieldValues>) {
   const router = useRouter();
   const { openModal } = useModalStore();
+  const { logClickEvent } = useEventLogger();
 
   const initialValuesRef = useRef<Record<string, unknown> | null>(null);
   const shouldBlockRef = useRef(true);
@@ -108,6 +110,7 @@ export default function useBlockBackWithUnsavedChanges<TFieldValues extends Fiel
               leftButtonText={leftButtonText}
               rightButtonText={rightButtonText}
               onLeftClickHandler={() => {
+                logClickEvent('exit_modal_click', { action: 'exit' });
                 shouldBlockRef.current = false;
                 closeModalRef.current = null;
                 isModalOpenRef.current = false;
@@ -121,6 +124,7 @@ export default function useBlockBackWithUnsavedChanges<TFieldValues extends Fiel
                 }
               }}
               onRightClickHandler={() => {
+                logClickEvent('exit_modal_click', { action: 'stay' });
                 closeModalRef.current = null;
                 isModalOpenRef.current = false;
                 close();
@@ -133,7 +137,7 @@ export default function useBlockBackWithUnsavedChanges<TFieldValues extends Fiel
 
     window.addEventListener('popstate', handlePopState);
     return () => window.removeEventListener('popstate', handlePopState);
-  }, [router, openModal, content, description, leftButtonText, rightButtonText]);
+  }, [router, openModal, content, description, leftButtonText, rightButtonText, logClickEvent]);
 
   useEffect(() => {
     const handleHeaderNavClickCapture = (event: MouseEvent) => {
@@ -175,6 +179,7 @@ export default function useBlockBackWithUnsavedChanges<TFieldValues extends Fiel
             leftButtonText={leftButtonText}
             rightButtonText={rightButtonText}
             onLeftClickHandler={() => {
+              logClickEvent('exit_modal_click', { action: 'exit' });
               shouldBlockRef.current = false;
               armedRef.current = false;
               closeModalRef.current = null;
@@ -183,6 +188,7 @@ export default function useBlockBackWithUnsavedChanges<TFieldValues extends Fiel
               router.push(navigateTo!);
             }}
             onRightClickHandler={() => {
+              logClickEvent('exit_modal_click', { action: 'stay' });
               closeModalRef.current = null;
               isModalOpenRef.current = false;
               close();
@@ -194,7 +200,7 @@ export default function useBlockBackWithUnsavedChanges<TFieldValues extends Fiel
 
     window.addEventListener('click', handleHeaderNavClickCapture, true);
     return () => window.removeEventListener('click', handleHeaderNavClickCapture, true);
-  }, [router, openModal, content, description, leftButtonText, rightButtonText]);
+  }, [router, openModal, content, description, leftButtonText, rightButtonText, logClickEvent]);
 
   useEffect(() => {
     const handleBeforeUnload = (event: BeforeUnloadEvent) => {

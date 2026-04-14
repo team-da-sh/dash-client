@@ -7,6 +7,7 @@ export interface ReservationDetailType {
   dDay: number;
   lessonName: string;
   lessonId: number;
+  teacherId: number;
   nickname: string;
   rounds: RoundType[];
   location: string;

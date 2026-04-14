@@ -35,6 +35,7 @@ import Modal from '@/common/components/Modal/Modal';
 import { notify } from '@/common/components/Toast/Toast';
 import useDebounce from '@/common/hooks/useDebounce';
 import { useModalStore } from '@/common/stores/modal';
+import { useEventLogger } from '@/lib/analytics';
 import { genreEngMapping, levelEngMapping } from '@/shared/constants';
 import { lessonKeys, memberKeys, teacherKeys } from '@/shared/constants/queryKey';
 import useBlockBackWithUnsavedChanges from '@/shared/hooks/useBlockBackWithUnsavedChanges';
@@ -43,9 +44,10 @@ import useImageUploader from '@/shared/hooks/useImageUploader';
 
 export default function Page() {
   const params = useParams<{ id: string }>();
-  const id = params.id;
+  const id = params?.id;
   const router = useRouter();
   const { openModal } = useModalStore();
+  const { logSubmitEvent } = useEventLogger();
 
   const lessonId = Number(id);
   const isValidId = !isNaN(lessonId) && lessonId > 0;
@@ -225,6 +227,11 @@ export default function Page() {
           { lessonId, infoData: updatedInfo },
           {
             onSuccess: () => {
+              logSubmitEvent('lesson_create_done', {
+                lesson_id: lessonId,
+                lesson_name: updatedInfo.name,
+                is_edit: true,
+              });
               queryClient.invalidateQueries({ queryKey: memberKeys.me.queryKey });
               queryClient.invalidateQueries({ queryKey: lessonKeys.list.queryKey });
               queryClient.invalidateQueries({ queryKey: lessonKeys.detail(lessonId).queryKey });
