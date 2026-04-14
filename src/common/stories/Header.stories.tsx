@@ -19,11 +19,11 @@ export const Default: Story = {
 
 export const WithMyPageOpen: Story = {
   render: () => <Header />,
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    const mypageButton = canvas.getByRole('link', { name: /마이페이지로 이동/i });
-    await userEvent.click(mypageButton);
-  },
+  // play: async ({ canvasElement }) => {
+  //   const canvas = within(canvasElement);
+  //   const mypageButton = canvas.getByRole('link', { name: /마이페이지로 이동/i });
+  //   await userEvent.click(mypageButton);
+  // },
 };
 
 export const InSearchPage: Story = {
