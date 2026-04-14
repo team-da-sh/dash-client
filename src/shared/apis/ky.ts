@@ -8,7 +8,14 @@ interface PostImageResponseTypes {
 }
 
 export const postImage = async (formData: FormData): Promise<PostImageResponseTypes> => {
-  const data = await kyInstance.post(API_URL.IMAGES, { body: formData }).json<PostImageResponseTypes>();
+  const data = await kyInstance
+    .post(API_URL.IMAGES, {
+      body: formData,
+      headers: {
+        'Content-Type': undefined,
+      },
+    })
+    .json<PostImageResponseTypes>();
   return data;
 };
 
