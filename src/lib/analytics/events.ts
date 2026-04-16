@@ -1,6 +1,6 @@
 // ─── Shared Types ─────────────────────────────────────────────────────────────
 
-type UserType = '수강생' | '강사';
+type UserType = 'MEMBER' | 'TEACHER';
 
 export type ReservationStatus = '승인대기' | '승인완료' | '취소대기' | '취소완료' | '수강완료';
 
@@ -8,7 +8,6 @@ export type ReservationStatus = '승인대기' | '승인완료' | '취소대기'
 
 export interface UserProperties {
   user_type: UserType;
-  // 강사인 경우에만 설정됨 (v1/teachers/me 응답에 teacherId 추가 후 활성화 예정)
   teacher_id?: number;
 }
 

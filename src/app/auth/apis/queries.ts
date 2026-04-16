@@ -14,9 +14,8 @@ export const useLoginMutation = () => {
   return useMutation({
     mutationFn: ({ redirectUrl, code }: loginTypes) => kakaoLogin(redirectUrl, code),
 
-    onSuccess: ({ data: { isOnboarded, isDeleted } }) => {
-      // TODO-userproperty: POST /auth/login 응답에 role 추가 후 user_type 실제 값으로 교체
-      logSubmitEvent('login_success', { user_type: '수강생' });
+    onSuccess: ({ data: { isOnboarded, isDeleted, role } }) => {
+      logSubmitEvent('login_success', { user_type: role });
 
       if (!isOnboarded || isDeleted) {
         clearStorage();
