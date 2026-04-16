@@ -155,7 +155,6 @@ const Carousel = <T extends { id: string | number }>({
   );
 
   // --- 이벤트 핸들러 ---
-
   const handleTouchStart = useCallback(
     (e: React.TouchEvent) => handleDragStart(e.touches[0].clientX),
     [handleDragStart]
