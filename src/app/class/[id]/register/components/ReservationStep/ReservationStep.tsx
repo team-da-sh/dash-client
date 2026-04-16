@@ -31,6 +31,7 @@ import Divider from '@/common/components/Divider/Divider';
 import Head from '@/common/components/Head/Head';
 import Text from '@/common/components/Text/Text';
 import { notify } from '@/common/components/Toast/Toast';
+import { useEventLogger } from '@/lib/analytics';
 import IcCheckcircleGray0524 from '@/shared/assets/svg/IcCheckcircleGray0524';
 import IcCheckcircleMain0324 from '@/shared/assets/svg/IcCheckcircleMain0324';
 import { vars } from '@/shared/styles/theme.css';
@@ -44,8 +45,9 @@ const ReservationStep = ({ onNext }: ReservationStepPropTypes) => {
   const [isAllChecked, setIsAllChecked] = useState(false);
   const [agreements, setAgreements] = useState(new Array(AGREEMENT_TERMS.length).fill(false));
 
+  const { logSubmitEvent } = useEventLogger();
   const params = useParams<{ id: string }>();
-  const id = params.id;
+  const id = params?.id;
   const { data, isError, isLoading } = useGetReservation(Number(id));
   const { mutate: postReservation, isPending } = usePostReservation();
 
@@ -58,7 +60,21 @@ const ReservationStep = ({ onNext }: ReservationStepPropTypes) => {
     postReservation(
       { lessonId: id },
       {
-        onSuccess: onNext,
+        onSuccess: (detail) => {
+          logSubmitEvent('lesson_reservation_complete', {
+            lesson_id: Number(id),
+            lesson_name: data.name,
+            teacher_name: data.teacherNickname,
+            // TODO: (reservation API에 없는 필드)
+            teacher_id: 0,
+            lesson_price: data.price,
+            lesson_session_count: data.lessonRound.lessonRounds.length,
+            // TODO: (reservation API에 없는 필드)
+            lesson_capacity: 0,
+            reservation_status: '승인대기',
+          });
+          onNext(detail);
+        },
         onError: (error: ApiError<{ message: string }>) => {
           const message = error?.response?.data?.message || '예약 중 오류가 발생했어요. 다시 시도해주세요.';
           notify({

@@ -14,6 +14,8 @@ import Modal from '@/common/components/Modal/Modal';
 import Text from '@/common/components/Text/Text';
 import { notify } from '@/common/components/Toast/Toast';
 import { useOpenModal } from '@/common/stores/modal';
+import { useEventLogger } from '@/lib/analytics';
+import type { ReservationStatus as AnalyticsReservationStatus } from '@/lib/analytics/events';
 import ApplyTag from '@/shared/components/ApplyTag/ApplyTag';
 import { teacherKeys } from '@/shared/constants/queryKey';
 import { WITHDRAW_USER_NAME } from '@/shared/constants/withdrawUser';
@@ -31,15 +33,25 @@ const STATUS_BUTTON_MAP: Record<
   COMPLETED: { text: '완료됨', variant: 'quaternary' },
 };
 
+// 현재 상태 → 변경 후 한국어 상태 매핑
+const NEXT_STATUS_KOREAN_MAP = {
+  PENDING_APPROVAL: STATUS_KOREAN_MAP['APPROVED'],
+  APPROVED: STATUS_KOREAN_MAP['PENDING_APPROVAL'],
+  PENDING_CANCELLATION: STATUS_KOREAN_MAP['CANCELLED'],
+  CANCELLED: STATUS_KOREAN_MAP['PENDING_CANCELLATION'],
+} as const;
+
 interface StudentCardPropTypes {
   studentData: Student;
   index: number;
   lessonId: number;
+  lessonName: string;
   selectedTab: TabStatus;
 }
 
-const StudentCard = ({ studentData, index, lessonId, selectedTab }: StudentCardPropTypes) => {
+const StudentCard = ({ studentData, index, lessonId, lessonName, selectedTab }: StudentCardPropTypes) => {
   const openModal = useOpenModal();
+  const { logClickEvent } = useEventLogger();
 
   const { text: buttonText, variant: buttonVariant } = STATUS_BUTTON_MAP[studentData.reservationStatus];
 
@@ -59,6 +71,15 @@ const StudentCard = ({ studentData, index, lessonId, selectedTab }: StudentCardP
             if (data.isFull) {
               openModal(({ close }) => <Modal type="single" content={'클래스 정원이 다 찼어요.'} onClose={close} />);
             } else {
+              logClickEvent('status_change', {
+                lesson_id: lessonId,
+                lesson_name: lessonName,
+                status_from: STATUS_KOREAN_MAP[status as keyof typeof STATUS_KOREAN_MAP] as AnalyticsReservationStatus,
+                status_to: NEXT_STATUS_KOREAN_MAP[status as keyof typeof NEXT_STATUS_KOREAN_MAP],
+                // TODO: userProperties로 대체 예정 (강사 본인 정보 API 응답에 없음)
+                // teacher_name: '',
+                // teacher_id: 0,
+              });
               notify({
                 message: status === 'APPROVED' ? '승인 대기로 변경되었어요.' : '승인이 확정되었어요.',
                 icon: 'success',
@@ -82,6 +103,17 @@ const StudentCard = ({ studentData, index, lessonId, selectedTab }: StudentCardP
                 { lessonId, reservationId: studentData.reservationId },
                 {
                   onSuccess: () => {
+                    logClickEvent('status_change', {
+                      lesson_id: lessonId,
+                      lesson_name: lessonName,
+                      status_from: STATUS_KOREAN_MAP[
+                        status as keyof typeof STATUS_KOREAN_MAP
+                      ] as AnalyticsReservationStatus,
+                      status_to: NEXT_STATUS_KOREAN_MAP[status as keyof typeof NEXT_STATUS_KOREAN_MAP],
+                      // TODO: userProperties로 대체 예정 (강사 본인 정보 API 응답에 없음)
+                      // teacher_name: '',
+                      // teacher_id: 0,
+                    });
                     notify({ message: '취소가 완료되었어요.', icon: 'success' });
                     queryClient.invalidateQueries({
                       queryKey: teacherKeys.me._ctx.lesson._ctx.students(lessonId, selectedTab).queryKey,
@@ -97,6 +129,15 @@ const StudentCard = ({ studentData, index, lessonId, selectedTab }: StudentCardP
           { lessonId, reservationId: studentData.reservationId },
           {
             onSuccess: () => {
+              logClickEvent('status_change', {
+                lesson_id: lessonId,
+                lesson_name: lessonName,
+                status_from: STATUS_KOREAN_MAP[status as keyof typeof STATUS_KOREAN_MAP] as AnalyticsReservationStatus,
+                status_to: NEXT_STATUS_KOREAN_MAP[status as keyof typeof NEXT_STATUS_KOREAN_MAP],
+                // TODO: userProperties로 대체 예정 (강사 본인 정보 API 응답에 없음)
+                // teacher_name: '',
+                // teacher_id: 0,
+              });
               notify({ message: '취소 대기로 변경되었어요.', icon: 'success' });
               queryClient.invalidateQueries({
                 queryKey: teacherKeys.me._ctx.lesson._ctx.students(lessonId, selectedTab).queryKey,

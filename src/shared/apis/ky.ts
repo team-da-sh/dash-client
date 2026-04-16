@@ -33,3 +33,14 @@ export const getTeacherAccount = async (): Promise<TeacherAccountResponseTypes> 
   const data = await kyInstance.get(API_URL.TEACHER_ME_ACCOUNT).json<TeacherAccountResponseTypes>();
   return data;
 };
+
+export interface MeResponseTypes {
+  userId: number;
+  role: 'MEMBER' | 'TEACHER';
+  teacherId?: number;
+}
+
+export const getMe = async (): Promise<MeResponseTypes> => {
+  const data = await kyInstance.get(API_URL.USERS_ME).json<MeResponseTypes>();
+  return data;
+};

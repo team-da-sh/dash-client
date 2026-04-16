@@ -1,6 +1,6 @@
 'use client';
 
-import { use } from 'react';
+import { use, useEffect } from 'react';
 import { useGetDancerDetail } from '@/app/dancer/[id]/apis/queries';
 import DancerInfo from '@/app/dancer/[id]/components/DancerInfo/DancerInfo';
 import TabWrapper from '@/app/dancer/[id]/components/TabWrapper/TabWrapper';
@@ -8,9 +8,11 @@ import { genresWrapperStyle, gradientOverlayStyle, textWrapperStyle, topImgStyle
 import Head from '@/common/components/Head/Head';
 import Tag from '@/common/components/Tag/Tag';
 import Text from '@/common/components/Text/Text';
+import { useEventLogger } from '@/lib/analytics';
 import { genreMapping } from '@/shared/constants/index';
 
 export default function Page({ params }: { params: Promise<{ id: string }> }) {
+  const { logPageViewEvent } = useEventLogger();
   const { id } = use(params);
   const dancerId = Number(id);
 
@@ -19,6 +21,19 @@ export default function Page({ params }: { params: Promise<{ id: string }> }) {
   const { data, isPending, isError } = useGetDancerDetail(dancerId, {
     enabled: Boolean(isValidDancerId),
   });
+
+  useEffect(() => {
+    if (!data) return;
+    logPageViewEvent('teacher_view', {
+      teacher_name: data.nickname,
+      teacher_id: dancerId,
+      referrer_page: document.referrer,
+      has_sns: data.instagram || data.youtube ? true : false,
+      has_video: data.videoUrls ? data.videoUrls.length > 0 : false,
+      has_experience: data.experiences ? data.experiences.length > 0 : false,
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data]);
 
   if (!isValidDancerId) {
     throw new Error('Invalid dancer id');
@@ -62,7 +77,7 @@ export default function Page({ params }: { params: Promise<{ id: string }> }) {
           </Head>
         </div>
       </div>
-      <DancerInfo dancerData={data} />
+      <DancerInfo dancerData={data} id={dancerId} />
       <TabWrapper colorScheme="primary" dancerData={data} />
     </>
   );

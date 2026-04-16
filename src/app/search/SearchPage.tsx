@@ -1,7 +1,7 @@
 'use client';
 
 import { useSearchParams } from 'next/navigation';
-import { Suspense, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { useGetClassList, useGetDancerList } from '@/app/search/apis/queries';
 import SearchBar from '@/app/search/components/SearchBar/SearchBar';
 import SearchHeader from '@/app/search/components/SearchHeader/SearchHeader';
@@ -12,11 +12,13 @@ import { searchPageWrapperStyle } from '@/app/search/index.css';
 import { formatDateEndTime, formatDateStartTime } from '@/app/search/utils/formatDate';
 import { handleSearchChange } from '@/app/search/utils/searchHandlers';
 import useDebounce from '@/common/hooks/useDebounce';
+import { useEventLogger } from '@/lib/analytics';
 import { genreEngMapping, labelToSortOptionMap, levelEngMapping } from '@/shared/constants';
 import { useTabNavigation } from '@/shared/hooks/useTabNavigation';
 
 const Search = () => {
   const searchParams = useSearchParams();
+  const { logSubmitEvent } = useEventLogger();
   const { selectedTab, setSelectedTab } = useTabNavigation<TAB_TYPES>(TAB.CLASS);
 
   const [genre, setGenre] = useState<string | null>(searchParams?.get('genre') ?? null);
@@ -29,6 +31,12 @@ const Search = () => {
   const [selectedLabel, setSelectedLabel] = useState<keyof typeof labelToSortOptionMap>(SORT_LABELS.LATEST);
 
   const debouncedSearchValue = useDebounce({ value: searchValue, delay: 300 });
+
+  useEffect(() => {
+    if (!debouncedSearchValue) return;
+    logSubmitEvent('search_perform', { search_keyword: debouncedSearchValue });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [debouncedSearchValue]);
 
   const sortOption = labelToSortOptionMap[selectedLabel];
 

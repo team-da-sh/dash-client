@@ -11,7 +11,8 @@ import type {
   instructorRegisterFormTypes,
 } from '@/app/my/(instructor)/manage-profile/types/instructorRegisterForm';
 import { notify } from '@/common/components/Toast/Toast';
-import { authKeys, teacherKeys } from '@/shared/constants/queryKey';
+import { useEventLogger } from '@/lib/analytics';
+import { authKeys, teacherKeys, userKeys } from '@/shared/constants/queryKey';
 import { USER_ROLE } from '@/shared/constants/userRole';
 import { setAccessToken, setRefreshToken } from '@/shared/utils/handleToken';
 
@@ -24,6 +25,7 @@ const useInstructorRegisterForm = ({ userRole, prevInstructorData }: UseInstruct
   const [duplicateState, setDuplicateState] = useState<duplicateStateTypes>(null);
   const router = useRouter();
   const queryClient = useQueryClient();
+  const { logSubmitEvent } = useEventLogger();
 
   // 강사 등록
   const { mutate: instructorRegisterMutate } = usePostInstructor();
@@ -86,7 +88,16 @@ const useInstructorRegisterForm = ({ userRole, prevInstructorData }: UseInstruct
       setAccessToken(accessToken);
       setRefreshToken(refreshToken);
 
+      logSubmitEvent('teacher_register_done', {
+        teacher_name: updatedInfo.nickname,
+        has_experience: updatedInfo.experiences.length > 0,
+        has_video: updatedInfo.videoUrls.length > 0,
+        has_sns: !!(updatedInfo.instagram || updatedInfo.youtube),
+      });
+
       queryClient.invalidateQueries({ queryKey: authKeys.role.queryKey });
+      // TODO-userproperty: 강사 등록 후 teacher_id가 새로 생기므로 re-identify 트리거
+      queryClient.invalidateQueries({ queryKey: userKeys.me.queryKey });
 
       router.push('/my/profile-register-completion');
     };

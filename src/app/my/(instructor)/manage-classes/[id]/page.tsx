@@ -19,7 +19,7 @@ import { USER_ROLE } from '@/shared/constants/userRole';
 
 export default function Page() {
   const params = useParams<{ id: string }>();
-  const id = params.id;
+  const id = params?.id;
   const classInfoId = useId();
   const studentTabId = useId();
 
@@ -65,7 +65,7 @@ export default function Page() {
           수강생 관리
         </Head>
 
-        <StudentTab lessonId={Number(id)} />
+        <StudentTab lessonId={Number(id)} lessonName={lessonData?.name ?? ''} />
       </section>
     </div>
   );

@@ -7,6 +7,7 @@ import { useHeartToggle } from '@/app/class/[id]/hooks/useHeartToggle';
 import type { LessonDetailResponseTypes } from '@/app/class/[id]/types/api';
 import BlurButton from '@/common/components/BlurButton/BlurButton';
 import BoxButton from '@/common/components/BoxButton/BoxButton';
+import { useEventLogger } from '@/lib/analytics';
 import IcHeartFilledGray07 from '@/shared/assets/svg/IcHeartFilledGray07';
 import IcHeartOutlinedGray07 from '@/shared/assets/svg/IcHeartOutlinedGray07';
 import { WITHDRAW_USER_NAME } from '@/shared/constants/withdrawUser';
@@ -25,8 +26,19 @@ const ClassButtonWrapper = ({ lessonData }: { lessonData: LessonDetailResponseTy
   const finalButtonText = isDeletedTeacher ? '신청불가' : buttonText;
   const finalIsDisabled = isDeletedTeacher || isDisabled || isMyLesson;
 
+  const { logClickEvent } = useEventLogger();
+
   const handleApplyClick = () => {
     if (!isDisabled && id) {
+      logClickEvent('lesson_reservation_start', {
+        lesson_id: Number(id),
+        lesson_name: lessonData.name,
+        teacher_name: lessonData.teacherNickname,
+        teacher_id: lessonData.teacherId,
+        lesson_price: lessonData.price,
+        lesson_session_count: lessonData.lessonRound.lessonRounds.length,
+        lesson_capacity: lessonData.maxReservationCount,
+      });
       router.push(`/class/${id}/register`);
     }
   };

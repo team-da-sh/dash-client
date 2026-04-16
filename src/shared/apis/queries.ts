@@ -1,7 +1,8 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
 import queryClient from '@/app/queryClient';
-import { getBankList, getTeacherAccount, postImage, postRole } from '@/shared/apis/ky';
-import { authKeys, bankKeys, teacherKeys } from '@/shared/constants/queryKey';
+import { getBankList, getMe, getTeacherAccount, postImage, postRole } from '@/shared/apis/ky';
+import type { MeResponseTypes } from '@/shared/apis/ky';
+import { authKeys, bankKeys, teacherKeys, userKeys } from '@/shared/constants/queryKey';
 import type { ApiError } from '@/shared/types/ApiError';
 import type { BankListResponseTypes, TeacherAccountResponseTypes } from '@/shared/types/api';
 import type { RoleNameResponseTypes } from '@/shared/types/myPageTypes';
@@ -36,5 +37,15 @@ export const useGetTeacherAccount = (currentRole?: string) => {
     queryKey: teacherKeys.me._ctx.account.queryKey,
     queryFn: () => getTeacherAccount(),
     enabled: currentRole === 'TEACHER',
+  });
+};
+
+export const useGetMe = () => {
+  return useQuery<MeResponseTypes, ApiError>({
+    queryKey: userKeys.me.queryKey,
+    queryFn: getMe,
+    retry: false,
+    throwOnError: false,
+    staleTime: Infinity,
   });
 };

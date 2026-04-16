@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import { Toaster } from 'react-hot-toast';
 import queryClient from '@/app/queryClient';
 import ModalProvider from '@/common/components/Modal/ModalProvider';
+import { AnalyticsProvider } from '@/lib/analytics';
 
 const setScreenSize = () => {
   // vh 관련
@@ -31,9 +32,12 @@ export default function Providers({ children }: { children: React.ReactNode }) {
   return (
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={false} />
-      {children}
-      <ModalProvider />
-      <Toaster containerStyle={{ margin: '0 auto' }} />
+      {/* TODO-userproperty: AnalyticsProvider가 useGetMe(React Query)를 사용하므로 QueryClientProvider 안에 위치해야 함 */}
+      <AnalyticsProvider>
+        {children}
+        <ModalProvider />
+        <Toaster containerStyle={{ margin: '0 auto' }} />
+      </AnalyticsProvider>
     </QueryClientProvider>
   );
 }

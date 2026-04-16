@@ -14,6 +14,7 @@
     "svgr": "npx @svgr/cli -d src/shared/assets/svg --no-prettier --ignore-existing --typescript --no-dimensions --no-index --jsx-runtime automatic public/svg"
   },
   "dependencies": {
+    "@amplitude/unified": "^1.0.7",
     "@hookform/resolvers": "^5.0.1",
     "@lukemorales/query-key-factory": "^1.3.4",
     "@sentry/react": "^9.39.0",

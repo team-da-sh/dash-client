@@ -1,6 +1,6 @@
 'use client';
 
-import { use } from 'react';
+import { use, useEffect } from 'react';
 import { useGetLessonDetail } from '@/app/class/[id]/apis/queries';
 import ClassButtonWrapper from '@/app/class/[id]/components/ClassButtonWrapper/ClassButtonWrapper';
 import ClassInfoWrapper from '@/app/class/[id]/components/ClassInfoWrapper/ClassInfoWrapper';
@@ -10,17 +10,33 @@ import { LOW_SEAT_THRESHOLD } from '@/app/class/[id]/constants';
 import { chipWrapperStyle, topImgStyle, withdrawIconStyle, withdrawImgStyle } from '@/app/class/[id]/index.css';
 import Divider from '@/common/components/Divider/Divider';
 import Text from '@/common/components/Text/Text';
+import { useEventLogger } from '@/lib/analytics';
 import IcCircleCautionFilled from '@/shared/assets/svg/IcCircleCautionFilled';
 
 export default function Page({ params }: { params: Promise<{ id: string }> }) {
+  const { logPageViewEvent } = useEventLogger();
   const { id } = use(params);
   const lessonId = Number(id);
-
   const isValidLessonId = Number.isInteger(lessonId) && lessonId > 0;
 
   const { data, isPending, isError } = useGetLessonDetail(lessonId, {
     enabled: Boolean(isValidLessonId),
   });
+
+  useEffect(() => {
+    if (!data) return;
+    logPageViewEvent('lesson_view', {
+      lesson_id: lessonId,
+      lesson_name: data.name,
+      teacher_name: data.teacherNickname,
+      teacher_id: data.teacherId,
+      lesson_price: data.price,
+      lesson_session_count: data.lessonRound.lessonRounds.length,
+      lesson_capacity: data.maxReservationCount,
+      referrer_page: document.referrer,
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data]);
 
   if (!isValidLessonId) {
     throw new Error('Invalid lesson id');

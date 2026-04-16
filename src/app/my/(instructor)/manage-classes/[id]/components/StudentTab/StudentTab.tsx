@@ -13,9 +13,10 @@ import Text from '@/common/components/Text/Text';
 
 interface StudentTabProps {
   lessonId: number;
+  lessonName: string;
 }
 
-const StudentTab = ({ lessonId }: StudentTabProps) => {
+const StudentTab = ({ lessonId, lessonName }: StudentTabProps) => {
   const [selectedTab, setSelectedTab] = useState<TabStatus>('APPROVE');
 
   const { data: lessonData } = useGetLessonDetail(lessonId, selectedTab);
@@ -64,12 +65,14 @@ const StudentTab = ({ lessonId }: StudentTabProps) => {
               reservationStatus="PENDING_APPROVAL"
               studentList={pendingApprovalStudents}
               lessonId={lessonData?.id ?? lessonId}
+              lessonName={lessonName}
               selectedTab={selectedTab}
             />
             <StudentList
               reservationStatus="APPROVED"
               studentList={approvedStudents}
               lessonId={lessonData?.id ?? lessonId}
+              lessonName={lessonName}
               selectedTab={selectedTab}
             />
           </>
@@ -86,12 +89,14 @@ const StudentTab = ({ lessonId }: StudentTabProps) => {
               reservationStatus="PENDING_CANCELLATION"
               studentList={pendingCancellationStudents}
               lessonId={lessonData?.id ?? lessonId}
+              lessonName={lessonName}
               selectedTab={selectedTab}
             />
             <StudentList
               reservationStatus="CANCELLED"
               studentList={cancelledStudents}
               lessonId={lessonData?.id ?? lessonId}
+              lessonName={lessonName}
               selectedTab={selectedTab}
             />
           </>

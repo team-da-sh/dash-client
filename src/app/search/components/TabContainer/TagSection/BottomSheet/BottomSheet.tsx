@@ -20,6 +20,7 @@ import {
 } from '@/app/search/components/TabContainer/TagSection/BottomSheet/bottomSheet.css';
 import BoxButton from '@/common/components/BoxButton/BoxButton';
 import { TabButton, TabList, TabPanel, TabRoot } from '@/common/components/Tab';
+import { useEventLogger } from '@/lib/analytics';
 import LevelButton from '@/shared/components/LevelButton/LevelButton';
 import { LEVEL } from '@/shared/constants';
 import { GENRE_CATEGORY } from '@/shared/constants/index';
@@ -55,6 +56,7 @@ const BottomSheet = ({
   const [selectedStartDate, setSelectedStartDate] = useState<string>(startDate);
   const [selectedEndDate, setSelectedEndDate] = useState<string>(endDate);
   const [isClosing, setIsClosing] = useState(false);
+  const { logClickEvent } = useEventLogger();
 
   const handleClose = () => {
     setIsClosing(true);
@@ -71,6 +73,12 @@ const BottomSheet = ({
   };
 
   const handleApplyClick = () => {
+    const filterParts = [
+      selectedGenre,
+      selectedLevelTitle,
+      selectedStartDate && selectedEndDate ? `${selectedStartDate}~${selectedEndDate}` : null,
+    ].filter(Boolean) as string[];
+    logClickEvent('filter_apply', { filter_values: filterParts.join(', ') });
     setLevel(selectedLevelTitle);
     setStartDate(selectedStartDate);
     setEndDate(selectedEndDate);
@@ -96,6 +104,7 @@ const BottomSheet = ({
 
   return (
     <div className={bottomSheetContainerStyle}>
+      {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
       <div className={`${overlayStyle} ${isClosing ? overlayHidden : overlayVisible}`} onClick={handleClose} />
       <div
         className={`${bottomSheetStyle} ${isClosing ? bottomSheetHidden : bottomSheetVisible} ${bottomSheetContentStyle}`}>

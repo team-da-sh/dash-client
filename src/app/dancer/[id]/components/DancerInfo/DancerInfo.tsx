@@ -21,12 +21,14 @@ import { expandInstagramUrl, expandYouTubeUrl } from '@/app/dancer/[id]/utils/ur
 import Divider from '@/common/components/Divider/Divider';
 import Head from '@/common/components/Head/Head';
 import Text from '@/common/components/Text/Text';
+import { useEventLogger } from '@/lib/analytics';
 import IcInstagram20 from '@/shared/assets/svg/IcInstagram20';
 import IcYoutube20 from '@/shared/assets/svg/IcYoutube20';
 
-const DancerInfo = ({ dancerData }: { dancerData: DancerDetailResponseTypes }) => {
+const DancerInfo = ({ dancerData, id }: { dancerData: DancerDetailResponseTypes; id: number }) => {
   const { instagram, youtube, detail, nickname, lessons } = dancerData;
 
+  const { logClickEvent } = useEventLogger();
   const router = useRouter();
 
   const handleClassClick = (lessonId: number) => {
@@ -39,7 +41,16 @@ const DancerInfo = ({ dancerData }: { dancerData: DancerDetailResponseTypes }) =
         {(instagram || youtube) && (
           <div className={socialLinksStyle}>
             {instagram && (
-              <a href={expandInstagramUrl(instagram)} target="_blank" rel="noopener noreferrer">
+              <a
+                href={expandInstagramUrl(instagram)}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() =>
+                  logClickEvent('external_link_click', {
+                    teacher_name: nickname,
+                    teacher_id: id,
+                  })
+                }>
                 <div className={socialLinkStyle}>
                   <IcInstagram20 width="2rem" />
                   <Text tag="b2_m" color="gray5" className={linkStyle}>
@@ -50,7 +61,16 @@ const DancerInfo = ({ dancerData }: { dancerData: DancerDetailResponseTypes }) =
             )}
 
             {youtube && (
-              <a href={expandYouTubeUrl(youtube)} target="_blank" rel="noopener noreferrer">
+              <a
+                href={expandYouTubeUrl(youtube)}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() =>
+                  logClickEvent('external_link_click', {
+                    teacher_name: nickname,
+                    teacher_id: id,
+                  })
+                }>
                 <div className={socialLinkStyle}>
                   <IcYoutube20 width="2rem" height="2rem" />
                   <Text tag="b2_m" color="gray5" className={linkStyle}>
@@ -78,9 +98,9 @@ const DancerInfo = ({ dancerData }: { dancerData: DancerDetailResponseTypes }) =
           </Head>
         ) : (
           <div className={rowScrollStyle}>
-            {lessons.map((data, id) => {
-              const isFirst = id === 0;
-              const isLast = id === lessons.length - 1;
+            {lessons.map((data, index) => {
+              const isFirst = index === 0;
+              const isLast = index === lessons.length - 1;
 
               return (
                 <div

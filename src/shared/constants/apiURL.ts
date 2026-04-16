@@ -64,4 +64,6 @@ export const API_URL = {
 
   AUTH_ROLE: 'v1/auth/role',
   IMAGES: 'v1/images',
+
+  USERS_ME: 'v1/members/me/attributes',
 };

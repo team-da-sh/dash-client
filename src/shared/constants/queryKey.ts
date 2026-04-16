@@ -93,6 +93,10 @@ export const authKeys = createQueryKeys('auth', {
   role: { queryKey: null },
 });
 
+export const userKeys = createQueryKeys('user', {
+  me: { queryKey: null },
+});
+
 export const queryKeys = mergeQueryKeys(
   lessonKeys,
   memberKeys,
@@ -101,5 +105,6 @@ export const queryKeys = mergeQueryKeys(
   advertisementKeys,
   bankKeys,
   locationKeys,
-  authKeys
+  authKeys,
+  userKeys
 );

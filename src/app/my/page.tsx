@@ -6,9 +6,11 @@ import TeacherContent from '@/app/my/components/TeacherContent/TeacherContent';
 import { MYPAGE_TABS } from '@/app/my/constants/tabs';
 import { containerStyle, tabPanelStyle } from '@/app/my/index.css';
 import { TabButton, TabList, TabPanel } from '@/common/components/Tab';
+import { useEventLogger } from '@/lib/analytics';
 import { useTabNavigation } from '@/shared/hooks/useTabNavigation';
 
 function MyPageContent() {
+  const { logClickEvent } = useEventLogger();
   const { selectedTab, setSelectedTab } = useTabNavigation('student');
 
   return (
@@ -22,7 +24,10 @@ function MyPageContent() {
                   key={tab.key}
                   colorScheme="plain"
                   isSelected={selectedTab === tab.key}
-                  onClick={() => setSelectedTab(tab.key)}>
+                  onClick={() => {
+                    setSelectedTab(tab.key);
+                    logClickEvent('mypage_tab_click', { mypage_tab_name: tab.label });
+                  }}>
                   {tab.label}
                 </TabButton>
               );

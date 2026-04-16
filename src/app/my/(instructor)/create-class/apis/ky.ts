@@ -8,8 +8,12 @@ export const getLocationList = async (query: string): Promise<LocationsData> => 
   return data;
 };
 
-export const postClassRegisterInfo = async (infoData: ClassRegisterInfoTypes) => {
-  const data = await kyInstance.post(API_URL.LESSONS, { json: infoData }).json();
+export interface ClassRegisterResponseTypes {
+  lessonId: number;
+}
+
+export const postClassRegisterInfo = async (infoData: ClassRegisterInfoTypes): Promise<ClassRegisterResponseTypes> => {
+  const data = await kyInstance.post(API_URL.LESSONS, { json: infoData }).json<ClassRegisterResponseTypes>();
   return data;
 };
 

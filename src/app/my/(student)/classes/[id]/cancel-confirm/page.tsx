@@ -24,12 +24,15 @@ import {
 } from '@/app/my/(student)/classes/[id]/cancel-confirm/index.css';
 import ApplicantInfo from '@/app/my/(student)/classes/[id]/components/ApplicantInfo/ApplicantInfo';
 import ClassInfo from '@/app/my/(student)/classes/[id]/components/ClassInfo/ClassInfo';
+import { STATUS_KOREAN_MAP } from '@/app/my/(student)/classes/constants/statusMap';
 import { useGetMyPage } from '@/app/my/apis/queries';
 import BlurBotton from '@/common/components/BlurButton/BlurButton';
 import BoxButton from '@/common/components/BoxButton/BoxButton';
 import Head from '@/common/components/Head/Head';
 import Modal from '@/common/components/Modal/Modal';
 import { useOpenModal } from '@/common/stores/modal';
+import { useEventLogger } from '@/lib/analytics';
+import type { ReservationStatus } from '@/lib/analytics/events';
 import { useGetBankList } from '@/shared/apis/queries';
 import BankBottomSheet from '@/shared/components/BankBottomSheet/BankBottomSheet';
 import { MYPAGE_CANCEL_CONFIRM_STATE_KEY } from '@/shared/constants/api';
@@ -61,7 +64,7 @@ function getCancelConfirmState(): NavigationState | null {
 
 const CancelConfirmPage = () => {
   const params = useParams<{ id: string }>();
-  const id = params.id;
+  const id = params?.id;
   const reservationId = Number(id);
 
   const [navigationState] = useState<NavigationState | null>(() => getCancelConfirmState());
@@ -71,6 +74,7 @@ const CancelConfirmPage = () => {
   const { data: bankList } = useGetBankList();
 
   const openModal = useOpenModal();
+  const { logClickEvent } = useEventLogger();
   const { mutate: cancelReservation, isPending } = useCancelReservation();
   const depositStatus = navigationState?.depositStatus || 'before';
   const isAfterDeposit = depositStatus === 'after';
@@ -133,15 +137,28 @@ const CancelConfirmPage = () => {
         type="single"
         onClose={close}
         onClickHandler={() => {
-          cancelReservation({
-            reservationId,
-            requestData: {
-              deposited: isAfterDeposit,
-              bankId: isAfterDeposit ? selectedBank?.bankId : undefined,
-              bankName: isAfterDeposit ? selectedBank?.bankName : undefined,
-              accountNumber: isAfterDeposit ? accountNumber : undefined,
+          cancelReservation(
+            {
+              reservationId,
+              requestData: {
+                deposited: isAfterDeposit,
+                bankId: isAfterDeposit ? selectedBank?.bankId : undefined,
+                bankName: isAfterDeposit ? selectedBank?.bankName : undefined,
+                accountNumber: isAfterDeposit ? accountNumber : undefined,
+              },
             },
-          });
+            {
+              onSuccess: () => {
+                logClickEvent('request_cancel', {
+                  lesson_id: reservationData?.lessonId ?? 0,
+                  status_from: STATUS_KOREAN_MAP[
+                    reservationData?.reservationStatus as keyof typeof STATUS_KOREAN_MAP
+                  ] as ReservationStatus,
+                  status_to: isAfterDeposit ? '취소대기' : '취소완료',
+                });
+              },
+            }
+          );
         }}
       />
     ));

@@ -6,4 +6,5 @@ export interface loginTypes {
 export interface LoginResponseTypes {
   isOnboarded: boolean;
   isDeleted: boolean;
+  role: 'MEMBER' | 'TEACHER';
 }
