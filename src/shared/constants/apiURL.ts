@@ -65,6 +65,5 @@ export const API_URL = {
   AUTH_ROLE: 'v1/auth/role',
   IMAGES: 'v1/images',
 
-  // TODO-userproperty: 백엔드에서 신규 생성 필요 (userId, role, teacherId? 반환)
-  USERS_ME: 'v1/users/me',
+  USERS_ME: 'v1/members/me/attributes',
 };

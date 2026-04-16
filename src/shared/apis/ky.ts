@@ -34,10 +34,9 @@ export const getTeacherAccount = async (): Promise<TeacherAccountResponseTypes> 
   return data;
 };
 
-// TODO-userproperty: GET v1/users/me 백엔드 생성 후 실제 응답 타입으로 교체
 export interface MeResponseTypes {
   userId: number;
-  role: '수강생' | '강사';
+  role: 'MEMBER' | 'TEACHER';
   teacherId?: number;
 }
 

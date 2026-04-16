@@ -40,7 +40,6 @@ export const useGetTeacherAccount = (currentRole?: string) => {
   });
 };
 
-// TODO-userproperty: GET v1/users/me 백엔드 생성 후 실제 동작 확인 필요
 export const useGetMe = () => {
   return useQuery<MeResponseTypes, ApiError>({
     queryKey: userKeys.me.queryKey,
